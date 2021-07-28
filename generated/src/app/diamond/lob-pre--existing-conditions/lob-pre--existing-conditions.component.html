@@ -1,0 +1,134 @@
+<!-- Copyright (c) 2021 . All Rights Reserved. -->
+<div class="container-fluid">
+    <div class="card-block">
+        <form [formGroup]="lobPreExistingConditionsForm" novalidate>
+            <h2 class="form-title card-label-admin">Lob Pre  Existing Conditions</h2>
+            <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+            <app-pop-up-message #popUpMesssage (buttonclickEvent)="popUpButtonHandler($event)"  [(popupMessage)] = "popUpMessage"></app-pop-up-message>
+                        
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+                <!-- DynamicText with label of Line Of Business -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('lineOfBusiness') }">
+                     <label class="col-form-label" for="lineOfBusiness" i18n>Line Of Business</label>
+                     <input type="text"  [fieldLevelSec]="''" params]=""  readonly id="lineOfBusiness" formControlName="lineOfBusiness" class="form-control"/>
+                 </div>
+            
+                <!-- DynamicText with Name of DynamicText001 -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('dynamicText001') }">
+                     <label class="col-form-label" for="dynamicText001" i18n>&nbsp;</label>
+                     <input type="text"  [fieldLevelSec]="''" params]=""  readonly id="dynamicText001" formControlName="dynamicText001" class="form-control"/>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+                <div class="col-md-2 form-control-static mb-0" i18n>
+                    PEC Rule IDEffective DateTerm DateDescription
+                </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <hr>
+            
+                <hr>
+            
+                <hr>
+            
+                <hr>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- DynamicText with Name of DynamicText002 -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('dynamicText002') }">
+                     <label class="col-form-label" for="dynamicText002" i18n>&nbsp;</label>
+                     <input type="text"  [fieldLevelSec]="''" params]=""  readonly id="dynamicText002" formControlName="dynamicText002" class="form-control"/>
+                 </div>
+            
+                <!-- DynamicText with Name of DynamicText003 -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('dynamicText003') }">
+                     <label class="col-form-label" for="dynamicText003" i18n>&nbsp;</label>
+                     <input type="text"  [fieldLevelSec]="''" params]=""  readonly id="dynamicText003" formControlName="dynamicText003" class="form-control"/>
+                 </div>
+            
+                <!-- DynamicText with Name of DynamicText004 -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('dynamicText004') }">
+                     <label class="col-form-label" for="dynamicText004" i18n>&nbsp;</label>
+                     <input type="text"  [fieldLevelSec]="''" params]=""  readonly id="dynamicText004" formControlName="dynamicText004" class="form-control"/>
+                 </div>
+            
+                <!-- DynamicText with Name of DynamicText005 -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('dynamicText005') }">
+                     <label class="col-form-label" for="dynamicText005" i18n>&nbsp;</label>
+                     <input type="text"  [fieldLevelSec]="''" params]=""  readonly id="dynamicText005" formControlName="dynamicText005" class="form-control"/>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of PEC Rule ID -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('pecRuleId') }">
+                     <label class="col-form-label" for="pecRuleId" i18n>PEC Rule ID</label>
+                     <input type="text" id="pecRuleId"  [fieldLevelSec]="''" params]=""   class="form-control" formControlName="pecRuleId"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('pecRuleId')">
+                      {{ formValidation.errorMessage('pecRuleId') }}
+                     </small>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of Effective Date -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('effectiveDate') }">
+                     <label class="col-form-label" for="effectiveDate" i18n>Effective Date</label>
+                     <input type="text" id="effectiveDate"  [fieldLevelSec]="''" params]=""   class="form-control" formControlName="effectiveDate"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('effectiveDate')">
+                      {{ formValidation.errorMessage('effectiveDate') }}
+                     </small>
+                 </div>
+            
+                <!-- DynamicText with label of Term Date -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('termDate') }">
+                     <label class="col-form-label" for="termDate" i18n>Term Date</label>
+                     <input type="text"  [fieldLevelSec]="''" params]=""  readonly id="termDate" formControlName="termDate" class="form-control"/>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Checkbox with label of Aply to All Groups in LOB -->
+                <div class="" [ngClass]="{'has-error': displayMessage.aplyToAllGroupsInLob }">
+                    <div class="checkbox col-md-12">
+                      <input id="aplyToAllGroupsInLob"  [fieldLevelSec]="''" params]=""  value="aplyToAllGroupsInLob" formControlName="aplyToAllGroupsInLob" type="checkbox">
+                        <label class="checkbox">
+                            Aply to All Groups in LOB
+                         </label>
+                    </div>
+                    <span class="help-block" *ngIf="displayMessage.aplyToAllGroupsInLob">
+                        {{ displayMessage.aplyToAllGroupsInLob  }}
+                     </span>
+                </div>
+            
+                <!-- DynamicText with label of Term Reason -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('termReason') }">
+                     <label class="col-form-label" for="termReason" i18n>Term Reason</label>
+                     <input type="text"  [fieldLevelSec]="''" params]=""  readonly id="termReason" formControlName="termReason" class="form-control"/>
+                 </div>
+            
+            </div>
+        </form>
+    </div>
+</div>

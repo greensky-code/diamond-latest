@@ -1,0 +1,328 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+    <title>Timely Filing, How DIAMOND Thinks</title>
+    <!--(Meta)==========================================================-->
+    <meta name="copyright"
+          value="© Copyright 2002 Health Systems Design Corp., a wholly owned subsidiary of Perot Systems Corporation. All rights reserved"/>
+    <meta content="RoboHELP by eHelp Corporation - www.ehelp.com" name="generator"/>
+    <meta content="0.1" name="generator-major-version"/>
+    <meta content="1" name="generator-minor-version"/>
+    <meta content="kadov" name="filetype"/>
+    <meta content="1" name="filetype-version"/>
+    <meta content="0" name="page-count"/>
+    <meta content="0" name="layout-height"/>
+    <meta content="0" name="layout-width"/>
+    <!--(Links)=========================================================-->
+    <!--(Scripts)=======================================================-->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+</head>
+<body>
+
+<div class="calibreMeta">
+    <div class="calibreMetaTitle">
+
+
+        <h1>
+            <a href="../2nlvj-mfnql.html">DIAMOND 950 Help
+            </a>
+        </h1>
+
+
+    </div>
+    <div class="calibreMetaAuthor">
+        Unknown
+
+    </div>
+</div>
+
+<div class="calibreMain">
+
+    <div class="calibreEbookContent">
+
+        <div class="calibreEbNavTop">
+
+            <a href="PCP_Change_Reason_Codes_How_DIAMOND_Thinks.htm" class="calibreAPrev">previous page
+            </a>
+
+
+            <a href="BLTYP_Institutional_Claims_Bill_Types.htm" class="calibreANext">next page
+            </a>
+
+        </div>
+
+
+        <h1 class="calibre1">Timely Filing, How DIAMOND Thinks</h1>
+
+        <!--(Table)=========================================================-->
+        <table cellspacing="0" width="500" x-use-null-cells="" class="calibre172">
+
+            <tbody class="calibre6">
+            <tr valign="top" class="calibre7">
+                <td width="198px" class="">
+                    <p class="map-links"><a
+                            href="Timely_Filing_Overview.htm#TFRUL_Setting_Up_Timely_Filing_Rules_SUP"><img
+                            alt="image\assets/help/MidTopic_shg.gif" border="0" height="10" src="assets/help/MidTopic_shg.gif" width="18"
+                            class=""/></a> Setting Up Timely Filing Rules in DIAMOND</p></td>
+                <td width="198px" class="">
+                    <p class="map-links"><a
+                            href="Timely_Filing_Overview.htm#TFRUL_Timely_Filing_Processing_Logic_SUP"><img
+                            alt="image\assets/help/MidTopic_shg.gif" border="0" height="10" src="assets/help/MidTopic_shg.gif" width="18"
+                            class=""/></a> Timely Filing Processing Notes</p></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <p class="doc-level"><a name="TFRUL_Setting_Up_Timely_Filing_Rules_SUP"></a>Setting
+            Up Timely Filing Rules in DIAMOND</p>
+
+        <p class="step-comment-noline">Your organization may choose to encourage providers
+            to submit claims within a certain period of time after the date of the
+            procedure. DIAMOND automatically calculates the age of a claim. Based
+            on criteria that you establish in keyword TFRUL (Timely Filing Rules),
+            DIAMOND applies timely filing rules to each claim. These rules determine
+            if DIAMOND should process a claim with a warning, hold, or deny the claim.
+        </p>
+
+        <p class="doc-level1">Unique Rule Identifier</p>
+
+        <p class="step-comment-noline">Each timely filing rule must be identified by a unique
+            combination of the following fields in keyword TFRUL:</p>
+
+        <ul class="calibre17">
+
+            <li class="kadov-p-cstep-comment-bullet-noline"><p class="bullet-list-h3">Claim
+                Type</p></li>
+
+            <li class="kadov-p-cstep-comment-bullet-noline"><p class="bullet-list-h3">Rule
+                Order ID</p></li>
+
+            <li class="kadov-p-cstep-comment-bullet-noline"><p class="bullet-list-h3">Effective
+                Date</p></li>
+        </ul>
+
+        <p class="step-comment-noline">For information on each field, see keyword TFRUL user
+            documentation.</p>
+
+        <p class="doc-level1">Rule Order ID</p>
+
+        <p class="step-comment-noline">You determine the order in which DIAMOND searches through
+            timely filing rules by assigning a Rule Order ID to each timely filing
+            rule. DIAMOND evaluates each rule from lowest Rule Order ID number to
+            highest number. Once DIAMOND finds a match, the search stops and DIAMOND
+            uses that rule. You should assign lower numbers to specific rules and
+            higher numbers to more general rules. DIAMOND displays the Rule Order
+            ID in the processing messages assigned to the claim.</p>
+
+        <p class="step-comment-noline">For information on the Rule Order ID field, see keyword
+            TFRUL user documentation.</p>
+
+        <p class="doc-level1">Timely Filing Criteria Menu Commands</p>
+
+        <p class="step-comment-noline">TFRUL provides the following commands on the menu bar
+            to include or exclude a single value or range of values:</p>
+
+        <ul class="calibre17">
+
+            <li class="kadov-p-cstep-comment-bullet-noline"><p class="bullet-list-h3"><span class="calibre4">Line of Business Criteria</span>:
+                include or
+                exclude one or more lines of business.</p></li>
+
+            <li class="kadov-p-cstep-comment-bullet-noline"><p class="bullet-list-h3"><span class="calibre4">Company Code Criteria</span>:
+                include or exclude
+                one or more company codes.</p></li>
+
+            <li class="kadov-p-cstep-comment-bullet-noline"><p class="bullet-list-h3"><span class="calibre4">Provider Status Criteria</span>:
+                include or
+                exclude one or more provider par statuses.</p></li>
+
+            <li class="kadov-p-cstep-comment-bullet-noline"><p class="bullet-list-h3"><span class="calibre4">Service State Criteria</span>:
+                include or exclude
+                one or more service states. </p></li>
+
+            <li class="kadov-p-cstep-comment-bullet-noline"><p class="bullet-list-h3"><span class="calibre4">Authorization Level Criteria</span>:
+                include
+                or exclude one or more authorization levels.</p></li>
+        </ul>
+
+        <p class="step-comment-noline">For information on each command, see keyword TFRUL user
+            documentation.</p>
+
+        <p class="doc-level1">Timely Filing Rule Overrides</p>
+
+        <p class="step-comment-noline">You cannot configure DIAMOND to automatically override
+            a timely filing rule. You can manually override a timely filing rule that
+            has been applied to a specific claim.</p>
+
+        <p class="doc-level"><a name="TFRUL_Timely_Filing_Processing_Logic_SUP"></a>Timely
+            Filing Processing Notes</p>
+
+        <p class="step-comment-noline">This section includes details of how DIAMOND applies
+            timely filing rules.</p>
+
+        <p class="doc-level1">Calc From Date Field Logic</p>
+
+        <p class="step-comment-noline">This value specifies the start date to use when evaluating
+            the age of a claim. The options provided are:</p>
+
+        <p class="step-comment-noline"><span class="calibre4">Thru Date of Service</span>:
+            for Professional and Dental Services, uses the "thru" date of
+            service from the claim detail line. For Institutional claims, DIAMOND
+            checks the bill types master to determine which source to use:</p>
+
+        <ul class="calibre17">
+
+            <li class="kadov-p-cstep-comment-bullet-noline"><p class="bullet-list-h3">If the
+                bill type master is configured as an inpatient bill type, the thru date
+                of service on the claim header is used.</p></li>
+
+            <li class="kadov-p-cstep-comment-bullet-noline"><p class="bullet-list-h3">If the
+                bill type master is configured as an outpatient bill type, the thru date
+                of service on each claim detail line is used.</p></li>
+        </ul>
+
+        <p class="step-comment-noline"><span class="calibre4">From Date of Service</span>:
+            for Professional and Dental Services, uses the "from" date of
+            service from the claim detail line. For Institutional claims, DIAMOND
+            checks the bill types master to determine which source to use:</p>
+
+        <ul class="calibre17">
+
+            <li class="kadov-p-cstep-comment-bullet-noline"><p class="bullet-list-h3">If the
+                bill type master is configured as an inpatient bill type, the from date
+                of service on the claim header is used.</p></li>
+
+            <li class="kadov-p-cstep-comment-bullet-noline"><p class="bullet-list-h3">If the
+                bill type master is configured as an outpatient bill type, the from date
+                of service on each claim detail line is used.</p></li>
+        </ul>
+
+        <p class="step-comment-noline"><span class="calibre4">Contract End Date</span>:
+            uses the contract end date for the member’s group. DIAMOND evaluates the
+            contract period that contains the thru date of service, depending on the
+            claim type:</p>
+
+        <ul class="calibre17">
+
+            <li class="kadov-p-cstep-comment-bullet-noline"><p class="bullet-list-h3">Professional
+                dental, and institutional outpatient claims: thru date of service on claim
+                detail line.</p></li>
+
+            <li class="kadov-p-cstep-comment-bullet-noline"><p class="bullet-list-h3">Institutional
+                inpatient: thru date of service on claim header</p></li>
+        </ul>
+
+        <p class="doc-level1">Calc Thru Date Field Logic</p>
+
+        <p class="step-comment-noline">This value specifies the thru date to use when evaluating
+            the age of a claim. The options provided are:</p>
+
+        <ul class="calibre17">
+
+            <li class="kadov-p-cstep-comment-bullet-noline"><p class="bullet-list-h3"><span class="calibre4">Claim Received Date</span>:
+                uses the received
+                date from the claim header as the calc thru date in the calculation of
+                claim age.</p></li>
+
+            <li class="kadov-p-cstep-comment-bullet-noline"><p class="bullet-list-h3"><span class="calibre4">Claim Entered Date</span>:
+                uses the system
+                date from the claim as the calc thru date in the calculation of claim
+                age. </p></li>
+        </ul>
+
+        <p class="doc-level1">Filing Limit Days Field Logic</p>
+
+        <p class="step-comment-noline">DIAMOND uses the Filing Limit Days value to determine
+            if the age of a claim is less than, equal to, or over the filing limit.
+            This value comes from the Filing Limit Days field in one of two keywords:</p>
+
+        <ul class="calibre17">
+
+            <li class="kadov-p-cstep-comment-bullet-noline"><p class="bullet-list-h3"><span
+                    class="calibre4">PROVC</span>. If you entered a value in this
+                field, DIAMOND uses this field and ignores the value in keyword TFRUL.
+                However, if Ignore Prov Limit Days in keyword TFRUL is checked, DIAMOND
+                does not use the value in keyword PROVC.</p></li>
+
+            <li class="kadov-p-cstep-comment-bullet-noline"><p class="bullet-list-h3"><span
+                    class="calibre4">TFRUL</span>. If the Filing Limit Days field
+                in PROVC is blank, or if Ignore Prov Limit Days in keyword TFRUL is checked,
+                DIAMOND uses this field. </p></li>
+        </ul>
+
+        <p class="step-comment-noline">When DIAMOND evaluates a timely filing rule, it compares
+            the Calc From and Calc Thru dates to calculate the age of the claim. DIAMOND
+            then compares the age of the claim with the Filing Limit Days to determine
+            if the claim is under or over the filing limit.</p>
+
+        <p class="doc-level1">Service Delivery State Evaluation</p>
+
+        <ul class="calibre17">
+
+            <li class="kadov-p-cstep-comment-bullet-noline"><p class="bullet-list-h3">DIAMOND
+                evaluates the service state criteria for a timely filing rule based on
+                the selected provider address, not the vendor address. If there is no
+                state listed on the provider address, the rule evaluation fails and DIAMOND
+                moves on to the next timely filing rule.</p></li>
+
+            <li class="kadov-p-cstep-comment-bullet-noline"><p class="bullet-list-h3">State
+                names used in the Service State Criteria command must match the state
+                names used in keyword PROVA (Provider Address). For example a timely filing
+                rule applied to state "Calif" will <span class="calibre4">not</span>
+                be triggered for a provider with "CA" in the State field in
+                keyword PROVA.</p></li>
+        </ul>
+
+        <p class="doc-level1">Term Date Field in GRUPC (Group Contracts) and Timely
+            Filing</p>
+
+        <p class="step-comment-noline">The Term Date field in GRUPC is not required by DIAMOND.
+            However, if you want to base a timely filing rule on the Term Date of
+            the contract, this field must be filled in. If this field is left blank,
+            the rule evaluation fails and DIAMOND moves on to the next timely filing
+            rule.</p>
+
+        <p class="doc-level1">Timely Filing Rule Re-evaluation</p>
+
+        <p class="step-comment-noline">Some events in DIAMOND can trigger a new timely filing
+            rule evaluation.</p>
+
+        <ul class="calibre17">
+
+            <li class="kadov-p-cstep-comment-bullet-noline"><p class="bullet-list-h3">Claim
+                re-adjudication: DIAMOND re-evaluates timely filing rules.</p></li>
+
+            <li class="kadov-p-cstep-comment-bullet-noline"><p class="bullet-list-h3">User
+                invokes Change Header: DIAMOND re-evaluates timely filing rules.</p></li>
+
+            <li class="kadov-p-cstep-comment-bullet-noline"><p class="bullet-list-h3">Claim
+                adjustment: no re-evaluation.</p></li>
+
+            <li class="kadov-p-cstep-comment-bullet-noline"><p class="bullet-list-h3">Claim
+                reversal: no re-evaluation.</p></li>
+        </ul>
+
+
+    </div>
+
+    <div class="calibreEbNav">
+
+        <a href="PCP_Change_Reason_Codes_How_DIAMOND_Thinks.htm" class="calibreAPrev">previous page
+        </a>
+
+
+        <a href="../2nlvj-mfnql.html" class="calibreAHome">start
+        </a>
+
+
+        <a href="BLTYP_Institutional_Claims_Bill_Types.htm" class="calibreANext">next page
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+</html>

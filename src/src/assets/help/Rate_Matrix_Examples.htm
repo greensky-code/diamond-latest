@@ -1,0 +1,1634 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+    <title>Rate Matrix Examples</title>
+    <!--(Meta)==========================================================-->
+    <meta name="copyright"
+          value="© Copyright 2002 Health Systems Design Corp., a wholly owned subsidiary of Perot Systems Corporation. All rights reserved"/>
+    <meta content="RoboHELP by eHelp Corporation - www.ehelp.com" name="generator"/>
+    <meta content="0.1" name="generator-major-version"/>
+    <meta content="1" name="generator-minor-version"/>
+    <meta content="kadov" name="filetype"/>
+    <meta content="1" name="filetype-version"/>
+    <meta content="1" name="page-count"/>
+    <meta content="3908" name="layout-height"/>
+    <meta content="589" name="layout-width"/>
+    <!--(Links)=========================================================-->
+    <!--(Scripts)=======================================================-->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+</head>
+<body>
+
+<div class="calibreMeta">
+    <div class="calibreMetaTitle">
+
+
+        <h1>
+            <a href="../l0urk-a4ma7.html">DIAMOND 950 Help
+            </a>
+        </h1>
+
+
+    </div>
+    <div class="calibreMetaAuthor">
+        Unknown
+
+    </div>
+</div>
+
+<div class="calibreMain">
+
+    <div class="calibreEbookContent">
+
+        <div class="calibreEbNavTop">
+
+            <a href="Premium_Billing_How_DIAMOND_Thinks.htm" class="calibreAPrev">previous page
+            </a>
+
+
+            <a href="ARADJ_Accounts_Receivable_Adjustments.htm" class="calibreANext">next page
+            </a>
+
+        </div>
+
+
+        <h4 class="calibre1">Rate Matrix Examples</h4>
+
+        <!--(Table)=========================================================-->
+        <table cellspacing="0" width="570" x-use-null-cells="" class="calibre172">
+
+            <tbody class="">
+            <tr valign="top" class="">
+                <td width="570px" class="">
+                    <p class="map-links"><a
+                            href="Rate_Matrix_Examples.htm#Rate_Matrix_Examples_Tiering_Method_5-Step_as_a_Matrix_MID"><img
+                            alt="image\assets/help/F1bullet2_shg.gif" border="0" height="10" src="assets/help/F1bullet2_shg.gif" width="18"
+                            class=""/></a> Tiering Method "5-Step" as a Matrix</p></td>
+            </tr>
+
+            <tr valign="top" class="">
+                <td width="570px" class="">
+                    <p class="map-links"><a
+                            href="Rate_Matrix_Examples.htm#Rate_Matrix_Examples_Rates_According_to_Subscriber_Age_and_Family_Size_MID"><img
+                            alt="image\assets/help/F1bullet2_shg.gif" border="0" height="10" src="assets/help/F1bullet2_shg.gif" width="18"
+                            class=""/></a> Subscriber Age and Family Size</p></td>
+            </tr>
+
+            <tr valign="top" class="">
+                <td width="570px" class="">
+                    <p class="map-links"><a
+                            href="Rate_Matrix_Examples.htm#Rate_Matrix_Examples_Rates_Calculated_as_a_Percentage_of_Subscriber_Salary_MID"><img
+                            alt="image\assets/help/F1bullet2_shg.gif" border="0" height="10" src="assets/help/F1bullet2_shg.gif" width="18"
+                            class=""/></a> Percentage of Subscriber Salary</p></td>
+            </tr>
+
+            <tr valign="top" class="">
+                <td width="570px" class="">
+                    <p class="map-links"><a
+                            href="Rate_Matrix_Examples.htm#Rate_Matrix_Examples_Member-by-Member_Family_Rates_According_to_Member_Age_MID"><img
+                            alt="image\assets/help/F1bullet2_shg.gif" border="0" height="10" src="assets/help/F1bullet2_shg.gif" width="18"
+                            class=""/></a> Member-by-Member Family Rates by Age</p></td>
+            </tr>
+
+            <tr valign="top" class="">
+                <td width="570px" class="">
+                    <p class="map-links"><a
+                            href="Rate_Matrix_Examples.htm#RateMatrix_Member-by-Member_Family_Rates_According_to_Member_Age_and_Rate_Type_MID"><img
+                            alt="image\assets/help/F1bullet2_shg.gif" border="0" height="10" src="assets/help/F1bullet2_shg.gif" width="18"
+                            class=""/></a> Member-by-Member Family Rates by Age and Rate Type</p></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <p class="body-text">Matrix Determinant (MATRX) defines premium billing rate
+            criteria for groups using the S Subscriber or W Whole Family (Member-by-Member)
+            premium billing tiering methods (GRUPB &gt; Tiering Mthd). The matrix
+            determinant defines the criteria DIAMOND uses to assign a rate to a subscriber
+            (if using the S-Subscriber tiering method) or to each member in a family
+            up to the maximum number of dependents specified (if using the W-Whole
+            Family tiering method). </p>
+
+        <p class="body-text">You enter rate criteria for each matrix determinant
+            and description in X (<span class="calibre19">column)</span>
+            and Y (<span class="calibre19">row)</span> matrix determinant
+            cells. The X (column) determinants can categorize members based on age
+            bands, gender, salary bands, and Medicare status. The Y (row) determinants
+            can categorize members based on family size, age bands, gender, and whether
+            or not the subscriber has a spouse or domestic partner.</p>
+
+        <p class="body-text">DIAMOND uses the data on MATRX to build the Matrix Premium
+            Rate Entry (PREMM) where you enter the actual rates for each combination
+            of member or subscriber unit characteristics. </p>
+
+        <p class="body-text1"> </p>
+
+        <p class="body-text">During premium billing calculations, DIAMOND takes a
+            snapshot of subscriber information (for subscriber billing) or subscriber
+            and dependent information (for whole family billing) including age, gender,
+            family size, salary, medicare status, and whether or not the subscriber
+            has a spouse or domestic partner. DIAMOND then compares this snapshot
+            of information against each X determinant (line by line) until it finds
+            one where all determinants match. Next, DIAMOND compares the snapshot
+            of information against the Y determinants (line by line) until it finds
+            one where all determinants match. If a determinant is left blank (or .00
+            in a numeric field) it is not compared to the snapshot of information.
+            The exception to this is the spouse flag. If a family has a spouse or
+            domestic partner (defined in the relationship field of MELIG as S for
+            Spouse or E for Domestic Partner) and the family matches all of the other
+            criteria defined in a Y determinant, then DIAMOND checks that the Spouse
+            Flag of the Y determinant is selected. Also, if you run billing for a
+            family that includes a spouse and your matrix does not include any Y determinants,
+            you will receive an error. In this situation, you must include at least
+            one Y determinant row that has the spouse flag selected. </p>
+
+        <p class="body-text">DIAMOND must find both an X and a Y determinant that
+            matches the snapshot. Otherwise, it will display an error.</p>
+
+        <p class="body-text1"> </p>
+
+        <p class="body-text">Following are several examples of MATRX rate tables.</p>
+
+        <p class="doc-level"><a name="Rate_Matrix_Examples_Tiering_Method_5-Step_as_a_Matrix_MID"></a>Tiering
+            Method "5-Step" as a Matrix</p>
+
+        <p class="body-text">To illustrate a simple rate matrix, below is DIAMOND’s
+            standard tiering method 5-Step in a matrix. (You do not need to set this
+            up since DIAMOND has this definition embedded in the variable "5-Step.")
+        </p>
+
+        <p class="body-text">Here is how the <span class="calibre19">column</span>
+            (X) matrix description and determinants would appear in MATRX:</p>
+
+        <!--(Table)=========================================================-->
+        <table cellspacing="0" width="510" x-use-null-cells="" class="calibre91">
+
+            <tbody class="calibre3">
+            <tr valign="top" class="calibre4">
+                <td width="60px" class="calibre92">
+                    <p class="tbl-header-data">Description</p></td>
+                <td width="60px" class="calibre92">
+                    <p class="tbl-header-data">Age From</p></td>
+                <td width="54px" class="calibre93">
+                    <p class="tbl-header-data">Age Thru</p></td>
+                <td width="54px" class="calibre93">
+                    <p class="tbl-header-data">Gender</p></td>
+                <td width="72px" class="calibre35">
+                    <p class="tbl-header-data">Salary From</p></td>
+                <td width="66px" class="calibre94">
+                    <p class="tbl-header-data">Salary Thru</p></td>
+                <td width="84px" class="calibre37">
+                    <p class="tbl-header-data">Medicare Status</p></td>
+                <td width="60px" class="calibre92">
+                    <p class="tbl-header-data">Rate Type</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="60px" class="calibre92">
+                    <p class="tbl-text">All Cases</p></td>
+                <td width="60px" class="calibre92">
+                    <p class="tbl-text">0.0</p></td>
+                <td width="54px" class="calibre93">
+                    <p class="tbl-text">0.0</p></td>
+                <td width="54px" class="calibre93">
+                    <p class="tbl-text">&lt;blank&gt;</p></td>
+                <td width="72px" class="calibre35">
+                    <p class="tbl-text"> </p></td>
+                <td width="66px" class="calibre94">
+                    <p class="tbl-text"> </p></td>
+                <td width="84px" class="calibre37">
+                    <p class="tbl-text"> </p></td>
+                <td width="60px" class="calibre92">
+                    <p class="tbl-text"> </p></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <p class="body-text">This describes the case for subscribers of any age;
+            either gender; regardless of salary, Medicare status, or rate type.</p>
+
+        <p class="body-text">Here is how the <span class="calibre19">row</span>
+            (Y) matrix descriptions and determinants would appear:</p>
+
+        <!--(Table)=========================================================-->
+        <table cellspacing="0" width="498" x-use-null-cells="" class="calibre95">
+
+            <tbody class="calibre3">
+            <tr valign="top" class="calibre4">
+                <td width="66px" class="calibre94">
+                    <p class="tbl-header-data">Description</p></td>
+                <td width="84px" class="calibre37">
+                    <p class="tbl-header-data">Fam. Size From</p></td>
+                <td width="84px" class="calibre37">
+                    <p class="tbl-header-data">Fam. Size Thru</p></td>
+                <td width="60px" class="calibre92">
+                    <p class="tbl-header-data">Age From</p></td>
+                <td width="54px" class="calibre93">
+                    <p class="tbl-header-data">Age Thru</p></td>
+                <td width="60px" class="calibre92">
+                    <p class="tbl-header-data">Gender</p></td>
+                <td width="90px" class="calibre96">
+                    <p class="tbl-header-data">SpouseFlag</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="66px" class="calibre94">
+                    <p class="tbl-text">Single</p></td>
+                <td width="84px" class="calibre37">
+                    <p class="tbl-text">1</p></td>
+                <td width="84px" class="calibre37">
+                    <p class="tbl-text">1</p></td>
+                <td width="60px" class="calibre92">
+                    <p class="tbl-text">.0</p></td>
+                <td width="54px" class="calibre93">
+                    <p class="tbl-text">.0</p></td>
+                <td width="60px" class="calibre92">
+                    <p class="tbl-text">&lt;blank&gt;</p></td>
+                <td width="90px" class="calibre96">
+                    <p class="tbl-text"> </p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="66px" class="calibre94">
+                    <p class="tbl-text">2 w/sp</p></td>
+                <td width="84px" class="calibre37">
+                    <p class="tbl-text">2</p></td>
+                <td width="84px" class="calibre37">
+                    <p class="tbl-text">2</p></td>
+                <td width="60px" class="calibre92">
+                    <p class="tbl-text">.0</p></td>
+                <td width="54px" class="calibre93">
+                    <p class="tbl-text">.0</p></td>
+                <td width="60px" class="calibre92">
+                    <p class="tbl-text">&lt;blank&gt;</p></td>
+                <td width="90px" class="calibre96">
+                    <p class="tbl-text">X</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="66px" class="calibre94">
+                    <p class="tbl-text">2 n/sp</p></td>
+                <td width="84px" class="calibre37">
+                    <p class="tbl-text">2</p></td>
+                <td width="84px" class="calibre37">
+                    <p class="tbl-text">2</p></td>
+                <td width="60px" class="calibre92">
+                    <p class="tbl-text">.0</p></td>
+                <td width="54px" class="calibre93">
+                    <p class="tbl-text">.0</p></td>
+                <td width="60px" class="calibre92">
+                    <p class="tbl-text">&lt;blank&gt;</p></td>
+                <td width="90px" class="calibre96">
+                    <p class="tbl-text"> </p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="66px" class="calibre94">
+                    <p class="tbl-text">3+ w/sp</p></td>
+                <td width="84px" class="calibre37">
+                    <p class="tbl-text">3</p></td>
+                <td width="84px" class="calibre37">
+                    <p class="tbl-text">99</p></td>
+                <td width="60px" class="calibre92">
+                    <p class="tbl-text">.0</p></td>
+                <td width="54px" class="calibre93">
+                    <p class="tbl-text">.0</p></td>
+                <td width="60px" class="calibre92">
+                    <p class="tbl-text">&lt;blank&gt;</p></td>
+                <td width="90px" class="calibre96">
+                    <p class="tbl-text">X</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="66px" class="calibre94">
+                    <p class="tbl-text">3+ n/sp</p></td>
+                <td width="84px" class="calibre37">
+                    <p class="tbl-text">3</p></td>
+                <td width="84px" class="calibre37">
+                    <p class="tbl-text">99</p></td>
+                <td width="60px" class="calibre92">
+                    <p class="tbl-text">.0</p></td>
+                <td width="54px" class="calibre93">
+                    <p class="tbl-text">.0</p></td>
+                <td width="60px" class="calibre92">
+                    <p class="tbl-text">&lt;blank&gt;</p></td>
+                <td width="90px" class="calibre96">
+                    <p class="tbl-text"> </p></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <p class="body-text">This describes the case for subscribers of either gender
+            and the various spouse or domestic partner/dependent categories.</p>
+
+        <p class="body-text">When you create a rate entry matrix using Matrix Premium
+            Rate Entry (PREMM) and select this matrix determinant (PREMM &gt; Matrix
+            Determinant), DIAMOND displays the following table in which you enter
+            the actual rates (in the All Cases column) for each category of subscriber:</p>
+
+        <!--(Table)=========================================================-->
+        <table cellspacing="0" width="138" x-use-null-cells="" class="calibre97">
+
+            <tbody class="calibre3">
+            <tr valign="top" class="calibre4">
+                <td width="66px" class="calibre94">
+                    <p class="tbl-header-data">Amount</p></td>
+                <td width="72px" class="calibre35">
+                    <p class="tbl-header-data">All Cases</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="66px" class="calibre94">
+                    <p class="tbl-text">Single</p></td>
+                <td width="72px" class="calibre35">
+                    <p class="tbl-text">$11.00</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="66px" class="calibre94">
+                    <p class="tbl-text">2 w/sp</p></td>
+                <td width="72px" class="calibre35">
+                    <p class="tbl-text">$21.00</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="66px" class="calibre94">
+                    <p class="tbl-text">2 n/sp</p></td>
+                <td width="72px" class="calibre35">
+                    <p class="tbl-text">$31.00</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="66px" class="calibre94">
+                    <p class="tbl-text">3+ w/sp</p></td>
+                <td width="72px" class="calibre35">
+                    <p class="tbl-text">$41.00</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="66px" class="calibre94">
+                    <p class="tbl-text">3+ n/sp</p></td>
+                <td width="72px" class="calibre35">
+                    <p class="tbl-text">$51.00</p></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <p class="body-text">On the Group Billing (GRUPB) window you select the S-Subscriber
+            tiering method and this PREMM record as the matrix definition. During
+            premium billing calculation, DIAMOND compares the column and row determinants
+            entered on the MATRX window against each eligible subscriber record and
+            assigns the premium rate where the applicable column and row determinants
+            intersect.</p>
+
+        <p class="body-text">Thus in this example DIAMOND assigns the following premium
+            rates for the following eligible subscribers of either gender, any age,
+            any salary, and who:</p>
+
+        <ul class="calibre14">
+
+            <li class="kadov-p-cbullet-list-h"><p class="bullet-list-h">are single,
+                family size = 1 - $11</p></li>
+
+            <li class="kadov-p-cbullet-list-h"><p class="bullet-list-h">have
+                a spouse or domestic partner, family size = 2 - $21</p></li>
+
+            <li class="kadov-p-cbullet-list-h"><p class="bullet-list-h">have
+                one dependent, family size = 2 - $31</p></li>
+
+            <li class="kadov-p-cbullet-list-h"><p class="bullet-list-h">have
+                a spouse or domestic partner and dependent(s), family size = 3-99 - $41</p></li>
+
+            <li class="kadov-p-cbullet-list-h"><p class="bullet-list-h">have
+                two or more dependents, family size = 3-99 - $51</p></li>
+        </ul>
+
+        <p class="doc-level"><a name="Rate_Matrix_Examples_Rates_According_to_Subscriber_Age_and_Family_Size_MID"></a>Rates
+            According to Subscriber Age and Family Size</p>
+
+        <p class="body-text">Here is a more complex matrix that incorporates subscriber
+            age breakdowns within family sizes:</p>
+
+        <p class="body-text">Column (X) descriptions and determinants for subscribers
+            in age categories, regardless of gender, salary, Medicare status, or rate
+            type:</p>
+
+        <!--(Table)=========================================================-->
+        <table cellspacing="0" width="510" x-use-null-cells="" class="calibre91">
+
+            <tbody class="calibre3">
+            <tr valign="top" class="calibre4">
+                <td width="60px" class="calibre92">
+                    <p class="tbl-header-data">Description</p></td>
+                <td width="60px" class="calibre92">
+                    <p class="tbl-header-data">Age From</p></td>
+                <td width="53px" class="calibre98">
+                    <p class="tbl-header-data">Age Thru</p></td>
+                <td width="53px" class="calibre98">
+                    <p class="tbl-header-data">Gender</p></td>
+                <td width="72px" class="calibre35">
+                    <p class="tbl-header-data">Salary From</p></td>
+                <td width="66px" class="calibre94">
+                    <p class="tbl-header-data">Salary Thru</p></td>
+                <td width="84px" class="calibre37">
+                    <p class="tbl-header-data">Medicare Status</p></td>
+                <td width="60px" class="calibre92">
+                    <p class="tbl-header-data">Rate Type</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="60px" class="calibre92">
+                    <p class="tbl-text">0-14</p></td>
+                <td width="60px" class="calibre92">
+                    <p class="tbl-text">.0</p></td>
+                <td width="53px" class="calibre98">
+                    <p class="tbl-text">14.9</p></td>
+                <td width="53px" class="calibre98">
+                    <p class="tbl-text">&lt;blank&gt;</p></td>
+                <td width="72px" class="calibre35">
+                    <p class="tbl-text"> </p></td>
+                <td width="66px" class="calibre94">
+                    <p class="tbl-text"> </p></td>
+                <td width="84px" class="calibre37">
+                    <p class="tbl-text"> </p></td>
+                <td width="60px" class="calibre92">
+                    <p class="tbl-text"> </p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="60px" class="calibre92">
+                    <p class="tbl-text">15-29</p></td>
+                <td width="60px" class="calibre92">
+                    <p class="tbl-text">15.0</p></td>
+                <td width="53px" class="calibre98">
+                    <p class="tbl-text">29.9</p></td>
+                <td width="53px" class="calibre98">
+                    <p class="tbl-text">&lt;blank&gt;</p></td>
+                <td width="72px" class="calibre35">
+                    <p class="tbl-text"> </p></td>
+                <td width="66px" class="calibre94">
+                    <p class="tbl-text"> </p></td>
+                <td width="84px" class="calibre37">
+                    <p class="tbl-text"> </p></td>
+                <td width="60px" class="calibre92">
+                    <p class="tbl-text"> </p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="60px" class="calibre92">
+                    <p class="tbl-text">30-39</p></td>
+                <td width="60px" class="calibre92">
+                    <p class="tbl-text">30.0</p></td>
+                <td width="53px" class="calibre98">
+                    <p class="tbl-text">39.9</p></td>
+                <td width="53px" class="calibre98">
+                    <p class="tbl-text">&lt;blank&gt;</p></td>
+                <td width="72px" class="calibre35">
+                    <p class="tbl-text"> </p></td>
+                <td width="66px" class="calibre94">
+                    <p class="tbl-text"> </p></td>
+                <td width="84px" class="calibre37">
+                    <p class="tbl-text"> </p></td>
+                <td width="60px" class="calibre92">
+                    <p class="tbl-text"> </p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="60px" class="calibre92">
+                    <p class="tbl-text">40-49</p></td>
+                <td width="60px" class="calibre92">
+                    <p class="tbl-text">40.0</p></td>
+                <td width="53px" class="calibre98">
+                    <p class="tbl-text">49.9</p></td>
+                <td width="53px" class="calibre98">
+                    <p class="tbl-text">&lt;blank&gt; </p></td>
+                <td width="72px" class="calibre35">
+                    <p class="tbl-text"> </p></td>
+                <td width="66px" class="calibre94">
+                    <p class="tbl-text"> </p></td>
+                <td width="84px" class="calibre37">
+                    <p class="tbl-text"> </p></td>
+                <td width="60px" class="calibre92">
+                    <p class="tbl-text"> </p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="60px" class="calibre92">
+                    <p class="tbl-text">50-64</p></td>
+                <td width="60px" class="calibre92">
+                    <p class="tbl-text">50.0</p></td>
+                <td width="53px" class="calibre98">
+                    <p class="tbl-text">64.9</p></td>
+                <td width="53px" class="calibre98">
+                    <p class="tbl-text">&lt;blank&gt;</p></td>
+                <td width="72px" class="calibre35">
+                    <p class="tbl-text"> </p></td>
+                <td width="66px" class="calibre94">
+                    <p class="tbl-text"> </p></td>
+                <td width="84px" class="calibre37">
+                    <p class="tbl-text"> </p></td>
+                <td width="60px" class="calibre92">
+                    <p class="tbl-text"> </p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="60px" class="calibre92">
+                    <p class="tbl-text">65-120</p></td>
+                <td width="60px" class="calibre92">
+                    <p class="tbl-text">65.0</p></td>
+                <td width="53px" class="calibre98">
+                    <p class="tbl-text">120.0</p></td>
+                <td width="53px" class="calibre98">
+                    <p class="tbl-text">&lt;blank&gt;</p></td>
+                <td width="72px" class="calibre35">
+                    <p class="tbl-text"> </p></td>
+                <td width="66px" class="calibre94">
+                    <p class="tbl-text"> </p></td>
+                <td width="84px" class="calibre37">
+                    <p class="tbl-text"> </p></td>
+                <td width="60px" class="calibre92">
+                    <p class="tbl-text"> </p></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <p class="body-text">Row (Y) descriptions and determinants for subscribers
+            of either gender, depending on spouse or domestic partner/dependent characteristics:</p>
+
+        <!--(Table)=========================================================-->
+        <table cellspacing="0" width="510" x-use-null-cells="" class="calibre91">
+
+            <tbody class="calibre3">
+            <tr valign="top" class="calibre4">
+                <td width="60px" class="calibre92">
+                    <p class="tbl-header-data">Description</p></td>
+                <td width="84px" class="calibre37">
+                    <p class="tbl-header-data">Fam. Size From</p></td>
+                <td width="84px" class="calibre37">
+                    <p class="tbl-header-data">Fam. Size Thru</p></td>
+                <td width="60px" class="calibre92">
+                    <p class="tbl-header-data">Age From</p></td>
+                <td width="60px" class="calibre92">
+                    <p class="tbl-header-data">Age Thru</p></td>
+                <td width="60px" class="calibre92">
+                    <p class="tbl-header-data">Gender</p></td>
+                <td width="102px" class="calibre34">
+                    <p class="tbl-header-data">Spouse Flag</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="60px" class="calibre92">
+                    <p class="tbl-text">Single</p></td>
+                <td width="84px" class="calibre37">
+                    <p class="tbl-text">1</p></td>
+                <td width="84px" class="calibre37">
+                    <p class="tbl-text">1</p></td>
+                <td width="60px" class="calibre92">
+                    <p class="tbl-text">.0</p></td>
+                <td width="60px" class="calibre92">
+                    <p class="tbl-text">.0</p></td>
+                <td width="60px" class="calibre92">
+                    <p class="tbl-text">&lt;blank&gt;</p></td>
+                <td width="102px" class="calibre34">
+                    <p class="tbl-text"> </p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="60px" class="calibre92">
+                    <p class="tbl-text">2 w/sp</p></td>
+                <td width="84px" class="calibre37">
+                    <p class="tbl-text">2</p></td>
+                <td width="84px" class="calibre37">
+                    <p class="tbl-text">2</p></td>
+                <td width="60px" class="calibre92">
+                    <p class="tbl-text">.0</p></td>
+                <td width="60px" class="calibre92">
+                    <p class="tbl-text">.0</p></td>
+                <td width="60px" class="calibre92">
+                    <p class="tbl-text">&lt;blank&gt;</p></td>
+                <td width="102px" class="calibre34">
+                    <p class="tbl-text">X</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="60px" class="calibre92">
+                    <p class="tbl-text">2 n/sp</p></td>
+                <td width="84px" class="calibre37">
+                    <p class="tbl-text">2</p></td>
+                <td width="84px" class="calibre37">
+                    <p class="tbl-text">2</p></td>
+                <td width="60px" class="calibre92">
+                    <p class="tbl-text">.0</p></td>
+                <td width="60px" class="calibre92">
+                    <p class="tbl-text">.0</p></td>
+                <td width="60px" class="calibre92">
+                    <p class="tbl-text">&lt;blank&gt;</p></td>
+                <td width="102px" class="calibre34">
+                    <p class="tbl-text"> </p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="60px" class="calibre92">
+                    <p class="tbl-text">3+ w/sp</p></td>
+                <td width="84px" class="calibre37">
+                    <p class="tbl-text">3</p></td>
+                <td width="84px" class="calibre37">
+                    <p class="tbl-text">99</p></td>
+                <td width="60px" class="calibre92">
+                    <p class="tbl-text">.0</p></td>
+                <td width="60px" class="calibre92">
+                    <p class="tbl-text">.0</p></td>
+                <td width="60px" class="calibre92">
+                    <p class="tbl-text">&lt;blank&gt;</p></td>
+                <td width="102px" class="calibre34">
+                    <p class="tbl-text">X</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="60px" class="calibre92">
+                    <p class="tbl-text">3+ n/sp</p></td>
+                <td width="84px" class="calibre37">
+                    <p class="tbl-text">3</p></td>
+                <td width="84px" class="calibre37">
+                    <p class="tbl-text">99</p></td>
+                <td width="60px" class="calibre92">
+                    <p class="tbl-text">.0</p></td>
+                <td width="60px" class="calibre92">
+                    <p class="tbl-text">.0</p></td>
+                <td width="60px" class="calibre92">
+                    <p class="tbl-text">&lt;blank&gt;</p></td>
+                <td width="102px" class="calibre34">
+                    <p class="tbl-text"> </p></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <p class="body-text">Resulting in a matrix in PREMM that allows you to enter
+            premium rates (<span class="calibre19">italics</span>):</p>
+
+        <!--(Table)=========================================================-->
+        <table cellspacing="0" width="432" x-use-null-cells="" class="calibre99">
+
+            <tbody class="calibre3">
+            <tr valign="top" class="calibre4">
+                <td width="60px" class="calibre92">
+                    <p class="tbl-header-data">Amount</p></td>
+                <td width="66px" class="calibre94">
+                    <p class="tbl-header-data">0-14</p></td>
+                <td width="66px" class="calibre94">
+                    <p class="tbl-header-data">15-29</p></td>
+                <td width="60px" class="calibre92">
+                    <p class="tbl-header-data">30-39</p></td>
+                <td width="60px" class="calibre92">
+                    <p class="tbl-header-data">40-49</p></td>
+                <td width="60px" class="calibre92">
+                    <p class="tbl-header-data">50-64</p></td>
+                <td width="60px" class="calibre92">
+                    <p class="tbl-header-data">65-120</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="60px" class="calibre92">
+                    <p class="tbl-text">Single</p></td>
+                <td width="66px" class="calibre94">
+                    <p class="tbl-text"><span class="calibre19">100.00</span></p></td>
+                <td width="66px" class="calibre94">
+                    <p class="tbl-text"><span class="calibre19">110.00</span></p></td>
+                <td width="60px" class="calibre92">
+                    <p class="tbl-text"><span class="calibre19">120.00</span></p></td>
+                <td width="60px" class="calibre92">
+                    <p class="tbl-text"><span class="calibre19">130.00</span></p></td>
+                <td width="60px" class="calibre92">
+                    <p class="tbl-text"><span class="calibre19">140.00</span></p></td>
+                <td width="60px" class="calibre92">
+                    <p class="tbl-text"><span class="calibre19">150.00</span></p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="60px" class="calibre92">
+                    <p class="tbl-text">2 w/sp</p></td>
+                <td width="66px" class="calibre94">
+                    <p class="tbl-text"><span class="calibre19">160.00</span></p></td>
+                <td width="66px" class="calibre94">
+                    <p class="tbl-text"><span class="calibre19">170.00</span></p></td>
+                <td width="60px" class="calibre92">
+                    <p class="tbl-text"><span class="calibre19">180.00</span></p></td>
+                <td width="60px" class="calibre92">
+                    <p class="tbl-text"><span class="calibre19">190.00</span></p></td>
+                <td width="60px" class="calibre92">
+                    <p class="tbl-text"><span class="calibre19">200.00</span></p></td>
+                <td width="60px" class="calibre92">
+                    <p class="tbl-text"><span class="calibre19">210.00</span></p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="60px" class="calibre92">
+                    <p class="tbl-text">2 n/sp</p></td>
+                <td width="66px" class="calibre94">
+                    <p class="tbl-text"><span class="calibre19">220.00</span></p></td>
+                <td width="66px" class="calibre94">
+                    <p class="tbl-text"><span class="calibre19">230.00</span></p></td>
+                <td width="60px" class="calibre92">
+                    <p class="tbl-text"><span class="calibre19">240.00</span></p></td>
+                <td width="60px" class="calibre92">
+                    <p class="tbl-text"><span class="calibre19">250.00</span></p></td>
+                <td width="60px" class="calibre92">
+                    <p class="tbl-text"><span class="calibre19">260.00</span></p></td>
+                <td width="60px" class="calibre92">
+                    <p class="tbl-text"><span class="calibre19">270.00</span></p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="60px" class="calibre92">
+                    <p class="tbl-text">3+ w/sp</p></td>
+                <td width="66px" class="calibre94">
+                    <p class="tbl-text"><span class="calibre19">280.00</span></p></td>
+                <td width="66px" class="calibre94">
+                    <p class="tbl-text"><span class="calibre19">290.00</span></p></td>
+                <td width="60px" class="calibre92">
+                    <p class="tbl-text"><span class="calibre19">300.00</span></p></td>
+                <td width="60px" class="calibre92">
+                    <p class="tbl-text"><span class="calibre19">310.00</span></p></td>
+                <td width="60px" class="calibre92">
+                    <p class="tbl-text"><span class="calibre19">320.00</span></p></td>
+                <td width="60px" class="calibre92">
+                    <p class="tbl-text"><span class="calibre19">330.00</span></p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="60px" class="calibre92">
+                    <p class="tbl-text">3+ n/sp</p></td>
+                <td width="66px" class="calibre94">
+                    <p class="tbl-text"><span class="calibre19">340.00</span></p></td>
+                <td width="66px" class="calibre94">
+                    <p class="tbl-text"><span class="calibre19">350.00</span></p></td>
+                <td width="60px" class="calibre92">
+                    <p class="tbl-text"><span class="calibre19">360.00</span></p></td>
+                <td width="60px" class="calibre92">
+                    <p class="tbl-text"><span class="calibre19">370.00</span></p></td>
+                <td width="60px" class="calibre92">
+                    <p class="tbl-text"><span class="calibre19">380.00</span></p></td>
+                <td width="60px" class="calibre92">
+                    <p class="tbl-text"><span class="calibre19">390.00</span></p></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <p class="body-text">If, on the GRUPB window, you select the S-Subscriber
+            tiering method and this PREMM record as the matrix definition, DIAMOND
+            assigns the following premium rates for the following sampling of eligible
+            subscribers of either gender who are:</p>
+
+        <ul class="calibre14">
+
+            <li class="kadov-p-cbullet-list-h"><p class="bullet-list-h">aged
+                35, single, family size = 1 - $120</p></li>
+
+            <li class="kadov-p-cbullet-list-h"><p class="bullet-list-h2">aged
+                50, with a spouse or domestic partner, family size = 2 - $200 </p></li>
+
+            <li class="kadov-p-cbullet-list-h"><p class="bullet-list-h">aged
+                28, with no spouse or domestic partner and one dependent, family size
+                = 2 - $230</p></li>
+
+            <li class="kadov-p-cbullet-list-h"><p class="bullet-list-h">aged
+                44, with a spouse or domestic partner and dependent(s), family size =
+                3-99 - $310</p></li>
+
+            <li class="kadov-p-cbullet-list-h"><p class="bullet-list-h">aged
+                66, with no spouse or domestic partner and two or more dependents, family
+                size = 3-99 - $390</p></li>
+        </ul>
+
+        <p class="doc-level"><a
+                name="Rate_Matrix_Examples_Rates_Calculated_as_a_Percentage_of_Subscriber_Salary_MID"></a>Rates
+            Calculated as a Percentage of Subscriber Salary</p>
+
+        <p class="body-text">DIAMOND can calculate premiums based on a percentage
+            of subscriber monthly salary (MELIG&gt;Salary), as in this example MATRX.
+            Below are the Column (X) entries for subscribers of any age; either gender;
+            within salary range; regardless of Medicare status or rate type:</p>
+
+        <!--(Table)=========================================================-->
+        <table cellspacing="0" width="514" x-use-null-cells="" class="calibre100">
+
+            <tbody class="calibre3">
+            <tr valign="top" class="calibre4">
+                <td width="60px" class="calibre92">
+                    <p class="tbl-header-data">Description</p></td>
+                <td width="60px" class="calibre92">
+                    <p class="tbl-header-data">Age From</p></td>
+                <td width="53px" class="calibre98">
+                    <p class="tbl-header-data">Age Thru</p></td>
+                <td width="53px" class="calibre98">
+                    <p class="tbl-header-data">Gender</p></td>
+                <td width="72px" class="calibre35">
+                    <p class="tbl-header-data">Salary From</p></td>
+                <td width="69px" class="calibre101">
+                    <p class="tbl-header-data">Salary Thru</p></td>
+                <td width="84px" class="calibre37">
+                    <p class="tbl-header-data">Medicare Status</p></td>
+                <td width="60px" class="calibre92">
+                    <p class="tbl-header-data">Rate Type</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="60px" class="calibre92">
+                    <p class="tbl-text">0-.9K</p></td>
+                <td width="60px" class="calibre92">
+                    <p class="tbl-text">.0</p></td>
+                <td width="53px" class="calibre98">
+                    <p class="tbl-text">.0</p></td>
+                <td width="53px" class="calibre98">
+                    <p class="tbl-text">&lt;blank&gt;</p></td>
+                <td width="72px" class="calibre35">
+                    <p class="tbl-text">0.00</p></td>
+                <td width="69px" class="calibre101">
+                    <p class="tbl-text">$999.99</p></td>
+                <td width="84px" class="calibre37">
+                    <p class="tbl-text"> </p></td>
+                <td width="60px" class="calibre92">
+                    <p class="tbl-text"> </p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="60px" class="calibre92">
+                    <p class="tbl-text">1-2K</p></td>
+                <td width="60px" class="calibre92">
+                    <p class="tbl-text">.0</p></td>
+                <td width="53px" class="calibre98">
+                    <p class="tbl-text">.0</p></td>
+                <td width="53px" class="calibre98">
+                    <p class="tbl-text">&lt;blank&gt;</p></td>
+                <td width="72px" class="calibre35">
+                    <p class="tbl-text">$1,000.00</p></td>
+                <td width="69px" class="calibre101">
+                    <p class="tbl-text">$2,999.99</p></td>
+                <td width="84px" class="calibre37">
+                    <p class="tbl-text"> </p></td>
+                <td width="60px" class="calibre92">
+                    <p class="tbl-text"> </p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="60px" class="calibre92">
+                    <p class="tbl-text">3-4K</p></td>
+                <td width="60px" class="calibre92">
+                    <p class="tbl-text">.0</p></td>
+                <td width="53px" class="calibre98">
+                    <p class="tbl-text">.0</p></td>
+                <td width="53px" class="calibre98">
+                    <p class="tbl-text">&lt;blank&gt;</p></td>
+                <td width="72px" class="calibre35">
+                    <p class="tbl-text">$3,000.00</p></td>
+                <td width="69px" class="calibre101">
+                    <p class="tbl-text">$4,999.99</p></td>
+                <td width="84px" class="calibre37">
+                    <p class="tbl-text"> </p></td>
+                <td width="60px" class="calibre92">
+                    <p class="tbl-text"> </p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="60px" class="calibre92">
+                    <p class="tbl-text">5-99K</p></td>
+                <td width="60px" class="calibre92">
+                    <p class="tbl-text">.0</p></td>
+                <td width="53px" class="calibre98">
+                    <p class="tbl-text">.0</p></td>
+                <td width="53px" class="calibre98">
+                    <p class="tbl-text">&lt;blank&gt;</p></td>
+                <td width="72px" class="calibre35">
+                    <p class="tbl-text">$5,000.00</p></td>
+                <td width="69px" class="calibre101">
+                    <p class="tbl-text">$99,999.99</p></td>
+                <td width="84px" class="calibre37">
+                    <p class="tbl-text"> </p></td>
+                <td width="60px" class="calibre92">
+                    <p class="tbl-text"> </p></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <p class="body-text">And here are the row (Y) descriptions and determinants
+            for subscribers of either gender, without regard to spouses, domestic
+            partners, or dependents:</p>
+
+        <!--(Table)=========================================================-->
+        <table cellspacing="0" width="540" x-use-null-cells="" class="calibre102">
+
+            <tbody class="calibre3">
+            <tr valign="top" class="calibre4">
+                <td width="72px" class="calibre35">
+                    <p class="tbl-header-data">Description</p></td>
+                <td width="90px" class="calibre96">
+                    <p class="tbl-header-data">Fam. Size From</p></td>
+                <td width="84px" class="calibre37">
+                    <p class="tbl-header-data">Fam. Size Thru</p></td>
+                <td width="66px" class="calibre94">
+                    <p class="tbl-header-data">Age From</p></td>
+                <td width="66px" class="calibre94">
+                    <p class="tbl-header-data">Age Thru</p></td>
+                <td width="60px" class="calibre92">
+                    <p class="tbl-header-data">Gender</p></td>
+                <td width="102px" class="calibre34">
+                    <p class="tbl-header-data">Spouse Flag</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="72px" class="calibre35">
+                    <p class="tbl-text">%-Sal</p></td>
+                <td width="90px" class="calibre96">
+                    <p class="tbl-text">0</p></td>
+                <td width="84px" class="calibre37">
+                    <p class="tbl-text">0</p></td>
+                <td width="66px" class="calibre94">
+                    <p class="tbl-text">.0</p></td>
+                <td width="66px" class="calibre94">
+                    <p class="tbl-text">.0</p></td>
+                <td width="60px" class="calibre92">
+                    <p class="tbl-text">&lt;blank&gt;</p></td>
+                <td width="102px" class="calibre34">
+                    <p class="tbl-text"> </p></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <p class="body-text">Resulting in a PREMM premium rate entry matrix (with
+            premiums as percentages of salary):</p>
+
+        <!--(Table)=========================================================-->
+        <table cellspacing="0" width="300" x-use-null-cells="" class="calibre103">
+
+            <tbody class="calibre3">
+            <tr valign="top" class="calibre4">
+                <td width="48px" class="calibre104">
+                    <p class="tbl-header-data">Salary</p></td>
+                <td width="60px" class="calibre92">
+                    <p class="tbl-header-data">0-.9K</p></td>
+                <td width="60px" class="calibre92">
+                    <p class="tbl-header-data">1-2K</p></td>
+                <td width="60px" class="calibre92">
+                    <p class="tbl-header-data">3-4K</p></td>
+                <td width="72px" class="calibre35">
+                    <p class="tbl-header-data">5-99K</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="48px" class="calibre104">
+                    <p class="tbl-text">%-Sal</p></td>
+                <td width="60px" class="calibre92">
+                    <p class="tbl-text">1%</p></td>
+                <td width="60px" class="calibre92">
+                    <p class="tbl-text">2%</p></td>
+                <td width="60px" class="calibre92">
+                    <p class="tbl-text">3%</p></td>
+                <td width="72px" class="calibre35">
+                    <p class="tbl-text">3.5%</p></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <p class="body-text">When, on the GRUPB window, you select the S-Subscriber
+            tiering method and this PREMM record as the matrix definition DIAMOND
+            assigns the following premium rates based on a percentage of subscriber
+            salary:</p>
+
+        <ul class="calibre14">
+
+            <li class="kadov-p-cbullet-list-h"><p class="bullet-list-h">$999.99
+                = $10 (1% of $999.99)</p></li>
+
+            <li class="kadov-p-cbullet-list-h"><p class="bullet-list-h">$1,500.00
+                = $30 (2% of $1,500)</p></li>
+
+            <li class="kadov-p-cbullet-list-h"><p class="bullet-list-h">$5,515.00
+                = $193.03 (3.5% of $5,515)</p></li>
+        </ul>
+
+        <p class="doc-level"><a
+                name="Rate_Matrix_Examples_Member-by-Member_Family_Rates_According_to_Member_Age_MID"></a>Member-by-Member
+            Family Rates According to Member Age</p>
+
+        <p class="body-text">You can set up the member’s age as a determinant and
+            have Diamond apply the matrix to each member to calculate premiums.</p>
+
+        <p class="body-text">You enter the following column (X) matrix descriptions
+            and determinants in MATRX for age-banded rates for members of any age;
+            either gender; regardless of salary, Medicare status, or rate type.</p>
+
+        <!--(Table)=========================================================-->
+        <table cellspacing="0" width="510" x-use-null-cells="" class="calibre91">
+
+            <tbody class="calibre3">
+            <tr valign="top" class="calibre4">
+                <td width="60px" class="calibre92">
+                    <p class="tbl-header-data">Description</p></td>
+                <td width="60px" class="calibre92">
+                    <p class="tbl-header-data">Age From</p></td>
+                <td width="53px" class="calibre98">
+                    <p class="tbl-header-data">Age Thru</p></td>
+                <td width="54px" class="calibre93">
+                    <p class="tbl-header-data">Gender</p></td>
+                <td width="72px" class="calibre35">
+                    <p class="tbl-header-data">Salary From</p></td>
+                <td width="66px" class="calibre94">
+                    <p class="tbl-header-data">Salary Thru</p></td>
+                <td width="84px" class="calibre37">
+                    <p class="tbl-header-data">Medicare Status</p></td>
+                <td width="60px" class="calibre92">
+                    <p class="tbl-header-data">Rate Type</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="60px" class="calibre92">
+                    <p class="tbl-text">All Case</p></td>
+                <td width="60px" class="calibre92">
+                    <p class="tbl-text">.0</p></td>
+                <td width="53px" class="calibre98">
+                    <p class="tbl-text">.0</p></td>
+                <td width="54px" class="calibre93">
+                    <p class="tbl-text">&lt;blank&gt;</p></td>
+                <td width="72px" class="calibre35">
+                    <p class="tbl-text"> </p></td>
+                <td width="66px" class="calibre94">
+                    <p class="tbl-text"> </p></td>
+                <td width="84px" class="calibre37">
+                    <p class="tbl-text"> </p></td>
+                <td width="60px" class="calibre92">
+                    <p class="tbl-text"> </p></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <p class="body-text">Then you enter the following <span class="calibre19">row</span>
+            (Y) matrix description and determinants for members of different age bands,
+            either gender:</p>
+
+        <!--(Table)=========================================================-->
+        <table cellspacing="0" width="468" x-use-null-cells="" class="calibre105">
+
+            <tbody class="calibre3">
+            <tr valign="top" class="calibre4">
+                <td width="60px" class="calibre92">
+                    <p class="tbl-header-data">Description</p></td>
+                <td width="84px" class="calibre37">
+                    <p class="tbl-header-data">Fam. Size From</p></td>
+                <td width="84px" class="calibre37">
+                    <p class="tbl-header-data">Fam. Size Thru</p></td>
+                <td width="60px" class="calibre92">
+                    <p class="tbl-header-data">Age From</p></td>
+                <td width="54px" class="calibre93">
+                    <p class="tbl-header-data">Age Thru</p></td>
+                <td width="54px" class="calibre93">
+                    <p class="tbl-header-data">Gender</p></td>
+                <td width="72px" class="calibre35">
+                    <p class="tbl-header-data">Spouse Flag</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="60px" class="calibre92">
+                    <p class="tbl-text">0-20</p></td>
+                <td width="84px" class="calibre37">
+                    <p class="tbl-text">0</p></td>
+                <td width="84px" class="calibre37">
+                    <p class="tbl-text">0</p></td>
+                <td width="60px" class="calibre92">
+                    <p class="tbl-text">0</p></td>
+                <td width="54px" class="calibre93">
+                    <p class="tbl-text">20.9</p></td>
+                <td width="54px" class="calibre93">
+                    <p class="tbl-text">&lt;blank&gt;</p></td>
+                <td width="72px" class="calibre35">
+                    <p class="tbl-text"> </p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="60px" class="calibre92">
+                    <p class="tbl-text">21-40</p></td>
+                <td width="84px" class="calibre37">
+                    <p class="tbl-text">0</p></td>
+                <td width="84px" class="calibre37">
+                    <p class="tbl-text">0</p></td>
+                <td width="60px" class="calibre92">
+                    <p class="tbl-text">21.0</p></td>
+                <td width="54px" class="calibre93">
+                    <p class="tbl-text">40.9</p></td>
+                <td width="54px" class="calibre93">
+                    <p class="tbl-text">&lt;blank&gt;</p></td>
+                <td width="72px" class="calibre35">
+                    <p class="tbl-text"> </p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="60px" class="calibre92">
+                    <p class="tbl-text">41-60</p></td>
+                <td width="84px" class="calibre37">
+                    <p class="tbl-text">0</p></td>
+                <td width="84px" class="calibre37">
+                    <p class="tbl-text">0</p></td>
+                <td width="60px" class="calibre92">
+                    <p class="tbl-text">41.0</p></td>
+                <td width="54px" class="calibre93">
+                    <p class="tbl-text">60.9</p></td>
+                <td width="54px" class="calibre93">
+                    <p class="tbl-text">&lt;blank&gt;</p></td>
+                <td width="72px" class="calibre35">
+                    <p class="tbl-text"> </p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="60px" class="calibre92">
+                    <p class="tbl-text">61+</p></td>
+                <td width="84px" class="calibre37">
+                    <p class="tbl-text">0</p></td>
+                <td width="84px" class="calibre37">
+                    <p class="tbl-text">0</p></td>
+                <td width="60px" class="calibre92">
+                    <p class="tbl-text">61.0</p></td>
+                <td width="54px" class="calibre93">
+                    <p class="tbl-text">200.0</p></td>
+                <td width="54px" class="calibre93">
+                    <p class="tbl-text">&lt;blank&gt;</p></td>
+                <td width="72px" class="calibre35">
+                    <p class="tbl-text"> </p></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <p class="body-text">These entries result in a PREMM rate entry matrix, with
+            rates entered in italics:</p>
+
+        <!--(Table)=========================================================-->
+        <table cellspacing="0" width="120" x-use-null-cells="" class="calibre106">
+
+            <tbody class="calibre3">
+            <tr valign="top" class="calibre4">
+                <td width="60px" class="calibre92">
+                    <p class="tbl-header-data">Amount</p></td>
+                <td width="60px" class="calibre92">
+                    <p class="tbl-header-data">All Case</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="60px" class="calibre92">
+                    <p class="tbl-text">0-20</p></td>
+                <td width="60px" class="calibre92">
+                    <p class="tbl-text"><span class="calibre19">100.00</span></p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="60px" class="calibre92">
+                    <p class="tbl-text">21-40</p></td>
+                <td width="60px" class="calibre92">
+                    <p class="tbl-text"><span class="calibre19">200.00</span></p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="60px" class="calibre92">
+                    <p class="tbl-text">41-60</p></td>
+                <td width="60px" class="calibre92">
+                    <p class="tbl-text"><span class="calibre19">300.00</span></p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="60px" class="calibre92">
+                    <p class="tbl-text">61+</p></td>
+                <td width="60px" class="calibre92">
+                    <p class="tbl-text"><span class="calibre19">400.00</span></p></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <p class="body-text">To build Member-by-Member family rates, select the W-Whole
+            Family tiering method and this PREMM record as the matrix definition in
+            GRUPB. If on GRUPB you also set the Adult Dependent Age to 21 and the
+            Maximum Number of Dependents to 2, DIAMOND assigns the following premium
+            rates for the following eligible families:</p>
+
+        <!--(Table)=========================================================-->
+        <table cellspacing="0" width="505" x-use-null-cells="" class="calibre107">
+            <colgroup class="calibre108">
+                <col class="calibre109"/>
+                <col class="calibre110"/>
+                <col class="calibre111"/>
+
+            </colgroup>
+            <tbody class="calibre3">
+            <tr valign="top" class="calibre4">
+                <td width="44.454%" class="calibre112">
+                    <p class="tbl-header-data">Family</p></td>
+                <td width="38.464%" class="calibre112">
+                    <p class="tbl-header-data">Premium Calculation</p></td>
+                <td width="17.082%" class="calibre112">
+                    <p class="tbl-header-data">Total Premium</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="44.454%" class="calibre112">
+                    <p class="tbl-text">Subscriber age = 45<br class="calibre113"/>
+                        Spouse/Domestic Partner age = 40<br class="calibre113"/>
+                        Child 1 age = 10<br class="calibre113"/>
+                        Child 2 age = 7</p></td>
+                <td width="38.464%" class="calibre112">
+                    <p class="tbl-text">$300<br class="calibre113"/>
+                        $200<br class="calibre113"/>
+                        $100<br class="calibre113"/>
+                        $100</p></td>
+                <td width="17.082%" class="calibre112">
+                    <p class="tbl-text">$700</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="44.454%" class="calibre112">
+                    <p class="tbl-text">Subscriber age = 46<br class="calibre113"/>
+                        Spouse/Domestic Partner age = 46<br class="calibre113"/>
+                        Child 1 age = 22<br class="calibre113"/>
+                        Child 2 age = 18<br class="calibre113"/>
+                        Child 3 age = 16</p></td>
+                <td width="38.464%" class="calibre112">
+                    <p class="tbl-text">$300<br class="calibre113"/>
+                        $300<br class="calibre113"/>
+                        $200 (not counted as dependent)<br class="calibre113"/>
+                        $100<br class="calibre113"/>
+                        $100</p></td>
+                <td width="17.082%" class="calibre112">
+                    <p class="tbl-text">$1,000</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="44.454%" class="calibre112">
+                    <p class="tbl-text">Subscriber age = 42<br class="calibre113"/>
+                        Spouse/Domestic Partner age = 39<br class="calibre113"/>
+                        Child 1 age = 9 (person no. 03)<br class="calibre113"/>
+                        Child 2 age = 7 (person no. 04)<br class="calibre113"/>
+                        Child 3 age = 5 (person no. 05)</p></td>
+                <td width="38.464%" class="calibre112">
+                    <p class="tbl-text">$300<br class="calibre113"/>
+                        $200<br class="calibre113"/>
+                        $100<br class="calibre113"/>
+                        $100<br class="calibre113"/>
+                        N/A (max. dependent count reached)</p></td>
+                <td width="17.082%" class="calibre112">
+                    <p class="tbl-text">$700</p></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <p class="doc-level"><a
+                name="RateMatrix_Member-by-Member_Family_Rates_According_to_Member_Age_and_Rate_Type_MID"></a>Member-by-Member
+            Family Rates According to Member Age and Rate Type</p>
+
+        <p class="body-text">You can also set up the member’s age and rate type as
+            premium calculation determinants.</p>
+
+        <p class="body-text">You enter the following column (X) matrix descriptions
+            and determinants in MATRX for age-banded rates for members of any age;
+            either gender; regardless of salary or Medicare status; within rate type.</p>
+
+        <!--(Table)=========================================================-->
+        <table cellspacing="0" width="522" x-use-null-cells="" class="calibre114">
+
+            <tbody class="calibre3">
+            <tr valign="top" class="calibre4">
+                <td width="60px" class="calibre92">
+                    <p class="tbl-header-data">Description</p></td>
+                <td width="60px" class="calibre92">
+                    <p class="tbl-header-data">Age From</p></td>
+                <td width="53px" class="calibre98">
+                    <p class="tbl-header-data">Age Thru</p></td>
+                <td width="54px" class="calibre93">
+                    <p class="tbl-header-data">Gender</p></td>
+                <td width="72px" class="calibre35">
+                    <p class="tbl-header-data">Salary From</p></td>
+                <td width="66px" class="calibre94">
+                    <p class="tbl-header-data">Salary Thru</p></td>
+                <td width="84px" class="calibre37">
+                    <p class="tbl-header-data">Medicare Status</p></td>
+                <td width="72px" class="calibre35">
+                    <p class="tbl-header-data">Rate Type</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="60px" class="calibre92">
+                    <p class="tbl-text">Rate0</p></td>
+                <td width="60px" class="calibre92">
+                    <p class="tbl-text">.0</p></td>
+                <td width="53px" class="calibre98">
+                    <p class="tbl-text">.0</p></td>
+                <td width="54px" class="calibre93">
+                    <p class="tbl-text">&lt;blank&gt;</p></td>
+                <td width="72px" class="calibre35">
+                    <p class="tbl-text"> </p></td>
+                <td width="66px" class="calibre94">
+                    <p class="tbl-text"> </p></td>
+                <td width="84px" class="calibre37">
+                    <p class="tbl-text"> </p></td>
+                <td width="72px" class="calibre35">
+                    <p class="tbl-text">Rate0</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="60px" class="calibre92">
+                    <p class="tbl-text">Rate1</p></td>
+                <td width="60px" class="calibre92">
+                    <p class="tbl-text">.0</p></td>
+                <td width="53px" class="calibre98">
+                    <p class="tbl-text">.0</p></td>
+                <td width="54px" class="calibre93">
+                    <p class="tbl-text">&lt;blank&gt;</p></td>
+                <td width="72px" class="calibre35">
+                    <p class="tbl-text"> </p></td>
+                <td width="66px" class="calibre94">
+                    <p class="tbl-text"> </p></td>
+                <td width="84px" class="calibre37">
+                    <p class="tbl-text"> </p></td>
+                <td width="72px" class="calibre35">
+                    <p class="tbl-text">Rate1</p></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <p class="body-text">Then you enter the following <span class="calibre19">row</span>
+            (Y) matrix description and determinants for members of different age bands,
+            either gender:</p>
+
+        <!--(Table)=========================================================-->
+        <table cellspacing="0" width="468" x-use-null-cells="" class="calibre105">
+
+            <tbody class="calibre3">
+            <tr valign="top" class="calibre4">
+                <td width="60px" class="calibre92">
+                    <p class="tbl-header-data">Description</p></td>
+                <td width="84px" class="calibre37">
+                    <p class="tbl-header-data">Fam. Size From</p></td>
+                <td width="84px" class="calibre37">
+                    <p class="tbl-header-data">Fam. Size Thru</p></td>
+                <td width="60px" class="calibre92">
+                    <p class="tbl-header-data">Age From</p></td>
+                <td width="54px" class="calibre93">
+                    <p class="tbl-header-data">Age Thru</p></td>
+                <td width="54px" class="calibre93">
+                    <p class="tbl-header-data">Gender</p></td>
+                <td width="72px" class="calibre35">
+                    <p class="tbl-header-data">Spouse Flag</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="60px" class="calibre92">
+                    <p class="tbl-text">0-20</p></td>
+                <td width="84px" class="calibre37">
+                    <p class="tbl-text">0</p></td>
+                <td width="84px" class="calibre37">
+                    <p class="tbl-text">0</p></td>
+                <td width="60px" class="calibre92">
+                    <p class="tbl-text">0</p></td>
+                <td width="54px" class="calibre93">
+                    <p class="tbl-text">20.9</p></td>
+                <td width="54px" class="calibre93">
+                    <p class="tbl-text">&lt;blank&gt;</p></td>
+                <td width="72px" class="calibre35">
+                    <p class="tbl-text"> </p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="60px" class="calibre92">
+                    <p class="tbl-text">21-40</p></td>
+                <td width="84px" class="calibre37">
+                    <p class="tbl-text">0</p></td>
+                <td width="84px" class="calibre37">
+                    <p class="tbl-text">0</p></td>
+                <td width="60px" class="calibre92">
+                    <p class="tbl-text">21.0</p></td>
+                <td width="54px" class="calibre93">
+                    <p class="tbl-text">40.9</p></td>
+                <td width="54px" class="calibre93">
+                    <p class="tbl-text">&lt;blank&gt;</p></td>
+                <td width="72px" class="calibre35">
+                    <p class="tbl-text"> </p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="60px" class="calibre92">
+                    <p class="tbl-text">41-60</p></td>
+                <td width="84px" class="calibre37">
+                    <p class="tbl-text">0</p></td>
+                <td width="84px" class="calibre37">
+                    <p class="tbl-text">0</p></td>
+                <td width="60px" class="calibre92">
+                    <p class="tbl-text">41.0</p></td>
+                <td width="54px" class="calibre93">
+                    <p class="tbl-text">60.9</p></td>
+                <td width="54px" class="calibre93">
+                    <p class="tbl-text">&lt;blank&gt;</p></td>
+                <td width="72px" class="calibre35">
+                    <p class="tbl-text"> </p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="60px" class="calibre92">
+                    <p class="tbl-text">61+</p></td>
+                <td width="84px" class="calibre37">
+                    <p class="tbl-text">0</p></td>
+                <td width="84px" class="calibre37">
+                    <p class="tbl-text">0</p></td>
+                <td width="60px" class="calibre92">
+                    <p class="tbl-text">61.0</p></td>
+                <td width="54px" class="calibre93">
+                    <p class="tbl-text">200.0</p></td>
+                <td width="54px" class="calibre93">
+                    <p class="tbl-text">&lt;blank&gt;</p></td>
+                <td width="72px" class="calibre35">
+                    <p class="tbl-text"> </p></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <p class="body-text">These entries result in a PREMM rate entry matrix, with
+            rates entered in italics:</p>
+
+        <!--(Table)=========================================================-->
+        <table cellspacing="0" width="180" x-use-null-cells="" class="calibre115">
+
+            <tbody class="calibre3">
+            <tr valign="top" class="calibre4">
+                <td width="60px" class="calibre92">
+                    <p class="tbl-header-data">Amount</p></td>
+                <td width="60px" class="calibre92">
+                    <p class="tbl-header-data">Rate0</p></td>
+                <td width="60px" class="calibre92">
+                    <p class="tbl-header-data">Rate1</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="60px" class="calibre92">
+                    <p class="tbl-text">0-20</p></td>
+                <td width="60px" class="calibre92">
+                    <p class="tbl-text"><span class="calibre19">100.00</span></p></td>
+                <td width="60px" class="calibre92">
+                    <p class="tbl-text"><span class="calibre19">110.00</span></p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="60px" class="calibre92">
+                    <p class="tbl-text">21-40</p></td>
+                <td width="60px" class="calibre92">
+                    <p class="tbl-text"><span class="calibre19">200.00</span></p></td>
+                <td width="60px" class="calibre92">
+                    <p class="tbl-text"><span class="calibre19">220.00</span></p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="60px" class="calibre92">
+                    <p class="tbl-text">41-60</p></td>
+                <td width="60px" class="calibre92">
+                    <p class="tbl-text"><span class="calibre19">300.00</span></p></td>
+                <td width="60px" class="calibre92">
+                    <p class="tbl-text"><span class="calibre19">330.00</span></p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="60px" class="calibre92">
+                    <p class="tbl-text">61+</p></td>
+                <td width="60px" class="calibre92">
+                    <p class="tbl-text"><span class="calibre19">400.00</span></p></td>
+                <td width="60px" class="calibre92">
+                    <p class="tbl-text"><span class="calibre19">440.00</span></p></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <p class="body-text">To build Member-by-Member family rates, select the W-Whole
+            Family tiering method and this PREMM record as the matrix definition in
+            GRUPB. If on GRUPB you also set the Adult Dependent Age to 21 and the
+            Maximum Number of Dependents to 2, DIAMOND assigns the following premium
+            rates for the following eligible families:</p>
+
+        <!--(Table)=========================================================-->
+        <table cellspacing="0" width="525" x-use-null-cells="" class="calibre116">
+            <colgroup class="calibre108">
+                <col class="calibre117"/>
+                <col class="calibre118"/>
+                <col class="calibre119"/>
+                <col class="calibre120"/>
+
+            </colgroup>
+            <tbody class="calibre3">
+            <tr valign="top" class="calibre4">
+                <td width="40.988%" class="calibre112">
+                    <p class="tbl-header-data">Family</p></td>
+                <td width="12%" class="calibre112">
+                    <p class="tbl-header-data">MEMBR/ MELIG</p>
+                    <p class="tbl-header-data">Rate Type</p></td>
+                <td width="37.34%" class="calibre112">
+                    <p class="tbl-header-data">Premium Calculation</p></td>
+                <td width="9.672%" class="calibre112">
+                    <p class="tbl-header-data">Total Premium</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="40.988%" class="calibre112">
+                    <p class="tbl-text">Subscriber age = 45<br class="calibre113"/>
+                        Spouse/Domestic Partner age = 40<br class="calibre113"/>
+                        Child 1 age = 10<br class="calibre113"/>
+                        Child 2 age = 7</p></td>
+                <td width="12%" class="calibre112">
+                    <p class="tbl-text">Rate0<br class="calibre113"/>
+                        Rate0<span class="calibre121"><br class="calibre113"/>
+Rate0<br class="calibre113"/>
+Rate0</span></p></td>
+                <td width="37.34%" class="calibre112">
+                    <p class="tbl-text">$300<br class="calibre113"/>
+                        $200<br class="calibre113"/>
+                        $100<br class="calibre113"/>
+                        $100</p></td>
+                <td width="9.672%" class="calibre112">
+                    <p class="tbl-text">$700</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="40.988%" class="calibre112">
+                    <p class="tbl-text">Subscriber age = 46<br class="calibre113"/>
+                        Spouse/Domestic Partner age = 46<br class="calibre113"/>
+                        Child 1 age = 22<br class="calibre113"/>
+                        Child 2 age = 18<br class="calibre113"/>
+                        Child 3 age = 16</p></td>
+                <td width="12%" class="calibre112">
+                    <p class="tbl-text">Rate1<br class="calibre113"/>
+                        Rate1<br class="calibre113"/>
+                        Rate1<br class="calibre113"/>
+                        Rate1<br class="calibre113"/>
+                        Rate1</p></td>
+                <td width="37.34%" class="calibre112">
+                    <p class="tbl-text">$330<br class="calibre113"/>
+                        $330<br class="calibre113"/>
+                        $220 (not counted as dependent)<br class="calibre113"/>
+                        $110<br class="calibre113"/>
+                        $110</p></td>
+                <td width="9.672%" class="calibre112">
+                    <p class="tbl-text">$1,100</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="40.988%" class="calibre112">
+                    <p class="tbl-text">Subscriber age = 42<br class="calibre113"/>
+                        Spouse/Domestic Partner age = 39<br class="calibre113"/>
+                        Child 1 age = 9 (person no. 03)<br class="calibre113"/>
+                        Child 2 age = 7 (person no. 04)<br class="calibre113"/>
+                        Child 3 age = 5 (person no. 05)</p></td>
+                <td width="12%" class="calibre112">
+                    <p class="tbl-text">Rate0<br class="calibre113"/>
+                        Rate1<br class="calibre113"/>
+                        Rate0<br class="calibre113"/>
+                        Rate1<br class="calibre113"/>
+                        Rate0</p></td>
+                <td width="37.34%" class="calibre112">
+                    <p class="tbl-text">$300<br class="calibre113"/>
+                        $220<br class="calibre113"/>
+                        $100<br class="calibre113"/>
+                        $110<br class="calibre113"/>
+                        N/A (max. dependent count reached)</p></td>
+                <td width="9.672%" class="calibre112">
+                    <p class="tbl-text">$730</p></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <p class="body-text1"> </p>
+
+        <p class="tip-note-warning">Warning</p>
+
+        <ul class="calibre14">
+
+            <li class="kadov-p-cbullet-list-h"><p class="bullet-list-h">You must
+                use the MEMBR&gt;Special &gt;Terminate/Unterminate if you want to subsequently
+                add/change/delete a member's rate type (MEMBR&gt;Rate Type) after Premium
+                Billing has been run. This ensures data integrity and preserves the original
+                rate type from/through effective dates (or lack thereof) for historic
+                purposes.</p></li>
+        </ul>
+
+
+    </div>
+
+
+
+    <div class="calibreEbNav">
+
+        <a href="Premium_Billing_How_DIAMOND_Thinks.htm" class="calibreAPrev">previous page
+        </a>
+
+
+        <a href="../l0urk-a4ma7.html" class="calibreAHome">start
+        </a>
+
+
+        <a href="ARADJ_Accounts_Receivable_Adjustments.htm" class="calibreANext">next page
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!-- Copyright (c) 2020 . All Rights Reserved. -->
+<div class="container-fluid pt-5">
+ <div class="card-block">
+<div class="row">
+<div class="col-md-5">
+        <img class="card-img-top img-fluid" style="width:350px;" src="../../../../assets/images/loginPage.png" alt="Card image cap">
+</div>
+<div class="col-md-7 pt-3">
+        <form [formGroup]="userLoginForm" novalidate>
+            <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+
+            <div class="form-group row">
+                <!-- Textbox with label of Username -->
+                <label class="col-md-3 col-form-label" for="username" i18n>Username</label>
+                <div class="col-md-8" [ngClass]="{'has-danger': formValidation.isValidField('username') }">
+
+                        <input type="text" id="username" class="form-control" formControlName="username"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('username')">
+                      {{ formValidation.errorMessage('username') }}
+                     </small>
+                </div>
+
+            </div>
+
+            <div class="form-group row">
+                <!-- Textbox with label of Password -->
+                <label class="col-md-3 col-form-label" for="password" i18n>Password</label>
+                <div class="col-md-8" [ngClass]="{'has-danger': formValidation.isValidField('password') }">
+
+                        <input type="password" id="password"  class="form-control" formControlName="password"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('password')">
+                      {{ formValidation.errorMessage('password') }}
+                     </small>
+                </div>
+
+            </div>
+
+            <!-- DropdownList with label of Server -->
+            <!-- <div class="form-group row">
+                <label class="col-md-3 col-form-label" for="server" i18n>Server</label>
+                <div class="selectContainer col-md-8 " [ngClass]="{'has-danger': formValidation.isValidField('server') }">
+                    <select class="form-control" id="server" name="Server" formControlName="server">
+                        <option value="jdbc:postgresql://localhost:5432/diamond">Localhost</option>
+                    </select>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('server')">
+                        {{ formValidation.errorMessage('server') }}
+                       </small>
+                </div>
+            </div> -->
+
+
+            <div class="form-group row d-flex align-items-center">
+                    <!-- checkbox with label of Change Password -->
+                    <label class="col-md-3 col-form-label" for="change-password" i18n>Change Password</label>
+                    <div class="selectContainer col-md-8 ">
+                        <input style="height: 20px; width: 20px" type="checkbox" id="change-password">
+                    </div>
+
+            </div>
+
+            <div class="form-group row">
+                <div class="col-md-11">
+                    <button href="#" (click)="submit()" class="button float-right">Ok</button>
+                    </div>
+                    <!-- <button href="#" class="ml-3 button">Cancel</button> -->
+            </div>
+        </form>
+
+
+    </div>
+
+
+</div>
+
+     <div class="row">
+         <p class="ml-4 mt-1">Copyright 2021 Cigna - All rights reserved.<br>
+          A modernization collaboration of Cigna, Accenture, and ResQSoft.
+         </p>
+     </div>
+    <ngx-spinner   bdColor="rgba(253,253,253,0.8)"
+  size="medium"
+  color="#209cf1 "
+  type="ball-scale-multiple"></ngx-spinner>
+
+
+ </div>
+</div>

@@ -1,0 +1,90 @@
+<!-- Copyright (c) 2020 . All Rights Reserved. -->
+<div class="container-fluid">
+    <div class="card-block">
+        <form [formGroup]="claimHoldsLookupForm" novalidate>
+            <h2 class="form-title card-label-admin">Claim Holds Lookup</h2>
+            <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+            <app-pop-up-message #popUpMesssage (buttonclickEvent)="popUpButtonHandler($event)"  [(popupMessage)] = "popUpMessage"></app-pop-up-message>
+                        
+            <div class="form-group row">
+                <!-- Button with label of OK -->
+                <div class="col-md-2">
+                    <button type="button" id="ok" name="ok" class="btn btn-small btn-primary">OK</button>
+                </div>
+            
+                <!-- Button with label of Query -->
+                <div class="col-md-2">
+                    <button type="button" id="query" name="query" class="btn btn-small btn-primary">Query</button>
+                
+                
+                </div>
+            
+                <!-- Button with label of Cancel -->
+                <div class="col-md-2">
+                    <button type="button" id="cancel" name="cancel" class="btn btn-small btn-primary">Cancel</button>
+                
+                
+                </div>
+            
+                <!-- Button with label of Default -->
+                <div class="col-md-2">
+                    <button type="button" id="default" name="default" class="btn btn-small btn-primary">Default</button>
+                
+                
+                </div>
+            
+                <!-- Button with label of Custom -->
+                <div class="col-md-2">
+                    <button type="button" id="custom" name="custom" class="btn btn-small btn-primary">Custom</button>
+                
+                
+                </div>
+            
+                <!-- Button with label of Columns -->
+                <div class="col-md-2">
+                    <button type="button" id="columns" name="columns" class="btn btn-small btn-primary">Columns</button>
+                
+                
+                </div>
+            
+                <!-- Button with label of Reset -->
+                <div class="col-md-2">
+                    <button type="button" id="reset" name="reset" class="btn btn-small btn-primary">Reset</button>
+                
+                
+                </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Checkbox with label of Match All Cases -->
+                <div class="" [ngClass]="{'has-error': displayMessage.matchAllCases }">
+                    <div class="checkbox col-md-12">
+                      <input id="matchAllCases" value="matchAllCases" formControlName="matchAllCases" type="checkbox">
+                        <label class="checkbox">
+                            Match All Cases
+                         </label>
+                    </div>
+                    <span class="help-block" *ngIf="displayMessage.matchAllCases">
+                        {{ displayMessage.matchAllCases  }}
+                     </span>
+                </div>
+            
+            </div>
+            
+                        <!-- DataGrid with Name of DataGrid -->
+                    <button (click)="dataGridGridOptionsExportCsv()">Export</button>
+                    <ag-grid-angular #agGrid class="ag-theme-fresh" [gridOptions]="dataGridGridOptions"
+                    style="width: 100%; height: 300px;"
+                    [enableSorting]="true"
+                    [enableFilter]="true"
+                    [floatingFilter]="true"
+                    [pagination]="true"
+                    [showToolPanel]="true">
+                    </ag-grid-angular>
+            
+            <div class="form-group row">
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,107 @@
+<!-- Copyright (c) 2020 . All Rights Reserved. -->
+<div class="container-fluid">
+    <div class="card-block">
+        <form [formGroup]="defineBenefitValueFiltersForm" novalidate>
+            <h2 class="form-title card-label-admin">Define Benefit Value Filters</h2>
+            <button type="button" *ngIf="showIcon" class="modal-close close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+            <app-pop-up-message #popUpMesssage (buttonclickEvent)="popUpButtonHandler($event)"  [(popupMessage)] = "popUpMessage"></app-pop-up-message>
+                        
+            <div class="form-group row">
+                <!-- DynamicText with label of Benefit Rule TA -->
+                 <div class="col-md-6" >
+                    Benefit Rule: {{(benefitPackageDetail && benefitPackageDetail.benefitRule && benefitPackageDetail.benefitRule.ruleId) ? benefitPackageDetail.benefitRule.ruleId : ''}}
+                 </div>
+            
+                <!-- DynamicText with label of 100% SURCHARGE TA -->
+                 <div class="col-md-6" >
+                     {{(benefitPackageDetail && benefitPackageDetail.benefitRule && benefitPackageDetail.benefitRule.shortDescription) ? benefitPackageDetail.benefitRule.shortDescription : ''}}
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <div class="col-md-3 form-control-static mb-0" i18n>
+                    Rule Type {{(benefitPackageDetail && benefitPackageDetail.benefitRule && benefitPackageDetail.benefitRule.ruleType) ? benefitPackageDetail.benefitRule.ruleType : ''}}
+                </div>
+            
+                <div class="col-md-3 form-control-static mb-0" i18n>
+                    Proc Order {{benefitPackageDetail.benefProcessingOrder}}
+                </div>
+            
+                <div class="col-md-3 form-control-static mb-0" i18n>
+                    Proc Seq {{benefitPackageDetail.processingSequence}}
+                </div>
+            
+            </div>
+            
+            
+            <!--<div class="form-group row">
+                &lt;!&ndash; DropdownList with Name of DropdownList &ndash;&gt;
+                <div class="selectContainer col-md-3 " >
+                    <label class="col-form-label clr-blue" for="dropdownList" i18n>Filter Type</label>
+                    <select class="form-control" id="dropdownlist" name="DropdownList" formControlName="dropdownList">
+                        <option value="">Please Select</option>
+                    </select>
+                </div>
+                
+            
+                &lt;!&ndash; Textbox with Name of Textbox001 &ndash;&gt;
+                 <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('textbox001') }">
+                     <label class="col-form-label clr-blue" for="textbox001" i18n>Operator</label>
+                     <input type="text" id="textbox001"  class="form-control" formControlName="textbox001"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('textbox001')">
+                      {{ formValidation.errorMessage('textbox001') }}
+                     </small>
+                 </div>
+            
+                &lt;!&ndash; Textbox with Name of Textbox002 &ndash;&gt;
+                 <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('textbox002') }">
+                     <label class="col-form-label clr-blue" for="textbox002" i18n>From Value</label>
+                     <input type="text" id="textbox002"  class="form-control" formControlName="textbox002"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('textbox002')">
+                      {{ formValidation.errorMessage('textbox002') }}
+                     </small>
+                 </div>
+            
+                &lt;!&ndash; Textbox with Name of Textbox003 &ndash;&gt;
+                 <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('textbox003') }">
+                     <label class="col-form-label" for="textbox003" i18n>Thru Value</label>
+                     <input type="text" id="textbox003"  class="form-control" formControlName="textbox003"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('textbox003')">
+                      {{ formValidation.errorMessage('textbox003') }}
+                     </small>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+            </div>-->
+
+            <div class="col-md-12 mt-3 p-0">
+                <dynamic-form  [isFormEditable]="isEditable" [prevState]="defineBenefitValueState" [isSaveForm]="saveForm" [isResetForm]="isResetForm" [config]="defineBenefitValueFilterConfig" (formSubmitted)="saveDefineBenefitValueFilter($event)"></dynamic-form>
+            </div>
+            
+            <div class="form-group row mt-3">
+                <!-- Button with label of OK -->
+                <div class="col-md-12">
+                    <button type="button" id="cancel" name="cancel" class="float-right ml-2 btn btn-small btn-primary" (click)="activeModal.dismiss('Cross click')">Cancel</button>
+                    <button type="button" id="ok" name="ok" class="float-right  btn btn-small btn-primary" (click)="submitBenefit()">OK</button>
+                </div>
+            
+            </div>
+            
+            <!--<div class="form-group row">
+                &lt;!&ndash; Button with label of Delete &ndash;&gt;
+                <div class="col-md-12">
+                    <button type="button" id="delete" name="delete" class=" ml-2 float-right btn btn-small btn-primary">Delete</button>
+                    <button type="button" id="add" name="Add" class=" float-right btn btn-small btn-primary">Add</button>
+
+                </div>
+
+            </div>-->
+        </form>
+    </div>
+</div>

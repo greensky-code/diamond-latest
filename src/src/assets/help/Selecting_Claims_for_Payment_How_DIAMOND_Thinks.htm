@@ -1,0 +1,220 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+    <title>Selecting Claims for Payment, How DIAMOND Thinks</title>
+    <!--(Meta)==========================================================-->
+    <meta name="copyright" value="© Copyright 2002 Health Systems Design Corp., a wholly owned subsidiary of Perot Systems Corporation. All rights reserved"/>
+    <meta content="RoboHELP by eHelp Corporation - www.ehelp.com" name="generator"/>
+    <meta content="0.1" name="generator-major-version"/>
+    <meta content="1" name="generator-minor-version"/>
+    <meta content="kadov" name="filetype"/>
+    <meta content="1" name="filetype-version"/>
+    <meta content="1" name="page-count"/>
+    <meta content="1130" name="layout-height"/>
+    <meta content="679" name="layout-width"/>
+    <!--(Links)=========================================================-->
+    <!--(Scripts)=======================================================-->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+   <link href="assets/help/stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="assets/help/page_styles.css" rel="stylesheet" type="text/css"/>
+
+  
+
+
+<link href="assets/help/calibreHtmlOutBasicCss.css" type="text/css" rel="stylesheet" />
+
+</head>
+<body>
+
+<div class="calibreMeta">
+  <div class="calibreMetaTitle">
+  
+  
+    
+    <h1>
+      <a href="../4xeqt-va1vo.html">DIAMOND 950 Help
+</a>
+    </h1>
+    
+    
+  
+  </div>
+  <div class="calibreMetaAuthor">
+    Unknown
+
+  </div>
+</div>
+
+<div class="calibreMain">
+
+  <div class="calibreEbookContent">
+    
+      <div class="calibreEbNavTop">
+        
+          <a href="Selecting_and_Paying_Medical_Claims_and_Capitation_Transactions_TASK.htm" class="calibreAPrev">previous page
+</a>
+        
+
+        
+          <a href="Adding_a_Bank_Account.htm" class="calibreANext">next page
+</a>
+        
+      </div>
+    
+
+    
+
+<h1 class="calibre3">Selecting Claims for Payment, How DIAMOND Thinks</h1>
+
+<p class="text">This topic provides processing logic information about:</p>
+
+<p class="text"><a href="Selecting_Claims_for_Payment_How_DIAMOND_Thinks.htm#APClaimSelect_HeadHolds_HDT_MID">About 
+ Header Holds</a></p>
+
+<p class="text"><a href="Selecting_Claims_for_Payment_How_DIAMOND_Thinks.htm#APClaimSelect_CapSpecial_HDT_MID">About 
+ Capitation/Special Fund Distribution</a></p>
+
+<p class="text"><a href="Selecting_Claims_for_Payment_How_DIAMOND_Thinks.htm#APClaimSelect_PartPay_HDT_MID">About 
+ Partial Pay</a></p>
+
+<p class="text"><a href="Selecting_Claims_for_Payment_How_DIAMOND_Thinks.htm#AP_HOT_Claims_Discount_and_Interest_Calculations_MID">Claims 
+ Discount and Interest Calculations</a></p>
+
+<p class="text"><a href="Selecting_Claims_for_Payment_How_DIAMOND_Thinks.htm#APClaimSelect_ThirdPty_HDT_MID">About 
+ Third-Party Interfaces</a></p>
+
+<p class="text"> </p>
+
+<p class="text">For an overview of the A/P claim selection and payment process 
+ see <a href="Selecting_Claims_for_Payment_-_Overview.htm">Selecting Claims 
+ for Payment - Overview</a>.</p>
+
+<p class="text">During the A/P claim selection process, all claim detail 
+ lines are finalized and selected for payment. Once finalized by running 
+ an A/P update job in keyword APUPD (Accounts Payable Update), A/P transaction 
+ records are created and claim detail lines can no longer be changed. However, 
+ A/P transaction records can be de-selected or reselected for payment in 
+ keyword APSEL (Accounts Payable Selection).</p>
+
+<p class="text">To maximize performance, we recommend using minimal selection 
+ criteria when running an A/P update job in keyword APUPD. Additional filtering 
+ can then be applied when running a check print job in keyword CKPRT (Check 
+ Print).</p>
+
+<p class="text">Payables must be posted and selected for payment in keyword 
+ APUPD before payment checks and Electronic Fund Transfer (EFT) payments 
+ are produced in keyword CKPRT.</p>
+
+<h2 class="calibre10"><a name="APClaimSelect_HeadHolds_HDT_MID"></a>About Header Holds</h2>
+
+<p class="text">Header Holds apply to the entire claim – every detail line. 
+ During the APUPD process, DIAMOND checks the hold reason table; if a header 
+ hold is active, no detail lines will be picked up by accounts payable.</p>
+
+<h2 class="calibre10"><a name="APClaimSelect_CapSpecial_HDT_MID"></a>About Capitation/Special 
+ Fund Distribution</h2>
+
+<p class="text">Capitation/Special Fund Distribution (CFD) is considered 
+ as part of the APUPD process in the following way:</p>
+
+<p class="body-text">If:</p>
+
+<ul class="calibre6">
+	
+	<li class="kadov-p-cbullet"><p class="bullet">A claim status is ‘F’ (Cap/Special 
+ Fund)</p></li>
+	
+	<li class="kadov-p-cbullet"><p class="bullet">The processing status is 
+ ‘U’ (Unposted)</p></li>
+	
+	<li class="kadov-p-cbullet"><p class="bullet">The Cap/Special Fund Status 
+ is ‘3’ (the detail line has been through all the steps of the cap/special 
+ funding process)</p></li>
+</ul>
+
+<p class="text">Then<span class="calibre12">:</span></p>
+
+<p class="text">The claim is eligible to be selected for payment unless there 
+ are other lines held and partial payment is not permitted.</p>
+
+<h2 class="calibre10"><a name="APClaimSelect_PartPay_HDT_MID"></a>About Partial Payment</h2>
+
+<p class="text">The parameter PARTIALPAY, defined in keyword PARAM (System 
+ Parameters) specifies whether partial payments – payment of some detail 
+ lines on a claim, but not others - is allowed for institutional/professional 
+ services claims. </p>
+
+<p class="text">Parameter_1 stores the value for Institutional Claims and 
+ Parameter_2 stores the value for Professional Claims. The default ‘Y’ 
+ allows partial payment.</p>
+
+<p class="text">If Partial Payment is allowed, APUPD will select for payment 
+ any detail lines that are not held, even if other detail lines on the 
+ same claim are held. If Partial Payment is not<span class="calibre12"> 
+ </span>allowed, only detail lines on claims that have no holds whatsoever 
+ will be selected for payment.</p>
+
+<p class="text"><span class="calibre9">Note:</span> Partial Payment 
+ looks at holds and Cap/Special Fund only, it does not take auditing into 
+ consideration.</p>
+
+<p class="text"><span class="calibre9">Note:</span> If the PARTIALPAY 
+ parameter is set to yes, you cannot use either claims interest calculation 
+ functionality or claims discount calculation functionality.</p>
+
+<h2 class="calibre10"><a name="AP_HOT_Claims_Discount_and_Interest_Calculations_MID"></a>Claims 
+ Discount and Interest Calculations</h2>
+
+<p class="text">Discount or interest calculations can be automatically applied 
+ against payable and reversed payable claim lines. Any discount or interest 
+ amount is added or subtracted from the claim’s Net Amt during the check 
+ print process. The new amount (Net Amt less discount or plus interest) 
+ is stored in the Paid Net Amt field and is used as the payment amount. 
+ </p>
+
+<p class="text">You can manually apply a discount or interest amount on an 
+ adjusted claim line. </p>
+
+<p class="text">For a complete explanation of discount and interest calculations, 
+ see <a href="Claims.chm::/Claims_Discount_and_Interest_Calculations_How_DIAMOND_Thinks.htm">Claims 
+ Discount and Interest Calculations, How DIAMOND Thinks.</a> </p>
+
+<h2 class="calibre10"><a name="APClaimSelect_ThirdPty_HDT_MID"></a>About Third-Party Interfaces</h2>
+
+<p class="text">Keyword APUPD evaluates claim detail lines to determine if 
+ they have been audited by a third party claims auditing software such 
+ as GMIS, Auto-Audit, or HPR Code Review. If the audit status on the detail 
+ line indicates that the line requires auditing, but auditing has not yet 
+ occurred, APUPD will skip the line even if it passes all the other conditions 
+ for selection.</p>
+
+
+
+
+
+
+  </div>
+
+  
+
+
+  <div class="calibreEbNav">
+    
+      <a href="Selecting_and_Paying_Medical_Claims_and_Capitation_Transactions_TASK.htm" class="calibreAPrev">previous page
+</a>
+    
+
+    <a href="../4xeqt-va1vo.html" class="calibreAHome">start
+</a>
+
+    
+      <a href="Adding_a_Bank_Account.htm" class="calibreANext">next page
+</a>
+    
+  </div>
+
+</div>
+
+</body>
+</html>

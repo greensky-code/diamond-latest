@@ -1,0 +1,641 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+    <!-- $MVD$:fontset("Courier New","Courier New") -->
+    <title>Procedures and Pricing, How DIAMOND Thinks</title>
+    <meta content="RoboHelp by eHelp Corporation www.ehelp.com" name="generator"/>
+    <meta name="copyright"
+          value="© Copyright 2002 Health Systems Design Corp., a wholly owned subsidiary of Perot Systems Corporation. All rights reserved"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+</head>
+<body>
+
+<div class="calibreMeta">
+    <div class="calibreMetaTitle">
+
+
+        <h1>
+            <a href="../9r5qt-dn4su.html">DIAMOND 950 Help
+            </a>
+        </h1>
+
+
+    </div>
+    <div class="calibreMetaAuthor">
+        Unknown
+
+    </div>
+</div>
+
+<div class="calibreMain">
+
+    <div class="calibreEbookContent">
+
+        <div class="calibreEbNavTop">
+
+            <a href="Pricing_Claim_Line_Items_How_DIAMOND_Thinks.htm" class="calibreAPrev">previous page
+            </a>
+
+
+            <a href="Pricing_with_ASC_Case_Rates.htm" class="calibreANext">next page
+            </a>
+
+        </div>
+
+
+        <h4 class="calibre1">Procedures and Pricing, How DIAMOND Thinks</h4>
+        <table cellpadding="1" cellspacing="0" width="594" class="calibre172">
+            <tbody class="">
+            <tr valign="top" class="">
+                <td width="293" class="">
+                    <p class="map-links"><a
+                            href="Procedures_and_Pricing_How_DIAMOND_Thinks.htm#Procedures_and_Pricing_Using_Effective_and_Termination_Dates_MID"><img
+                            alt="image\assets/help/MidTopic_shg.gif" border="0" src="assets/help/MidTopic_shg.gif" usemap="#AreaMap0"
+                            class=""/>
+                        <map name="AreaMap0" class="0"/>
+                    </a> Using Effective &amp; Termination Dates
+                    </p>
+                </td>
+                <td width="300" class="">
+                    <p class="map-links"><a
+                            href="Procedures_and_Pricing_How_DIAMOND_Thinks.htm#Procedures_and_Pricing_Counting_Procedures_as_Days_MID"><img
+                            alt="image\assets/help/MidTopic_shg.gif" border="0" src="assets/help/MidTopic_shg.gif" usemap="#AreaMap1"
+                            class=""/>
+                        <map name="AreaMap1" class="0"/>
+                    </a>Counting Procedures as Days
+                    </p>
+                </td>
+            </tr>
+            <tr valign="top" class="">
+                <td width="293" class="">
+                    <p class="map-links"><a
+                            href="Procedures_and_Pricing_How_DIAMOND_Thinks.htm#Procedures_and_Pricing_Allowing_Procedures_Based_on_Member_s_Age_MID"><img
+                            alt="image\assets/help/MidTopic_shg.gif" border="0" src="assets/help/MidTopic_shg.gif" usemap="#AreaMap2"
+                            class=""/>
+                        <map name="AreaMap2" class="0"/>
+                    </a> Allowing Procedures Based on Member’s Age
+                    </p>
+                </td>
+                <td width="300" class="">
+                    <p class="map-links"><a
+                            href="Procedures_and_Pricing_How_DIAMOND_Thinks.htm#Procedures_and_Pricing_Target_Revenue_Codes_MID"><img
+                            alt="image\assets/help/MidTopic_shg.gif" border="0" src="assets/help/MidTopic_shg.gif" usemap="#AreaMap3"
+                            class=""/>
+                        <map name="AreaMap3" class="0"/>
+                    </a>Target Revenue Codes
+                    </p>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <p class="body-text">In addition to storing the codes and descriptions, you may use PROCD to accomplish a
+            variety of edits and prompts with the entries for each procedure. These additional functions include:</p>
+        <ul class="">
+            <li class="">
+                <p class="bullet-list-h1">Automatically placing a claim detail line item on hold.</p></li>
+            <li class="">
+                <p class="bullet-list-h1">Allowing or not allowing the procedure based on the member’s age and/or
+                    gender.</p></li>
+            <li class="">
+                <p class="bullet-list-h1">Counting the procedure as a day for benefit calculation and authorization
+                    purposes.</p></li>
+            <li class="">
+                <p class="bullet-list-h1">Warning claims processors than an alternative procedure exists for asterisked
+                    procedures and other implementation specific situations.</p></li>
+            <li class="">
+                <p class="bullet-list-h1">Prompting claims processors to enter elapsed time when an anesthesia code is
+                    entered.</p></li>
+            <li class="">
+                <p class="bullet-list-h1">Grouping procedures into categories for reporting purposes.</p></li>
+            <li class="">
+                <p class="bullet-list-h1">Entering procedure codes associated with a revenue code.</p></li>
+        </ul>
+        <p class="body-text">In DIAMOND, each procedure code is stored as one procedure code record in PROCD. To vary
+            pricing based on price schedule, price region, etc. use keyword PROCP (Procedure Price).</p>
+        <p class="doc-level2"><a name="Procedures_and_Pricing_Using_Effective_and_Termination_Dates_MID"></a>Using
+            Effective and Termination Dates</p>
+        <p class="body-text">If you use the effective/termination dates for a procedure DIAMOND applies the following
+            edits:</p>
+        <ul class="">
+            <li class="">
+                <p class="bullet-list-h1">In claims, DIAMOND verifies that the date of service entered on the claim
+                    (PSCLM, Detail — Date, INCLM, Detail — Date, DNCLM, Detail — Date) is on or after the procedure code
+                    effective date entered and before the procedure code termination date entered in these fields.</p>
+            </li>
+            <li class="">
+                <p class="bullet-list-h1">In authorizations, DIAMOND verifies that the "from" date on the authorization
+                    (AUTHS, Surgical Procedures window) on or after the procedure code effective date and before the
+                    procedure code termination date entered in these fields.</p></li>
+        </ul>
+        <p class="doc-level2"><a name="Procedures_and_Pricing_Allowing_Procedures_Based_on_Member_s_Age_MID"></a>Allowing
+            Procedures Based on Member’s Age</p>
+        <p class="body-text">You can allow or not allow a specific procedure based on the member’s age. You do this by
+            specifying a From Age and To Age for the procedure in PROCD. </p>
+        <p class="body-text">Then, when you enter the procedure code on a claim or authorization (INCLM, PSCLM, DNCLM,
+            and AUTHS), DIAMOND validates the age of the member against the age you enter in this field. DIAMOND
+            displays an error message if you attempt to enter a procedure code for a member who does not meet the age
+            specification.</p>
+        <p class="body-text">DIAMOND performs the age validation as follows*:</p>
+        <p class="body-text">If the PROCD From Age and To Age are whole numbers (for example, 0.0, 2.0, 5.0):</p>
+        <p class="body-text">The Claim header primary date of service must fall in the range from (member’s date of
+            birth + number of years in From Age) through (member’s date of birth + number of years in To Age - one
+            day).</p>
+        <p class="body-text">That is, the claim header primary date of service must be greater than or equal to
+            (member’s date of birth + number of years in From Age) and less than or equal to (member’s date of birth +
+            number of years in To Age - one day).</p>
+        <p class="body-text">If either PROCD From Age or To Age are decimal numbers (for example 4.9, 5.1):</p>
+        <p class="body-text">The member’s age as of the claim header primary date of service, calculated to the nearest
+            tenth of a year, must fall in the range from the PROCD From Age through the PROCD To Age.</p>
+        <p class="body-text">That is, the member’s age as of the claim header primary date of service, calculated to the
+            nearest tenth of a year, must be greater than or equal to the PROCD From Age and less than or equal to the
+            PROCD To Age.</p>
+        <p class="body-text">*Exception: Professional Services, Dental Services, and Institutional claims perform this
+            age validation as detailed above for online processing. Transactions submitted to DIAMOND using DDS (DIAMOND
+            Data Services) may be processed differently. For more information, see the DDS API Guide for the specific
+            claims transaction.</p>
+        <p class="body-text">Examples:</p>
+        <p class="body-text1"> </p>
+        <table border="1" cellpadding="1" cellspacing="0" width="500" class="">
+            <tbody class="">
+            <tr valign="top" class="">
+                <td width="106" class="">
+                    <p class="body-text1"> </p></td>
+                <td width="348" class="">
+                    <p class="body-text">Ex. 1: PROCD Whole Number Age Range with Primary DOS before PROCD To Age
+                        requirement</p></td>
+            </tr>
+            <tr valign="top" class="">
+                <td width="106" class="">
+                    <p class="body-text">PROCD From Age</p></td>
+                <td width="348" class="">
+                    <p class="body-text">0.0</p></td>
+            </tr>
+            <tr valign="top" class="">
+                <td width="106" class="">
+                    <p class="body-text">PROCD To Age</p></td>
+                <td width="348" class="">
+                    <p class="body-text">5.0</p></td>
+            </tr>
+            <tr valign="top" class="">
+                <td width="106" class="">
+                    <p class="body-text">Member’s DOB</p></td>
+                <td width="348" class="">
+                    <p class="body-text">1/11/94</p></td>
+            </tr>
+            <tr valign="top" class="">
+                <td width="106" class="">
+                    <p class="body-text">Claim Header Primary DOS</p></td>
+                <td width="348" class="">
+                    <p class="body-text">1/10/99</p></td>
+            </tr>
+            <tr valign="top" class="">
+                <td width="106" class="">
+                    <p class="body-text">Member’s Age on DOS</p></td>
+                <td width="348" class="">
+                    <p class="body-text">N/A</p></td>
+            </tr>
+            <tr valign="top" class="">
+                <td width="106" class="">
+                    <p class="body-text">Member’s Age rounded to nearest tenth</p></td>
+                <td width="348" class="">
+                    <p class="body-text">N/A</p></td>
+            </tr>
+            <tr valign="top" class="">
+                <td width="106" class="">
+                    <p class="body-text">Age Requirement - calculations</p></td>
+                <td width="348" class="">
+                    <p class="body-text">Claim header primary date of service must fall in the range from (member’s date
+                        of birth + number of years in From Age) through (member’s date of birth + number of years in To
+                        Age - one day).</p>
+                    <p class="body-text">= (DOB + From Age) <span class="4">&lt;</span> Primary DOS <span
+                            class="4">&lt;</span> (DOB + To Age - 1 day)? </p>
+                    <p class="body-text">= (1/11/94 +0 years) <span class="4">&lt;</span> 1/10/99 <span
+                            class="4">&lt;</span> (1/11/94 + 5 years - 1 day)? </p>
+                    <p class="body-text">= 1/11/94 <span class="4">&lt;</span> 1/10/99 <span class="4">&lt;</span>
+                        1/10/99?</p></td>
+            </tr>
+            <tr valign="top" class="">
+                <td width="106" class="">
+                    <p class="body-text">Meet PROCD Age Requirement?</p></td>
+                <td width="348" class="">
+                    <p class="body-text">Yes. The Primary DOS of 1/10/99 is equal to the top end of the range. Thus the
+                        member’s age still meets the PROCD 0-5 years age requirement one day before their fifth
+                        birthday. </p></td>
+            </tr>
+            </tbody>
+        </table>
+        <p class="body-text1"> </p>
+        <p class="body-text1"> </p>
+        <table border="1" cellpadding="1" cellspacing="0" width="456" class="">
+            <tbody class="">
+            <tr valign="top" class="">
+                <td width="106" class="">
+                    <p class="body-text1"> </p></td>
+                <td width="349" class="">
+                    <p class="body-text">Ex. 2: PROCD Whole Number Age Range with Primary DOS after PROCD To Age
+                        requirement</p></td>
+            </tr>
+            <tr valign="top" class="">
+                <td width="106" class="">
+                    <p class="body-text">PROCD From Age</p></td>
+                <td width="349" class="">
+                    <p class="body-text">0.0</p></td>
+            </tr>
+            <tr valign="top" class="">
+                <td width="106" class="">
+                    <p class="body-text">PROCD To Age</p></td>
+                <td width="349" class="">
+                    <p class="body-text">5.0</p></td>
+            </tr>
+            <tr valign="top" class="">
+                <td width="106" class="">
+                    <p class="body-text">Member’s DOB</p></td>
+                <td width="349" class="">
+                    <p class="body-text">1/11/94</p></td>
+            </tr>
+            <tr valign="top" class="">
+                <td width="106" class="">
+                    <p class="body-text">Claim Header Primary DOS</p></td>
+                <td width="349" class="">
+                    <p class="body-text">1/11/99</p></td>
+            </tr>
+            <tr valign="top" class="">
+                <td width="106" class="">
+                    <p class="body-text">Member’s Age on DOS</p></td>
+                <td width="349" class="">
+                    <p class="body-text">N/A</p></td>
+            </tr>
+            <tr valign="top" class="">
+                <td width="106" class="">
+                    <p class="body-text">Member’s Age rounded to nearest tenth</p></td>
+                <td width="349" class="">
+                    <p class="body-text">N/A</p></td>
+            </tr>
+            <tr valign="top" class="">
+                <td width="106" class="">
+                    <p class="body-text">Age Requirement - calculations</p></td>
+                <td width="349" class="">
+                    <p class="body-text">Claim header primary date of service must fall in the range from (member’s date
+                        of birth + number of years in From Age) through (member’s date of birth + number of years in To
+                        Age - one day).</p>
+                    <p class="body-text">= (DOB + From Age) <span class="4">&lt;</span> Primary DOS <span
+                            class="4">&lt;</span> (DOB + To Age - 1 day)? </p>
+                    <p class="body-text">= (1/11/94 +0 years) <span class="4">&lt;</span> 1/11/99 <span
+                            class="4">&lt;</span> (1/11/94 + 5 years - 1 day)? </p>
+                    <p class="body-text">= 1/11/94 <span class="4">&lt;</span> 1/11/99 <span class="4">&lt;</span>
+                        1/10/99?</p></td>
+            </tr>
+            <tr valign="top" class="">
+                <td width="106" class="">
+                    <p class="body-text">Meet PROCD Age Requirement? </p></td>
+                <td width="349" class="">
+                    <p class="body-text">No. The Primary DOS of 1/11/99 is one day after the top end of the range,
+                        1/10/99. Thus the member’s age does not meet the PROCD 0-5 years age requirement as of their
+                        fifth birthday.</p></td>
+            </tr>
+            </tbody>
+        </table>
+        <p class="body-text1"> </p>
+        <p class="body-text1"> </p>
+        <table border="1" cellpadding="1" cellspacing="0" width="456" class="">
+            <tbody class="">
+            <tr valign="top" class="">
+                <td width="106" class="">
+                    <p class="body-text1"> </p></td>
+                <td width="349" class="">
+                    <p class="body-text">Ex. 3: PROCD Age Range Includes a Decimal and member’s age rounds to meet the
+                        PROCD To Age limit</p></td>
+            </tr>
+            <tr valign="top" class="">
+                <td width="106" class="">
+                    <p class="body-text">PROCD From Age</p></td>
+                <td width="349" class="">
+                    <p class="body-text">0.0</p></td>
+            </tr>
+            <tr valign="top" class="">
+                <td width="106" class="">
+                    <p class="body-text">PROCD To Age</p></td>
+                <td width="349" class="">
+                    <p class="body-text">4.9</p></td>
+            </tr>
+            <tr valign="top" class="">
+                <td width="106" class="">
+                    <p class="body-text">Member’s DOB</p></td>
+                <td width="349" class="">
+                    <p class="body-text">1/11/94</p></td>
+            </tr>
+            <tr valign="top" class="">
+                <td width="106" class="">
+                    <p class="body-text">Claim Header Primary DOS</p></td>
+                <td width="349" class="">
+                    <p class="body-text">12/23/98</p></td>
+            </tr>
+            <tr valign="top" class="">
+                <td width="106" class="">
+                    <p class="body-text">Member’s Age on DOS</p></td>
+                <td width="349" class="">
+                    <p class="body-text">4.948</p></td>
+            </tr>
+            <tr valign="top" class="">
+                <td width="106" class="">
+                    <p class="body-text">Member’s Age rounded to nearest tenth</p></td>
+                <td width="349" class="">
+                    <p class="body-text">4.9</p></td>
+            </tr>
+            <tr valign="top" class="">
+                <td width="106" class="">
+                    <p class="body-text">Age Requirement calculations</p></td>
+                <td width="349" class="">
+                    <p class="body-text">The member’s age as of the claim header primary date of service, calculated to
+                        the nearest tenth of a year, must fall in the range from the PROCD From Age through the PROCD To
+                        Age.</p>
+                    <p class="body-text">= (From Age) <span class="4">&lt;</span> (Member Age) <span
+                            class="4">&lt;</span> (To Age)?</p>
+                    <p class="body-text">= 0.0 <span class="4">&lt;</span> 4.9 <span
+                            class="4">&lt;</span> 4.9?</p></td>
+            </tr>
+            <tr valign="top" class="">
+                <td width="106" class="">
+                    <p class="body-text">Meet PROCD Age Requirement?</p></td>
+                <td width="349" class="">
+                    <p class="body-text">Yes, The Member Age after rounding of 4.9 years is equal to the top end of the
+                        range. Thus the member’s age meets the PROCD 0.0 - 4.9 years age requirement.</p></td>
+            </tr>
+            </tbody>
+        </table>
+        <p class="body-text1"> </p>
+        <p class="body-text1"> </p>
+        <table border="1" cellpadding="1" cellspacing="0" width="456" class="">
+            <tbody class="">
+            <tr valign="top" class="">
+                <td width="106" class="">
+                    <p class="body-text1"> </p></td>
+                <td width="349" class="">
+                    <p class="body-text">Ex. 4: PROCD Age Range Includes a Decimal and member’s age rounds to exceed the
+                        PROCD To Age limit</p></td>
+            </tr>
+            <tr valign="top" class="">
+                <td width="106" class="">
+                    <p class="body-text">PROCD From Age</p></td>
+                <td width="349" class="">
+                    <p class="body-text">0.0</p></td>
+            </tr>
+            <tr valign="top" class="">
+                <td width="106" class="">
+                    <p class="body-text">PROCD To Age</p></td>
+                <td width="349" class="">
+                    <p class="body-text">4.9</p></td>
+            </tr>
+            <tr valign="top" class="">
+                <td width="106" class="">
+                    <p class="body-text">Member’s DOB</p></td>
+                <td width="349" class="">
+                    <p class="body-text">1/11/94</p></td>
+            </tr>
+            <tr valign="top" class="">
+                <td width="106" class="">
+                    <p class="body-text">Claim Header Primary DOS</p></td>
+                <td width="349" class="">
+                    <p class="body-text">12/24/98</p></td>
+            </tr>
+            <tr valign="top" class="">
+                <td width="106" class="">
+                    <p class="body-text">Member’s Age on DOS</p></td>
+                <td width="349" class="">
+                    <p class="body-text">4.951</p></td>
+            </tr>
+            <tr valign="top" class="">
+                <td width="106" class="">
+                    <p class="body-text">Member’s Age rounded to nearest tenth</p></td>
+                <td width="349" class="">
+                    <p class="body-text">5.0</p></td>
+            </tr>
+            <tr valign="top" class="">
+                <td width="106" class="">
+                    <p class="body-text">Age Requirement calculations</p></td>
+                <td width="349" class="">
+                    <p class="body-text">The member’s age as of the claim header primary date of service, calculated to
+                        the nearest tenth of a year, must fall in the range from the PROCD From Age through the PROCD To
+                        Age.</p>
+                    <p class="body-text">= (From Age) <span class="4">&lt;</span> (Member Age) <span
+                            class="4">&lt;</span> (To Age)?</p>
+                    <p class="body-text">= 0.0 <span class="4">&lt;</span> 5.0 <span
+                            class="4">&lt;</span> 4.9?</p></td>
+            </tr>
+            <tr valign="top" class="">
+                <td width="106" class="">
+                    <p class="body-text">Meet PROCD Age Requirement?</p></td>
+                <td width="349" class="">
+                    <p class="body-text">No. The Member Age after rounding of 5.0 is greater than the top end of the
+                        range, 4.9. Thus the member’s age does not meet the PROCD 0.0 - 4.9 years age requirement.</p>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <p class="bodydoc"> </p>
+        <p class="doc-level2"><a name="Procedures_and_Pricing_Counting_Procedures_as_Days_MID"></a>Counting Procedures
+            as Days</p>
+        <p class="body-text">Certain benefits, such as coverage for inpatient mental health services, may be limited
+            according to a maximum number of days. Similarly, some authorizations limit the approved services in terms
+            of days, such as a defined number of inpatient days for a particular surgery. </p>
+        <p class="body-text">In order for DIAMOND to accumulate rendered services to such benefit and authorized
+            maximums the system must recognize when a procedure code represents a day. This is accomplished by marking
+            those procedure codes in the <span class="calibre16">Count As Days</span> check box in keyword PROCD.</p>
+        <p class="body-text">For more information about accumulating days, see reference documentation for AUTHS,
+            Days/Visits field, and BRULE, Type 20, specifically the Limit Type field. </p>
+        <p class="doc-level2"><a name="Procedures_and_Pricing_Target_Revenue_Codes_MID"></a>Target Revenue Codes</p>
+        <p class="body-text">Some hospital reimbursement may require both a revenue code and its associated CPT code be
+            entered on a claim detail line in order for the line to be priced accurately. In PROCD there are three
+            fields that must be entered to enable this kind of pricing to work.</p>
+        <ul class="">
+            <li class="">
+                <p class="bullet-list-h1"><span class="calibre16">Target Revenue Code</span><span
+                        class="calibre16"> </span>is checked so that INCLM will prompt for the CPT code to be entered in
+                    the alternate procedure field when the revenue code is entered.</p></li>
+            <li class="">
+                <p class="bullet-list-h1"><span class="calibre16">Procedure Determinant</span>, accessed with a menu
+                    command, contains the CPT codes that are valid for each target revenue code; INCLM edits the CPT
+                    code entered to make sure it is valid for the entered revenue code.</p></li>
+            <li class="">
+                <p class="bullet-list-h1"><span class="calibre16">Price Indicator</span> tells INCLM whether the revenue
+                    code or the CPT code is used to price the detail line. </p></li>
+        </ul>
+        <p class="body-text">The following table shows the results in claims depending on the set up choices for the use
+            of alternate procedure codes.</p>
+        <table cellpadding="1" cellspacing="0" width="594" class="calibre26">
+            <tbody class="">
+            <tr valign="top" class="">
+                <td width="114" class="calibre28">
+                    <p class="tbl-header-data">PROVC<br class="0"/>Special menu &gt; Contract Pricing Details
+                        &gt; Target Rev Code Edit checked?</p></td>
+                <td width="96" class="calibre28">
+                    <p class="tbl-header-data">INCLM <br class="0"/>Proc (Rev. Code) entered = PROCD Targeted
+                        Revenue Code?</p></td>
+                <td width="96" class="calibre28">
+                    <p class="tbl-header-data"><br class="0"/><br class="0"/>INCLM<br
+                            class="0"/>Alt Proc code entered?</p></td>
+                <td width="138" class="calibre28">
+                    <p class="tbl-header-data">INCLM<br class="0"/>Alt Proc code included in PROCD <br
+                            class="0"/>Special menu &gt;Procedure Determinant?</p></td>
+                <td width="150" class="calibre28">
+                    <p class="tbl-header-data"><br class="0"/><br class="0"/><br class="0"/><br
+                            class="0"/>Results</p></td>
+            </tr>
+            <tr valign="top" class="">
+                <td width="114" class="calibre28">
+                    <p class="tbl-text1">Yes</p></td>
+                <td width="96" class="calibre28">
+                    <p class="tbl-text1">Yes</p></td>
+                <td width="96" class="calibre28">
+                    <p class="tbl-text1">No</p></td>
+                <td width="138" class="calibre28">
+                    <p class="tbl-text1">Not Applicable</p></td>
+                <td width="150" class="calibre28">
+                    <p class="tbl-text1">Online: error</p>
+                    <p class="tbl-text-noline">API: error message, insert claim detail line, deny line</p>
+                    <p class="tbl-text-noline">Batch: critical error, claim detail line not inserted</p></td>
+            </tr>
+            <tr valign="top" class="">
+                <td width="114" class="calibre28">
+                    <p class="tbl-text1">Yes</p></td>
+                <td width="96" class="calibre28">
+                    <p class="tbl-text1">Yes</p></td>
+                <td width="96" class="calibre28">
+                    <p class="tbl-text1">Yes</p></td>
+                <td width="138" class="calibre28">
+                    <p class="tbl-text1">Yes</p></td>
+                <td width="150" class="calibre28">
+                    <p class="tbl-text1">Continue price/adjudicate process</p></td>
+            </tr>
+            <tr valign="top" class="">
+                <td width="114" class="calibre28">
+                    <p class="tbl-text1">Yes</p></td>
+                <td width="96" class="calibre28">
+                    <p class="tbl-text1">Yes</p></td>
+                <td width="96" class="calibre28">
+                    <p class="tbl-text1">Yes</p></td>
+                <td width="138" class="calibre28">
+                    <p class="tbl-text1">No</p></td>
+                <td width="150" class="calibre28">
+                    <p class="tbl-text1">Apply PROVC, Special menu &gt; Contract Pricing Details&gt; Action &gt;
+                        Reason</p></td>
+            </tr>
+            <tr valign="top" class="">
+                <td width="114" class="calibre28">
+                    <p class="tbl-text1">Yes</p></td>
+                <td width="96" class="calibre28">
+                    <p class="tbl-text1">No</p></td>
+                <td width="96" class="calibre28">
+                    <p class="tbl-text1">No</p></td>
+                <td width="138" class="calibre28">
+                    <p class="tbl-text1">Not Applicable</p></td>
+                <td width="150" class="calibre28">
+                    <p class="tbl-text1">INCLM &gt; Alt Proc code <span class="calibre25">not</span> required</p>
+                    <p class="tbl-text-noline">Continue price/adjudicate process</p></td>
+            </tr>
+            <tr valign="top" class="">
+                <td width="114" class="calibre28">
+                    <p class="tbl-text1">Yes</p></td>
+                <td width="96" class="calibre28">
+                    <p class="tbl-text1">No</p></td>
+                <td width="96" class="calibre28">
+                    <p class="tbl-text1">Yes</p></td>
+                <td width="138" class="calibre28">
+                    <p class="tbl-text1">Yes</p></td>
+                <td width="150" class="calibre28">
+                    <p class="tbl-text1">Continue price/adjudicate process</p></td>
+            </tr>
+            <tr valign="top" class="">
+                <td width="114" class="calibre28">
+                    <p class="tbl-text1">Yes</p></td>
+                <td width="96" class="calibre28">
+                    <p class="tbl-text1">No</p></td>
+                <td width="96" class="calibre28">
+                    <p class="tbl-text1">Yes</p></td>
+                <td width="138" class="calibre28">
+                    <p class="tbl-text1">No</p></td>
+                <td width="150" class="calibre28">
+                    <p class="tbl-text1">Apply PROVC, Special menu &gt; Contract Pricing Details &gt; Action &gt;
+                        Reason</p></td>
+            </tr>
+            <tr valign="top" class="">
+                <td width="114" class="calibre28">
+                    <p class="tbl-text1">No</p></td>
+                <td width="96" class="calibre28">
+                    <p class="tbl-text1">Yes</p></td>
+                <td width="96" class="calibre28">
+                    <p class="tbl-text1">No</p></td>
+                <td width="138" class="calibre28">
+                    <p class="tbl-text1">Not Applicable</p></td>
+                <td width="150" class="calibre28">
+                    <p class="tbl-text1">INCLM &gt; Alt Proc code <span class="calibre25">not</span> required</p>
+                    <p class="tbl-text-noline">Continue price/adjudicate process</p></td>
+            </tr>
+            <tr valign="top" class="">
+                <td width="114" class="calibre28">
+                    <p class="tbl-text1">No</p></td>
+                <td width="96" class="calibre28">
+                    <p class="tbl-text1">Yes</p></td>
+                <td width="96" class="calibre28">
+                    <p class="tbl-text1">Yes</p></td>
+                <td width="138" class="calibre28">
+                    <p class="tbl-text1">Not Applicable</p></td>
+                <td width="150" class="calibre28">
+                    <p class="tbl-text1">No editing occurs</p>
+                    <p class="tbl-text-noline">Continue price/adjudicate process</p></td>
+            </tr>
+            <tr valign="top" class="">
+                <td width="114" class="calibre28">
+                    <p class="tbl-text1">No</p></td>
+                <td width="96" class="calibre28">
+                    <p class="tbl-text1">No</p></td>
+                <td width="96" class="calibre28">
+                    <p class="tbl-text1">No</p></td>
+                <td width="138" class="calibre28">
+                    <p class="tbl-text1">Not Applicable</p></td>
+                <td width="150" class="calibre28">
+                    <p class="tbl-text1">INCLM &gt; Alt Proc code <span class="calibre25">not</span> required</p>
+                    <p class="tbl-text-noline">Continue price/adjudicate process</p></td>
+            </tr>
+            <tr valign="top" class="">
+                <td width="114" class="calibre28">
+                    <p class="tbl-text1">No</p></td>
+                <td width="96" class="calibre28">
+                    <p class="tbl-text1">No</p></td>
+                <td width="96" class="calibre28">
+                    <p class="tbl-text1">Yes</p></td>
+                <td width="138" class="calibre28">
+                    <p class="tbl-text1">Not Applicable</p></td>
+                <td width="150" class="calibre28">
+                    <p class="tbl-text1">No editing occurs</p>
+                    <p class="tbl-text-noline">Continue price/adjudicate process</p></td>
+            </tr>
+            </tbody>
+        </table>
+
+
+    </div>
+
+
+
+    <div class="calibreEbNav">
+
+        <a href="Pricing_Claim_Line_Items_How_DIAMOND_Thinks.htm" class="calibreAPrev">previous page
+        </a>
+
+
+        <a href="../9r5qt-dn4su.html" class="calibreAHome">start
+        </a>
+
+
+        <a href="Pricing_with_ASC_Case_Rates.htm" class="calibreANext">next page
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+</html>

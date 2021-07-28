@@ -1,0 +1,85 @@
+<!-- Copyright (c) 2020 . All Rights Reserved. -->
+<div class="container-fluid">
+    <div class="card-block">
+        <form [formGroup]="displayBenefitAccumulatorsSelectMemberForm" novalidate>
+            <h2 class="form-title card-label-admin">Display Benefit Accumulators Select Member</h2>
+            <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+            <app-pop-up-message #popUpMesssage (buttonclickEvent)="popUpButtonHandler($event)"  [(popupMessage)] = "popUpMessage"></app-pop-up-message>
+                        
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+                <!-- DynamicText with label of Diamond ID -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('diamondId') }">
+                     <label class="col-form-label" for="diamondId" i18n>Diamond ID</label>
+                     <input type="text" readonly id="diamondId" formControlName="diamondId" class="form-control"/>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of Subscriber ID -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('subscriberId') }">
+                     <label class="col-form-label" for="subscriberId" i18n>Subscriber ID</label>
+                     <input type="text" id="subscriberId"  class="form-control" formControlName="subscriberId"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('subscriberId')">
+                      {{ formValidation.errorMessage('subscriberId') }}
+                     </small>
+                 </div>
+            
+                <!-- DynamicText with label of Subscriber Name -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('subscriberName') }">
+                     <label class="col-form-label" for="subscriberName" i18n>Subscriber Name</label>
+                     <input type="text" readonly id="subscriberName" formControlName="subscriberName" class="form-control"/>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of As of Date -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('asOfDate') }">
+                     <label class="col-form-label" for="asOfDate" i18n>As of Date</label>
+                     <div class="input-group">
+                    <input id="asOfDate" class="form-control" angular-mydatepicker name="asOfDate" (click)="asOfDateId.toggleCalendar()"
+                    formControlName="asOfDate"[options]="datePickerConfig" #asOfDateId="angular-mydatepicker"/>
+                    <div class="input-group-append">
+                        <button type="button" class="btn btn-secondary" (click)="asOfDateId.clearDate()">
+                          <i class="fa fa-close"></i>
+                        </button>
+                      </div>
+                      <div class="input-group-append">
+                        <button type="button" class="btn btn-secondary" (click)="asOfDateId.toggleCalendar()">
+                          <i class="fa fa-calendar-o"></i>
+                        </button>
+                      </div>
+                    </div>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('asOfDate')">
+                      {{ formValidation.errorMessage('asOfDate') }}
+                     </small>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+                <div class="col-md-2 form-control-static mb-0" i18n>
+                    ^BTOK
+                </div>
+            
+                <div class="col-md-2 form-control-static mb-0" i18n>
+                    ^BTCancel
+                </div>
+            
+            </div>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+            </div>
+        </form>
+    </div>
+</div>

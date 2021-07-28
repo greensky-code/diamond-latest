@@ -1,0 +1,157 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+    <title>About APUPD</title>
+    <!--(Meta)==========================================================-->
+    <meta name="copyright"
+          value="© Copyright 2002 Health Systems Design Corp., a wholly owned subsidiary of Perot Systems Corporation. All rights reserved"/>
+    <meta content="RoboHELP by eHelp Corporation - www.ehelp.com" name="generator"/>
+    <meta content="0.1" name="generator-major-version"/>
+    <meta content="1" name="generator-minor-version"/>
+    <meta content="kadov" name="filetype"/>
+    <meta content="1" name="filetype-version"/>
+    <meta content="1" name="page-count"/>
+    <meta content="647" name="layout-height"/>
+    <meta content="678" name="layout-width"/>
+    <meta content="ACPAY;APSEL;APTAX;APUPD;APVDS" name="x-ignored-words"/>
+    <!--(Links)=========================================================-->
+    <!--(Scripts)=======================================================-->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+</head>
+<body>
+
+<div class="calibreMeta">
+    <div class="calibreMetaTitle">
+
+
+        <h1>
+            <a href="../4xeqt-va1vo.html">DIAMOND 950 Help
+            </a>
+        </h1>
+
+
+    </div>
+    <div class="calibreMetaAuthor">
+        Unknown
+
+    </div>
+</div>
+
+<div class="calibreMain">
+
+    <div class="calibreEbookContent">
+
+        <div class="calibreEbNavTop">
+
+            <a href="APUPD_Accounts_Payable_Update_REF.htm" class="calibreAPrev">previous page
+            </a>
+
+
+            <a href="APUPD_Field_Map_REF.htm" class="calibreANext">next page
+            </a>
+
+        </div>
+
+
+        <h1 class="calibre1">About APUPD</h1>
+
+        <p class="text">Use keyword APUPD (Accounts Payable Update) to run an Accounts
+            Payable (A/P) update job to process a batch of medical claims and capitation
+            transactions. </p>
+
+        <p class="text">Running an A/P update job creates A/P transaction records
+            in keyword ACPAY (Accounts Payable) and selects either medical claims
+            or capitation records for payment. At the same time the originating records
+            in claims and capitation are finalized and, once finalized, cannot be
+            changed. When a medical claim detail line is finalized, the <span class="calibre9">Proc
+ Status</span> list is set to <span class="calibre9">F – Final
+ (posted)</span> in the claim detail window. As part of the finalization
+            of the original claims records a transaction number is generated and appropriate
+            general ledger accounts are updated. </p>
+
+        <p class="text">Running an A/P update job does the following:</p>
+
+        <ul class="calibre6">
+
+            <li class="kadov-p-cbullet"><p class="bullet">Post and finalize specified
+                claim detail line payables to accounts payable (A/P) in a batch mode.</p></li>
+
+            <li class="kadov-p-cbullet"><p class="bullet">Finalize capitation payables
+                in A/P in a batch mode.</p></li>
+
+            <li class="kadov-p-cbullet"><p class="bullet">Assess claims for header
+                holds.</p></li>
+
+            <li class="kadov-p-cbullet"><p class="bullet">Read parameters to determine
+                how partial payment election affects how held claims are handled.</p></li>
+
+            <li class="kadov-p-cbullet"><p class="bullet">Read claims to determine
+                whether Cap/Special Fund Distribution (CFDST), if used, has run.</p></li>
+
+            <li class="kadov-p-cbullet"><p class="bullet">Read the audit status of
+                the claim to determine whether it requires auditing by third-party software.</p></li>
+
+            <li class="kadov-p-cbullet"><p class="bullet">Adds A/P transaction records
+                in keyword ACPAY for claims (capitation A/P transaction records are created
+                in the Capitation module, Post Capitation).</p></li>
+        </ul>
+
+        <p class="text">An A/P update job finalizes all claim detail lines and creates
+            A/P transactions or finalizes capitation payables that satisfy the criteria
+            you set up. The A/P update job then selects these A/P transactions for
+            payment. If the run is for claims, then header holds, partial payment
+            details, auditing by third-party software, and Cap/Special Fund Distribution
+            are considered. For example, keyword APUPD only selects to pay claim detail
+            lines if the <span class="calibre9">APC Status</span> box is
+            blank or set to <span class="calibre9">C</span>.</p>
+
+        <p class="text">A/P transactions are created for each finalized claim (institutional,
+            professional services, or dental services) detail record with the <span class="calibre9">Claim Status</span>
+            list set to one of the
+            following values on the claim detail window:</p>
+
+        <ul class="calibre6">
+
+            <li class="kadov-p-cbullet"><p class="bullet"><span class="calibre9">P
+ – Payable</span></p></li>
+
+            <li class="kadov-p-cbullet"><p class="bullet"><span class="calibre9">A
+ – Adjustment</span></p></li>
+
+            <li class="kadov-p-cbullet"><p class="bullet"><span class="calibre9">D
+ – Denied</span></p></li>
+
+            <li class="kadov-p-cbullet"><p class="bullet"><span class="calibre9">F
+ – Cap Fund</span> (plus a Cap Fund Status of 3)</p></li>
+        </ul>
+
+        <p class="text">You can also run an A/P update job to finalize non-payable
+            claim detail lines, which duplicates the functionality of keyword FINAL
+            (Final Non-AP Setup). For more information about keyword FINAL, see <a
+                    href="FINAL_Finalize_Non_AP_Transactions.htm">FINAL (Final Non-Ap Setup)</a>.</p>
+
+
+    </div>
+
+
+    <div class="calibreEbNav">
+
+        <a href="APUPD_Accounts_Payable_Update_REF.htm" class="calibreAPrev">previous page
+        </a>
+
+
+        <a href="../4xeqt-va1vo.html" class="calibreAHome">start
+        </a>
+
+
+        <a href="APUPD_Field_Map_REF.htm" class="calibreANext">next page
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+</html>

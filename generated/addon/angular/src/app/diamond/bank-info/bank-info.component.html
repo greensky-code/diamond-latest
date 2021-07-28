@@ -1,0 +1,199 @@
+<!-- Copyright (c) 2021 . All Rights Reserved. -->
+<div class="container-fluid">
+    <div class="card-block">
+        <form [formGroup]="bankInfoForm" novalidate>
+            <h2 class="form-title card-label-admin">Bank Info</h2>
+            <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+            <app-pop-up-message #popUpMesssage (buttonclickEvent)="popUpButtonHandler($event)"  [(popupMessage)] = "popUpMessage"></app-pop-up-message>
+                        
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+                <!-- DropdownList with label of Bank Name -->
+                <div class="selectContainer col-md-2 " [ngClass]="{'has-danger': formValidation.isValidField('bankName') }">
+                    <label class="col-form-label" for="bankName" i18n>Bank Name</label>
+                    <select class="form-control" id="bank_name"  [fieldLevelSec]="''" params]=""  name="Bank Name" formControlName="bankName">
+                        <option value="">Please Select</option>
+                    </select>
+                </div>
+            
+                <!-- DynamicText with label of Payment Type -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('paymentType') }">
+                     <label class="col-form-label" for="paymentType" i18n>Payment Type</label>
+                     <input type="text"  [fieldLevelSec]="''" params]=""  readonly id="paymentType" formControlName="paymentType" class="form-control"/>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- DynamicText with label of Bank Address -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('bankAddress') }">
+                     <label class="col-form-label" for="bankAddress" i18n>Bank Address</label>
+                     <input type="text"  [fieldLevelSec]="''" params]=""  readonly id="bankAddress" formControlName="bankAddress" class="form-control"/>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- DynamicText with label of Routing Code -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('routingCode') }">
+                     <label class="col-form-label" for="routingCode" i18n>Routing Code</label>
+                     <input type="text"  [fieldLevelSec]="''" params]=""  readonly id="routingCode" formControlName="routingCode" class="form-control"/>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+                <!-- DynamicText with label of Eff Date -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('effDate') }">
+                     <label class="col-form-label" for="effDate" i18n>Eff Date</label>
+                     <input type="text"  [fieldLevelSec]="''" params]=""  readonly id="effDate" formControlName="effDate" class="form-control"/>
+                 </div>
+            
+                <!-- Textbox with label of Term Date -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('termDate') }">
+                     <label class="col-form-label" for="termDate" i18n>Term Date</label>
+                     <div class="input-group">
+                    <input id="termDate"  [fieldLevelSec]="''" params]=""  class="form-control" angular-mydatepicker name="termDate" (click)="termDateId.toggleCalendar()"
+                    formControlName="termDate"[options]="datePickerConfig" #termDateId="angular-mydatepicker"/>
+                    <div class="input-group-append">
+                        <button type="button" class="btn btn-secondary" (click)="termDateId.clearDate()">
+                          <i class="fa fa-close"></i>
+                        </button>
+                      </div>
+                      <div class="input-group-append">
+                        <button type="button" class="btn btn-secondary" (click)="termDateId.toggleCalendar()">
+                          <i class="fa fa-calendar-o"></i>
+                        </button>
+                      </div>
+                    </div>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('termDate')">
+                      {{ formValidation.errorMessage('termDate') }}
+                     </small>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- DropdownList with label of Term Reasons -->
+                <div class="selectContainer col-md-2 " [ngClass]="{'has-danger': formValidation.isValidField('termReasons') }">
+                    <label class="col-form-label" for="termReasons" i18n>Term Reasons</label>
+                    <select class="form-control" id="term_reasons"  [fieldLevelSec]="''" params]=""  name="Term Reasons" formControlName="termReasons">
+                        <option value="">Please Select</option>
+                    </select>
+                </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of IBAN/ Bank Account # -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('ibanBankAccount') }">
+                     <label class="col-form-label" for="ibanBankAccount" i18n>IBAN/ Bank Account #</label>
+                     <input type="text" id="ibanBankAccount"  [fieldLevelSec]="''" params]=""   class="form-control" formControlName="ibanBankAccount"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('ibanBankAccount')">
+                      {{ formValidation.errorMessage('ibanBankAccount') }}
+                     </small>
+                 </div>
+            
+                <!-- Textbox with label of Name on Accounts -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('nameOnAccounts') }">
+                     <label class="col-form-label" for="nameOnAccounts" i18n>Name on Accounts</label>
+                     <input type="text" id="nameOnAccounts"  [fieldLevelSec]="''" params]=""   class="form-control" formControlName="nameOnAccounts"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('nameOnAccounts')">
+                      {{ formValidation.errorMessage('nameOnAccounts') }}
+                     </small>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- DropdownList with label of Bank Acct Type -->
+                <div class="selectContainer col-md-2 " [ngClass]="{'has-danger': formValidation.isValidField('bankAcctType') }">
+                    <label class="col-form-label" for="bankAcctType" i18n>Bank Acct Type</label>
+                    <select class="form-control" id="bank_acct_type"  [fieldLevelSec]="''" params]=""  name="Bank Acct Type" formControlName="bankAcctType">
+                        <option value="">Please Select</option>
+                    </select>
+                </div>
+            
+                <!-- Textbox with label of Document Ref Number -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('documentRefNumber') }">
+                     <label class="col-form-label" for="documentRefNumber" i18n>Document Ref Number</label>
+                     <input type="text" id="documentRefNumber"  [fieldLevelSec]="''" params]=""   class="form-control" formControlName="documentRefNumber"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('documentRefNumber')">
+                      {{ formValidation.errorMessage('documentRefNumber') }}
+                     </small>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- DropdownList with label of Payment Advice -->
+                <div class="selectContainer col-md-2 " [ngClass]="{'has-danger': formValidation.isValidField('paymentAdvice') }">
+                    <label class="col-form-label" for="paymentAdvice" i18n>Payment Advice</label>
+                    <select class="form-control" id="payment_advice"  [fieldLevelSec]="''" params]=""  name="Payment Advice" formControlName="paymentAdvice">
+                        <option value="">Please Select</option>
+                    </select>
+                </div>
+            
+                <!-- DropdownList with label of EFT Status -->
+                <div class="selectContainer col-md-2 " [ngClass]="{'has-danger': formValidation.isValidField('eftStatus') }">
+                    <label class="col-form-label" for="eftStatus" i18n>EFT Status</label>
+                    <select class="form-control" id="eft_status"  [fieldLevelSec]="''" params]=""  name="EFT Status" formControlName="eftStatus">
+                        <option value="">Please Select</option>
+                    </select>
+                </div>
+            
+            </div>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+                <!-- Button with label of Reset All -->
+                <div class="col-md-2">
+                    <button type="button" id="resetAll" name="resetAll" class="btn btn-small btn-primary">Reset All</button>
+                
+                
+                </div>
+            
+                <!-- Button with label of Save Changes -->
+                <div class="col-md-2">
+                    <button type="button" id="saveChanges" name="saveChanges" class="btn btn-small btn-primary">Save Changes</button>
+                
+                
+                </div>
+            
+                <!-- Button with label of Exit -->
+                <div class="col-md-2">
+                    <button type="button" id="exit" name="exit" class="btn btn-small btn-primary">Exit</button>
+                
+                
+                </div>
+            
+                <!-- Button with label of View History -->
+                <div class="col-md-2">
+                    <button type="button" id="viewHistory" name="viewHistory" class="btn btn-small btn-primary">View History</button>
+                
+                
+                </div>
+            
+            </div>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+            </div>
+        </form>
+    </div>
+</div>

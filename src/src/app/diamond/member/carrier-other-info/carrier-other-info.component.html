@@ -1,0 +1,115 @@
+<!-- Copyright (c) 2020 . All Rights Reserved. -->
+<div class="container-fluid">
+    <div class="card-block">
+
+            <h2 class="form-title card-label-admin">Other Carrier Information</h2>
+            <button type="button" *ngIf="showIcon" class="modal-close close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            
+            <div class="form-group row">
+                <div class="col-md-1">
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group row">
+                        <div>
+                            <label class="col-form-label" for="carrierCode" i18n>Carrier Code: </label>&nbsp;<label class="col-form-label clr-blue">{{carrierMaster.carrierCode || ""}}</label>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div>
+                            <label class="col-form-label" for="carrierType" i18n>Carrier Type:</label>&nbsp;<label class="col-form-label clr-blue">{{carrierMaster.carrierType || ""}}</label>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div>
+                            <label class="col-form-label" for="contactName" i18n>Full Name:</label>&nbsp;<label class="col-form-label clr-blue">{{carrierMaster.fullName1 || ""}}</label>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div>
+                            <label class="col-form-label" for="contactName" i18n>Contact Name:</label>&nbsp;<label class="col-form-label clr-blue">{{carrierMaster.contactName || ""}}</label>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div>
+                            <label class="col-form-label" for="contactName" i18n>Contact Title:</label>&nbsp;<label class="col-form-label clr-blue">{{carrierMaster.contactTitle || ""}}</label>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div>
+                            <label class="col-form-label" for="addressLine1" i18n>Address Line 1:</label>&nbsp;<label class="col-form-label clr-blue">{{carrierMaster.addressLine1 || ""}}</label>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div>
+                            <label class="col-form-label" for="addressLine2" i18n>Address Line 2:</label>&nbsp;<label class="col-form-label clr-blue">{{carrierMaster.addressLine2 || ""}}</label>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div>
+                            <label class="col-form-label" for="city" i18n>City:</label>&nbsp;<label class="col-form-label clr-blue">{{carrierMaster.city || ""}}</label>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div>
+                            <label class="col-form-label" for="state" i18n>State:</label>&nbsp;<label class="col-form-label clr-blue">{{carrierMaster.state || ""}}</label>
+                        </div>
+                    </div>   
+                    <div class="form-group row">
+                        <div>
+                            <label class="col-form-label" for="zipCode" i18n>Zip Code:</label>&nbsp;<label class="col-form-label clr-blue">{{carrierMaster.zipCode || ""}}</label>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div>
+                            <label class="col-form-label" for="county" i18n>County:</label>&nbsp;<label class="col-form-label clr-blue">{{carrierMaster.county || ""}}</label>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div>
+                            <label class="col-form-label" for="country" i18n>Country:</label>&nbsp;<label class="col-form-label clr-blue">{{carrierMaster.country || ""}}</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">    
+                    <div class="form-group row">
+                        <div>
+                            <label class="col-form-label" for="shortName" i18n>ShortName:</label>&nbsp;<label class="col-form-label clr-blue">{{carrierMaster.shortName || ""}}</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-1">
+                    <div class="form-group row">
+                        <button type="button" id="ok" name="ok" (click)="submitForm()" class="float-right button btn-sbmt">OK</button>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-1">
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group row">
+                        <div>
+                            <label class="col-form-label" for="phoneNumber" i18n>Phone Number:</label>&nbsp;<label class="col-form-label clr-blue">{{carrierMaster.phoneNumber || ""}}</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2">    
+                    <div class="form-group row">
+                        <div>
+                            <label class="col-form-label" for="extention" i18n>Extension:</label>&nbsp;<label class="col-form-label clr-blue">{{carrierMaster.extension || ""}}</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2">    
+                    <div class="form-group row">
+                        <div>
+                            <label class="col-form-label">Fax Number:</label>&nbsp;<label class="col-form-label clr-blue">{{carrierMaster.faxNumber || ""}}</label>
+                        </div>
+                    </div>       
+                </div>
+            </div>
+            <div class="col-md-2"></div>
+    </div>
+</div>

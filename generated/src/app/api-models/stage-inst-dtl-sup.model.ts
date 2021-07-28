@@ -1,0 +1,49 @@
+/* Copyright (c) 2020 . All Rights Reserved. */
+
+export class StageInstDtlSup {
+  batchId: string;
+  transactionId: number;
+  lineNo: number;
+  subLineCode: string;
+  claimStatus: string;
+  processingStatus: string;
+  placeOfServicePtr: number;
+  seqProvId: number;
+  seqMembId: number;
+  adjudMethod: string;
+  medDefCode: string;
+  postDate: Date;
+  companyCode: string;
+  glRefCode: string;
+  printFlag: string;
+  eobId: string;
+  raId: string;
+  seqApTrans: number;
+  seqAuthDtl: number;
+  hiddenUserDef1: string;
+  hiddenUserDef2: number;
+  withholdSurplus: number;
+  bmaAmt: number;
+  bmaRsn: string;
+  totalUnits: number;
+  capFundStatus: number;
+  capFundModelId: string;
+  capFundSubModelId: string;
+  capFundRunMonth: Date;
+  capOutlinerInclExcl: string;
+  fullCvrgAmt: number;
+  cobPatLiabCvrgAmt: number;
+  countAsDays: string;
+  carveOut: string;
+  systemGenerated: string;
+  printFlagChangeInd: string;
+  auditStatus: string;
+  invalidFlags: string;
+  authProcCodeUsed: string;
+  authPrice: number;
+  seqCdaplDtl: number;
+  procedureCode: string;
+  alternateProcCode: string;
+  sysRevCode: string;
+  geoZipRegion: string;
+}

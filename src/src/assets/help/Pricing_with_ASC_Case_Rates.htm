@@ -1,0 +1,157 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+    <!-- $MVD$:fontset("Courier New","Courier New") -->
+    <title>Pricing with ASC Case Rates</title>
+    <meta content="RoboHelp by eHelp Corporation www.ehelp.com" name="generator"/>
+    <meta name="copyright"
+          value="© Copyright 2002 Health Systems Design Corp., a wholly owned subsidiary of Perot Systems Corporation. All rights reserved"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+</head>
+<body>
+
+<div class="calibreMeta">
+    <div class="calibreMetaTitle">
+
+
+        <h1>
+            <a href="../9r5qt-dn4su.html">DIAMOND 950 Help
+            </a>
+        </h1>
+
+
+    </div>
+    <div class="calibreMetaAuthor">
+        Unknown
+
+    </div>
+</div>
+
+<div class="calibreMain">
+
+    <div class="calibreEbookContent">
+
+        <div class="calibreEbNavTop">
+
+            <a href="Procedures_and_Pricing_How_DIAMOND_Thinks.htm" class="calibreAPrev">previous page
+            </a>
+
+
+            <a href="Pricing_DRGs_With_an_External_Pricer.htm" class="calibreANext">next page
+            </a>
+
+        </div>
+
+
+        <h4 class="calibre1">Pricing with ASC Case Rates</h4>
+        <table cellpadding="1" cellspacing="0" width="500" class="calibre172">
+            <tbody class="">
+            <tr valign="top" class="">
+                <td width="198" class="">
+                    <p class="map-links"><a
+                            href="Pricing_with_ASC_Case_Rates.htm#Pricing_with_ASC_Case_Rates_Restrictions_MID"><img
+                            alt="image\assets/help/MidTopic_shg.gif" border="0" src="assets/help/MidTopic_shg.gif" usemap="#AreaMap0"
+                            class=""/>
+                        <map name="AreaMap0" class="0"/>
+                    </a> Restrictions
+                    </p>
+                </td>
+                <td width="198" class="">
+                    <p class="map-links"><a
+                            href="Pricing_with_ASC_Case_Rates.htm#Pricing_with_ASC_Case_Rates_Instructions_MID"><img
+                            alt="image\assets/help/MidTopic_shg.gif" border="0" src="assets/help/MidTopic_shg.gif" usemap="#AreaMap1"
+                            class=""/>
+                        <map name="AreaMap1" class="0"/>
+                    </a> Instructions
+                    </p>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <p class="body-text">ASC Groups are sets of procedures that are associated with each other in treating certain
+            outpatient surgeries. Some health plans define case rates which apply to these groupings, which are similar
+            to DRGs but apply in an outpatient setting. </p>
+        <p class="doc-level2"><a name="Pricing_with_ASC_Case_Rates_Restrictions_MID"></a>Restrictions</p>
+        <p class="body-text">None.</p>
+        <p class="doc-level2"><a name="Pricing_with_ASC_Case_Rates_Instructions_MID"></a>Instructions</p>
+        <table cellpadding="1" cellspacing="0" width="526" class="calibre172">
+            <tbody class="">
+            <tr valign="top" class="">
+                <td width="250" class="">
+                    <p class="tbl-header1">Step</p></td>
+                <td width="276" class="">
+                    <p class="tbl-header1">Comment</p></td>
+            </tr>
+            <tr valign="top" class="">
+                <td width="250" class="calibre28">
+                    <p class="step">1. Define a medical definition (MEDEF) for each ASC group, using Procedure Code as
+                        the determinant.</p></td>
+                <td width="276" class="calibre28">
+                    <p class="step-comment">If the contract lists a rate for all other CPT codes, you’ll need a MEDEF
+                        for "all other" CPT codes.</p></td>
+            </tr>
+            <tr valign="top" class="">
+                <td width="250" class="calibre28">
+                    <p class="step">2. Create a PDTER record for each ASC Group, using the applicable medical
+                        definition.</p></td>
+                <td width="276" class="calibre28">
+                    <p class="step-comment"> </p></td>
+            </tr>
+            <tr valign="top" class="">
+                <td width="250" class="calibre28">
+                    <p class="step">3. For each unique reimbursement rate, create a procedure code for the
+                        system-generated line (PROCD/PROCP).</p></td>
+                <td width="276" class="calibre28">
+                    <p class="step-comment"> </p></td>
+            </tr>
+            <tr valign="top" class="">
+                <td width="250" class="calibre28">
+                    <p class="step">4. Create a PRULW record for each ASC Group reimbursement arrangement.</p></td>
+                <td width="276" class="calibre28">
+                    <p class="step-comment"> </p></td>
+            </tr>
+            <tr valign="top" class="">
+                <td width="250" class="calibre28">
+                    <p class="step">5. DIAMOND will apply up to 3 case rates, the first of which will always be applied
+                        at 100% of the reimbursement rate.</p></td>
+                <td width="276" class="calibre28">
+                    <p class="step-comment">Determine the order that DIAMOND should evaluate each case rate so that
+                        DIAMOND will know which case rate to apply first.</p>
+                    <p class="body-text">If the contract indicates that multiple case rates apply, then enter
+                        percentages for the second and third case rates in the <span class="calibre16">Case 2 % of Allowed</span>
+                        and <span class="calibre16">Case 3 % of Allowed</span> boxes on the <span class="calibre16">DRG/APC Information</span>
+                        dialog box (in keyword PROVC, on the <span class="calibre16">Special</span> menu, click <span
+                                class="calibre16">DRG/APC Information</span>).</p>
+                    <p class="body-text">If the contract states that only one case rate shall be applied, leave the
+                        <span class="calibre16">Case2 % Allowed</span> and <span
+                                class="calibre16">Case 3 % of Allowed</span> boxes blank.</p></td>
+            </tr>
+            </tbody>
+        </table>
+
+
+    </div>
+
+
+
+    <div class="calibreEbNav">
+
+        <a href="Procedures_and_Pricing_How_DIAMOND_Thinks.htm" class="calibreAPrev">previous page
+        </a>
+
+
+        <a href="../9r5qt-dn4su.html" class="calibreAHome">start
+        </a>
+
+
+        <a href="Pricing_DRGs_With_an_External_Pricer.htm" class="calibreANext">next page
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+</html>

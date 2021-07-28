@@ -1,0 +1,93 @@
+<!-- Copyright (c) 2020 . All Rights Reserved. -->
+<div class="container-fluid">
+    <div class="card-block">
+
+        <div class="row form-title">
+            <h2 class="col-md-7  card-label-admin">  Covering Provider Group Codes </h2>
+            <div class="col-md"><b class="readonly-label">View Only</b></div>
+        </div>
+        <button type="button" *ngIf="showIcon" class="close" aria-label="Close"
+                (click)="modalClose()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+
+
+        <ng-template #loaderTemplate let-loaderValue="value">
+            <div class="row justify-content-center mt-4" *ngIf="loaderValue">
+                <div class="spinner-border text-success" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>
+            </div>
+        </ng-template>
+
+        <ng-container *ngTemplateOutlet="loaderTemplate;context:{value: secProgress }"></ng-container>
+
+        <form [formGroup]="coveringProviderGroupCodesForm" novalidate *ngIf="!secProgress">
+
+
+            <div class="row mt-3">
+                <menu-bar [menus]="menu" (onMenuClick)="onMenuItemClick($event)"></menu-bar>
+            </div>
+
+            <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+            <app-pop-up-message #popUpMesssage (buttonclickEvent)="popUpButtonHandler($event)"
+                                [popupMessage]="popUpMessage"></app-pop-up-message>
+
+            <div class="form-group row">
+            </div>
+
+            <!-- DataGrid with Name of DataGrid -->
+
+            <ag-grid-angular #agGrid class="ag-theme-fresh" [gridOptions]="dataGridGridOptions"
+                             style="width: 100%; height: 300px;"
+                             [enableSorting]="true"
+                             [enableFilter]="true"
+                             [floatingFilter]="true"
+                             [pagination]="true"
+                             [showToolPanel]="true"
+                             (rowClicked)="onRowSelected($event)">
+            </ag-grid-angular>
+
+
+            <div class="form-group mt-1 row">
+                <!-- Textbox with label of  Id -->
+                <div class=" col-md-4" [ngClass]="{'required-field': formValidation.isValidField('groupId') }">
+                    <label class="col-form-label required-field-label " for="groupId" i18n>Covering Provider Group ID</label>
+                    <input type="text" id="groupId" class="form-control"
+                           (change)="changeState()"
+                           formControlName="groupId"/>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('groupId')">
+                        {{ formValidation.errorMessage('groupId') }}
+                    </small>
+                </div>
+
+
+            </div>
+
+
+            <div class="form-group row mt-1">
+
+                <!-- DynamicText with label of desc -->
+                <div class="col-md-8" [ngClass]="{'has-danger': formValidation.isValidField('description') }">
+                    <label class="col-form-label" for="description" i18n>Description</label>
+                    <input type="text" id="description" [fieldLevelSec]="'SOCIAL_SEC_NO'"
+                           [params]="{secColDetails: secColDetails, isEditState: true}"
+                           (change)="changeState()"
+                           formControlName="description" class="form-control"/>
+
+                    <small class="text-danger" *ngIf="formValidation.isValidField('description')">
+                        {{ formValidation.errorMessage('description') }}
+                    </small>
+                </div>
+
+
+            </div>
+
+
+        </form>
+    </div>
+</div>
+
+
+<ng-keyboard-shortcuts [shortcuts]="shortcuts"></ng-keyboard-shortcuts>
+<ng-keyboard-shortcuts-help [key]="'f2'" [closeKey]="'escape'" [title]="'Hotkeys Help'"></ng-keyboard-shortcuts-help>

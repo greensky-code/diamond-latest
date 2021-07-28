@@ -1,0 +1,73 @@
+.mt-m-40 {
+  margin-top: -40px;
+}
+.width-17 {
+  width: 17%;
+}
+.font-weight-bold {
+  font-weight: bold;
+}
+.searchbox-buttons {
+  button {
+    font-weight: bold;
+  }
+  select {
+    font-weight: bold !important;
+  }
+}
+button[disabled] {
+  opacity: 0.7;
+  cursor: not-allowed;
+  &:hover {
+    background: inherit;
+  }
+}
+.dropdown-toggle {
+  background-color: #209cf1 !important;
+  color: white;
+  padding: 8px 0px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+  border: 1px solid transparent;
+  font-weight: 500;
+  font-family: HCo Gotham SSm, Verdana, Geneva, sans-serif;
+  vertical-align: middle;
+  white-space: normal;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  &:after {
+    display: none;
+  }
+  option {
+    background: white;
+    color: #209cf1;
+  }
+}
+:host ::ng-deep {
+  .dropdown-btn {
+    background: #209cf1;
+    color: white;
+    margin-top: 4px;
+    height: 40px;
+    border-radius: 5px;
+  }
+  .dropdown-multiselect__caret:before {
+    color: white !important;
+    border-color: white transparent !important;
+    top: 80% !important;
+  }
+  .multiselect-dropdown {
+    .dropdown-btn {
+      .dropdown-multiselect--active {
+        .dropdown-multiselect__caret {
+          top: 15% !important;
+        }
+      }
+    }
+  }
+}

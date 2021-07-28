@@ -1,0 +1,181 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+    <title>Grouping DRGs with an External Grouper</title>
+    <!--(Meta)==========================================================-->
+    <meta name="copyright"
+          value="© Copyright 2002 Health Systems Design Corp., a wholly owned subsidiary of Perot Systems Corporation. All rights reserved"/>
+    <meta content="RoboHELP by eHelp Corporation - www.ehelp.com" name="generator"/>
+    <meta content="0.1" name="generator-major-version"/>
+    <meta content="1" name="generator-minor-version"/>
+    <meta content="kadov" name="filetype"/>
+    <meta content="1" name="filetype-version"/>
+    <meta content="1" name="page-count"/>
+    <meta content="731" name="layout-height"/>
+    <meta content="889" name="layout-width"/>
+    <!--(Links)=========================================================-->
+    <!--(Scripts)=======================================================-->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+</head>
+<body>
+
+<div class="calibreMeta">
+    <div class="calibreMetaTitle">
+
+
+        <h1>
+            <a href="../9r5qt-dn4su.html">DIAMOND 950 Help
+            </a>
+        </h1>
+
+
+    </div>
+    <div class="calibreMetaAuthor">
+        Unknown
+
+    </div>
+</div>
+
+<div class="calibreMain">
+
+    <div class="calibreEbookContent">
+
+        <div class="calibreEbNavTop">
+
+            <a href="Pricing_DRGs_Without_an_External_Pricer.htm" class="calibreAPrev">previous page
+            </a>
+
+
+            <a href="View_DRG_Grouper_or_Pricer_errors_for_an_institutional_claim.htm" class="calibreANext">next page
+            </a>
+
+        </div>
+
+
+        <h4 class="calibre1">Grouping DRGs with an External Grouper</h4>
+
+        <!--(Table)=========================================================-->
+        <table cellspacing="0" width="500" x-use-null-cells="" class="calibre172">
+
+            <tbody class="calibre3">
+            <tr valign="top" class="">
+                <td width="120px" class="">
+                    <p class="map-links"><a
+                            href="Grouping_DRGs_with_an_External_Grouper.htm#Grouping_DRGs_with_an_External_Grouper_Restrictions_TASK_MID"><img
+                            alt="image\assets/help/MidTopic_shg.gif" border="0" height="10" src="assets/help/MidTopic_shg.gif" width="18"
+                            class=""/></a> Restrictions</p></td>
+                <td width="126px" class="9">
+                    <p class="map-links"><a
+                            href="Grouping_DRGs_with_an_External_Grouper.htm#Grouping_DRGs_with_an_External_Grouper_Instructions_TASK_MID"><img
+                            alt="image\assets/help/MidTopic_shg.gif" border="0" height="10" src="assets/help/MidTopic_shg.gif" width="18"
+                            class=""/></a> Instructions</p></td>
+                <td width="234px" class="">
+                    <p class="map-links"><a
+                            href="Grouping_DRGs_with_an_External_Grouper.htm#Grouping_DRGs_with_an_External_Grouper_Frequently_Asked_Questions_TASK_MID"><img
+                            alt="image\assets/help/MidTopic_shg.gif" border="0" height="10" src="assets/help/MidTopic_shg.gif" width="18"
+                            class=""/></a> Frequently Asked Questions</p></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <p class="body-text">You can determine a DRG code for an institutional claim
+            using an external grouper. For external grouping (and pricing), DIAMOND
+            uses the HSS EASYGroup<span class="1">Ô</span> 2000 Optimizer. The HSS
+            Optimizer determines which version of the HCFA Grouper to use based the
+            claim primary date of service. The Optimizer also interfaces with the
+            single HSS-supported DRG Pricer.</p>
+
+        <p class="body-text">For more information about DRG grouper and pricer functionality
+            and how the HSS Optimizer works, see <a href="DRG_Grouping_and_Pricing_How_DIAMOND_Thinks.htm">DRG
+                Grouping and Pricing, How DIAMOND Thinks</a><span class="calibre22"><span
+                    class="calibre23">. </span></span></p>
+
+        <p class="doc-level2"><a name="Grouping_DRGs_with_an_External_Grouper_Restrictions_TASK_MID"></a>Restrictions
+        </p>
+
+        <p class="body-text">None.</p>
+
+        <p class="doc-level2"><a name="Grouping_DRGs_with_an_External_Grouper_Instructions_TASK_MID"></a>Instructions
+        </p>
+
+        <!--(Table)=========================================================-->
+        <table cellspacing="0" width="526" x-use-null-cells="" class="2">
+
+            <tbody class="calibre3">
+            <tr valign="top" class="">
+                <td width="250px" class="">
+                    <p class="tbl-header1">Step</p></td>
+                <td width="276px" class="">
+                    <p class="tbl-header1">Comment</p></td>
+            </tr>
+
+            <tr valign="top" class="">
+                <td width="250px" class="">
+                    <p class="step2">1. On each provider
+                        contract for which you want to use an external DRG grouper, enter <span class="calibre16">Facility Number</span>
+                        and <span class="calibre16">Paysource</span>
+                        using the PROVC <span class="calibre16">Special</span> menu<span class="calibre16"> </span>command
+                        <span class="calibre16">DRG/APC
+ Information</span>, available in contract pricing details. </p></td>
+                <td width="276px" class="">
+                    <p class="step-comment1"> </p></td>
+            </tr>
+
+            <tr valign="top" class="">
+                <td width="250px" class="">
+                    <p class="step2">2. Enter the institutional
+                        claims for which you want to use an external DRG grouper.</p></td>
+                <td width="276px" class="">
+                    <p class="step-comment1">DIAMOND automatically calls
+                        the external DRG grouper when the claim is entered and the corresponding
+                        provider contract record’s <span class="calibre16">Facility Number</span>
+                        and <span class="calibre16">Paysource</span> have been entered.
+                    </p>
+                    <p class="body-text">To perform DRG grouping, the external DRG
+                        grouper needs only the information on the claim and the corresponding
+                        provider contract record’s <span class="calibre16">Facility Number</span>
+                        and <span class="calibre16">Paysource</span>.</p></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <p class="doc-level2"><a name="Grouping_DRGs_with_an_External_Grouper_Frequently_Asked_Questions_TASK_MID"></a>Frequently
+            Asked Questions</p>
+
+        <ul class="calibre24">
+
+            <li class="kadov-p-cfaq"><p class="faq">Where can I get background
+                information about DRG grouper and pricer functionality and how the HSS
+                Optimizer works?</p></li>
+        </ul>
+
+        <p class="faq-ans">See <a href="DRG_Grouping_and_Pricing_How_DIAMOND_Thinks.htm">DRG
+            Grouping and Pricing, How DIAMOND Thinks</a><span class="calibre22"><span class="calibre23">. </span></span>
+        </p>
+
+
+    </div>
+
+
+
+    <div class="calibreEbNav">
+
+        <a href="Pricing_DRGs_Without_an_External_Pricer.htm" class="calibreAPrev">previous page
+        </a>
+
+
+        <a href="../9r5qt-dn4su.html" class="calibreAHome">start
+        </a>
+
+
+        <a href="View_DRG_Grouper_or_Pricer_errors_for_an_institutional_claim.htm" class="calibreANext">next page
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,72 @@
+export class UsersLookup {
+    public static USERS_DEFAULT = [
+        {headerName: 'User ID', field: 'userId', width: 140, headerClass: 'font-weight-bold'},
+        {headerName: 'User Type', field: 'userType', width: 200, headerClass: 'font-weight-bold'},
+        {headerName: 'Fname', field: 'fname', width: 200, headerClass: 'font-weight-bold'},
+        {headerName: 'Mi', field: 'mi', width: 200, headerClass: 'font-weight-bold'},
+        {headerName: 'Lname', field: 'lname', width: 200, headerClass: 'font-weight-bold'},
+        {headerName: 'tel', field: 'tel', width: 200, headerClass: 'font-weight-bold'},
+        {headerName: 'Ext', field: 'ext', width: 200, headerClass: 'font-weight-bold'},
+        {headerName: 'Fax', field: 'fax', width: 140, headerClass: 'font-weight-bold'},
+        {headerName: 'Description', field: 'description', width: 200, headerClass: 'font-weight-bold'},
+        {headerName: 'Cur User Dept', field: 'curUsrDept', width: 200, headerClass: 'font-weight-bold'},
+        {headerName: 'Usr Location', field: 'usrLocation', width: 200, headerClass: 'font-weight-bold'},
+        {headerName: 'Template Flg', field: 'templateFlg', width: 200, headerClass: 'font-weight-bold'},
+        {headerName: 'Su Priv', field: 'suPriv', width: 200, headerClass: 'font-weight-bold'},
+        {headerName: 'Login Menu', field: 'loginMenu', width: 200, headerClass: 'font-weight-bold'},
+        {headerName: 'Dflt Template', field: 'dfltTemplate', width: 200, headerClass: 'font-weight-bold'},
+        {headerName: 'Usr Security Level', field: 'usrSecurityLevel', width: 200, headerClass: 'font-weight-bold'},
+        {headerName: 'Note Security Level', field: 'noteSecurityLevel', width: 200, headerClass: 'font-weight-bold'},
+
+
+
+
+
+    ];
+
+    public static USERS_ALL = [
+        {headerName: 'Customer Id', field: 'userId', width: 140, headerClass: 'font-weight-bold'},
+        {headerName: 'Customer Type', field: 'fname', width: 200, headerClass: 'font-weight-bold'},
+        {headerName: 'Short Name', field: 'mi', width: 200, headerClass: 'font-weight-bold'},
+        {headerName: 'Customer Name 1', field: 'lname', width: 200, headerClass: 'font-weight-bold'},
+        {headerName: 'Customer Name 2', field: 'initials', width: 200, headerClass: 'font-weight-bold'},
+        {headerName: 'User Defined 1', field: 'tel', width: 200, headerClass: 'font-weight-bold'},
+        {headerName: 'User Defined 2', field: 'ext', width: 200, headerClass: 'font-weight-bold'},
+        {headerName: 'Customer Id', field: 'fax', width: 140, headerClass: 'font-weight-bold'},
+        {headerName: 'Customer Type', field: 'loginMenu', width: 200, headerClass: 'font-weight-bold'},
+        {headerName: 'Short Name', field: 'claimLimit', width: 200, headerClass: 'font-weight-bold'},
+        {headerName: 'Customer Name 1', field: 'pendClaimOvr', width: 200, headerClass: 'font-weight-bold'},
+        {headerName: 'Customer Name 2', field: 'grpAffil', width: 200, headerClass: 'font-weight-bold'},
+        {headerName: 'User Defined 1', field: 'ipaAffil', width: 200, headerClass: 'font-weight-bold'},
+        {headerName: 'User Defined 2', field: 'provAffil', width: 200, headerClass: 'font-weight-bold'},
+        {headerName: 'Customer Name 2', field: 'suPriv', width: 200, headerClass: 'font-weight-bold'},
+        {headerName: 'User Defined 1', field: 'secId', width: 200, headerClass: 'font-weight-bold'},
+        {headerName: 'User Defined 2', field: 'insertDatetime', width: 200, headerClass: 'font-weight-bold'},
+        {headerName: 'Customer Id', field: 'insertUser', width: 140, headerClass: 'font-weight-bold'},
+        {headerName: 'Customer Type', field: 'insertProcess', width: 200, headerClass: 'font-weight-bold'},
+        {headerName: 'Short Name', field: 'updateDatetime', width: 200, headerClass: 'font-weight-bold'},
+        {headerName: 'Customer Name 1', field: 'updateUser', width: 200, headerClass: 'font-weight-bold'},
+        {headerName: 'Customer Name 2', field: 'updateProcess', width: 200, headerClass: 'font-weight-bold'},
+        {headerName: 'User Defined 1', field: 'dfltTemplate', width: 200, headerClass: 'font-weight-bold'},
+        {headerName: 'User Defined 2', field: 'userType', width: 200, headerClass: 'font-weight-bold'},
+        {headerName: 'Customer Type', field: 'description', width: 200, headerClass: 'font-weight-bold'},
+        {headerName: 'Short Name', field: 'curUsrDept', width: 200, headerClass: 'font-weight-bold'},
+        {headerName: 'Customer Name 1', field: 'usrLocation', width: 200, headerClass: 'font-weight-bold'},
+        {headerName: 'Customer Name 2', field: 'templateFlg', width: 200, headerClass: 'font-weight-bold'},
+        {headerName: 'User Defined 1', field: 'usrSecurityLevel', width: 200, headerClass: 'font-weight-bold'},
+        {headerName: 'User Defined 2', field: 'noteSecurityLevel', width: 200, headerClass: 'font-weight-bold'},
+        {headerName: 'Customer Name 2', field: 'languageId', width: 200, headerClass: 'font-weight-bold'},
+        {headerName: 'User Defined 1', field: 'sfldlId', width: 200, headerClass: 'font-weight-bold'},
+        {headerName: 'User Defined 2', field: 'userDefined1', width: 200, headerClass: 'font-weight-bold'},
+        {headerName: 'Customer Id', field: 'userDefined2', width: 140, headerClass: 'font-weight-bold'},
+        {headerName: 'Customer Type', field: 'userDate1', width: 200, headerClass: 'font-weight-bold'},
+        {headerName: 'Short Name', field: 'userDate2', width: 200, headerClass: 'font-weight-bold'},
+        {headerName: 'Customer Name 1', field: 'resetPwdInd', width: 200, headerClass: 'font-weight-bold'},
+        {headerName: 'Customer Name 2', field: 'usePwdProfInd', width: 200, headerClass: 'font-weight-bold'},
+        {headerName: 'User Defined 1', field: 'effDate', width: 200, headerClass: 'font-weight-bold'},
+        {headerName: 'User Defined 2', field: 'termDate', width: 200, headerClass: 'font-weight-bold'},
+        {headerName: 'User Defined 1', field: 'termReason', width: 200, headerClass: 'font-weight-bold'},
+        {headerName: 'User Defined 2', field: 'qsupervisorPriv', width: 200, headerClass: 'font-weight-bold'},
+
+    ];
+}

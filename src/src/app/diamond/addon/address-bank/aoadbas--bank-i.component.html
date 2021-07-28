@@ -1,0 +1,246 @@
+<!-- Copyright (c) 2021 . All Rights Reserved. -->
+<div class="container-fluid">
+  <div class="card-block">
+    <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+    <app-pop-up-message #popUpMesssage (buttonclickEvent)="popUpButtonHandler($event)" [(popupMessage)]="popUpMessage"></app-pop-up-message>
+
+    <nav ngbNav #navSub="ngbNav" class="nav-tabs" [(activeId)]="activeTab">
+      <ng-container [ngbNavItem]="1" *ngIf="Searched">
+        <a ngbNavLink (click)="OnChange(1)">Bank Info</a>
+        <ng-template ngbNavContent>
+          <form [formGroup]="aoadbasBankIForm" novalidate>
+
+            <div class="form-group row">
+            </div>
+
+            <div class="form-group row">
+              <!-- DropdownList with label of Bank Name -->
+              <div class="selectContainer col-md-4 " [ngClass]="{'has-danger': formValidation.isValidField('bankName') }">
+                <label class="col-form-label" for="bankName" i18n>Bank Name</label>
+                <div class="input-group" #myDrop="ngbDropdown" ngbDropdown>
+                  <input ngbDropdownToggle type="text" class="form-control" id="bankName" [value]="aoadbasBankIForm.value.bankName" formControlName="bankName">
+                  <div class="input-group-append" role="group">
+                    <button ngbDropdownToggle class="btn border"></button>
+                  </div>
+                  <div ngbDropdownMenu aria-labelledby="dropdown" class="max-dropdown-height">
+                    <button ngbDropdownItem value="{{value.bankName}}"  (click)="setFieldValue('entityType', value.bankName)" *ngFor="let value of Banks; let i = index">
+                      {{value.bankName}}
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- DynamicText with label of Payment Type -->
+              <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('paymentType') }">
+                <label class="col-form-label" for="paymentType" i18n>Payment Type</label>
+                <div class="input-group" #myDrop="ngbDropdown" ngbDropdown>
+                  <input ngbDropdownToggle type="text" class="form-control" id="paymentType" [value]="aoadbasBankIForm.value.paymentDesc" formControlName="paymentType">
+                  <div class="input-group-append" role="group">
+                    <button ngbDropdownToggle class="btn border"></button>
+                  </div>
+                  <div ngbDropdownMenu aria-labelledby="dropdown" class="max-dropdown-height">
+                    <button ngbDropdownItem value="{{value.paymentType}}"  (click)="setFieldValue('entityType', value.paymentCode)" *ngFor="let value of payment; let i = index">
+                      {{value.paymentDesc}}
+                    </button>
+                  </div>
+                </div>
+
+              </div>
+
+            </div>
+
+            <div class="form-group row">
+              <!-- DynamicText with label of Bank Address -->
+              <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('bankAddress') }">
+                <label class="col-form-label" for="bankAddress" i18n>Bank Address</label>
+                <input type="text" readonly id="bankAddress" formControlName="bankAddress" class="form-control" />
+              </div>
+
+              <!-- DynamicText with label of Routing Code -->
+              <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('routingCode') }">
+                <label class="col-form-label" for="routingCode" i18n>Routing Code</label>
+                <input type="text" readonly id="routingCode" formControlName="routingCode" class="form-control" />
+              </div>
+
+            </div>
+
+            <div class="form-group row">
+            </div>
+
+            <div class="form-group row">
+            </div>
+
+            <div class="form-group row">
+            </div>
+
+            <div class="form-group row">
+              <!-- DynamicText with label of Eff Date -->
+              <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('effDate') }">
+                <label class="col-form-label" for="effDate" i18n>Eff Date</label>
+                <input type="text" readonly id="effDate" formControlName="effDate" class="form-control" />
+              </div>
+
+              <!-- Textbox with label of Term Date -->
+              <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('termDate') }">
+                <label class="col-form-label" for="termDate" i18n>Term Date</label>
+                <div class="input-group">
+                  <input id="termDate" class="form-control" angular-mydatepicker name="termDate" (click)="termDateId.toggleCalendar()" formControlName="termDate" [options]="datePickerConfig" #termDateId="angular-mydatepicker" />
+                  <div class="input-group-append">
+                    <button type="button" class="btn btn-secondary" (click)="termDateId.clearDate()">
+                      <i class="fa fa-close"></i> 
+                    </button>
+                  </div>
+                  <div class="input-group-append">
+                    <button type="button" class="btn btn-secondary" (click)="termDateId.toggleCalendar()">
+                      <i class="fa fa-calendar-o"></i>
+                    </button>
+                  </div>
+                </div>
+                <small class="text-danger" *ngIf="formValidation.isValidField('termDate')">
+                  {{ formValidation.errorMessage('termDate') }}
+                </small>
+              </div>
+
+            </div>
+
+            <div class="form-group row">
+              <!-- DropdownList with label of Term Reasons -->
+              <div class="selectContainer col-md-4 " [ngClass]="{'has-danger': formValidation.isValidField('termReasons') }">
+                <label class="col-form-label" for="termReasons" i18n>Term Reasons</label>
+                <div class="input-group" #myDrop="ngbDropdown" ngbDropdown>
+                  <input ngbDropdownToggle type="text" class="form-control" id="termReasons" [value]="aoadbasBankIForm.value.bankTermReasonDesc" formControlName="termReasons">
+                  <div class="input-group-append" role="group">
+                    <button ngbDropdownToggle class="btn border"></button>
+                  </div>
+                  <div ngbDropdownMenu aria-labelledby="dropdown" class="max-dropdown-height">
+                    <button ngbDropdownItem value="{{value.bankTermReasonCode}}"  (click)="setFieldValue('termReasons', value.bankTermReasonDesc)" *ngFor="let value of termsReason; let i = index">
+                      {{value.bankTermReasonDesc}}
+                    </button>
+                  </div>
+                </div>
+
+              </div>
+
+            </div>
+
+            <div class="form-group row">
+              <!-- Textbox with label of IBAN/ Bank Account # -->
+              <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('ibanBankAccount') }">
+                <label class="col-form-label" for="ibanBankAccount" i18n>IBAN/ Bank Account #</label>
+                <input type="text" id="ibanBankAccount" class="form-control" formControlName="ibanBankAccount" />
+                <small class="text-danger" *ngIf="formValidation.isValidField('ibanBankAccount')">
+                  {{ formValidation.errorMessage('ibanBankAccount') }}
+                </small>
+              </div>
+
+              <!-- Textbox with label of Name on Accounts -->
+              <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('nameOnAccounts') }">
+                <label class="col-form-label" for="nameOnAccounts" i18n>Name on Accounts</label>
+                <input type="text" id="nameOnAccounts" class="form-control" formControlName="nameOnAccounts" />
+                <small class="text-danger" *ngIf="formValidation.isValidField('nameOnAccounts')">
+                  {{ formValidation.errorMessage('nameOnAccounts') }}
+                </small>
+              </div>
+
+            </div>
+
+            <div class="form-group row">
+              <!-- Textbox with label of Bank Acct Type -->
+              <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('bankAcctType') }">
+                <label class="col-form-label" for="bankAcctType" i18n>Bank Acct Type</label>
+                <div class="input-group" #myDrop="ngbDropdown" ngbDropdown>
+                  <input ngbDropdownToggle type="text" class="form-control" id="bankAcctType" [value]="aoadbasBankIForm.value.bankAcctType" formControlName="bankAcctType">
+                  <div class="input-group-append" role="group">
+                    <button ngbDropdownToggle class="btn border"></button>
+                  </div>
+                  <div ngbDropdownMenu aria-labelledby="dropdown" class="max-dropdown-height">
+                    <button ngbDropdownItem value="{{value.bankAcctCode}}"  (click)="setFieldValue('bankAcctType', value.bankAcctCode)" *ngFor="let value of AccountType; let i = index">
+                      {{value.bankAcctDesc}}
+                    </button>
+                  </div>
+                </div>
+                <small class="text-danger" *ngIf="formValidation.isValidField('bankAcctType')">
+                  {{ formValidation.errorMessage('eftStatus') }}
+                </small>
+              </div>
+
+              <!-- Textbox with label of Document Ref Number -->
+              <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('documentRefNumber') }">
+                <label class="col-form-label" for="documentRefNumber" i18n>Document Ref Number</label>
+                <input type="text" id="documentRefNumber" class="form-control" formControlName="documentRefNumber" />
+                <small class="text-danger" *ngIf="formValidation.isValidField('documentRefNumber')">
+                  {{ formValidation.errorMessage('documentRefNumber') }}
+                </small>
+              </div>
+
+            </div>
+
+            <div class="form-group row">
+              <!-- Textbox with label of Payment Advice -->
+              <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('paymentAdvice') }">
+                <label class="col-form-label" for="paymentAdvice" i18n>Payment Advice</label>
+                <div class="input-group" #myDrop="ngbDropdown" ngbDropdown>
+                  <input ngbDropdownToggle type="text" class="form-control" id="paymentType" [value]="aoadbasBankIForm.value.paymentDesc" formControlName="paymentAdvice">
+                  <div class="input-group-append" role="group">
+                    <button ngbDropdownToggle class="btn border"></button>
+                  </div>
+                  <div ngbDropdownMenu aria-labelledby="dropdown" class="max-dropdown-height">
+                    <button ngbDropdownItem value="{{value.paymentType}}"  (click)="setFieldValue('paymentAdvice', value.paymentCode)" *ngFor="let value of payment; let i = index">
+                      {{value.paymentDesc}}
+                    </button>
+                  </div>
+                </div>
+                <small class="text-danger" *ngIf="formValidation.isValidField('paymentAdvice')">
+                  {{ formValidation.errorMessage('paymentType') }}
+                </small>
+              </div>
+              <!-- Textbox with label of EFT Status -->
+              <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('eftStatus') }">
+                <label class="col-form-label" for="eftStatus" i18n>EFT Status</label>
+
+                <div class="input-group" #myDrop="ngbDropdown" ngbDropdown>
+                  <input ngbDropdownToggle type="text" class="form-control" id="eftStatus" [value]="aoadbasBankIForm.value.eftStatusDesc" formControlName="eftStatus">
+                  <div class="input-group-append" role="group">
+                    <button ngbDropdownToggle class="btn border"></button>
+                  </div>
+                  <div ngbDropdownMenu aria-labelledby="dropdown" class="max-dropdown-height">
+                    <button ngbDropdownItem value="{{value.eftStatusCode}}"  (click)="setFieldValue('eftStatus', value.eftStatusDesc)" *ngFor="let value of eft; let i = index">
+                      {{value.eftStatusDesc}}
+                    </button>
+                  </div>
+                </div>
+                <small class="text-danger" *ngIf="formValidation.isValidField('eftStatus')">
+                  {{ formValidation.errorMessage('eftStatus') }}
+                </small>
+              </div>
+
+            </div>
+
+            <div class="form-group row">
+            </div>
+          </form>
+
+        </ng-template>
+      </ng-container>
+      <!-- <ng-container [ngbNavItem]="2">
+        <a ngbNavLink (click)="OnChange(2)">Bank Search</a>
+        <ng-template ngbNavContent *ngIf="ShowBankSearch">
+          <addressbanksearch></addressbanksearch>
+
+        </ng-template>
+      </ng-container> -->
+    </nav>
+    <div [ngbNavOutlet]="navSub" class="mt-2"></div>
+
+    <div class="form-group row">
+      <button class=" offset-4 button form-control-static mb-0" i18n (click)="resetForm()">
+        Reset All
+      </button>
+
+      <button class="col-md-2 pl-2 button form-control-static mb-0" i18n (click)="Save()">
+        Save Changes
+      </button>
+
+    </div>
+  </div>
+</div>

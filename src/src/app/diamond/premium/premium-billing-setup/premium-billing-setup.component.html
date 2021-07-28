@@ -1,0 +1,204 @@
+<!-- Copyright (c) 2021 . All Rights Reserved. -->
+<div class="container-fluid">
+    <div class="modal-header">
+        <h2 class="modal-title">Premium Billing Setup</h2>
+        <button type="button" *ngIf="showIcon" class="close" aria-label="Close" (click)="modalClose()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+
+    <div class="card-block">
+
+        <ng-template *ngIf="secProgress; else authorized">
+            <div class="row justify-content-center mt-4">
+                <div class="spinner-border text-success" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>
+            </div>
+        </ng-template>
+
+
+        <ng-template #authorized>
+            <div class="row">
+                <menu-bar [menus]="menu" (onMenuClick)="onMenuItemClick($event)"></menu-bar>
+            </div>
+            <div class="form-group row"></div>
+
+
+            <ag-grid-angular #agGrid class="ag-theme-fresh customClass" [gridOptions]="pmbSetupGridOptions"
+                             style="width: 100%; height: 300px;" [enableSorting]="true" (gridReady)="onGridReady($event)"
+                             [enableFilter]="false" [floatingFilter]="false" [pagination]="true" [showToolPanel]="true"
+                             (selectionChanged)="populatePmbSeupFormFields($event)"></ag-grid-angular>
+
+
+            <div class="form-group row"></div>
+            <h6 class="clr-blue">Job Setup</h6>
+            <form [formGroup]="pmpSetupForm" novalidate>
+
+                <div class="row">
+                    <!-- Textbox with label of Job ID -->
+                    <div class="form-group col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('jobId') }">
+                        <label class="col-form-label required-field-label" for="jobId" i18n>Job ID</label>
+                        <input tabindex="1" type="text" id="jobId" [fieldLevelSec]="'Job Id'"
+                               [params]="{secColDetails: secColDetails, isEditState: editPmbSetup}" class="form-control"
+                               formControlName="jobId"/>
+                        <small class="text-danger" *ngIf="formValidation.isValidField('jobId')">
+                            {{ formValidation.errorMessage('jobId') }}
+                        </small>
+                    </div>
+
+                    <!-- DynamicText with label of Request User -->
+                    <div class="form-group col-md-4"
+                         [ngClass]="{'has-danger': formValidation.isValidField('requestUser') }">
+                        <label class="col-form-label" for="requestUser" i18n>Request User</label>
+                        <input type="text" readonly [fieldLevelSec]="'Request User'"
+                               [params]="{secColDetails: secColDetails, isEditState: editPmbSetup}" id="requestUser"
+                               formControlName="requestUser" class="form-control"/>
+                    </div>
+
+                    <!-- DynamicText with label of Date -->
+                    <div class="form-group col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('date') }">
+                        <app-datepicker [formGroup]="pmpSetupForm"
+                                        [formValidation]="formValidation"
+                                        [disabled]="true"
+                                        [field]="'date'" [labelText]="'Date'"></app-datepicker>
+                    </div>
+
+                </div>
+
+                <div class="form-group row">
+                    <!-- DynamicText with label of Billing Cycle -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('billingCycle') }">
+                        <label class="col-form-label required-field-label" for="billingCycle" i18n>Billing Cycle</label>
+                        <input tabindex="2" type="text" [fieldLevelSec]="'Billing Cycle'"
+                               [params]="{secColDetails: secColDetails, isEditState: editPmbSetup}" id="billingCycle"
+                               formControlName="billingCycle" class="form-control" (change)="validateBillingCycle()"/>
+                    </div>
+
+                    <!-- DynamicText with label of Bill Thru Req. Dt. -->
+                    <div class="col-md-4"
+                         [ngClass]="{'has-danger': formValidation.isValidField('billThruRequestDate') }">
+                        <app-datepicker tabIndex="5" [isRequired]="true" [formGroup]="pmpSetupForm" [formValidation]="formValidation"
+                                        [field]="'billThruRequestDate'" [labelText]="'Bill Thru Req. Dt.'"
+                                        (onDateChanged)="validateBillingCycle($event)"></app-datepicker>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <!-- DynamicText with label of Billing Type -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('billingType') }">
+                        <label class="col-form-label required-field-label" for="billingType" i18n>Billing Type</label>
+                        <select tabindex="3" id="billingType" class="form-control" name="billingType" formControlName="billingType"
+                                [fieldLevelSec]="'Billing Type'"
+                                [params]="{secColDetails: secColDetails, isEditState: editPmbSetup}"
+                                (change)="validateBillingCycle($event)">
+                            <option *ngFor="let bt of billingTypes"
+                                    [ngValue]="bt.dddwDtlPrimaryKey.dataVal">{{bt.dddwDtlPrimaryKey.displayVal}}</option>
+                        </select>
+                    </div>
+
+                    <!-- DynamicText with label of Post Month -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('postMonth') }">
+                        <app-datepicker [formGroup]="pmpSetupForm"
+                                        [formValidation]="formValidation"
+                                        [isRequired]="true"
+                                        [field]="'postMonth'" [labelText]="'Post Month'"></app-datepicker>
+                    </div>
+
+                </div>
+
+                <div class="form-group row">
+                    <!-- DynamicText with label of Bill Job Type -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('billJobType') }">
+                        <label class="col-form-label required-field-label" for="billJobType" i18n>Bill Job Type</label>
+                        <select tabindex="4" id="billJobType" class="form-control" name="billJobType" formControlName="billJobType"
+                                [fieldLevelSec]="'Bill Job Type'"
+                                [params]="{secColDetails: secColDetails, isEditState: editPmbSetup}"
+                                (change)="validateBillingCycle($event)">
+                            <option *ngFor="let bjt of billJobTypes"
+                                    [ngValue]="bjt.dddwDtlPrimaryKey.dataVal">{{bjt.dddwDtlPrimaryKey.displayVal}}</option>
+                        </select>
+                    </div>
+
+                </div>
+
+                <div class="form-group row"></div>
+                <h6 class="clr-blue">Next Action</h6>
+
+                <div class="form-group row">
+                    <div class="col-md-4 form-control-static mb-0" i18n>Action</div>
+
+                    <div *ngFor="let action of actions" class="col-md-2"
+                         [ngClass]="{'has-error': formValidation.isValidField('nextAction') }">
+                        <div class="checkbox col-md-12">
+                            <input id="nextAction" [fieldLevelSec]="'Next Action'"
+                                   [params]="{secColDetails: secColDetails, isEditState: editPmbSetup}"
+                                   value="{{action.dddwDtlPrimaryKey.dataVal}}" formControlName="nextAction"
+                                   type="radio">
+                            <label class="checkbox">{{action.dddwDtlPrimaryKey.displayVal}}</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <!-- DynamicText with label of Status -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('status') }">
+                        <label class="col-form-label" for="status" i18n>Status</label>
+                        <input type="text" readonly [fieldLevelSec]="'Status'"
+                               [params]="{secColDetails: secColDetails, isEditState: editPmbSetup}"
+                               id="status" formControlName="statusDescription" class="form-control"/>
+                    </div>
+
+                </div>
+
+                <div class="form-group row"></div>
+                <h6 class="clr-blue">Run Options</h6>
+
+                <div class="form-group row">
+                    <div class="col-md-4 form-control-static mb-0" i18n>Request Type</div>
+
+                    <!-- Checkbox with label of Request Type ^CB Immedi -->
+                    <div class="col-md-2" [ngClass]="{'has-error': formValidation.isValidField('requestType') }">
+                        <div class="checkbox col-md-12">
+                            <input id="requestType" [fieldLevelSec]="'Request Type'"
+                                   [params]="{secColDetails: secColDetails, isEditState: editPmbSetup}" value="I"
+                                   formControlName="requestType" type="radio">
+                            <label class="checkbox">Immediate</label>
+                        </div>
+                    </div>
+
+                    <!-- Checkbox with label of ^CB Defer -->
+                    <div class="col-md-2" [ngClass]="{'has-error': formValidation.isValidField('requestType')}">
+                        <div class="checkbox col-md-12">
+                            <input id="requestType" [fieldLevelSec]="'Request Type'"
+                                   [params]="{secColDetails: secColDetails, isEditState: editPmbSetup}" value="D"
+                                   formControlName="requestType" type="radio">
+                            <label class="checkbox">Deferred</label>
+                        </div>
+                        <span class="help-block" *ngIf="formValidation.isValidField('requestType')">
+                            {{ formValidation.errorMessage('requestType')  }}
+                        </span>
+                    </div>
+
+                </div>
+
+                <div class="form-group row">
+                    <!-- Textbox with label of Comments -->
+                    <div class="col-md-8" [ngClass]="{'has-danger': formValidation.isValidField('comments') }">
+                        <label class="col-form-label" for="comments" i18n>Comments</label>
+                        <input type="text" id="comments" [fieldLevelSec]="'Comments'"
+                               [params]="{secColDetails: secColDetails, isEditState: editPmbSetup}" class="form-control"
+                               formControlName="comments"/>
+                        <small class="text-danger" *ngIf="formValidation.isValidField('comments')">
+                            {{ formValidation.errorMessage('comments') }}
+                        </small>
+                    </div>
+
+                </div>
+            </form>
+        </ng-template>
+    </div>
+</div>
+<ng-keyboard-shortcuts [shortcuts]="shortcuts"></ng-keyboard-shortcuts>
+<ng-keyboard-shortcuts-help [key]="'f2'" [closeKey]="'escape'" [title]="'Hotkeys Help'"></ng-keyboard-shortcuts-help>

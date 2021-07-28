@@ -1,0 +1,53 @@
+<!-- Copyright (c) 2021 . All Rights Reserved. -->
+<div class="container-fluid">
+    <div class="card-block">
+        <form [formGroup]="payTheSubscriberForm" novalidate>
+            <h2 class="form-title card-label-admin">Pay The Subscriber</h2>
+            <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+            <app-pop-up-message #popUpMesssage (buttonclickEvent)="popUpButtonHandler($event)"  [(popupMessage)] = "popUpMessage"></app-pop-up-message>
+                        
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+                <div class="col-md-2 form-control-static mb-0" i18n>
+                    This is a WorldLink payment, choose a claim payment method
+                </div>
+            
+            </div>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of You have already chosen to pay this cliam to the provider -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('youHaveAlreadyChosenToPay') }">
+                     <label class="col-form-label" for="youHaveAlreadyChosenToPay" i18n>You have already chosen to pay this cliam to the provider</label>
+                     <input type="text" id="youHaveAlreadyChosenToPay"  [fieldLevelSec]="''" params]=""   class="form-control" formControlName="youHaveAlreadyChosenToPay"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('youHaveAlreadyChosenToPay')">
+                      {{ formValidation.errorMessage('youHaveAlreadyChosenToPay') }}
+                     </small>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- RadioButton with label of Pay the Subcriber -->
+                <div class="col-md-2" [ngClass]="{'has-error': displayMessage.payTheSubcriber }">
+                    <label class="col-form-label" for="payTheSubcriber" i18n>Pay the Subcriber</label>
+                    <input type="radio"  formControlName="payTheSubcriber"  [fieldLevelSec]="''" params]=""  value="Pay the Subcriber"/>
+                </div>
+            
+                <!-- RadioButtonGroup with Name of RadioButtonGroup 1104 -->
+                <div class="form-inline">
+                    <!--  with label of Pay the Provider -->
+                <div class="" [ngClass]="{'has-error': displayMessage.payTheProvider001 }">
+                    <label class="col-form-label" for="payTheProvider001" i18n>Pay the Provider</label>
+                    <input type="radio" value="Pay the Provider"  [fieldLevelSec]="" params]=""  formControlName="radiobuttongroup1104" />
+                </div>
+                </div>
+            
+            </div>
+        </form>
+    </div>
+</div>

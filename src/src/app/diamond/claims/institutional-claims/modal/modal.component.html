@@ -1,0 +1,30 @@
+<!-- Copyright (c) 2021 . All Rights Reserved. -->
+<div class="container-fluid">
+    <div class="card-block">
+
+        <h2 class="form-title card-label-admin">Claims Batch Initiation</h2>
+
+        <div class="col-sm-8 pull-left">
+            <form [formGroup]="icModalForm" novalidate>
+                <div class="form-group">
+                    <div class="col-md-12">
+                        <label class="col-form-label" for="batchNumber" i18n>Batch Number</label>
+                        <input type="text" id="batchNumber"  class="form-control" formControlName="batchNumber"/>
+                        <small class="text-danger" *ngIf="icFormValidation.isValidField('batchNumber')">
+                            {{ icFormValidation.errorMessage('batchNumber') }}
+                        </small>
+                    </div>
+                    <div class="col-md-12">
+                        <app-datepicker [isRequired]="false" [formGroup]="icModalForm" [formValidation]="icFormValidation"
+                                        [field]="'dateReceived'"
+                                        [labelText]="'Date Received'">
+                        </app-datepicker>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="col-sm-4 pull-right">
+            <button class="col-sm-12 btn btn-primary" [disabled]="!icModalForm.valid" (click)="submit()">OK</button>
+        </div>
+    </div>
+</div>

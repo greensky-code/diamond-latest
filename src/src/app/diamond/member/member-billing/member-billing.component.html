@@ -1,0 +1,166 @@
+<!-- Copyright (c) 2020 . All Rights Reserved. -->
+<div class="container-fluid">
+    <div class="card-block">
+
+        <div class="row form-title">
+            <h2 class="col-md-4  card-label-admin"> Member Billing </h2>
+            <div class="col-md"><b class="readonly-label">View Only</b></div>
+        </div>
+            <button type="button" *ngIf="showIcon" class="close" aria-label="Close" (click)="modalClose()">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+            <app-pop-up-message #popUpMesssage (buttonclickEvent)="popUpButtonHandler($event)"  [(popupMessage)] = "popUpMessage"></app-pop-up-message>
+
+      <ng-template #loaderTemplate let-loaderValue = "value"  >
+        <div class="row justify-content-center mt-4" *ngIf="loaderValue">
+          <div class="spinner-border text-success" role="status">
+            <span class="sr-only">Loading...</span>
+          </div>
+        </div>
+      </ng-template>
+
+      <ng-container *ngTemplateOutlet="loaderTemplate;context:{value: secProgress }"></ng-container>
+
+      <ng-container *appWinSelect="{secWin: secWin, userTemplateId: userTemplateId, secModuleId: memberModuleId}">
+
+
+        <div class="row">
+          <menu-bar [menus]="menu" (onMenuClick)="onMenuItemClick($event)"></menu-bar>
+        </div>
+
+
+      <form [formGroup]="memberBillingForm" novalidate *ngIf="!secProgress">
+            <div class="form-group row">
+                <!-- Textbox with label of DIAMOND ID -->
+                 <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('diamondId') }">
+                     <label class="col-form-label" for="diamondId" i18n>DIAMOND ID</label>
+                     <input type="text" id="diamondId"  class="form-control" formControlName="diamondId"
+                            [fieldLevelSec]="'DIAMOND_ID'" [params]="{secColDetails: secColDetails, isEditState: true}"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('diamondId')">
+                      {{ formValidation.errorMessage('diamondId') }}
+                     </small>
+                 </div>
+
+                <!-- Textbox with label of Subscriber ID -->
+                 <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('subscriberId') }">
+                     <label class="col-form-label" for="subscriberId" i18n>Subscriber ID</label>
+                     <input type="text" (change)="onChangeSubscriberId($event)" id="subscriberId"  class="form-control" formControlName="subscriberId"
+                            (keydown)="onLookupFieldChange($event)"
+                            [fieldLevelSec]="'SUBSCRIBER_ID'" [params]="{secColDetails: secColDetails, isEditState: true}"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('subscriberId')">
+                      {{ formValidation.errorMessage('subscriberId') }}
+                     </small>
+                 </div>
+
+            </div>
+
+                        <!-- DataGrid with Name of DataGrid001 -->
+                    <ag-grid-angular #agGrid class="ag-theme-fresh" [gridOptions]="dataGrid001GridOptions"
+                    style="width: 100%; height: 300px;"
+                    [enableSorting]="true"
+                    [enableFilter]="false"
+                    [floatingFilter]="false"
+                    [pagination]="true"
+                    [showToolPanel]="true"
+                    (selectionChanged)="onSelectionChanged($event)"
+                    >
+                    </ag-grid-angular>
+              <br>
+                        <!-- DataGrid with Name of DataGrid002 -->
+                    <ag-grid-angular #agGrid class="ag-theme-fresh" [gridOptions]="dataGrid002GridOptions"
+                    style="width: 100%; height: 300px;"
+                    [enableSorting]="true"
+                    [enableFilter]="false"
+                    [floatingFilter]="false"
+                    [pagination]="true"
+                    [showToolPanel]="true"
+                    (selectionChanged)="onSelectionGrid2Changed($event)"
+                    >
+
+                    </ag-grid-angular>
+
+            <div class="form-group row">
+                <!-- Textbox with label of Billing Begin -->
+                 <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('billingBegin') }">
+                     <label class="col-form-label" for="billingBegin" i18n>Billing Begin</label>
+                     <input type="text" id="billingBegin" readonly  class="form-control" formControlName="billingBegin"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('billingBegin')">
+                      {{ formValidation.errorMessage('billingBegin') }}
+                     </small>
+                 </div>
+
+                <!-- DynamicText with label of Billed Through -->
+                 <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('billedThrough') }">
+                     <label class="col-form-label" for="billedThrough" i18n>Billed Through</label>
+                     <input type="text"  id="billedThrough" formControlName="billedThrough" class="form-control" readonly/>
+                 </div>
+
+            </div>
+
+            <div class="form-group row">
+                <!-- Checkbox with label of Use EFT -->
+                <div class="col-md-6 pl-0" [ngClass]="{'has-error': displayMessage.useEft }">
+                    <div class="checkbox col-md-12 mt-4 pt-3">
+                      <input id="useEft" value="useEft" formControlName="useEft" type="checkbox"
+                             [fieldLevelSec]="'USE_EFT_FLG'" [params]="{secColDetails: secColDetails, isEditState: true}">
+                        <label class="checkbox">
+                            Use EFT
+                         </label>
+                    </div>
+                    <span class="help-block" *ngIf="displayMessage.useEft">
+                        {{ displayMessage.useEft  }}
+                     </span>
+                </div>
+
+                <!-- DynamicText with label of Paid Through -->
+                <div class="form-group col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('paidThrough') }">
+                    <app-datepicker [formGroup]="memberBillingForm" [formValidation]="formValidation" [field]="'paidThrough'" [labelText]="'Paid Through'"
+                                    [fieldLevelSec]="'PAID_THRU_DATE'" [params]="{secColDetails: secColDetails, isEditState: true}"></app-datepicker>
+                </div>
+
+            </div>
+
+            <div class="form-group row">
+                <!-- Textbox with label of Ovr. Code -->
+                 <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('ovrCode') }">
+                     <label class="col-form-label" for="ovrCode" i18n>Ovr. Code</label>
+                     <select id="ovrCode"  class="form-control" formControlName="ovrCode">
+                        <option value="">-Select-</option>
+                        <option *ngFor="let dddwDtl of dddwDtls" [value]="dddwDtl.dddwDtlPrimaryKey.dataVal"
+                                [fieldLevelSec]="'PREM_OVERRIDE_CODE'" [params]="{secColDetails: secColDetails, isEditState: true}">{{dddwDtl.dddwDtlPrimaryKey.displayVal}}</option>
+                     </select>
+
+
+                     <small class="text-danger" *ngIf="formValidation.isValidField('ovrCode')">
+                      {{ formValidation.errorMessage('ovrCode') }}
+                     </small>
+                 </div>
+
+                <!-- Textbox with label of Ovr. Amount -->
+                 <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('ovrAmount') }">
+                     <label class="col-form-label" for="ovrAmount" i18n>Ovr. Amount</label>
+                     <input type="text" id="ovrAmount"  class="form-control" formControlName="ovrAmount" (focusout)="setCurrency($event)"
+                            [fieldLevelSec]="'PREM_OVERRIDE_AMT'" [params]="{secColDetails: secColDetails, isEditState: true}"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('ovrAmount')">
+                      {{ formValidation.errorMessage('ovrAmount') }}
+                     </small>
+                 </div>
+
+                <!-- Textbox with label of Ovr. Step -->
+                 <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('ovrStep') }">
+                     <label class="col-form-label" for="ovrStep" i18n>Ovr. Step</label>
+                     <input type="text" id="ovrStep"  class="form-control" formControlName="ovrStep" (keyup)="validateValue($event)"
+                            [fieldLevelSec]="'PREM_OVERRIDE_STEP'" [params]="{secColDetails: secColDetails, isEditState: true}"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('ovrStep')">
+                      {{ formValidation.errorMessage('ovrStep') }}
+                     </small>
+                 </div>
+
+            </div>
+        </form>
+      </ng-container>
+    </div>
+</div>
+<ng-keyboard-shortcuts [shortcuts]="shortcuts"></ng-keyboard-shortcuts>
+<ng-keyboard-shortcuts-help [key]="'f2'" [closeKey]="'escape'" [title]="'Hotkeys Help'"></ng-keyboard-shortcuts-help>

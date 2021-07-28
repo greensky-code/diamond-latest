@@ -1,0 +1,66 @@
+<!-- Copyright (c) 2021 . All Rights Reserved. -->
+<div class="container-fluid">
+    <div class="card-block">
+        <h2 class="form-title card-label-admin">Member Addons</h2>
+        <button type="button" class="close" aria-label="Close"
+                (click)="ngbActiveModal.dismiss()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <nav ngbNav #nav="ngbNav" class="nav-tabs" [(activeId)]="activeTab">
+            <ng-container  [ngbNavItem]="1">
+                <a ngbNavLink>RxPrime Details</a>
+                <ng-template ngbNavContent>
+                    <pharmacy [groupName]="groupName" [seqGroupId]="seqGroupId" [groupNumber]="groupNumber"> </pharmacy>
+                </ng-template>
+            </ng-container>
+            <ng-container  [ngbNavItem]="2">
+                <a ngbNavLink>CignaLink Details</a>
+                <ng-template ngbNavContent>
+
+                    <cigna-link-details  [seqAddressId]="seqAddressId" [groupName]="groupName" [seqGroupId]="seqGroupId" [groupNumber]="groupNumber"></cigna-link-details>
+                </ng-template>
+            </ng-container>
+            <ng-container  [ngbNavItem]="3" >
+                <a ngbNavLink>External Carrier</a>
+                <ng-template ngbNavContent>
+                    <externalcarrier [groupNumber]="groupNumber" [groupName]="groupName"></externalcarrier>
+                </ng-template>
+            </ng-container>
+
+
+            <ng-container ngbNavItem  [ngbNavItem]="4">
+                <a ngbNavLink>Pricing Partner Details</a>
+                <ng-template ngbNavContent>
+                    <pricing-partner-detail  [seqGroupId]="seqGroupId" [groupNumber]="groupNumber" [groupName]="groupName"></pricing-partner-detail>
+                </ng-template>
+            </ng-container>
+
+
+            <ng-container  [ngbNavItem]="5">
+                <a ngbNavLink>Province Tax Detail</a>
+                <ng-template ngbNavContent>
+                    <province-tax-detail [groupNumber]="groupNumber" [groupName]="groupName"></province-tax-detail>
+                </ng-template>
+            </ng-container>
+
+
+            <ng-container  [ngbNavItem]="6">
+                <a ngbNavLink>Other Info</a>
+                <ng-template ngbNavContent>
+
+                    <app-other-info [seqGroupId]="seqGroupId" [groupNumber]="groupNumber" [groupName]="groupName"></app-other-info>
+
+                </ng-template>
+            </ng-container>
+
+
+            <ng-container  [ngbNavItem]="7">
+                <a ngbNavLink>Administrative Details</a>
+                <ng-template ngbNavContent>
+                    <administrativedetail [seqGroupId]="seqGroupId" [groupNumber]="groupNumber" [groupName]="groupName"></administrativedetail>
+                </ng-template>
+            </ng-container>
+        </nav>
+        <div [ngbNavOutlet]="nav" class="mt-2"></div>
+    </div>
+</div>

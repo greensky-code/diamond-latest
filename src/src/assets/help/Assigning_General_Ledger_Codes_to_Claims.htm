@@ -1,0 +1,286 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+    <title>Assigning G/L Codes to Claims</title>
+    <!--(Meta)==========================================================-->
+    <meta name="copyright"
+          value="© Copyright 2002 Health Systems Design Corp., a wholly owned subsidiary of Perot Systems Corporation. All rights reserved"/>
+    <meta content="RoboHELP by eHelp Corporation - www.ehelp.com" name="generator"/>
+    <meta content="0.1" name="generator-major-version"/>
+    <meta content="1" name="generator-minor-version"/>
+    <meta content="kadov" name="filetype"/>
+    <meta content="1" name="filetype-version"/>
+    <meta content="1" name="page-count"/>
+    <meta content="1500" name="layout-height"/>
+    <meta content="642" name="layout-width"/>
+    <!--(Links)=========================================================-->
+    <!--(Scripts)=======================================================-->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link href="assets/help/stylesheet.css" rel="stylesheet" type="text/css"/>
+    <link href="assets/help/page_styles.css" rel="stylesheet" type="text/css"/>
+    <link href="assets/help/calibreHtmlOutBasicCss.css" type="text/css" rel="stylesheet"/>
+
+</head>
+<body>
+
+<div class="calibreMeta">
+    <div class="calibreMetaTitle">
+
+
+        <h1>
+            <a href="../2nlvj-mfnql.html">DIAMOND 950 Help
+            </a>
+        </h1>
+
+
+    </div>
+    <div class="calibreMetaAuthor">
+        Unknown
+
+    </div>
+</div>
+
+<div class="calibreMain">
+
+    <div class="calibreEbookContent">
+
+        <div class="calibreEbNavTop">
+
+            <a href="ZIPRF_Parameters_Prerequisites.htm" class="calibreAPrev">previous page
+            </a>
+
+
+        </div>
+
+
+        <h4 class="calibre42">Assigning G/L Codes to Claims</h4>
+
+        <!--(Table)=========================================================-->
+        <table cellspacing="0" width="480" x-use-null-cells="" class="calibre5">
+
+            <tbody class="calibre6">
+            <tr valign="top" class="calibre7">
+                <td width="120px" class="calibre8">
+                    <p class="map-links"><a
+                            href="Assigning_General_Ledger_Codes_to_Claims.htm#Assigning_General_Ledger_Codes_to_Claims_Restrictions_MID"><img
+                            alt="image\assets/help/MidTopic_shg.gif" border="0" height="10"
+                            src="assets/help/MidTopic_shg.gif" width="18" class="calibre9"/></a> Restrictions</p></td>
+                <td width="126px" class="calibre10">
+                    <p class="map-links"><a
+                            href="Assigning_General_Ledger_Codes_to_Claims.htm#Assigning_General_Ledger_Codes_to_Claims_Instructions_MID"><img
+                            alt="image\assets/help/MidTopic_shg.gif" border="0" height="10"
+                            src="assets/help/MidTopic_shg.gif" width="18" class="calibre9"/></a> Instructions</p></td>
+                <td width="234px" class="calibre11">
+                    <p class="map-links"><a
+                            href="Assigning_General_Ledger_Codes_to_Claims.htm#Assigning_General_Ledger_Codes_to_Claims_FAQ_MID"><img
+                            alt="image\assets/help/MidTopic_shg.gif" border="0" height="10"
+                            src="assets/help/MidTopic_shg.gif" width="18" class="calibre9"/></a> Frequently Asked
+                        Questions</p></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <p class="step-comment-noline">Many health plans post claims expenses to different
+            sets of general ledger (G/L) accounts depending on line of business, type
+            of service, provider status, and the like. Use keyword GLASS to assign
+            the G/L accounts and G/L company, depending on determinants you define.
+        </p>
+
+        <p class="step-comment-noline">The assignment of G/L accounts applies to online, EDI,
+            and API processed claims.</p>
+
+        <p class="step-comment-noline">Several keywords are used to set up the G/L cross reference
+            codes, define the claim data that drives posting to different accounts,
+            and manage the specific data values that determine which company and set
+            of accounts are associated with different categories of claim expense:</p>
+
+        <ul class="calibre17">
+
+            <li class="kadov-p-cstep-comment-bullet-noline"><p class="bullet-list-h3">Use keyword
+                COMPF to add G/L company codes.</p></li>
+
+            <li class="kadov-p-cstep-comment-bullet-noline"><p class="bullet-list-h3">Use keyword
+                GLREF to add G/L reference codes to cross reference sets of debit and
+                credit accounts for the net amount, for the provider’s withhold amount,
+                for any calculated discount amount, and for any calculated interest amount.</p></li>
+
+            <li class="kadov-p-cstep-comment-bullet-noline"><p class="bullet-list-h3">Use keyword
+                PARAM, which contains up to six GLASSIGN records, to define the data elements
+                on the claim or member’s group to be determinants of the G/L assignment</p></li>
+
+            <li class="kadov-p-cstep-comment-bullet-noline"><p class="bullet-list-h3">Use keyword
+                GLASS to add rules that tie values for the GLASSIGN data elements to company
+                and G/L cross-reference codes.</p></li>
+        </ul>
+
+        <p class="doc-level"><a name="Assigning_General_Ledger_Codes_to_Claims_Restrictions_MID"></a>Restrictions</p>
+
+        <p class="step-comment-noline">At least one GLASSIGN record must be set up in keyword
+            PARAM.</p>
+
+        <p class="step-comment-noline">Each GLASSIGN record must identify a unique determinant.</p>
+
+        <p class="doc-level"><a name="Assigning_General_Ledger_Codes_to_Claims_Instructions_MID"></a>Instructions</p>
+
+        <!--(Table)=========================================================-->
+        <table cellspacing="0" width="526" x-use-null-cells="" class="calibre12">
+
+            <tbody class="calibre6">
+            <tr valign="top" class="calibre7">
+                <td width="250px" class="calibre13">
+                    <p class="tbl-header">Step</p></td>
+                <td width="276px" class="calibre14">
+                    <p class="tbl-header">Comment</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre7">
+                <td width="250px" class="calibre15">
+                    <p class="step1">1. Identify the G/L
+                        accounts to which claims expense will be posted.</p></td>
+                <td width="276px" class="calibre16">
+                    <p class="step-comment"> </p></td>
+            </tr>
+
+            <tr valign="top" class="calibre7">
+                <td width="250px" class="calibre15">
+                    <p class="step1">2. In keyword COMPF,
+                        add G/L company codes.</p></td>
+                <td width="276px" class="calibre16">
+                    <p class="step-comment"> </p></td>
+            </tr>
+
+            <tr valign="top" class="calibre7">
+                <td width="250px" class="calibre15">
+                    <p class="step1">3. In keyword GLREF,
+                        add G/L reference codes.</p></td>
+                <td width="276px" class="calibre16">
+                    <p class="step-comment">G/L reference codes are cross
+                        references to the actual G/L account numbers—a primary set of accounts
+                        to post the claim net amount, and a secondary set of accounts to post
+                        provider withholds, a third set of accounts to post claim discount amounts,
+                        and a fourth set of accounts to post claim interest amounts. </p></td>
+            </tr>
+
+            <tr valign="top" class="calibre7">
+                <td width="250px" class="calibre15">
+                    <p class="step1">4. Identify which data
+                        elements associated with a claim record will determine the posting of
+                        expense to the general ledger.</p></td>
+                <td width="276px" class="calibre16">
+                    <p class="step-comment">You may use up to 6 determinants;
+                        you must use at least one. Any field on the claim header and claim detail,
+                        plus the <span class="calibre4">Group State</span> field on
+                        GROUP are available.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre7">
+                <td width="250px" class="calibre15">
+                    <p class="step1">5. For each determinant
+                        selected, add a GLASSIGNx record in keyword PARAM to define the determinant.</p></td>
+                <td width="276px" class="calibre16">
+                    <p class="step-comment">If State from GROUP is used,
+                        it must be entered in GLASSIGN1.</p>
+                    <p class="step-comment-noline">The precise field name is entered in Parameter
+                        1, e.g., for line of business the entry is LINE_OF_BUSINESS.</p>
+                    <p class="step-comment-noline">The determinant name (field literal), which
+                        is displayed in GLASS, is entered in Parameter 2.</p>
+                    <p class="step-comment-noline">If you use whole claim pricing for institutional
+                        claims, you must also enter either HSD_INST_CLAIM_HEADER or HSD_INST_CLAIM_DETAIL
+                        in Parameter 3, to specify where the determinant entered in Parameter
+                        1 resides.</p>
+                    <p class="step-comment-noline">For example, if you use LINE_OF_BUSINESS in
+                        Parameter 1 and you use whole claim pricing, enter HSD_INST_CLAIM_HEADER
+                        (the table where Line of Business is located) in Parameter 3. </p>
+                    <p class="step-comment-noline">If you leave Parameter 3 blank, DIAMOND assumes
+                        you are not using whole claim pricing for institutional claims. Institutional
+                        and professional claims priced on a line-by-line basis will be assigned
+                        the correct G/L code based on the values entered in Parameters 1 and 2.
+                        If Parameter 3 is blank, any whole claim priced claim lines will not be
+                        assigned to a valid G/L code and the user will receive an error message
+                        requiring manual entry of the G/L code on the whole claim price (system-generated)
+                        line.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre7">
+                <td width="250px" class="calibre15">
+                    <p class="step1">6. In keyword GLASS,
+                        enter the values for the determinants defined in Step 5, and the G/L reference
+                        and company codes that correspond to those values.</p></td>
+                <td width="276px" class="calibre16">
+                    <p class="step-comment">Each unique combination of
+                        values for the determinants you have defined must be entered.</p>
+                    <p class="step-comment-noline">Because this may require a large number of
+                        entries, it may be more efficient to define the combinations external
+                        to DIAMOND, using Microsoft Excel or other matrix, and upload that matrix
+                        to DIAMOND.</p></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <p class="doc-level"><a name="Assigning_General_Ledger_Codes_to_Claims_FAQ_MID"></a>Frequently
+            Asked Questions</p>
+
+        <ul class="calibre17">
+
+            <li class="kadov-p-cfaq"><p class="faq">Does the G/L Assignment table
+                allow you to use ‘fall through’ logic in assigning G/L codes to professional
+                and institutional claims?</p></li>
+        </ul>
+
+        <p class="faq-ans">You can define one default G/L code for claims. To create
+            this record, add a GLASS record where all the determinant values on the
+            record are left blank and point it to a specific company and G/L reference
+            code.</p>
+
+        <p class="faq-ans">Do not add a GLASS record where one determinant field
+            is blank while other determinant fields on the same record contain values.
+            DIAMOND logic assumes an exact match between each of the determinant values
+            on the GLASS table with the corresponding fields on the claim header or
+            detail. </p>
+
+        <ul class="calibre17">
+
+            <li class="kadov-p-cfaq"><p class="faq">Where are G/L codes used in
+                DIAMOND?</p></li>
+        </ul>
+
+        <p class="faq-ans">DIAMOND G/L codes are used to record premium billing revenue
+            and account receivables; institutional and professional claims expense;
+            and capitation risk pool allocations, depletions, and stoploss.</p>
+
+        <ul class="calibre17">
+
+            <li class="kadov-p-cfaq"><p class="faq">How does this G/L account information
+                get sent to my financial system?</p></li>
+        </ul>
+
+        <p class="faq-ans">During DIAMOND’s posting process the calculated premiums,
+            cash receipts, claims expense, or capitation calculations are written
+            to a General Ledger Interface table (GL_INTERFACE_TABLE). This table contains
+            information on the transaction’s company code, G/L code, and G/L debit
+            and credit numbers. You can create an extract of this table to feed directly
+            into your financial system. </p>
+
+
+    </div>
+
+
+
+
+    <div class="calibreEbNav">
+
+        <a href="ZIPRF_Parameters_Prerequisites.htm" class="calibreAPrev">previous page
+        </a>
+
+
+        <a href="../2nlvj-mfnql.html" class="calibreAHome">start
+        </a>
+
+
+    </div>
+
+</div>
+
+</body>
+</html>

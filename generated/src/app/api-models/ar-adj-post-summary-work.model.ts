@@ -1,0 +1,10 @@
+/* Copyright (c) 2020 . All Rights Reserved. */
+
+export class ArAdjPostSummaryWork {
+  seqAradjId: number;
+  companyCode: string;
+  chartOfAcctCode: string;
+  postingMonth: Date;
+  debitAmt: number;
+  creditAmt: number;
+}

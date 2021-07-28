@@ -1,0 +1,68 @@
+<!-- Copyright (c) 2021 . All Rights Reserved. -->
+<div class="container-fluid">
+    <div class="card-block">
+        <form [formGroup]="noteTypeForm" novalidate>
+            <h2 class="form-title card-label-admin">Note Type</h2>
+            <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+            <app-pop-up-message #popUpMesssage (buttonclickEvent)="popUpButtonHandler($event)"  [(popupMessage)] = "popUpMessage"></app-pop-up-message>
+                        
+                        <!-- DataGrid with Name of DataGrid -->
+                    <button (click)="dataGridGridOptionsExportCsv()">Export</button>
+                    <ag-grid-angular #agGrid class="ag-theme-fresh" [gridOptions]="dataGridGridOptions"
+                    style="width: 100%; height: 300px;"
+                    [enableSorting]="true"
+                    [enableFilter]="true"
+                    [floatingFilter]="true"
+                    [pagination]="true"
+                    [showToolPanel]="true">
+                    </ag-grid-angular>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of Note Type -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('noteType') }">
+                     <label class="col-form-label" for="noteType" i18n>Note Type</label>
+                     <input type="text" id="noteType"  [fieldLevelSec]="'Note Type'" params]="Note Type"   class="form-control" formControlName="noteType"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('noteType')">
+                      {{ formValidation.errorMessage('noteType') }}
+                     </small>
+                 </div>
+            
+                <!-- Textbox with label of Priority -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('priority') }">
+                     <label class="col-form-label" for="priority" i18n>Priority</label>
+                     <input type="text" id="priority"  [fieldLevelSec]="'Priority'" params]="Note Type"   class="form-control" formControlName="priority"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('priority')">
+                      {{ formValidation.errorMessage('priority') }}
+                     </small>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of Description -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('description') }">
+                     <label class="col-form-label" for="description" i18n>Description</label>
+                     <input type="text" id="description"  [fieldLevelSec]="'Description'" params]="Note Type"   class="form-control" formControlName="description"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('description')">
+                      {{ formValidation.errorMessage('description') }}
+                     </small>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <div class="col-md-2 form-control-static mb-0" i18n>
+                    User Label 1
+                </div>
+            
+                <div class="col-md-2 form-control-static mb-0" i18n>
+                    Required
+                </div>
+            
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,69 @@
+<!-- Copyright (c) 2021 . All Rights Reserved. -->
+<div class="container-fluid">
+    <div class="card-block">
+        <h2 class="form-title card-label-admin">Member Addons</h2>
+        <button type="button" class="close" aria-label="Close"
+                (click)="ngbActiveModal.dismiss()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+
+        <div class="form-group row bg-dark text-white text-center">
+            <div class="col-md-4 form-control-static mb-0 font-weight-bold " i18n>
+                {{lastName}}  {{firstName}}
+                <br>
+                <span class=" pt-1 required-field-label "> {{subscriberId}}</span>
+            </div>
+          
+        </div>
+        
+        <nav ngbNav #nav="ngbNav" class="nav-tabs" [(activeId)]="activeTab">
+            <ng-container  [ngbNavItem]="1">
+                <a ngbNavLink>Address</a>
+                <ng-template ngbNavContent>
+                    <member-addon-address [subscriberId]="subscriberId" > </member-addon-address>
+                </ng-template>
+            </ng-container>
+            <ng-container  [ngbNavItem]="2">
+                <a ngbNavLink>E-mail</a>
+                <ng-template ngbNavContent>
+
+                </ng-template>
+            </ng-container>
+            <ng-container  [ngbNavItem]="3" >
+                <a ngbNavLink>Phone</a>
+                <ng-template ngbNavContent>
+
+                </ng-template>
+            </ng-container>
+
+
+            <ng-container ngbNavItem  [ngbNavItem]="4">
+                <a ngbNavLink>Bank Info</a>
+                <ng-template ngbNavContent>
+
+                </ng-template>
+            </ng-container>
+
+
+            <ng-container  [ngbNavItem]="5">
+                <a ngbNavLink>Contacts</a>
+                <ng-template ngbNavContent>
+
+                </ng-template>
+            </ng-container>
+
+
+            <ng-container  [ngbNavItem]="6">
+                <a ngbNavLink>Other Info</a>
+                <ng-template ngbNavContent>
+                    <addressotherinfo [seqMembId]="seqMembId" [seqEntityId]="seqEntityId"> </addressotherinfo>
+
+                </ng-template>
+            </ng-container>
+
+
+        
+        </nav>
+        <div [ngbNavOutlet]="nav" class="mt-2"></div>
+    </div>
+</div>

@@ -1,0 +1,130 @@
+<!-- Copyright (c) 2021 . All Rights Reserved. -->
+<div class="container-fluid">
+    <div class="card-block">
+        <form [formGroup]="holdDenyDeterminantsForm" novalidate>
+            <h2 class="form-title card-label-admin">Hold Deny Determinants</h2>
+            <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+            <app-pop-up-message #popUpMesssage (buttonclickEvent)="popUpButtonHandler($event)"  [(popupMessage)] = "popUpMessage"></app-pop-up-message>
+                        
+                        <!-- DataGrid with Name of DataGrid001 -->
+                    <button (click)="dataGrid001GridOptionsExportCsv()">Export</button>
+                    <ag-grid-angular #agGrid class="ag-theme-fresh" [gridOptions]="dataGrid001GridOptions"
+                    style="width: 100%; height: 300px;"
+                    [enableSorting]="true"
+                    [enableFilter]="true"
+                    [floatingFilter]="true"
+                    [pagination]="true"
+                    [showToolPanel]="true">
+                    </ag-grid-angular>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+                <!-- DynamicText with label of Claim Type -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('claimType') }">
+                     <label class="col-form-label" for="claimType" i18n>Claim Type</label>
+                     <input type="text"  [fieldLevelSec]="''" params]=""  readonly id="claimType" formControlName="claimType" class="form-control"/>
+                 </div>
+            
+                <!-- DynamicText with label of Action Code -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('actionCode') }">
+                     <label class="col-form-label" for="actionCode" i18n>Action Code</label>
+                     <input type="text"  [fieldLevelSec]="'Action Code'" params]="Determinant Rules"  readonly id="actionCode" formControlName="actionCode" class="form-control"/>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- DynamicText with label of Order No -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('orderNo') }">
+                     <label class="col-form-label" for="orderNo" i18n>Order No</label>
+                     <input type="text"  [fieldLevelSec]="''" params]=""  readonly id="orderNo" formControlName="orderNo" class="form-control"/>
+                 </div>
+            
+                <!-- DynamicText with label of Reason Code -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('reasonCode') }">
+                     <label class="col-form-label" for="reasonCode" i18n>Reason Code</label>
+                     <input type="text"  [fieldLevelSec]="''" params]=""  readonly id="reasonCode" formControlName="reasonCode" class="form-control"/>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of Description -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('description') }">
+                     <label class="col-form-label" for="description" i18n>Description</label>
+                     <input type="text" id="description"  [fieldLevelSec]="''" params]=""   class="form-control" formControlName="description"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('description')">
+                      {{ formValidation.errorMessage('description') }}
+                     </small>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+            </div>
+            
+                        <!-- DataGrid with Name of DataGrid002 -->
+                    <button (click)="dataGrid002GridOptionsExportCsv()">Export</button>
+                    <ag-grid-angular #agGrid class="ag-theme-fresh" [gridOptions]="dataGrid002GridOptions"
+                    style="width: 100%; height: 300px;"
+                    [enableSorting]="true"
+                    [enableFilter]="true"
+                    [floatingFilter]="true"
+                    [pagination]="true"
+                    [showToolPanel]="true">
+                    </ag-grid-angular>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+                <!-- DynamicText with label of Sequence -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('sequence') }">
+                     <label class="col-form-label" for="sequence" i18n>Sequence</label>
+                     <input type="text"  [fieldLevelSec]="''" params]=""  readonly id="sequence" formControlName="sequence" class="form-control"/>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- DynamicText with label of Determinant -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('determinant') }">
+                     <label class="col-form-label" for="determinant" i18n>Determinant</label>
+                     <input type="text"  [fieldLevelSec]="'Term Date'" params]="Determinant Rules"  readonly id="determinant" formControlName="determinant" class="form-control"/>
+                 </div>
+            
+                <!-- DynamicText with label of Determinant Column -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('determinantColumn') }">
+                     <label class="col-form-label" for="determinantColumn" i18n>Determinant Column</label>
+                     <input type="text"  [fieldLevelSec]="''" params]=""  readonly id="determinantColumn" formControlName="determinantColumn" class="form-control"/>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+            </div>
+            
+                        <!-- DataGrid with Name of DataGrid003 -->
+                    <button (click)="dataGrid003GridOptionsExportCsv()">Export</button>
+                    <ag-grid-angular #agGrid class="ag-theme-fresh" [gridOptions]="dataGrid003GridOptions"
+                    style="width: 100%; height: 300px;"
+                    [enableSorting]="true"
+                    [enableFilter]="true"
+                    [floatingFilter]="true"
+                    [pagination]="true"
+                    [showToolPanel]="true">
+                    </ag-grid-angular>
+            
+            <div class="form-group row">
+            </div>
+        </form>
+    </div>
+</div>

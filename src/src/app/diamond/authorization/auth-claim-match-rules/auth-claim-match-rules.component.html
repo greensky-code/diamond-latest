@@ -1,0 +1,348 @@
+<!-- Copyright (c) 2021 . All Rights Reserved. -->
+<div class="container-fluid">
+    <div class="card-block">
+        <form [formGroup]="authClaimMatchRulesForm" novalidate>
+
+            <div class="row form-title">
+                <h2 class="col-md-6 card-label-admin"> Auth Claim Match Rules  </h2>
+                <div class="col-md"><b class="readonly-label">View Only</b></div>
+            </div>
+            <button type="button" *ngIf="showIcon" class="modal-close close" aria-label="Close"
+                    (click)="activeModal.dismiss('Cross click')">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+            <app-pop-up-message #popUpMesssage (buttonclickEvent)="popUpButtonHandler($event)"
+                                [(popupMessage)]="popUpMessage"></app-pop-up-message>
+
+            <div class="row mt-3 mb-3">
+                <menu-bar [menus]="menu" (onMenuClick)="onMenuItemClick($event)"></menu-bar>
+            </div>
+
+            <!-- DataGrid with Name of DataGrid -->
+            <ag-grid-angular #agGrid class="ag-theme-fresh" [gridOptions]="dataGridGridOptions"
+                             style="width: 100%; height: 300px;"
+                             [enableSorting]="true"
+                             [enableFilter]="true"
+                             [floatingFilter]="true"
+                             [pagination]="true"
+                             [showToolPanel]="true"
+                             (selectionChanged)="onSelectionChanged($event)">
+
+            </ag-grid-angular>
+
+            <div class="form-group row">
+            </div>
+
+            <div class="form-group row">
+                <div class="col-md-12 form-control-static mb-0" i18n>
+                    Match Rule
+                </div>
+
+            </div>
+
+            <div class="form-group row">
+                <!-- DynamicText with label of Line Of Business -->
+                <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('lineOfBusiness') }">
+                    <label class="col-form-label" for="lineOfBusiness" i18n>Line Of Business</label>
+                    <input type="text" [fieldLevelSec]="''" readonly id="lineOfBusiness"
+                           formControlName="lineOfBusiness" class="form-control"/>
+                </div>
+
+                <!-- Checkbox with label of Auth Place Of Svc -->
+                <div class="checkbox col-md-4">
+                    <input id="authPlaceOfSvc" [fieldLevelSec]="'Auth Place Service Used'" value="authPlaceOfSvc"
+                           formControlName="authPlaceOfSvc" type="checkbox"
+                           disabled>
+                    <label class="checkbox">
+                        Auth Place Of Svc
+                    </label>
+                </div>
+
+                <!-- DynamicText with Name of DynamicText001 -->
+                <!--                 <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('dynamicText001') }">-->
+                <!--                     <label class="col-form-label" for="dynamicText001" i18n>&nbsp;</label>-->
+                <!--                     <input type="text"  [fieldLevelSec]="''"   readonly id="dynamicText001" formControlName="dynamicText001" class="form-control"/>-->
+                <!--                 </div>-->
+
+            </div>
+
+            <div class="form-group row">
+                <!-- DynamicText with label of Claim Type -->
+                <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('claimType') }">
+                    <label class="col-form-label" for="claimType" i18n>Claim Type</label>
+                    <select type="text" disabled id="claimType" class="form-control" formControlName="claimType">
+                        <option [value]="t.systemCode" *ngFor="let t of claimTypes">{{t.systemCodeDesc1}}</option>
+                    </select>
+                </div>
+
+
+                <!-- Textbox with label of Auth Status -->
+                <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('authStatus') }">
+                    <label class="col-form-label" for="authStatus" i18n>Auth Status</label>
+                    <select type="text" disabled id="authStatus" class="form-control" formControlName="authStatus">
+                        <option [value]="t.value" *ngFor="let t of authStatus">{{t.key}}</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <!-- DynamicText with label of Match Order -->
+                <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('matchOrder') }">
+                    <label class="col-form-label" for="matchOrder" i18n>Match Order</label>
+                    <input type="text" [fieldLevelSec]="''" readonly id="matchOrder" formControlName="matchOrder"
+                           class="form-control"/>
+                </div>
+
+                <!-- Textbox with label of Auth Level -->
+                <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('authLevel') }">
+                    <label class="col-form-label" for="authLevel" i18n>Auth Level</label>
+                    <select type="text" disabled id="authLevel" class="form-control" formControlName="authLevel">
+                        <option [value]="t.systemCode" *ngFor="let t of authLevels">{{t.systemCode}}</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <!-- Textbox with label of Description -->
+                <div class="col-md-12" [ngClass]="{'has-danger': formValidation.isValidField('description') }">
+                    <label class="col-form-label" for="description" i18n>Description</label>
+                    <input type="text" id="description" [fieldLevelSec]="''" class="form-control"
+                           formControlName="description"
+                           readonly/>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('description')">
+                        {{ formValidation.errorMessage('description') }}
+                    </small>
+                </div>
+            </div>
+
+            <div class="form-group row">
+            </div>
+
+            <div class="form-group row">
+                <div class="col-md-12 form-control-static mb-0" i18n>
+                    Match Criteria
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <!-- Checkbox with label of DIAMOND ID -->
+                <div class="checkbox col">
+                    <input id="diamondId" [fieldLevelSec]="'Diamond Id Used'" value="diamondId"
+                           formControlName="diamondId" type="checkbox"
+                           disabled>
+                    <label class="checkbox">
+                        DIAMOND ID
+                    </label>
+                </div>
+
+                <!-- Checkbox with label of Diagnosis -->
+                <div class="checkbox col">
+                    <input id="diagnosis" [fieldLevelSec]="'Diagnosis Used'" value="diagnosis"
+                           formControlName="diagnosis" type="checkbox"
+                           disabled>
+                    <label class="checkbox">
+                        Diagnosis
+                    </label>
+                    <label *ngIf="!this.authClaimMatchRulesForm.get('diagnosis').value"> | match
+                        first {{characterCount}} characters</label>
+                    <label *ngIf="this.authClaimMatchRulesForm.get('diagnosis').value"> | match first
+                        <u>{{characterCount}}</u> characters</label>
+                </div>
+
+                <!--                    <li class="checkbox_input">-->
+                <!--                        &lt;!&ndash; DynamicText with label of Match First &ndash;&gt;-->
+                <!--                        <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('matchFirst') }">-->
+                <!--                            <label class="col-form-label" for="matchFirst" i18n>Match First</label>-->
+                <!--                            <input type="text" [fieldLevelSec]="'Match First Digits'" readonly id="matchFirst"-->
+                <!--                                   formControlName="matchFirst" class="form-control"/>-->
+                <!--                        </div>-->
+                <!--                    </li>-->
+                <!--                    <li class="checkbox_input">-->
+                <!--                        <div class="col-md-2 form-control-static mb-0" i18n>-->
+                <!--                            Characters-->
+                <!--                        </div>-->
+                <!--                    </li>-->
+            </div>
+
+
+            <div class="form-group row">
+                <!-- Checkbox with label of Auth No. Match -->
+                <div class="checkbox col">
+                    <input id="authNoMatch" [fieldLevelSec]="'Auth Number Match'" value="authNoMatch"
+                           formControlName="authNoMatch" type="checkbox"
+                           disabled>
+                    <label class="checkbox">
+                        Auth No. Match
+                    </label>
+                </div>
+
+                <!-- Checkbox with label of Claim Place of Svc -->
+                <div class="checkbox col">
+                    <input id="claimPlaceOfSvc" [fieldLevelSec]="'Claim Place Service Used'" value="claimPlaceOfSvc"
+                           formControlName="claimPlaceOfSvc" type="checkbox"
+                           disabled>
+                    <label class="checkbox">
+                        Claim Place of Svc
+                    </label>
+                </div>
+
+                <!--                &lt;!&ndash; DynamicText with Name of DynamicText002 &ndash;&gt;-->
+                <!--                <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('dynamicText002') }">-->
+                <!--                    <label class="col-form-label" for="dynamicText002" i18n>&nbsp;</label>-->
+                <!--                    <input type="text" [fieldLevelSec]="''" readonly id="dynamicText002"-->
+                <!--                           formControlName="dynamicText002" class="form-control"/>-->
+                <!--                </div>-->
+
+            </div>
+
+            <div class="form-group row">
+                <!-- Checkbox with label of Provider -->
+                <div class="checkbox col">
+                    <input id="provider" [fieldLevelSec]="'Provider Used'" value="provider"
+                           formControlName="provider" type="checkbox"
+                           disabled>
+                    <label class="checkbox">
+                        Provider
+                    </label>
+                </div>
+
+                <!-- Checkbox with label of Auth/Claim Exact Place of Svc -->
+                <div class="checkbox col">
+                    <input id="authclaimExactPlaceOfSvc" [fieldLevelSec]="'Exact Place Service Used'"
+                           value="authclaimExactPlaceOfSvc" formControlName="authclaimExactPlaceOfSvc"
+                           type="checkbox"
+                           disabled>
+                    <label class="checkbox">
+                        Auth/Claim Exact Place of Svc
+                    </label>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <!-- Checkbox with label of Primary Specialty -->
+                <div class="checkbox col">
+                    <input id="primarySpecialty" [fieldLevelSec]="'Primary Specialty Used'" value="primarySpecialty"
+                           formControlName="primarySpecialty" type="checkbox"
+                           disabled>
+                    <label class="checkbox">
+                        Primary Specialty
+                    </label>
+                </div>
+
+                <!-- Checkbox with label of Surgical Proc -->
+                <div class="checkbox col">
+                    <input id="surgicalProc" [fieldLevelSec]="'Surgery Proc Used'" value="surgicalProc"
+                           formControlName="surgicalProc" type="checkbox"
+                           disabled>
+                    <label class="checkbox">
+                        Surgical Proc
+                    </label>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <!-- Checkbox with label of Vendor ID -->
+                <div class="checkbox col">
+                    <input id="vendorId" [fieldLevelSec]="'Vendor Id Used'" value="vendorId"
+                           formControlName="vendorId" type="checkbox"
+                           disabled>
+                    <label class="checkbox">
+                        Vendor ID
+                    </label>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <!-- Checkbox with label of Faculty ID -->
+                <div class="checkbox col">
+                    <input id="facultyId" [fieldLevelSec]="'Facility Id Used'" value="facultyId"
+                           formControlName="facultyId" type="checkbox"
+                           disabled>
+                    <label class="checkbox">
+                        Faculty ID
+                    </label>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <!-- Checkbox with label of Primary DOS -->
+                <div class="checkbox col">
+                    <input id="primaryDos" [fieldLevelSec]="'Primary Dos Used'" value="primaryDos"
+                           formControlName="primaryDos" type="checkbox"
+                           disabled>
+                    <label class="checkbox">
+                        Primary DOS
+                    </label>
+                </div>
+
+                <!-- Textbox with label of Auth Begin Days Before -->
+                <div class="col">
+                    <label class="col-form-label" for="authBeginDaysBefore" i18n>Auth Begin Days Before</label>
+                    <input type="text" id="authBeginDaysBefore" [fieldLevelSec]="'Auth Begin Days Before'"
+                           class="form-control" formControlName="authBeginDaysBefore"
+                           readonly/>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <!-- Checkbox with label of Thru DOS -->
+                <div class="checkbox col">
+                    <input id="thruDos" [fieldLevelSec]="'Thru Dos Used'" value="thruDos" formControlName="thruDos"
+                           type="checkbox"
+                           disabled>
+                    <label class="checkbox">
+                        Thru DOS
+                    </label>
+                </div>
+
+                <!-- Textbox with label of Auth End Days After -->
+                <div class="col">
+                    <label class="col-form-label" for="authEndDaysAfter" i18n>Auth End Days After</label>
+                    <input type="text" id="authEndDaysAfter" [fieldLevelSec]="'Auth End Days After'"
+                           class="form-control" formControlName="authEndDaysAfter"
+                           disabled/>
+                </div>
+
+            </div>
+
+
+            <div class="form-group row">
+                <div class="col-md-2 form-control-static mb-0" i18n>
+                    Claim Action
+                </div>
+
+            </div>
+
+            <div class="form-group row">
+                <!-- Textbox with label of Action -->
+                <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('action') }">
+                    <label class="col-form-label" for="action" i18n>Action</label>
+
+                    <select type="text" disabled id="action" class="form-control" formControlName="action">
+                        <option [value]="t.value" *ngFor="let t of action">{{t.key}}</option>
+                    </select>
+                </div>
+
+                <!-- Textbox with label of Reason Code -->
+                <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('reasonCode') }">
+                    <label class="col-form-label" for="reasonCode" i18n>Reason Code</label>
+                    <input type="text" id="reasonCode" [fieldLevelSec]="'Reason Code'" class="form-control"
+                           formControlName="reasonCode"
+                           readonly/>
+                </div>
+
+                <!-- Checkbox with label of Apply Auth To Claim -->
+                <div class="checkbox col-md-4">
+                    <input id="applyAuthToClaim" [fieldLevelSec]="'Apply Auth To Claim'"
+                           value="applyAuthToClaim"
+                           formControlName="applyAuthToClaim" type="checkbox"
+                           disabled>
+                    <label class="checkbox">
+                        Apply Auth To Claim
+                    </label>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

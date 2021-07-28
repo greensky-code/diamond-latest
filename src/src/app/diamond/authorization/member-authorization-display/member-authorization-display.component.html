@@ -1,0 +1,161 @@
+<!-- Copyright (c) 2021 . All Rights Reserved. -->
+<div class="container-fluid">
+    <div class="card-block">
+        <form [formGroup]="memberAuthorizationDisplayForm" novalidate>
+
+            <div class="row form-title">
+                <h2 class="col-md-6  card-label-admin"> Member Authorization Display </h2>
+                <div class="col-md"><b class="readonly-label">View Only</b></div>
+            </div>
+            <button type="button" *ngIf="showIcon" class="modal-close close" aria-label="Close"
+                    (click)="activeModal.dismiss('Cross click')">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <div class="row mt-3">
+                <menu-bar [menus]="menu" (onMenuClick)="onMenuItemClick($event)"></menu-bar>
+            </div>
+            <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+            <app-pop-up-message #popUpMesssage (buttonclickEvent)="popUpButtonHandler($event)"
+                                [(popupMessage)]="popUpMessage"></app-pop-up-message>
+            <div class="row">
+                <!-- <menu-bar [menus]="menu" (onMenuClick)="onMenuItemClick($event)"></menu-bar> -->
+            </div>
+            <div class="form-group row">
+            </div>
+
+            <!-- DataGrid with Name of DataGrid -->
+            <!-- <button (click)="dataGridGridOptionsExportCsv()">Export</button> -->
+            <ag-grid-angular
+                    #agGrid
+                    class="ag-theme-fresh"
+                    [gridOptions]="dataGridGridOptions"
+                    style="width: 100%; height: 300px;"
+                    [enableSorting]="true"
+                    [enableFilter]="true"
+                    [floatingFilter]="true"
+                    [pagination]="true"
+                    [showToolPanel]="true"
+                    (selectionChanged)="onChangeAuthGrid()">
+            </ag-grid-angular>
+
+            <div class="form-group row text-center">
+                <ng-template #loaderTemplate let-loaderValue="value">
+                    <div class="row justify-content-center mt-4" *ngIf="loaderValue">
+                        <div class="spinner-border text-success" role="status">
+                            <span class="sr-only">Loading...</span>
+                        </div>
+                    </div>
+                </ng-template>
+
+                <ng-container *ngTemplateOutlet="loaderTemplate;context:{value: loaderValue }"></ng-container>
+
+            </div>
+
+            <div class="form-group row">
+            </div>
+            <div class="form-group row">
+                <div class="col-md-4 form-control-static mb-0" i18n>
+                    <h4 class="fa-underline"><u>Member Info</u></h4>
+                </div>
+            </div>
+
+
+            <div class="col-md-12">
+                <div class="form-group row">
+                    <!-- DynamicText with label of Memeber Number -->
+                    <div class="col-md-5" [ngClass]="{'has-danger': formValidation.isValidField('subscriberId') }">
+                        <label class="col-form-label" for="subscriberId" i18n>Member Number</label>
+                        <input type="text" [fieldLevelSec]="''" [params]="" readonly id="subscriberId"
+                               formControlName="subscriberId" class="form-control"/>
+                    </div>
+
+                    <!-- DynamicText with Name of personNumber -->
+                    <div class="col-md-5" [ngClass]="{'has-danger': formValidation.isValidField('personNumber') }">
+                        <label class="col-form-label" for="personNumber" i18n>&nbsp;</label>
+                        <input type="text" [fieldLevelSec]="''" [params]="" readonly id="personNumber"
+                               formControlName="personNumber" class="form-control"/>
+                    </div>
+
+                    <div class="col-md-2 d-flex justify-content-end align-items-end">
+                        <label class="col-form-label" for="chooseMember" i18n>&nbsp;</label>
+                        <button type="button" id="chooseMember" name="chooseMember"
+                                (click)="modalMemberUtilizationDisplay($event)"
+                                class="btn btn-small btn-primary col-md-10 h-50">Choose Member
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-md-12">
+                <div class="form-group row d-flex justify-content-end">
+                    <!-- DynamicText with label of Name -->
+                    <div class="col-md-5" [ngClass]="{'has-danger': formValidation.isValidField('name') }">
+                        <label class="col-form-label" for="name" i18n>Name</label>
+                        <input type="text" [fieldLevelSec]="''" [params]="" readonly id="name" formControlName="name"
+                               class="form-control"/>
+                    </div>
+                    <div class="col-md-5 form-control-static mb-0 d-flex justify-content-end align-items-end" i18n>
+                        Provider, Dates, Days/Visit
+                    </div>
+                    <div class="col-md-2 d-flex justify-content-end align-items-end">
+                        <button type="button" id="authInfo1" name="authInfo1" (click)="authInfo1()"
+                                class="btn btn-small btn-primary col-md-10 h-50">Auth Info 1
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="form-group row ">
+                    <!-- DynamicText with label of DOB -->
+                    <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('dob') }">
+                        <label class="col-form-label" for="dob" i18n>DOB</label>
+                        <input type="text" [fieldLevelSec]="''" [params]="" readonly id="dob" formControlName="dob"
+                               class="form-control"/>
+                    </div>
+
+                    <!-- DynamicText with label of Gender -->
+                    <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('gender') }">
+                        <label class="col-form-label" for="gender" i18n>Gender</label>
+                        <input type="text" [fieldLevelSec]="''" [params]="" readonly id="gender"
+                               formControlName="gender" class="form-control"/>
+                    </div>
+
+                    <div class="col-md-4 form-control-static mb-0  d-flex justify-content-end align-items-end" i18n>
+                        Dx Codes, Discharge,Intake
+                    </div>
+                    <div class="col-md-2 d-flex justify-content-end align-items-end">
+                        <button type="button" id="authInfo2" name="authInfo2" (click)="authInfo2()"
+                                class="btn btn-small btn-primary col-md-10 h-50">Auth Info 2
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="form-group row">
+                    <div class="col-md-10 form-control-static mb-0  d-flex justify-content-end align-items-end" i18n>
+                        Review, Service, Status, Surgical Procedures
+                    </div>
+                    <div class="col-md-2 d-flex justify-content-end align-items-end">
+                        <button type="button" id="authInfo3" name="authInfo3" (click)="authInfo3()"
+                                class="btn btn-small btn-primary col-md-10 h-100">Auth Info 3
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <info1 *ngIf="authMaster && showAuthInfo1" [data]="authMaster">
+
+        </info1>
+
+        <info2 *ngIf="authMaster && showAuthInfo2" [data]="authMaster">
+
+        </info2>
+        <info3 *ngIf="authMaster && showAuthInfo3" [data]="authMaster">
+
+        </info3>
+
+
+    </div>
+</div>

@@ -1,0 +1,266 @@
+<!-- Copyright (c) 2021 . All Rights Reserved. -->
+<div class="container-fluid">
+    <div class="card-block">
+        <div class="row form-title">
+            <h2 class="col-md-6 card-label-admin">PCP Auto Assign</h2>
+            <div class="col-md-6"><b class="readonly-label">View Only</b></div>
+        </div>
+        <button type="button" *ngIf="showIcon" class="modal-close close" aria-label="Close"
+                (click)="modalClose()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+        <app-pop-up-message #popUpMesssage (buttonclickEvent)="popUpButtonHandler($event)"
+                            [(popupMessage)] = "popUpMessage"></app-pop-up-message>
+
+        <ng-template #loaderTemplate let-loaderValue = "value"  >
+            <div class="row justify-content-center mt-4" *ngIf="loaderValue">
+                <div class="spinner-border text-success" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>
+            </div>
+        </ng-template>
+        <ng-container *ngTemplateOutlet="loaderTemplate;context:{value: secProgress }"></ng-container>
+
+        <div class="row mt-3 mb-3">
+            <menu-bar [menus]="menu" (onMenuClick)="onMenuItemClick($event)"></menu-bar>
+        </div>
+        <form [formGroup]="pcpAutoAssignForm" novalidate>
+            <div class="form-group row">
+                <!-- DynamicText with label of Line Of Business -->
+                 <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('lineOfBusiness') }">
+                     <label class="col-form-label" for="lineOfBusiness" i18n>Line Of Business</label>
+                     <input [readOnly]="isDisabledField" (change)="onChangeLineOfBusiness($event)"
+                            (ngModelChange)="lineOfBusiness = $event.toUpperCase()" #lineOfBusinessField
+                            type="text"  [fieldLevelSec]="'Line Of Business'" [params]="{secColDetails: secColDetails, isEditState: editPcpAutoAssignHdr}"
+                            id="lineOfBusiness" formControlName="lineOfBusiness" class="form-control"
+                     />
+                 </div>
+
+                <!-- DynamicText with Name of DynamicText -->
+                 <div class="col-md-3" style="padding-top: 38px;" [ngClass]="{'has-danger': formValidation.isValidField('lineOfBusinessDescription') }">
+                     <input type="text"  [fieldLevelSec]="''" [params]="{secColDetails: secColDetails, isEditState: editPcpAutoAssignHdr}" readonly id="lineOfBusinessDescription" formControlName="lineOfBusinessDescription" class="form-control"/>
+                 </div>
+
+                <!-- DynamicText with label of Event -->
+                 <div class="col-md-5" [ngClass]="{'has-danger': formValidation.isValidField('event') }">
+                     <label class="col-form-label" for="event" i18n>Event</label>
+                     <input (change)="onChangeEventSystemCode($event)" [readonly]="(pcpAutoAssignForm.get('lineOfBusiness').value
+                        && pcpAutoAssignForm.get('lineOfBusiness').value != '') ? null : 'readonly'"
+                            type="text"  [fieldLevelSec]="'Event Type'" [params]="{secColDetails: secColDetails, isEditState: editPcpAutoAssignHdr}"
+                            id="event" formControlName="event" class="form-control"
+                     />
+                 </div>
+
+            </div>
+
+            <div class="form-group row">
+            </div>
+
+            <div *ngIf="lineOfBusinessStatus && eventStatus">
+                <div class="form-group row">
+                    <div class="col-md-5 form-control-static mb-0" i18n>
+                        Override Enrollment Threshold Capacity Levels
+                    </div>
+
+                    <div *ngIf="isEventType1()" class="col-md-7 form-control-static mb-0" i18n>
+                        Evaluate Possible Selections
+                    </div>
+
+                </div>
+                <div class="form-group row">
+                    <div class="col-md-5 form-control-static mb-0" i18n>
+                    </div>
+
+                    <div class="col-md-3 form-control-static mb-0" i18n>
+                    </div>
+
+                    <div *ngIf="isEventType1()" class="col-md-2 form-control-static mb-0" i18n>
+                        Order
+                    </div>
+
+                    <div *ngIf="isEventType1()" class="col-md-2 form-control-static mb-0" i18n>
+                        Days
+                    </div>
+                </div>
+
+
+
+                <div class="form-group row">
+                    <!-- Checkbox with label of Requested PCP -->
+                    <div class="col-md-2 form-control-static mb-0" >
+                        <label for="requestedPcpOverride"  class="checkbox" i18n>
+                            Requested PCP
+                        </label>
+                    </div>
+                    <div class="col-md-1" [ngClass]="{'has-error': displayMessage.requestedPcpOverride }">
+                        <div class="checkbox">
+                            <input id="requestedPcpOverride"  [fieldLevelSec]="''" [params]="{secColDetails: secColDetails, isEditState: editPcpAutoAssignHdr}"value="requestedPcpOverride" formControlName="requestedPcpOverride" type="checkbox">
+                        </div>
+                        <span class="help-block" *ngIf="displayMessage.requestedPcpOverride">
+                        {{ displayMessage.requestedPcpOverride  }}
+                     </span>
+                    </div>
+                    <div class="col-md-2">&nbsp;</div>
+
+                    <div *ngIf="isEventType1()" class="col-md-2 form-control-static mb-0" >
+                        <label for="requestedPcpEvaluate"  class="checkbox" i18n>
+                            Requested PCP
+                        </label>
+                    </div>
+
+                    <!-- Checkbox with Name of requestedPcpEvaluate -->
+                    <div *ngIf="isEventType1()" class="col-md-1" [ngClass]="{'has-error': displayMessage.requestedPcpEvaluate }">
+                        <div class="checkbox">
+                            <input [disabled]="true" id="requestedPcpEvaluate"  [fieldLevelSec]="''" [params]="{secColDetails: secColDetails, isEditState: editPcpAutoAssignHdr}"value="requestedPcpEvaluate" formControlName="requestedPcpEvaluate" type="checkbox">
+                        </div>
+                        <span class="help-block" *ngIf="displayMessage.requestedPcpEvaluate">
+                        {{ displayMessage.requestedPcpEvaluate  }}
+                     </span>
+                    </div>
+                    <div *ngIf="isEventType1()" class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('requestedPcpEvaluateOrder') }">
+                        <input type="text"  [fieldLevelSec]="''" [params]="{secColDetails: secColDetails, isEditState: editPcpAutoAssignHdr}" readonly id="requestedPcpEvaluateOrder" formControlName="requestedPcpEvaluateOrder" class="form-control"/>
+                    </div>
+
+                </div>
+
+                <div class="form-group row">
+                    <!-- Checkbox with label of Requested PCP -->
+                    <div class="col-md-2 form-control-static mb-0" >
+                        <label for="memberReinstatedOverride"  class="checkbox" i18n>
+                            Member Reinstated
+                        </label>
+                    </div>
+                    <div class="col-md-1" [ngClass]="{'has-error': displayMessage.memberReinstatedOverride }">
+                        <div class="checkbox">
+                            <input id="memberReinstatedOverride"  [fieldLevelSec]="''" [params]="{secColDetails: secColDetails, isEditState: editPcpAutoAssignHdr}"value="memberReinstatedOverride" formControlName="memberReinstatedOverride" type="checkbox">
+                        </div>
+                        <span class="help-block" *ngIf="displayMessage.memberReinstatedOverride">
+                        {{ displayMessage.memberReinstatedOverride  }}
+                     </span>
+                    </div>
+                    <div class="col-md-2">&nbsp;</div>
+
+                    <div *ngIf="isEventType1()" class="col-md-2 form-control-static mb-0" >
+                        <label for="memberReinstatedEvaluate"  class="checkbox" i18n>
+                            Member Reinstated
+                        </label>
+                    </div>
+
+                    <!-- Checkbox with Name of memberReinstatedEvaluate -->
+                    <div *ngIf="isEventType1()" class="col-md-1" [ngClass]="{'has-error': displayMessage.memberReinstatedEvaluate }">
+                        <div class="checkbox">
+                            <input id="memberReinstatedEvaluate"  [fieldLevelSec]="''" [params]="{secColDetails: secColDetails, isEditState: editPcpAutoAssignHdr}"value="memberReinstatedEvaluate" formControlName="memberReinstatedEvaluate" type="checkbox">
+                        </div>
+                        <span class="help-block" *ngIf="displayMessage.memberReinstatedEvaluate">
+                        {{ displayMessage.memberReinstatedEvaluate  }}
+                     </span>
+                    </div>
+                    <div *ngIf="isEventType1()" class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('memberReinstatedEvaluateOrder') }">
+                        <input type="text"  [fieldLevelSec]="''" [params]="{secColDetails: secColDetails, isEditState: editPcpAutoAssignHdr}" readonly id="memberReinstatedEvaluateOrder" formControlName="memberReinstatedEvaluateOrder" class="form-control"/>
+                    </div>
+                    <div *ngIf="isEventType1()" class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('memberReinstatedEvaluateDays') }">
+                        <input type="text"  [fieldLevelSec]="''" [params]="{secColDetails: secColDetails, isEditState: editPcpAutoAssignHdr}" readonly id="memberReinstatedEvaluateDays" formControlName="memberReinstatedEvaluateDays" class="form-control"/>
+                    </div>
+
+                </div>
+
+                <div class="form-group row">
+                    <!-- Checkbox with label of Requested PCP -->
+                    <div class="col-md-2 form-control-static mb-0" >
+                        <label for="diamondIdOverride"  class="checkbox" i18n>
+                            DIAMOND ID
+                        </label>
+                    </div>
+                    <div class="col-md-1" [ngClass]="{'has-error': displayMessage.diamondIdOverride }">
+                        <div class="checkbox">
+                            <input id="diamondIdOverride"  [fieldLevelSec]="''" [params]="{secColDetails: secColDetails, isEditState: editPcpAutoAssignHdr}"value="diamondIdOverride" formControlName="diamondIdOverride" type="checkbox">
+                        </div>
+                        <span class="help-block" *ngIf="displayMessage.diamondIdOverride">
+                        {{ displayMessage.diamondIdOverride  }}
+                     </span>
+                    </div>
+                    <div class="col-md-2">&nbsp;</div>
+
+                    <div *ngIf="isEventType1()" class="col-md-2 form-control-static mb-0" >
+                        <label for="diamondIdEvaluate"  class="checkbox" i18n>
+                            DIAMOND ID
+                        </label>
+                    </div>
+
+                    <!-- Checkbox with Name of diamondIdEvaluate -->
+                    <div *ngIf="isEventType1()" class="col-md-1" [ngClass]="{'has-error': displayMessage.diamondIdEvaluate }">
+                        <div class="checkbox">
+                            <input id="diamondIdEvaluate"  [fieldLevelSec]="''" [params]="{secColDetails: secColDetails, isEditState: editPcpAutoAssignHdr}"value="diamondIdEvaluate" formControlName="diamondIdEvaluate" type="checkbox">
+                        </div>
+                        <span class="help-block" *ngIf="displayMessage.diamondIdEvaluate">
+                        {{ displayMessage.diamondIdEvaluate  }}
+                     </span>
+                    </div>
+                    <div *ngIf="isEventType1()" class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('diamondIdEvaluateOrder') }">
+                        <input type="text"  [fieldLevelSec]="''" [params]="{secColDetails: secColDetails, isEditState: editPcpAutoAssignHdr}" readonly id="diamondIdEvaluateOrder" formControlName="diamondIdEvaluateOrder" class="form-control"/>
+                    </div>
+                    <div *ngIf="isEventType1()" class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('diamondIdEvaluateDays') }">
+                        <input type="text"  [fieldLevelSec]="''" [params]="{secColDetails: secColDetails, isEditState: editPcpAutoAssignHdr}" readonly id="diamondIdEvaluateDays" formControlName="diamondIdEvaluateDays" class="form-control"/>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <!-- Checkbox with label of Requested PCP -->
+                    <div class="col-md-2 form-control-static mb-0" >
+                        <label for="familyAffiliationOverride"  class="checkbox" i18n>
+                            Family Affiliation
+                        </label>
+                    </div>
+                    <div class="col-md-1" [ngClass]="{'has-error': displayMessage.familyAffiliationOverride }">
+                        <div class="checkbox">
+                            <input id="familyAffiliationOverride"  [fieldLevelSec]="''" [params]="{secColDetails: secColDetails, isEditState: editPcpAutoAssignHdr}"value="familyAffiliationOverride" formControlName="familyAffiliationOverride" type="checkbox">
+                        </div>
+                        <span class="help-block" *ngIf="displayMessage.familyAffiliationOverride">
+                        {{ displayMessage.familyAffiliationOverride  }}
+                     </span>
+                    </div>
+                    <div class="col-md-2">&nbsp;</div>
+
+                    <div *ngIf="isEventType1()" class="col-md-2 form-control-static mb-0" >
+                        <label for="familyAffiliationEvaluate"  class="checkbox" i18n>
+                            Family Affiliation
+                        </label>
+                    </div>
+
+                    <!-- Checkbox with Name of familyAffiliationEvaluate -->
+                    <div *ngIf="isEventType1()" class="col-md-1" [ngClass]="{'has-error': displayMessage.familyAffiliationEvaluate }">
+                        <div class="checkbox">
+                            <input id="familyAffiliationEvaluate"  [fieldLevelSec]="''" [params]="{secColDetails: secColDetails, isEditState: editPcpAutoAssignHdr}"value="familyAffiliationEvaluate" formControlName="familyAffiliationEvaluate" type="checkbox">
+                        </div>
+                        <span class="help-block" *ngIf="displayMessage.familyAffiliationEvaluate">
+                        {{ displayMessage.familyAffiliationEvaluate  }}
+                     </span>
+                    </div>
+                    <div *ngIf="isEventType1()" class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('familyAffiliationEvaluateOrder') }">
+                        <input type="text"  [fieldLevelSec]="''" [params]="{secColDetails: secColDetails, isEditState: editPcpAutoAssignHdr}" readonly id="familyAffiliationEvaluateOrder" formControlName="familyAffiliationEvaluateOrder" class="form-control"/>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- DataGrid with Name of DataGrid001 -->
+            <ag-grid-angular #agGrid class="ag-theme-fresh" [gridOptions]="dataGridGridOptions"
+                 style="width: 100%; height: 300px;"
+                 [enableSorting]="true"
+                 [enableFilter]="true"
+                 [floatingFilter]="true"
+                 [pagination]="true"
+                 [showToolPanel]="true"
+                 [rowSelection]="'single'"
+                 [rowData]="gridDataList"
+                 (rowClicked)="onRuleSelected($event)"
+            ></ag-grid-angular>
+
+            <div class="form-group row">
+            </div>
+        </form>
+    </div>
+</div>
+<ng-keyboard-shortcuts [shortcuts]="shortcuts" [disabled]="isChildModalOpen"></ng-keyboard-shortcuts>
+<ng-keyboard-shortcuts-help [key]="'f2'" [closeKey]="'escape'" [title]="'Hotkeys Help'"></ng-keyboard-shortcuts-help>

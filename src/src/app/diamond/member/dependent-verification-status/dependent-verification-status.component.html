@@ -1,0 +1,109 @@
+<!-- Copyright (c) 2020 . All Rights Reserved. -->
+<div class="container-fluid">
+    <div class="card-block">
+
+            <h2 class="form-title card-label-admin">Dependent Verification Status</h2>
+            <button type="button" *ngIf="showIcon" class="modal-close close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+            <app-pop-up-message #popUpMesssage (buttonclickEvent)="popUpButtonHandler($event)"
+                                [(popupMessage)]="popUpMessage"></app-pop-up-message>
+
+        <ng-template #loaderTemplate let-loaderValue = "value"  >
+            <div class="row justify-content-center mt-4" *ngIf="loaderValue">
+                <div class="spinner-border text-success" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>
+            </div>
+        </ng-template>
+
+        <ng-container *ngTemplateOutlet="loaderTemplate;context:{value: secProgress }"></ng-container>
+
+        <ng-container *appWinSelect="{secWin: secWin, userTemplateId: userTemplateId, secModuleId: memberModuleId}">
+
+
+        <form [formGroup]="dependentVerificationStatusForm" novalidate *ngIf="!secProgress">
+            <div class="form-group row">
+            </div>
+            <div class="form-group row">
+                <!-- Textbox with label of Dependent Status -->
+                <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('dependentStatus') }">
+                    <label class="col-form-label" for="dependentStatus" i18n>Dependent Status</label>
+                    <input type="text" id="dependentStatus" class="form-control" formControlName="dependentStatus"
+                           [fieldLevelSec]="'DEP_VERIF_STATUS'" [params]="{secColDetails: secColDetails, isEditState: true}"/>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('dependentStatus')">
+                        {{ formValidation.errorMessage('dependentStatus') }}
+                    </small>
+                </div>
+            </div>
+            <div class="form-group row">
+                <!-- Textbox with label of Student Status Detail Code -->
+                <div class="col-md-6"
+                     [ngClass]="{'has-danger': formValidation.isValidField('studentStatusDetailCode') }">
+                    <label class="col-form-label" for="studentStatusDetailCode" i18n>Student Status Detail Code</label>
+                    <input type="text" id="studentStatusDetailCode" class="form-control"
+                           formControlName="studentStatusDetailCode"
+                           [fieldLevelSec]="'STUDENT_STATUS_DETAIL'" [params]="{secColDetails: secColDetails, isEditState: true}"/>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('studentStatusDetailCode')">
+                        {{ formValidation.errorMessage('studentStatusDetailCode') }}
+                    </small>
+                </div>
+            </div>
+            <div class="form-group row">
+                <!-- Textbox with label of Verified Thru Date -->
+                <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('verifiedThruDate') }">
+                    <app-datepicker [formGroup]="dependentVerificationStatusForm" [formValidation]="formValidation" [field]="'verifiedThruDate'" [labelText]="'Verified Thru Date'"
+                                    [fieldLevelSec]="'VERFIED_THRU_DATE'" [params]="{secColDetails: secColDetails, isEditState: true}"></app-datepicker>
+                </div>
+            </div>
+            <div class="form-group row">
+                <!-- Textbox with label of UsrDef1 -->
+                <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('usrDef1') }">
+                    <label class="col-form-label" for="usrDef1" i18n>UsrDef1</label>
+                    <input type="text" id="usrDef1" class="form-control" formControlName="usrDef1"
+                           [fieldLevelSec]="'USER_DEFINED_1'" [params]="{secColDetails: secColDetails, isEditState: true}"/>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('usrDef1')">
+                        {{ formValidation.errorMessage('usrDef1') }}
+                    </small>
+                </div>
+            </div>
+            <div class="form-group row">
+                <!-- Textbox with label of UsrDat1 -->
+                <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('usrDat1') }">
+                    <app-datepicker [formGroup]="dependentVerificationStatusForm" [formValidation]="formValidation" [field]="'usrDat1'" [labelText]="'UsrDat1'"
+                                    [fieldLevelSec]="'USER_DATE_1'" [params]="{secColDetails: secColDetails, isEditState: true}"></app-datepicker>
+                </div>
+            </div>
+            <div class="form-group row">
+                <!-- Textbox with label of UsrDef2 -->
+                <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('usrDef2') }">
+                    <label class="col-form-label" for="usrDef2" i18n>UsrDef2</label>
+                    <input type="text" id="usrDef2" class="form-control" formControlName="usrDef2"
+                           [fieldLevelSec]="'USER_DEFINED_2'" [params]="{secColDetails: secColDetails, isEditState: true}"/>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('usrDef2')">
+                        {{ formValidation.errorMessage('usrDef2') }}
+                    </small>
+                </div>
+            </div>
+            <div class="form-group row">
+                <!-- Textbox with label of UsrDat2 -->
+                <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('usrDat2') }">
+                    <app-datepicker [formGroup]="dependentVerificationStatusForm" [formValidation]="formValidation" [field]="'usrDat2'" [labelText]="'UsrDat2'"
+                                    [fieldLevelSec]="'USER_DATE_2'" [params]="{secColDetails: secColDetails, isEditState: true}"></app-datepicker>
+                </div>
+            </div>
+            <div class="form-group row">
+                <!-- Button with label of OK -->
+                <div class="col-md-2">
+                    <button type="button" id="ok" name="ok" class="btn btn-small btn-primary" (click)="saveMemberMaster()">OK</button>
+                </div>
+                <!-- Button with label of Cancel -->
+                <div class="col-md-2">
+                    <button type="button" id="cancel" name="cancel" class="btn btn-small btn-primary" (click)="goToListPage()">Cancel</button>
+                </div>
+            </div>
+        </form>
+        </ng-container>
+    </div>
+</div>

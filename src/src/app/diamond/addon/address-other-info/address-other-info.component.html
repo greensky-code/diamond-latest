@@ -1,0 +1,466 @@
+<!-- Copyright (c) 2021 . All Rights Reserved. -->
+<div class="container-fluid">
+    <div class="card-block">
+        <form [formGroup]="addressOtherInfoForm" novalidate>
+            <!-- <h2 class="form-title card-label-admin">Address Other Info</h2> -->
+            <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+            <app-pop-up-message #popUpMesssage (buttonclickEvent)="popUpButtonHandler($event)"  [(popupMessage)] = "popUpMessage"></app-pop-up-message>
+                        
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of Passport Number -->
+                 <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('passportNumber') }">
+                     <label class="col-form-label" for="passportNumber" i18n>Passport Number</label>
+                     <input type="text" id="passportNumber"  [fieldLevelSec]="''" [params]=""   class="form-control" formControlName="passportNumber"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('passportNumber')">
+                      {{ formValidation.errorMessage('passportNumber') }}
+                     </small>
+                 </div>
+            
+                <!-- Textbox with label of Passport Expiration Date [isRequired]="true"-->
+                <app-datepicker class="col-md-4" [formGroup]="addressOtherInfoForm"
+                                        [labelText]="'Passport Expiration Date'"
+                                        [formValidation]="formValidation" [field]="'passportExpirationDate'"
+                                        [fieldLevelSec]="" id="passportExpirationDate"
+                                        [params]=""></app-datepicker>
+                 <!-- <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('passportExpirationDate') }">
+                     <label class="col-form-label" for="passportExpirationDate" i18n>Passport Expiration Date</label>
+                     <input type="text" id="passportExpirationDate"  [fieldLevelSec]="''" [params]=""   class="form-control" formControlName="passportExpirationDate"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('passportExpirationDate')">
+                      {{ formValidation.errorMessage('passportExpirationDate') }}
+                     </small>
+                 </div> -->
+            
+                <!-- Textbox with label of Passport Place Of Issuance -->
+                 <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('passportPlaceOfIssuance') }">
+                     <label class="col-form-label" for="passportPlaceOfIssuance" i18n>Passport Place Of Issuance</label>
+                     <input type="text" id="passportPlaceOfIssuance"  [fieldLevelSec]="''" [params]=""   class="form-control" formControlName="passportPlaceOfIssuance"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('passportPlaceOfIssuance')">
+                      {{ formValidation.errorMessage('passportPlaceOfIssuance') }}
+                     </small>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- DropdownList with label of Government ID Type -->
+                <div class="selectContainer col-md-4 " [ngClass]="{'has-danger': formValidation.isValidField('governmentIdType') }">
+                    <label class="col-form-label" for="governmentIdType" i18n>Government ID Type</label>
+                    <select class="form-control" id="government_id_type"  [fieldLevelSec]="''" [params]=""  name="Government ID Type" formControlName="governmentIdType">
+                        <option value="">Please Select</option>                        
+                        <option [value]="govId.CODE_1" *ngFor="let govId of govtIdList">{{govId.CODE_DESC}}</option>
+                    </select>
+                </div>
+            
+                <!-- Textbox with label of UAE Visa Start Date -->
+                <app-datepicker class="col-md-4" [formGroup]="addressOtherInfoForm"
+                                        [labelText]="'UAE Visa Start Date'"
+                                        [formValidation]="formValidation" [field]="'uaeVisaStartDate'"
+                                        [fieldLevelSec]="" id="uaeVisaStartDate"
+                                        [params]=""></app-datepicker>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of Gov.ID Number -->
+                 <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('govidNumber') }">
+                     <label class="col-form-label" for="govidNumber" i18n>Gov.ID Number</label>
+                     <input type="text" id="govidNumber"  [fieldLevelSec]="''" [params]=""   class="form-control" formControlName="govidNumber"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('govidNumber')">
+                      {{ formValidation.errorMessage('govidNumber') }}
+                     </small>
+                 </div>
+            
+                <!-- Textbox with label of Gov. ID Expiration Date -->
+                <app-datepicker class="col-md-4" [formGroup]="addressOtherInfoForm"
+                                        [labelText]="'Gov. ID Expiration Date'"
+                                        [formValidation]="formValidation" [field]="'govIdExpirationDate'"
+                                        [fieldLevelSec]="" id="govIdExpirationDate"
+                                        [params]=""></app-datepicker>
+            
+                <!-- Textbox with label of Gov.ID Place Of Issunace -->
+                 <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('govidPlaceOfIssunace') }">
+                     <label class="col-form-label" for="govidPlaceOfIssunace" i18n>Gov.ID Place Of Issunace</label>
+                     <input type="text" id="govidPlaceOfIssunace"  [fieldLevelSec]="''" [params]=""   class="form-control" formControlName="govidPlaceOfIssunace"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('govidPlaceOfIssunace')">
+                      {{ formValidation.errorMessage('govidPlaceOfIssunace') }}
+                     </small>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of KSA Local Sponser ID Number -->
+                 <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('ksaLocalSponserIdNumber') }">
+                     <label class="col-form-label" for="ksaLocalSponserIdNumber" i18n>KSA Local Sponser ID Number</label>
+                     <input type="text" id="ksaLocalSponserIdNumber"  [fieldLevelSec]="''" [params]=""   class="form-control" formControlName="ksaLocalSponserIdNumber"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('ksaLocalSponserIdNumber')">
+                      {{ formValidation.errorMessage('ksaLocalSponserIdNumber') }}
+                     </small>
+                 </div>
+            
+                <!-- Textbox with label of Sponser ID Type -->
+                 <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('sponserIdType') }">
+                     <label class="col-form-label" for="sponserIdType" i18n>Sponser ID Type</label>
+                     <input type="text" id="sponserIdType"  [fieldLevelSec]="''" [params]=""   class="form-control" formControlName="sponserIdType"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('sponserIdType')">
+                      {{ formValidation.errorMessage('sponserIdType') }}
+                     </small>
+                 </div>
+            
+                <!-- Textbox with label of Unified Identity Number (UID) -->
+                 <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('unifiedIdentityNumberUid') }">
+                     <label class="col-form-label" for="unifiedIdentityNumberUid" i18n>Unified Identity Number (UID)</label>
+                     <input type="text" id="unifiedIdentityNumberUid"  [fieldLevelSec]="''" [params]=""   class="form-control" formControlName="unifiedIdentityNumberUid"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('unifiedIdentityNumberUid')">
+                      {{ formValidation.errorMessage('unifiedIdentityNumberUid') }}
+                     </small>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of Nationality -->
+                 <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('nationality') }">
+                     <label class="col-form-label" for="nationality" i18n>Nationality</label>
+                     <input type="text" id="nationality"  [fieldLevelSec]="''" [params]=""   class="form-control" formControlName="nationality"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('nationality')">
+                      {{ formValidation.errorMessage('nationality') }}
+                     </small>
+                 </div>
+            
+                <!-- Textbox with label of KSA Profession Code -->
+                 <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('ksaProfessionCode') }">
+                     <label class="col-form-label" for="ksaProfessionCode" i18n>KSA Profession Code</label>
+                     <input type="text" id="ksaProfessionCode"  [fieldLevelSec]="''" [params]=""   class="form-control" formControlName="ksaProfessionCode"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('ksaProfessionCode')">
+                      {{ formValidation.errorMessage('ksaProfessionCode') }}
+                     </small>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- DropdownList with label of Dubai Salary Type -->
+                <div class="selectContainer col-md-4 " [ngClass]="{'has-danger': formValidation.isValidField('dubaiSalaryType') }">
+                    <label class="col-form-label" for="dubaiSalaryType" i18n>Dubai Salary Type</label>
+                    <select class="form-control" id="dubai_salary_type"  [fieldLevelSec]="''" [params]=""  name="Dubai Salary Type" formControlName="dubaiSalaryType">
+                        <option value="">Please Select</option>
+                        <option [value]="config.CODE_1" *ngFor="let config of salaryTypes">{{config.CODE_DESC}}</option>
+                    </select>
+                </div>
+            
+                <!-- DropdownList with label of Dubai residency Location Code -->
+                <div class="selectContainer col-md-4 " [ngClass]="{'has-danger': formValidation.isValidField('dubaiResidencyLocationCode') }">
+                    <label class="col-form-label" for="dubaiResidencyLocationCode" i18n>Dubai residency Location Code</label>
+                    <select class="form-control" id="dubai_residency_location_code"  [fieldLevelSec]="''" [params]=""  name="Dubai residency Location Code" formControlName="dubaiResidencyLocationCode">
+                        <option value="">Please Select</option>
+                        <option [value]="config.CODE_1" *ngFor="let config of locationCodes">{{config.CODE_DESC}}</option>
+                    </select>
+                </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- DropdownList with label of Dubai Salary Band -->
+                <div class="selectContainer col-md-4 " [ngClass]="{'has-danger': formValidation.isValidField('dubaiSalaryBand') }">
+                    <label class="col-form-label" for="dubaiSalaryBand" i18n>Dubai Salary Band</label>
+                    <select class="form-control" id="dubai_salary_band"  [fieldLevelSec]="''" [params]=""  name="Dubai Salary Band" formControlName="dubaiSalaryBand">
+                        <option value="">Please Select</option>
+                        <option [value]="config.CODE_1" *ngFor="let config of salaryBands">{{config.CODE_DESC}}</option>
+                    </select>
+                </div>
+            
+                <!-- DropdownList with label of Dubai Work location Code -->
+                <div class="selectContainer col-md-4 " [ngClass]="{'has-danger': formValidation.isValidField('dubaiWorkLocationCode') }">
+                    <label class="col-form-label" for="dubaiWorkLocationCode" i18n>Dubai Work location Code</label>
+                    <select class="form-control" id="dubai_work_location_code"  [fieldLevelSec]="''" [params]=""  name="Dubai Work location Code" formControlName="dubaiWorkLocationCode">
+                        <option value="">Please Select</option>
+                        <option [value]="config.CODE_1" *ngFor="let config of locationCodes">{{config.CODE_DESC}}</option>
+                    </select>
+                </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- DropdownList with label of Visa Type -->
+                <div class="selectContainer col-md-4 " [ngClass]="{'has-danger': formValidation.isValidField('visaType') }">
+                    <label class="col-form-label" for="visaType" i18n>Visa Type</label>
+                    <select class="form-control" id="visa_type"  [fieldLevelSec]="''" [params]=""  name="Visa Type" formControlName="visaType">
+                        <option value="">Please Select</option>
+                        <option [value]="config.CODE_1" *ngFor="let config of visaTypes">{{config.CODE_DESC}}</option>
+                    </select>
+                </div>
+            
+                <!-- Textbox with label of Local Mobile Telephone Number -->
+                 <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('localMobileTelephoneNumber') }">
+                     <label class="col-form-label" for="localMobileTelephoneNumber" i18n>Local Mobile Telephone Number</label>
+                     <input type="text" id="localMobileTelephoneNumber"  [fieldLevelSec]="''" [params]=""   class="form-control" formControlName="localMobileTelephoneNumber"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('localMobileTelephoneNumber')">
+                      {{ formValidation.errorMessage('localMobileTelephoneNumber') }}
+                     </small>
+                 </div>
+            
+                <!-- Textbox with label of Local Home Telephone Number -->
+                 <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('localHomeTelephoneNumber') }">
+                     <label class="col-form-label" for="localHomeTelephoneNumber" i18n>Local Home Telephone Number</label>
+                     <input type="text" id="localHomeTelephoneNumber"  [fieldLevelSec]="''" [params]=""   class="form-control" formControlName="localHomeTelephoneNumber"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('localHomeTelephoneNumber')">
+                      {{ formValidation.errorMessage('localHomeTelephoneNumber') }}
+                     </small>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- DropdownList with label of Previouse Residence Permit -->
+                <div class="selectContainer col-md-4 " [ngClass]="{'has-danger': formValidation.isValidField('previouseResidencePermit') }">
+                    <label class="col-form-label" for="previouseResidencePermit" i18n>Previous Residence Permit</label>
+                    <select class="form-control" id="previouse_residence_permit"  [fieldLevelSec]="''" [params]=""  name="Previouse Residence Permit" formControlName="previouseResidencePermit">
+                        <option value="">Please Select</option>
+                        <option [value]="config.key" *ngFor="let config of complianceFlags">{{config.value}}</option>
+                    </select>
+                </div>
+            
+                <!-- DropdownList with label of Newborn Without Entry Visa -->
+                <div class="selectContainer col-md-4 " [ngClass]="{'has-danger': formValidation.isValidField('newbornWithoutEntryVisa') }">
+                    <label class="col-form-label" for="newbornWithoutEntryVisa" i18n>Newborn Without Entry Visa</label>
+                    <select class="form-control" id="newborn_without_entry_visa"  [fieldLevelSec]="''" [params]=""  name="Newborn Without Entry Visa" formControlName="newbornWithoutEntryVisa">
+                        <option value="">Please Select</option>
+                        <option [value]="config.key" *ngFor="let config of complianceFlags">{{config.value}}</option>
+                    </select>
+                </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- DropdownList with label of Birth Certificate Submitted -->
+                <div class="selectContainer col-md-4 " [ngClass]="{'has-danger': formValidation.isValidField('birthCertificateSubmitted') }">
+                    <label class="col-form-label" for="birthCertificateSubmitted" i18n>Birth Certificate Submitted</label>
+                    <select class="form-control" id="birth_certificate_submitted"  [fieldLevelSec]="''" [params]=""  name="Birth Certificate Submitted" formControlName="birthCertificateSubmitted">
+                        <option value="">Please Select</option>
+                        <option [value]="config.key" *ngFor="let config of complianceFlags">{{config.value}}</option>
+                    </select>
+                </div>
+            
+                <!-- DropdownList with label of Visa Submitted -->
+                <div class="selectContainer col-md-4 " [ngClass]="{'has-danger': formValidation.isValidField('visaSubmitted') }">
+                    <label class="col-form-label" for="visaSubmitted" i18n>Visa Submitted</label>
+                    <select class="form-control" id="visa_submitted"  [fieldLevelSec]="''" [params]=""  name="Visa Submitted" formControlName="visaSubmitted">
+                        <option value="">Please Select</option>
+                        <option [value]="config.key" *ngFor="let config of complianceFlags">{{config.value}}</option>
+                    </select>
+                </div>
+            
+                <!-- DropdownList with label of Passport Submitted -->
+                <div class="selectContainer col-md-4 " [ngClass]="{'has-danger': formValidation.isValidField('passportSubmitted') }">
+                    <label class="col-form-label" for="passportSubmitted" i18n>Passport Submitted</label>
+                    <select class="form-control" id="passport_submitted"  [fieldLevelSec]="''" [params]=""  name="Passport Submitted" formControlName="passportSubmitted">
+                        <option value="">Please Select</option>
+                        <option [value]="config.key" *ngFor="let config of complianceFlags">{{config.value}}</option>
+                    </select>
+                </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- DropdownList with label of Emirates ID Card Submitted -->
+                <div class="selectContainer col-md-4 " [ngClass]="{'has-danger': formValidation.isValidField('emiratesIdCardSubmitted') }">
+                    <label class="col-form-label" for="emiratesIdCardSubmitted" i18n>Emirates ID Card Submitted</label>
+                    <select class="form-control" id="emirates_id_card_submitted"  [fieldLevelSec]="''" [params]=""  name="Emirates ID Card Submitted" formControlName="emiratesIdCardSubmitted">
+                        <option value="">Please Select</option>
+                        <option [value]="config.key" *ngFor="let config of complianceFlags">{{config.value}}</option>
+                    </select>
+                </div>
+            
+                <!-- DropdownList with label of Emirate ID Application Submitted -->
+                <div class="selectContainer col-md-4 " [ngClass]="{'has-danger': formValidation.isValidField('emirateIdApplicationSubmitt') }">
+                    <label class="col-form-label" for="emirateIdApplicationSubmitt" i18n>Emirate ID Application Submitted</label>
+                    <select class="form-control" id="emirate_id_application_submitt"  [fieldLevelSec]="''" [params]=""  name="Emirate ID Application Submitt" formControlName="emirateIdApplicationSubmitt">
+                        <option value="">Please Select</option>
+                        <option [value]="config.key" *ngFor="let config of complianceFlags">{{config.value}}</option>
+                    </select>
+                </div>
+            
+                <!-- DropdownList with label of Entry Permit Or Employment Visa Submitted -->
+                <div class="selectContainer col-md-4 " [ngClass]="{'has-danger': formValidation.isValidField('entryPermitOrEmploymentVis') }">
+                    <label class="col-form-label" for="entryPermitOrEmploymentVis" i18n>Entry Permit Or Employment Visa Submitted</label>
+                    <select class="form-control" id="entry_permit_or_employment_vis"  [fieldLevelSec]="''" [params]=""  name="Entry Permit Or Employment Vis" formControlName="entryPermitOrEmploymentVis">
+                        <option value="">Please Select</option>
+                        <option [value]="config.key" *ngFor="let config of complianceFlags">{{config.value}}</option>
+                    </select>
+                </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- DropdownList with label of Certificate Of Continuity Submitted -->
+                <div class="selectContainer col-md-4 " [ngClass]="{'has-danger': formValidation.isValidField('certificateOfContinuitySubm') }">
+                    <label class="col-form-label" for="certificateOfContinuitySubm" i18n>Certificate Of Continuity Submitted</label>
+                    <select class="form-control" id="certificate_of_continuity_subm"  [fieldLevelSec]="''" [params]=""  name="Certificate Of Continuity Subm" formControlName="certificateOfContinuitySubm">
+                        <option value="">Please Select</option>
+                        <option [value]="config.key" *ngFor="let config of complianceFlags">{{config.value}}</option>
+                    </select>
+                </div>
+            
+                <!-- DropdownList with label of Member Photo Submitted -->
+                <div class="selectContainer col-md-4 " [ngClass]="{'has-danger': formValidation.isValidField('memberPhotoSubmitted') }">
+                    <label class="col-form-label" for="memberPhotoSubmitted" i18n>Member Photo Submitted</label>
+                    <select class="form-control" id="member_photo_submitted"  [fieldLevelSec]="''" [params]=""  name="Member Photo Submitted" formControlName="memberPhotoSubmitted">
+                        <option value="">Please Select</option>
+                        <option [value]="config.key" *ngFor="let config of complianceFlags">{{config.value}}</option>
+                    </select>
+                </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of Prefferred Customer Currency -->
+                 <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('prefferredCustomerCurrency') }">
+                     <label class="col-form-label" for="prefferredCustomerCurrency" i18n>Prefferred Customer Currency</label>
+                     <select class="form-control" id="prefferredCustomerCurrency"  [fieldLevelSec]="''" [params]=""  name="prefferredCustomerCurrency" formControlName="prefferredCustomerCurrency">
+                        <option [value]="currency.currencyCode" *ngFor="let currency of currencies">{{currency.currencyCodeDesc}}</option>
+                    </select>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('prefferredCustomerCurrency')">
+                    {{ formValidation.errorMessage('prefferredCustomerCurrency') }}
+                    </small>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of Operation Location -->
+                 <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('operationLocation') }">
+                     <label class="col-form-label" for="operationLocation" i18n>Operation Location</label>
+                     <input type="text" id="operationLocation"  [fieldLevelSec]="''" [params]=""   class="form-control" formControlName="operationLocation"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('operationLocation')">
+                      {{ formValidation.errorMessage('operationLocation') }}
+                     </small>
+                 </div>
+            
+                <!-- Textbox with label of Account Number -->
+                 <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('accountNumber') }">
+                     <label class="col-form-label" for="accountNumber" i18n>Account Number</label>
+                     <input type="text" id="accountNumber"  [fieldLevelSec]="''" [params]=""   class="form-control" formControlName="accountNumber"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('accountNumber')">
+                      {{ formValidation.errorMessage('accountNumber') }}
+                     </small>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of Dental Wait Period (in months) -->
+                 <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('dentalWaitPeriodInMonths') }">
+                     <label class="col-form-label" for="dentalWaitPeriodInMonths" i18n>Dental Wait Period (in months)</label>
+                     <input type="text" id="dentalWaitPeriodInMonths"  [fieldLevelSec]="''" [params]=""   class="form-control" formControlName="dentalWaitPeriodInMonths"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('dentalWaitPeriodInMonths')">
+                      {{ formValidation.errorMessage('dentalWaitPeriodInMonths') }}
+                     </small>
+                 </div>
+            
+                <!-- Textbox with label of LTD Texable Income % -->
+                 <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('ltdTexableIncome') }">
+                     <label class="col-form-label" for="ltdTexableIncome" i18n>LTD Texable Income %</label>
+                     <input type="text" id="ltdTexableIncome"  [fieldLevelSec]="''" [params]=""   class="form-control" formControlName="ltdTexableIncome"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('ltdTexableIncome')">
+                      {{ formValidation.errorMessage('ltdTexableIncome') }}
+                     </small>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of Vision Wait Period (in months) -->
+                 <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('visionWaitPeriodInMonths') }">
+                     <label class="col-form-label" for="visionWaitPeriodInMonths" i18n>Vision Wait Period (in months)</label>
+                     <input type="text" id="visionWaitPeriodInMonths"  [fieldLevelSec]="''" [params]=""   class="form-control" formControlName="visionWaitPeriodInMonths"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('visionWaitPeriodInMonths')">
+                      {{ formValidation.errorMessage('visionWaitPeriodInMonths') }}
+                     </small>
+                 </div>
+            
+                <!-- Textbox with label of Referance Number -->
+                 <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('referanceNumber') }">
+                     <label class="col-form-label" for="referanceNumber" i18n>Referance Number</label>
+                     <input type="text" id="referanceNumber"  [fieldLevelSec]="''" [params]=""   class="form-control" formControlName="referanceNumber"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('referanceNumber')">
+                      {{ formValidation.errorMessage('referanceNumber') }}
+                     </small>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('comments') }">
+                    <label class="col-form-label " for="comments" i18n>Comments</label>
+                    <textarea type="text" id="comments" class="form-control" formControlName="comments"></textarea>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('comments')">
+                        {{ formValidation.errorMessage('comments') }}
+                    </small>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <button class="offset-4 button form-control-static mb-0" (click)="getAddressOtherInfo()" i18n>
+                    Reset All
+                </button>
+
+                <button class="pl-2 button form-control-static mb-0" (click)="saveAddressOtherInfo()" i18n>
+                    Save Changes
+                </button>
+                <button class="pl-2 button form-control-static mb-0" (click)="onViewHistoryClick()" i18n>
+                    View History
+                </button>
+
+            </div>
+
+            
+        </form>
+    </div>
+</div>
+
+<ng-template #viewHistoryTemplate>
+    <div class="container-fluid">
+        <div class="card-block">
+            <h2 class="form-title card-label-admin">Comment History </h2>
+            <button type="button" class="close" aria-label="Close"
+                    (click)="viewHistoryModalRef.dismiss()">
+                <span aria-hidden="true">&times;</span>
+            </button>
+
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                  <th scope="col">Comments</th>
+                  <th scope="col">Analyst</th>
+                  <th scope="col">Comment Date</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let comment of comments; index as i">
+                  
+                  <td>
+                    {{ comment.comments }}
+                  </td>
+                  <td>
+                    {{ comment.commentsUser }}
+                  </td>
+                  <td>
+                    {{ comment.commentsDate }}
+                  </td>                
+    
+                </tr>
+                </tbody>
+              </table>
+                
+            <div class="offset-10 col-md-2 mb-1">
+                <button class="col-sm-12 button mt-1" (click)="viewHistoryModalRef.dismiss()">Close</button>
+            </div>
+            
+        </div>
+    </div>
+
+</ng-template>

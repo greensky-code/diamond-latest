@@ -1,0 +1,26 @@
+<div class="container-fluid row">
+    <div class="card-block col-md-10 ">
+        <div class="modal-header">
+            <h4 class="modal-title">User Defined Fields</h4>
+            <button type="button" *ngIf="showIcon" class="modal-close close" aria-label="Close"
+                (click)="activeModal.dismiss('Cross click')">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <form [formGroup]="memberUserDefinedFieldForm" class="mt-2" novalidate>
+            <app-alert-message *ngIf="alertMessage" [alertMessage]="alertMessage"></app-alert-message>
+            <app-pop-up-message *ngIf="popUpMessage" #popUpMesssage (buttonclickEvent)="popUpButtonHandler($event)"
+                [popupMessage]="popUpMessage"></app-pop-up-message>
+             <app-dynamic-user-defined-fields [winID]="winID" [dataWindowId]="dataWindowId" ></app-dynamic-user-defined-fields>
+      
+        </form>
+    </div>
+    <div class="col-md-2" style="margin-top: 3.9rem;">
+        <button class="button" (click)="update()">
+            Ok
+        </button>
+        <button class="button" (click)="close()">
+            Close
+        </button>
+    </div>
+</div>

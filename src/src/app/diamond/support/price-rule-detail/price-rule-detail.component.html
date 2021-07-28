@@ -1,0 +1,520 @@
+<!-- Copyright (c) 2021 . All Rights Reserved. -->
+<div class="container-fluid">
+    <div class="card-block">
+
+
+        <h2 class="form-title card-label-admin">Price Rule Detail</h2>
+
+        <button type="button" *ngIf="showIcon" class="close" aria-label="Close"
+                (click)="modalClose()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+        <app-pop-up-message #popUpMesssage (buttonclickEvent)="popUpButtonHandler($event)"
+                            [popupMessage]="popUpMessage"></app-pop-up-message>
+
+
+        <ng-template #loaderTemplate let-loaderValue="value">
+            <div class="row justify-content-center mt-4" *ngIf="loaderValue">
+                <div class="spinner-border text-success" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>
+            </div>
+        </ng-template>
+
+
+        <ng-container *ngTemplateOutlet="loaderTemplate;context:{value: secProgress }"></ng-container>
+        <ng-container *appWinSelect="{secWin: secWin, userTemplateId: userTemplateId, secModuleId: moduleId}">
+
+        </ng-container>
+
+
+        <form [formGroup]="priceRuleDetailForm" novalidate *ngIf="!secProgress">
+
+
+            <div class="row mt-3 mb-2">
+                <menu-bar [menus]="menu" (onMenuClick)="onMenuItemClick($event)"></menu-bar>
+            </div>
+            <div class="form-group row">
+                <!-- Textbox with label of Price Rule -->
+                <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('priceRule002') }">
+                    <label class="col-form-label required-field-label" for="priceRule001" i18n>Price Rule</label>
+                    <input type="text" id="priceRule001" class="form-control" formControlName="priceRule002"
+                           (keydown)="onTabClick($event)" #priceRule />
+                    <small class="text-danger" *ngIf="formValidation.isValidField('priceRule002')">
+                        {{ formValidation.errorMessage('priceRule002') }}
+                    </small>
+                </div>
+
+                <!-- Textbox with label of Price Rule Description -->
+                <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('priceRuleDescription') }">
+                    <label class="col-form-label " for="priceRuleDescription" i18n>&nbsp;</label>
+                    <input type="text"  readonly id="priceRuleDescription" class="form-control text-primary" formControlName="priceRuleDescription"/>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('priceRuleDescription')">
+                        {{ formValidation.errorMessage('priceRuleDescription') }}
+                    </small>
+                </div>
+            </div>
+
+            <div class="form-group row">
+            </div>
+
+            <!-- DataGrid with Name of DataGrid -->
+
+            <ag-grid-angular #agGrid class="ag-theme-fresh" [gridOptions]="dataGridGridOptions"
+                             style="width: 100%; height: 300px;"
+                             (selectionChanged)="priceRuleDetailRowSelected($event)"
+                             [pagination]="true"
+                             [sideBar]="true">
+            </ag-grid-angular>
+
+            <div class="form-group row">
+            </div>
+
+            <div class="form-group row">
+                <!-- Textbox with label of Price Rule -->
+
+                <div class="col-md-4">
+                    <label class="required-field-label" for="priceRule001" i18n> Price Rule </label>
+                    <div class="selectContainer "
+                         [ngClass]="{'required-field': formValidation.isValidField('priceRule001') }">
+
+                        <div class="input-group" #myDrop="ngbDropdown" ngbDropdown>
+                            <input ngbDropdownToggle type="text" class="form-control" id="priceRule002"
+                                   [value]="priceRuleDetailForm.value.priceRule001" formControlName="priceRule001">
+                            <div class="input-group-append" role="group">
+                                <button ngbDropdownToggle class="btn border"></button>
+                            </div>
+                            <div ngbDropdownMenu aria-labelledby="dropdown" class="max-dropdown-height">
+                                <button ngbDropdownItem value="{{value.priceRule}}"
+                                        (click)="setFieldValue('priceRule001', value.priceRule)"
+                                        *ngFor="let value of priceRuleMasters; let i = index">{{value.priceRule}}
+                                    - {{value.description}}
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('priceRule001')">
+                        {{ formValidation.errorMessage('priceRule001') }}
+                    </small>
+                </div>
+
+                <!-- Textbox with label of Modifier Code -->
+
+
+                <div class="col-md-4">
+                    <label for="modifierCode" i18n>Modifier Code </label>
+                    <div class="selectContainer "
+                         [ngClass]="{'required-field': formValidation.isValidField('modifierCode') }">
+
+                        <div class="input-group" #myDrop="ngbDropdown" ngbDropdown>
+                            <input ngbDropdownToggle type="text" class="form-control" id="modifierCode"
+                                   [value]="priceRuleDetailForm.value.modifierCode" formControlName="modifierCode">
+                            <div class="input-group-append" role="group">
+                                <button ngbDropdownToggle class="btn border"></button>
+                            </div>
+                            <div ngbDropdownMenu aria-labelledby="dropdown" class="max-dropdown-height">
+                                <button ngbDropdownItem value="{{value.modifierCode}}"
+                                        (click)="setFieldValue('modifierCode', value.modifierCode)"
+                                        *ngFor="let value of modifierCodeMasters; let i = index">{{value.modifierCode}}
+                                    - {{value.description}}
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('modifierCode')">
+                        {{ formValidation.errorMessage('modifierCode') }}
+                    </small>
+                </div>
+
+            </div>
+
+            <div class="form-group row">
+                <!-- Textbox with label of Rule Level -->
+                <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('ruleLevel') }">
+                    <label class="col-form-label required-field-label" for="ruleLevel" i18n>Rule Level</label>
+                    <input type="text" id="ruleLevel" class="form-control" formControlName="ruleLevel" (blur)="priceRuleDetailValueChanged('ruleLevel', $event.target.value)"/>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('ruleLevel')">
+                        {{ formValidation.errorMessage('ruleLevel') }}
+                    </small>
+                </div>
+
+                <!-- DynamicText with label of Search Sequence -->
+                <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('searchSequence') }">
+                    <label class="col-form-label required-field-label" for="searchSequence" i18n>Search Sequence</label>
+                    <input type="text" id="searchSequence" formControlName="searchSequence"
+                           class="form-control" (blur)="priceRuleDetailValueChanged('searchSequence', $event.target.value)"/>
+
+                    <small class="text-danger" *ngIf="formValidation.isValidField('searchSequence')">
+                        {{ formValidation.errorMessage('searchSequence') }}
+                    </small>
+                </div>
+
+            </div>
+
+
+            <div class="form-group row">
+                <div class="col-md-4 form-control-static mb-0" i18n>
+                    <h4 class="fa-underline blue-color"><u> Price Rule Information</u></h4>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <!-- Textbox with label of Calculation Method -->
+
+
+                <div class="col-md-4">
+                    <label class="required-field-label" for="calculationMethod" i18n>Calculation Method</label>
+                    <div class="selectContainer"
+                         [ngClass]="{'required-field': formValidation.isValidField('calculationMethod') }">
+
+                        <div class="input-group" #myDrop="ngbDropdown" ngbDropdown>
+                            <input ngbDropdownToggle type="text" class="form-control" id="calculationMethod"
+                                   [value]="calculationMethod" >
+                            <div class="input-group-append" role="group">
+                                <button ngbDropdownToggle class="btn border"></button>
+                            </div>
+                            <div ngbDropdownMenu aria-labelledby="dropdown" class="max-dropdown-height">
+                                <button ngbDropdownItem value="{{option.value}}"
+                                        (click)="setFieldValue('calculationMethod', option.value); calculationMethod = option.key"
+                                        *ngFor="let option of calcMethodValues; let i = index" >{{option.value}} {{option.key}}
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('calculationMethod')">
+                        {{ formValidation.errorMessage('calculationMethod') }}
+                    </small>
+                </div>
+
+            </div>
+
+            <div class="form-group row">
+                <!-- Textbox with label of Allowed Reason -->
+
+                <div class="col-md-4">
+                    <label for="allowedReason001" i18n>Allowed Reason</label>
+                    <div class="selectContainer"
+                         [ngClass]="{'required-field': formValidation.isValidField('allowedReason001') }">
+
+                        <div class="input-group" #myDrop="ngbDropdown" ngbDropdown>
+                            <input ngbDropdownToggle type="text" class="form-control" id="allowedReason001"
+                                   [value]="priceRuleDetailForm.value.allowedReason001"
+                                   formControlName="allowedReason001">
+                            <div class="input-group-append" role="group">
+                                <button ngbDropdownToggle class="btn border"></button>
+                            </div>
+                            <div ngbDropdownMenu aria-labelledby="dropdown" class="max-dropdown-height">
+                                <button ngbDropdownItem value="{{option.reasonCode}}"
+                                        (click)="setFieldValue('allowedReason001', option.reasonCode)"
+                                        *ngFor="let option of allowedReason; let i = index">{{option.reasonCode}} {{option.description}}
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('allowedReason001')">
+                        {{ formValidation.errorMessage('allowedReason001') }}
+                    </small>
+                </div>
+
+
+                <!-- Textbox with label of Unit Value Type -->
+                <div class="col-md-4">
+                    <label for="unitValueType" i18n>Unit Value Type</label>
+                    <div class="selectContainer"
+                         [ngClass]="{'required-field': formValidation.isValidField('unitValueType') }">
+
+                        <div class="input-group" #myDrop="ngbDropdown" ngbDropdown>
+                            <input ngbDropdownToggle type="text" class="form-control" id="unitValueType"
+                                   [value]="priceRuleDetailForm.value.unitValueType"
+                                   formControlName="unitValueType">
+                            <div class="input-group-append" role="group">
+                                <button ngbDropdownToggle class="btn border"></button>
+                            </div>
+                            <div ngbDropdownMenu aria-labelledby="dropdown" class="max-dropdown-height">
+                                <button ngbDropdownItem value="{{option.value}}"
+                                        (click)="setFieldValue('unitValueType', option.value)"
+                                        *ngFor="let option of unitValueTypeValues; let i = index">{{option.value}} {{option.key}}
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('unitValueType')">
+                        {{ formValidation.errorMessage('unitValueType') }}
+                    </small>
+                </div>
+
+            </div>
+
+            <div class="form-group row">
+                <!-- Textbox with label of Hold Reason -->
+                <div class="col-md-4">
+                    <label for="allowedReason001" i18n>Hold Reason</label>
+                    <div class="selectContainer"
+                         [ngClass]="{'required-field': formValidation.isValidField('holdReason') }">
+
+                        <div class="input-group" #myDrop="ngbDropdown" ngbDropdown>
+                            <input ngbDropdownToggle type="text" class="form-control" id="holdReason"
+                                   [value]="priceRuleDetailForm.value.holdReason"
+                                   formControlName="holdReason">
+                            <div class="input-group-append" role="group">
+                                <button ngbDropdownToggle class="btn border"></button>
+                            </div>
+                            <div ngbDropdownMenu aria-labelledby="dropdown" class="max-dropdown-height">
+                                <button ngbDropdownItem value="{{option.reasonCode}}"
+                                        (click)="setFieldValue('holdReason', option.reasonCode)"
+                                        *ngFor="let option of holdReasons; let i = index">{{option.reasonCode}} {{option.description}}
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('holdReason')">
+                        {{ formValidation.errorMessage('holdReason') }}
+                    </small>
+                </div>
+
+                <!-- Textbox with label of Add To Base Units -->
+                <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('addToBaseUnits') }">
+                    <label class="col-form-label" for="addToBaseUnits" i18n>Add To Base Units</label>
+                    <input type="text" id="addToBaseUnits" class="form-control" formControlName="addToBaseUnits"/>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('addToBaseUnits')">
+                        {{ formValidation.errorMessage('addToBaseUnits') }}
+                    </small>
+                </div>
+
+            </div>
+
+            <div class="form-group row">
+                <!-- Checkbox with label of Allowed Factor Prompt -->
+                <div class="" [ngClass]="{'has-error': displayMessage.allowedFactorPrompt }">
+                    <div class="checkbox col-md-12">
+                        <input id="allowedFactorPrompt" value="allowedFactorPrompt"
+                               formControlName="allowedFactorPrompt" type="checkbox">
+                        <label class="checkbox required-field-label">
+                            Allowed Factor Prompt
+                        </label>
+                    </div>
+                    <span class="help-block" *ngIf="displayMessage.allowedFactorPrompt">
+                        {{ displayMessage.allowedFactorPrompt  }}
+                     </span>
+                </div>
+
+            </div>
+
+            <div class="form-group row">
+                <!-- Textbox with label of Allowed Factor Ovr -->
+                <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('allowedFactorOvr001') }">
+                    <label class="col-form-label required-field-label" for="allowedFactorOvr001" i18n>Allowed Factor Ovr</label>
+                    <input type="text" id="allowedFactorOvr001" class="form-control"
+                           (blur)="addAllowedFactorOverValidation('allowedFactorOvr001')"
+                           formControlName="allowedFactorOvr001"/>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('allowedFactorOvr001')">
+                        {{ formValidation.errorMessage('allowedFactorOvr001') }}
+                    </small>
+                </div>
+
+            </div>
+
+            <div class="form-group row">
+                <!-- Checkbox with label of Mult By Pct Allowed -->
+                <div class="" [ngClass]="{'has-error': displayMessage.multByPctAllowed }">
+                    <div class="checkbox col-md-12">
+                        <input id="multByPctAllowed" value="multByPctAllowed" formControlName="multByPctAllowed"
+                               type="checkbox">
+                        <label class="checkbox">
+                            Mult By Pct Allowed
+                        </label>
+                    </div>
+                    <span class="help-block" *ngIf="displayMessage.multByPctAllowed">
+                        {{ displayMessage.multByPctAllowed  }}
+                     </span>
+                </div>
+
+            </div>
+
+
+            <div class="form-group row">
+                <div class="col-md form-control-static mb-0" i18n>
+                    <h4 class="fa-underline blue-color"><u> Whole Claim Pricing Information</u></h4>
+                </div>
+            </div>
+
+
+            <div class="form-group row">
+                <!-- Checkbox with label of Information Only -->
+                <div class="" [ngClass]="{'has-error': displayMessage.informationOnly }">
+                    <div class="checkbox col-md-12">
+                        <input id="informationOnly" value="informationOnly" formControlName="informationOnly"
+                               type="checkbox">
+                        <label class="checkbox">
+                            Information Only
+                        </label>
+                    </div>
+                    <span class="help-block" *ngIf="displayMessage.informationOnly">
+                        {{ displayMessage.informationOnly  }}
+                     </span>
+                </div>
+
+            </div>
+
+            <div class="form-group row">
+                <!-- Checkbox with label of Carve Out -->
+                <div class="" [ngClass]="{'has-error': displayMessage.carveOut }">
+                    <div class="checkbox col-md-12">
+                        <input id="carveOut" value="carveOut" formControlName="carveOut" type="checkbox">
+                        <label class="checkbox">
+                            Carve Out
+                        </label>
+                    </div>
+                    <span class="help-block" *ngIf="displayMessage.carveOut">
+                        {{ displayMessage.carveOut  }}
+                     </span>
+                </div>
+
+            </div>
+
+            <div class="form-group row">
+                <!-- Textbox with label of Include/Exclude -->
+
+                <div class="col-md-4">
+                    <label class="required-field-label" for="includeexclude" i18n>Include/Exclude</label>
+                    <div class="selectContainer"
+                         [ngClass]="{'required-field': formValidation.isValidField('includeexclude') }">
+
+                        <div class="input-group" #myDrop="ngbDropdown" ngbDropdown>
+                            <input ngbDropdownToggle type="text" class="form-control" id="includeexclude"
+                                   [value]="includeExclude">
+                            <div class="input-group-append" role="group">
+                                <button ngbDropdownToggle class="btn border"></button>
+                            </div>
+                            <div ngbDropdownMenu aria-labelledby="dropdown" class="max-dropdown-height">
+                                <button ngbDropdownItem value="{{option.value}}"
+                                        (click)="setFieldValue('includeexclude', option.value); includeExclude = option.key"
+                                        *ngFor="let option of capInclExclValues; let i = index">{{option.value}} {{option.key}}
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('includeexclude')">
+                        {{ formValidation.errorMessage('includeexclude') }}
+                    </small>
+                </div>
+
+            </div>
+
+
+            <div class="form-group row">
+                <div class="col-md form-control-static mb-0" i18n>
+                    <h4 class="fa-underline blue-color"><u> Multiple Modifier Pricing Information</u></h4>
+                </div>
+            </div>
+
+
+            <div class="form-group row">
+                <!-- Textbox with label of Price Method -->
+
+                <div class="col-md-4">
+                    <label class="required-field-label" for="priceMethod" i18n>Price Method</label>
+                    <div class="selectContainer"
+                         [ngClass]="{'required-field': formValidation.isValidField('priceMethod') }">
+
+                        <div class="input-group" #myDrop="ngbDropdown" ngbDropdown>
+                            <input ngbDropdownToggle type="text" class="form-control" id="priceMethod"
+                                   [value]="priceMethod">
+                            <div class="input-group-append" role="group">
+                                <button ngbDropdownToggle class="btn border"></button>
+                            </div>
+                            <div ngbDropdownMenu aria-labelledby="dropdown" class="max-dropdown-height">
+                                <button ngbDropdownItem value="{{option.value}}"
+                                        (click)="setFieldValue('priceMethod', option.value); priceMethod = option.key"
+                                        *ngFor="let option of mulModPriceMethodValues; let i = index">{{option.value}} {{option.key}}
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('priceMethod')">
+                        {{ formValidation.errorMessage('priceMethod') }}
+                    </small>
+                </div>
+
+            </div>
+
+            <div class="form-group row">
+                <!-- Textbox with label of mul-mod- Allowed Reason -->
+                <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('allowedReason002') }">
+                    <label class="col-form-label" for="allowedReason002" i18n>Allowed Reason</label>
+                    <input type="text" id="allowedReason002" class="form-control" formControlName="allowedReason002" (keydown)="openReasonCodeLookupFieldSearchModel($event)"
+                           (blur)="addMultiModAReasonValidation()"
+                    />
+                    <small class="text-danger" *ngIf="formValidation.isValidField('allowedReason002')">
+                        {{ formValidation.errorMessage('allowedReason002') }}
+                    </small>
+                </div>
+
+            </div>
+
+            <div class="form-group row">
+                <!-- Checkbox with label of Mult Allowed Factor Ovr -->
+
+                <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('allowedFactorOvr002') }">
+                    <label class="col-form-label" for="allowedFactorOvr002" i18n>Allowed Factor Over</label>
+                    <input type="text" id="allowedFactorOvr002" class="form-control"
+                           (blur)="addAllowedFactorOverValidation('allowedFactorOvr002')"
+                           formControlName="allowedFactorOvr002"/>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('allowedFactorOvr002')">
+                        {{ formValidation.errorMessage('allowedFactorOvr002') }}
+                    </small>
+                </div>
+
+            </div>
+
+
+            <div class="form-group row">
+                <div class="col-md form-control-static mb-0" i18n>
+                    <h4 class="fa-underline blue-color"><u> Other Information</u></h4>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <!-- Textbox with label of messageToOperator -->
+                <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('messageToOperator') }">
+                    <label class="col-form-label" for="messageToOperator" i18n>Message To Operator</label>
+                    <input type="text" id="messageToOperator" class="form-control" formControlName="messageToOperator"/>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('messageToOperator')">
+                        {{ formValidation.errorMessage('messageToOperator') }}
+                    </small>
+                </div>
+
+            </div>
+
+            <div class="form-group row">
+                <!-- Textbox with label of User Defined 1 -->
+                <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('userDefined1') }">
+                    <label class="col-form-label" for="userDefined1" i18n>User Defined 1</label>
+                    <input type="text" id="userDefined1" class="form-control" formControlName="userDefined1"/>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('userDefined1')">
+                        {{ formValidation.errorMessage('userDefined1') }}
+                    </small>
+                </div>
+
+            </div>
+
+            <div class="form-group row">
+                <!-- Textbox with label of User Defined 2 -->
+                <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('userDefined2') }">
+                    <label class="col-form-label" for="userDefined2" i18n>User Defined 2</label>
+                    <input type="text" id="userDefined2" class="form-control" formControlName="userDefined2"/>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('userDefined2')">
+                        {{ formValidation.errorMessage('userDefined2') }}
+                    </small>
+                </div>
+
+            </div>
+
+        </form>
+    </div>
+</div>
+
+
+<ng-keyboard-shortcuts [shortcuts]="shortcuts"></ng-keyboard-shortcuts>
+<ng-keyboard-shortcuts-help [key]="'f2'" [closeKey]="'escape'" [title]="'Hotkeys Help'"></ng-keyboard-shortcuts-help>

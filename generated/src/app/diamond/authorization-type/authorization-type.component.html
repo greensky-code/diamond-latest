@@ -1,0 +1,168 @@
+<!-- Copyright (c) 2021 . All Rights Reserved. -->
+<div class="container-fluid">
+    <div class="card-block">
+        <form [formGroup]="authorizationTypeForm" novalidate>
+            <h2 class="form-title card-label-admin">Authorization Type</h2>
+            <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+            <app-pop-up-message #popUpMesssage (buttonclickEvent)="popUpButtonHandler($event)"  [(popupMessage)] = "popUpMessage"></app-pop-up-message>
+                        
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+                <div class="col-md-2 form-control-static mb-0" i18n>
+                    Req Next
+                </div>
+            
+                <div class="col-md-2 form-control-static mb-0" i18n>
+                    Allow
+                </div>
+            
+                <div class="col-md-2 form-control-static mb-0" i18n>
+                    Auto
+                </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <div class="col-md-2 form-control-static mb-0" i18n>
+                    Review
+                </div>
+            
+                <div class="col-md-2 form-control-static mb-0" i18n>
+                    Non Sys
+                </div>
+            
+                <div class="col-md-2 form-control-static mb-0" i18n>
+                    Update Auth
+                </div>
+            
+            </div>
+            
+                        <!-- DataGrid with Name of DataGrid001 -->
+                    <button (click)="dataGrid001GridOptionsExportCsv()">Export</button>
+                    <ag-grid-angular #agGrid class="ag-theme-fresh" [gridOptions]="dataGrid001GridOptions"
+                    style="width: 100%; height: 300px;"
+                    [enableSorting]="true"
+                    [enableFilter]="true"
+                    [floatingFilter]="true"
+                    [pagination]="true"
+                    [showToolPanel]="true">
+                    </ag-grid-angular>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+                <!-- DynamicText with label of Auth Type -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('authType') }">
+                     <label class="col-form-label" for="authType" i18n>Auth Type</label>
+                     <input type="text"  [fieldLevelSec]="'Auth Type'" params]="Auth Master"  readonly id="authType" formControlName="authType" class="form-control"/>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of Description -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('description') }">
+                     <label class="col-form-label" for="description" i18n>Description</label>
+                     <input type="text" id="description"  [fieldLevelSec]="'Disposition'" params]="Auth Master"   class="form-control" formControlName="description"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('description')">
+                      {{ formValidation.errorMessage('description') }}
+                     </small>
+                 </div>
+            
+            </div>
+            
+                        <!-- DataGrid with Name of DataGrid002 -->
+                    <button (click)="dataGrid002GridOptionsExportCsv()">Export</button>
+                    <ag-grid-angular #agGrid class="ag-theme-fresh" [gridOptions]="dataGrid002GridOptions"
+                    style="width: 100%; height: 300px;"
+                    [enableSorting]="true"
+                    [enableFilter]="true"
+                    [floatingFilter]="true"
+                    [pagination]="true"
+                    [showToolPanel]="true">
+                    </ag-grid-angular>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+                <div class="col-md-2 form-control-static mb-0" i18n>
+                    Req Next Review Date
+                </div>
+            
+                <!-- Checkbox with Name of Checkbox001 -->
+                <div class="" [ngClass]="{'has-error': displayMessage.checkbox001 }">
+                    <div class="checkbox col-md-12">
+                      <input id="checkbox001"  [fieldLevelSec]="''" params]=""  value="checkbox001" formControlName="checkbox001" type="checkbox">
+                        <label class="checkbox">
+                            
+                         </label>
+                    </div>
+                    <span class="help-block" *ngIf="displayMessage.checkbox001">
+                        {{ displayMessage.checkbox001  }}
+                     </span>
+                </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <div class="col-md-2 form-control-static mb-0" i18n>
+                    Allow Non Sys Subs ID
+                </div>
+            
+                <!-- Checkbox with Name of Checkbox002 -->
+                <div class="" [ngClass]="{'has-error': displayMessage.checkbox002 }">
+                    <div class="checkbox col-md-12">
+                      <input id="checkbox002"  [fieldLevelSec]="''" params]=""  value="checkbox002" formControlName="checkbox002" type="checkbox">
+                        <label class="checkbox">
+                            
+                         </label>
+                    </div>
+                    <span class="help-block" *ngIf="displayMessage.checkbox002">
+                        {{ displayMessage.checkbox002  }}
+                     </span>
+                </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Checkbox with label of Auto Update Auth End Date -->
+                <div class="" [ngClass]="{'has-error': displayMessage.autoUpdateAuthEndDate }">
+                    <div class="checkbox col-md-12">
+                      <input id="autoUpdateAuthEndDate"  [fieldLevelSec]="'Dates User Defined Date'" params]="Auth Master"  value="autoUpdateAuthEndDate" formControlName="autoUpdateAuthEndDate" type="checkbox">
+                        <label class="checkbox">
+                            Auto Update Auth End Date
+                         </label>
+                    </div>
+                    <span class="help-block" *ngIf="displayMessage.autoUpdateAuthEndDate">
+                        {{ displayMessage.autoUpdateAuthEndDate  }}
+                     </span>
+                </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <div class="col-md-2 form-control-static mb-0" i18n>
+                    Use Quantity Match
+                </div>
+            
+                <!-- Checkbox with Name of Checkbox003 -->
+                <div class="" [ngClass]="{'has-error': displayMessage.checkbox003 }">
+                    <div class="checkbox col-md-12">
+                      <input id="checkbox003"  [fieldLevelSec]="''" params]=""  value="checkbox003" formControlName="checkbox003" type="checkbox">
+                        <label class="checkbox">
+                            
+                         </label>
+                    </div>
+                    <span class="help-block" *ngIf="displayMessage.checkbox003">
+                        {{ displayMessage.checkbox003  }}
+                     </span>
+                </div>
+            
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,225 @@
+<!-- Copyright (c) 2021 . All Rights Reserved. -->
+<div class="container-fluid">
+    <div class="card-block">
+        <div class="row form-title">
+            <h2 class="col-md-6 card-label-admin">Check Register</h2>
+            <div class="col-md"><b class="readonly-label">View Only</b></div>
+        </div>
+        <button type="button" *ngIf="showIcon" class="modal-close close" aria-label="Close"
+                (click)="activeModal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+        <app-pop-up-message #popUpMesssage (buttonclickEvent)="popUpButtonHandler($event)"
+                            [(popupMessage)]="popUpMessage"></app-pop-up-message>
+
+        <ng-template #loaderTemplate let-loaderValue="value">
+            <div class="row justify-content-center mt-4" *ngIf="loaderValue">
+                <div class="spinner-border text-success" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>
+            </div>
+        </ng-template>
+        <ng-container *ngTemplateOutlet="loaderTemplate;context:{value: secProgress }"></ng-container>
+
+        <ng-container *appWinSelect="{secWin: secWin, userTemplateId: userTemplateId, secModuleId: memberModuleId}">
+            <div class="row mt-3 mb-3">
+                <menu-bar [menus]="menu" (onMenuClick)="onMenuItemClick($event)"></menu-bar>
+            </div>
+            <form [formGroup]="checkRegisterForm" novalidate>
+                <div class="form-group row">
+                </div>
+                <!-- DataGrid with Name of DataGrid -->
+                <ag-grid-angular #agGrid class="ag-theme-fresh" [gridOptions]="dataGridGridOptions"
+                                 style="width: 100%; height: 300px;"
+                                 [enableSorting]="true"
+                                 [enableFilter]="true"
+                                 [floatingFilter]="true"
+                                 (rowSelected)="onRowSelectedGrid001($event)"
+                                 [pagination]="true"
+                                 [showToolPanel]="true">
+                </ag-grid-angular>
+
+                <div class="form-group row">
+                </div>
+
+                <div class="form-group row">
+                    <!-- DynamicText with label of Bank Account -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('bankAccount') }">
+                        <label class="col-form-label" for="bankAccount" i18n>Bank Account</label>
+                        <input type="text" readonly id="bankAccount" formControlName="bankAccount"
+                               class="form-control"/>
+                    </div>
+
+                    <!-- DynamicText with Name of DynamicText001 -->
+                    <div class="col-md-8" [ngClass]="{'has-danger': formValidation.isValidField('dynamicText001') }">
+                        <label class="col-form-label" for="dynamicText001" i18n>&nbsp;</label>
+                        <input type="text" readonly id="dynamicText001" formControlName="dynamicText001"
+                               class="form-control"/>
+                    </div>
+                    <hr>
+                </div>
+
+                <div class="form-group row">
+                    <!-- DynamicText with label of Check/EFT Type -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('checkeftType') }">
+                        <label class="col-form-label" for="checkeftType" i18n>Check/EFT Type</label>
+                        <input type="text" readonly id="checkeftType" formControlName="checkeftType"
+                               class="form-control"/>
+                    </div>
+
+                    <!-- DynamicText with label of Check/EFT No -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('checkeftNo') }">
+                        <label class="col-form-label" for="checkeftNo" i18n>Check/EFT No</label>
+                        <input type="text" readonly id="checkeftNo" formControlName="checkeftNo" class="form-control"/>
+                    </div>
+
+                    <!-- DynamicText with label of Check/EFT Date -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('checkeftDate') }">
+                        <label class="col-form-label" for="checkeftDate" i18n>Check/EFT Date</label>
+                        <input type="text" readonly id="checkeftDate" formControlName="checkeftDate"
+                               class="form-control"/>
+                    </div>
+
+                </div>
+
+                <div class="form-group row">
+                    <!-- DynamicText with label of Acount -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('acount') }">
+                        <label class="col-form-label" for="acount" i18n>Amount</label>
+                        <input type="text" readonly id="acount" formControlName="acount" class="form-control"/>
+                    </div>
+
+                    <!-- DynamicText with label of Catgry -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('catgry') }">
+                        <label class="col-form-label" for="catgry" i18n>Catgry</label>
+                        <input type="text" readonly id="catgry" formControlName="catgry" class="form-control"/>
+                    </div>
+
+                    <!-- DynamicText with label of Job ID -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('jobId') }">
+                        <label class="col-form-label" for="jobId" i18n>Job ID</label>
+                        <input type="text" readonly id="jobId" formControlName="jobId" class="form-control"/>
+                    </div>
+
+                </div>
+
+                <div class="form-group row">
+                    <!-- DynamicText with label of Vendor Id -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('vendorId') }">
+                        <label class="col-form-label" for="vendorId" i18n>Vendor Id</label>
+                        <input type="text" readonly id="vendorId" formControlName="vendorId" class="form-control"/>
+                    </div>
+
+                    <!-- DynamicText with Name of DynamicText002 -->
+                    <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('dynamicText002') }">
+                        <label class="col-form-label" for="dynamicText002" i18n>&nbsp;</label>
+                        <input type="text" readonly id="dynamicText002" formControlName="dynamicText002"
+                               class="form-control"/>
+                    </div>
+
+                </div>
+
+                <div class="form-group row">
+                    <!-- DynamicText with label of Vendor Addr -->
+                    <div class="col-md-8" [ngClass]="{'has-danger': formValidation.isValidField('vendorAddr') }">
+                        <label class="col-form-label" for="vendorAddr" i18n>Vendor Addr</label>
+                        <input type="text" readonly id="vendorAddr" formControlName="vendorAddr" class="form-control"/>
+                    </div>
+
+                </div>
+
+                <div class="form-group row">
+                    <!-- DynamicText with label of Check Status -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('checkStatus') }">
+                        <label class="col-form-label" for="checkStatus" i18n>Check Status</label>
+                        <input type="text" readonly id="checkStatus" formControlName="checkStatus"
+                               class="form-control"/>
+                    </div>
+
+                    <!-- DynamicText with label of Status DT -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('statusDt') }">
+                        <label class="col-form-label" for="statusDt" i18n>Status DT</label>
+                        <input type="text" readonly id="statusDt" formControlName="statusDt" class="form-control"/>
+                    </div>
+
+                </div>
+
+                <div class="form-group row">
+                    <!-- DynamicText with label of Reason -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('reason') }">
+                        <label class="col-form-label" for="reason" i18n>Reason</label>
+                        <input type="text" readonly id="reason" formControlName="reason" class="form-control"/>
+                    </div>
+
+                    <!-- DynamicText with label of Last Action -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('lastAction') }">
+                        <label class="col-form-label" for="lastAction" i18n>Last Action</label>
+                        <input type="text" readonly id="lastAction" formControlName="lastAction" class="form-control"/>
+                    </div>
+
+                </div>
+
+                <div class="form-group row">
+                    <!-- Textbox with label of Cross Reference -->
+                    <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('crossReference') }">
+                        <label class="col-form-label" for="crossReference" i18n>Cross Reference</label>
+                        <input type="text" id="crossReference" readonly class="form-control"
+                               formControlName="crossReference"/>
+                        <small class="text-danger" *ngIf="formValidation.isValidField('crossReference')">
+                            {{ formValidation.errorMessage('crossReference') }}
+                        </small>
+                    </div>
+
+                    <!-- DynamicText with label of Last Action Dt -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('lastActionDt') }">
+                        <label class="col-form-label" for="lastActionDt" i18n>Last Action Dt</label>
+                        <input type="text" readonly id="lastActionDt" formControlName="lastActionDt"
+                               class="form-control"/>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <!-- Textbox with label of Comments -->
+                    <div class="col-md-10" [ngClass]="{'has-danger': formValidation.isValidField('comments') }">
+                        <label class="col-form-label" for="comments" i18n>Comments</label>
+                        <input type="text" id="comments" readonly class="form-control" formControlName="comments"/>
+                        <small class="text-danger" *ngIf="formValidation.isValidField('comments')">
+                            {{ formValidation.errorMessage('comments') }}
+                        </small>
+                    </div>
+
+                </div>
+                <hr>
+
+                <div class="">
+                    <div class="col-md-2 form-control-static mb-0" i18n>
+                        Bulk Payment
+                    </div>
+
+                    <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('bulkPaymentInd') }">
+                        <label class="col-form-label" for="bulkPaymentInd" i18n>Bulk Payment Ind</label>
+                        <input type="text" readonly id="bulkPaymentInd" formControlName="bulkPaymentInd"
+                               class="form-control"/>
+                    </div>
+
+                    <!-- DynamicText with label of Remittance ID -->
+                    <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('remittanceId') }">
+                        <label class="col-form-label" for="remittanceId" i18n>Remittance ID</label>
+                        <input type="text" readonly id="remittanceId" formControlName="remittanceId"
+                               class="form-control"/>
+                    </div>
+
+                    <!-- DynamicText with label of Bulk Amt -->
+                    <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('bulkAmt') }">
+                        <label class="col-form-label" for="bulkAmt" i18n>Bulk Amt</label>
+                        <input type="text" readonly id="bulkAmt" formControlName="bulkAmt" class="form-control"/>
+                    </div>
+                </div>
+            </form>
+        </ng-container>
+    </div>
+</div>
+
+<ng-keyboard-shortcuts [shortcuts]="shortcuts"></ng-keyboard-shortcuts>
+<ng-keyboard-shortcuts-help [key]="'f2'" [closeKey]="'escape'" [title]="'Hotkeys Help'"></ng-keyboard-shortcuts-help>

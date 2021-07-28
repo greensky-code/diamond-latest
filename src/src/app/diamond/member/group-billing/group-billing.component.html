@@ -1,0 +1,491 @@
+<!-- Copyright (c) 2020 . All Rights Reserved. -->
+<div class="container-fluid">
+  <div class="card-block">
+    <div class="modal-header">
+      <note-priority-header-display title="Group Billing" [seqSourceId]="seqSourceId" [noteWinId]="windowId"></note-priority-header-display>
+      <button type="button" *ngIf="showIcon" class="close" aria-label="Close"
+        (click)="modalClose()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+
+    <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+    <app-pop-up-message #popUpMesssage (buttonclickEvent)="popUpButtonHandler($event)" [(popupMessage)]="popUpMessage">
+    </app-pop-up-message>
+
+    <ng-template #loaderTemplate let-loaderValue="value">
+      <div class="row justify-content-center mt-4" *ngIf="loaderValue">
+        <div class="spinner-border text-success" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+      </div>
+    </ng-template>
+
+    <ng-container *ngTemplateOutlet="loaderTemplate;context:{value: secProgress }"></ng-container>
+
+    <ng-container
+        *appWinSelect="{secWin: secWin, userTemplateId: userTemplateId, secModuleId: memberModuleId}">
+
+      <div class="row">
+        <menu-bar [menus]="menu" (onMenuClick)="onMenuItemClick($event)"></menu-bar>
+      </div>
+
+    <form [formGroup]="groupBillingForm"  class="mt-4" novalidate *ngIf="!secProgress">
+
+
+      <div class="form-group row">
+        <div></div>
+        <!-- Textbox with label of Group ID -->
+        <div class="col-md-4">
+          <label for="groupId" i18n>Group ID</label>
+          <div [ngClass]="{'has-danger': formValidation.isValidField('groupId') }">
+
+            <div class="input-group mb-3">
+              <input type="text" id="groupId" #groupIds class="form-control" formControlName="groupId" [params]="{secColDetails: secColDetails, isEditState: true}"
+                (keydown)="onLookupFieldChange($event)" />
+              <div class="input-group-append">
+                <div class="input-group-append">
+                  <button class="input-group-text" (click)="getGroupMasterByGroupId(groupIds.value)">
+                    <fa-icon [icon]="faSearch"></fa-icon>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <small class="text-danger" *ngIf="formValidation.isValidField('groupId')">
+              {{ formValidation.errorMessage('groupId') }}
+            </small>
+          </div>
+        </div>
+
+        <!-- DynamicText with Name of DynamicText -->
+        <div class="col-md-4">
+          <label for="dynamicText" i18n>&nbsp;</label>
+          <div [ngClass]="{'has-danger': formValidation.isValidField('dynamicText') }">
+            <input type="text" readonly id="dynamicText" formControlName="dynamicText" class="form-control" />
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group row">
+      </div>
+
+
+      <ng-container *ngIf="showGroupField">
+
+        <div class="form-group row">
+          <div class="col-md-12 form-control-static mb-0" i18n>
+            <h3 class="card-border"><span  class="line-center">Billing Information</span></h3>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <!-- DropdownList with label of Bill To -->
+          <div class="selectContainer col-md-4">
+            <label class="col-form-label" for="billTo" i18n>Bill To</label>
+            <div class="selectContainer " [ngClass]="{'has-danger': formValidation.isValidField('billTo') }">
+              <select class="form-control" id="bill_to" name="Bill To" formControlName="billTo"
+                      [fieldLevelSec]="'BILLING_BATCH'" [params]="{secColDetails: secColDetails, isEditState: true}">
+                <option [value]="level.dddwDtlPrimaryKey.dataVal" *ngFor="let level of levels; let i = index"
+                  [selected]="level.dddwDtlPrimaryKey.dataVal === groupBillingForm.value.billTo">
+                  {{level.dddwDtlPrimaryKey.displayVal}}
+                </option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Textbox with label of Frequency -->
+          <div class="col-md-4">
+            <label class="col-form-label" for="frequency" i18n>Frequency</label>
+            <div class="selectContainer " [ngClass]="{'has-danger': formValidation.isValidField('frequency') }">
+              <select class="form-control" id="frequency" name="Frequency" formControlName="frequency"
+                      [fieldLevelSec]="'BILLING_FREQUENCY'" [params]="{secColDetails: secColDetails, isEditState: true}">
+                <option [value]="f.dddwDtlPrimaryKey.dataVal" *ngFor="let f of frequencies; let i = index"
+                  [selected]="f.dddwDtlPrimaryKey.dataVal === groupBillingForm.value.frequency">
+                  {{f.dddwDtlPrimaryKey.displayVal}}
+                </option>
+              </select>
+            </div>
+            <small class="text-danger" *ngIf="formValidation.isValidField('frequency')">
+              {{ formValidation.errorMessage('frequency') }}
+            </small>
+          </div>
+
+          <!-- DynamicText with label of Billed Through -->
+          <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('billedThrough') }">
+            <label class="col-form-label" for="billedThrough" i18n>Billed Through</label>
+            <input type="text" readonly id="billedThrough" formControlName="billedThrough" class="form-control"
+                   [fieldLevelSec]="'BILLED_THROUGH_DATE'" [params]="{secColDetails: secColDetails, isEditState: true}"/>
+          </div>
+
+        </div>
+
+        <div class="form-group row">
+          <!-- DynamicText with label of Bill Type -->
+          <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('billType') }">
+            <label class="col-form-label" for="billType" i18n>Bill Type</label>
+            <select disabled class="form-control" id="billType" name="Bill Type" formControlName="billType"
+                    [fieldLevelSec]="'BILLING_CYCLE'" [params]="{secColDetails: secColDetails, isEditState: true}">
+              <option [value]="bt.dddwDtlPrimaryKey.dataVal" *ngFor="let bt of billTypes; let i = index"
+                [selected]="bt.dddwDtlPrimaryKey.dataVal === groupBillingForm.value.billType">
+                {{bt.dddwDtlPrimaryKey.displayVal}}
+              </option>
+            </select>
+          </div>
+
+          <!-- Textbox with label of Grace -->
+          <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('grace') }">
+            <label class="col-form-label" for="grace" i18n>Grace</label>
+            <input type="text" id="grace" class="form-control" formControlName="grace"
+                   [fieldLevelSec]="'GRACE_PERIOD'" [params]="{secColDetails: secColDetails, isEditState: true}"/>
+            <small class="text-danger" *ngIf="formValidation.isValidField('grace')">
+              {{ formValidation.errorMessage('grace') }}
+            </small>
+          </div>
+          <!-- DynamicText with label of Paid Through -->
+          <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('paidThrough') }">
+            <label class="col-form-label" for="paidThrough" i18n>Paid Through</label>
+            <input type="text" readonly id="paidThrough" formControlName="paidThrough" class="form-control"
+                   [fieldLevelSec]="'PAID_THROUGH_DATE'" [params]="{secColDetails: secColDetails, isEditState: true}"/>
+          </div>
+
+        </div>
+
+        <div class="form-group row">
+          <!-- Textbox with label of Rate Freeze Calc -->
+          <div class="col-md-4">
+            <label class="col-form-label  clr-blue" for="rateFreezeCalc" i18n>Rate Freeze Calc</label>
+            <div class="selectContainer " [ngClass]="{'has-danger': formValidation.isValidField('rateFreezeCalc') }">
+              <select class="form-control" id="rateFreezeCalc" name="Rate Freeze Calc" formControlName="rateFreezeCalc"
+                      [fieldLevelSec]="'RATE_FREEZE_CALC'" [params]="{secColDetails: secColDetails, isEditState: true}">
+                <option [value]="rf.dddwDtlPrimaryKey.dataVal" *ngFor="let rf of rateFreezes; let i = index"
+                  [selected]="rf.dddwDtlPrimaryKey.dataVal === groupBillingForm.value.rateFreezeCalc">
+                  {{rf.dddwDtlPrimaryKey.displayVal}}
+                </option>
+              </select>
+            </div>
+            <small class="text-danger" *ngIf="formValidation.isValidField('rateFreezeCalc')">
+              {{ formValidation.errorMessage('rateFreezeCalc') }}
+            </small>
+          </div>
+
+          <!-- Textbox with label of Proration -->
+          <div class="col-md-4">
+            <label class="col-form-label  clr-blue" for="proration" i18n>Proration</label>
+            <div class="selectContainer" [ngClass]="{'has-danger': formValidation.isValidField('proration') }">
+              <select class="form-control" id="proration" name="Proration" formControlName="proration" (change)="onChangeProration()"
+                      [fieldLevelSec]="'PRORATION_METHOD'" [params]="{secColDetails: secColDetails, isEditState: true}">
+                <option [value]="p.dddwDtlPrimaryKey.dataVal" *ngFor="let p of prorations; let i = index"
+                  [selected]="p.dddwDtlPrimaryKey.dataVal === groupBillingForm.value.proration">
+                  {{p.dddwDtlPrimaryKey.displayVal !== '' ? p.dddwDtlPrimaryKey.displayVal : groupBillingForm.value.proration}}
+                </option>
+              </select>
+            </div>
+            <small class="text-danger" *ngIf="formValidation.isValidField('proration')">
+              {{ formValidation.errorMessage('proration') }}
+            </small>
+          </div>
+
+          <!-- Textbox with label of Adult Dep. Age -->
+          <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('adultDepAge') }">
+            <label class="col-form-label" for="adultDepAge" i18n>Adult Dep. Age</label>
+            <input type="text" value="0.0" id="adultDepAge" class="form-control" formControlName="adultDepAge"
+                   [fieldLevelSec]="'ADULT_DEP_AGE_PARAM'" [params]="{secColDetails: secColDetails, isEditState: true}"/>
+            <small class="text-danger" *ngIf="formValidation.isValidField('adultDepAge')">
+              {{ formValidation.errorMessage('adultDepAge') }}
+            </small>
+          </div>
+
+        </div>
+
+        <div class="form-group row">
+          <!-- Textbox with label of Retro Months -->
+          <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('retroMonths') }">
+            <label class="col-form-label" for="retroMonths" i18n>Retro Months</label>
+            <input type="text" id="retroMonths" class="form-control" formControlName="retroMonths"
+                   [fieldLevelSec]="'NO_OF_RETRO_MONTHS'" [params]="{secColDetails: secColDetails, isEditState: true}"/>
+            <small class="text-danger" *ngIf="formValidation.isValidField('retroMonths')">
+              {{ formValidation.errorMessage('retroMonths') }}
+            </small>
+          </div>
+
+          <!-- Textbox with label of Common Billing Date -->
+          <div class="col-md-4">
+            <app-datepicker [formGroup]="groupBillingForm" [formValidation]="formValidation" [field]="'commonBillingDate'" [labelText]="'Common Billing Date'" [isRequired]="'true'"></app-datepicker>
+            <!--<label for="commonBillingDate" class="clr-blue" i18n>Common Billing Date</label>
+            <div class="input-group" [ngClass]="{'has-danger': formValidation.isValidField('commonBillingDate') }">
+              <input id="commonBillingDate" class="form-control" angular-mydatepicker name="commonBillingDate"
+                (click)="commonBillingDateId.toggleCalendar()" formControlName="commonBillingDate"
+                [options]="datePickerConfig" #commonBillingDateId="angular-mydatepicker"
+                     [fieldLevelSec]="'COMMON_BILLING_DATE'" [params]="{secColDetails: secColDetails, isEditState: true}"/>
+              <div class="input-group-append">
+                <button type="button" class="btn btn-secondary" (click)="commonBillingDateId.clearDate()">
+                  <fa-icon [icon]="['far', 'window-close']"></fa-icon>
+                </button>
+              </div>
+              <div class="input-group-append">
+                <button type="button" class="btn btn-secondary" (click)="commonBillingDateId.toggleCalendar()">
+                  <fa-icon [icon]="['far', 'calendar']"></fa-icon>
+                </button>
+              </div>
+            </div>
+            <small class="text-danger" *ngIf="formValidation.isValidField('commonBillingDate')">
+              {{ formValidation.errorMessage('commonBillingDate') }}
+            </small>-->
+          </div>
+
+          <!-- Textbox with label of Max No. Deps -->
+          <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('maxNoDeps') }">
+            <label class="col-form-label" for="maxNoDeps" i18n>Max No. Deps</label>
+            <input type="text" id="maxNoDeps" class="form-control" formControlName="maxNoDeps"
+                   [fieldLevelSec]="'MATRIX_DEF'" [params]="{secColDetails: secColDetails, isEditState: true}"/>
+            <small class="text-danger" *ngIf="formValidation.isValidField('maxNoDeps')">
+              {{ formValidation.errorMessage('maxNoDeps') }}
+            </small>
+          </div>
+
+        </div>
+
+        <div class="form-group row">
+          <!-- Textbox with label of Cycle -->
+          <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('cycle') }">
+            <label class="col-form-label" for="cycle" i18n>Cycle</label>
+            <input type="text" id="cycle" class="form-control" formControlName="cycle"
+                   [fieldLevelSec]="'CYCLE'" [params]="{secColDetails: secColDetails, isEditState: true}"/>
+            <small class="text-danger" *ngIf="formValidation.isValidField('cycle')">
+              {{ formValidation.errorMessage('cycle') }}
+            </small>
+          </div>
+
+          <!-- Textbox with label of Report Print Format -->
+          <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('reportPrintFormat') }">
+            <label class="col-form-label" for="reportPrintFormat" i18n>Report Print Format</label>
+            <input type="text" id="reportPrintFormat" class="form-control" formControlName="reportPrintFormat"
+                   [fieldLevelSec]="'INVOICE_PRINT_FORMAT'" [params]="{secColDetails: secColDetails, isEditState: true}"/>
+            <small class="text-danger" *ngIf="formValidation.isValidField('reportPrintFormat')">
+              {{ formValidation.errorMessage('reportPrintFormat') }}
+            </small>
+          </div>
+
+          <!-- Checkbox with label of Use EFT -->
+          <div class="" [ngClass]="{'has-error': displayMessage.useEft }">
+            <div class="checkbox col-md-12 pt-3 mt-4">
+              <input id="useEft" value="Y" formControlName="useEft" type="checkbox"
+                     [fieldLevelSec]="'USE_EFT_FLG'" [params]="{secColDetails: secColDetails, isEditState: true}" (change)="checkValue(isChecked?'A':'B')">
+              <label class="checkbox">
+                Use EFT
+              </label>
+            </div>
+            <span class="help-block" *ngIf="displayMessage.useEft">
+              {{ displayMessage.useEft  }}
+            </span>
+          </div>
+
+        </div>
+
+        <div class="form-group row">
+        </div>
+
+        <!-- DataGrid with Name of DataGrid -->
+        <ag-grid-angular #agGrid class="ag-theme-fresh" [gridOptions]="dataGridGridOptions" (gridReady)="gridReadyEvent($event)"
+          style="width: 100%; height: 300px;" [enableSorting]="true" [enableFilter]="true" [floatingFilter]="true"
+          [pagination]="true" [showToolPanel]="true" (selectionChanged)="onSelectRow($event)">
+        </ag-grid-angular>
+
+        <div class="form-group row">
+        </div>
+
+        <div class="form-group row">
+        </div>
+
+        <div class="form-group row">
+          <div class="col-md-12 form-control-static mb-0" i18n>
+            <h3 class="card-border"><span  class="line-center">Rates</span></h3>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <!-- Textbox with label of Tierring Mthd -->
+          <div class="col-md-4">
+            <label class="col-form-label text-primary" for="tieringMethod" i18n>Tierring Mthd</label>
+            <div class="selectContainer " [ngClass]="{'has-danger': formValidation.isValidField('tieringMethod') }">
+              <select class="form-control" id="tieringMethod" name="tieringMethod" formControlName="tieringMethod" (change)="onChangeTiering()"
+                      [fieldLevelSec]="'TIERING_METHOD'" [params]="{secColDetails: secColDetails, isEditState: true}" [disabled]="!isNewRecord ? 'disabled' : null">
+                <option [value]="tm.dddwDtlPrimaryKey.dataVal" *ngFor="let tm of tieringMethods; let i = index"
+                [selected]="!groupBillingForm.value.tieringMethod? (tm.dddwDtlPrimaryKey.displayVal === 'N/A'):
+                         (tm.dddwDtlPrimaryKey.dataVal === groupBillingForm.value.tieringMethod) ">
+                  {{tm.dddwDtlPrimaryKey.displayVal !== '' ? tm.dddwDtlPrimaryKey.displayVal : groupBillingForm.value.tieringMethod}}
+                </option>
+              </select>
+            </div>
+            <small class="text-danger" *ngIf="formValidation.isValidField('tieringMethod')">
+              {{ formValidation.errorMessage('tieringMethod') }}
+            </small>
+          </div>
+
+          <!-- DynamicText with label of Admin Fee -->
+          <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('adminFee') }">
+            <label class="col-form-label" for="adminFee" i18n>Admin Fee</label>
+            <input type="text" id="adminFee" formControlName="adminFee" class="form-control" [textMask]="{mask: mask.twoDigitDecimal}" (change)="onChangeAdminFee()"
+                   [disabled]="!isNewRecord ? 'disabled' : null"/>
+          </div>
+
+          <!-- Checkbox with label of Across The Board -->
+          <div class="" [ngClass]="{'has-error': displayMessage.acrossTheBoard }">
+            <div class="checkbox col-md-12 pt-3  mt-4">
+              <input id="acrossTheBoard" value="acrossTheBoard" formControlName="acrossTheBoard" type="checkbox" (click)="onClickAcrossTheBoard($event)"
+                     [fieldLevelSec]="'ACCROSS_THE_BOARD'" [params]="{secColDetails: secColDetails, isEditState: true}"  [disabled]="!isNewRecord ? 'disabled' : null">
+              <label class="checkbox">
+                Across The Board
+              </label>
+            </div>
+            <span class="help-block" *ngIf="displayMessage.acrossTheBoard">
+              {{ displayMessage.acrossTheBoard  }}
+            </span>
+          </div>
+
+        </div>
+
+        <div class="form-group row">
+          <!-- Textbox with label of Rate 1 -->
+          <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('rate1') }">
+            <label class="col-form-label" for="rate1" i18n>Rate 1</label>
+            <input type="text" id="rate1" class="form-control" formControlName="rate1" [textMask]="{mask: mask.twoDigitDecimal}"
+                   [fieldLevelSec]="'RATE_1'" [params]="{secColDetails: secColDetails, isEditState: true}"
+                (click)="onRateClick($event, 'rate1')" (blur)="onRateChange($event, 'rate1')"
+                   (focusin)="onRateFocus($event, 'rate1')"  [disabled]="!isNewRecord ? 'disabled' : null"/>
+            <small class="text-danger" *ngIf="formValidation.isValidField('rate1')">
+              {{ formValidation.errorMessage('rate1') }}
+            </small>
+          </div>
+
+          <!-- DynamicText with label of Admin CompCode -->
+          <div class="col-md-4">
+            <label class="col-form-label" for="adminCompcode" i18n>Admin CompCode</label>
+            <div class="selectContainer" [ngClass]="{'has-danger': formValidation.isValidField('adminCompcode')}">
+              <select class="form-control" id="adminCompcode" name="adminCompcode"
+                formControlName="adminCompcode"  [disabled]="!isNewRecord ? 'disabled' : null"
+                      [fieldLevelSec]="'COMPANY_CODE'" [params]="{secColDetails: secColDetails, isEditState: true}">
+                <option [value]="cm.companyCode" *ngFor="let cm of companyMasters; let i = index">
+                  {{cm.companyCode}} {{cm.description}}
+                </option>
+              </select>
+            </div>
+          </div>
+
+          <div class="col-md-4 form-control-static mb-0 pt-3  mt-4" i18n>
+            Rate Modified On : <label class="text-primary">{{groupBillingForm.value.rateUpdatedOn}}</label>
+          </div>
+
+        </div>
+
+        <div class="form-group row">
+          <!-- Textbox with label of Rate 2 -->
+          <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('rate2') }">
+            <label class="col-form-label" for="rate2" i18n>Rate 2</label>
+            <input type="text" id="rate2" class="form-control" formControlName="rate2" [textMask]="{mask: mask.twoDigitDecimal}"
+                   [fieldLevelSec]="'RATE_2'" [params]="{secColDetails: secColDetails, isEditState: true}"
+                   (click)="onRateClick($event, 'rate2')" (blur)="onRateChange($event, 'rate2')"
+                   (focusin)="onRateFocus($event, 'rate2')"  [disabled]="!isNewRecord ? 'disabled' : null"/>
+            <small class="text-danger" *ngIf="formValidation.isValidField('rate2')">
+              {{ formValidation.errorMessage('rate2') }}
+            </small>
+          </div>
+
+          <!-- DynamicText with label of Admin GLRef -->
+          <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('adminGlref') }">
+            <label class="col-form-label" for="adminGlref" i18n>Admin GLRef</label>
+            <select class="form-control" id="adminGlref" name="adminGlref" formControlName="adminGlref"  [disabled]="!isNewRecord ? 'disabled' : null"
+                      [fieldLevelSec]="'COMMISSION_GL_REF_CODE'" [params]="{secColDetails: secColDetails, isEditState: true}">
+                <option [value]="aGLRefValue.generalLedgerReferencePrimaryKey.glRefCode" *ngFor="let aGLRefValue of adminGLRefValues; let i = index">
+                  {{aGLRefValue.generalLedgerReferencePrimaryKey.glRefCode}} {{aGLRefValue.description}}
+                </option>
+              </select>
+          </div>
+
+        </div>
+
+        <div class="form-group row">
+          <!-- Textbox with label of Rate 3 -->
+          <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('rate3') }">
+            <label class="col-form-label" for="rate3" i18n>Rate 3</label>
+            <input type="text" id="rate3" class="form-control" formControlName="rate3" [textMask]="{mask: mask.twoDigitDecimal}"
+                   [fieldLevelSec]="'RATE_3'" [params]="{secColDetails: secColDetails, isEditState: true}"
+                   (click)="onRateClick($event, 'rate3')" (blur)="onRateChange($event, 'rate3')"
+                   (focusin)="onRateFocus($event, 'rate3')"  [disabled]="!isNewRecord ? 'disabled' : null"/>
+            <small class="text-danger" *ngIf="formValidation.isValidField('rate3')">
+              {{ formValidation.errorMessage('rate3') }}
+            </small>
+          </div>
+
+          <!-- DynamicText with label of Admin Fee Level -->
+          <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('adminFeeLevel') }">
+            <label class="col-form-label" for="adminFeeLevel" i18n>Admin Fee Level</label>
+            <select class="form-control" id="adminFeeLevel" name="adminFeeLevel" formControlName="adminFeeLevel" (change)="onChangeAdminFeeLevel()"
+                 [fieldLevelSec]="'AD_FEE_LEVEL_CODE'" [params]="{secColDetails: secColDetails, isEditState: true}"  [disabled]="!isNewRecord ? 'disabled' : null">
+              <option [value]="aFeeLevel.systemCodesPrimaryKey.systemCode" *ngFor="let aFeeLevel of adminFeeLevelValues; let i = index">
+                {{aFeeLevel.systemCodeDesc1}}
+              </option>
+            </select>
+          </div>
+
+        </div>
+
+        <div class="form-group row">
+          <!-- Textbox with label of Rate 4 -->
+          <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('rate4') }">
+            <label class="col-form-label" for="rate4" i18n>Rate 4</label>
+            <input type="text" id="rate4" class="form-control" formControlName="rate4" [textMask]="{mask: mask.twoDigitDecimal}"
+                   [fieldLevelSec]="'RATE_4'" [params]="{secColDetails: secColDetails, isEditState: true}"
+                   (click)="onRateClick($event, 'rate4')"  (blur)="onRateChange($event, 'rate4')"
+                   (focusin)="onRateFocus($event, 'rate4')"  [disabled]="!isNewRecord ? 'disabled' : null"/>
+            <small class="text-danger" *ngIf="formValidation.isValidField('rate4')">
+              {{ formValidation.errorMessage('rate4') }}
+            </small>
+          </div>
+
+          <!-- Textbox with label of Matrix Def -->
+          <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('matrixDef') }">
+            <label class="col-form-label" for="matrixDef" [class.text-primary]="groupBillingForm.get('tieringMethod').value &&
+              (groupBillingForm.get('tieringMethod').value == 'M1' || groupBillingForm.get('tieringMethod').value == 'M2')" i18n>Matrix Def</label>
+            <input type="text" id="matrixDef" class="form-control" formControlName="matrixDef"
+                   [fieldLevelSec]="'COMMISSION_MATRIX_DEF'" [params]="{secColDetails: secColDetails, isEditState: true}"
+                   (keydown)="lookupMatrixDef($event)"  [disabled]="!isNewRecord ? 'disabled' : null"/>
+            <small class="text-danger" *ngIf="formValidation.isValidField('matrixDef')">
+              {{ formValidation.errorMessage('matrixDef') }}
+            </small>
+          </div>
+
+        </div>
+
+        <div class="form-group row">
+          <!-- Textbox with label of Rate 5 -->
+          <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('rate5') }">
+            <label class="col-form-label" for="rate5" i18n>Rate 5</label>
+            <input type="text" id="rate5" class="form-control" formControlName="rate5" [textMask]="{mask: mask.twoDigitDecimal}"
+                   [fieldLevelSec]="'RATE_5'" [params]="{secColDetails: secColDetails, isEditState: true}"
+                   (click)="onRateClick($event, 'rate5')" (blur)="onRateChange($event, 'rate5')"
+              (focusin)="onRateFocus($event, 'rate5')"  [disabled]="!isNewRecord ? 'disabled' : null"/>
+            <small class="text-danger" *ngIf="formValidation.isValidField('rate5')">
+              {{ formValidation.errorMessage('rate5') }}
+            </small>
+          </div>
+
+          <!-- DynamicText with label of Pct Of Matrix -->
+          <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('pctOfMatrix') }">
+            <label class="col-form-label" for="pctOfMatrix" i18n>Pct Of Matrix</label>
+            <input type="text" id="pctOfMatrix" formControlName="pctOfMatrix" class="form-control" (click)="onClickPctOfMatrix()" (blur)="onChangePctOfMatrix()" size="6" maxlength="6"
+                   [fieldLevelSec]="'PCT_OF_MATRIX'" [params]="{secColDetails: secColDetails, isEditState: true}"  [disabled]="!isNewRecord ? 'disabled' : null"/>
+          </div>
+
+        </div>
+
+        <div class="form-group row">
+        </div>
+      </ng-container>
+    </form>
+    </ng-container>
+  </div>
+</div>
+
+<ng-keyboard-shortcuts [shortcuts]="shortcuts"></ng-keyboard-shortcuts>
+<ng-keyboard-shortcuts-help [key]="'f2'" [closeKey]="'escape'" [title]="'Hotkeys Help'"></ng-keyboard-shortcuts-help>

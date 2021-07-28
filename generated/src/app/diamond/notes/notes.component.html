@@ -1,0 +1,407 @@
+<!-- Copyright (c) 2020 . All Rights Reserved. -->
+<div class="container-fluid">
+    <div class="card-block">
+        <form [formGroup]="notesForm" novalidate>
+            <h2 class="form-title card-label-admin">Notes</h2>
+            <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+            <app-pop-up-message #popUpMesssage (buttonclickEvent)="popUpButtonHandler($event)"  [(popupMessage)] = "popUpMessage"></app-pop-up-message>
+                        
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+                <div class="col-md-2 form-control-static mb-0" i18n>
+                    Filter Notes By
+                </div>
+            
+                <div class="col-md-2 form-control-static mb-0" i18n>
+                    Sort By
+                </div>
+            
+                <div class="col-md-2 form-control-static mb-0" i18n>
+                    Consolidate Notes By
+                </div>
+            
+            </div>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+                <!-- Checkbox with label of All Types -->
+                <div class="" [ngClass]="{'has-error': displayMessage.allTypes }">
+                    <div class="checkbox col-md-12">
+                      <input id="allTypes" value="allTypes" formControlName="allTypes" type="checkbox">
+                        <label class="checkbox">
+                            All Types
+                         </label>
+                    </div>
+                    <span class="help-block" *ngIf="displayMessage.allTypes">
+                        {{ displayMessage.allTypes  }}
+                     </span>
+                </div>
+            
+                <!-- DropdownList with label of Type -->
+                <div class="selectContainer col-md-2 " [ngClass]="{'has-danger': formValidation.isValidField('type001') }">
+                    <label class="col-form-label" for="type001" i18n>Type</label>
+                    <select class="form-control" id="type001" name="Type001" formControlName="type001">
+                        <option value="">Please Select</option>
+                    </select>
+                </div>
+            
+                <!-- Checkbox with label of Priority -->
+                <div class="" [ngClass]="{'has-error': displayMessage.priority001 }">
+                    <div class="checkbox col-md-12">
+                      <input id="priority001" value="priority001" formControlName="priority001" type="checkbox">
+                        <label class="checkbox">
+                            Priority
+                         </label>
+                    </div>
+                    <span class="help-block" *ngIf="displayMessage.priority001">
+                        {{ displayMessage.priority001  }}
+                     </span>
+                </div>
+            
+                <!-- Checkbox with label of Notes Dates -->
+                <div class="" [ngClass]="{'has-error': displayMessage.notesDates }">
+                    <div class="checkbox col-md-12">
+                      <input id="notesDates" value="notesDates" formControlName="notesDates" type="checkbox">
+                        <label class="checkbox">
+                            Notes Dates
+                         </label>
+                    </div>
+                    <span class="help-block" *ngIf="displayMessage.notesDates">
+                        {{ displayMessage.notesDates  }}
+                     </span>
+                </div>
+            
+                <!-- Checkbox with label of None -->
+                <div class="" [ngClass]="{'has-error': displayMessage.none }">
+                    <div class="checkbox col-md-12">
+                      <input id="none" value="none" formControlName="none" type="checkbox">
+                        <label class="checkbox">
+                            None
+                         </label>
+                    </div>
+                    <span class="help-block" *ngIf="displayMessage.none">
+                        {{ displayMessage.none  }}
+                     </span>
+                </div>
+            
+                <!-- Checkbox with label of Group -->
+                <div class="" [ngClass]="{'has-error': displayMessage.group }">
+                    <div class="checkbox col-md-12">
+                      <input id="group" value="group" formControlName="group" type="checkbox">
+                        <label class="checkbox">
+                            Group
+                         </label>
+                    </div>
+                    <span class="help-block" *ngIf="displayMessage.group">
+                        {{ displayMessage.group  }}
+                     </span>
+                </div>
+            
+                <!-- Button with label of List -->
+                <div class="col-md-2">
+                    <button type="button" id="list" name="list" class="btn btn-small btn-primary">List</button>
+                
+                
+                </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Checkbox with label of Follow Up Date -->
+                <div class="" [ngClass]="{'has-error': displayMessage.followUpDate }">
+                    <div class="checkbox col-md-12">
+                      <input id="followUpDate" value="followUpDate" formControlName="followUpDate" type="checkbox">
+                        <label class="checkbox">
+                            Follow Up Date
+                         </label>
+                    </div>
+                    <span class="help-block" *ngIf="displayMessage.followUpDate">
+                        {{ displayMessage.followUpDate  }}
+                     </span>
+                </div>
+            
+                <!-- Checkbox with label of Member -->
+                <div class="" [ngClass]="{'has-error': displayMessage.member }">
+                    <div class="checkbox col-md-12">
+                      <input id="member" value="member" formControlName="member" type="checkbox">
+                        <label class="checkbox">
+                            Member
+                         </label>
+                    </div>
+                    <span class="help-block" *ngIf="displayMessage.member">
+                        {{ displayMessage.member  }}
+                     </span>
+                </div>
+            
+                <!-- Checkbox with label of Provider -->
+                <div class="" [ngClass]="{'has-error': displayMessage.provider }">
+                    <div class="checkbox col-md-12">
+                      <input id="provider" value="provider" formControlName="provider" type="checkbox">
+                        <label class="checkbox">
+                            Provider
+                         </label>
+                    </div>
+                    <span class="help-block" *ngIf="displayMessage.provider">
+                        {{ displayMessage.provider  }}
+                     </span>
+                </div>
+            
+                <!-- Button with label of Close -->
+                <div class="col-md-2">
+                    <button type="button" id="close" name="close" class="btn btn-small btn-primary">Close</button>
+                
+                
+                </div>
+            
+            </div>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+                <!-- DropdownList with label of Type -->
+                <div class="selectContainer col-md-2 " [ngClass]="{'has-danger': formValidation.isValidField('type002') }">
+                    <label class="col-form-label" for="type002" i18n>Type</label>
+                    <select class="form-control" id="type002" name="Type002" formControlName="type002">
+                        <option value="">Please Select</option>
+                    </select>
+                </div>
+            
+                <!-- DynamicText with label of Priority -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('priority002') }">
+                     <label class="col-form-label" for="priority002" i18n>Priority</label>
+                     <input type="text" readonly id="priority002" formControlName="priority002" class="form-control"/>
+                 </div>
+            
+                <!-- Textbox with label of Date -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('date') }">
+                     <label class="col-form-label" for="date" i18n>Date</label>
+                     <div class="input-group">
+                    <input id="date" class="form-control" angular-mydatepicker name="date" (click)="dateId.toggleCalendar()"
+                    formControlName="date"[options]="datePickerConfig" #dateId="angular-mydatepicker"/>
+                    <div class="input-group-append">
+                        <button type="button" class="btn btn-secondary" (click)="dateId.clearDate()">
+                          <i class="fa fa-close"></i>
+                        </button>
+                      </div>
+                      <div class="input-group-append">
+                        <button type="button" class="btn btn-secondary" (click)="dateId.toggleCalendar()">
+                          <i class="fa fa-calendar-o"></i>
+                        </button>
+                      </div>
+                    </div>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('date')">
+                      {{ formValidation.errorMessage('date') }}
+                     </small>
+                 </div>
+            
+                <!-- Textbox with label of Followup Date -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('followupDate') }">
+                     <label class="col-form-label" for="followupDate" i18n>Followup Date</label>
+                     <div class="input-group">
+                    <input id="followupDate" class="form-control" angular-mydatepicker name="followupDate" (click)="followupDateId.toggleCalendar()"
+                    formControlName="followupDate"[options]="datePickerConfig" #followupDateId="angular-mydatepicker"/>
+                    <div class="input-group-append">
+                        <button type="button" class="btn btn-secondary" (click)="followupDateId.clearDate()">
+                          <i class="fa fa-close"></i>
+                        </button>
+                      </div>
+                      <div class="input-group-append">
+                        <button type="button" class="btn btn-secondary" (click)="followupDateId.toggleCalendar()">
+                          <i class="fa fa-calendar-o"></i>
+                        </button>
+                      </div>
+                    </div>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('followupDate')">
+                      {{ formValidation.errorMessage('followupDate') }}
+                     </small>
+                 </div>
+            
+                <!-- Textbox with label of Followup Code -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('followupCode') }">
+                     <label class="col-form-label" for="followupCode" i18n>Followup Code</label>
+                     <input type="text" id="followupCode"  class="form-control" formControlName="followupCode"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('followupCode')">
+                      {{ formValidation.errorMessage('followupCode') }}
+                     </small>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+                <!-- TextArea with Name of TextArea -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('textArea') }">
+                     <label class="col-form-label" for="textArea" i18n>&nbsp;</label>
+                     <textarea id="textArea" name="textArea" class="form-control" formControlName="textArea"></textarea>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of Expire Date -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('expireDate') }">
+                     <label class="col-form-label" for="expireDate" i18n>Expire Date</label>
+                     <input type="text" id="expireDate"  class="form-control" formControlName="expireDate"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('expireDate')">
+                      {{ formValidation.errorMessage('expireDate') }}
+                     </small>
+                 </div>
+            
+                <!-- Textbox with label of User Def 1 -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('userDef1') }">
+                     <label class="col-form-label" for="userDef1" i18n>User Def 1</label>
+                     <input type="text" id="userDef1"  class="form-control" formControlName="userDef1"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('userDef1')">
+                      {{ formValidation.errorMessage('userDef1') }}
+                     </small>
+                 </div>
+            
+                <!-- Textbox with label of User Date 1 -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('userDate1') }">
+                     <label class="col-form-label" for="userDate1" i18n>User Date 1</label>
+                     <input type="text" id="userDate1"  class="form-control" formControlName="userDate1"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('userDate1')">
+                      {{ formValidation.errorMessage('userDate1') }}
+                     </small>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of User Def 2 -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('userDef2') }">
+                     <label class="col-form-label" for="userDef2" i18n>User Def 2</label>
+                     <input type="text" id="userDef2"  class="form-control" formControlName="userDef2"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('userDef2')">
+                      {{ formValidation.errorMessage('userDef2') }}
+                     </small>
+                 </div>
+            
+                <!-- Textbox with label of User Date 2 -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('userDate2') }">
+                     <label class="col-form-label" for="userDate2" i18n>User Date 2</label>
+                     <input type="text" id="userDate2"  class="form-control" formControlName="userDate2"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('userDate2')">
+                      {{ formValidation.errorMessage('userDate2') }}
+                     </small>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of User Def 3 -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('userDef3') }">
+                     <label class="col-form-label" for="userDef3" i18n>User Def 3</label>
+                     <input type="text" id="userDef3"  class="form-control" formControlName="userDef3"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('userDef3')">
+                      {{ formValidation.errorMessage('userDef3') }}
+                     </small>
+                 </div>
+            
+                <!-- Textbox with label of User Date 3 -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('userDate3') }">
+                     <label class="col-form-label" for="userDate3" i18n>User Date 3</label>
+                     <input type="text" id="userDate3"  class="form-control" formControlName="userDate3"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('userDate3')">
+                      {{ formValidation.errorMessage('userDate3') }}
+                     </small>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of User Def 4 -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('userDef4') }">
+                     <label class="col-form-label" for="userDef4" i18n>User Def 4</label>
+                     <input type="text" id="userDef4"  class="form-control" formControlName="userDef4"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('userDef4')">
+                      {{ formValidation.errorMessage('userDef4') }}
+                     </small>
+                 </div>
+            
+                <!-- Textbox with label of User Date 4 -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('userDate4') }">
+                     <label class="col-form-label" for="userDate4" i18n>User Date 4</label>
+                     <input type="text" id="userDate4"  class="form-control" formControlName="userDate4"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('userDate4')">
+                      {{ formValidation.errorMessage('userDate4') }}
+                     </small>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of User Def 5 -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('userDef5') }">
+                     <label class="col-form-label" for="userDef5" i18n>User Def 5</label>
+                     <input type="text" id="userDef5"  class="form-control" formControlName="userDef5"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('userDef5')">
+                      {{ formValidation.errorMessage('userDef5') }}
+                     </small>
+                 </div>
+            
+                <!-- Textbox with label of User Date 5 -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('userDate5') }">
+                     <label class="col-form-label" for="userDate5" i18n>User Date 5</label>
+                     <input type="text" id="userDate5"  class="form-control" formControlName="userDate5"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('userDate5')">
+                      {{ formValidation.errorMessage('userDate5') }}
+                     </small>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+            </div>
+        </form>
+    </div>
+</div>

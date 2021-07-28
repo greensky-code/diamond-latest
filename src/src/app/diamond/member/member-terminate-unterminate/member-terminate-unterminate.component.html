@@ -1,0 +1,40 @@
+<!-- Copyright (c) 2020 . All Rights Reserved. -->
+<div class="container-fluid">
+    <div class="card-block">
+        <form [formGroup]="memberTerminateUnterminateForm" novalidate (ngSubmit)="submitForm($event)">
+            <h2 class="form-title card-label-admin">Member Terminate Unterminate</h2>
+            <button type="button" *ngIf="showIcon" class="modal-close close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+            <app-pop-up-message #popUpMesssage (buttonclickEvent)="popUpButtonHandler($event)"  [popupMessage] = "popUpMessage"></app-pop-up-message>
+
+            <div class="form-group row">
+                <div class="col-md-6 offset-3"  [ngClass]="{'has-danger': formValidation.isValidField('termDate') }">
+                    <app-datepicker [formGroup]="memberTerminateUnterminateForm" [formValidation]="formValidation" [field]="'termDate'"
+                                [labelText]="'Term Date'" (onDateChanged)="onChangeTermDate($event)" [isRequired]="'true'"></app-datepicker>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <!-- DynamicText with label of Term Reason -->
+                 <div class="col-md-6 offset-3" [ngClass]="{'has-danger': formValidation.isValidField('termReason') }">
+                     <label class="col-form-label" for="termReason" i18n>Term Reason</label>
+                     <input type="text" disabled id="termReason" formControlName="termReason" class="form-control"
+                            (keydown)="onLookupFieldChange($event)" onkeyup="this.value = this.value.toUpperCase()" #termReason />
+                     <small class="text-danger" *ngIf="formValidation.isValidField('termReason')">
+                         {{ formValidation.errorMessage('termReason') }}
+                     </small>
+                 </div>
+            </div>
+
+            <div class="form-group row">
+                <!-- Button with label of OK -->
+                <div class="col-md-4 offset-4">
+                     <button type="button" id="cancel" name="cancel" (click)="cancel()" class="ml-2 float-right  btn btn-small btn-primary">Cancel</button>
+                    <button type="submit" id="ok" name="ok" class=" float-right btn btn-small btn-primary">OK</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

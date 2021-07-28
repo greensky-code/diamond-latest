@@ -1,0 +1,398 @@
+<!-- Copyright (c) 2020 . All Rights Reserved. -->
+<div class="container-fluid">
+  <div class="card-block">
+    <div class="modal-header">
+      <note-priority-header-display title="Group Contract" [seqSourceId]="seqSourceId" [noteWinId]="windowId"></note-priority-header-display>
+      <button type="button" *ngIf="showIcon" class="close" aria-label="Close" (click)="modalClose()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="row">
+      <menu-bar [menus]="menu" (onMenuClick)="onMenuItemClick($event)"></menu-bar>
+    </div>
+    <app-alert-message *ngIf="alertMessage" [alertMessage]="alertMessage"></app-alert-message>
+    <app-pop-up-message *ngIf="popUpMessage" #popUpMesssage [popupMessage]="popUpMessage" (buttonclickEvent)="popUpButtonClicked($event)">
+    </app-pop-up-message>
+    <form [formGroup]="groupIdForm" novalidate>
+      <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+      <app-pop-up-message #popUpMesssage (buttonclickEvent)="popUpButtonClicked($event)" [(popupMessage)]="popUpMessage"></app-pop-up-message>
+
+      <div class="form-group row" style="margin: 10px 0px;">
+        <!-- Textbox with label of Group ID -->
+        <label class="col-form-label" for="groupId" i18n>Group ID</label>
+        <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('groupId') }">
+
+          <input  (change)="onChangeGroupId($event)" type="text" id="groupId" class="form-control" formControlName="groupId"
+            (keydown)="onLookupFieldChange($event)" />
+          <small class="text-danger" *ngIf="formValidation.isValidField('groupId')">
+            {{ formValidation.errorMessage('groupId') }}
+          </small>
+        </div>
+        <div class="col-md-4">
+          <span  style="color:blue; vertical-align: middle;" *ngIf="ShortName">{{this.ShortName}}</span>
+        </div>
+      </div>
+    </form>
+    <!-- DataGrid with Name of DataGrid -->
+    <ag-grid-angular #agGrid class="ag-theme-fresh" [gridOptions]="dataGridGridOptions" style="width: 100%; height: 300px;" [enableSorting]="true" [enableFilter]="false" [floatingFilter]="false" [pagination]="true" [showToolPanel]="true"  (selectionChanged)="GridOneSelection()">
+    </ag-grid-angular>
+  </div>
+    <div class="card-block mt-2" #fieldForm>
+      <form [formGroup]="groupContractForm" *ngIf="showContractForm">
+        <div class="row">
+          <!-- Textbox with label of Effective Date -->
+
+          <div class="form-group col-md-4">
+            <app-datepicker [isRequired]="true" [formGroup]="groupContractForm" [formValidation]="formValidation" [field]="'effectivityDate'" [labelText]="'Effective Date'" (onDateChanged)="validateEffectiveDate($event)"></app-datepicker>
+          </div>
+
+          <!-- Textbox with label of Term Date -->
+
+          <div class="form-group col-md-4">
+            <app-datepicker [formGroup]="groupContractForm" [formValidation]="formValidation" [field]="'termDate'" [labelText]="'Term Date'" (onDateChanged)="validateTermDate($event)"></app-datepicker>
+          </div>
+
+          <!-- Textbox with label of Term Reason -->
+
+          <div class="form-group col-md-4">
+            <label for="termReason" class="clr-blue" i18n>Term Reason</label>
+            <div [ngClass]="{'has-danger': formValidation.isValidField('termReason') }">
+              <select id="termReason" class="form-control" formControlName="termReason" >
+                <option [value]="code.reasonCode" *ngFor="let code of reasonCodes;">
+                  {{code.reasonCode}} - {{code.description}}</option>
+              </select>
+
+              <small class="text-danger" *ngIf="formValidation.isValidField('termReason')">
+                {{ formValidation.errorMessage('termReason') }}
+              </small>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="row">
+          <!-- Textbox with label of Open Enroll Start -->
+
+          <div class="form-group col-md-4">
+            <app-datepicker [formGroup]="groupContractForm" [formValidation]="formValidation" [field]="'openEnrollStart'" [labelText]="'Open Enroll Start'"></app-datepicker>
+          </div>
+
+          <!-- Textbox with label of Open Enroll End -->
+
+          <div class="form-group col-md-4">
+            <app-datepicker  [formGroup]="groupContractForm" [formValidation]="formValidation" [field]="'openEnrollEnd'" [labelText]="'Open Enroll End'"></app-datepicker>
+          </div>
+
+        </div>
+
+        <div class="row">
+          <!-- Textbox with label of No. Of Employees -->
+
+          <div class="form-group col-md-4">
+            <label for="noOfEmployees" i18n>No. Of Employees</label>
+            <div [ngClass]="{'has-danger': formValidation.isValidField('noOfEmployees') }">
+
+              <input  type="text" id="noOfEmployees" class="form-control" formControlName="noOfEmployees" />
+              <small class="text-danger" *ngIf="formValidation.isValidField('noOfEmployees')">
+                {{ formValidation.errorMessage('noOfEmployees') }}
+              </small>
+            </div>
+          </div>
+
+
+          <!-- Textbox with label of Waiting Period -->
+
+          <div class="form-group col-md-4">
+            <label for="waitingPeriod" i18n>Waiting Period</label>
+            <div [ngClass]="{'has-danger': formValidation.isValidField('waitingPeriod') }">
+
+              <input  type="text" id="waitingPeriod" class="form-control" formControlName="waitingPeriod" />
+              <small class="text-danger" *ngIf="formValidation.isValidField('waitingPeriod')">
+                {{ formValidation.errorMessage('waitingPeriod') }}
+              </small>
+            </div>
+          </div>
+
+
+          <!-- Textbox with label of Contract Type -->
+
+          <div class="form-group col-md-4">
+            <label for="contractType" i18n>Contract Type</label>
+            <div [ngClass]="{'has-danger': formValidation.isValidField('contractType') }">
+
+              <input  type="text" id="contractType" class="form-control"  formControlName="contractType" />
+              <small class="text-danger" *ngIf="formValidation.isValidField('contractType')">
+                {{ formValidation.errorMessage('contractType') }}
+              </small>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="form-group row">
+          <div class="col-md-12">
+            <app-dynamic-user-defined-fields [dataWindowId]="dataWindowId"
+            [winID]="winID"></app-dynamic-user-defined-fields>
+          </div>
+        </div>
+
+        <!-- <div class="row">
+
+          <div class="form-group col-md-4">
+            <app-datepicker  [formGroup]="groupContractForm" [formValidation]="formValidation" [field]="'priorRnwtDt'" [labelText]="'Prior Rnwt Dt'"></app-datepicker>
+          </div>
+
+
+          <div class="form-group col-md-4">
+            <app-datepicker [formGroup]="groupContractForm" [formValidation]="formValidation" [field]="'userDate1'" [labelText]="'User Date 1'"></app-datepicker>
+          </div>
+
+        </div> -->
+<!-- 
+        <div class="row">
+  
+          <div class="form-group col-md-4">
+            <label for="nxtRnwlDate" i18n>Nxt Rnwl Date</label>
+            <div [ngClass]="{'has-danger': formValidation.isValidField('nxtRnwlDate') }">
+
+              <input  type="text" id="nxtRnwlDate" class="form-control"  formControlName="nxtRnwlDate" maxlength="15"/>
+              <small class="text-danger" *ngIf="formValidation.isValidField('nxtRnwlDate')">
+                {{ formValidation.errorMessage('nxtRnwlDate') }}
+              </small>
+            </div>
+            
+          </div>
+
+         
+
+          <div class="form-group col-md-4">
+            <app-datepicker [formGroup]="groupContractForm" [formValidation]="formValidation" [field]="'userDate2'" [labelText]="'User Date 2'"></app-datepicker>
+          </div>
+
+        </div> -->
+
+        <!-- <div class="form-group row">
+
+          <div class="col-md-4">
+            <label for="eligAnalyst" i18n>Elig Analyst</label>
+            <div [ngClass]="{'has-danger': formValidation.isValidField('eligAnalyst') }">
+
+              <input  type="text" id="eligAnalyst" class="form-control" formControlName="eligAnalyst" />
+              <small class="text-danger" *ngIf="formValidation.isValidField('eligAnalyst')">
+                {{ formValidation.errorMessage('eligAnalyst') }}
+              </small>
+            </div>
+          </div>
+
+      
+
+          <div class="col-md-4">
+            <app-datepicker [formGroup]="groupContractForm" [formValidation]="formValidation" [field]="'userDate3'" [labelText]="'User Date 3'"></app-datepicker>
+          </div>
+
+        </div> -->
+
+        <!-- <div class="form-group row">
+      
+          <div class="col-md-4">
+            <label for="accManager" i18n>Acct Manager</label>
+            <div [ngClass]="{'has-danger': formValidation.isValidField('accManager') }">
+
+              <input  type="text" id="accManager" class="form-control" formControlName="accManager"  />
+              <small class="text-danger" *ngIf="formValidation.isValidField('accManager')">
+                {{ formValidation.errorMessage('accManager') }}
+              </small>
+            </div>
+          </div>
+
+
+          <div class="col-md-4">
+            <app-datepicker  [formGroup]="groupContractForm" [formValidation]="formValidation" [field]="'userDate4'" [labelText]="'User Date 4'"></app-datepicker>
+          </div>
+
+        </div> -->
+
+        <!-- <div class="form-group row">
+
+          <div class="col-md-4">
+            <label for="studentManager" i18n>Student Age From</label>
+            <div [ngClass]="{'has-danger': formValidation.isValidField('studentManager') }">
+              <input  type="text" id="studentManager" class="form-control" formControlName="studentManager" />
+              <small class="text-danger" *ngIf="formValidation.isValidField('studentManager')">
+                {{ formValidation.errorMessage('studentManager') }}
+              </small>
+            </div>
+          </div>
+         
+          <div class="col-md-4">
+            <label for="aegisRole" i18n>AEGIS ROLE</label>
+
+            <div [ngClass]="{'has-danger': formValidation.isValidField('aegisRole') }">
+              <select  type="text" id="aegisRole" class="form-control" formControlName="aegisRole" >
+                <option [value]="code.userValidCode" *ngFor="let code of Aegis">{{code.userValidCode}} &nbsp; &nbsp;{{code.userValidCodeShortDesc}} &nbsp;&nbsp; {{code.userValidCodeLongDesc}} </option>
+              </select>
+              <small class="text-danger" *ngIf="formValidation.isValidField('aegisRole')">
+                {{ formValidation.errorMessage('aegisRole') }}
+              </small>
+            </div>
+          </div>
+
+
+
+          <div class=" col-md-4">
+            <app-datepicker  [formGroup]="groupContractForm" [formValidation]="formValidation" [field]="'userDate5'" [labelText]="'User Date 5'"></app-datepicker>
+          </div>
+
+        </div> -->
+
+        <!-- <div class="form-group row">
+        
+
+          <div class="col-md-4">
+            <label for="studentAgeTo" i18n>Student Age To</label>
+            <div [ngClass]="{'has-danger': formValidation.isValidField('studentAgeTo') }">
+
+              <input  type="text" id="studentAgeTo" class="form-control" formControlName="studentAgeTo" />
+              <small class="text-danger" *ngIf="formValidation.isValidField('studentAgeTo')">
+                {{ formValidation.errorMessage('studentAgeTo') }}
+              </small>
+            </div>
+          </div>
+
+
+          <div class=" col-md-4">
+            <label for="networkName" class="clr-blue" i18n>Network Name</label>
+            <div [ngClass]="{'has-danger': formValidation.isValidField('networkName') }">
+              <select class="form-control" id="networkName" #networkName name="networkName" formControlName="networkName" >
+                <option value="OAP">OAP &nbsp; OAP &nbsp; &nbsp; OAP </option>
+                <option value="PPO">PPO &nbsp; PPO &nbsp;&nbsp; CHC National PPO</option>
+              </select>
+              <small class="text-danger" *ngIf="formValidation.isValidField('networkName')">
+                {{ formValidation.errorMessage('networkName') }}
+              </small>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <app-datepicker [formGroup]="groupContractForm" [formValidation]="formValidation" [field]="'userDate6'" [labelText]="'User Date 6'"></app-datepicker>
+          </div>
+
+        </div> -->
+
+        <!-- <div class="form-group row">
+
+
+          <div class="col-md-4">
+            <label for="salesRep" i18n>Sales Rep</label>
+            <div [ngClass]="{'has-danger': formValidation.isValidField('salesRep') }">
+              <input  type="text" id="salesRep" class="form-control" formControlName="salesRep"  />
+              <small class="text-danger" *ngIf="formValidation.isValidField('salesRep')">
+                {{ formValidation.errorMessage('salesRep') }}
+              </small>
+            </div>
+
+          </div>
+
+
+          <div class="col-md-4">
+            <label for="broken" i18n>Broker</label>
+            <div [ngClass]="{'has-danger': formValidation.isValidField('broken') }">
+
+              <input  type="text" id="broken" class="form-control" formControlName="broken" />
+              <small class="text-danger" *ngIf="formValidation.isValidField('broken')">
+                {{ formValidation.errorMessage('broken') }}
+              </small>
+            </div>
+
+          </div>
+        </div> -->
+
+        <!-- <div class="form-group row">
+        
+
+          <div class="col-md-4">
+            <label for="contractId" i18n>Contract No:</label>
+            <div [ngClass]="{'has-danger': formValidation.isValidField('contractId') }">
+
+              <input  type="text" id="contractId" class="form-control" formControlName="contractId" />
+              <small class="text-danger" *ngIf="formValidation.isValidField('contractId')">
+                {{ formValidation.errorMessage('contractId') }}
+              </small>
+            </div>
+          </div>
+
+
+          <div class="col-md-4">
+            <app-datepicker  [formGroup]="groupContractForm" [formValidation]="formValidation" [field]="'userDate7'" [labelText]="'User Date 7'"></app-datepicker>
+          </div>
+
+        </div> -->
+
+        <!-- <div class="form-group row">
+      
+
+          <div class="col-md-4">
+            <label for="underwriter" i18n>Underwriter</label>
+            <div [ngClass]="{'has-danger': formValidation.isValidField('underwriter') }">
+
+              <input  type="text" id="underwriter" class="form-control" formControlName="underwriter" />
+              <small class="text-danger" *ngIf="formValidation.isValidField('underwriter')">
+                {{ formValidation.errorMessage('underwriter') }}
+              </small>
+            </div>
+          </div>
+
+
+
+          <div class="col-md-4">
+            <app-datepicker [formGroup]="groupContractForm" [formValidation]="formValidation" [field]="'userDate8'" [labelText]="'User Date 8'"></app-datepicker>
+          </div>
+
+        </div> -->
+
+        <!-- <div class="form-group row">
+  
+
+          <div class="col-md-4">
+            <label for="dba" i18n>DBA?</label>
+            <div [ngClass]="{'has-danger': formValidation.isValidField('dba') }">
+
+              <input type="text" id="dba" class="form-control" formControlName="dba" />
+              <small class="text-danger" *ngIf="formValidation.isValidField('dba')">
+                {{ formValidation.errorMessage('dba') }}
+              </small>
+            </div>
+          </div>
+
+      
+          <div class="form-group col-md-4">
+            <app-datepicker  [formGroup]="groupContractForm" [formValidation]="formValidation" [field]="'userDate9'" [labelText]="'User Date 9'"></app-datepicker>
+          </div>
+
+        </div> -->
+
+        <!-- <div class="form-group row">
+        
+
+          <div class="col-md-4">
+            <label for="directedPlan" i18n>Directed Plan?</label>
+            <div [ngClass]="{'has-danger': formValidation.isValidField('directedPlan') }">
+
+              <input  type="text" id="directedPlan" class="form-control" formControlName="directedPlan"  />
+              <small class="text-danger" *ngIf="formValidation.isValidField('directedPlan')">
+                {{ formValidation.errorMessage('directedPlan') }}
+              </small>
+            </div>
+          </div>
+
+
+          <div class="col-md-4">
+            <app-datepicker [formGroup]="groupContractForm" [formValidation]="formValidation" [field]="'userDate10'" [labelText]="'User Date 10'"></app-datepicker>
+          </div>
+        </div> -->
+      </form>
+    </div>
+
+</div>
+<ng-keyboard-shortcuts [shortcuts]="shortcuts"></ng-keyboard-shortcuts>
+<ng-keyboard-shortcuts-help [key]="'f2'" [closeKey]="'escape'" [title]="'Hotkeys Help'"></ng-keyboard-shortcuts-help>

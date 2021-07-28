@@ -1,0 +1,689 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+    <title>GRUPD Field Definitions</title>
+    <!--(Meta)==========================================================-->
+    <meta name="copyright"
+          value="© Copyright 2002 Health Systems Design Corp., a wholly owned subsidiary of Perot Systems Corporation. All rights reserved"/>
+    <meta content="RoboHELP by eHelp Corporation - www.ehelp.com" name="generator"/>
+    <meta content="0.1" name="generator-major-version"/>
+    <meta content="1" name="generator-minor-version"/>
+    <meta content="kadov" name="filetype"/>
+    <meta content="1" name="filetype-version"/>
+    <meta content="1" name="page-count"/>
+    <meta content="4180" name="layout-height"/>
+    <meta content="567" name="layout-width"/>
+    <meta content="Req;Calc;Excl;Geo;Inst;GLRef;Allwd;Sch;Prof;Pkg;BENEF;SelfPay;Prog;PPO;EPO;HMO;Maint;BL;BC;CH;Champus;CI;Insur;DS;FI;HM;LM;MB;MC;Admin;WC;ZZ;EffDate;EndDate"
+          name="x-ignored-words"/>
+    <!--(Links)=========================================================-->
+    <!--(Scripts)=======================================================-->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+</head>
+<body>
+
+<div class="calibreMeta">
+    <div class="calibreMetaTitle">
+
+
+        <h1>
+            <a href="../ib0gc-jzzjl.html">DIAMOND 950 Help
+            </a>
+        </h1>
+
+
+    </div>
+    <div class="calibreMetaAuthor">
+        Unknown
+
+    </div>
+</div>
+
+<div class="calibreMain">
+
+    <div class="calibreEbookContent">
+
+        <div class="calibreEbNavTop">
+
+            <a href="GRUPD_Field_Map.htm" class="calibreAPrev">previous page
+            </a>
+
+
+            <a href="GRUPD_Functions_on_Menu_Bar.htm" class="calibreANext">next page
+            </a>
+
+        </div>
+
+
+        <!--(Table)=========================================================-->
+        <table cellspacing="0" width="530" x-use-null-cells="" class="calibre125">
+
+            <tbody class="calibre3">
+            <tr valign="top" class="calibre4">
+                <td width="427px" class="calibre126">
+                    <p class="tbl-header-nonscroll"><span class="calibre127"><span class="calibre128">GRUPD Field Definitions</span></span>
+                    </p>
+                    <p class="tbl-header-nonscroll">Field Name  Req Description Source Comments</p></td>
+                <td width="103px" class="calibre129">
+                    <p class="legend"><img alt="image\FieldDef_Legend_shg.gif" border="0" height="53"
+                                           src="assets/help/FieldDef_Legend_shg.gif" width="97" class="calibre130"/></p></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <!--(Table)=========================================================-->
+        <table cellspacing="0" width="530" x-use-null-cells="" class="calibre125">
+            <colgroup class="calibre25">
+                <col class="calibre131"/>
+                <col class="calibre131"/>
+                <col class="calibre131"/>
+                <col class="calibre131"/>
+                <col class="calibre131"/>
+
+            </colgroup>
+            <tbody class="calibre3">
+            <tr valign="top" class="calibre4">
+                <td width="98px" class="calibre132">
+                    <p class="tbl-r-label"><a name="Apply_PEC_to_PCP">Apply
+                        PEC to PCP</a></p></td>
+                <td width="14px" class="calibre133">
+                    <p class="tbl-text">O</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Indicator of whether pre-existing
+                        exclusions apply to services rendered by the member’s PCP.</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Selected by checkbox</p></td>
+                <td width="206px" class="calibre135">
+                    <p class="tbl-text">(Note: DIAMOND does not apply
+                        pre-existing conditions logic if the MELIG PEC Waived check box is selected.)</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="98px" class="calibre132">
+                    <p class="tbl-r-label"><a name="GRUPD_Benefit_Pkg_FIELD"></a>Benefit
+                        Pkg</p></td>
+                <td width="14px" class="calibre133">
+                    <p class="tbl-text">R</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Pointer to a set of benefit
+                        adjudication rules that will be used when claims are entered for members
+                        whose eligibility points to this GRUPD record.</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Selected from a predefined
+                        list </p></td>
+                <td width="206px" class="calibre135">
+                    <p class="tbl-text">Benefit packages are maintained
+                        in BENEF.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="98px" class="calibre132">
+                    <p class="tbl-r-label"><a name="GRUPD_Claim_Filing_Indicator_FIELD"></a>Claim
+                        Filing Indicator</p></td>
+                <td width="14px" class="calibre133">
+                    <p class="tbl-text">R</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Identifies the type of claim
+                        being processed.</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Selected from a predefined
+                        list.</p></td>
+                <td width="206px" class="calibre135">
+                    <p class="tbl-list-hdr">Hard coded values are:</p>
+                    <p class="tbl-list">09 SelfPay</p>
+                    <p class="tbl-list">10 Central Certification</p>
+                    <p class="tbl-list">11 Other Non-Fed Prog</p>
+                    <p class="tbl-list">12 PPO</p>
+                    <p class="tbl-list">13 POS</p>
+                    <p class="tbl-list">14 EPO</p>
+                    <p class="tbl-list">15 Indemnity</p>
+                    <p class="tbl-list">16 HMO Medicare Risk</p>
+                    <p class="tbl-list">17 Dental Maint Org</p>
+                    <p class="tbl-list">AM Automobile Medical</p>
+                    <p class="tbl-list">BL BC/Blue Shield</p>
+                    <p class="tbl-list">CH Champus</p>
+                    <p class="tbl-list">CI Commercial Insur</p>
+                    <p class="tbl-list">DS Disability</p>
+                    <p class="tbl-list">FI Federal Express Program</p>
+                    <p class="tbl-list">HM HMO LI - Liability</p>
+                    <p class="tbl-list">LM Liability Medical</p>
+                    <p class="tbl-list">MA Medicare Part A</p>
+                    <p class="tbl-list">MB Medicare Part B</p>
+                    <p class="tbl-list">MC Medicaid</p>
+                    <p class="tbl-list">OF Other Federal Prog</p>
+                    <p class="tbl-list">TV Title V</p>
+                    <p class="tbl-list">VA Veterans Admin</p>
+                    <p class="tbl-list">WC Worker's Comp</p>
+                    <p class="tbl-list">ZZ Mutually Defined</p>
+                    <p class="tbl-list-txt">User defined values are maintained in CODES.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="98px" class="calibre132">
+                    <p class="tbl-r-label"><a name="GRUPD_Dental_COB_Calc_FIELD"></a>Dental
+                        COB Calc</p></td>
+                <td width="14px" class="calibre133">
+                    <p class="tbl-text">O</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Coordination of Benefits
+                        calculation method for Dental Services claims.</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Selected from a predefined
+                        list.</p></td>
+                <td width="206px" class="calibre135">
+                    <p class="tbl-list-hdr">Valid values:</p>
+                    <p class="tbl-list">X None</p>
+                    <p class="tbl-list">3 COB to allowance</p>
+                    <ol start="4" class="calibre29">
+
+                        <li class="kadov-p-cnumbered-list"><p class="tbl-list2">COB to charge</p></li>
+                    </ol>
+                    <p class="tbl-list">6 COB to lesser of charge or allowance</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="98px" class="calibre132">
+                    <p class="tbl-r-label"><a name="GRUPD_Dependent_Determination_Rule_FIELD"></a>Dependent
+                        Determination Rule</p></td>
+                <td width="14px" class="calibre133">
+                    <p class="tbl-text">O</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Dependent Determination Rule
+                        or policy applied by the group. Defines the COB order for dependent children.</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Selected from a predefined
+                        list</p></td>
+                <td width="206px" class="calibre135">
+                    <p class="tbl-list-hdr">Valid values:</p>
+                    <p class="tbl-list-txt">Birthday</p>
+                    <p class="tbl-list-txt">Gender</p>
+                    <p class="tbl-list-txt">None</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="98px" class="calibre132">
+                    <p class="tbl-r-label"><a name="GRUPD_EffDate_FIELD"></a>EffDate</p></td>
+                <td width="14px" class="calibre133">
+                    <p class="tbl-text">R</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Date the group’s contract
+                        for the plan or rider identified in this record becomes effective.</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Manually entered.</p></td>
+                <td width="206px" class="calibre135">
+                    <p class="tbl-text">DIAMOND verifies that there
+                        are no other records that overlap the effective date of this record.</p>
+                    <p class="tbl-text-noline">Effective Date changes can trigger group rate
+                        retroactivity. See <a href="Premium/PremBilling_HOT_Retro_Rate_Adjs_MID.htm">Retroactive
+                            Rate Adjustments</a> for more information.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="98px" class="calibre132">
+                    <p class="tbl-r-label"><a name="GRUPD_EndDate_FIELD"></a>EndDate</p></td>
+                <td width="14px" class="calibre133">
+                    <p class="tbl-text">O</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Last date on which the group’s
+                        contract for the plan or rider identified in this record is effective.</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Manually entered.</p></td>
+                <td width="206px" class="calibre135">
+                    <p class="tbl-text">Open-ended contracts are
+                        allowed, but must be ended prior to creating a new effective contract
+                        period for this plan or rider.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="98px" class="calibre132">
+                    <p class="tbl-r-label"><a name="GRUPD_Excl_Period_FIELD"></a>Excl
+                        Period</p></td>
+                <td width="14px" class="calibre133">
+                    <p class="tbl-text"><!--kadov_tag{{<ignored>}}-->C<!--kadov_tag{{</ignored>}}--></p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Number of months or days,
+                        depending on the entry in Excl Type, used to calculate the length of the
+                        pre-existing conditions exclusion time period.</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Manually entered integer.</p></td>
+                <td width="206px" class="calibre135">
+                    <p class="tbl-text">Required if there is an entry
+                        in Excl Type. </p>
+                    <p class="tbl-text-noline">(Note: DIAMOND does not apply pre-existing conditions
+                        logic if the MELIG PEC Waived check box is selected.)</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="98px" class="calibre132">
+                    <p class="tbl-r-label"><a name="GRUPD_Excl_Type_FIELD"></a>Excl
+                        Type</p></td>
+                <td width="14px" class="calibre133">
+                    <p class="tbl-text">0</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Increment used in combination
+                        with Excl Period below to calculate the time elapsed before claims related
+                        to pre-existing conditions will be paid.</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Selected from a predefined
+                        list </p></td>
+                <td width="206px" class="calibre135">
+                    <p class="tbl-list-hdr">Hard coded values are:</p>
+                    <p class="tbl-list-txt">Months</p>
+                    <p class="tbl-list-txt">Days</p>
+                    <p class="tbl-list-txt">None</p>
+                    <p class="tbl-text-noline">(Note: DIAMOND does not apply pre-existing conditions
+                        logic if the MELIG PEC Waived check box is selected.)</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td colspan="1" rowspan="1" width="98px" class="calibre132">
+                    <p class="tbl-r-label"><a name="Exclude_Capitated_Claim_Lines">Exclude
+                        Capitated Claim Lines</a></p></td>
+                <td colspan="1" rowspan="1" width="14px" class="calibre133">
+                    <p class="tbl-text">O</p></td>
+                <td colspan="1" rowspan="1" width="105px" class="calibre134">
+                    <p class="tbl-text">Specifies whether institutional
+                        and professional capitated claim lines are included in pre-existing conditions
+                        processing.</p></td>
+                <td colspan="1" rowspan="1" width="105px" class="calibre134">
+                    <p class="tbl-text">Selected from predefined
+                        list</p></td>
+                <td colspan="1" rowspan="1" width="206px" class="calibre135">
+                    <p class="tbl-list-hdr">Valid Values:</p>
+                    <p class="tbl-text-1char">B - Both</p>
+                    <p class="tbl-text-1char">I - Institutional</p>
+                    <p class="tbl-text-1char"><!--kadov_tag{{<ignored>}}-->N<!--kadov_tag{{</ignored>}}-->
+                        - None</p>
+                    <p class="tbl-text-1char">P - Professional</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="98px" class="calibre132">
+                    <p class="tbl-r-label"><a name="GRUPD_Exclude_Capitated_Claims_FIELD"></a>Exclude
+                        Capitated Claims</p></td>
+                <td width="14px" class="calibre133">
+                    <p class="tbl-text">O</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Specifies capitated claim
+                        types excluded from COB calculations.</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Selected from a predefined
+                        list</p></td>
+                <td width="206px" class="calibre135">
+                    <p class="tbl-list-hdr">Valid values:</p>
+                    <p class="tbl-list-txt">Professional</p>
+                    <p class="tbl-list-txt">Institutional</p>
+                    <p class="tbl-list-txt">Both</p>
+                    <p class="tbl-list-txt">None</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="98px" class="calibre132">
+                    <p class="tbl-r-label"><a name="GRUPD_Geo_Region_FIELD"></a>Geo
+                        Region</p></td>
+                <td width="14px" class="calibre133">
+                    <p class="tbl-text">O</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Geographic region used for
+                        some relative value pricing, applied to claims for members whose eligibility
+                        is associated with this record.</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Selected from a predefined
+                        list </p></td>
+                <td width="206px" class="calibre135">
+                    <p class="tbl-text">Geographic regions are set
+                        up in <!--kadov_tag{{<ignored>}}-->REGIN<!--kadov_tag{{</ignored>}}--> .</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="98px" class="calibre132">
+                    <p class="tbl-r-label"><a name="GRUPD_Group_ID_FIELD"></a>Group
+                        ID</p></td>
+                <td width="14px" class="calibre133">
+                    <p class="tbl-text">R</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Unique identifier of a group.</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Selected from a predefined
+                        list </p></td>
+                <td width="206px" class="calibre135">
+                    <p class="tbl-text"> </p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="98px" class="calibre132">
+                    <p class="tbl-r-label"><a name="GRUPD_Group_Req_FIELD"></a>Group
+                        Req</p></td>
+                <td width="14px" class="calibre133">
+                    <p class="tbl-text">R</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Group requirement. Indicator
+                        of whether claims for this group/plan or group/rider combination will
+                        be priced and adjudicated, or just priced.</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Selected from a predefined
+                        list </p></td>
+                <td width="206px" class="calibre135">
+                    <p class="tbl-list-hdr">Hard coded values are:</p>
+                    <p class="tbl-list">P price only (no benefits included in the calculation)</p>
+                    <p class="tbl-list">A adjudicate (both price and calculate benefits)</p>
+                    <p class="tbl-text-noline">Claims Processing defaults to the entry here.
+                        Also, Group Req must equal A Adjudicate for a COB calculation method to
+                        be applied.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="98px" class="calibre132">
+                    <p class="tbl-r-label"><a name="GRUPD_Inst_COB_Calc_FIELD"></a>Inst
+                        COB Calc</p></td>
+                <td width="14px" class="calibre133">
+                    <p class="tbl-text">O</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">COB calculation method to
+                        use for adjudication of qualifying institutional claims for this group
+                        and effective period.</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Selected from a predefined
+                        list </p></td>
+                <td width="206px" class="calibre135">
+                    <p class="tbl-list-hdr">Valid values:</p>
+                    <p class="tbl-list">1 Integration</p>
+                    <p class="tbl-list">2 Non-Duplication</p>
+                    <p class="tbl-list">3 COB to Allowance</p>
+                    <p class="tbl-list">4 COB to Charge</p>
+                    <p class="tbl-list">5 COB to Normal Liability</p>
+                    <p class="tbl-list">6 COB Lesser of Charge or allowance</p>
+                    <p class="tbl-list">7 COB to Coordination</p>
+                    <p class="tbl-list">8 COB to Supplemental</p>
+                    <p class="tbl-list">9 COB Benefit Carve Out</p>
+                    <p class="tbl-list">10 COB Medicare the Lesser of</p>
+                    <p class="tbl-list">11 COB Lesser of Primary Liability or Billed Charge
+                        Less Other Carrier Paid</p>
+                    <p class="tbl-list">12 COB Medicare Lesser of Three</p>
+                    <p class="tbl-list">X None</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="98px" class="calibre132">
+                    <p class="tbl-r-label"><a name="GRUPD_LOB_FIELD"></a>LOB</p></td>
+                <td width="14px" class="calibre133">
+                    <p class="tbl-text">R</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Line of business code associated
+                        with this GRUPD record.</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Selected from a predefined
+                        list </p></td>
+                <td width="206px" class="calibre135">
+                    <p class="tbl-text">Lines of business are maintained
+                        in LINBS. The selection of the line of business has far-reaching effects.
+                        Once members have been enrolled for this group, the line of business should
+                        not be changed.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="98px" class="calibre132">
+                    <p class="tbl-r-label"><a name="GRUPD_Payment_Policy_FIELD"></a>Payment
+                        Policy</p></td>
+                <td width="14px" class="calibre133">
+                    <p class="tbl-text">O</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">COB payment policy for this
+                        group and effective period</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Selected from a predefined
+                        list</p></td>
+                <td width="206px" class="calibre135">
+                    <p class="tbl-text">Informational field only,
+                        no associated processing logic. You can use Payment Policy as a COB Hold/Deny
+                        determinant.</p>
+                    <p class="tbl-text-noline">Payment Policy codes are maintained in CODES with
+                        system code type COBPYMT.</p>
+                    <p class="tbl-list-hdr-noline">Predefined valid values:</p>
+                    <p class="tbl-list">Pay &amp; Pursue: You normally allow DIAMOND to pay claims
+                        for this group. You then pursue potential payment recovery from another
+                        payor outside of DIAMOND, if appropriate.</p>
+                    <p class="tbl-list">Pursue &amp; Pay: You normally have DIAMOND hold or deny
+                        claims for this group for this effective date period. You then pursue
+                        potential recovery from another payor, if appropriate. Once you receive
+                        a payment from another payor for a claim or determine another payor payment
+                        does not exist, you normally release the hold or deny conditions for the
+                        claim so DIAMOND can pay it.</p>
+                    <p class="tbl-list">Modified Pursue &amp; Pay: For the DIAMOND Subscriber,
+                        you normally apply the Pay &amp; Pursue policy. For all dependents, you
+                        apply follow the Pursue &amp; Pay policy.</p>
+                    <p class="tbl-list">None: No formal policy exists for COB payments.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="98px" class="calibre132">
+                    <p class="tbl-r-label"><a name="GRUPD_PB_CompCode_FIELD"></a>PB
+                        CompCode</p></td>
+                <td width="14px" class="calibre133">
+                    <p class="tbl-text">R</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">General ledger company to
+                        which DIAMOND will post premium amounts for this group/plan (or/rider)
+                        and this effective date.</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Selected from a predefined
+                        list </p></td>
+                <td width="206px" class="calibre135">
+                    <p class="tbl-text">Company codes are maintained
+                        in COMPF.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="98px" class="calibre132">
+                    <p class="tbl-r-label"><a name="GRUPD_PB_GLRef_FIELD"></a>PB
+                        GLRef</p></td>
+                <td width="14px" class="calibre133">
+                    <p class="tbl-text">R</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Set of debit and credit accounts
+                        in the general ledger to which DIAMOND will post premium amounts (in combination
+                        with the Company Code).</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Selected from a predefined
+                        list </p></td>
+                <td width="206px" class="calibre135">
+                    <p class="tbl-text">General ledger reference
+                        codes are maintained in GLREF.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="98px" class="calibre132">
+                    <p class="tbl-r-label"><a name="GRUPD_Pct_Allwd_FIELD"></a>Pct
+                        Allwd</p></td>
+                <td width="14px" class="calibre133">
+                    <p class="tbl-text">O</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Default percentage of allowed
+                        which will be used when claims are priced using the price schedule and
+                        price rule.</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Manually entered.</p></td>
+                <td width="206px" class="calibre135">
+                    <p class="tbl-text"> </p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="98px" class="calibre132">
+                    <p class="tbl-r-label"><a name="GRUPD_Pct_Billed_FIELD"></a>Pct
+                        Billed</p></td>
+                <td width="14px" class="calibre133">
+                    <p class="tbl-text">O</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Default percentage of billed
+                        which will be used when claims are priced using the above price schedule
+                        and price rule <span class="calibre20">and</span> there is no
+                        percentage on the price schedule record.</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Manually entered</p></td>
+                <td width="206px" class="calibre135">
+                    <p class="tbl-text"> </p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="98px" class="calibre132">
+                    <p class="tbl-r-label"><a name="GRUPD_Plan_Rider_FIELD"></a>Plan/Rider</p></td>
+                <td width="14px" class="calibre133">
+                    <p class="tbl-text">R</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">ID number of either the benefit
+                        plan or the benefit rider.</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Selected from a predefined
+                        list </p></td>
+                <td width="206px" class="calibre135">
+                    <p class="tbl-text">Plans are maintained in PLANC;
+                        riders in RIDER.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="98px" class="calibre132">
+                    <p class="tbl-r-label"><a name="GRUPD_Price_Rule_1_FIELD"></a>Price
+                        Rule 1</p></td>
+                <td width="14px" class="calibre133">
+                    <p class="tbl-text">O</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Price rule used for claims
+                        entered for members whose eligibility references this GRUPD record.</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Selected from a predefined
+                        list </p></td>
+                <td width="206px" class="calibre135">
+                    <p class="tbl-text">Price rules are entered in
+                        PRULE.</p>
+                    <p class="tbl-text-noline">This field applies depending on the line of business
+                        rules in LINBS.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="98px" class="calibre132">
+                    <p class="tbl-r-label"><a name="GRUPD_Price_Sch_1_&amp;_2_FIELD"></a>Price
+                        Sch 1 &amp; 2</p></td>
+                <td width="14px" class="calibre133">
+                    <p class="tbl-text">O</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Price schedule used with
+                        the price rule above.</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Selected from a predefined
+                        list </p></td>
+                <td width="206px" class="calibre135">
+                    <p class="tbl-text">Price schedules are entered
+                        in PSCHD.</p>
+                    <p class="tbl-text-noline">This field applies depending on the line of business
+                        rules in LINBS.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="98px" class="calibre132">
+                    <p class="tbl-r-label"><a name="GRUPD_Prof_COB_Calc_FIELD"></a>Prof
+                        COB Calc</p></td>
+                <td width="14px" class="calibre133">
+                    <p class="tbl-text">O</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">COB calculation method to
+                        use for adjudication of qualifying professional services claims for this
+                        group and effective period.</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Selected from a predefined
+                        list </p></td>
+                <td width="206px" class="calibre135">
+                    <p class="tbl-list-hdr">Valid values:</p>
+                    <p class="tbl-list">1 Integration</p>
+                    <p class="tbl-list">2 Non-Duplication</p>
+                    <p class="tbl-list">3 COB to Allowance</p>
+                    <p class="tbl-list">4 COB to Charge</p>
+                    <p class="tbl-list">5 COB to Normal Liability</p>
+                    <p class="tbl-list">6 COB Lesser of Charge or allowance</p>
+                    <p class="tbl-list">7 COB to Coordination</p>
+                    <p class="tbl-list">8 COB to Supplemental</p>
+                    <p class="tbl-list">9 COB Benefit Carve Out</p>
+                    <p class="tbl-list">10 COB Medicare the Lesser of</p>
+                    <p class="tbl-list">11 COB Lesser of Primary Liability or Billed Charge
+                        Less Other Carrier Paid</p>
+                    <p class="tbl-list">12 COB Medicare Lesser of Three</p>
+                    <p class="tbl-list">X None</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="98px" class="calibre132">
+                    <p class="tbl-r-label"><a name="GRUPD_Rcd_Type_FIELD"></a>Rcd
+                        Type</p></td>
+                <td width="14px" class="calibre133">
+                    <p class="tbl-text">R</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Indicates whether the detail
+                        pertains to a benefit plan or a benefit rider.</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Selected from a predefined
+                        list </p></td>
+                <td width="206px" class="calibre135">
+                    <p class="tbl-list-hdr">Valid values:</p>
+                    <p class="tbl-list-txt">Plan</p>
+                    <p class="tbl-list-txt">Rider</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="98px" class="calibre132">
+                    <p class="tbl-r-label"><a name="GRUPD_Reason_FIELD"></a>Reason</p></td>
+                <td width="14px" class="calibre133">
+                    <p class="tbl-text">O</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Reason code applied to claims
+                        held for pre-existing conditions exclusion.</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Selected from a predefined
+                        list </p></td>
+                <td width="206px" class="calibre135">
+                    <p class="tbl-text">Hold reason codes are user-defined
+                        in REASN with a reason type of HD.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="98px" class="calibre132">
+                    <p class="tbl-r-label"><a name="GRUPD_Special_Processing_FIELD"></a>Special
+                        Processing</p></td>
+                <td width="14px" class="calibre133">
+                    <p class="tbl-text">O</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Informational field to indicate
+                        special handling for this group/plan or group/rider combination.</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Manually entered.</p></td>
+                <td width="206px" class="calibre135">
+                    <p class="tbl-text">Informational only.</p></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <p class="body-text"> </p>
+
+
+    </div>
+
+
+
+    <div class="calibreEbNav">
+
+        <a href="GRUPD_Field_Map.htm" class="calibreAPrev">previous page
+        </a>
+
+
+        <a href="../ib0gc-jzzjl.html" class="calibreAHome">start
+        </a>
+
+
+        <a href="GRUPD_Functions_on_Menu_Bar.htm" class="calibreANext">next page
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+</html>

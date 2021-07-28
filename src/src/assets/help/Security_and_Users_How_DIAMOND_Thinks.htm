@@ -1,0 +1,2084 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+    <title>Security and Users, How DIAMOND Thinks</title>
+    <!--(Meta)==========================================================-->
+    <meta name="copyright"
+          value="© Copyright 2002 Health Systems Design Corp., a wholly owned subsidiary of Perot Systems Corporation. All rights reserved"/>
+    <meta content="About.htt" name="template"/>
+    <meta content="RoboHELP by eHelp Corporation - www.ehelp.com" name="generator"/>
+    <meta content="0.1" name="generator-major-version"/>
+    <meta content="1" name="generator-minor-version"/>
+    <meta content="kadov" name="filetype"/>
+    <meta content="1" name="filetype-version"/>
+    <meta content="1" name="page-count"/>
+    <meta content="6449" name="layout-height"/>
+    <meta content="601" name="layout-width"/>
+    <!--(Links)=========================================================-->
+    <!--(Scripts)=======================================================-->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+</head>
+<body>
+
+<div class="calibreMeta">
+    <div class="calibreMetaTitle">
+
+
+        <h1>
+            <a href="../co5tp-ch4tl.html">DIAMOND 950 Help
+            </a>
+        </h1>
+
+
+    </div>
+    <div class="calibreMetaAuthor">
+        Unknown
+
+    </div>
+</div>
+
+<div class="calibreMain">
+
+    <div class="calibreEbookContent">
+
+        <div class="calibreEbNavTop">
+
+            <a href="Enable_System_Security.htm" class="calibreAPrev">previous page
+            </a>
+
+
+            <a href="Adding_Users.htm" class="calibreANext">next page
+            </a>
+
+        </div>
+
+
+        <h1 class="calibre1">Security and Users, How DIAMOND Thinks</h1>
+
+        <p class="text">The topic provides processing logic information about:</p>
+
+        <p class="text"><a
+                href="Security_and_Users_How_DIAMOND_Thinks.htm#Security_and_Users_How_DIAMONDVIEW_Works_MID">How
+            DIAMONDVIEW Works</a></p>
+
+        <p class="text"><a
+                href="Security_and_Users_How_DIAMOND_Thinks.htm#Security_and_Users_How_DIAMONDUPDATE_Works_MID">How
+            DIAMONDUPDATE Works</a></p>
+
+        <p class="text"><a
+                href="Security_and_Users_How_DIAMOND_Thinks.htm#Security_and_Users_Power_Users_and_the_DIAMONDADMIN_Role_MID">Power
+            Users and the DIAMONDADMIN Role</a></p>
+
+        <p class="text"><a
+                href="Security_and_Users_How_DIAMOND_Thinks.htm#Security_and_Users_How_SUSER_and_SWIND_Work_Together_MID">How
+            SUSER and SWIND Work Together</a></p>
+
+        <p class="text"><a
+                href="Security_and_Users_How_DIAMOND_Thinks.htm#Security_and_Users_How_Claim_Limit_Security_is_Calculated_MID">How
+            Claim Limit Security is Calculated</a></p>
+
+        <p class="text"><a href="Security_and_Users_How_DIAMOND_Thinks.htm#Security_and_Users_Affiliation_Security_MID">Affiliation
+            Security</a></p>
+
+        <p class="text"><a href="Security_and_Users_How_DIAMOND_Thinks.htm#Security_and_Users_Field_Level_Security_MID">Field
+            Level Security</a></p>
+
+        <p class="text"><a href="#Security_and_users_Password_Profile_Rules_MID">Password
+            Profile Rules</a></p>
+
+        <p class="text"><a
+                href="Security_and_Users_How_DIAMOND_Thinks.htm#Security_and_Users_SWIND_Keywords_and_Sheets_MID">SWIND
+            Keywords and Sheets</a></p>
+
+        <p class="body-text"> </p>
+
+        <p class="text">Add a user ID in keyword SUSER (Users). The final step in
+            this set up process is a menu command, Add Database User. This step has
+            two functions, it sets the user’s password and it connects that user ID
+            to two DIAMOND system-wide Oracle roles, DIAMONDVIEW and DIAMONDUPDATE.</p>
+
+        <h2 class="calibre3"><a name="Security_and_Users_How_DIAMONDVIEW_Works_MID"></a>How DIAMONDVIEW
+            Works</h2>
+
+        <p class="text">DIAMONDVIEW lets users see DIAMOND data. The DIAMONDVIEW
+            role exists for every DIAMOND user even when not in a DIAMOND session.
+            This role is used when someone writes a report using DIAMOND data with
+            an external report writer. In order to connect a report writer to the
+            DIAMOND tables, a user ID and password are required, and when a user enters
+            his or her DIAMOND ID and password this DIAMONDVIEW role is invoked and
+            data can be read ('selected') from DIAMOND tables. DIAMONDVIEW does not
+            allow users to update data, within or outside of the DIAMOND session.</p>
+
+        <h2 class="calibre3"><a name="Security_and_Users_How_DIAMONDUPDATE_Works_MID"></a>How DIAMONDUPDATE
+            Works</h2>
+
+        <p class="text">The DIAMONDUPDATE role exists system-wide in DIAMOND. This
+            role allows users to not only read data, but also to add, change, and
+            delete data (and as limited for each user ID defined in keywords SUSER,
+            SWIND and SFUNC). Unlike DIAMONDVIEW, a role that persists within and
+            outside of DIAMOND sessions, DIAMONDUPDATE is invoked only when a user
+            signs on to DIAMOND and is terminated when that user logs off. This role
+            cannot be invoked external to a DIAMOND session. Therefore, a user cannot
+            use DIAMONDUPDATE privileges to change data using an external tool.</p>
+
+        <p class="text">The DIAMONDUPDATE role is password protected; however, it
+            is system-wide, invisible to users, and created automatically by DIAMOND.
+            The only time your security or database administration staff need be aware
+            of this password is in the rare instance in which you must change it.
+            For example, when an employee who is privy to the password leaves your
+            employ, or if you have organizational security guidelines which require
+            passwords be updated. To change this system-wide password, use the special
+            menu command in SUSER, Update Role Password. This new password is automatically
+            invoked by DIAMOND users when the DIAMONDUPDATE role is activated.</p>
+
+        <h2 class="calibre3"><a name="Security_and_Users_Power_Users_and_the_DIAMONDADMIN_Role_MID"></a>Power
+            Users and the DIAMONDADMIN Role</h2>
+
+        <p class="text">In some cases you may find it necessary to empower a user
+            to access DIAMOND with an external database tool. There is a separate
+            Oracle role called DIAMONDADMIN created for this purpose. DIAMONDADMIN
+            must be explicitly granted by a database administrator to a user. It is
+            not password protected and is invisible to the DIAMOND application.</p>
+
+        <p class="text">To use DIAMONDADMIN, see your database administrator or security
+            officer. Obviously, this role should be used sparingly, if at all.</p>
+
+        <h2 class="calibre3"><a name="Security_and_Users_How_SUSER_and_SWIND_Work_Together_MID"></a>How
+            SUSER and SWIND Work Together</h2>
+
+        <h3 class="calibre2">Super Users and "Regular" Users</h3>
+
+        <p class="text">When you add a super user in keyword SUSER, you do not grant
+            that user window access in keyword SWIND. For all other users and templates
+            you must create an SWIND record which grants access to keywords (and associated
+            add, delete, change, and view capabilities).</p>
+
+        <h3 class="calibre2">Claim Limits and Affiliations</h3>
+
+        <p class="text">At first glance it seems as if you can set up contradictory
+            user privileges in SUSER and SWIND. For example, you can establish access
+            to certain claim records using affiliations in SUSER even if the user
+            does not have specific access to claims-related keywords in SWIND.</p>
+
+        <p class="text">While it is possible to set a user up this way, i.e. DIAMOND
+            will not edit on these screens for illogical entries, the result is governed
+            by SWIND. So, regardless of claim security attributes in SUSER, if the
+            user does not have access in SWIND, there is not access at all.</p>
+
+        <p class="text">It is helpful to think of this in a negative access sense
+            when setting up SUSER claim security attributes. SWIND grants access to
+            claims, and SUSER limits that access to certain records, even if you use
+            a positive affiliation set up, i.e. Include, not Exclude. In both cases
+            you are limiting the claims access, not creating claims access.</p>
+
+        <h2 class="calibre3"><a name="Security_and_Users_How_Claim_Limit_Security_is_Calculated_MID"></a>How
+            Claim Limit Security is Calculated</h2>
+
+        <p class="text">Claim limit attributes must be thought of as a set. If any
+            one field in the Claim Limit section is entered, all fields must be completed.
+            The workings of these fields are completely interdependent.</p>
+
+        <p class="text">The arithmetic is fairly simple. DIAMOND will add up the
+            detail lines to a maximum, and if it exceeds the user’s Claim Limit, the
+            detail lines are put on hold. </p>
+
+        <p class="text"><span class="calibre7">Warning!</span> <!--kadov_tag{{<spaces>}}--> 
+            <!--kadov_tag{{</spaces>}}--> If
+            a user with a claim limit accesses a claim processed via DIAMOND’s batch
+            process and the claim amount exceeds the user’s claim limit, the claim
+            will be held, regardless of whether the operator made any changes to the
+            claim because the claim logic is reinvoked.</p>
+
+        <h3 class="calibre2">Which amount from the detail line is added up?</h3>
+
+        <p class="text">This is specified in the Determinant field, you may choose
+            from Allowed, Billed or Net.</p>
+
+        <h3 class="calibre2">What hold reason code is used?</h3>
+
+        <p class="text">You enter the code in Reason Code. It must be a code that
+            exists in keyword REASN with a type SC.</p>
+
+        <h3 class="calibre2">Which detail lines are added up?</h3>
+
+        <p class="text">All the detail lines on the claim, unless they have a Claim
+            Status of D (denied) or I (informational), or a Processing Status of F
+            (finalized), P (paid), or N (paid, no check).</p>
+
+        <h3 class="calibre2">Once a claim has an SC reason code applied, how can the claim be released
+            from hold?</h3>
+
+        <p class="text">Only a user whose claim limit exceeds the amount of the claim
+            can remove an SC hold and finish the claim’s processing.</p>
+
+        <h2 class="calibre3"><a name="Security_and_Users_Affiliation_Security_MID"></a>Affiliation
+            Security</h2>
+
+        <p class="text">Affiliation security is available for member, authorization,
+            and claims records only. <!--kadov_tag{{<spaces>}}--> <!--kadov_tag{{</spaces>}}--></p>
+
+        <p class="text">Each affiliation is evaluated separately and only records
+            which meet the conditions for all affiliations are accessible to the user.
+            <!--kadov_tag{{<spaces>}}--> <!--kadov_tag{{</spaces>}}--></p>
+
+        <p class="text">For each affiliation you can use either an Exclude logic
+            or an Include logic; you cannot both include and exclude values for a
+            single affiliation. <!--kadov_tag{{<spaces>}}--> <!--kadov_tag{{</spaces>}}--> However,
+            of course, you can use Include for providers, for example, and exclude
+            for groups.</p>
+
+        <p class="text">When imposed, affiliation security applies to the following
+            keywords:</p>
+
+        <h3 class="calibre2">Members</h3>
+
+        <p class="text">ALIAS, COBHS, GROUP, GRPCT, GRUPB, GRUPC, GRUPD, MELIG, MEMBA,
+            MEMBB, MEMBR, MEMMC, and MEMWA.</p>
+
+        <h3 class="calibre2">Authorizations</h3>
+
+        <p class="text">APPEL, AUTHS, DVEXT, PHYAD, PRCDR, and SECOP.</p>
+
+        <h3 class="calibre2">Claims</h3>
+
+        <p class="text">INCLM, PSCLM, DNCLM, DSPBN, and CLDSP.</p>
+
+        <h2 class="calibre3"><a name="Security_and_Users_Field_Level_Security_MID"></a>Field Level
+            Security</h2>
+
+        <p class="text">You can apply security restrictions at the field level as
+            well as the keyword level. Using keyword SFLDL (Field Level Security),
+            you can allow users to view, but not change data in fields; you can also
+            prohibit users from viewing data in fields.</p>
+
+        <p class="text">There are two levels of field level security restriction:</p>
+
+        <ul class="calibre6">
+
+            <li class="kadov-p-cbullet"><p class="bullet">V – View: Users cannot view
+                any data in a field with a V restriction.</p></li>
+
+            <li class="kadov-p-cbullet"><p class="bullet">C – Change. Users may view
+                data in a field with a C restriction. They cannot add, delete, or change
+                any data in the field.</p></li>
+        </ul>
+
+        <p class="text">When you restrict access to a keyword field using SFLDL,
+            you restrict access to the underlying DIAMOND database column that stores
+            data from the restricted field. Any DIAMOND field or table view that displays
+            data from the restricted database column inherits the same security restriction.
+            Fields in special functions cannot be protected by field level security.
+            To protect special function fields, you must restrict access to the special
+            function using SFUNC.</p>
+
+        <p class="text"><span class="calibre7">Note</span> <!--kadov_tag{{<spaces>}}--> <!--kadov_tag{{</spaces>}}-->
+            Field
+            level security only applies to DIAMOND front-end access. It does not restrict
+            access to the DIAMOND database using 3rd party products or ad hoc database
+            query tools. </p>
+
+        <h3 class="calibre2">Field Level Security and SWIND</h3>
+
+        <p class="text">You do not need to restrict a user’s access to specific fields
+            in a keyword if the user does not have access to the keyword. If users
+            have not been granted access to a specific keyword through keyword SWIND,
+            it is not necessary to restrict access further using SFLDL. </p>
+
+        <p class="text"><span class="calibre7">Note</span> <!--kadov_tag{{<spaces>}}--> <!--kadov_tag{{</spaces>}}--> If
+            a user has been granted delete privileges for a keyword in SWIND, that
+            user may delete an entire record even if field level security was applied
+            to some or all fields in the keyword.</p>
+
+        <h2 class="calibre3"><a name="Security_and_users_Password_Profile_Rules_MID"></a>Password
+            Profile Rules</h2>
+
+        <p class="text">Password profile rules define the minimum acceptable standards
+            for a user’s password and how it may be used. These rules are only enforced
+            for user accounts which have been assigned the password profile in keyword
+            SUSER. </p>
+
+        <p class="text">The password profile requires that:</p>
+
+        <ul class="calibre6">
+
+            <li class="kadov-p-cbullet"><p class="bullet">Passwords must be between
+                6 and 30 alphanumeric characters in length.</p></li>
+
+            <li class="kadov-p-cbullet"><p class="bullet">Passwords must start with
+                an alpha character; they may not start with a number.</p></li>
+
+            <li class="kadov-p-cbullet"><p class="bullet">Passwords may use only alpha
+                characters, or a combination of alpha characters and numbers.</p></li>
+
+            <li class="kadov-p-cbullet"><p class="bullet">Passwords may contain the
+                special characters _ (underscore), $ (dollar sign), and # (pound). No
+                other special characters may be used in a password.</p></li>
+        </ul>
+
+        <p class="text">The password profile also limits how long a password may
+            be used, when it may be reused, and the number of login attempts allowed
+            before the account is locked. These restrictions are determined by your
+            database administrator.</p>
+
+        <p class="text">User passwords can be managed as follows:</p>
+
+        <ul class="calibre6">
+
+            <li class="kadov-p-cbullet"><p class="bullet">A password may be changed
+                by checking the Change password check box on the DIAMOND login screen,
+                then following the prompts.</p></li>
+
+            <li class="kadov-p-cbullet"><p class="bullet">The User Password Profile
+                is applied to a DIAMOND user account in keyword SUSER using the Use Password
+                Profile check box. </p></li>
+
+            <li class="kadov-p-cbullet"><p class="bullet">If DIAMOND locks a user account,
+                a user with security level access can unlock the account using the Unlock
+                User Account menu command in SUSER.</p></li>
+
+            <li class="kadov-p-cbullet"><p class="bullet">A user account password can
+                be reset using the Reset Database Password menu command in SUSER. This
+                menu command is restricted to users with security level access to DIAMOND.</p></li>
+        </ul>
+
+        <h2 class="calibre3"><a name="Security_and_Users_SWIND_Keywords_and_Sheets_MID"></a>SWIND
+            Keywords and Sheets</h2>
+
+        <p class="text">To provide access to a keyword you must grant the user access
+            to at least two (sometimes more) items: the keyword itself, spelled just
+            like the keyword on the menu, and the associated sheet or sheets.</p>
+
+        <p class="text">Following is a table that shows each keyword and its associated
+            sheets.</p>
+
+        <!--(Table)=========================================================-->
+        <table cellspacing="0" width="390" x-use-null-cells="" class="calibre10">
+
+            <tbody class="calibre11">
+            <tr valign="top" class="calibre12">
+                <td width="80px" class="calibre13">
+                    <p class="tableheading">Keyword</p></td>
+                <td width="207px" class="calibre14">
+                    <p class="tableheading">DIAMOND Window</p></td>
+                <td width="102px" class="calibre15">
+                    <p class="tableheading">Sheet</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="80px" class="calibre16">
+                    <p class="tabletext"> </p></td>
+                <td width="207px" class="calibre17">
+                    <p class="tabletext">Main DIAMOND Menu</p></td>
+                <td width="102px" class="calibre18">
+                    <p class="tabletext">MAINMENU</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="80px" class="calibre16">
+                    <p class="tabletext"> </p></td>
+                <td width="207px" class="calibre17">
+                    <p class="tabletext">Member, Authorization &amp; Claim Notes</p></td>
+                <td width="102px" class="calibre18">
+                    <p class="tabletext">NOTES, NOTESSHT</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="80px" class="calibre16">
+                    <p class="tabletext">ACCUM</p></td>
+                <td width="207px" class="calibre17">
+                    <p class="tabletext">Benefit Accumulator Base Values</p></td>
+                <td width="102px" class="calibre18">
+                    <p class="tabletext">ACCUMSHT</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="80px" class="calibre16">
+                    <p class="tabletext">ACPAY</p></td>
+                <td width="207px" class="calibre17">
+                    <p class="tabletext">Accounts Payable</p></td>
+                <td width="102px" class="calibre18">
+                    <p class="tabletext">ACPAYSHT</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="80px" class="calibre16">
+                    <p class="tabletext">ALIAS</p></td>
+                <td width="207px" class="calibre17">
+                    <p class="tabletext">Member Alias/Responsible Party</p></td>
+                <td width="102px" class="calibre18">
+                    <p class="tabletext">MEMBSHT</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="80px" class="calibre16">
+                    <p class="tabletext">APPEL</p></td>
+                <td width="207px" class="calibre17">
+                    <p class="tabletext">Authorization Appeals</p></td>
+                <td width="102px" class="calibre18">
+                    <p class="tabletext">AUTHSHT</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="80px" class="calibre16">
+                    <p class="tabletext">APTAX</p></td>
+                <td width="207px" class="calibre17">
+                    <p class="tabletext">1099 Reporting</p></td>
+                <td width="102px" class="calibre18">
+                    <p class="tabletext">APTAXSHT</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="80px" class="calibre16">
+                    <p class="tabletext">APUPD</p></td>
+                <td width="207px" class="calibre17">
+                    <p class="tabletext">Accounts Payable Update</p></td>
+                <td width="102px" class="calibre18">
+                    <p class="tabletext">APUDTSHT</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="80px" class="calibre16">
+                    <p class="tabletext">APVDS</p></td>
+                <td width="207px" class="calibre17">
+                    <p class="tabletext">Accounts Payable Vendor Display</p></td>
+                <td width="102px" class="calibre18">
+                    <p class="tabletext">APVDSSHT</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="80px" class="calibre16">
+                    <p class="tabletext">ARADJ</p></td>
+                <td width="207px" class="calibre17">
+                    <p class="tabletext">A/R Cash Adjustments</p></td>
+                <td width="102px" class="calibre18">
+                    <p class="tabletext">ARADJSHT</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="80px" class="calibre16">
+                    <p class="tabletext">ARCSH</p></td>
+                <td width="207px" class="calibre17">
+                    <p class="tabletext">A/R Case Receipts</p></td>
+                <td width="102px" class="calibre18">
+                    <p class="tabletext">ARCSHSHT</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="80px" class="calibre16">
+                    <p class="tabletext">ARCUS</p></td>
+                <td width="207px" class="calibre17">
+                    <p class="tabletext">Customer Maintenance</p></td>
+                <td width="102px" class="calibre18">
+                    <p class="tabletext">ARCUSSHT</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="80px" class="calibre16">
+                    <p class="tabletext">ARULE</p></td>
+                <td width="207px" class="calibre17">
+                    <p class="tabletext">Authorization Claim Link Rules</p></td>
+                <td width="102px" class="calibre18">
+                    <p class="tabletext">ARULESHT</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="80px" class="calibre16">
+                    <p class="tabletext">AUCLS</p></td>
+                <td width="207px" class="calibre17">
+                    <p class="tabletext">Authorization Batch Close Setup</p></td>
+                <td width="102px" class="calibre18">
+                    <p class="tabletext">AUCLSSHT</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="80px" class="calibre16">
+                    <p class="tabletext">AUDSP</p></td>
+                <td width="207px" class="calibre17">
+                    <p class="tabletext">Authorization Display</p></td>
+                <td width="102px" class="calibre18">
+                    <p class="tabletext">AUDSPSHT</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="80px" class="calibre16">
+                    <p class="tabletext">AUMOD</p></td>
+                <td width="207px" class="calibre17">
+                    <p class="tabletext">Authorization Batch Close Setup</p></td>
+                <td width="102px" class="calibre18">
+                    <p class="tabletext">AUMODSHT</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="80px" class="calibre16">
+                    <p class="tabletext">AUTHC</p></td>
+                <td width="207px" class="calibre17">
+                    <p class="tabletext">Authorization Codes</p></td>
+                <td width="102px" class="calibre18">
+                    <p class="tabletext">AUTHCSHT</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="80px" class="calibre16">
+                    <p class="tabletext">AUTHS</p></td>
+                <td width="207px" class="calibre17">
+                    <p class="tabletext">Authorization Master</p></td>
+                <td width="102px" class="calibre18">
+                    <p class="tabletext">AUTHSHT</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="80px" class="calibre16">
+                    <p class="tabletext">AUTYP</p></td>
+                <td width="207px" class="calibre17">
+                    <p class="tabletext">Authorization Type</p></td>
+                <td width="102px" class="calibre18">
+                    <p class="tabletext">AUTYPSHT</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="80px" class="calibre16">
+                    <p class="tabletext">AWAVE</p></td>
+                <td width="207px" class="calibre17">
+                    <p class="tabletext">Authorization Waive</p></td>
+                <td width="102px" class="calibre18">
+                    <p class="tabletext">AWAVESHT</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="80px" class="calibre16">
+                    <p class="tabletext">BANKA</p></td>
+                <td width="207px" class="calibre17">
+                    <p class="tabletext">Bank Account</p></td>
+                <td width="102px" class="calibre18">
+                    <p class="tabletext">BANKASHT</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="80px" class="calibre16">
+                    <p class="tabletext">BENEF</p></td>
+                <td width="207px" class="calibre17">
+                    <p class="tabletext">Benefit Packages</p></td>
+                <td width="102px" class="calibre18">
+                    <p class="tabletext">BENEFSHT</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="80px" class="calibre16">
+                    <p class="tabletext">BLHST</p></td>
+                <td width="207px" class="calibre17">
+                    <p class="tabletext">Display Premium Billing History</p></td>
+                <td width="102px" class="calibre18">
+                    <p class="tabletext">BLHSTSHT</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="80px" class="calibre16">
+                    <p class="tabletext">BLTYP</p></td>
+                <td width="207px" class="calibre17">
+                    <p class="tabletext">Bill Type</p></td>
+                <td width="102px" class="calibre18">
+                    <p class="tabletext">BLTYPSHT</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="80px" class="calibre16">
+                    <p class="tabletext">BORDR</p></td>
+                <td width="207px" class="calibre17">
+                    <p class="tabletext">Benefit Processing Order</p></td>
+                <td width="102px" class="calibre18">
+                    <p class="tabletext">BORDRSHT</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="80px" class="calibre16">
+                    <p class="tabletext">BRULE</p></td>
+                <td width="207px" class="calibre17">
+                    <p class="tabletext">Benefit Rules</p></td>
+                <td width="102px" class="calibre18">
+                    <p class="tabletext">BRULESHT</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="80px" class="calibre16">
+                    <p class="tabletext">BRULE</p></td>
+                <td width="207px" class="calibre17">
+                    <p class="tabletext">Benefit Rules</p></td>
+                <td width="102px" class="calibre18">
+                    <p class="tabletext">BRULESHT</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="80px" class="calibre16">
+                    <p class="tabletext">CAPSL</p></td>
+                <td width="207px" class="calibre17">
+                    <p class="tabletext">Capitation Stoploss</p></td>
+                <td width="102px" class="calibre18">
+                    <p class="tabletext">CAPSHT</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="80px" class="calibre16">
+                    <p class="tabletext">CARCD</p></td>
+                <td width="207px" class="calibre17">
+                    <p class="tabletext">Carriers</p></td>
+                <td width="102px" class="calibre18">
+                    <p class="tabletext">CARCDSHT</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="80px" class="calibre16">
+                    <p class="tabletext">CARUL</p></td>
+                <td width="207px" class="calibre17">
+                    <p class="tabletext">Claim Audit Rules</p></td>
+                <td width="102px" class="calibre18">
+                    <p class="tabletext">CARULSHT</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="80px" class="calibre16">
+                    <p class="tabletext">CAUDT</p></td>
+                <td width="207px" class="calibre17">
+                    <p class="tabletext">Claim Audit Filters</p></td>
+                <td width="102px" class="calibre18">
+                    <p class="tabletext">CAUDTSHT</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="80px" class="calibre16">
+                    <p class="tabletext">CBAND</p></td>
+                <td width="207px" class="calibre17">
+                    <p class="tabletext">Capitation Age Bands</p></td>
+                <td width="102px" class="calibre18">
+                    <p class="tabletext">CBANDSHT</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="80px" class="calibre16">
+                    <p class="tabletext">CCALC</p></td>
+                <td width="207px" class="calibre17">
+                    <p class="tabletext">Capitation Calculation Setup</p></td>
+                <td width="102px" class="calibre18">
+                    <p class="tabletext">CCALCSHT</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="80px" class="calibre16">
+                    <p class="tabletext">CCODE</p></td>
+                <td width="207px" class="calibre17">
+                    <p class="tabletext">Customer Service Codes</p></td>
+                <td width="102px" class="calibre18">
+                    <p class="tabletext">CCODESHT</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="80px" class="calibre16">
+                    <p class="tabletext">CCONT</p></td>
+                <td width="207px" class="calibre17">
+                    <p class="tabletext">Customer Service Contact Log</p></td>
+                <td width="102px" class="calibre18">
+                    <p class="tabletext">CCONTSHT, CRESN, CCALL</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="80px" class="calibre16">
+                    <p class="tabletext">CDTMT</p></td>
+                <td width="207px" class="calibre17">
+                    <p class="tabletext">Code Table Maintenance</p></td>
+                <td width="102px" class="calibre18">
+                    <p class="tabletext">CDTMTSHT</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="80px" class="calibre16">
+                    <p class="tabletext">CFSUP</p></td>
+                <td width="207px" class="calibre17">
+                    <p class="tabletext">Clear, Void, Stop, Update</p></td>
+                <td width="102px" class="calibre18">
+                    <p class="tabletext">CVSUPSHT</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="80px" class="calibre16">
+                    <p class="tabletext">CHECK</p></td>
+                <td width="207px" class="calibre17">
+                    <p class="tabletext">Check Register</p></td>
+                <td width="102px" class="calibre18">
+                    <p class="tabletext">CHECKSHT</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="80px" class="calibre16">
+                    <p class="tabletext">CIBNR</p></td>
+                <td width="207px" class="calibre17">
+                    <p class="tabletext">Capitation IBNR Percentage</p></td>
+                <td width="102px" class="calibre18">
+                    <p class="tabletext">CIBNRSHT</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="80px" class="calibre16">
+                    <p class="tabletext">CKPRT</p></td>
+                <td width="207px" class="calibre17">
+                    <p class="tabletext">Check Print Setup</p></td>
+                <td width="102px" class="calibre18">
+                    <p class="tabletext">CKPRTSHT</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="80px" class="calibre16">
+                    <p class="tabletext">CKPST</p></td>
+                <td width="207px" class="calibre17">
+                    <p class="tabletext">Check Posting</p></td>
+                <td width="102px" class="calibre18">
+                    <p class="tabletext">CKPSTSHT</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="80px" class="calibre16">
+                    <p class="tabletext">CLDSP</p></td>
+                <td width="207px" class="calibre17">
+                    <p class="tabletext">Claims Display</p></td>
+                <td width="102px" class="calibre18">
+                    <p class="tabletext">CLDSPSHT</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="80px" class="calibre16">
+                    <p class="tabletext">CLTRN</p></td>
+                <td width="207px" class="calibre17">
+                    <p class="tabletext">Claims Transmittal</p></td>
+                <td width="102px" class="calibre18">
+                    <p class="tabletext">CLTRNSHT</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="80px" class="calibre16">
+                    <p class="tabletext">CNTRY</p></td>
+                <td width="207px" class="calibre17">
+                    <p class="tabletext">Country Codes</p></td>
+                <td width="102px" class="calibre18">
+                    <p class="tabletext">CNTRYSHT</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="80px" class="calibre16">
+                    <p class="tabletext">COBHS</p></td>
+                <td width="207px" class="calibre17">
+                    <p class="tabletext">Member COB History</p></td>
+                <td width="102px" class="calibre18">
+                    <p class="tabletext">MEMBSHT</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="80px" class="calibre16">
+                    <p class="tabletext">CODES</p></td>
+                <td width="207px" class="calibre17">
+                    <p class="tabletext">Codes Maintenance</p></td>
+                <td width="102px" class="calibre18">
+                    <p class="tabletext">CODESSHT</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="80px" class="calibre16">
+                    <p class="tabletext">COMPF</p></td>
+                <td width="207px" class="calibre17">
+                    <p class="tabletext">Company</p></td>
+                <td width="102px" class="calibre18">
+                    <p class="tabletext">COMPFSHT</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="80px" class="calibre16">
+                    <p class="tabletext">CONVF</p></td>
+                <td width="207px" class="calibre17">
+                    <p class="tabletext">Conversion Factors</p></td>
+                <td width="102px" class="calibre18">
+                    <p class="tabletext">CONVFSHT</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="80px" class="calibre16">
+                    <p class="tabletext">CPCLS</p></td>
+                <td width="207px" class="calibre17">
+                    <p class="tabletext">Capitation Close</p></td>
+                <td width="102px" class="calibre18">
+                    <p class="tabletext">CPCLSSHT</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="80px" class="calibre16">
+                    <p class="tabletext">CPENT</p></td>
+                <td width="207px" class="calibre17">
+                    <p class="tabletext">Capitation Entity</p></td>
+                <td width="102px" class="calibre18">
+                    <p class="tabletext">CAPSHT</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="80px" class="calibre16">
+                    <p class="tabletext">CPMOD</p></td>
+                <td width="207px" class="calibre17">
+                    <p class="tabletext">Capitation Model</p></td>
+                <td width="102px" class="calibre18">
+                    <p class="tabletext">CAPSHT</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="80px" class="calibre16">
+                    <p class="tabletext">CPOOL</p></td>
+                <td width="207px" class="calibre17">
+                    <p class="tabletext">Capitation Pool</p></td>
+                <td width="102px" class="calibre18">
+                    <p class="tabletext">CAPSHT</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="80px" class="calibre16">
+                    <p class="tabletext">CPRPT</p></td>
+                <td width="207px" class="calibre17">
+                    <p class="tabletext">Capitation Monthly Member Detail Report</p></td>
+                <td width="102px" class="calibre18">
+                    <p class="tabletext">CPRPTSHT</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="80px" class="calibre16">
+                    <p class="tabletext">CPSTA</p></td>
+                <td width="207px" class="calibre17">
+                    <p class="tabletext">Capitation Status</p></td>
+                <td width="102px" class="calibre18">
+                    <p class="tabletext">CAPSHT</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="80px" class="calibre16">
+                    <p class="tabletext">CPTDT</p></td>
+                <td width="207px" class="calibre17">
+                    <p class="tabletext">Capitation Transaction Detail Report Setup</p></td>
+                <td width="102px" class="calibre18">
+                    <p class="tabletext">CPTDTSHT</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="80px" class="calibre16">
+                    <p class="tabletext">CPTSU</p></td>
+                <td width="207px" class="calibre17">
+                    <p class="tabletext">Capitation Transaction Summary Report</p></td>
+                <td width="102px" class="calibre18">
+                    <p class="tabletext">CPTSUSHT</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="80px" class="calibre16">
+                    <p class="tabletext">CPUTL</p></td>
+                <td width="207px" class="calibre17">
+                    <p class="tabletext">Capitation Utilization Setup</p></td>
+                <td width="102px" class="calibre18">
+                    <p class="tabletext">CPUTLSHT</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="80px" class="calibre16">
+                    <p class="tabletext">CRATE</p></td>
+                <td width="207px" class="calibre17">
+                    <p class="tabletext">Capitation Rates</p></td>
+                <td width="102px" class="calibre18">
+                    <p class="tabletext">CAPSHT</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="80px" class="calibre16">
+                    <p class="tabletext">CREDL</p></td>
+                <td width="207px" class="calibre17">
+                    <p class="tabletext">Provider Credentialing</p></td>
+                <td width="102px" class="calibre18">
+                    <p class="tabletext">PROVSHT</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="80px" class="calibre16">
+                    <p class="tabletext">CRRUL</p></td>
+                <td width="207px" class="calibre17">
+                    <p class="tabletext">Code Review Rules and Results</p></td>
+                <td width="102px" class="calibre18">
+                    <p class="tabletext">CRRULSHT</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="80px" class="calibre16">
+                    <p class="tabletext">CRVAL</p></td>
+                <td width="207px" class="calibre17">
+                    <p class="tabletext">Reason for Calling Validation</p></td>
+                <td width="102px" class="calibre18">
+                    <p class="tabletext">CRVALSHT</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="80px" class="calibre16">
+                    <p class="tabletext">CVPVC</p></td>
+                <td width="207px" class="calibre17">
+                    <p class="tabletext">Covering Provider Group Codes</p></td>
+                <td width="102px" class="calibre18">
+                    <p class="tabletext">CVPVCSHT</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="80px" class="calibre16">
+                    <p class="tabletext">CVPVG</p></td>
+                <td width="207px" class="calibre17">
+                    <p class="tabletext">Covering Provider Groups</p></td>
+                <td width="102px" class="calibre18">
+                    <p class="tabletext">CVPVGSHT</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="80px" class="calibre16">
+                    <p class="tabletext">DIAGN</p></td>
+                <td width="207px" class="calibre17">
+                    <p class="tabletext">Diagnosis Codes</p></td>
+                <td width="102px" class="calibre18">
+                    <p class="tabletext">DIAGSHT</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="80px" class="calibre16">
+                    <p class="tabletext">DNCLM</p></td>
+                <td width="207px" class="calibre17">
+                    <p class="tabletext">Dental Services Claims</p></td>
+                <td width="102px" class="calibre18">
+                    <p class="tabletext">DNCLMSHT</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="80px" class="calibre16">
+                    <p class="tabletext">DRGCD</p></td>
+                <td width="207px" class="calibre17">
+                    <p class="tabletext">DRG Codes</p></td>
+                <td width="102px" class="calibre18">
+                    <p class="tabletext">DRGSHT</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="80px" class="calibre16">
+                    <p class="tabletext">DRGGP</p></td>
+                <td width="207px" class="calibre17">
+                    <p class="tabletext">DRG Grouper/Pricer Maintenance</p></td>
+                <td width="102px" class="calibre18">
+                    <p class="tabletext">DRGGPSHT</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="80px" class="calibre16">
+                    <p class="tabletext">DRGPR</p></td>
+                <td width="207px" class="calibre17">
+                    <p class="tabletext">DRG Pricer Revisions</p></td>
+                <td width="102px" class="calibre18">
+                    <p class="tabletext">DRGPRSHT</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="80px" class="calibre16">
+                    <p class="tabletext">DRGWT</p></td>
+                <td width="207px" class="calibre17">
+                    <p class="tabletext">DRG Weights</p></td>
+                <td width="102px" class="calibre18">
+                    <p class="tabletext">DRGSHT</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="80px" class="calibre16">
+                    <p class="tabletext">DSPBN</p></td>
+                <td width="207px" class="calibre17">
+                    <p class="tabletext">Display Benefit Accumulators</p></td>
+                <td width="102px" class="calibre18">
+                    <p class="tabletext">DSPBNSHT</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="80px" class="calibre16">
+                    <p class="tabletext">DSPBN</p></td>
+                <td width="207px" class="calibre17">
+                    <p class="tabletext">Display Benefit Accumulators</p></td>
+                <td width="102px" class="calibre18">
+                    <p class="tabletext">DSPBNSHT</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="80px" class="calibre16">
+                    <p class="tabletext">DUPRL</p></td>
+                <td width="207px" class="calibre17">
+                    <p class="tabletext">Claim Duplicate Check Rules</p></td>
+                <td width="102px" class="calibre18">
+                    <p class="tabletext">DUPRLSHT</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="80px" class="calibre16">
+                    <p class="tabletext">DVEXT</p></td>
+                <td width="207px" class="calibre17">
+                    <p class="tabletext">Authorization Days Visits Update</p></td>
+                <td width="102px" class="calibre18">
+                    <p class="tabletext">AUTHSHT</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="80px" class="calibre16">
+                    <p class="tabletext">EDIED</p></td>
+                <td width="207px" class="calibre17">
+                    <p class="tabletext">EDI Work Table Edit</p></td>
+                <td width="102px" class="calibre18">
+                    <p class="tabletext">EDIEDSHT</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="80px" class="calibre16">
+                    <p class="tabletext">EOBRA</p></td>
+                <td width="207px" class="calibre17">
+                    <p class="tabletext">EOB/RA Printing</p></td>
+                <td width="102px" class="calibre18">
+                    <p class="tabletext">EOBRASHT</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="80px" class="calibre16">
+                    <p class="tabletext">FACTY</p></td>
+                <td width="207px" class="calibre17">
+                    <p class="tabletext">Conversion Factor Types</p></td>
+                <td width="102px" class="calibre18">
+                    <p class="tabletext">FACTYSHT</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="80px" class="calibre16">
+                    <p class="tabletext">FINAL</p></td>
+                <td width="207px" class="calibre17">
+                    <p class="tabletext">Final Non-AP Setup</p></td>
+                <td width="102px" class="calibre18">
+                    <p class="tabletext">FINALSHT</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="80px" class="calibre16">
+                    <p class="tabletext">FUBAL</p></td>
+                <td width="207px" class="calibre17">
+                    <p class="tabletext">Estimated Fund Balance Report Setup </p></td>
+                <td width="102px" class="calibre18">
+                    <p class="tabletext">FUBALSHT</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="80px" class="calibre16">
+                    <p class="tabletext">GLASS</p></td>
+                <td width="207px" class="calibre17">
+                    <p class="tabletext">G/L Assignment</p></td>
+                <td width="102px" class="calibre18">
+                    <p class="tabletext">GLASSSHT</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="80px" class="calibre16">
+                    <p class="tabletext">GLREF</p></td>
+                <td width="207px" class="calibre17">
+                    <p class="tabletext">G/L Reference Codes</p></td>
+                <td width="102px" class="calibre18">
+                    <p class="tabletext">GLREFSHT</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="80px" class="calibre16">
+                    <p class="tabletext">GPBIL</p></td>
+                <td width="207px" class="calibre17">
+                    <p class="tabletext">Premium Billing Setup</p></td>
+                <td width="102px" class="calibre18">
+                    <p class="tabletext">GPBILSHT</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="80px" class="calibre16">
+                    <p class="tabletext">GROUP</p></td>
+                <td width="207px" class="calibre17">
+                    <p class="tabletext">Group Master</p></td>
+                <td width="102px" class="calibre18">
+                    <p class="tabletext">GROUPSHT</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="80px" class="calibre16">
+                    <p class="tabletext">GRPCT</p></td>
+                <td width="207px" class="calibre17">
+                    <p class="tabletext">Group Percent of Savings</p></td>
+                <td width="102px" class="calibre18">
+                    <p class="tabletext">GRPCTSHT</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="80px" class="calibre16">
+                    <p class="tabletext">GRUPB</p></td>
+                <td width="207px" class="calibre17">
+                    <p class="tabletext">Group Billing</p></td>
+                <td width="102px" class="calibre18">
+                    <p class="tabletext">GROUPSHT</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="80px" class="calibre16">
+                    <p class="tabletext">GRUPC</p></td>
+                <td width="207px" class="calibre17">
+                    <p class="tabletext">Group Contracts</p></td>
+                <td width="102px" class="calibre18">
+                    <p class="tabletext">GROUPSHT</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="80px" class="calibre16">
+                    <p class="tabletext">GRUPD</p></td>
+                <td width="207px" class="calibre17">
+                    <p class="tabletext">Group Detail</p></td>
+                <td width="102px" class="calibre18">
+                    <p class="tabletext">GROUPSHT</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="80px" class="calibre16">
+                    <p class="tabletext">GRUPP</p></td>
+                <td width="207px" class="calibre17">
+                    <p class="tabletext">Group Panel</p></td>
+                <td width="102px" class="calibre18">
+                    <p class="tabletext">GROUPSHT</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="80px" class="calibre16">
+                    <p class="tabletext">IDNAR</p></td>
+                <td width="207px" class="calibre17">
+                    <p class="tabletext">ID Card Narrative</p></td>
+                <td width="102px" class="calibre18">
+                    <p class="tabletext">IDNARSHT</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="80px" class="calibre16">
+                    <p class="tabletext">IDPRT</p></td>
+                <td width="207px" class="calibre17">
+                    <p class="tabletext">Id Card Print</p></td>
+                <td width="102px" class="calibre18">
+                    <p class="tabletext">IDPRTSHT</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="80px" class="calibre16">
+                    <p class="tabletext">INCLM</p></td>
+                <td width="207px" class="calibre17">
+                    <p class="tabletext">Institutional Claims</p></td>
+                <td width="102px" class="calibre18">
+                    <p class="tabletext">INCLMSHT</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="80px" class="calibre16">
+                    <p class="tabletext">IPAVA</p></td>
+                <td width="207px" class="calibre17">
+                    <p class="tabletext">IPA Master</p></td>
+                <td width="102px" class="calibre18">
+                    <p class="tabletext">IPAVASHT, IPAAF</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="80px" class="calibre16">
+                    <p class="tabletext">JOBLA</p></td>
+                <td width="207px" class="calibre17">
+                    <p class="tabletext">Interface Job Setup</p></td>
+                <td width="102px" class="calibre18">
+                    <p class="tabletext">JOBLASHT</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="80px" class="calibre16">
+                    <p class="tabletext">JSCMN</p></td>
+                <td width="207px" class="calibre17">
+                    <p class="tabletext">Job Setup Control</p></td>
+                <td width="102px" class="calibre18">
+                    <p class="tabletext">JSCMNSHT</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="80px" class="calibre16">
+                    <p class="tabletext">KWDMT</p></td>
+                <td width="207px" class="calibre17">
+                    <p class="tabletext">Keyword Maintenance</p></td>
+                <td width="102px" class="calibre18">
+                    <p class="tabletext">KWDMTSHT</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="80px" class="calibre16">
+                    <p class="tabletext">LANGM</p></td>
+                <td width="207px" class="calibre17">
+                    <p class="tabletext">Languages</p></td>
+                <td width="102px" class="calibre18">
+                    <p class="tabletext">LANGMSHT</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="80px" class="calibre16">
+                    <p class="tabletext">LINBS</p></td>
+                <td width="207px" class="calibre17">
+                    <p class="tabletext">Lines of Business</p></td>
+                <td width="102px" class="calibre18">
+                    <p class="tabletext">LINBSSHT</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="80px" class="calibre16">
+                    <p class="tabletext">LOVMT</p></td>
+                <td width="207px" class="calibre17">
+                    <p class="tabletext">List of Values Maintenance</p></td>
+                <td width="102px" class="calibre18">
+                    <p class="tabletext">LOVMTSHT</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="80px" class="calibre16">
+                    <p class="tabletext">LTEMP</p></td>
+                <td width="207px" class="calibre17">
+                    <p class="tabletext">Letter Templates</p></td>
+                <td width="102px" class="calibre18">
+                    <p class="tabletext">LTEMPSHT</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="80px" class="calibre16">
+                    <p class="tabletext">LTPRT</p></td>
+                <td width="207px" class="calibre17">
+                    <p class="tabletext">Letter Printing</p></td>
+                <td width="102px" class="calibre18">
+                    <p class="tabletext">LTPRTSHT</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="80px" class="calibre16">
+                    <p class="tabletext">MATRX</p></td>
+                <td width="207px" class="calibre17">
+                    <p class="tabletext">Matrix Determinants</p></td>
+                <td width="102px" class="calibre18">
+                    <p class="tabletext">MATRXSHT</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="80px" class="calibre16">
+                    <p class="tabletext">MCHEK</p></td>
+                <td width="207px" class="calibre17">
+                    <p class="tabletext">Manual Check Entry</p></td>
+                <td width="102px" class="calibre18">
+                    <p class="tabletext">MCHEKSHT</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="80px" class="calibre16">
+                    <p class="tabletext">MCHRL</p></td>
+                <td width="207px" class="calibre17">
+                    <p class="tabletext">Auth/Claim Matching Rules</p></td>
+                <td width="102px" class="calibre18">
+                    <p class="tabletext">MCHRLSHT</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="80px" class="calibre16">
+                    <p class="tabletext">MCPHP</p></td>
+                <td width="207px" class="calibre17">
+                    <p class="tabletext">Medi-Cal PHP Status Rules</p></td>
+                <td width="102px" class="calibre18">
+                    <p class="tabletext">MCPHPSHT</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="80px" class="calibre16">
+                    <p class="tabletext">MEDCO</p></td>
+                <td width="207px" class="calibre17">
+                    <p class="tabletext">Alternate Search Columns</p></td>
+                <td width="102px" class="calibre18">
+                    <p class="tabletext">MEDCOSHT</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="80px" class="calibre16">
+                    <p class="tabletext">MEDEF</p></td>
+                <td width="207px" class="calibre17">
+                    <p class="tabletext">Medical Definitions</p></td>
+                <td width="102px" class="calibre18">
+                    <p class="tabletext">MEDEFSHT</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="80px" class="calibre16">
+                    <p class="tabletext">MEDLU</p></td>
+                <td width="207px" class="calibre17">
+                    <p class="tabletext">Medical Definitions Lookup</p></td>
+                <td width="102px" class="calibre18">
+                    <p class="tabletext">MEDLUSHT</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="80px" class="calibre16">
+                    <p class="tabletext">MEDOR</p></td>
+                <td width="207px" class="calibre17">
+                    <p class="tabletext">Alternate Search Orders</p></td>
+                <td width="102px" class="calibre18">
+                    <p class="tabletext">MEDORSHT</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="80px" class="calibre16">
+                    <p class="tabletext">MELIG</p></td>
+                <td width="207px" class="calibre17">
+                    <p class="tabletext">Member Eligibility History</p></td>
+                <td width="102px" class="calibre18">
+                    <p class="tabletext">MEMBSHT</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="80px" class="calibre16">
+                    <p class="tabletext">MEMBB</p></td>
+                <td width="207px" class="calibre17">
+                    <p class="tabletext">Member Billing</p></td>
+                <td width="102px" class="calibre18">
+                    <p class="tabletext">MEMBBSHT</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="80px" class="calibre16">
+                    <p class="tabletext">MEMBR</p></td>
+                <td width="207px" class="calibre17">
+                    <p class="tabletext">Member Master</p></td>
+                <td width="102px" class="calibre18">
+                    <p class="tabletext">MEMBSHT</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="80px" class="calibre16">
+                    <p class="tabletext">MNUMT</p></td>
+                <td width="207px" class="calibre17">
+                    <p class="tabletext">Menu Maintenance</p></td>
+                <td width="102px" class="calibre18">
+                    <p class="tabletext">MNUMTSHT</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="80px" class="calibre16">
+                    <p class="tabletext">MODIF</p></td>
+                <td width="207px" class="calibre17">
+                    <p class="tabletext">Modifiers</p></td>
+                <td width="102px" class="calibre18">
+                    <p class="tabletext">MODIFSHT</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="80px" class="calibre16">
+                    <p class="tabletext">MSGMT</p></td>
+                <td width="207px" class="calibre17">
+                    <p class="tabletext">Message Master Maintenance</p></td>
+                <td width="102px" class="calibre18">
+                    <p class="tabletext">MSGMASHT</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="80px" class="calibre16">
+                    <p class="tabletext">NAVMT</p></td>
+                <td width="207px" class="calibre17">
+                    <p class="tabletext">Navigation Maintenance</p></td>
+                <td width="102px" class="calibre18">
+                    <p class="tabletext">NAVMTSHT</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="80px" class="calibre16">
+                    <p class="tabletext">NOTET</p></td>
+                <td width="207px" class="calibre17">
+                    <p class="tabletext">Note Types</p></td>
+                <td width="102px" class="calibre18">
+                    <p class="tabletext">NOTETSHT</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="80px" class="calibre16">
+                    <p class="tabletext">NOTEW</p></td>
+                <td width="207px" class="calibre17">
+                    <p class="tabletext">Note Windows</p></td>
+                <td width="102px" class="calibre18">
+                    <p class="tabletext">NOTEWSHT</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="80px" class="calibre16">
+                    <p class="tabletext">PANEL</p></td>
+                <td width="207px" class="calibre17">
+                    <p class="tabletext">Panels</p></td>
+                <td width="102px" class="calibre18">
+                    <p class="tabletext">PANELSHT</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="80px" class="calibre16">
+                    <p class="tabletext">PARAM</p></td>
+                <td width="207px" class="calibre17">
+                    <p class="tabletext">Parameters</p></td>
+                <td width="102px" class="calibre18">
+                    <p class="tabletext">PARAMSHT</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="80px" class="calibre16">
+                    <p class="tabletext">PDTER</p></td>
+                <td width="207px" class="calibre17">
+                    <p class="tabletext">Price Determinants</p></td>
+                <td width="102px" class="calibre18">
+                    <p class="tabletext">PDTERSHT</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="80px" class="calibre16">
+                    <p class="tabletext">PHYAD</p></td>
+                <td width="207px" class="calibre17">
+                    <p class="tabletext">Authorization Physician Advisory</p></td>
+                <td width="102px" class="calibre18">
+                    <p class="tabletext">AUTHSHT</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="80px" class="calibre16">
+                    <p class="tabletext">PLANC</p></td>
+                <td width="207px" class="calibre17">
+                    <p class="tabletext">Plans</p></td>
+                <td width="102px" class="calibre18">
+                    <p class="tabletext">PLANCSHT</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="80px" class="calibre16">
+                    <p class="tabletext">PLSVC</p></td>
+                <td width="207px" class="calibre17">
+                    <p class="tabletext">Places of Service</p></td>
+                <td width="102px" class="calibre18">
+                    <p class="tabletext">PLSVCSHT</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="80px" class="calibre16">
+                    <p class="tabletext">PMSCT</p></td>
+                <td width="207px" class="calibre17">
+                    <p class="tabletext">Processing Message Control</p></td>
+                <td width="102px" class="calibre18">
+                    <p class="tabletext">PMSCTSHT</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="80px" class="calibre16">
+                    <p class="tabletext">PRCDR</p></td>
+                <td width="207px" class="calibre17">
+                    <p class="tabletext">Authorization Procedures</p></td>
+                <td width="102px" class="calibre18">
+                    <p class="tabletext">AUTHSHT</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="80px" class="calibre16">
+                    <p class="tabletext">PREDI</p></td>
+                <td width="207px" class="calibre17">
+                    <p class="tabletext">Process EDI</p></td>
+                <td width="102px" class="calibre18">
+                    <p class="tabletext">PREDISHT</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="80px" class="calibre16">
+                    <p class="tabletext">PREMM</p></td>
+                <td width="207px" class="calibre17">
+                    <p class="tabletext">Matrix Premium Rates</p></td>
+                <td width="102px" class="calibre18">
+                    <p class="tabletext">PREMMSHT</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="80px" class="calibre16">
+                    <p class="tabletext">PROCD</p></td>
+                <td width="207px" class="calibre17">
+                    <p class="tabletext">Procedure Codes</p></td>
+                <td width="102px" class="calibre18">
+                    <p class="tabletext">PROCSHT</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="80px" class="calibre16">
+                    <p class="tabletext">PROCP</p></td>
+                <td width="207px" class="calibre17">
+                    <p class="tabletext">Procedure Prices</p></td>
+                <td width="102px" class="calibre18">
+                    <p class="tabletext">PROCSHT</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="80px" class="calibre16">
+                    <p class="tabletext">PROVA</p></td>
+                <td width="207px" class="calibre17">
+                    <p class="tabletext">Provider Addresses</p></td>
+                <td width="102px" class="calibre18">
+                    <p class="tabletext">PROVSHT</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="80px" class="calibre16">
+                    <p class="tabletext">PROVC</p></td>
+                <td width="207px" class="calibre17">
+                    <p class="tabletext">Provider Contracts</p></td>
+                <td width="102px" class="calibre18">
+                    <p class="tabletext">PROVSHT, PRVCPSHT, PRVCP</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="80px" class="calibre16">
+                    <p class="tabletext">PROVF</p></td>
+                <td width="207px" class="calibre17">
+                    <p class="tabletext">Provider Master</p></td>
+                <td width="102px" class="calibre18">
+                    <p class="tabletext">PROVSHT</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="80px" class="calibre16">
+                    <p class="tabletext">PROVP</p></td>
+                <td width="207px" class="calibre17">
+                    <p class="tabletext">Provider Privileges</p></td>
+                <td width="102px" class="calibre18">
+                    <p class="tabletext">PROVSHT</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="80px" class="calibre16">
+                    <p class="tabletext">PRULD</p></td>
+                <td width="207px" class="calibre17">
+                    <p class="tabletext">Price Rule Details</p></td>
+                <td width="102px" class="calibre18">
+                    <p class="tabletext">PRULESHT</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="80px" class="calibre16">
+                    <p class="tabletext">PRULS</p></td>
+                <td width="207px" class="calibre17">
+                    <p class="tabletext">Price Rule Detail Selection</p></td>
+                <td width="102px" class="calibre18">
+                    <p class="tabletext">PRULESHT</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="80px" class="calibre16">
+                    <p class="tabletext">PRULW</p></td>
+                <td width="207px" class="calibre17">
+                    <p class="tabletext">Whole Claim Price Rules</p></td>
+                <td width="102px" class="calibre18">
+                    <p class="tabletext">PRULESHT</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="80px" class="calibre16">
+                    <p class="tabletext">PSCHD</p></td>
+                <td width="207px" class="calibre17">
+                    <p class="tabletext">Price Schedules</p></td>
+                <td width="102px" class="calibre18">
+                    <p class="tabletext">PSCHDSHT</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="80px" class="calibre16">
+                    <p class="tabletext">PSCLM</p></td>
+                <td width="207px" class="calibre17">
+                    <p class="tabletext">Professional Services Claims</p></td>
+                <td width="102px" class="calibre18">
+                    <p class="tabletext">PSCLMSHT</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="80px" class="calibre16">
+                    <p class="tabletext">PTYPE</p></td>
+                <td width="207px" class="calibre17">
+                    <p class="tabletext">Provider Types</p></td>
+                <td width="102px" class="calibre18">
+                    <p class="tabletext">PTYPESHT</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="80px" class="calibre16">
+                    <p class="tabletext">REASN</p></td>
+                <td width="207px" class="calibre17">
+                    <p class="tabletext">Reason Codes</p></td>
+                <td width="102px" class="calibre18">
+                    <p class="tabletext">REASNSHT</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="80px" class="calibre16">
+                    <p class="tabletext">REGIN</p></td>
+                <td width="207px" class="calibre17">
+                    <p class="tabletext">Regions</p></td>
+                <td width="102px" class="calibre18">
+                    <p class="tabletext">REGINSHT</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="80px" class="calibre16">
+                    <p class="tabletext">RIDER</p></td>
+                <td width="207px" class="calibre17">
+                    <p class="tabletext">Riders</p></td>
+                <td width="102px" class="calibre18">
+                    <p class="tabletext">RIDERSHT</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="80px" class="calibre16">
+                    <p class="tabletext">SCALE</p></td>
+                <td width="207px" class="calibre17">
+                    <p class="tabletext">Relative Value Unit Scale Types</p></td>
+                <td width="102px" class="calibre18">
+                    <p class="tabletext">SCALESHT</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="80px" class="calibre16">
+                    <p class="tabletext">SCNMT</p></td>
+                <td width="207px" class="calibre17">
+                    <p class="tabletext">Screen Maintenance</p></td>
+                <td width="102px" class="calibre18">
+                    <p class="tabletext">SCNMTSHT</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="80px" class="calibre16">
+                    <p class="tabletext">SECOP</p></td>
+                <td width="207px" class="calibre17">
+                    <p class="tabletext">Authorization Second Opinion</p></td>
+                <td width="102px" class="calibre18">
+                    <p class="tabletext">AUTHSHT</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="80px" class="calibre16">
+                    <p class="tabletext">SFNDS</p></td>
+                <td width="207px" class="calibre17">
+                    <p class="tabletext">Function Descriptions</p></td>
+                <td width="102px" class="calibre18">
+                    <p class="tabletext">SECSHT</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="80px" class="calibre16">
+                    <p class="tabletext">SFUNC</p></td>
+                <td width="207px" class="calibre17">
+                    <p class="tabletext">Function Access</p></td>
+                <td width="102px" class="calibre18">
+                    <p class="tabletext">SECSHT</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="80px" class="calibre16">
+                    <p class="tabletext">SUBMT</p></td>
+                <td width="207px" class="calibre17">
+                    <p class="tabletext">Submitter Master</p></td>
+                <td width="102px" class="calibre18">
+                    <p class="tabletext">SUBMTSHT, SUBMD</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="80px" class="calibre16">
+                    <p class="tabletext">SUBSC</p></td>
+                <td width="207px" class="calibre17">
+                    <p class="tabletext">Subscriber Update</p></td>
+                <td width="102px" class="calibre18">
+                    <p class="tabletext">GPBILSHT</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="80px" class="calibre16">
+                    <p class="tabletext">SUSER</p></td>
+                <td width="207px" class="calibre17">
+                    <p class="tabletext">Users</p></td>
+                <td width="102px" class="calibre18">
+                    <p class="tabletext">SECSHT</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="80px" class="calibre16">
+                    <p class="tabletext">SWIND</p></td>
+                <td width="207px" class="calibre17">
+                    <p class="tabletext">Window Access</p></td>
+                <td width="102px" class="calibre18">
+                    <p class="tabletext">SECSHT</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="80px" class="calibre16">
+                    <p class="tabletext">SWNDS</p></td>
+                <td width="207px" class="calibre17">
+                    <p class="tabletext">Window Descriptions</p></td>
+                <td width="102px" class="calibre18">
+                    <p class="tabletext">SECSHT</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="80px" class="calibre16">
+                    <p class="tabletext">TABLE</p></td>
+                <td width="207px" class="calibre17">
+                    <p class="tabletext">Table Schema</p></td>
+                <td width="102px" class="calibre18">
+                    <p class="tabletext">TABLSHT, TABLI, TABLK</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="80px" class="calibre16">
+                    <p class="tabletext">TITLE</p></td>
+                <td width="207px" class="calibre17">
+                    <p class="tabletext">Titles</p></td>
+                <td width="102px" class="calibre18">
+                    <p class="tabletext">TITLESHT</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="80px" class="calibre16">
+                    <p class="tabletext">TRENT</p></td>
+                <td width="207px" class="calibre17">
+                    <p class="tabletext">Tax Reporting Entity</p></td>
+                <td width="102px" class="calibre18">
+                    <p class="tabletext">TRENTSHT</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="80px" class="calibre16">
+                    <p class="tabletext">UDATT</p></td>
+                <td width="207px" class="calibre17">
+                    <p class="tabletext">User Attribute Formats</p></td>
+                <td width="102px" class="calibre18">
+                    <p class="tabletext">UDATTSHT</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="80px" class="calibre16">
+                    <p class="tabletext">UDTXT</p></td>
+                <td width="207px" class="calibre17">
+                    <p class="tabletext">User Defined Fields</p></td>
+                <td width="102px" class="calibre18">
+                    <p class="tabletext">UDTXTSHT</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="80px" class="calibre16">
+                    <p class="tabletext">UNITV</p></td>
+                <td width="207px" class="calibre17">
+                    <p class="tabletext">Unit Values</p></td>
+                <td width="102px" class="calibre18">
+                    <p class="tabletext">PROCSHT</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="80px" class="calibre16">
+                    <p class="tabletext">VENDA</p></td>
+                <td width="207px" class="calibre17">
+                    <p class="tabletext">Vendor Address</p></td>
+                <td width="102px" class="calibre18">
+                    <p class="tabletext">VENDSHT</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="80px" class="calibre16">
+                    <p class="tabletext">VENDR</p></td>
+                <td width="207px" class="calibre17">
+                    <p class="tabletext">Vendor Master</p></td>
+                <td width="102px" class="calibre18">
+                    <p class="tabletext">VENDRSHT</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="80px" class="calibre16">
+                    <p class="tabletext">ZIPRF</p></td>
+                <td width="207px" class="calibre17">
+                    <p class="tabletext">Zip Codes</p></td>
+                <td width="102px" class="calibre18">
+                    <p class="tabletext">ZIPRFSHT</p></td>
+            </tr>
+            </tbody>
+        </table>
+
+
+    </div>
+
+
+    <div class="calibreToc">
+        <h2><a href="../co5tp-ch4tl.html">Table of contents
+        </a></h2>
+        <div>
+            <ul>
+                <li>
+                    <a href=".">Security</a>
+                    <ul>
+                        <li>
+                            <a href=".">Tasks</a>
+                            <ul>
+                                <li>
+                                    <a href="Setting_Up_User_Security.htm">Setting Up Security</a>
+                                </li>
+                                <li>
+                                    <a href="Enable_System_Security.htm">Enable System Security</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href=".">How DIAMOND Thinks</a>
+                            <ul>
+                                <li>
+                                    <a href="Security_and_Users_How_DIAMOND_Thinks.htm">Security and Users, How DIAMOND
+                                        Thinks</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href=".">Adding and Managing Users and Security Templates</a>
+                            <ul>
+                                <li>
+                                    <a href=".">Tasks</a>
+                                    <ul>
+                                        <li>
+                                            <a href=".">Adding Users</a>
+                                            <ul>
+                                                <li>
+                                                    <a href="Adding_Users.htm">Adding Users</a>
+                                                </li>
+                                                <li>
+                                                    <a href="Add_a_Super_User.htm">Add a Super User</a>
+                                                </li>
+                                                <li>
+                                                    <a href="Add_a_User.htm">Add a User</a>
+                                                </li>
+                                                <li>
+                                                    <a href="Add_a_User_Assigned_to_a_Template.htm">Add a User Assigned
+                                                        to a Template</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <a href=".">Deleting Users</a>
+                                            <ul>
+                                                <li>
+                                                    <a href="Delete_a_Super_User.htm">Delete a Super User</a>
+                                                </li>
+                                                <li>
+                                                    <a href="Delete_a_User.htm">Delete a User</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <a href="Add_a_Security_Template.htm">Add a Security Template</a>
+                                        </li>
+                                        <li>
+                                            <a href="Change_the_Password_of_a_User.htm">Change the Password of a
+                                                User</a>
+                                        </li>
+                                        <li>
+                                            <a href="Grant_a_Template_Access_to_a_Special_Menu_Command.htm">Grant a
+                                                Template Access to a Special Menu Command</a>
+                                        </li>
+                                        <li>
+                                            <a href="Granting_a_User_Access_to_a_Special_Menu_Command.htm">Grant a User
+                                                Access to a Special Menu Command</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href=".">Keyword Reference</a>
+                            <ul>
+                                <li>
+                                    <a href=".">SFLDL</a>
+                                    <ul>
+                                        <li>
+                                            <a href="SFLDL_Field_Level_Security.htm">SFLDL, Field Level Security
+                                                Setup</a>
+                                        </li>
+                                        <li>
+                                            <a href="About_SFLDL.htm">About SFLDL</a>
+                                        </li>
+                                        <li>
+                                            <a href="SFLDL_Field_Map.htm">SFLDL Field Map</a>
+                                        </li>
+                                        <li>
+                                            <a href="SFLDL_Field_Definitions.htm">SFLDL Field Definitions</a>
+                                        </li>
+                                        <li>
+                                            <a href="SFLDL_Commands_on_the_Menu_Bar.htm">SFLDL Commands on the Menu
+                                                Bar</a>
+                                        </li>
+                                        <li>
+                                            <a href="SFLDL_Parameters_Prerequisites.htm">SFLDL Parameters &amp;
+                                                Prerequisites</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href=".">SFNDS</a>
+                                    <ul>
+                                        <li>
+                                            <a href="SFNDS_Special_Function_Descriptions.htm">SFNDS, Function
+                                                Description</a>
+                                        </li>
+                                        <li>
+                                            <a href="About_SFNDS.htm">About SFNDS</a>
+                                        </li>
+                                        <li>
+                                            <a href="SFNDS_Field_Map.htm">SFNDS Field Map</a>
+                                        </li>
+                                        <li>
+                                            <a href="SFNDS_Field_Definitions.htm">SFNDS Field Definitions</a>
+                                        </li>
+                                        <li>
+                                            <a href="SFNDS_Functions_on_Menu_Bar.htm">SFNDS Commands on the Menu Bar</a>
+                                        </li>
+                                        <li>
+                                            <a href="SFNDS_Parameters_Prerequisites.htm">SFNDS Parameters &amp;
+                                                Prerequisites</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href=".">SFUNC</a>
+                                    <ul>
+                                        <li>
+                                            <a href="SFUNC_Function_Security.htm">SFUNC, Function Access</a>
+                                        </li>
+                                        <li>
+                                            <a href="About_SFUNC.htm">About SFUNC</a>
+                                        </li>
+                                        <li>
+                                            <a href="SFUNC_Field_Map.htm">SFUNC Field Map</a>
+                                        </li>
+                                        <li>
+                                            <a href="SFUNC_Field_Definitions.htm">SFUNC Field Definitions</a>
+                                        </li>
+                                        <li>
+                                            <a href="SFUNC_Functions_on_Menu_Bar.htm">SFUNC Commands on the Menu Bar</a>
+                                        </li>
+                                        <li>
+                                            <a href="SFUNC_Parameters_Prerequisites.htm">SFUNC Parameters &amp;
+                                                Prerequisites</a>
+                                        </li>
+                                        <li>
+                                            <a href="SFUNC_Copy_Function_Access_Menu_Command.htm">SFUNC Copy Function
+                                                Access Menu Command</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href=".">SUSER</a>
+                                    <ul>
+                                        <li>
+                                            <a href="SUSER_Users.htm">SUSER, Users</a>
+                                        </li>
+                                        <li>
+                                            <a href="About_SUSER.htm">About SUSER</a>
+                                        </li>
+                                        <li>
+                                            <a href="SUSER_Field_Map.htm">SUSER Field Map</a>
+                                        </li>
+                                        <li>
+                                            <a href="SUSER_Field_Definitions.htm">SUSER Field Definitions</a>
+                                        </li>
+                                        <li>
+                                            <a href="SUSER_Functions_on_Menu_Bar.htm">SUSER Commands on the Menu Bar</a>
+                                        </li>
+                                        <li>
+                                            <a href="SUSER_Parameters_Prerequisites.htm">SUSER Parameters &amp;
+                                                Prerequisites</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href=".">SWIND</a>
+                                    <ul>
+                                        <li>
+                                            <a href="SWIND_Window_Security.htm">SWIND, Window Access</a>
+                                        </li>
+                                        <li>
+                                            <a href="About_SWIND.htm">About SWIND</a>
+                                        </li>
+                                        <li>
+                                            <a href="SWIND_Field_Map.htm">SWIND Field Map</a>
+                                        </li>
+                                        <li>
+                                            <a href="SWIND_Field_Definitions.htm">SWIND Field Definitions</a>
+                                        </li>
+                                        <li>
+                                            <a href="SWIND_Functions_on_Menu_Bar.htm">SWIND Commands on the Menu Bar</a>
+                                        </li>
+                                        <li>
+                                            <a href="SWIND_Parameters_and_Prerequisites.htm">SWIND Parameters and
+                                                Prerequisites</a>
+                                        </li>
+                                        <li>
+                                            <a href="SWIND_Copy_Window_Access_Menu_Command.htm">SWIND Copy Window Access
+                                                Menu Command</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href=".">SWNDS</a>
+                                    <ul>
+                                        <li>
+                                            <a href="SWNDS_Window_Descriptions.htm">SWNDS, Window Description</a>
+                                        </li>
+                                        <li>
+                                            <a href="About_SWNDS.htm">About SWNDS</a>
+                                        </li>
+                                        <li>
+                                            <a href="SWNDS_Field_Map.htm">SWNDS Field Map</a>
+                                        </li>
+                                        <li>
+                                            <a href="SWNDS_Field_Definitions.htm">SWNDS Field Definitions</a>
+                                        </li>
+                                        <li>
+                                            <a href="SWNDS_Functions_on_Menu_Bar.htm">SWNDS Commands on the Menu Bar</a>
+                                        </li>
+                                        <li>
+                                            <a href="SWNDS_Parameters_Prerequisites.htm">SWNDS Parameters &amp;
+                                                Prerequisites</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+
+    </div>
+
+
+    <div class="calibreEbNav">
+
+        <a href="Enable_System_Security.htm" class="calibreAPrev">previous page
+        </a>
+
+
+        <a href="../co5tp-ch4tl.html" class="calibreAHome">start
+        </a>
+
+
+        <a href="Adding_Users.htm" class="calibreANext">next page
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!-- Copyright (c) 2021 . All Rights Reserved. -->
+<div class="container-fluid">
+    <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+    <div class="card-block">       
+                    <form [formGroup]="payerDetailsForm" novalidate>
+
+                        <div class="form-group row bg-dark text-white">
+                            <div class="offset-0 form-control-static mb-0 font-weight-bold " i18n>
+                                Group Number
+                                <br>
+                                <span class=" required-field-label pt-1">  {{groupNumber}}</span>
+                            </div>
+                            <div class=" offset-1 form-control-static mb-0 font-weight-bold" i18n>
+                                Group Name
+                                <br>
+                                <span class=" pt-1 required-field-label"> {{groupName}}</span>
+                            </div>
+                            <div class=" offset-1 form-control-static mb-0 font-weight-bold" i18n>
+                                Payer/Argus Client
+                                <br>
+                                <span >
+                                    <input [ngModelOptions]="{standalone: true}"
+                               (ngModelChange)="onPayerArgusClientIdChange($event)"
+                               [ngModel]="payerArgusClientId" class="col-md pt-1 required-field-label justify-content-center" type="text">
+                                </span>
+                            </div>
+                            <div class=" offset-1 form-control-static mb-0 font-weight-bold" i18n>
+                                Payer Group ID
+                                <br>
+                                <span >
+                                    <input [ngModelOptions]="{standalone: true}"
+                                    (ngModelChange)="onPayerGroupIdChange($event)"
+                                    [ngModel]="payerGroupId" class="col-md pt-1 required-field-label justify-content-center" type="text">
+                                </span>
+                            </div>
+                            <div class="  offset-sm-1 form-control-static mb-0 font-weight-bold" i18n>
+                                Test Status
+                                <br>
+                                <span >
+                                    <select [ngModelOptions]="{standalone: true}"
+                                    (ngModelChange)="onTestStatusChange($event)"
+                                    [ngModel]="testStatus" class="col-md mb-0 pt-1 required-field-label justify-content-center" type="selectContainer"> 
+                                    <option *ngFor="let testStatus of testStatusesList" [value]="testStatus.key">
+                                        {{testStatus.value}}
+
+                                    </option>
+                                    </select>
+                                </span>
+                            </div>
+
+                            <div class="row"></div>
+                        </div>
+
+
+                        <div class="form-group row">
+                            <div class="col-md-12 mt-3 mt-2 p-0">
+                                <dmnd-dynamic-config-grid
+                                        [prevState]="pharmacyPayerDetailsFormState" [isResetForm]="resetInlineGrid" [isSaveForm]="saveInlineGrid"
+                                        [title]="''" [showRemoveButton]="false"
+                                        [config]="pharmacyPayerDetailsConfig" [displayCheckBox]="false" [submitBtnText]="SubmitBtn"
+                                        [showSubmitButton]="true" [showResetButton]="true" [restoreBtnText]="RestoreBtnText"
+                                        (formSubmitted)="saveForm($event)" [showAddNewline]="false" (onRestoreClick)="resetAllClick()"
+                                ></dmnd-dynamic-config-grid>
+                            </div>
+
+                        </div>
+
+                        <div class="form-group row">
+                            <!-- Button with label of Close -->
+                            <div class="col-md-2">
+                                <button (click)="ngbActiveModal.dismiss()" class="btn btn-small btn-primary" id="close" name="close" type="button">Close
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                        </div>
+                    </form>
+    
+    </div>
+</div>

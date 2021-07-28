@@ -1,0 +1,717 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+    <title>Authorization Claim Links, How DIAMOND Thinks</title>
+    <!--(Meta)==========================================================-->
+    <meta name="copyright"
+          value="© Copyright 2002 Health Systems Design Corp., a wholly owned subsidiary of Perot Systems Corporation. All rights reserved"/>
+    <meta content="About.htt" name="template"/>
+    <meta content="RoboHELP by eHelp Corporation - www.ehelp.com" name="generator"/>
+    <meta content="0.1" name="generator-major-version"/>
+    <meta content="1" name="generator-minor-version"/>
+    <meta content="kadov" name="filetype"/>
+    <meta content="1" name="filetype-version"/>
+    <meta content="1" name="page-count"/>
+    <meta content="6101" name="layout-height"/>
+    <meta content="545" name="layout-width"/>
+    <!--(Links)=========================================================-->
+    <!--(Scripts)=======================================================-->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+</head>
+<body>
+
+<div class="calibreMeta">
+    <div class="calibreMetaTitle">
+
+
+        <h1>
+            <a href="../bj5if-qozss.html">DIAMOND 950 Help
+            </a>
+        </h1>
+
+
+    </div>
+    <div class="calibreMetaAuthor">
+        Unknown
+
+    </div>
+</div>
+
+<div class="calibreMain">
+
+    <div class="calibreEbookContent">
+
+        <div class="calibreEbNavTop">
+
+            <a href="Authorization_Claim_Detail_Linking_and_Pricing_How_DIAMOND_Thinks.htm" class="calibreAPrev">previous
+                page
+            </a>
+
+
+            <a href="Batch_Claim_Hold_Release_Overview.htm" class="calibreANext">next page
+            </a>
+
+        </div>
+
+
+        <h1 class="calibre1">Authorization Claim Links, How DIAMOND Thinks</h1>
+
+        <p class="text">This topic provides processing logic information about:</p>
+
+        <p class="text"><a href="#Introduction">Introduction</a></p>
+
+        <p class="text"><a href="Authorization_Claim_Links_How_DIAMOND_Thinks.htm#Authorization_Claim_Links_Features">Authorization
+            Claim Links features</a></p>
+
+        <p class="text"><a href="Authorization_Claim_Links_How_DIAMOND_Thinks.htm#Affected_keywords_and_parameters">Affected
+            keywords and parameters</a></p>
+
+        <p class="text"><a href="Authorization_Claim_Links_How_DIAMOND_Thinks.htm#Setting_up">Setting
+            up</a></p>
+
+        <p class="text"><a
+                href="Authorization_Claim_Links_How_DIAMOND_Thinks.htm#Authorization_Claim_Links_Using_the_date_range_match_criteria_MID">Using
+            the date range match criteria</a></p>
+
+        <p class="text"><a
+                href="Authorization_Claim_Links_How_DIAMOND_Thinks.htm#Determining_whether_to_look_for_a_match">Determining
+            whether to look for a match</a></p>
+
+        <p class="text"><a href="Authorization_Claim_Links_How_DIAMOND_Thinks.htm#Matching_authorizations_to_claims">Matching
+            authorizations to claims</a></p>
+
+        <p class="text"><a
+                href="Authorization_Claim_Links_How_DIAMOND_Thinks.htm#Authorization_Claim_Links_Mechanics_of_manually_matching_an_authorization_to_a_claim_MID">Manually
+            matching an auth to a claim</a></p>
+
+        <p class="text"><a
+                href="Authorization_Claim_Links_How_DIAMOND_Thinks.htm#Authorization_Claim_Links_Mechanics_of_automatic_authorization_claim_matching_MID">Automatic
+            authorization/claim matching</a></p>
+
+        <p class="text"><a
+                href="Authorization_Claim_Links_How_DIAMOND_Thinks.htm#Authorization_Claim_Links_Waiving_the_requirement_for_authorization_MID">Waiving
+            authorization requirements</a></p>
+
+        <p class="text"><a
+                href="Authorization_Claim_Links_How_DIAMOND_Thinks.htm#Authorization_Claim_Links_Provider_Data_Carryover_MID">Provider
+            Data Carryover</a></p>
+
+        <h2 class="calibre3"><a name="Introduction">Introduction</a></h2>
+
+        <p class="text">There are several reasons why claims for medical services
+            must be authorized. A variety of actions result whether or not the authorization
+            was obtained. </p>
+
+        <ul class="calibre2">
+
+            <li class="kadov-p-cbullet"><p class="bullet">Some services require prior
+                approval as to medical necessity</p></li>
+
+            <li class="kadov-p-cbullet"><p class="bullet">Some member benefits vary
+                depending on whether authorization was obtained</p></li>
+
+            <li class="kadov-p-cbullet"><p class="bullet">Pricing of services may depend
+                on the prior authorization of the service</p></li>
+
+            <li class="kadov-p-cbullet"><p class="bullet">Some services are not reimbursable
+                at all unless authorized</p></li>
+        </ul>
+
+        <h2 class="calibre3"><a name="Authorization_Claim_Links_Features"></a>Authorization Claim
+            Links features</h2>
+
+        <ul class="calibre2">
+
+            <li class="kadov-p-cbullet"><p class="bullet">Automatic search of the authorization
+                file from claims for potential matching authorizations, and automatic
+                linking when there is a clear match</p></li>
+
+            <li class="kadov-p-cbullet"><p class="bullet">Automatic carryover of field
+                entries from the authorization to the claim record</p></li>
+
+            <li class="kadov-p-cbullet"><p class="bullet">Automatic application of
+                benefits depending on whether a claim is authorized</p></li>
+
+            <li class="kadov-p-cbullet"><p class="bullet">By line of business, different
+                rules for determining what constitutes a matching authorization</p></li>
+
+            <li class="kadov-p-cbullet"><p class="bullet">Depending on whether the
+                provider of service is covering for the authorized provider, different
+                criteria and logic for determining a matching authorization</p></li>
+
+            <li class="kadov-p-cbullet"><p class="bullet">Automatic holding or denying
+                of claims when a matching authorization is not found</p></li>
+
+            <li class="kadov-p-cbullet"><p class="bullet">Automatic rules for waiving
+                the requirement for an authorization depending on user defined characteristics
+                of the claim, such as the provider’s specialty, service, diagnosis, line
+                of business, and so forth</p></li>
+
+            <li class="kadov-p-cbullet"><p class="bullet">Easy reapplication of authorization
+                matching and or waiving of authorization requirements when information
+                on the claim is changed</p></li>
+
+            <li class="kadov-p-cbullet"><p class="bullet">Commands on the Special menu
+                in claims and authorizations to display a list of all institutional, professional
+                services, or dental services claims with the same authorization number</p></li>
+
+            <li class="kadov-p-cbullet"><p class="bullet"><a
+                    href="Claims.chm::\Authorization_Claim_Detail_Linking_and_Pricing_Overview.htm">Authorization/Claim
+                Detail Linking and Pricing</a> logic, which requires authorization/claim
+                matching</p></li>
+        </ul>
+
+        <h2 class="calibre3"><a name="Affected_keywords_and_parameters"></a>Affected keywords and
+            parameters</h2>
+
+        <p class="text">Keyword BENEF (Benefit Package) contains member benefits
+            that vary, depending on whether a claim was authorized.</p>
+
+        <p class="text">Keyword LINBS (Line of Business) contains the rule that tells
+            DIAMOND whether to automatically match authorizations to claims in keywords
+            DNCLM (Dental Services Claims), INCLM (Institutional Claims), PSCLM (Professional
+            Services Claims), and in EDI claims.</p>
+
+        <p class="text">Keyword MCHRL (Auth/Claim Match Rules) contains the rules
+            DIAMOND uses to decide whether an authorization matches a claim.</p>
+
+        <p class="text">Keyword PARAM (Parameter) contains the following parameters
+            that affect the authorization claim link.</p>
+
+        <ul class="calibre2">
+
+            <li class="kadov-p-cbullet"><p class="bullet">AUTHCLSLINK: Used by Batch
+                Authorization Close, but is related to the authorization claims link.
+                If the Parameter 1 box is set to Y, then authorizations will be selected
+                for batch close if they are linked to a claim. If the Parameter 1 box
+                is set to N, then the criteria of whether or not an authorization is linked
+                to a claim cannot be used to select authorizations for batch close.</p></li>
+
+            <li class="kadov-p-cbullet"><p class="bullet">DUPAUTHRULE2: Parameter 1
+                identifies whether the authorization Request Date or the authorization
+                Actual Admit Date will be used as the primary date of service for authorization/claim
+                match purposes (and duplicate authorization checking). Parameter 2 identifies
+                whether the authorization Expiration Date or the authorization Discharge
+                Date will be used as the through date of service for authorization/claim
+                match purposes.</p></li>
+
+            <li class="kadov-p-cbullet"><p class="bullet">USEAUTHDATA: If the Parameter
+                1 box is set to Y and the Auth/Claim Match check box is cleared in keyword
+                LINBS for the line of business, then the following occurs when you type
+                an authorization number in the Auth No. box on the claim header:</p></li>
+
+            <li class="kadov-p-cbulletlvl"><p class="bulletlvl">If you are submitting
+                a professional or dental services claim, then the data in the Member ID,
+                Prov Code (referral provider and referring provider), Place Of Service,
+                DX 1, Dx 2, and DX 3 fields on the authorization are moved to the claim
+                header. </p></li>
+
+            <li class="kadov-p-cbulletlvl"><p class="bulletlvl">If you are submitting
+                an institutional claim, then the data in the Member ID, Prov Code (admitting
+                provider, attending provider, and facility/institution), Place Of Service,
+                Admit Reason (mapped to the Serv Rsn box), DX 1, DX 2 and DX 3 fields
+                on the authorization are moved to the claim header.</p></li>
+        </ul>
+
+        <p class="text">If the Parameter 1 box is set to N or is blank, then DIAMOND
+            will not fill the claim header fields with authorization data.</p>
+
+        <ul class="calibre2">
+
+            <li class="kadov-p-cbullet"><p class="bullet">USEAUTHLINK: If the Parameter
+                1 box is set to Y, then <span class="calibre156">Diamond</span>
+                will use ARULE to define actions on a claim that has an authorization
+                number on the header. If the Parameter 1 box is set to N or blank, then
+                <span class="calibre156">Diamond</span> will not use ARULE.</p></li>
+        </ul>
+
+        <p class="text">Keyword AWAVE (Auth Waive Rules) contains rules that negate,
+            according to characteristics of the claim, the need for an authorization
+            that would otherwise be required.</p>
+
+        <p class="text">Keyword ARULE (Authorization Claim Link Rule) assesses the
+            administrative validity of the authorization that has been matched to
+            a claim, and takes action on the claim depending on that validity. Validity
+            characteristics of an authorization include whether it has expired, is
+            held, closed, and other status data. Only used if USEAUTHLINK (in the
+            Parameter file PARAM) is set to Y (yes).</p>
+
+        <p class="text">Keywords DNCLM, INCLM, and PSCLM each contain commands on
+            the menu bar that allow re-application of authorization matching or authorization
+            waivers when claim data is changed.</p>
+
+        <h2 class="calibre3"><a name="Setting_up"></a>Setting up</h2>
+
+        <p class="text">A match between a claim being processed and a previously
+            entered authorization can be determined manually or automatically. The
+            LINBS record determines whether DIAMOND will attempt to automatically
+            match authorizations to claims (during the initial save of the claim header
+            only) by enabling this feature when the <span class="calibre5">Auth/Claim
+ Match</span> check box is selected.</p>
+
+        <p class="text">Regardless of whether the match is automatic or manual (see
+            "Mechanics of manually matching an authorization to a claim"
+            and "Mechanics of automatic authorization/claim matching" sections
+            below), DIAMOND enforces matching on certain fields and conditions according
+            to the rules you enter in keyword MCHRL. MCHRL is used to identify unique
+            or multiple potential matching authorizations during claims processing
+            automatically (according to the LINBS entry) and also to make sure that
+            an authorization number manually entered on a claim is a matching authorization.
+            This prevents a claims processing user from linking an unrelated authorization
+            to a claim.</p>
+
+        <p class="text">DIAMOND will take automatic actions on the claim depending
+            on different aspects of the authorization according to the rules you enter
+            in two different keywords.</p>
+
+        <ul class="calibre2">
+
+            <li class="kadov-p-cbullet"><p class="bullet">MCHRL uses medically-related
+                criteria on the authorization and claim to identify whether the authorization
+                record should be used to ‘approve’ the claim, i.e. whether the services
+                being claimed were authorized. These criteria are:</p></li>
+
+            <li class="kadov-p-cbulletlvl"><p class="bulletlvl">Line of Business</p></li>
+
+            <li class="kadov-p-cbulletlvl"><p class="bulletlvl">Claim Type</p></li>
+
+            <li class="kadov-p-cbulletlvl"><p class="bulletlvl">Authorization Status</p></li>
+
+            <li class="kadov-p-cbulletlvl"><p class="bulletlvl">Authorization Level</p></li>
+
+            <li class="kadov-p-cbulletlvl"><p class="bulletlvl">Provider ID (excluding
+                covering providers)</p></li>
+
+            <li class="kadov-p-cbulletlvl"><p class="bulletlvl">Authorization Begin
+                Date and Days Before</p></li>
+
+            <li class="kadov-p-cbulletlvl"><p class="bulletlvl">Authorization End
+                Date and Days After</p></li>
+
+            <li class="kadov-p-cbulletlvl"><p class="bulletlvl">Claim Primary DOS</p></li>
+
+            <li class="kadov-p-cbulletlvl"><p class="bulletlvl">Claim Through DOS</p></li>
+
+            <li class="kadov-p-cbulletlvl"><p class="bulletlvl">Facility ID number
+                (professional services or dental services claims only)</p></li>
+
+            <li class="kadov-p-cbulletlvl"><p class="bulletlvl">Surgical Procedure
+                code (institutional claims only)</p></li>
+
+            <li class="kadov-p-cbulletlvl"><p class="bulletlvl">Place of Service
+                (exact match or within specified range)</p></li>
+
+            <li class="kadov-p-cbulletlvl"><p class="bulletlvl">DIAMOND ID</p></li>
+
+            <li class="kadov-p-cbulletlvl"><p class="bulletlvl">Provider’s Primary
+                Specialty</p></li>
+
+            <li class="kadov-p-cbulletlvl"><p class="bulletlvl">Provider’s Vendor
+                ID</p></li>
+
+            <li class="kadov-p-cbulletlvl"><p class="bulletlvl">Diagnosis Code (full
+                match or specified number of first digits)</p></li>
+        </ul>
+
+        <p class="bulletlvl2cont">In some cases, certain actions are taken on the
+            claim based on these medically-related criteria, and those claim actions
+            are defined as part of the MCHRL rules. </p>
+
+        <p class="bulletlvl2cont">For example, a heart transplant requires authorization
+            like any other major surgical procedure. In addition, though, the heart
+            transplant surgery claim is held for review by the Medical department.
+            The hold code and hold reason are included in the MCHRL rule defining
+            a heart transplant. When a heart transplant claim is entered and matched
+            to the heart transplant authorization, the hold code and hold reason from
+            the MCHRL are automatically entered on the claim.</p>
+
+        <ul class="calibre2">
+
+            <li class="kadov-p-cbullet"><p class="bullet">ARULE contains administrative
+                validity criteria that are applied to the already-matched authorization.
+                These criteria include whether or not the authorization has expired prior
+                to the dates of service on the claim, whether the authorization has already
+                been closed or ‘used up’ by being linked to previous claims, whether the
+                dates of service are outside the authorized range of dates, and the like.
+                DIAMOND will take automatic action on the claim, as defined in ARULE,
+                depending on these authorization characteristics. This may be in addition
+                to actions taken according to the MCHRL.</p></li>
+        </ul>
+
+        <h2 class="calibre3"><a name="Authorization_Claim_Links_Using_the_date_range_match_criteria_MID"></a>Using
+            the ‘date range’ match criteria</h2>
+
+        <h3 class="calibre4">MCHRL vs. ARULE and defining the date range</h3>
+
+        <p class="text">While there are differences in attributes and functions between
+            MCHRL and ARULE, both MCHRL and ARULE can be used to define date ranges
+            on the authorization within which the claim dates of service must fall.
+            Technically either or both can be used for this purpose. However, in order
+            to minimize claims processing and customer and provider service issues,
+            Perot Systems recommends that one or the other be selected during implementation
+            and that administrative procedures be defined to enforce this use.</p>
+
+        <h3 class="calibre4">Date ranges for covering providers</h3>
+
+        <p class="text">MCHRL does not apply to situations where a covering provider
+            is rendering the service. In that case, instead of MCHRL, DIAMOND uses
+            hard-coded match logic, see "How DIAMOND decides if an authorization
+            matches a claim, PSCLM/DNCLM covering providers". When a covering
+            provider renders the service, the only place you can define date range
+            match criteria is in ARULE. </p>
+
+        <h3 class="calibre4">Which dates are used to calculate the date range?</h3>
+
+        <p class="text">For all claim types, the Days After and Days Before entries
+            in LINBS are added to and subtracted from the primary date of service
+            on the claim header (PSCLM Svc Date; INCLM Admit Date; DNCLM Svc Date).
+            If the request date on the authorization is within the calculated range,
+            it is a potentially valid authorization for the subject claim and is eligible
+            for matching.</p>
+
+        <h2 class="calibre3"><a name="Determining_whether_to_look_for_a_match"></a>Determining whether
+            to look for a match</h2>
+
+        <p class="text">There is a single trigger in DIAMOND that launches the process
+            (or processes) to attempt to find an authorization record which matches
+            the claim being processed. That single trigger is the record in LINBS
+            associated with the member’s eligibility. If the Auth/Claim Match check
+            box is selected, DIAMOND will attempt to find a matching authorization.
+            If it is not selected, no such attempt will be made, although a match
+            can be made manually by the claims processor.</p>
+
+        <p class="text">This automatic trigger is invoked regardless of whether any
+            actions would result if the claim were or were not authorized. </p>
+
+        <p class="text">DIAMOND automatically executes table-driven authorization/claim
+            matching only during the initial save of the claim header. After that,
+            if a change is made to the claim header, you must use the Special menu
+            command Authorization Match/Waive, options Reapply Match or Reapply Match_Waive
+            to again execute table-driven authorization/claim matching logic using
+            the revised data.</p>
+
+        <h2 class="calibre3"><a name="Matching_authorizations_to_claims"></a>Matching authorizations
+            to claims</h2>
+
+        <p class="text">There are two functions in DIAMOND that contain the rules
+            used to determine if any authorizations are matched, or potentially matched,
+            to a claim being processed. In both cases, the LINBS record ‘turns on’
+            the automatic matching function. </p>
+
+        <h3 class="calibre4">PSCLM/DNCLM covering providers</h3>
+
+        <p class="text">For PSCLM and DNCLM claims submitted by providers who are
+            covering for the originally authorized provider, DIAMOND has a set of
+            hard-coded rules that are used to evaluate for a match. This set of rules
+            is invoked so long as LINBS has checks in both Auth/Claim Match and Covering
+            Prov. These hard-coded rules replace the rules set up in MCHRL for other
+            claim situations.</p>
+
+        <p class="text"><span class="calibre5">Warning!</span> <!--kadov_tag{{<spaces>}}--> 
+            <!--kadov_tag{{</spaces>}}--> VENDORFIRST
+            parameter logic cannot be used if you select the Covering Prov check box
+            (the VENDORFIRST Parameter 1 must be "blank.") </p>
+
+        <p class="text">In order to be considered a potential match all of the following
+            conditions must apply.</p>
+
+        <ul class="calibre2">
+
+            <li class="kadov-p-cbullet"><p class="bullet">The member number and person
+                number on the claim header are the same as the member number and person
+                number on the Authorization Master (AUTHS) record.</p></li>
+
+            <li class="kadov-p-cbullet"><p class="bullet">The rendering Provider ID
+                on the claim header must be part of the same covering providers group
+                as the Referral Provider ID (a Provider with a Provider Code of "Referral
+                Provider) on the Auth Provider record. If other conditions apply but the
+                Provider ID field on the Authorization is blank (it’s not a required field),
+                there will not be a unique match. </p></li>
+
+            <li class="kadov-p-cbullet"><p class="bullet">The primary service date
+                on the claim header must be within a date range bounded by the requested
+                date on the AUTHS record minus/plus the number of days specified on the
+                member’s associated LINBS &gt; Days Before/Days After record.</p></li>
+        </ul>
+
+        <p class="text">A unique match occurs when <span class="calibre157">only
+ one</span> authorization is found that matches all three above criteria.
+            When a unique match occurs, <span class="calibre156">Diamond</span>
+            populates the PSCLM/DNCLM Auth No. field with the matched authorization
+            number.</p>
+
+        <h3 class="calibre4">All other claims</h3>
+
+        <p class="text">For all other claims, DIAMOND uses the implementation-specific
+            rules set up in MCHRL. MCHRL offers a variety of claim and authorization
+            criteria to determine whether a unique or potential match is available.
+            The claim and authorization criteria that can be used include line of
+            business, claim type, provider ID, various dates of service, place of
+            service, and surgical procedure codes.</p>
+
+        <h2 class="calibre3"><a
+                name="Authorization_Claim_Links_Mechanics_of_manually_matching_an_authorization_to_a_claim_MID"></a>Mechanics
+            of manually matching an authorization to a claim (LINBS Auth/Claim Match
+            box not selected)</h2>
+
+        <p class="text">If you enter or select a valid authorization number on the
+            PSCLM, INCLM, or DNCLM claim header window, <span class="calibre156">Diamond</span>
+            uses the entered authorization number. </p>
+
+        <p class="text">If you do not enter or select a valid authorization number
+            (Auth No.) on the PSCLM, INCLM, or DNCLM claim header window, when you
+            enter the Member ID <span class="calibre156">Diamond</span>
+            displays a dialogue box asking if you want to look up all authorizations
+            for the member. If your response is Yes, <span class="calibre156">Diamond
+ </span>displays all authorizations for the member. You may select a valid
+            authorization or return to claims entry. If you respond No, <span class="calibre156">Diamond
+ </span>allows you to continue with claim entry.</p>
+
+        <h2 class="calibre3"><a
+                name="Authorization_Claim_Links_Mechanics_of_automatic_authorization_claim_matching_MID"></a>Mechanics
+            of automatic authorization/claim matching (LINBS Auth/Claim Match box
+            is selected)</h2>
+
+        <h3 class="calibre4">No authorization/secondary authorization number (Auth No.) is entered
+            on the PSCLM, INCLM, or DNCLM header:</h3>
+
+        <p class="text">When entry of claim header data is complete and you save
+            the header for the first time, <span class="calibre156">Diamond</span>
+            retrieves the authorization/claim matching rules corresponding to the
+            claim’s line of business, file type, authorization status and authorization
+            level and applies the rules in sequential order, comparing selected claim
+            header data to data on the authorizations. (This is only done the first
+            time you save the header.) At the conclusion of this process, <span class="calibre156">Diamond</span>
+            does one of the following:</p>
+
+        <ul class="calibre2">
+
+            <li class="kadov-p-cbullet"><p class="bullet">If there is<span class="calibre157">
+ </span><span class="calibre5">one matching authorization</span>
+                and the <span class="calibre5">Apply Auth to Claim check box
+ is selected</span><span class="calibre5"> </span>on the match
+                rule, <span class="calibre156">Diamond</span> enters the
+                matching authorization number in the Auth No. field on the PSCLM, INCLM,
+                or DNCLM header. </p></li>
+
+            <li class="kadov-p-cbullet"><p class="bullet">If the Action entry field
+                on the authorization/claim match rule which identified the match specifies
+                ‘Hold’, <span class="calibre156">Diamond</span> changes
+                the Process Status for all existing non-finalized claim detail lines to
+                Held and assigns the Reason Code from the match rule to each line. <span
+                        class="calibre156">Diamond</span> will also assign a Process
+                Status of Held (plus Reason Code) to any detail lines added subsequently
+                for as long as this auth/claim match applies. </p></li>
+
+            <li class="kadov-p-cbullet"><p class="bullet">If the Action entry field
+                on the match rule which identified the match specifies ‘Deny’, <span class="calibre156">Diamond</span>
+                changes the Claim Status for all existing non-finalized claim detail lines
+                to Deny and assigns the associated Reason Code to each line. <span class="calibre156">Diamond</span>
+                will also assign a Claim Status of Deny (plus Reason Code) to any detail
+                lines added subsequently for as long as this auth/claim match applies.</p></li>
+
+            <li class="kadov-p-cbullet"><p class="bullet">If there is one matching
+                authorization but the Apply Auth to Claim check box is not selected on
+                the match rule, <span class="calibre156">Diamond</span>
+                does not populate the Auth No. field on the PSCLM, INCLM, or DNCLM claim
+                header window with the matching authorization number. Instead, <span class="calibre158">DIAMOND
+ displays the message "The Authorization is not applied to the claim".
+ </span>DIAMOND does, however, still apply the MCHRL Action to the claim
+                as described below.</p></li>
+
+            <li class="kadov-p-cbullet"><p class="bullet">If there are multiple matching
+                authorizations<span class="calibre159">,</span>
+                <span class="calibre156">Diamond</span> displays a picklist
+                of matching authorizations on the Select Matched Authorizations window
+                (described in a separate section below) and allows you to select one.
+                <span class="calibre156">Diamond</span> then populates
+                the Auth No. field with the authorization number of the selected authorization.</p></li>
+
+            <li class="kadov-p-cbullet"><p class="bullet">If the Action entry field
+                on the authorization/claim match rule which identified the selected match
+                indicates ‘Hold’ (or ‘Deny’), <span class="calibre156">Diamond</span>
+                changes the Process Status for all existing non-finalized claim detail
+                lines to Held (or Denied) and assigns the associated Reason Code to each
+                line. <span class="calibre156">Diamond</span> will also
+                assign the same Process Status and Reason Code to any detail lines added
+                subsequently for as long as this auth/claim match applies. </p></li>
+
+            <li class="kadov-p-cbullet"><p class="bullet">If there were no matching
+                authorizations<span class="calibre159">,</span>
+                <span class="calibre156">Diamond</span> displays a message
+                to that effect and continues the PSCLM, INCLM, or DNCLM claims entry process
+                leaving the Auth No. field blank.</p></li>
+        </ul>
+
+        <h3 class="calibre4">A valid authorization/secondary authorization (Auth No.) is entered
+            or selected on the PSCLM, INCLM, or DNCLM header:</h3>
+
+        <p class="text">When entry of claim header data is complete and you save
+            the header for the first time, <span class="calibre156">Diamond</span>
+            verifies that the authorization/secondary authorization number entered
+            satisfies the authorization/claim matching rules. (This is only done the
+            first time you save the header.) First, <span class="calibre156">Diamond</span>
+            retrieves the authorization/claim matching rules corresponding to the
+            claim’s line of business, file type, authorization status and authorization
+            level. <span class="calibre156">Diamond</span> then applies
+            the rules in sequential order, comparing selected claim header data to
+            data on the authorizations. At the conclusion of this process, <span class="calibre156">Diamond</span>
+            does one of the following:</p>
+
+        <ul class="calibre2">
+
+            <li class="kadov-p-cbullet"><p class="bullet">If the entered authorization
+                satisfies the match criteria for a retrieved rule and no other matching
+                authorizations are found for the same rule <span class="calibre5">(confirmed
+ unique match)</span>, <span class="calibre156">Diamond</span>
+                retains the authorization number entered on the claims window and claims
+                entry continues. (Once the authorization satisfies the criteria from one
+                retrieved rule, <span class="calibre156">Diamond</span>
+                does not continue to evaluate other rules.)</p></li>
+
+            <li class="kadov-p-cbullet"><p class="bullet">If the entered authorization
+                satisfies the match criteria for a retrieved rule but other matching authorizations
+                are found for the same rule <span class="calibre5">(identified
+ multiple matches)</span>, <span class="calibre156">Diamond</span>
+                displays a picklist of matching authorizations on the Select Matched Authorizations
+                window (described below) and allows you to select one. (Once one retrieved
+                rule results in multiple matches, <span class="calibre156">Diamond</span>
+                does not continue to evaluate other rules.) If you select an authorization,
+                <span class="calibre156">Diamond</span> populates the Auth
+                No. field with your selection. If you do not make a selection, <span class="calibre156">Diamond</span>
+                allows you to continue with claim entry. </p></li>
+
+            <li class="kadov-p-cbullet"><p class="bullet">If the entered authorization
+                does not satisfy the match criteria for any retrieved rule <span class="calibre5">(failed
+ match)</span>, <span class="calibre156">Diamond </span>does
+                the following:</p></li>
+
+            <li class="kadov-p-cbulletlvl"><p class="bulletlvl">Stores the authorization
+                number entered in the PSCLM/INCLM/DNCLM Submitted Auth No. field </p></li>
+
+            <li class="kadov-p-cbulletlvl"><p class="bulletlvl">Clears the Auth No.
+                entered from the PSCLM/INCLM/DNCLM header window</p></li>
+
+            <li class="kadov-p-cbulletlvl"><p class="bulletlvl">Performs authorization/claim
+                matching as though no authorization was originally entered.</p></li>
+        </ul>
+
+        <p class="text">You can view the authorization number of the authorization
+            you originally entered and the <span class="calibre156">Diamond</span>
+            matched authorization using the PSCLM/INCLM/DNCLM Special menu &gt; Submitted
+            Authorization. </p>
+
+        <h2 class="calibre3"><a name="Authorization_Claim_Links_Waiving_the_requirement_for_authorization_MID"></a>Waiving
+            authorization requirements</h2>
+
+        <p class="text">Keyword AWAVE (Auth Waive Rules) allows you to automatically
+            waive the need for claim authorizations under particular circumstances.
+            For example, a health care plan may waive the need for an authorization
+            for outpatient procedures so long as they are performed at a participating
+            hospital by a participating attending physician. When the claim is saved
+            DIAMOND applies authorization waiver rules to claims for members whose
+            line of business so requires according to the LINBS record <span class="calibre5">Perform
+ Auth Waive</span> check box.</p>
+
+        <p class="text">You can define AWAVE rules using as many criteria on the
+            claim header as you need, with effective dates for each rule and an order
+            in which the rules are applied. DIAMOND uses fall through logic, similar
+            to its use in MEDEF.</p>
+
+        <p class="text">When the claim header data satisfies all of the determinant
+            values on an AWAVE rule, the need for an authorization is waived and the
+            Method on the claim is set to A.</p>
+
+        <p class="text">When the claim header does not satisfy all of the determinant
+            values on an AWAVE rule, any logic based on the existence of an authorization
+            is applied depending on whether or not an authorization number is attached
+            to the claim, and the Method remains unchanged, either M or blank.</p>
+
+        <p class="text">AWAVE is integrated with Electronic Data Interchange (EDI).</p>
+
+        <p class="text">DIAMOND allows you to maintain an audit trail of authorization
+            waive rule adds, updates and deletes. You may view this audit trail information
+            using the AWAVE Window menu command Audit Display. For more information,
+            see the process overview Managing the Authorizations Audit Trail.</p>
+
+        <h3 class="calibre4">Effect of waiving authorization requirements</h3>
+
+        <p class="text">Certain benefits vary depending on whether a claim is authorized.
+            In the absence of authorization, a lesser amount may be reimbursed or
+            the service not covered at all. However, when an AWAVE rule is applied
+            to that claim, the benefit reduction is not calculated and the claim is
+            reimbursed as if it were authorized.</p>
+
+        <h3 class="calibre4">Effective dates of rules and retroactive application</h3>
+
+        <p class="text">Keyword AWAVE allows you to enter new waiver conditions and
+            rules with retroactive effective dates. Theoretically, such rules should
+            apply to claims that have already been processed. However, DIAMOND does
+            not automatically retroactively apply AWAVE rules. In order to apply such
+            newly-entered rules to older claims, retrieve each claim online and apply
+            the Special menu command Authorization Match/Waive &gt; options Reapply
+            Waive or Reapply Match_Waive.</p>
+
+        <h3 class="calibre4">Using the Authorization Class to Waive Authorizations</h3>
+
+        <p class="text">In some cases, the requirement that a claim be authorized
+            may be waived when the attending or referring provider is participating.
+            (This is in contrast to other authorization waivers that depend on the
+            provider of service<span class="calibre157">.</span>) Because
+            claims logic does not look at the contract information for the attending
+            or referring provider, authorization waivers cannot use participation
+            status or other contractual indicators. Therefore, in order to be able
+            to waive the authorization requirement for attending or referring providers,
+            you must mark a provider as "participating" in another way.
+            You do this by first entering a valid value in the Auth Class field on
+            the corresponding Provider Master record. Then, in AWAVE, you enter a
+            rule using Auth Class as a determinant, with that same valid value as
+            the determinant value.</p>
+
+        <h3 class="calibre4">Determining the order in which rules are evaluated</h3>
+
+        <p class="text">By default, claim processing first evaluates the auth/claim
+            match rules in keyword MCHRL. Then, claim processing evaluates the auth
+            waive rules in keyword AWAVE. However, you can reverse the order in which
+            claim processing evaluates the rules by setting the Waive Match Order
+            field in keyword LINBS.</p>
+
+        <h2 class="calibre3"><a name="Authorization_Claim_Links_Provider_Data_Carryover_MID"></a>Provider
+            Data Carryover</h2>
+
+        <p class="text">As each provider is entered on an AUTHS record, he or she
+            is associated with a code that indicates the role the provider is authorized
+            for, such as admitting physician, referring provider, institution, and
+            the like. When the authorization is linked to a claim, this code tells
+            DIAMOND which provider ID to put in each provider field on that claim.
+            Admitting, attending, and institutional providers are linked to the same
+            fields on an Institutional claim (INCLM). Referring and facility providers
+            are linked to the same fields on the professional services (PSCLM) or
+            dental (DNCLM) claim; Referral provider on the AUTHS record is linked
+            to provider on the claim.</p>
+
+
+    </div>
+
+    <div class="calibreEbNav">
+
+        <a href="Authorization_Claim_Detail_Linking_and_Pricing_How_DIAMOND_Thinks.htm" class="calibreAPrev">previous
+            page
+        </a>
+
+
+        <a href="../bj5if-qozss.html" class="calibreAHome">start
+        </a>
+
+
+        <a href="Batch_Claim_Hold_Release_Overview.htm" class="calibreANext">next page
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,205 @@
+<!-- Copyright (c) 2021 . All Rights Reserved. -->
+<div class="container-fluid">
+    <div class="card-block">
+        <div class="modal-header">
+            <h2 class="modal-title">Capitation Fund Distribution</h2>
+            <button type="button" *ngIf="showIcon" class="close" aria-label="Close" (click)="modalClose()">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+        <app-pop-up-message #popUpMesssage (buttonclickEvent)="popUpButtonHandler($event)"
+                            [(popupMessage)]="popUpMessage"></app-pop-up-message>
+
+        <div class="card-block">
+
+            <ng-template *ngIf="secProgress; else authorized">
+                <div class="row justify-content-center mt-4">
+                    <div class="spinner-border text-success" role="status">
+                        <span class="sr-only">Loading...</span>
+                    </div>
+                </div>
+            </ng-template>
+
+
+            <ng-template #authorized>
+                <div class="row">
+                    <menu-bar [menus]="menu" (onMenuClick)="onMenuItemClick($event)"></menu-bar>
+                </div>
+                <div class="form-group row"></div>
+
+                <!-- DataGrid with Name of DataGrid -->
+                <ag-grid-angular #agGrid class="ag-theme-fresh" [gridOptions]="dataGridGridOptions"
+                                 style="width: 100%; height: 300px;"
+                                 [enableSorting]="true"
+                                 [enableFilter]="true"
+                                 [floatingFilter]="true"
+                                 [pagination]="true"
+                                 [showToolPanel]="true">
+                </ag-grid-angular>
+
+                <div class="form-group row">
+                </div>
+
+                <div class="form-group row">
+                </div>
+                <form [formGroup]="capitationFundDistributionForm" novalidate>
+                    <div class="form-group row">
+                        <div class="col-md-2 form-control-static mb-0 required-field-label" i18n>
+                            <i>Job Setup</i>
+                        </div>
+
+                    </div>
+
+                    <div class="form-group row">
+                        <!-- DynamicText with label of Job ID -->
+                        <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('jobId') }">
+                            <label class="col-form-label required-field-label" for="jobId" i18n>Job ID</label>
+                            <input type="text" [fieldLevelSec]="''" [params]="" readonly id="jobId"
+                                   formControlName="jobId"
+                                   class="form-control"/>
+                        </div>
+
+                        <!-- DynamicText with label of Request User -->
+                        <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('requestUser') }">
+                            <label class="col-form-label" for="requestUser" i18n>Request User</label>
+                            <input type="text" [fieldLevelSec]="''" [params]="" readonly id="requestUser"
+                                   formControlName="requestUser" class="form-control text-primary"/>
+                        </div>
+
+                        <!-- DynamicText with label of Request Date -->
+                        <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('requestDate') }">
+                            <app-datepicker [formGroup]="capitationFundDistributionForm"
+                                            [formValidation]="formValidation"
+                                            [disabled]="true"
+                                            [field]="'requestDate'" [labelText]="'Request Date'"></app-datepicker>
+                        </div>
+
+                    </div>
+
+                    <div class="form-group row">
+                        <!-- DynamicText with label of Model ID -->
+                        <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('modelId') }">
+                            <label class="col-form-label required-field-label" for="modelId" i18n>Model ID</label>
+                            <input type="text" [fieldLevelSec]="''" [params]="" readonly id="modelId"
+                                   formControlName="modelId"
+                                   class="form-control"/>
+                        </div>
+
+                        <!-- DynamicText with label of Cap Month -->
+                        <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('capMonth') }">
+                            <app-datepicker [formGroup]="capitationFundDistributionForm"
+                                            [formValidation]="formValidation"
+                                            [disabled]="true"
+                                            [field]="'capMonth'" [labelText]="'Cap Month'"></app-datepicker>
+                        </div>
+
+                    </div>
+
+                    <div class="form-group row">
+                        <!-- DynamicText with label of Allocation -->
+                        <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('allocation') }">
+                            <label class="col-form-label required-field-label" for="allocation" i18n>Allocation</label>
+                            <input type="text" [fieldLevelSec]="''" [params]="" readonly id="allocation"
+                                   formControlName="allocation" class="form-control"/>
+                        </div>
+
+                        <!-- DynamicText with label of From Date -->
+                        <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('fromDate') }">
+                            <app-datepicker [formGroup]="capitationFundDistributionForm"
+                                            [formValidation]="formValidation"
+                                            [disabled]="true"
+                                            [field]="'fromDate'" [labelText]="'From Date'"></app-datepicker>
+                        </div>
+
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-md-2 form-control-static mb-0 required-field-label" i18n>
+                            <i>Next Action</i>
+                        </div>
+
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-md-2 form-control-static mb-0" i18n>Action</div>
+
+                        <div *ngFor="let action of actions" class=""
+                             [ngClass]="{'has-error': formValidation.isValidField('nextAction') }">
+                            <div class="checkbox col-md-12">
+                                <input id="nextAction" [fieldLevelSec]="'Next Action'"
+                                       [params]="{secColDetails: secColDetails, isEditState: editPmbSetup}"
+                                       value="{{action.dddwDtlPrimaryKey.dataVal}}" formControlName="nextAction"
+                                       type="radio">
+                                <label class="checkbox">{{action.dddwDtlPrimaryKey.displayVal}}</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <!-- DynamicText with label of Status -->
+                        <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('status') }">
+                            <label class="col-form-label" for="status" i18n>Status</label>
+                            <input type="text" [fieldLevelSec]="''" [params]="" readonly id="status"
+                                   formControlName="status"
+                                   class="form-control"/>
+                        </div>
+
+                    </div>
+
+                    <div class="form-group row"></div>
+                    <h6 class="clr-blue">Run Options</h6>
+
+                    <div class="form-group row">
+                        <div class="col-md-2 form-control-static mb-0" i18n>Request Type</div>
+
+                        <!-- Checkbox with label of Request Type ^CB Immedi -->
+                        <div class="" [ngClass]="{'has-error': formValidation.isValidField('requestType') }">
+                            <div class="checkbox col-md-12">
+                                <input id="requestType" [fieldLevelSec]="'Request Type'"
+                                       [params]="{secColDetails: secColDetails, isEditState: editPmbSetup}" value="I"
+                                       formControlName="requestType" type="radio">
+                                <label class="checkbox">Immediate</label>
+                            </div>
+                        </div>
+
+                        <!-- Checkbox with label of ^CB Defer -->
+                        <div class="" [ngClass]="{'has-error': formValidation.isValidField('requestType')}">
+                            <div class="checkbox col-md-12">
+                                <input id="requestType" [fieldLevelSec]="'Request Type'"
+                                       [params]="{secColDetails: secColDetails, isEditState: editPmbSetup}" value="D"
+                                       formControlName="requestType" type="radio">
+                                <label class="checkbox">Deferred</label>
+                            </div>
+                            <span class="help-block" *ngIf="formValidation.isValidField('requestType')">
+                            {{ formValidation.errorMessage('requestType')  }}
+                        </span>
+                        </div>
+
+                    </div>
+
+                    <div class="form-group row">
+                        <!-- Textbox with label of Comments -->
+                        <div class="col-md-8" [ngClass]="{'has-danger': formValidation.isValidField('comments') }">
+                            <label class="col-form-label" for="comments" i18n>Comments</label>
+                            <input type="text" id="comments" [fieldLevelSec]="''" [params]="" class="form-control"
+                                   formControlName="comments"/>
+                            <small class="text-danger" *ngIf="formValidation.isValidField('comments')">
+                                {{ formValidation.errorMessage('comments') }}
+                            </small>
+                        </div>
+
+                    </div>
+
+                    <div class="form-group row">
+                    </div>
+                </form>
+            </ng-template>
+        </div>
+
+    </div>
+</div>
+
+
+<ng-keyboard-shortcuts [shortcuts]="shortcuts"></ng-keyboard-shortcuts>
+<ng-keyboard-shortcuts-help [key]="'f2'" [closeKey]="'escape'" [title]="'Hotkeys Help'"></ng-keyboard-shortcuts-help>

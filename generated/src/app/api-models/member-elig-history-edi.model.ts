@@ -1,0 +1,56 @@
+/* Copyright (c) 2020 . All Rights Reserved. */
+
+export class MemberEligHistoryEdi {
+  transactionSetId: string;
+  seqEligHist: number;
+  seqMembId: number;
+  seqSubsId: number;
+  subscriberId: string;
+  personNumber: string;
+  effectiveDate: Date;
+  termDate: Date;
+  termReason: string;
+  relationshipCode: string;
+  seqGroupId: number;
+  planCode: string;
+  lineOfBusiness: string;
+  riderCode1: string;
+  riderCode2: string;
+  riderCode3: string;
+  riderCode4: string;
+  riderCode5: string;
+  riderCode6: string;
+  riderCode7: string;
+  riderCode8: string;
+  medicareStatusFlg: string;
+  otherStatusFlag: string;
+  hireDate: Date;
+  eligStatus: string;
+  premOverrideStep: number;
+  premOverrideAmt: number;
+  premOverrideCode: string;
+  seqProvId: number;
+  ipaId: string;
+  panelId: string;
+  seqProv2Id: number;
+  securityCode: string;
+  insertDatetime: Date;
+  insertUser: string;
+  insertProcess: string;
+  updateDatetime: Date;
+  updateUser: string;
+  updateProcess: string;
+  userDefined1: string;
+  riderCode9: string;
+  riderCode10: string;
+  riderCode11: string;
+  riderCode12: string;
+  riderCode13: string;
+  riderCode14: string;
+  riderCode15: string;
+  riderCode16: string;
+  riderCode17: string;
+  riderCode18: string;
+  riderCode19: string;
+  riderCode20: string;
+}

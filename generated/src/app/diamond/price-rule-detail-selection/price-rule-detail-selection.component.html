@@ -1,0 +1,97 @@
+<!-- Copyright (c) 2021 . All Rights Reserved. -->
+<div class="container-fluid">
+    <div class="card-block">
+        <form [formGroup]="priceRuleDetailSelectionForm" novalidate>
+            <h2 class="form-title card-label-admin">Price Rule Detail Selection</h2>
+            <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+            <app-pop-up-message #popUpMesssage (buttonclickEvent)="popUpButtonHandler($event)"  [(popupMessage)] = "popUpMessage"></app-pop-up-message>
+                        
+            <div class="form-group row">
+                <!-- Textbox with label of Price Rule -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('priceRule') }">
+                     <label class="col-form-label" for="priceRule" i18n>Price Rule</label>
+                     <input type="text" id="priceRule"  [fieldLevelSec]="'Price Rule'" params]="Price Rule Detail Rules"   class="form-control" formControlName="priceRule"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('priceRule')">
+                      {{ formValidation.errorMessage('priceRule') }}
+                     </small>
+                 </div>
+            
+                <!-- DynamicText with Name of DynamicText -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('dynamicText') }">
+                     <label class="col-form-label" for="dynamicText" i18n>&nbsp;</label>
+                     <input type="text"  [fieldLevelSec]="''" params]=""  readonly id="dynamicText" formControlName="dynamicText" class="form-control"/>
+                 </div>
+            
+            </div>
+            
+                        <!-- DataGrid with Name of DataGrid001 -->
+                    <button (click)="dataGrid001GridOptionsExportCsv()">Export</button>
+                    <ag-grid-angular #agGrid class="ag-theme-fresh" [gridOptions]="dataGrid001GridOptions"
+                    style="width: 100%; height: 300px;"
+                    [enableSorting]="true"
+                    [enableFilter]="true"
+                    [floatingFilter]="true"
+                    [pagination]="true"
+                    [showToolPanel]="true">
+                    </ag-grid-angular>
+            
+            <div class="form-group row">
+            </div>
+            
+                        <!-- DataGrid with Name of DataGrid002 -->
+                    <button (click)="dataGrid002GridOptionsExportCsv()">Export</button>
+                    <ag-grid-angular #agGrid class="ag-theme-fresh" [gridOptions]="dataGrid002GridOptions"
+                    style="width: 100%; height: 300px;"
+                    [enableSorting]="true"
+                    [enableFilter]="true"
+                    [floatingFilter]="true"
+                    [pagination]="true"
+                    [showToolPanel]="true">
+                    </ag-grid-angular>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of Rule Order -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('ruleOrder') }">
+                     <label class="col-form-label" for="ruleOrder" i18n>Rule Order</label>
+                     <input type="text" id="ruleOrder"  [fieldLevelSec]="'Rule Order'" params]="Price Rule Detail Rules"   class="form-control" formControlName="ruleOrder"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('ruleOrder')">
+                      {{ formValidation.errorMessage('ruleOrder') }}
+                     </small>
+                 </div>
+            
+                <!-- Textbox with label of Operation -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('operation') }">
+                     <label class="col-form-label" for="operation" i18n>Operation</label>
+                     <input type="text" id="operation"  [fieldLevelSec]="'Operator'" params]="Price Rule Detail Rules"   class="form-control" formControlName="operation"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('operation')">
+                      {{ formValidation.errorMessage('operation') }}
+                     </small>
+                 </div>
+            
+            </div>
+            
+                        <!-- DataGrid with Name of DataGrid003 -->
+                    <button (click)="dataGrid003GridOptionsExportCsv()">Export</button>
+                    <ag-grid-angular #agGrid class="ag-theme-fresh" [gridOptions]="dataGrid003GridOptions"
+                    style="width: 100%; height: 300px;"
+                    [enableSorting]="true"
+                    [enableFilter]="true"
+                    [floatingFilter]="true"
+                    [pagination]="true"
+                    [showToolPanel]="true">
+                    </ag-grid-angular>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+            </div>
+        </form>
+    </div>
+</div>

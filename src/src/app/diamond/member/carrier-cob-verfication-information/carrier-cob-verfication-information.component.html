@@ -1,0 +1,104 @@
+<!-- Copyright (c) 2020 . All Rights Reserved. -->
+<div class="container-fluid">
+    <div class="card-block">
+            <h2 class="form-title card-label-admin">Cob Verification Information</h2>
+            <button type="button" *ngIf="showIcon" class="modal-close close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <form [formGroup]="carrierCobVerificationInformationForm" novalidate>
+            <div class="form-group row">
+                <div class="col-md-1">
+                </div>
+                <div class="col-md-6">
+                    <div>
+                        <!-- Textbox with label of Oth Verification Date -->
+                        <div [ngClass]="{'has-danger': formValidation.isValidField('verificationDate') }">
+                            <app-datepicker [formGroup]="carrierCobVerificationInformationForm" 
+                                            [formValidation]="formValidation" 
+                                            [field]="'verifOthCarrierDate'" 
+                                            [labelText]="'Verif Oth Carrier Date'">
+                            </app-datepicker>
+                        </div>
+
+                    </div>
+
+                    <div>
+                        <!-- Textbox with label of Status Code -->
+                        <div [ngClass]="{'has-danger': formValidation.isValidField('verifStatusCode') }">
+                            <label class="col-form-label" for="verifStatusCode" i18n>Verif Status Code</label>
+                            <input type="text" id="verifStatusCode" class="form-control" formControlName="verifStatusCode"/>
+                            <small class="text-danger" *ngIf="formValidation.isValidField('verifStatusCode')">
+                                {{ formValidation.errorMessage('verifStatusCode') }}
+                            </small>
+                        </div>
+                    </div>
+
+                    <div>
+                        <!-- Textbox with label of Verif Last Name -->
+                        <div [ngClass]="{'has-danger': formValidation.isValidField('verifSourceLastName') }">
+                            <label class="col-form-label" for="verifSourceLastName" i18n>Verif Source Last Name</label>
+                            <input type="text" id="verifSourceLastName" class="form-control" formControlName="verifSourceLastName"/>
+                            <small class="text-danger" *ngIf="formValidation.isValidField('verifSourceLastName')">
+                                {{ formValidation.errorMessage('verifSourceLastName') }}
+                            </small>
+                        </div>
+                    </div>
+
+                    <div>
+                        <!-- Textbox with label of Verif First Name -->
+                        <div [ngClass]="{'has-danger': formValidation.isValidField('verifSourceFirstName') }">
+                            <label class="col-form-label" for="verifSourceFirstName" i18n>Verif Source First Name</label>
+                            <input type="text" id="verifSourceFirstName" class="form-control" formControlName="verifSourceFirstName"/>
+                            <small class="text-danger" *ngIf="formValidation.isValidField('verifSourceFirstName')">
+                                {{ formValidation.errorMessage('verifSourceFirstName') }}
+                            </small>
+                        </div>
+                    </div>
+
+                    <div>
+                        <!-- Textbox with label of Status Code -->
+                        <div [ngClass]="{'has-danger': formValidation.isValidField('verifSourcePhoneNo') }">
+                            <label class="col-form-label" for="verifSourcePhoneNo" i18n>Verif Source Phone Name</label>
+                            <input type="text" id="verifSourcePhoneNo" class="form-control" formControlName="verifSourcePhoneNo"/>
+                            <small class="text-danger" *ngIf="formValidation.isValidField('verifSourcePhoneNo')">
+                                {{ formValidation.errorMessage('verifSourcePhoneNo') }}
+                            </small>
+                        </div>
+                    </div>
+
+                    <div>
+                        <!-- Textbox with label of Status Code -->
+                        <div [ngClass]="{'has-danger': formValidation.isValidField('comments') }">
+                            <label class="col-form-label" for="comments" i18n>Comments</label>
+                            <input type="text" id="comments" class="form-control" formControlName="comments"/>
+                            <small class="text-danger" *ngIf="formValidation.isValidField('comments')">
+                                {{ formValidation.errorMessage('comments') }}
+                            </small>
+                        </div>
+                    </div>
+                   
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group row">
+                    </div>
+                    <div class="form-group row">
+                    </div>
+                    <div class="form-group row">
+                        <button type="button" id="ok" name="ok" (click)="submitForm()"
+                            class="float-right button btn-sbmt">OK</button>
+                    </div>
+                    <div class="form-group row">
+                    </div>
+                    <div class="form-group row">
+                    </div>
+                    <div class="form-group row">
+                        <button type="button" id="cancel" name="cancel" (click)="cancel()"
+                            class="float-right button btn-sbmt">Cancel</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-1">
+            </div>
+        </form>
+    </div>
+</div>

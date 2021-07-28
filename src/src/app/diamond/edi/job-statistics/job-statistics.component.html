@@ -1,0 +1,88 @@
+<!-- Copyright (c) 2021 . All Rights Reserved. -->
+<div class="container-fluid">
+    <div class="card-block">
+        <div class="row form-title">
+            <h2 class="col-md-6  card-label-admin"> Process EDI Job Statistics </h2>
+        </div>
+
+        <button (click)="modalClose()" aria-label="Close" class="modal-close close"
+                type="button">
+            <span aria-hidden="true">&times;</span>
+        </button>
+
+        <div class="form-group row">
+            <label class="label-broken col-md-4 text-primary text-right">
+                    <span>
+                        <b>timestamps</b>
+                    </span>
+            </label>
+            <label class="col-md-8 label-broken"><span></span></label>
+        </div>
+        <div class="col-sm-12 row">
+            <div class="col-sm-2 text-right f-b">Rcvd Date Time: </div>
+            <div class="col-sm-2 text-left">{{processEdi.rcvdDateTime}}</div>
+            <div class="col-sm-2 text-right f-b">Rcvd User ID: </div>
+            <div class="col-sm-2 text-left">{{processEdi.rcvdUserId}}</div>
+            <div class="col-sm-2 text-right f-b">Status: </div>
+            <div class="col-sm-2  text-left">{{getStatus(processEdi.status)}}</div>
+        </div>
+        <div class="col-sm-12 row">
+            <div class="col-sm-2 text-right f-b">Edit Date Time: </div>
+            <div class="col-sm-2 text-left">{{processEdi.editDateTime}}</div>
+            <div class="col-sm-2 text-right f-b">Edit User ID: </div>
+            <div class="col-sm-2 text-left">{{processEdi.editUserId}}</div>
+            <div class="col-sm-2 text-right f-b">Edit Status: </div>
+            <div class="col-sm-2 text-left">{{processEdi.editStatus}}</div>
+        </div>
+        <div class="col-sm-12 row">
+            <div class="col-sm-2 text-right f-b">Post Date Time: </div>
+            <div class="col-sm-2 text-left">{{processEdi.postDateTime}}</div>
+            <div class="col-sm-2 text-right f-b">Post User ID: </div>
+            <div class="col-sm-2 text-left">{{processEdi.postUserId}}</div>
+            <div class="col-sm-2 text-right f-b">Post Status: </div>
+            <div class="col-sm-2 text-left">{{processEdi.postStatus}}</div>
+        </div>
+
+        <div class="form-group row">
+            <label class="label-broken col-md-4 text-primary text-right">
+                    <span>
+                        <b>record counts</b>
+                    </span>
+            </label>
+            <label class="col-md-8 label-broken"><span></span></label>
+        </div>
+        <div class="col-sm-12 row">
+            <div class="col-sm-3 text-right f-b">Number of input records: </div>
+            <div class="col-sm-3 text-left">{{processEdi.numInputRecords}}</div>
+            <div class="col-sm-3 text-right f-b">Total Billed Amount: </div>
+            <div class="col-sm-3 text-left">{{processEdi.totalBilledAmount}}</div>
+        </div>
+        <div class="col-sm-12 row">
+            <div class="col-sm-3 text-right f-b">Number of adds: </div>
+            <div class="col-sm-3 text-left">{{processEdi.numAdds}}</div>
+            <div class="col-sm-3 text-right f-b">Number of detail adds: </div>
+            <div class="col-sm-3 text-left">{{processEdi.numDetailAdds}}</div>
+        </div>
+        <div class="col-sm-12 row">
+            <div class="col-sm-3 text-right f-b">Number of changes: </div>
+            <div class="col-sm-3 text-left">{{processEdi.numChanges}}</div>
+            <div class="col-sm-3 text-left"></div>
+            <div class="col-sm-3 text-left"></div>
+        </div>
+        <div class="col-sm-12 row">
+            <div class="col-sm-3 text-right f-b">Number of reinstates: </div>
+            <div class="col-sm-3 text-left">{{processEdi.numReinstates}}</div>
+            <div class="col-sm-3 text-left"></div>
+            <div class="col-sm-3 text-left"></div>
+        </div>
+        <div class="col-sm-12 row">
+            <div class="col-sm-3 text-right f-b">Number of terms: </div>
+            <div class="col-sm-3 text-left">{{processEdi.numTerms}}</div>
+            <div class="col-sm-3 text-left"></div>
+            <div class="col-sm-3 text-left"></div>
+        </div>
+        <div class="col-sm-12">
+            <input type="button" class="btn btn-primary ok-btn" value="OK" (click)="modalClose()" />
+        </div>
+    </div>
+</div>

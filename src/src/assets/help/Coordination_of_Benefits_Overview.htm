@@ -1,0 +1,299 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+    <title>Coordination of Benefits Overview</title>
+    <!--(Meta)==========================================================-->
+    <meta name="copyright"
+          value="© Copyright 2002 Health Systems Design Corp., a wholly owned subsidiary of Perot Systems Corporation. All rights reserved"/>
+    <meta content="RoboHELP by eHelp Corporation - www.ehelp.com" name="generator"/>
+    <meta content="0.1" name="generator-major-version"/>
+    <meta content="1" name="generator-minor-version"/>
+    <meta content="kadov" name="filetype"/>
+    <meta content="1" name="filetype-version"/>
+    <meta content="0" name="page-count"/>
+    <meta content="0" name="layout-height"/>
+    <meta content="0" name="layout-width"/>
+    <!--(Links)=========================================================-->
+    <!--(Scripts)=======================================================-->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+</head>
+<body>
+
+<div class="calibreMeta">
+    <div class="calibreMetaTitle">
+
+
+        <h1>
+            <a href="../ib0gc-jzzjl.html">DIAMOND 950 Help
+            </a>
+        </h1>
+
+
+    </div>
+    <div class="calibreMetaAuthor">
+        Unknown
+
+    </div>
+</div>
+
+<div class="calibreMain">
+
+    <div class="calibreEbookContent">
+
+        <div class="calibreEbNavTop">
+
+            <a href="Manually_Adjusted_Benefit_Accumulators_How_DIAMOND_Thinks.htm" class="calibreAPrev">previous page
+            </a>
+
+
+            <a href="Multiple_Coverage_Overview.htm" class="calibreANext">next page
+            </a>
+
+        </div>
+
+
+        <h4 class="calibre1">Coordination of Benefits Overview</h4>
+
+        <p class="body-text">The following provides an overview of DIAMOND Coordination
+            of Benefits processing. You can use DIAMOND Coordination of Benefits functionality
+            for processing institutional, professional services, and dental claims.
+            For more detailed information on COB, see Member COB History (COBHS) and
+            Coordination of Benefits – How DIAMOND Thinks User Documentation.</p>
+
+        <p class="doc-level">Definition of Coordination of Benefits (COB)</p>
+
+        <p class="body-text">Coordination of Benefits (COB) is the process by which
+            medical insurance benefits of multiple coverages are coordinated for a
+            single claim. DIAMOND COB functionality allows you to coordinate additional
+            coverage with the coverage on the DIAMOND claim to adjust the net amount
+            paid by DIAMOND. The additional coverage could be another DIAMOND coverage
+            (Dual DIAMOND) or it could be from a carrier external to DIAMOND, as shown
+            in the following examples. In DIAMOND COB functionality, DIAMOND is the
+            secondary payer when the additional coverage is primary.</p>
+
+        <p class="body-text">Any carrier for whom you want to coordinate benefits
+            or from whom you have received an Explanation of Benefits (EOB) or Explanation
+            of Medicare Benefits (EOMB) is referred to in DIAMOND as an "Other
+            Carrier", whether the carrier is internal or external to DIAMOND.</p>
+
+        <p class="body-text">In DIAMOND, several different COB calculation methods
+            are available. You can also hold or deny claims based on COB criteria
+            and track COB history. In addition, you can define rules to determine
+            the COB application of benefits order (Primary, Secondary, Tertiary or
+            Other) for each individual COB History record.</p>
+
+        <p class="doc-level">Adding Carriers External to DIAMOND</p>
+
+        <p class="body-text">To add health insurance carriers external to DIAMOND
+            who provide coverage to members enrolled in the DIAMOND health plan, use
+            DIAMOND’s Carrier function. For more information, see Carrier (CARCD)
+            User Documentation.</p>
+
+        <p class="doc-level">Adding Coordination of Benefits Coverage Records</p>
+
+        <p class="body-text">To document alternate or supplemental coverage for a
+            member or family unit, use the Member COB History (COBHS) function. The
+            carrier on the COBHS record is an "Other Carrier".</p>
+
+        <p class="body-text">See COBHS User Documentation for more information.</p>
+
+        <p class="doc-level">Automatically Assigning COB Order</p>
+
+        <p class="body-text">You can have DIAMOND automatically assign a COB Order
+            (Primary, Secondary, Tertiary or Other) to a COB History record. The COB
+            Order does not impact the COB calculations used to adjust the Net Amount
+            during claims adjudication. However, COB Order can be used as a determinant
+            in DIAMOND’s table driven COB hold/deny rules described below and COB
+            Order must equal Primary in order for system parameter COBCLAIMACTN actions
+            to be applied to a claim as described below.</p>
+
+        <p class="doc-level">Holding and Denying Claims based on COB</p>
+
+        <p class="body-text">There are two ways to hold or deny claim detail lines
+            (and generate warnings) based on COB:</p>
+
+        <ul class="calibre15">
+
+            <li class="kadov-p-cbullet-list-h"><p class="bullet-list-h">COBCLAIMACTN
+                parameter</p></li>
+
+            <li class="kadov-p-cbullet-list-h"><p class="bullet-list-h">COB Hold/Deny
+                rules</p></li>
+        </ul>
+
+        <p class="doc-level1">COBCLAIMACTN Parameter</p>
+
+        <p class="body-text">If you enter COB information in COBHS for a member who
+            has primary coverage with another carrier (COBHS field COB Order = Primary),
+            each time a claim is entered for that member and the primary date of service
+            matches the effective period of the COB History record, you can have DIAMOND:</p>
+
+        <ul class="calibre15">
+
+            <li class="kadov-p-cbullet-list-h"><p class="bullet-list-h">Display a
+                COB warning only</p></li>
+
+            <li class="kadov-p-cbullet-list-h"><p class="bullet-list-h">Display a
+                COB warning, automatically hold the claim and assign a selected hold reason</p></li>
+
+            <li class="kadov-p-cbullet-list-h"><p class="bullet-list-h">Display a
+                COB warning, automatically deny the claim and assign a selected deny reason</p></li>
+        </ul>
+
+        <p class="body-text">You use a parameter record (PARAM &gt; COBCLAIMACTN)
+            to specify what action DIAMOND will take on claims submitted from members
+            with other primary coverage. The action you specify on this parameter
+            will be taken on claims entered with primary dates of service within the
+            member’s COBHS Coverage Effective Date and the COBHS Coverage Term Date.</p>
+
+        <p class="doc-level1">COB Hold/Deny Rules</p>
+
+        <p class="body-text">You define COB Hold and Deny rules using the function
+            COB Hold /Deny Determinants (COBHD). Selected determinants are available
+            from the Institutional, Professional Services, or Dental claim header
+            (depending on claim type), COB History, Group Detail, and Member Master
+            tables. </p>
+
+        <p class="body-text">DIAMOND applies COB Hold/Deny rules when you enter or
+            modify and save an institutional, professional services, or dental claim
+            header. COB Hold/Deny processing occurs regardless of whether a COBHS
+            record exists for the member. If a matching rule is found, DIAMOND applies
+            the Action (Hold or Deny) and the Reason Code from the matching COB Hold/Deny
+            rule to all claim detail lines. COB Hold/Deny processing supercedes system
+            parameter COBCLAIMACTN.</p>
+
+        <p class="doc-level">Using Automatic vs. Manual Coordination of Benefits</p>
+
+        <p class="body-text">You can automatically apply COB calculation during online
+            claims adjudication using a COB calculation method as explained below.</p>
+
+        <p class="body-text">You can also manually apply COB to a claim line by simply
+            entering an Other Carrier Paid Amount (PSCLM/INCLM/DNCLM detail – OC Pd
+            Amt). DIAMOND subtracts the OC Pd Amt from the DIAMOND calculated Net
+            Amount and displays the result as the adjusted Net Amount.</p>
+
+        <p class="doc-level">COB Calculation Methods</p>
+
+        <p class="body-text">You can have DIAMOND automatically calculate COB for
+            each claim line using a COB calculation method. Several different COB
+            calculation methods are available. Each COB calculation method has its
+            own specific fixed automatic claims adjudication logic. </p>
+
+        <p class="body-text">You select COB calculation methods for an employer group
+            for a specific effective period on the Group Detail (GRUPD) record. You
+            can establish the same or different COB calculation methods for institutional,
+            professional services, and dental claims.</p>
+
+        <p class="body-text">For more information, see Using COB Calculation Methods
+            user documentation.</p>
+
+        <p class="doc-level">Claim Header Field EOB Indicator</p>
+
+        <p class="body-text">You may receive a commercial carrier EOB (Explanation
+            of Benefits) or Medicare EOMB (Explanation of Medicare Benefits) for a
+            DIAMOND claim.</p>
+
+        <p class="tip-note-warning">Note</p>
+
+        <p class="body-text">You must select EOB or EOMB here in order to activate
+            the OC Allowed field on the claim detail.</p>
+
+        <p class="body-text">When you select EOB or EOMB, DIAMOND allows you to select
+            a matching COB History record. When you select a matching record, DIAMOND
+            populates the claim header field OC Carrier Code (Other Carrier - Carrier
+            Code) with the COBHS Carrier and makes the OC Allowed field available
+            for input on all claim detail lines.</p>
+
+        <p class="doc-level">Other DIAMOND COB Functionality</p>
+
+        <ul class="calibre15">
+
+            <li class="kadov-p-cbullet-list-h"><p class="bullet-list-h">For Medicare
+                claims, you can limit total payment to the Medicare allowed amount</p></li>
+
+            <li class="kadov-p-cbullet-list-h"><p class="bullet-list-h">You can exclude
+                capitated claims from COB (GRUPD)</p></li>
+
+            <li class="kadov-p-cbullet-list-h"><p class="bullet-list-h">When you
+                use a COB calculation method of Non-Duplication of Benefits or Integration
+                of Benefits, you can define a default Commercial COB Allowed Amount rule
+                on each provider contract (PROVC) record. DIAMOND uses the Commercial
+                COB Allowed Amount rule in automatic claims adjudication. A Commercial
+                COB Allowed Amount rule specifies whether DIAMOND uses the DIAMOND Allowed
+                Amount or the lesser of the DIAMOND Allowed Amount or Other Carrier Allowed
+                Amount. This value is defaulted to each corresponding claim when one of
+                these two calculation methods applies. It may be manually overridden.
+                If you do not select a default Commercial COB Allowed Amount rule in PROVC,
+                DIAMOND uses the DIAMOND Allowed Amount for Non-Duplication of Benefits
+                and Integration of Benefits calculations.</p></li>
+
+            <li class="kadov-p-cbullet-list-h"><p class="bullet-list-h">You can view
+                a claim’s COB History information (associated COBHS record you selected)
+                using the Special menu command View COB History.</p></li>
+
+            <li class="kadov-p-cbullet-list-h"><p class="bullet-list-h">You can use
+                the system parameter COBAUTHACTN to activate a COB warning message to
+                display in authorizations.</p></li>
+
+            <li class="kadov-p-cbullet-list-h"><p class="bullet-list-h">You can specify
+                a Dependent Determination Rule on GRUPD and on the individual COBHS record.</p></li>
+
+            <li class="kadov-p-cbullet-list-h"><p class="bullet-list-h">You can record
+                COB verification information from the member or the other carrier in MEMBR
+                and COBHS.</p></li>
+        </ul>
+
+        <p class="doc-level">Claims Batch (EDI) and Claims API – COB Restrictions,
+            Exclusions, Notes</p>
+
+        <ul class="calibre15">
+
+            <li class="kadov-p-cbullet-list-h"><p class="bullet-list-h">DIAMOND does
+                not apply COB calculation methods to Claims Batch and Claims API processing.
+                DIAMOND applies COB calculation methods for online processing only. If
+                DIAMOND determines that a claim submitted via Claims Batch or Claims API
+                is a potential COB claim, DIAMOND holds or denies the claim based on the
+                parameter COBCLAIMACTN.</p></li>
+
+            <li class="kadov-p-cbullet-list-h"><p class="bullet-list-h">DIAMOND does
+                apply COB Hold/Deny rules in Claims Batch/API except where the rule includes
+                a determinant not included in Batch/API processing, for example EOB Indicator.
+            </p></li>
+
+            <li class="kadov-p-cbullet-list-h"><p class="bullet-list-h">If a matching
+                primary COBHS record is found for the claim, Claims Batch and Claims API
+                populate the column PRIMARY_OC_EXISTS with Yes.</p></li>
+        </ul>
+
+        <p class="doc-level">Other COB Restrictions and Exclusions</p>
+
+        <p class="body-text">DIAMOND does not perform automatic COB processing and
+            adjudication for Whole Claim priced claims or Heads Down Claims processing.
+        </p>
+
+
+    </div>
+
+
+
+    <div class="calibreEbNav">
+
+        <a href="Manually_Adjusted_Benefit_Accumulators_How_DIAMOND_Thinks.htm" class="calibreAPrev">previous page
+        </a>
+
+
+        <a href="../ib0gc-jzzjl.html" class="calibreAHome">start
+        </a>
+
+
+        <a href="Multiple_Coverage_Overview.htm" class="calibreANext">next page
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+</html>

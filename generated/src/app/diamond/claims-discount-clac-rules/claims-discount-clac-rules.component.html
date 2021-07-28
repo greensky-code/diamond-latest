@@ -1,0 +1,193 @@
+<!-- Copyright (c) 2021 . All Rights Reserved. -->
+<div class="container-fluid">
+    <div class="card-block">
+        <form [formGroup]="claimsDiscountClacRulesForm" novalidate>
+            <h2 class="form-title card-label-admin">Claims Discount Clac Rules</h2>
+            <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+            <app-pop-up-message #popUpMesssage (buttonclickEvent)="popUpButtonHandler($event)"  [(popupMessage)] = "popUpMessage"></app-pop-up-message>
+                        
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+                <!-- DynamicText with label of Line of Business ^LB -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('lineOfBusinessLb') }">
+                     <label class="col-form-label" for="lineOfBusinessLb" i18n>Line of Business ^LB</label>
+                     <input type="text"  [fieldLevelSec]="''" params]=""  readonly id="lineOfBusinessLb" formControlName="lineOfBusinessLb" class="form-control"/>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+            </div>
+            
+                        <!-- DataGrid with Name of DataGrid001 -->
+                    <button (click)="dataGrid001GridOptionsExportCsv()">Export</button>
+                    <ag-grid-angular #agGrid class="ag-theme-fresh" [gridOptions]="dataGrid001GridOptions"
+                    style="width: 100%; height: 300px;"
+                    [enableSorting]="true"
+                    [enableFilter]="true"
+                    [floatingFilter]="true"
+                    [pagination]="true"
+                    [showToolPanel]="true">
+                    </ag-grid-angular>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of Claim Type ^TBRule Order -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('claimTypeTbrule') }">
+                     <label class="col-form-label" for="claimTypeTbrule" i18n>Claim Type ^TBRule Order</label>
+                     <input type="text" id="claimTypeTbrule"  [fieldLevelSec]="''" params]=""   class="form-control" formControlName="claimTypeTbrule"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('claimTypeTbrule')">
+                      {{ formValidation.errorMessage('claimTypeTbrule') }}
+                     </small>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of Effective Date ^DT Term Date -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('effectiveDateDt') }">
+                     <label class="col-form-label" for="effectiveDateDt" i18n>Effective Date ^DT Term Date</label>
+                     <div class="input-group">
+                    <input id="effectiveDateDt"  [fieldLevelSec]="''" params]=""  class="form-control" angular-mydatepicker name="effectiveDateDt" (click)="effectiveDateDtId.toggleCalendar()"
+                    formControlName="effectiveDateDt"[options]="datePickerConfig" #effectiveDateDtId="angular-mydatepicker"/>
+                    <div class="input-group-append">
+                        <button type="button" class="btn btn-secondary" (click)="effectiveDateDtId.clearDate()">
+                          <i class="fa fa-close"></i>
+                        </button>
+                      </div>
+                      <div class="input-group-append">
+                        <button type="button" class="btn btn-secondary" (click)="effectiveDateDtId.toggleCalendar()">
+                          <i class="fa fa-calendar-o"></i>
+                        </button>
+                      </div>
+                    </div>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('effectiveDateDt')">
+                      {{ formValidation.errorMessage('effectiveDateDt') }}
+                     </small>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of Description -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('description') }">
+                     <label class="col-form-label" for="description" i18n>Description</label>
+                     <input type="text" id="description"  [fieldLevelSec]="''" params]=""   class="form-control" formControlName="description"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('description')">
+                      {{ formValidation.errorMessage('description') }}
+                     </small>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+                <div class="col-md-2 form-control-static mb-0" i18n>
+                    Discount Calculation Info
+                </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of Discount Days -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('discountDays') }">
+                     <label class="col-form-label" for="discountDays" i18n>Discount Days</label>
+                     <input type="text" id="discountDays"  [fieldLevelSec]="''" params]=""   class="form-control" formControlName="discountDays"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('discountDays')">
+                      {{ formValidation.errorMessage('discountDays') }}
+                     </small>
+                 </div>
+            
+                <!-- Textbox with label of Rate -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('rate') }">
+                     <label class="col-form-label" for="rate" i18n>Rate</label>
+                     <input type="text" id="rate"  [fieldLevelSec]="''" params]=""   class="form-control" formControlName="rate"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('rate')">
+                      {{ formValidation.errorMessage('rate') }}
+                     </small>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of Reason -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('reason') }">
+                     <label class="col-form-label" for="reason" i18n>Reason</label>
+                     <input type="text" id="reason"  [fieldLevelSec]="''" params]=""   class="form-control" formControlName="reason"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('reason')">
+                      {{ formValidation.errorMessage('reason') }}
+                     </small>
+                 </div>
+            
+                <div class="col-md-2 form-control-static mb-0" i18n>
+                    28% of payable benefits due to
+                </div>
+            
+            </div>
+            
+            <div class="form-group row">
+            </div>
+            
+                        <!-- DataGrid with Name of DataGrid002 -->
+                    <button (click)="dataGrid002GridOptionsExportCsv()">Export</button>
+                    <ag-grid-angular #agGrid class="ag-theme-fresh" [gridOptions]="dataGrid002GridOptions"
+                    style="width: 100%; height: 300px;"
+                    [enableSorting]="true"
+                    [enableFilter]="true"
+                    [floatingFilter]="true"
+                    [pagination]="true"
+                    [showToolPanel]="true">
+                    </ag-grid-angular>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+                <!-- DynamicText with label of Search Seq -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('searchSeq') }">
+                     <label class="col-form-label" for="searchSeq" i18n>Search Seq</label>
+                     <input type="text"  [fieldLevelSec]="''" params]=""  readonly id="searchSeq" formControlName="searchSeq" class="form-control"/>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- DynamicText with label of Determinat Table ^LB Determinant Column -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('determinatTableLbDete') }">
+                     <label class="col-form-label" for="determinatTableLbDete" i18n>Determinat Table ^LB Determinant Column</label>
+                     <input type="text"  [fieldLevelSec]="''" params]=""  readonly id="determinatTableLbDete" formControlName="determinatTableLbDete" class="form-control"/>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+            </div>
+            
+                        <!-- DataGrid with Name of DataGrid003 -->
+                    <button (click)="dataGrid003GridOptionsExportCsv()">Export</button>
+                    <ag-grid-angular #agGrid class="ag-theme-fresh" [gridOptions]="dataGrid003GridOptions"
+                    style="width: 100%; height: 300px;"
+                    [enableSorting]="true"
+                    [enableFilter]="true"
+                    [floatingFilter]="true"
+                    [pagination]="true"
+                    [showToolPanel]="true">
+                    </ag-grid-angular>
+            
+            <div class="form-group row">
+            </div>
+        </form>
+    </div>
+</div>

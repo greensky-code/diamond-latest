@@ -1,0 +1,174 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+    <title>Multiple Coverage Overview</title>
+    <!--(Meta)==========================================================-->
+    <meta name="copyright"
+          value="© Copyright 2002 Health Systems Design Corp., a wholly owned subsidiary of Perot Systems Corporation. All rights reserved"/>
+    <meta content="RoboHELP by eHelp Corporation - www.ehelp.com" name="generator"/>
+    <meta content="0.1" name="generator-major-version"/>
+    <meta content="1" name="generator-minor-version"/>
+    <meta content="kadov" name="filetype"/>
+    <meta content="1" name="filetype-version"/>
+    <meta content="0" name="page-count"/>
+    <meta content="0" name="layout-height"/>
+    <meta content="0" name="layout-width"/>
+    <!--(Links)=========================================================-->
+    <!--(Scripts)=======================================================-->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link href="stylesheet.css" rel="stylesheet" type="text/css"/>
+    <link href="page_styles.css" rel="stylesheet" type="text/css"/>
+
+
+</head>
+<body>
+
+<div class="calibreMeta">
+    <div class="calibreMetaTitle">
+
+
+        <h1>
+            <a href="../ib0gc-jzzjl.html">DIAMOND 950 Help
+            </a>
+        </h1>
+
+
+    </div>
+    <div class="calibreMetaAuthor">
+        Unknown
+
+    </div>
+</div>
+
+<div class="calibreMain">
+
+    <div class="calibreEbookContent">
+
+        <div class="calibreEbNavTop">
+
+            <a href="Coordination_of_Benefits_Overview.htm" class="calibreAPrev">previous page
+            </a>
+
+
+            <a href="Excluding_Capitated_Claims_from_COB.htm" class="calibreANext">next page
+            </a>
+
+        </div>
+
+
+        <h4 class="calibre1">Multiple Coverage Overview</h4>
+
+        <p class="doc-level">Multiple Coverage functionality in DIAMOND</p>
+
+        <p class="body-text">Multiple Coverage means that an individual has health
+            insurance benefits from more than one carrier. Multiple Coverage functionality
+            in DIAMOND consists of two components:</p>
+
+        <p class="numbered-list">1. Dual Coverage</p>
+
+        <p class="body-text">Occasionally an individual has membership in more than
+            one Health Plan. This occurs when:</p>
+
+        <ul class="calibre15">
+
+            <li class="kadov-p-cbullet-list-h"><p class="bullet-list-h">One spouse
+                is a subscriber through his or her employer group and at the same time
+                is enrolled as a dependent on his or her spouse’s account with another
+                employer group</p></li>
+
+            <li class="kadov-p-cbullet-list-h"><p class="bullet-list-h">A member
+                is working two jobs and he or she is the subscriber in both instances</p></li>
+        </ul>
+
+        <p class="body-text">In DIAMOND, each instance of an individual with Health
+            Plan coverage equals one Member Master record. Since one individual can
+            have more than one Health Plan coverage, one individual can have more
+            than one Member Master record in DIAMOND.</p>
+
+        <p class="body-text">A DIAMOND ID is a unique alphanumeric identifier for
+            each person in DIAMOND. A person who has membership in more than one Health
+            Plan can have one DIAMOND ID and multiple Member Master records. A person
+            who has membership in one Health Plan and a single Member Master Record
+            can also have a DIAMOND ID. </p>
+
+        <p class="body-text">You enable DIAMOND ID in the parameter DIDSEARCH. DIAMOND
+            ID is an optional field.</p>
+
+        <p class="body-text">DIAMOND IDs are assigned via the MEMBR window (see MEMBR
+            reference documentation for more information). Once they are assigned
+            to each member in the system:</p>
+
+        <ul class="calibre15">
+
+            <li class="kadov-p-cbullet-list-h"><p class="bullet-list-h">New subscribers
+                can be added either by DIAMOND ID or Subscriber ID </p></li>
+
+            <li class="kadov-p-cbullet-list-h"><p class="bullet-list-h">A new subscriber
+                can be added to an existing DIAMOND ID by selecting Special &gt; Add New
+                Subscriber to DID in the MEMBR window</p></li>
+
+            <li class="kadov-p-cbullet-list-h"><p class="bullet-list-h">A dependent
+                can be added by selecting Special &gt; Add Dependent in the MEMBR window</p></li>
+
+            <li class="kadov-p-cbullet-list-h"><p class="bullet-list-h">IDs can be
+                changed by selecting Special &gt; Modify DID in the MEMBR window. </p></li>
+
+            <li class="kadov-p-cbullet-list-h"><p class="bullet-list-h">Members with
+                the same DIAMOND ID can be viewed by selecting Special &gt; View DID Members
+                in the MEMBR window</p></li>
+
+            <li class="kadov-p-cbullet-list-h"><p class="bullet-list-h">ID Cards
+                can be printed by setting Parameter 2 of IDCARDORDER to ‘D’. See PARAM
+                reference documentation for more information</p></li>
+        </ul>
+
+        <p class="body-text">See Dual Coverage, How DIAMOND Thinks for information
+            about the processing logic behind DIAMOND IDs.</p>
+
+        <p class="body-text">See Setting up DIAMOND IDs for implementation information.</p>
+
+        <p class="body-text-block1"> </p>
+
+        <p class="numbered-list">2. Coordination of Benefits (COB)</p>
+
+        <p class="body-text">Coordination of Benefits (COB) is the process by which
+            medical insurance benefits of multiple coverages are coordinated for a
+            single claim. DIAMOND COB functionality allows you to coordinate additional
+            coverage with the coverage on the DIAMOND claim to adjust the net amount
+            paid by DIAMOND on a particular claim. The additional coverage could be
+            another DIAMOND coverage or it could be from a carrier external to DIAMOND.
+        </p>
+
+        <p class="body-text">Several different COB calculation methods are available
+            for commercial carriers and Medicare. You can also hold or deny claims
+            based on COB criteria and track COB history. In addition, you can define
+            rules to determine the COB application of benefits order (Primary, Secondary,
+            Tertiary or Other) for each individual COB History record.</p>
+
+        <p class="body-text">See Coordination of Benefits Overview for more information.</p>
+
+
+    </div>
+
+
+
+    <div class="calibreEbNav">
+
+        <a href="Coordination_of_Benefits_Overview.htm" class="calibreAPrev">previous page
+        </a>
+
+
+        <a href="../ib0gc-jzzjl.html" class="calibreAHome">start
+        </a>
+
+
+        <a href="Excluding_Capitated_Claims_from_COB.htm" class="calibreANext">next page
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+</html>

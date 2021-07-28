@@ -1,0 +1,727 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+    <!-- $MVD$:fontset("Courier New","Courier New") -->
+    <title>Dynamic Interest Determination Method Examples</title>
+    <meta content="RoboHelp by eHelp Corporation www.ehelp.com" name="generator"/>
+    <meta name="copyright"
+          value="© Copyright 2002 Health Systems Design Corp., a wholly owned subsidiary of Perot Systems Corporation. All rights reserved"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+</head>
+<body>
+
+<div class="calibreMeta">
+    <div class="calibreMetaTitle">
+
+
+        <h1>
+            <a href="../bj5if-qozss.html">DIAMOND 950 Help
+            </a>
+        </h1>
+
+
+    </div>
+    <div class="calibreMetaAuthor">
+        Unknown
+
+    </div>
+</div>
+
+<div class="calibreMain">
+
+    <div class="calibreEbookContent">
+
+        <div class="calibreEbNavTop">
+
+            <a href="Conditional_Interest_Determination_Method_Examples.htm" class="calibreAPrev">previous page
+            </a>
+
+
+            <a href="Total_Days_Interest_Determination_Method_Examples.htm" class="calibreANext">next page
+            </a>
+
+        </div>
+
+
+        <h4 class="calibre6">Dynamic Interest Determination Method Examples</h4>
+        <table cellpadding="1" cellspacing="0" width="540" class="">
+            <tbody class="">
+            <tr valign="top" class="">
+                <td width="540" class="">
+                    <p class="map-links"><a
+                            href="Dynamic_Interest_Determination_Method_Examples.htm#ClaimIntDiscCalc_Dynamic_Base_Example_Using_One_Claim_Detail_Line_Per_Claim_MID"><img
+                            alt="image\assets/help/MidTopic_shg.gif" border="0" src="assets/help/MidTopic_shg.gif"
+                            usemap="#AreaMap0" class=""/>
+                    </a> Base Example Using One Claim Detail Line Per Claim
+                    </p>
+                </td>
+            </tr>
+            <tr valign="top" class="">
+                <td width="540" class="">
+                    <p class="map-links"><a
+                            href="Dynamic_Interest_Determination_Method_Examples.htm#ClaimIntDiscCalc_Dynamic_Apply_Unclean_Indicator_is_set_to_One_Line_Unclean_equals_all_Lines_Unclean_MID"><img
+                            alt="image\assets/help/MidTopic_shg.gif" border="0" src="assets/help/MidTopic_shg.gif"
+                            usemap="#AreaMap1" class=""/>
+                    </a> Apply Unclean Indicator is set to One Line Unclean equals all Lines Unclean
+                    </p>
+                </td>
+            </tr>
+            <tr valign="top" class="">
+                <td width="540" class="">
+                    <p class="map-links"><a
+                            href="Dynamic_Interest_Determination_Method_Examples.htm#ClaimIntDiscCalc_Dynamic_Apply_Unclean_Indicator_is_set_to_Individual_Lines_Evaluated_Separately__MID"><img
+                            alt="image\assets/help/MidTopic_shg.gif" border="0" src="assets/help/MidTopic_shg.gif"
+                            usemap="#AreaMap2" class=""/>
+                    </a> Apply Unclean Indicator is set to Individual Lines Evaluated Separately
+                    </p>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <p class="doc-level"><a
+                name="ClaimIntDiscCalc_Dynamic_Base_Example_Using_One_Claim_Detail_Line_Per_Claim_MID"></a>Base Example
+            Using One Claim Detail Line Per Claim</p>
+        <table cellpadding="1" cellspacing="0" width="500" class="">
+            <tbody class="">
+            <tr valign="top" class="">
+                <td width="60" class="calibre206">
+                    <p class="tbl-header"><span class="">Claim #</span></p>
+                    <p class="tbl-header"><span class="">Line #</span></p></td>
+                <td width="72" class="calibre206">
+                    <p class="tbl-header"><span class="">Calculation Date</span></p></td>
+                <td width="60" class="calibre206">
+                    <p class="tbl-header"><span class="">Pay Date</span></p></td>
+                <td width="48" class="calibre206">
+                    <p class="tbl-header"><span class="">Total Days</span></p></td>
+                <td width="60" class="calibre206">
+                    <p class="tbl-header"><span class="">Unclean Days</span></p></td>
+                <td width="48" class="calibre206">
+                    <p class="tbl-header"><span class="">Clean Days </span></p></td>
+            </tr>
+            <tr valign="top" class="">
+                <td width="60" class="">
+                    <p class="tbl-text1">789 / 001</p></td>
+                <td width="72" class="">
+                    <p class="tbl-text1">01/01/02</p></td>
+                <td width="60" class="">
+                    <p class="tbl-text1">01/26/02</p></td>
+                <td width="48" class="">
+                    <p class="tbl-text1">25</p></td>
+                <td width="60" class="">
+                    <p class="tbl-text1">3</p></td>
+                <td width="48" class="">
+                    <p class="tbl-text1">22</p></td>
+            </tr>
+            <tr valign="top" class="">
+                <td width="60" class="">
+                    <p class="tbl-text1">444 / 001</p></td>
+                <td width="72" class="">
+                    <p class="tbl-text1">01/01/02</p></td>
+                <td width="60" class="">
+                    <p class="tbl-text1">05/16/02</p></td>
+                <td width="48" class="">
+                    <p class="tbl-text1">135</p></td>
+                <td width="60" class="">
+                    <p class="tbl-text1">15</p></td>
+                <td width="48" class="">
+                    <p class="tbl-text1">120</p></td>
+            </tr>
+            </tbody>
+        </table>
+        <p class="body-text1"> </p>
+        <p class="doc-level"><a
+                name="ClaimIntDiscCalc_Dynamic_Apply_Unclean_Indicator_is_set_to_One_Line_Unclean_equals_all_Lines_Unclean_MID"></a>Apply
+            Unclean Indicator is set to One Line Unclean equals all Lines Unclean</p>
+        <p class="doc-level2">Example 1:</p>
+        <table cellpadding="1" cellspacing="0" width="456" class="">
+            <tbody class="">
+            <tr valign="top" class="">
+                <td width="48" class="calibre206">
+                    <p class="tbl-header"><span class="">Claim # Line #</span></p></td>
+                <td width="72" class="calibre206">
+                    <p class="tbl-header"><span class="">Calculation Date</span></p></td>
+                <td width="60" class="calibre206">
+                    <p class="tbl-header"><span class="">Unclean Date </span></p></td>
+                <td width="60" class="calibre206">
+                    <p class="tbl-header"><span class="">Clean Date </span></p></td>
+                <td width="60" class="calibre206">
+                    <p class="tbl-header"><span class="">Pay Date</span></p></td>
+                <td width="48" class="calibre206">
+                    <p class="tbl-header"><span class="">Total Days</span></p></td>
+                <td width="60" class="calibre206">
+                    <p class="tbl-header"><span class="">Unclean Days</span></p></td>
+                <td width="48" class="calibre206">
+                    <p class="tbl-header"><span class="">Clean Days </span></p></td>
+            </tr>
+            <tr valign="top" class="">
+                <td width="48" class="">
+                    <p class="tbl-text1">123/001</p></td>
+                <td width="72" class="">
+                    <p class="tbl-text1">01/01/02</p></td>
+                <td width="60" class="">
+                    <p class="tbl-text1"> </p></td>
+                <td width="60" class="">
+                    <p class="tbl-text1">01/01/02</p></td>
+                <td width="60" class="">
+                    <p class="tbl-text1">05/16/02</p></td>
+                <td width="48" class="">
+                    <p class="tbl-text1">135</p></td>
+                <td width="60" class="">
+                    <p class="tbl-text1">0</p></td>
+                <td width="48" class="">
+                    <p class="tbl-text1">120</p></td>
+            </tr>
+            <tr valign="top" class="">
+                <td width="48" class="">
+                    <p class="tbl-text1">123/002</p></td>
+                <td width="72" class="">
+                    <p class="tbl-text1">01/01/02</p></td>
+                <td width="60" class="">
+                    <p class="tbl-text1">01/01/02</p></td>
+                <td width="60" class="">
+                    <p class="tbl-text1">01/16/02</p></td>
+                <td width="60" class="">
+                    <p class="tbl-text1">05/16/02</p></td>
+                <td width="48" class="">
+                    <p class="tbl-text1">135</p></td>
+                <td width="60" class="">
+                    <p class="tbl-text1">15</p></td>
+                <td width="48" class="">
+                    <p class="tbl-text1">120</p></td>
+            </tr>
+            <tr valign="top" class="">
+                <td width="48" class="">
+                    <p class="tbl-text1">123/003 </p></td>
+                <td width="72" class="">
+                    <p class="tbl-text1">01/01/02</p></td>
+                <td width="60" class="">
+                    <p class="tbl-text1"> </p></td>
+                <td width="60" class="">
+                    <p class="tbl-text1">01/01/02</p></td>
+                <td width="60" class="">
+                    <p class="tbl-text1">05/16/02</p></td>
+                <td width="48" class="">
+                    <p class="tbl-text1">135</p></td>
+                <td width="60" class="">
+                    <p class="tbl-text1">0</p></td>
+                <td width="48" class="">
+                    <p class="tbl-text1">120</p></td>
+            </tr>
+            </tbody>
+        </table>
+        <p class="body-text1"><span class="calibre5"><span class="calibre208">Example 1 results:</span></span></p>
+        <p class="body-text1">Pay Date 05/16/02 – Calculation Date 01/01/02 = 135 days – 15 Unclean Days = 120 Clean
+            Days to Pay Interest </p>
+        <p class="body-text1"> </p>
+        <p class="doc-level2">Example 2:</p>
+        <table cellpadding="1" cellspacing="0" width="456" class="">
+            <tbody class="">
+            <tr valign="top" class="">
+                <td width="48" class="calibre206">
+                    <p class="tbl-header"><span class="">Claim # Line #</span></p></td>
+                <td width="72" class="calibre206">
+                    <p class="tbl-header"><span class="">Calculation Date</span></p></td>
+                <td width="60" class="calibre206">
+                    <p class="tbl-header"><span class="">Unclean Date </span></p></td>
+                <td width="60" class="calibre206">
+                    <p class="tbl-header"><span class="">Clean Date </span></p></td>
+                <td width="60" class="calibre206">
+                    <p class="tbl-header"><span class="">Pay Date</span></p></td>
+                <td width="48" class="calibre206">
+                    <p class="tbl-header"><span class="">Total Days</span></p></td>
+                <td width="60" class="calibre206">
+                    <p class="tbl-header"><span class="">Unclean Days</span></p></td>
+                <td width="48" class="calibre206">
+                    <p class="tbl-header"><span class="">Clean Days </span></p></td>
+            </tr>
+            <tr valign="top" class="">
+                <td width="48" class="">
+                    <p class="tbl-text1">654/001</p></td>
+                <td width="72" class="">
+                    <p class="tbl-text1">01/01/02</p></td>
+                <td width="60" class="">
+                    <p class="tbl-text1"> </p></td>
+                <td width="60" class="">
+                    <p class="tbl-text1">01/01/02</p></td>
+                <td width="60" class="">
+                    <p class="tbl-text1">05/16/02</p></td>
+                <td width="48" class="">
+                    <p class="tbl-text1">135</p></td>
+                <td width="60" class="">
+                    <p class="tbl-text1">0</p></td>
+                <td width="48" class="">
+                    <p class="tbl-text1">115</p></td>
+            </tr>
+            <tr valign="top" class="">
+                <td width="48" class="">
+                    <p class="tbl-text1">654/002</p></td>
+                <td width="72" class="">
+                    <p class="tbl-text1">01/01/02</p></td>
+                <td width="60" class="">
+                    <p class="tbl-text1">01/01/02</p>
+                    <p class="tbl-text-noline">01/10/02</p></td>
+                <td width="60" class="">
+                    <p class="tbl-text1">01/06/02</p>
+                    <p class="tbl-text-noline">01/25/02</p></td>
+                <td width="60" class="">
+                    <p class="tbl-text1">05/16/02</p></td>
+                <td width="48" class="">
+                    <p class="tbl-text1">135</p></td>
+                <td width="60" class="">
+                    <p class="tbl-text1">20*</p></td>
+                <td width="48" class="">
+                    <p class="tbl-text1">115</p></td>
+            </tr>
+            <tr valign="top" class="">
+                <td width="48" class="">
+                    <p class="tbl-text1">654/003 </p></td>
+                <td width="72" class="">
+                    <p class="tbl-text1">01/01/02</p></td>
+                <td width="60" class="">
+                    <p class="tbl-text1"> </p></td>
+                <td width="60" class="">
+                    <p class="tbl-text1">01/01/02</p></td>
+                <td width="60" class="">
+                    <p class="tbl-text1">05/16/02</p></td>
+                <td width="48" class="">
+                    <p class="tbl-text1">135</p></td>
+                <td width="60" class="">
+                    <p class="tbl-text1">0</p></td>
+                <td width="48" class="">
+                    <p class="tbl-text1">115</p></td>
+            </tr>
+            </tbody>
+        </table>
+        <p class="body-text1"><span class="calibre207">* Unclean days calculated as:  the Total of (Unclean from 1/1/2002 to 1/06/2002 = 5 days) plus (Unclean from 1/10/2002 to 1/25/2002 = 15 days) for a Total of 20 days unclean</span>
+        </p>
+        <p class="body-text1"> </p>
+        <p class="body-text1"><span class="calibre5"><span class="calibre208">Example 2 results: </span></span></p>
+        <p class="body-text1">Pay Date 05/16/02 – Interest Calculation Date 01/01/02 = 135 days – 20 Unclean Days = 115
+            Clean Days to Pay Interest </p>
+        <p class="body-text1"> </p>
+        <p class="doc-level2">Example 3:</p>
+        <table cellpadding="1" cellspacing="0" width="456" class="">
+            <tbody class="">
+            <tr valign="top" class="">
+                <td width="48" class="calibre206">
+                    <p class="tbl-header"><span class="">Claim# Line #</span></p></td>
+                <td width="72" class="calibre206">
+                    <p class="tbl-header"><span class="">Calculation Date</span></p></td>
+                <td width="60" class="calibre206">
+                    <p class="tbl-header"><span class="">Unclean Date </span></p></td>
+                <td width="60" class="calibre206">
+                    <p class="tbl-header"><span class="">Clean Date </span></p></td>
+                <td width="60" class="calibre206">
+                    <p class="tbl-header"><span class="">Pay Date</span></p></td>
+                <td width="48" class="calibre206">
+                    <p class="tbl-header"><span class="">Total Days</span></p></td>
+                <td width="60" class="calibre206">
+                    <p class="tbl-header"><span class="">Unclean Days</span></p></td>
+                <td width="48" class="calibre206">
+                    <p class="tbl-header"><span class="">Clean Days </span></p></td>
+            </tr>
+            <tr valign="top" class="">
+                <td width="48" class="">
+                    <p class="tbl-text1">678/001</p></td>
+                <td width="72" class="">
+                    <p class="tbl-text1">01/01/02</p></td>
+                <td width="60" class="">
+                    <p class="tbl-text1">01/15/02</p></td>
+                <td width="60" class="">
+                    <p class="tbl-text1">02/15/02</p></td>
+                <td width="60" class="">
+                    <p class="tbl-text1">04/01/02</p></td>
+                <td width="48" class="">
+                    <p class="tbl-text1">90</p></td>
+                <td width="60" class="">
+                    <p class="tbl-text1">31*</p></td>
+                <td width="48" class="">
+                    <p class="tbl-text1">40</p></td>
+            </tr>
+            <tr valign="top" class="">
+                <td width="48" class="">
+                    <p class="tbl-text1">678/002</p></td>
+                <td width="72" class="">
+                    <p class="tbl-text1">01/01/02</p></td>
+                <td width="60" class="">
+                    <p class="tbl-text1">02/01/02</p></td>
+                <td width="60" class="">
+                    <p class="tbl-text1">02/25/02</p></td>
+                <td width="60" class="">
+                    <p class="tbl-text1">04/01/02</p></td>
+                <td width="48" class="">
+                    <p class="tbl-text1">90</p></td>
+                <td width="60" class="">
+                    <p class="tbl-text1">24*</p></td>
+                <td width="48" class="">
+                    <p class="tbl-text1">40</p></td>
+            </tr>
+            <tr valign="top" class="">
+                <td width="48" class="">
+                    <p class="tbl-text1">678/003</p></td>
+                <td width="72" class="">
+                    <p class="tbl-text1">01/01/02</p></td>
+                <td width="60" class="">
+                    <p class="tbl-text1"> </p></td>
+                <td width="60" class="">
+                    <p class="tbl-text1"> </p></td>
+                <td width="60" class="">
+                    <p class="tbl-text1">04/01/02</p></td>
+                <td width="48" class="">
+                    <p class="tbl-text1">90</p></td>
+                <td width="60" class="">
+                    <p class="tbl-text1">0</p></td>
+                <td width="48" class="">
+                    <p class="tbl-text1">40</p></td>
+            </tr>
+            <tr valign="top" class="">
+                <td width="48" class="">
+                    <p class="tbl-text1">678/004</p></td>
+                <td width="72" class="">
+                    <p class="tbl-text1">01/01/02</p></td>
+                <td width="60" class="">
+                    <p class="tbl-text1">03/01/02</p></td>
+                <td width="60" class="">
+                    <p class="tbl-text1">03/10/02</p></td>
+                <td width="60" class="">
+                    <p class="tbl-text1">04/01/02</p></td>
+                <td width="48" class="">
+                    <p class="tbl-text1">90</p></td>
+                <td width="60" class="">
+                    <p class="tbl-text1">9*</p></td>
+                <td width="48" class="">
+                    <p class="tbl-text1">40</p></td>
+            </tr>
+            </tbody>
+        </table>
+        <p class="body-text1"><span class="calibre207">* Unclean days calculated as:  the Total of (Unclean from 1/15/2002 to 2/25/2002 = 41 days) </span><span
+                class="calibre209">plus</span><span class="calibre207"> (Unclean from 3/01/2002 to 3/10/2002 = 9 days) for a Total of 50 days unclean.   </span>
+        </p>
+        <p class="doc-level2">Example 3 results: </p>
+        <p class="doc-level2"><span class="calibre195">Pay Date 04/01/02 – Interest Calculation Date 01/01/02 = 90 days – 50 Unclean Days = 40 Clean Days to Pay Interest   </span>
+        </p>
+        <p class="doc-level"><a
+                name="ClaimIntDiscCalc_Dynamic_Apply_Unclean_Indicator_is_set_to_Individual_Lines_Evaluated_Separately__MID"></a>Apply
+            Unclean Indicator is set to Individual Lines Evaluated Separately </p>
+        <p class="doc-level2">Example 1</p>
+        <table cellpadding="1" cellspacing="0" width="636" class="">
+            <tbody class="">
+            <tr valign="top" class="">
+                <td width="48" class="calibre206">
+                    <p class="tbl-header"><span class="">Claim # Line #</span></p></td>
+                <td width="72" class="calibre206">
+                    <p class="tbl-header"><span class="">Calculation Date</span></p></td>
+                <td width="60" class="calibre206">
+                    <p class="tbl-header"><span class="">Unclean Date </span></p></td>
+                <td width="60" class="calibre206">
+                    <p class="tbl-header"><span class="">Clean Date </span></p></td>
+                <td width="60" class="calibre206">
+                    <p class="tbl-header"><span class="">Pay Date</span></p></td>
+                <td width="48" class="calibre206">
+                    <p class="tbl-header"><span class="">Total Days</span></p></td>
+                <td width="60" class="calibre206">
+                    <p class="tbl-header"><span class="">Unclean Days</span></p></td>
+                <td width="48" class="calibre206">
+                    <p class="tbl-header"><span class="">Clean Days </span></p></td>
+                <td width="180" class="calibre206">
+                    <p class="tbl-header"><span class="">Results </span></p></td>
+            </tr>
+            <tr valign="top" class="">
+                <td width="48" class="">
+                    <p class="tbl-text1">123/001</p></td>
+                <td width="72" class="">
+                    <p class="tbl-text1">01/01/02</p></td>
+                <td width="60" class="">
+                    <p class="tbl-text1"> </p></td>
+                <td width="60" class="">
+                    <p class="tbl-text1">01/01/02</p></td>
+                <td width="60" class="">
+                    <p class="tbl-text1">05/16/02</p></td>
+                <td width="48" class="">
+                    <p class="tbl-text1">135</p></td>
+                <td width="60" class="">
+                    <p class="tbl-text1">0</p></td>
+                <td width="48" class="">
+                    <p class="tbl-text1">135</p></td>
+                <td width="180" class="">
+                    <p class="tbl-text1">Pay Date 05/16/02 – Interest Calculation Date 01/01/02 = 135 days – 0 Unclean
+                        Days = 135 Clean Days to Pay Interest</p></td>
+            </tr>
+            <tr valign="top" class="">
+                <td width="48" class="">
+                    <p class="tbl-text1">123/002</p></td>
+                <td width="72" class="">
+                    <p class="tbl-text1">01/01/02</p></td>
+                <td width="60" class="">
+                    <p class="tbl-text1">01/01/02</p></td>
+                <td width="60" class="">
+                    <p class="tbl-text1">01/16/02</p></td>
+                <td width="60" class="">
+                    <p class="tbl-text1">05/16/02</p></td>
+                <td width="48" class="">
+                    <p class="tbl-text1">135</p></td>
+                <td width="60" class="">
+                    <p class="tbl-text1">15</p></td>
+                <td width="48" class="">
+                    <p class="tbl-text1">120</p></td>
+                <td width="180" class="">
+                    <p class="tbl-text1">Pay Date 05/16/02 – Interest Calculation Date 01/01/02 = 135 days – 15 Unclean
+                        Days = 120 Clean Days to Pay Interest</p></td>
+            </tr>
+            <tr valign="top" class="">
+                <td width="48" class="">
+                    <p class="tbl-text1">123/003 </p></td>
+                <td width="72" class="">
+                    <p class="tbl-text1">01/01/02</p></td>
+                <td width="60" class="">
+                    <p class="tbl-text1"> </p></td>
+                <td width="60" class="">
+                    <p class="tbl-text1">01/01/02</p></td>
+                <td width="60" class="">
+                    <p class="tbl-text1">05/16/02</p></td>
+                <td width="48" class="">
+                    <p class="tbl-text1">135</p></td>
+                <td width="60" class="">
+                    <p class="tbl-text1">0</p></td>
+                <td width="48" class="">
+                    <p class="tbl-text1">135</p></td>
+                <td width="180" class="">
+                    <p class="tbl-text1">Pay Date 05/16/02 – Interest Calculation Date 01/01/02 = 135 days – 0 Unclean
+                        Days = 135 Clean Days to Pay Interest</p></td>
+            </tr>
+            </tbody>
+        </table>
+        <p class="body-text1"> </p>
+        <p class="doc-level2">Example 2</p>
+        <table cellpadding="1" cellspacing="0" width="636" class="">
+            <tbody class="">
+            <tr valign="top" class="">
+                <td width="48" class="calibre206">
+                    <p class="tbl-header"><span class="">Claim # Line #</span></p></td>
+                <td width="72" class="calibre206">
+                    <p class="tbl-header"><span class="">Calculation Date</span></p></td>
+                <td width="60" class="calibre206">
+                    <p class="tbl-header"><span class="">Unclean Date </span></p></td>
+                <td width="60" class="calibre206">
+                    <p class="tbl-header"><span class="">Clean Date </span></p></td>
+                <td width="60" class="calibre206">
+                    <p class="tbl-header"><span class="">Pay Date</span></p></td>
+                <td width="48" class="calibre206">
+                    <p class="tbl-header"><span class="">Total Days</span></p></td>
+                <td width="60" class="calibre206">
+                    <p class="tbl-header"><span class="">Unclean Days</span></p></td>
+                <td width="48" class="calibre206">
+                    <p class="tbl-header"><span class="">Clean Days </span></p></td>
+                <td width="180" class="calibre206">
+                    <p class="tbl-header"><span class="">Results </span></p></td>
+            </tr>
+            <tr valign="top" class="">
+                <td width="48" class="">
+                    <p class="tbl-text1">654/001</p></td>
+                <td width="72" class="">
+                    <p class="tbl-text1">01/01/02</p></td>
+                <td width="60" class="">
+                    <p class="tbl-text1"> </p></td>
+                <td width="60" class="">
+                    <p class="tbl-text1">01/01/02</p></td>
+                <td width="60" class="">
+                    <p class="tbl-text1">05/16/02</p></td>
+                <td width="48" class="">
+                    <p class="tbl-text1">135</p></td>
+                <td width="60" class="">
+                    <p class="tbl-text1">0</p></td>
+                <td width="48" class="">
+                    <p class="tbl-text1">135</p></td>
+                <td width="180" class="">
+                    <p class="tbl-text1">Pay Date 05/16/02 – Interest Calculation Date 01/01/02 = 135 days – 0 Unclean
+                        Days = 135 Clean Days to Pay Interest</p></td>
+            </tr>
+            <tr valign="top" class="">
+                <td width="48" class="">
+                    <p class="tbl-text1">654/002</p></td>
+                <td width="72" class="">
+                    <p class="tbl-text1">01/01/02</p></td>
+                <td width="60" class="">
+                    <p class="tbl-text1">01/01/02</p>
+                    <p class="tbl-text-noline">01/10/02</p></td>
+                <td width="60" class="">
+                    <p class="tbl-text1">01/06/02</p>
+                    <p class="tbl-text-noline">01/25/02</p></td>
+                <td width="60" class="">
+                    <p class="tbl-text1">05/16/02</p></td>
+                <td width="48" class="">
+                    <p class="tbl-text1">135</p></td>
+                <td width="60" class="">
+                    <p class="tbl-text1">20*</p></td>
+                <td width="48" class="">
+                    <p class="tbl-text1">115</p></td>
+                <td width="180" class="">
+                    <p class="tbl-text1">Pay Date 05/16/02 – Interest Calculation Date 01/01/02 = 135 days – 20 Unclean
+                        Days = 115 Clean Days to Pay Interest </p></td>
+            </tr>
+            <tr valign="top" class="">
+                <td width="48" class="">
+                    <p class="tbl-text1">654/003 </p></td>
+                <td width="72" class="">
+                    <p class="tbl-text1">01/01/02</p></td>
+                <td width="60" class="">
+                    <p class="tbl-text1"> </p></td>
+                <td width="60" class="">
+                    <p class="tbl-text1">01/01/02</p></td>
+                <td width="60" class="">
+                    <p class="tbl-text1">05/15/02</p></td>
+                <td width="48" class="">
+                    <p class="tbl-text1">135</p></td>
+                <td width="60" class="">
+                    <p class="tbl-text1">0</p></td>
+                <td width="48" class="">
+                    <p class="tbl-text1">135</p></td>
+                <td width="180" class="">
+                    <p class="tbl-text1">Pay Date 05/16/02 – Interest Calculation Date 01/01/02 = 135 days – 0 Unclean
+                        Days = 135 Clean Days to Pay Interest</p></td>
+            </tr>
+            <tr valign="top" class="">
+                <td colspan="9" width="636" class="">
+                    <p class="tbl-text-noline"><span class="calibre207">* Unclean days calculated as:  the Total of (Unclean from 1/1/2002 to 1/06/2002 = 5 days) plus (Unclean from 1/10/2002 to 1/25/2002 = 15 days) for a Total of 20 days unclean.   </span>
+                    </p></td>
+            </tr>
+            </tbody>
+        </table>
+        <p class="body-text1"> </p>
+        <p class="doc-level2">Example 3</p>
+        <table cellpadding="1" cellspacing="0" width="636" class="">
+            <tbody class="">
+            <tr valign="top" class="">
+                <td width="48" class="calibre206">
+                    <p class="tbl-header"><span class="">Claim # Line #</span></p></td>
+                <td width="72" class="calibre206">
+                    <p class="tbl-header"><span class="">Calculation Date</span></p></td>
+                <td width="60" class="calibre206">
+                    <p class="tbl-header"><span class="">Unclean Date </span></p></td>
+                <td width="60" class="calibre206">
+                    <p class="tbl-header"><span class="">Clean Date </span></p></td>
+                <td width="60" class="calibre206">
+                    <p class="tbl-header"><span class="">Pay Date</span></p></td>
+                <td width="48" class="calibre206">
+                    <p class="tbl-header"><span class="">Total Days</span></p></td>
+                <td width="60" class="calibre206">
+                    <p class="tbl-header"><span class="">Unclean Days</span></p></td>
+                <td width="48" class="calibre206">
+                    <p class="tbl-header"><span class="">Clean Days </span></p></td>
+                <td width="180" class="calibre206">
+                    <p class="tbl-header"><span class="">Results </span></p></td>
+            </tr>
+            <tr valign="top" class="">
+                <td width="48" class="">
+                    <p class="tbl-text1">678/001</p></td>
+                <td width="72" class="">
+                    <p class="tbl-text1">01/01/02</p></td>
+                <td width="60" class="">
+                    <p class="tbl-text1">01/15/02</p></td>
+                <td width="60" class="">
+                    <p class="tbl-text1">02/15/02</p></td>
+                <td width="60" class="">
+                    <p class="tbl-text1">04/01/02</p></td>
+                <td width="48" class="">
+                    <p class="tbl-text1">90</p></td>
+                <td width="60" class="">
+                    <p class="tbl-text1">31</p></td>
+                <td width="48" class="">
+                    <p class="tbl-text1">59</p></td>
+                <td width="180" class="">
+                    <p class="tbl-text1">Pay Date 04/01/02 – Interest Calculation Date 01/01/02 = 90 days – 31 Unclean
+                        Days = 59 Clean Days to Pay Interest </p></td>
+            </tr>
+            <tr valign="top" class="">
+                <td width="48" class="">
+                    <p class="tbl-text1">678/002</p></td>
+                <td width="72" class="">
+                    <p class="tbl-text1">01/01/02</p></td>
+                <td width="60" class="">
+                    <p class="tbl-text1">02/01/02</p></td>
+                <td width="60" class="">
+                    <p class="tbl-text1">02/25/02</p></td>
+                <td width="60" class="">
+                    <p class="tbl-text1">04/01/02</p></td>
+                <td width="48" class="">
+                    <p class="tbl-text1">90</p></td>
+                <td width="60" class="">
+                    <p class="tbl-text1">24</p></td>
+                <td width="48" class="">
+                    <p class="tbl-text1">66</p></td>
+                <td width="180" class="">
+                    <p class="tbl-text1">Pay Date 04/01/02 less Interest Calculation Date 01/01/02 = 90 days – 24
+                        Unclean Days = 66 Clean Days to Pay Interest </p></td>
+            </tr>
+            <tr valign="top" class="">
+                <td width="48" class="">
+                    <p class="tbl-text1">678/003</p></td>
+                <td width="72" class="">
+                    <p class="tbl-text1">01/01/02</p></td>
+                <td width="60" class="">
+                    <p class="tbl-text1"> </p></td>
+                <td width="60" class="">
+                    <p class="tbl-text1"> </p></td>
+                <td width="60" class="">
+                    <p class="tbl-text1">04/01/02</p></td>
+                <td width="48" class="">
+                    <p class="tbl-text1">90</p></td>
+                <td width="60" class="">
+                    <p class="tbl-text1">0</p></td>
+                <td width="48" class="">
+                    <p class="tbl-text1">90</p></td>
+                <td width="180" class="">
+                    <p class="tbl-text1">Pay Date 04/01/02 less Interest Calculation Date 01/01/02 = 90 days – 0 Unclean
+                        Days = 90 Clean Days to Pay Interest</p></td>
+            </tr>
+            <tr valign="top" class="">
+                <td width="48" class="">
+                    <p class="tbl-text1">678/004</p></td>
+                <td width="72" class="">
+                    <p class="tbl-text1">01/01/02</p></td>
+                <td width="60" class="">
+                    <p class="tbl-text1">03/01/02</p></td>
+                <td width="60" class="">
+                    <p class="tbl-text1">03/10/02</p></td>
+                <td width="60" class="">
+                    <p class="tbl-text1">04/01/02</p></td>
+                <td width="48" class="">
+                    <p class="tbl-text1">90</p></td>
+                <td width="60" class="">
+                    <p class="tbl-text1">9</p></td>
+                <td width="48" class="">
+                    <p class="tbl-text1">81</p></td>
+                <td width="180" class="">
+                    <p class="tbl-text1">Pay Date 4/01/02 – Interest Calculation Date 01/01/02 = 90 days – 9 Unclean
+                        Days = 81 Clean Days to Pay Interest </p></td>
+            </tr>
+            </tbody>
+        </table>
+        <p class="body-text"><a href="Claims_Discount_and_Interest_Calculations_How_DIAMOND_Thinks.htm">Claims Discount
+            and Interest Calculations, How DIAMOND Thinks</a></p>
+
+
+    </div>
+
+
+    <div class="calibreEbNav">
+
+        <a href="Conditional_Interest_Determination_Method_Examples.htm" class="calibreAPrev">previous page
+        </a>
+
+
+        <a href="../bj5if-qozss.html" class="calibreAHome">start
+        </a>
+
+
+        <a href="Total_Days_Interest_Determination_Method_Examples.htm" class="calibreANext">next page
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+</html>

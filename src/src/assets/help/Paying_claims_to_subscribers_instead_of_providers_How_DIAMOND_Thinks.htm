@@ -1,0 +1,109 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+    <!-- $MVD$:fontset("Courier New","Courier New") -->
+    <title>Paying claims to subscribers instead of providers, How DIAMOND Thinks</title>
+    <meta content="RoboHelp by eHelp Corporation www.ehelp.com" name="generator"/>
+    <meta name="copyright"
+          value="© Copyright 2002 Health Systems Design Corp., a wholly owned subsidiary of Perot Systems Corporation. All rights reserved"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+
+</head>
+<body>
+
+<div class="calibreMeta">
+    <div class="calibreMetaTitle">
+
+
+        <h1>
+            <a href="../bj5if-qozss.html">DIAMOND 950 Help
+            </a>
+        </h1>
+
+
+    </div>
+    <div class="calibreMetaAuthor">
+        Unknown
+
+    </div>
+</div>
+
+<div class="calibreMain">
+
+    <div class="calibreEbookContent">
+
+        <div class="calibreEbNavTop">
+
+            <a href="Paying_claims_to_dependents_instead_of_providers_or_subscribers_How_DIAMOND_Thinks.htm"
+               class="calibreAPrev">previous page
+            </a>
+
+
+            <a href="Reduce_or_increase_the_allowed_amount_of_a_claim_line_item_by_a_percentage.htm"
+               class="calibreANext">next page
+            </a>
+
+        </div>
+
+
+        <h4 class="calibre1">Paying claims to subscribers instead of providers, How DIAMOND Thinks</h4>
+        <p class="body-text3">You can pay a claim to the subscriber instead of the provider. <span class="calibre156">DIAMOND</span>
+            will then use the subscriber’s name and address when creating the A/P record and payment check. </p>
+        <p class="body-text">When you select to pay the subscriber, the <span class="calibre5">Pay Sub</span> box will
+            be set to <span class="calibre5">Y</span> on the claim header window. When you save the claim, DIAMOND does
+            the following:</p>
+        <ul class="calibre2">
+            <li class="calibre168">
+                <p class="bullet-list-h1">Prices the claim according to the original provider selected on the claim.</p>
+            </li>
+            <li class="calibre168">
+                <p class="bullet-list-h1">Adds a vendor record in keyword VENDR (Vendor Master) with the subscriber’s
+                    name from keyword MEMBR (Member Master). The Vendor ID is prefixed with an "S." Any future payments
+                    to this subscriber or this subscriber’s dependents will be based on the information for this vendor
+                    record.</p></li>
+            <li class="calibre168">
+                <p class="bullet-list-h1">Adds a vendor address record in keyword VENDA (Vendor Address) with the
+                    subscriber’s address from keyword MEMBR (Member Master). If you later change the subscriber’s
+                    address in keyword MEMBR, then the subscriber’s vendor address record in keyword VENDA will
+                    automatically change.</p></li>
+        </ul>
+        <p class="body-text"><span class="calibre156">DIAMOND</span> uses the subscriber’s name and address when adding
+            the A/P record in keyword ACPAY (Accounts Payable) and payment check in keyword CKPRT (Check Print Setup).
+            DIAMOND changes the <span class="calibre5">RA/EOB Print Flag</span> list to <span class="calibre5">1 – Paper EOB and No RA</span>
+            on the A/P record in keyword ACPAY.</p>
+        <p class="body-text">If you change information on the claim by using the <span
+                class="calibre5">Change Header</span> command on the <span class="calibre5">Special</span> menu, then
+            the <span class="calibre5">Pay Sub</span> box will be set to <span class="calibre5">N</span>. To pay the
+            claim to the subscriber, again you must select the <span class="calibre5">Pay Subscriber</span> command on
+            the <span class="calibre5">Special</span> menu.</p>
+        <p class="body-text">For more information, see <a
+                href="Paying_a_claim_to_the_subscriber_instead_of_the_provider.htm">Paying a claim to the subscriber
+            instead of the provider</a>.</p>
+
+
+    </div>
+
+
+    <div class="calibreEbNav">
+
+        <a href="Paying_claims_to_dependents_instead_of_providers_or_subscribers_How_DIAMOND_Thinks.htm"
+           class="calibreAPrev">previous page
+        </a>
+
+
+        <a href="../bj5if-qozss.html" class="calibreAHome">start
+        </a>
+
+
+        <a href="Reduce_or_increase_the_allowed_amount_of_a_claim_line_item_by_a_percentage.htm" class="calibreANext">next
+            page
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+</html>

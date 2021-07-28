@@ -1,0 +1,553 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+    <title>Institutional Claims Processing, How DIAMOND Thinks</title>
+    <!--(Meta)==========================================================-->
+    <meta name="copyright"
+          value="© Copyright 2002 Health Systems Design Corp., a wholly owned subsidiary of Perot Systems Corporation. All rights reserved"/>
+    <meta content="About.htt" name="template"/>
+    <meta content="RoboHELP by eHelp Corporation - www.ehelp.com" name="generator"/>
+    <meta content="0.1" name="generator-major-version"/>
+    <meta content="1" name="generator-minor-version"/>
+    <meta content="kadov" name="filetype"/>
+    <meta content="1" name="filetype-version"/>
+    <meta content="1" name="page-count"/>
+    <meta content="3906" name="layout-height"/>
+    <meta content="902" name="layout-width"/>
+    <!--(Links)=========================================================-->
+    <!--(Scripts)=======================================================-->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+</head>
+<body>
+
+<div class="calibreMeta">
+    <div class="calibreMetaTitle">
+
+
+        <h1>
+            <a href="../bj5if-qozss.html">DIAMOND 950 Help
+            </a>
+        </h1>
+
+
+    </div>
+    <div class="calibreMetaAuthor">
+        Unknown
+
+    </div>
+</div>
+
+<div class="calibreMain">
+
+    <div class="calibreEbookContent">
+
+        <div class="calibreEbNavTop">
+
+            <a href="View_a_claim.htm" class="calibreAPrev">previous page
+            </a>
+
+
+            <a href="Paying_claims_to_dependents_instead_of_providers_or_subscribers_How_DIAMOND_Thinks.htm"
+               class="calibreANext">next page
+            </a>
+
+        </div>
+
+
+        <h1 class="calibre1">Institutional Claims Processing, How DIAMOND Thinks</h1>
+
+        <p class="text">This topic provides processing logic information about:</p>
+
+        <p class="text"><a href="#INCLM_Setting_Up_a_Claims_Batch_SUP">Setting up
+            a Claims Batch</a></p>
+
+        <p class="text"><a href="#INCLM_Screen_Flow_Notes_SUP">INCLM Screen Flow
+            Notes</a></p>
+
+        <p class="text"><a href="#INCLM_Determining_Claim_Eligibility_MID">Determining
+            Claim Eligibility</a></p>
+
+        <p class="text"><a href="#INCLM_Checking_for_Duplicate_Claims_MID">Checking
+            for Duplicate Claims</a></p>
+
+        <p class="text"><a href="#INCLM_About_Pricing_MID">About Pricing</a></p>
+
+        <p class="text"><a href="#INCLM_About_Adjudication_MID">About Adjudication</a></p>
+
+        <p class="text"><a href="#InstClaims_Discount_and_Interest_Calculations_MID">Discount
+            and Interest Calculations</a></p>
+
+        <p class="text"><a href="#INCLM_Authorization_Matching_SUP">Auth Matching</a></p>
+
+        <p class="text"><a href="#INCLM_Deleting_Claim_Headers_and_Detail_Line_Items_MID">Deleting
+            Claim Headers and Detail Line Items </a></p>
+
+        <p class="text"><a href="#Changing_Claim_Header_Information">Changing Claim
+            Header Information</a></p>
+
+        <h2 class="calibre3"><a name="INCLM_Setting_Up_a_Claims_Batch_SUP"></a>Setting Up a Claims
+            Batch</h2>
+
+        <p class="text">When you first display keyword INCLM, the Claims Batch Initiation
+            dialog box displays. It allows you to type a default claim batch number
+            and received date to use as long as you remain in keyword INCLM. Both
+            fields are optional. If you do not enter default values, then during claims
+            entry, the Batch Number box will be blank and the Date Received box will
+            display the current (system) date. If necessary, you can type over the
+            displayed batch number and received date. You also can change the defaults
+            at any time from the Institutional Claims header window using the Change
+            Default Batch command on the Special menu.</p>
+
+        <p class="text"><a href="Institutional_Claims_Processing_How_DIAMOND_Thinks.htm">Top</a></p>
+
+        <h2 class="calibre3"><a name="INCLM_Screen_Flow_Notes_SUP"></a>INCLM Screen Flow Notes</h2>
+
+        <h3 class="calibre4">Header/Detail/UB92 order:</h3>
+
+        <p class="text">After you finished entering information in the Institutional
+            Claims header window, either the UB92 window or the Institutional Claims
+            detail window displays. It depends on the INCLM Order selection on the
+            line of business for the claim. See LINBS and INCLM Order User Documentation
+            for additional information.</p>
+
+        <p class="text">If DIAMOND does not find a line of business for the claim,
+            then the UB92 or claim detail display order is determined by the INCLMUB92
+            parameter. See PARAM, INCLMUB92 User Documentation for additional information.</p>
+
+        <p class="text">If the UB92 window is displayed next, then DIAMOND returns
+            you to the claim detail window after you enter the UB92 data. If the claim
+            detail window is displayed next, then you must use the UB92 command on
+            the Topic menu.</p>
+
+        <h3 class="calibre4">Saving a detail line item</h3>
+
+        <p class="text">When you save a claim detail line item, DIAMOND compares
+            the Adj Method on the claim detail line to the member’s associated group
+            price/adjudication requirement. If the member’s group pricing is set to
+            adjudicate (in keyword GRUPD, the Group Req list is set to A – Adjud),
+            then you must adjudicate the line item before you save it.</p>
+
+        <p class="text">For more information, see <a href="Members.chm::/GRUPD_Group_Detail.htm">GRUPD,
+            Group Detail</a>. </p>
+
+        <p class="text"><a href="Institutional_Claims_Processing_How_DIAMOND_Thinks.htm">Top</a></p>
+
+        <h2 class="calibre3"><a name="INCLM_Determining_Claim_Eligibility_MID"></a>Determining Claim
+            Eligibility</h2>
+
+        <h3 class="calibre4">How DIAMOND determines claim eligibility</h3>
+
+        <p class="text">First, DIAMOND uses the admission date (Adm Date box) on
+            the Institutional Claims Header window to determine eligibility. However,
+            if a discharge date (Disch Date box) is entered, then DIAMOND verifies
+            the member’s eligibility based on the admission date and the discharge
+            date. A warning displays if the member is ineligible or if the member’s
+            eligibility expired before the discharge date.</p>
+
+        <p class="text">If DIAMOND determines the claim is eligible, then it next
+            performs checks for Coordination of Benefits (COB), student dependent
+            status, and pre-existing conditions. <span class="calibre156">DIAMOND</span>
+            displays a warning message if exceptions to eligibility are found. </p>
+
+        <p class="text">Also, during adjudication DIAMOND validates that the date
+            of service (Date box) falls within the date range of one of the member’s
+            eligibility periods. If it does not, then the line item is denied. DIAMOND
+            sets the Claim Status list to D - Denied, sets the Allowed Amt and Total
+            Not Cov boxes to $0.00, and assigns the Reason code associated with reason
+            code type ME as the Not Cov Rsn code. Reason code type ME (only one is
+            allowed) must exist in keyword REASN.</p>
+
+        <h3 class="calibre4">What happens when a claim is ineligible</h3>
+
+        <p class="text">If the member is ineligible, the claim date of service is
+            outside of their eligibility period, then the claim is denied. If the
+            eligibility status on the member record is invalid because it does not
+            match the valid codes stored in the ELIGSTAT parameter, then the claim
+            is held</p>
+
+        <p class="text">There are additional methods that can automatically hold
+            a claim. For more information, see <a href="Claim_Holds_How_DIAMOND_Thinks_HDT.htm">Claim
+                Holds, How DIAMOND Thinks</a>. </p>
+
+        <p class="text">You can manually price, adjudicate, or expense an institutional
+            claim when a member is outside an eligibility period. However, because
+            there is no group/plan information on the claim header DIAMOND cannot
+            validate the Group Req. indicator to set the appropriate flag on the Pre_Price_Only
+            column, the claim detail line items will not be finalized.</p>
+
+        <h3 class="calibre4">Eligibility changes after a claim is processed</h3>
+
+        <p class="text">DIAMOND takes a "snapshot" of the member’s benefit
+            package/plan/rule(s) to be used during the claim adjudication process
+            as soon as the member identification is displayed. If the associated benefit
+            package/plan/rules (BENEF, BRULE) are changed after the benefits snapshot,
+            then the benefit changes are not immediately updated on the still open
+            claim header window and DIAMOND uses the benefit snapshot (old benefit
+            data) if the claim is adjudicated during the session. However, the updated
+            benefit data will display when you exit and then re-open the claim. If
+            the claim was adjudicated using old benefits (snapshot) data, then on
+            the Special menu, point to Pricing and Adjudication, and then click Adjudicate
+            Claim to re-adjudicate the claim to include the updated (changed) benefit
+            data.</p>
+
+        <p class="text"><a href="Institutional_Claims_Processing_How_DIAMOND_Thinks.htm">Top</a></p>
+
+        <h2 class="calibre3"><a name="INCLM_Checking_for_Duplicate_Claims_MID"></a>Checking for Duplicate
+            Claims</h2>
+
+        <p class="text">Each time a claim is entered, DIAMOND automatically checks
+            for duplicate claims based on the duplicate checking criteria set up for
+            the line of business associated with the claim. See Line of Business (LINBS)
+            Claim Duplicate Rule field definition and Claim Duplicate Check Rules
+            (DUPRL) User Documentation for additional information.</p>
+
+        <p class="text"><a href="Institutional_Claims_Processing_How_DIAMOND_Thinks.htm">Top</a></p>
+
+        <h2 class="calibre3"><a name="INCLM_About_Pricing_MID"></a>About Pricing </h2>
+
+        <p class="text">Each claim detail line item can be priced (allowed amount
+            calculation only) or fully adjudicated. The Group Req list in keyword
+            GRUPD (Group Detail) controls whether claims for a group are priced or
+            fully adjudicated.</p>
+
+        <p class="text">Automatic pricing of claim detail lines can be based on fee
+            schedules, percentages of billed charges, conversion factors, per-diems,
+            diagnostic-related groups, or a combination of methods. Automatic pricing
+            can be driven by the group contract, the provider contract, a specific
+            procedure code, or a combination of these factors.</p>
+
+        <p class="text">You can also manually price a claim detail line by overriding
+            the calculated Allowed Amount for either a new claim detail line or any
+            existing unfinalized detail line. For more information, see <a
+                    href="Pricing.chm::/Manually_Pricing_a_Claim_Detail_Line.htm">Manually
+                Pricing a Claim Detail Line</a>.</p>
+
+        <h3 class="calibre4">Diagnosis-Related Grouping (DRG) codes</h3>
+
+        <p class="text">If your organization is using external DRG grouping software,
+            then you can leave the DRG field on the claim header blank. When you move
+            to the Institutional Claims detail window, the external grouping software
+            will return a DRG code to this field. (This field is also displayed on
+            the claim detail window.) You can type over the displayed DRG code or
+            you can enter/correct DRG related data on the claim header and re-group
+            by selecting the DRG command on the Special menu. For more information,
+            see keyword <a href="Pricing.chm::/DRGCD_DRG_Codes.htm">DRGGP (DRG Grouper/Pricer
+                Maintenance)</a>.</p>
+
+        <h3 class="calibre4">Alternate (or ‘target’) revenue and CPT4/HCPCS codes</h3>
+
+        <p class="text">There are instances in institutional claims in which a revenue
+            code is associated with a CPT code, and both must be entered on a claim
+            detail line item if the line is to be priced accurately. In the detail
+            procedure code record, keyword PROCD, if the Price Indicator check box
+            is selected, then a claim uses an alternate Procedure code to price a
+            claim detail line item instead of the revenue code. The Procedure Determinant
+            (on the Special menu in keyword PROCD) stores CPT4/HCPCS codes that are
+            valid alternates for each revenue code. </p>
+
+        <p class="text">If you want INCLM to edit the entry of alternate codes to
+            make sure they are valid for the entered revenue code, you must turn this
+            feature ‘on’ in LINBS with an entry in the Target Rev Code Edit field.
+            If the CPT4/HCPCS code entered is not valid for the entered revenue code,
+            the Action and Reason fields on LINBS are invoked. </p>
+
+        <p class="text">If the PROCD &gt; Price on Alt Proc Cde check box has been
+            selected for the procedure code you enter in the INCLM, Claim Detail &gt;
+            Alt Proc field, DIAMOND prices the claim detail line based on the alternate
+            procedure (Alt Proc) entered rather than the procedure code (Proc) entered.
+            See PROCD, Price on Alt Proc Cde User Documentation for additional information.</p>
+
+        <p class="text">See Procedure Code (PROCD) documentation for additional information
+            on how to create targeted revenue codes and their associated alternate
+            procedure codes (PROCD &gt; Target Revenue Code; PROCD &gt; Price on Alt
+            Proc Cde; PROCD, Special menu &gt; Valid Alternate Procedure Codes).</p>
+
+        <p class="text"><a href="Institutional_Claims_Processing_How_DIAMOND_Thinks.htm">Top</a></p>
+
+        <h2 class="calibre3"><a name="INCLM_About_Adjudication_MID"></a>About Adjudication</h2>
+
+        <p class="text">Adjudication is the process in which benefit rules, determined
+            by a member’s benefit package, are applied to the claim detail line. This
+            results in the calculation of deductibles, not-covered amounts, co-payments,
+            coinsurance, and exclusions which may reduce the amount paid to the provider.
+            When a claim is adjudicated, each claim detail line is both priced (an
+            allowed amount is calculated) and adjudicated (benefit rules are applied).
+            See Benefit Package (BENEF), Benefit Rule (BRULE), and Group Detail (GRUPD)
+            User Documentation for additional information.</p>
+
+        <p class="text">As part of the adjudication process, DIAMOND includes Coordination
+            of Benefits (COB) processing when applicable. See Coordination of Benefits
+            Overview and related topics for more information on COB.</p>
+
+        <h3 class="calibre4">Calculating the Net Amount</h3>
+
+        <p class="text">DIAMOND calculates the claim detail line Net Amount differently
+            depending on whether the line is automatically or manually adjudicated,
+            and whether a COB calculation method applies.</p>
+
+        <ol class="calibre20">
+
+            <li class="kadov-p-cstep"><p class="step1">When DIAMOND automatically adjudicates
+                a claim line and no COB<span class="calibre5"> </span>applies:</p></li>
+        </ol>
+
+        <p class="stepcont">Net Amount = Allowed Amt - Total Not Cov - Total Copay
+            - Total Coins - Total Deduct - Pt Liability amounts for Benefit Rule type
+            99 (Other) - Withhold Amt</p>
+
+        <p class="stepcont">In some cases, the sum total of the Withhold Amt and
+            the patient liabilities (including not covered amounts) may be greater
+            than the Allowed Amt. In these situations, rather than placing a negative
+            dollar amount in the Net Amount field, DIAMOND sets the Net Amount field
+            to 0 and stores the overage figure in the Withhold Surplus field.</p>
+
+        <p class="stepcont">The Total Co-ins amount is the sum of all calculated
+            coinsurance amounts. DIAMOND calculates each coinsurance amount as the
+            benefit rule coinsurance percentage (BRULE Coinsure %) times the claim
+            detail line allowed amount net of any other benefit rules applied before
+            the current coinsurance rule. (You set the processing order for benefit
+            rules in each benefit package.) That is, DIAMOND calculates coinsurance
+            on a decreasing total based on the application of any prior ordered benefit
+            rules.</p>
+
+        <p class="stepcont">Example:</p>
+
+        <p class="stepcont">Allowed Amount = 200.00</p>
+
+        <p class="stepcont">Benefit Rules in processing order: </p>
+
+        <p class="stepcont">1. Copay = 10.00</p>
+
+        <p class="stepcont">2. Deductible = 50.00</p>
+
+        <p class="stepcont">3. Coinsurance1 = 20%</p>
+
+        <p class="stepcont">4. Coinsurance2 = 10%</p>
+
+        <p class="stepcont">Coinsurance1 and Coinsurance2 amounts are calculated
+            as follows:</p>
+
+        <p class="stepcont">200.00 (Allowed Amount) - 10.00 (Copay) = 190.00</p>
+
+        <p class="stepcont">190.00 - 50.00 (Deductible) = 140.00</p>
+
+        <p class="stepcont">140.00 x 20% (Coinsurance1) = 28.00</p>
+
+        <p class="stepcont">140.00 - 28.00 = 112.00</p>
+
+        <p class="stepcont">112.00 x 10% (Coinsurance2) = 11.20</p>
+
+        <p class="stepcont">112.00 - 11.20 = 100.80</p>
+
+        <ol start="2" class="calibre21">
+
+            <li class="kadov-p-cstep"><p class="step1">When DIAMOND automatically adjudicates
+                a claim line and a<span class="calibre5"> </span>COB calculation
+                method applies:</p></li>
+        </ol>
+
+        <p class="stepcont">DIAMOND performs the specific calculation logic of that
+            particular COB calculation method. See <a
+                    href="Members.chm::/Coordination_of_Benefits_How_DIAMOND_Thinks.htm">Coordination
+                of Benefits – How DIAMOND Thinks</a> for details and examples of COB calculation
+            methods.</p>
+
+        <p class="stepcont"><span class="calibre5">Note:</span> <!--kadov_tag{{<spaces>}}--> 
+            <!--kadov_tag{{</spaces>}}--> For
+            a COB claim that is automatically adjudicated, if the provider on the
+            claim has a contract that includes a provider withhold amount, DIAMOND
+            does not include this amount in COB and Net Amount calculations. DIAMOND
+            does still display the Provider withhold amount on the claim line.</p>
+
+        <ol start="3" class="calibre21">
+
+            <li class="kadov-p-cstep"><p class="step1">When you manually adjudicate
+                a claim line (that is, after automatic adjudication you manually enter
+                or change a total Not Cov, Total Copay, total Co-ins Total Deduct amount
+                or Withhold amount), whether or not a COB calculation method applies<span class="calibre5">:</span></p>
+            </li>
+        </ol>
+
+        <p class="stepcont">Net Amount = Allowed Amt or OC Allowed (per COB rules)
+            - Total Not Cov - Total Copay - - Total Coins - Total Deduct - OC Paid
+            Amt - Pt Liability amounts for Benefit Rule type 99 (Other) - Withhold
+            Amt</p>
+
+        <p class="stepcont">In some cases, the sum total of the Withhold Amt and
+            the patient liabilities (including not covered amounts) may be greater
+            than the Allowed Amt. In these situations, rather than placing a negative
+            dollar amount in the Net Amount field, DIAMOND sets the Net Amount field
+            to 0 and stores the overage figure in the Withhold Surplus field.</p>
+
+        <h3 class="calibre4">Changing or adjusting automated benefit calculations</h3>
+
+        <p class="text">The results of automated adjudication can be changed by changing
+            the entries in the not covered, copayment, coinsurance, deductible, and
+            reason code fields. However, when more than one exclusion (not covered),
+            copay, coinsurance, or deductible benefit rule has been applied to a claim
+            detail line, the corresponding Total Not Cov, Total Copay, Total Co-ins,
+            and/or Total Deduct fields are protected from entry (grayed), as are the
+            corresponding reason code fields (which are filled with asterisks). </p>
+
+        <p class="text">You must use the Patient Liabilities window to view/change
+            multiple underlying Copay, Coinsurance, Limits (Not Covered), Deductible,
+            and/or Exclusions benefit rules/amounts that constitute the total amounts
+            displayed in the Total Not Cov, Total Copay, Total Co-ins, and/or Total
+            Deduct fields on the INCLM, Claim Detail window. You must also use the
+            Patient Liabilities window to add an "Other Amount." </p>
+
+        <p class="text">The Patient Liabilities window has four focus boxes. The
+            first focus box displays claim header member/provider information as displayed
+            on the claim header window. The second focus box is a scrollable picklist
+            of claim detail lines. The third focus box is a picklist of benefit rule
+            data for each benefit rule that has been applied to the claim detail line
+            highlighted in the second focus box. The fourth focus box is a data entry/display
+            area of Rule Type, Amount, Benefit Rule (ID) and Reason Code data for
+            the benefit rule highlighted in the third focus box.</p>
+
+        <p class="text">Only detail records that have not been finalized, but have
+            been adjudicated by DIAMOND, are available to change. To make changes
+            enter a new Amount and if necessary a new Reason Code. </p>
+
+        <p class="text">If you are changing an automatically determined reason code,
+            be aware that your change will not be validated. In addition, accumulations
+            under the member’s benefit plan might not be affected by the change, since
+            they are added together based on reason codes.</p>
+
+        <p class="text">DIAMOND changes the BRULE ID here to a default value, SYSTEM,
+            and the Adj Method second character to "M" (adjudicated manually)
+            when you change or add a member liabilities record using this window.</p>
+
+        <h3 class="calibre4">Adding Patient Liabilities Records</h3>
+
+        <p class="text">Patient Liabilities added using this function (rather than
+            automatically by DIAMOND) are not added to the member’s accumulated benefits
+            history.</p>
+
+        <p class="text">Press CTRL+N to add a member liabilities record in addition
+            to the DIAMOND adjudicated member liabilities records, and the following
+            fields are available for entry.</p>
+
+        <ul class="calibre2">
+
+            <li class="kadov-p-cbullet"><p class="bullet">Amount</p></li>
+
+            <li class="kadov-p-cbullet"><p class="bullet">Rule Type Important<span class="calibre157">:</span> You may
+                use Rule Type 99 (Other)
+                for patient liabilities that do not fit within the other rule type categories.
+                Rule Type 99 is a valid rule type only for the Patient Liabilities window.
+                This rule type cannot be entered on the Benefit Package Maintenance (BENEF)
+                window. Rule Type 99 amounts from these records are not included in the
+                Total Not Cov, Total Copay, Total Co-ins, or Total Deduct fields displayed
+                on the claims detail window; however, these amounts are included in the
+                Net Amt displayed on the claim detail window.</p></li>
+
+            <li class="kadov-p-cbullet"><p class="bullet">Reason Code</p></li>
+        </ul>
+
+        <p class="text"><a href="Institutional_Claims_Processing_How_DIAMOND_Thinks.htm">Top</a></p>
+
+        <h2 class="calibre3"><a name="InstClaims_Discount_and_Interest_Calculations_MID"></a>Discount
+            and Interest Calculations</h2>
+
+        <p class="text">Discount or interest calculations can be automatically applied
+            against payable claims and reversed payable claim lines. Interest calculations
+            can take into account any unclean days tracked on a claim. A claim may
+            be considered unclean if it requires additional substantiating documentation
+            from a source outside of your organization and if the missing information
+            prevents you from paying the claim timely. </p>
+
+        <p class="text">You can manually apply a discount or interest amount on an
+            adjusted claim line. </p>
+
+        <p class="text">For a complete explanation of discount and interest calculations,
+            see <a href="Claims_Discount_and_Interest_Calculations_How_DIAMOND_Thinks.htm">Claims
+                Discount and Interest Calculations, How DIAMOND Thinks.</a></p>
+
+        <p class="text"><a href="Institutional_Claims_Processing_How_DIAMOND_Thinks.htm">Top</a></p>
+
+        <h2 class="calibre3"><a name="INCLM_Authorization_Matching_SUP"></a>Authorization Matching</h2>
+
+        <p class="text">During claims processing, DIAMOND either displays all the
+            authorizations for a member, or only those that ‘match’ the claim, depending
+            on how certain rules and parameters are set. You also have a choice of
+            using data from a selected authorization to populate certain fields on
+            the header rather than entering them directly from the claim. </p>
+
+        <h3 class="calibre4">Displaying only authorizations that match the claim</h3>
+
+        <p class="text">If you leave the Auth No. field blank on a new claim and
+            the member’s associated LINBS &gt; Auth/Claim Match check box is selected,
+            DIAMOND performs authorization/claims matching and displays any "matching"
+            authorizations when you move from the claim header window to the claim
+            detail window (see Authorization-Claim Links User Documentation for additional
+            information). DIAMOND only performs the authorization/claim matching automatically
+            the first time you move from the claim header to the claim detail. Subsequently
+            (e.g., if you make changes to the claim header and save the header), if
+            you want to perform authorization/claims matching you must use Special
+            menu command Authorization Match/Waive - options Reapply Match or Reapply
+            Match_Waive.</p>
+
+        <p class="text">If the LINBS Auth/Claim Match check box is cleared, then
+            DIAMOND displays all of the authorizations for the member, and the user
+            selects the correct authorization from this complete list.</p>
+
+        <p class="text"><a href="Institutional_Claims_Processing_How_DIAMOND_Thinks.htm">Top</a></p>
+
+        <h2 class="calibre3"><a name="INCLM_Deleting_Claim_Headers_and_Detail_Line_Items_MID"></a>Deleting
+            Claim Headers and Detail Line Items</h2>
+
+        <p class="text">You can delete both claim detail line items and claim header
+            records. However, you cannot delete a claim header if it includes any
+            detail line items. To delete a claim header that includes detail line
+            items, first delete the line items.</p>
+
+        <p class="text">You cannot allow a user to delete claim detail line items
+            but not claim header records. You can allow a user to delete both claim
+            header and detail line items, or allow the user to delete neither header
+            nor detail records. </p>
+
+        <p class="text">Learn how to <a href="Delete_a_claim_detail_line_item.htm">delete
+            a claim header or detail line item</a>.</p>
+
+        <p class="text"><a href="Institutional_Claims_Processing_How_DIAMOND_Thinks.htm">Top</a></p>
+
+        <h2 class="calibre3"><a name="Changing_Claim_Header_Information"></a>Changing Claim Header
+            Information</h2>
+
+        <p class="text">You can use the Change Claim Header menu function that is
+            available from the INCLM Header screen to change fields for claims that
+            have not yet been finalized. For a complete list of values you can change
+            and an explanation of processing logic, see <a href="Change_Header_Menu_Function_-_Overview.htm">Change
+                Claim Header Menu Function - Overview</a>.</p>
+
+        <p class="text"><a href="Institutional_Claims_Processing_How_DIAMOND_Thinks.htm">Top</a></p>
+
+        <p class="text"> </p>
+
+
+    </div>
+
+
+    <div class="calibreEbNav">
+
+        <a href="View_a_claim.htm" class="calibreAPrev">previous page
+        </a>
+
+
+        <a href="../bj5if-qozss.html" class="calibreAHome">start
+        </a>
+
+
+        <a href="Paying_claims_to_dependents_instead_of_providers_or_subscribers_How_DIAMOND_Thinks.htm"
+           class="calibreANext">next page
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+</html>

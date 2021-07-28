@@ -1,0 +1,40 @@
+/* Copyright (c) 2020 . All Rights Reserved. */
+
+import { browser, element, by } from 'protractor';
+describe('Group Contract Page', function() {
+
+    let groupIdTextbox = element(by.css("input[formControlName=groupId]"))
+    let effectivityDateTextbox = element(by.css("input[formControlName=effectivityDate]"))
+    let termDateTextbox = element(by.css("input[formControlName=termDate]"))
+    let termReasonTextbox = element(by.css("input[formControlName=termReason]"))
+    let openEnrollStartTextbox = element(by.css("input[formControlName=openEnrollStart]"))
+    let openEnrollEndTextbox = element(by.css("input[formControlName=openEnrollEnd]"))
+    let noOfEmployeesTextbox = element(by.css("input[formControlName=noOfEmployees]"))
+    let waitingPeriodTextbox = element(by.css("input[formControlName=waitingPeriod]"))
+    let contractTypeTextbox = element(by.css("input[formControlName=contractType]"))
+    let priorRnwtDtTextbox = element(by.css("input[formControlName=priorRnwtDt]"))
+    let userDate1Textbox = element(by.css("input[formControlName=userDate1]"))
+    let nxtRnwlDateTextbox = element(by.css("input[formControlName=nxtRnwlDate]"))
+    let userDate2Textbox = element(by.css("input[formControlName=userDate2]"))
+    let eligAnalystTextbox = element(by.css("input[formControlName=eligAnalyst]"))
+    let userDate3Textbox = element(by.css("input[formControlName=userDate3]"))
+    let accManagerTextbox = element(by.css("input[formControlName=accManager]"))
+    let userDate4Textbox = element(by.css("input[formControlName=userDate4]"))
+    let studentManagerTextbox = element(by.css("input[formControlName=studentManager]"))
+    let aegisRoleTextbox = element(by.css("input[formControlName=aegisRole]"))
+    let userDate5Textbox = element(by.css("input[formControlName=userDate5]"))
+    let studentAgeToTextbox = element(by.css("input[formControlName=studentAgeTo]"))
+    let networkNameTextbox = element(by.css("input[formControlName=networkName]"))
+    let userDate6Textbox = element(by.css("input[formControlName=userDate6]"))
+    let salesRepTextbox = element(by.css("input[formControlName=salesRep]"))
+    let brokenTextbox = element(by.css("input[formControlName=broken]"))
+    let contractIdTextbox = element(by.css("input[formControlName=contractId]"))
+    let userDate7Textbox = element(by.css("input[formControlName=userDate7]"))
+    let underwriterTextbox = element(by.css("input[formControlName=underwriter]"))
+    let userDate8Textbox = element(by.css("input[formControlName=userDate8]"))
+    let dbaTextbox = element(by.css("input[formControlName=dba]"))
+    let userDate9Textbox = element(by.css("input[formControlName=userDate9]"))
+    let directedPlanTextbox = element(by.css("input[formControlName=directedPlan]"))
+    let userDate10Textbox = element(by.css("input[formControlName=userDate10]"))
+
+});

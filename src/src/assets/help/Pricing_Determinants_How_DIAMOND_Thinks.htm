@@ -1,0 +1,706 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+    <title>Pricing Determinants, How DIAMOND Thinks</title>
+    <!--(Meta)==========================================================-->
+    <meta name="copyright"
+          value="© Copyright 2002 Health Systems Design Corp., a wholly owned subsidiary of Perot Systems Corporation. All rights reserved"/>
+    <meta content="RoboHELP by eHelp Corporation - www.ehelp.com" name="generator"/>
+    <meta content="0.1" name="generator-major-version"/>
+    <meta content="1" name="generator-minor-version"/>
+    <meta content="kadov" name="filetype"/>
+    <meta content="1" name="filetype-version"/>
+    <meta content="1" name="page-count"/>
+    <meta content="2633" name="layout-height"/>
+    <meta content="644" name="layout-width"/>
+    <!--(Links)=========================================================-->
+    <!--(Scripts)=======================================================-->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+</head>
+<body>
+
+<div class="calibreMeta">
+    <div class="calibreMetaTitle">
+
+
+        <h1>
+            <a href="../9r5qt-dn4su.html">DIAMOND 950 Help
+            </a>
+        </h1>
+
+
+    </div>
+    <div class="calibreMetaAuthor">
+        Unknown
+
+    </div>
+</div>
+
+<div class="calibreMain">
+
+    <div class="calibreEbookContent">
+
+        <div class="calibreEbNavTop">
+
+            <a href="Copying_Price_Determinants_to_a_New_Record.htm" class="calibreAPrev">previous page
+            </a>
+
+
+            <a href="Whole_Claim_Pricing_How_DIAMOND_Thinks.htm" class="calibreANext">next page
+            </a>
+
+        </div>
+
+
+        <h4 class="calibre1">Pricing Determinants, How DIAMOND Thinks</h4>
+
+        <!--(Table)=========================================================-->
+        <table cellspacing="0" width="546" x-use-null-cells="" class="calibre172">
+
+            <tbody class="">
+            <tr valign="top" class="">
+                <td width="210px" class="">
+                    <p class="map-links"><a
+                            href="Pricing_Determinants_How_DIAMOND_Thinks.htm#Pricing_Determinants_Processing_Calculation_Logic_MID"><img
+                            alt="image\assets/help/MidTopic_shg.gif" border="0" height="10" src="assets/help/MidTopic_shg.gif" width="18"
+                            class=""/></a>Processing/ Calculation Logic</p></td>
+                <td width="132px" class="">
+                    <p class="map-links"><a
+                            href="Pricing_Determinants_How_DIAMOND_Thinks.htm#Pricing_Determinants_Evaluation_Status_MID"><img
+                            alt="image\assets/help/MidTopic_shg.gif" border="0" height="10" src="assets/help/MidTopic_shg.gif" width="18"
+                            class=""/></a> Evaluation Status</p></td>
+                <td width="204px" class="calibre54">
+                    <p class="map-links"><a
+                            href="Pricing_Determinants_How_DIAMOND_Thinks.htm#Pricing_Determinants_Examples_of_PDTER_Evaluation_MID"><img
+                            alt="image\assets/help/MidTopic_shg.gif" border="0" height="10" src="assets/help/MidTopic_shg.gif" width="18"
+                            class=""/></a> Examples of PDTER Evaluation</p></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <p class="body-text">Some institutional contracts have different reimbursement
+            arrangements for different types of services. For example, a health plan
+            may reimburse a hospital on a per diem basis for medical/surgical inpatient
+            stays and on a per case basis for inpatient detoxification stays. This
+            kind of pricing is called Whole Claim Pricing in DIAMOND.</p>
+
+        <p class="body-text">To whole claim price, you create a Whole Claim Price
+            Rule (PRULW) associated with the institution’s/facility’s price rule (PRULE).
+            Within the PRULW, you create additional PRULW records, one record for
+            each unique reimbursement arrangement, and assign a price determinant
+            code (PDTER) to each so that DIAMOND can distinguish which rule applies
+            to which type of claim or claim line.</p>
+
+        <p class="body-text">Price Determinants (PDTER) defines each price determinant
+            code according to the claim’s data elements and their values that are
+            included or excluded. This tells DIAMOND when a whole claim price rule
+            record should be applied to a particular institutional claim.</p>
+
+        <p class="example-hdr-hdt">Example</p>
+
+        <p class="body-text">Within the same whole claim price rule (PRULW), you
+            want to create one whole claim price rule with a price determinant code
+            MEDS to define a medical/surgical inpatient admission and whole claim
+            price rule with a price determinant code DETOX to define a detoxification
+            stay. You use PDTER to define which kinds of claims are DETOX and which
+            are MEDS by selecting the claim data elements and the included or excluded
+            values that define each. A medical/surgical admission could be defined
+            as a combination of inpatient Service Place (01) and a Service Reason
+            of INMED and a detoxification stay could be defined as a combination of
+            inpatient Service Place (01) and Service Reason INTOX.</p>
+
+        <p class="body-text">To construct price determinants and whole claim price
+            rules for you would:</p>
+
+        <p class="numbered-list-indent">1. Use PRULE to enter a price rule for
+            the institution/facility.</p>
+
+        <p class="numbered-list-indent">2. Assign a unique price determinant
+            code for each reimbursement arrangement to be defined in the whole claim
+            price rule (PRULW) for the institution/facility (MEDS and DETOX in our
+            example).</p>
+
+        <p class="numbered-list-indent">3. Use PDTER to further define the MEDS
+            and DETOX price determinant codes.</p>
+
+        <p class="numbered-list-indent">4. Use PRULW to enter one whole claim
+            price rule record with a PRULW &gt; Price Determinant of MEDS <span class="">and</span>
+            a PRULW &gt; Calc Method of Per Diem and a PRULW &gt; Sys Proc Code of
+            SMEDS (the procedure code that will appear on the system generated whole
+            claim price line). </p>
+
+        <p class="numbered-list-indent">5. Use PRULW to enter another whole
+            claim price rule record with a PRULW &gt; Price Determinant of DETOX <span class="">and</span> a
+            PRULW &gt; Calc Method of Case
+            Rate and a PRULW &gt; Sys Proc Code of SITOX (the procedure code that
+            will appear on the system generated whole claim price line).</p>
+
+        <p class="numbered-list-indent">6. Use PROCP to create a procedure code
+            pricing record for each of the PRULW &gt; Sys Proc Code (one pricing record
+            for SMEDS and one pricing record for SITOX).</p>
+
+        <p class="doc-level2"><a name="Pricing_Determinants_Processing_Calculation_Logic_MID"></a>Processing/Calculation
+            Logic</p>
+
+        <p class="doc-level">Price Rule Determinants and Medical Definitions</p>
+
+        <p class="body-text">Price rule determinants are similar to medical definitions
+            (MEDEF); however, there are some key differences:</p>
+
+        <!--(Table)=========================================================-->
+        <table cellspacing="0" width="504" x-use-null-cells="" class="calibre172">
+
+            <tbody class="">
+            <tr valign="top" class="">
+                <td width="246px" class="">
+                    <p class="tbl-header1">Price Rule Determinants</p></td>
+                <td width="258px" class="">
+                    <p class="tbl-header1">Medical Definitions</p></td>
+            </tr>
+
+            <tr valign="top" class="">
+                <td width="246px" class="">
+                    <p class="tbl-text">Multiple price rule determinants
+                        can be assigned to a whole claim.</p></td>
+                <td width="258px" class="">
+                    <p class="tbl-text">Only one medical definition
+                        is assigned to each claim detail line detail.</p></td>
+            </tr>
+
+            <tr valign="top" class="">
+                <td width="246px" class="">
+                    <p class="tbl-text">When determining whether
+                        or not a price rule determinant applies to a claim, information from the
+                        claim header and all the non-system generated claim detail lines are validated.</p></td>
+                <td width="258px" class="">
+                    <p class="tbl-text">When determining a medical
+                        definition, information from the claim header and only the current claim
+                        detail line are validated.</p></td>
+            </tr>
+
+            <tr valign="top" class="">
+                <td width="246px" class="">
+                    <p class="tbl-text">The price rule determinant
+                        is stored in the pricing decision for the claim.</p></td>
+                <td width="258px" class="">
+                    <p class="tbl-text">The medical definition is
+                        stored on the claim detail line.</p></td>
+            </tr>
+
+            <tr valign="top" class="">
+                <td width="246px" class="">
+                    <p class="tbl-text">Price rule determinants have
+                        no inherent priority.</p></td>
+                <td width="258px" class="">
+                    <p class="tbl-text">You must define a validation
+                        priority to medical definitions.</p></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <p class="doc-level">Price Determinant Evaluation</p>
+
+        <p class="body-text">During whole claim pricing, Diamond sorts the PDTER
+            include/exclude values, compares them against the corresponding claim
+            header and claim detail line values, and evaluates the comparisons as
+            outlined below. </p>
+
+        <p class="numbered-list-indent">1. Sort the PDTER claim header includes/excludes
+            alphabetically, by column name.</p>
+
+        <p class="numbered-list-indent">2. Sort the PDTER claim detail includes/excludes
+            alphabetically, by column name.</p>
+
+        <p class="numbered-list-indent">3. Using and/or operators, compare the
+            sorted PDTER claim header include/exclude value(s) to the corresponding
+            claim header value(s).</p>
+
+        <p class="numbered-list-indent">4. PDTER include/exclude entries that
+            have the same column name are connected by an "or" operator.
+            PDTER include/exclude entries that have different column names are connected
+            by an "and" operator. For example, within a PDTER record:</p>
+
+        <p class="numbered-list-indent1"> </p>
+
+        <!--(Table)=========================================================-->
+        <table cellspacing="0" width="500" x-use-null-cells="" class="calibre172">
+
+            <tbody class="">
+            <tr valign="top" class="">
+                <td width="156px" class="">
+                    <p class="tbl-header1">PDTER Determinant Column Name</p></td>
+                <td width="78px" class="">
+                    <p class="tbl-header1">Include Or Exclude</p></td>
+                <td width="90px" class="">
+                    <p class="tbl-header1">Determinant Value</p></td>
+                <td width="78px" class="">
+                    <p class="tbl-header1">Operator</p></td>
+            </tr>
+
+            <tr valign="top" class="">
+                <td height="18" width="156px" class="">
+                    <p class="tbl-text">Bill Codes</p></td>
+                <td height="18" width="78px" class="">
+                    <p class="tbl-text">Include</p></td>
+                <td height="18" width="90px" class="">
+                    <p class="tbl-text">100</p></td>
+                <td height="18" width="78px" class="">
+                    <p class="tbl-text"><span class="">Or</span></p></td>
+            </tr>
+
+            <tr valign="top" class="">
+                <td height="18" width="156px" class="">
+                    <p class="tbl-text">Bill Codes</p></td>
+                <td height="18" width="78px" class="">
+                    <p class="tbl-text">Exclude</p></td>
+                <td height="18" width="90px" class="">
+                    <p class="tbl-text">121</p></td>
+                <td height="18" width="78px" class="">
+                    <p class="tbl-text"><span class="">Or</span></p></td>
+            </tr>
+
+            <tr valign="top" class="">
+                <td height="18" width="156px" class="">
+                    <p class="tbl-text">Bill Codes</p></td>
+                <td height="18" width="78px" class="">
+                    <p class="tbl-text">Include</p></td>
+                <td height="18" width="90px" class="">
+                    <p class="tbl-text">131</p></td>
+                <td height="18" width="78px" class="">
+                    <p class="tbl-text"><span class="">And</span></p></td>
+            </tr>
+
+            <tr valign="top" class="">
+                <td height="18" width="156px" class="">
+                    <p class="tbl-text">Patient Status</p></td>
+                <td height="18" width="78px" class="">
+                    <p class="tbl-text">Include</p></td>
+                <td height="18" width="90px" class="">
+                    <p class="tbl-text">01</p></td>
+                <td height="18" width="78px" class="">
+                    <p class="tbl-text"><span class="">Or</span></p></td>
+            </tr>
+
+            <tr valign="top" class="">
+                <td height="18" width="156px" class="">
+                    <p class="tbl-text">Patient Status</p></td>
+                <td height="18" width="78px" class="">
+                    <p class="tbl-text">Include</p></td>
+                <td height="18" width="90px" class="">
+                    <p class="tbl-text">04</p></td>
+                <td height="18" width="78px" class="">
+                    <p class="tbl-text"><span class="">Or</span></p></td>
+            </tr>
+
+            <tr valign="top" class="">
+                <td height="18" width="156px" class="">
+                    <p class="tbl-text">Patient Status</p></td>
+                <td height="18" width="78px" class="">
+                    <p class="tbl-text">Exclude</p></td>
+                <td height="18" width="90px" class="">
+                    <p class="tbl-text">05</p></td>
+                <td height="18" width="78px" class="">
+                    <p class="tbl-text"> </p></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <p class="numbered-list-indent1"> </p>
+
+        <p class="numbered-list-indent">1. If there are no header includes/excludes
+            to be compared, begin the detail comparison process (step #9).</p>
+
+        <p class="numbered-list-indent">2. Assign an evaluation status to each
+            header comparison.</p>
+
+        <p class="numbered-list-indent">3. If any header exclude comparison
+            results in an evaluation status of "Fail," exit the header comparison
+            process and do <span class="">not</span> apply the
+            associated whole claim price rule (PRULW) to the claim.</p>
+
+        <p class="numbered-list-indent">4. If all header exclude comparisons
+            complete without a Fail, and there are no PDTER header include comparisons,
+            and there are no PDTER claim detail includes/excludes to be compared,
+            apply the associated whole claim price rule (PRULW) to the claim.</p>
+
+        <p class="numbered-list-indent">5. If all header exclude comparisons
+            complete without a Fail, and at least one header include comparison results
+            in an evaluation status of "Pass" (across one continuous or/and
+            include comparison), and there are PDTER claim detail includes/excludes
+            to be compared, begin the detail comparison process (step #9).</p>
+
+        <p class="numbered-list-indent">6. Using and/or operators, compare the
+            sorted PDTER claim detail include/exclude value(s) to the corresponding
+            claim detail line value(s). PDTER include/exclude entries within the same
+            column are connected by an "or" operator. PDTER include/exclude
+            entries that have different column names are connected by an "and"
+            operator. See the example in step #3.</p>
+
+        <p class="numbered-list-indent">7. Assign an evaluation status to each
+            detail comparison.</p>
+
+        <p class="numbered-list-indent">8. If any detail exclude comparison
+            results in a Fail, exit the detail comparison process and do not apply
+            the associated whole claim price rule (PRULW) to the claim.</p>
+
+        <p class="numbered-list-indent">9. If all detail exclude comparisons
+            complete without a Fail, and there are no PDTER claim detail include comparisons,
+            apply the associated whole claim price rule (PRULW) to the claim.</p>
+
+        <p class="numbered-list-indent">10. If all detail exclude comparisons
+            complete without a Fail, and at least one detail include comparison results
+            in a Pass (across one continuous or/and include comparison), apply the
+            associated whole claim price rule (PRULW) to the claim.</p>
+
+        <p class="numbered-list-indent">11. If all detail include/exclude comparisons
+            complete without a Fail, and none of the detail include comparisons result
+            in a Pass (across one continuous or/and include comparison), exit the
+            detail comparison process and do not apply the associated whole claim
+            price rule (PRULW) to the claim.</p>
+
+        <p class="doc-level2"><a name="Pricing_Determinants_Evaluation_Status_MID"></a>Evaluation
+            Status</p>
+
+        <p class="body-text">During the header and detail include/exclude comparison
+            process, DIAMOND assigns an evaluation status based on the following:</p>
+
+        <!--(Table)=========================================================-->
+        <table cellspacing="0" width="500" x-use-null-cells="" class="calibre172">
+
+            <tbody class="">
+            <tr valign="top" class="">
+                <td width="318px" class=""><p class="body-text1"> </p>
+                    <p class="tbl-header1">Comparison Description (per PDTER record)</p></td>
+                <td width="168px" class="">
+                    <p class="tbl-header1">DIAMOND Assigned Evaluation Status</p></td>
+            </tr>
+
+            <tr valign="top" class="">
+                <td width="318px" class="">
+                    <p class="tbl-text">PDTER include value(s) entered
+                        (header or detail) matches the corresponding claim value.</p></td>
+                <td width="168px" class="">
+                    <p class="tbl-text">Pass</p></td>
+            </tr>
+
+            <tr valign="top" class="">
+                <td width="318px" class="">
+                    <p class="tbl-text">PDTER exclude value(s) entered
+                        (header or detail) does not match the corresponding claim value.</p></td>
+                <td width="168px" class="">
+                    <p class="tbl-text">Pass</p></td>
+            </tr>
+
+            <tr valign="top" class="">
+                <td width="318px" class="">
+                    <p class="tbl-text">PDTER exclude value(s) entered
+                        (header or detail) and no PDTER include value(s) entered and the corresponding
+                        claim value is blank</p></td>
+                <td width="168px" class="">
+                    <p class="tbl-text">Pass</p></td>
+            </tr>
+
+            <tr valign="top" class="">
+                <td width="318px" class="">
+                    <p class="tbl-text">PDTER include value(s) entered
+                        (detail) does <span class="">not</span> match the corresponding
+                        claim value.</p></td>
+                <td width="168px" class="">
+                    <p class="tbl-text">Hold (for final evaluation
+                        – steps #8 and #14)</p></td>
+            </tr>
+
+            <tr valign="top" class="">
+                <td width="318px" class="">
+                    <p class="tbl-text">PDTER exclude value(s) entered
+                        (header or detail) matches the corresponding claim value.</p></td>
+                <td width="168px" class="">
+                    <p class="tbl-text">Fail</p></td>
+            </tr>
+
+            <tr valign="top" class="">
+                <td width="318px" class="">
+                    <p class="tbl-text">PDTER include value(s) entered
+                        (header or detail) and the corresponding claim value is blank.</p></td>
+                <td width="168px" class="">
+                    <p class="tbl-text">Fail</p></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <p class="doc-level2"><a name="Pricing_Determinants_Examples_of_PDTER_Evaluation_MID"></a>Examples
+            of PDTER Evaluations</p>
+
+        <p class="example-hdr-hdt">Example 1 </p>
+
+        <p class="example-hdr-hdt"><span class="0">Evaluation</span></p>
+
+        <p class="body-text-block">Find claims where the DRG code is between 009
+            – 038 or between 045 – 048, but not 021.</p>
+
+        <p class="body-text-block">PDTER </p>
+
+        <!--(Table)=========================================================-->
+        <table cellspacing="0" width="500" x-use-null-cells="" class="calibre172">
+
+            <tbody class="">
+            <tr valign="top" class="">
+                <td width="95px" class="">
+                    <p class="tbl-header1">Column Name</p></td>
+                <td width="72px" class="">
+                    <p class="tbl-header1">Operator</p></td>
+                <td width="84px" class="">
+                    <p class="tbl-header1">From Value</p></td>
+                <td width="84px" class="">
+                    <p class="tbl-header1">Thru Value</p></td>
+            </tr>
+
+            <tr valign="top" class="">
+                <td width="95px" class="">
+                    <p class="tbl-text">DRG</p></td>
+                <td width="72px" class="">
+                    <p class="tbl-text">Include</p></td>
+                <td width="84px" class="">
+                    <p class="tbl-text">009</p></td>
+                <td width="84px" class="">
+                    <p class="tbl-text">038</p></td>
+            </tr>
+
+            <tr valign="top" class="">
+                <td width="95px" class="">
+                    <p class="tbl-text">DRG</p></td>
+                <td width="72px" class="">
+                    <p class="tbl-text">Include</p></td>
+                <td width="84px" class="">
+                    <p class="tbl-text">045</p></td>
+                <td width="84px" class="">
+                    <p class="tbl-text">048</p></td>
+            </tr>
+
+            <tr valign="top" class="">
+                <td width="95px" class="">
+                    <p class="tbl-text">DRG</p></td>
+                <td width="72px" class="">
+                    <p class="tbl-text">Exclude</p></td>
+                <td width="84px" class="">
+                    <p class="tbl-text">021</p></td>
+                <td width="84px" class="">
+                    <p class="tbl-text"> </p></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <p class="example-hdr-hdt1"> </p>
+
+        <p class="example-hdr-hdt"><span class="0">Evaluation Results</span></p>
+
+        <!--(Table)=========================================================-->
+        <table cellspacing="0" width="186" x-use-null-cells="" class="4">
+
+            <tbody class="">
+            <tr valign="top" class="">
+                <td width="126px" class="">
+                    <p class="tbl-header1">DRG code on Claim</p></td>
+                <td width="60px" class="">
+                    <p class="tbl-header1">Match?</p></td>
+            </tr>
+
+            <tr valign="top" class="">
+                <td width="126px" class="">
+                    <p class="tbl-text">014</p></td>
+                <td width="60px" class="">
+                    <p class="tbl-text">Y</p></td>
+            </tr>
+
+            <tr valign="top" class="">
+                <td width="126px" class="">
+                    <p class="tbl-text">046</p></td>
+                <td width="60px" class="">
+                    <p class="tbl-text">Y</p></td>
+            </tr>
+
+            <tr valign="top" class="">
+                <td width="126px" class="">
+                    <p class="tbl-text">008</p></td>
+                <td width="60px" class="">
+                    <p class="tbl-text">N</p></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <p class="body-text-block1"> </p>
+
+        <p class="example-hdr-hdt">Example 2 </p>
+
+        <p class="example-hdr-hdt"><span class="0">Evaluation</span></p>
+
+        <p class="example-hdr-hdt"><span class="0">Find claims
+ where the Rev Code is 100 or 131, but is not 121, and where the Bill Code
+ is 111 or 113 – 122, but not 114.</span></p>
+
+        <p class="body-text-block">PDTER </p>
+
+        <!--(Table)=========================================================-->
+        <table cellspacing="0" width="336" x-use-null-cells="" class="1">
+
+            <tbody class="">
+            <tr valign="top" class="">
+                <td width="95px" class="">
+                    <p class="tbl-header1">Column Name</p></td>
+                <td width="72px" class="">
+                    <p class="tbl-header1">Operator</p></td>
+                <td width="84px" class="">
+                    <p class="tbl-header1">From Value</p></td>
+                <td width="84px" class="">
+                    <p class="tbl-header1">Thru Value</p></td>
+            </tr>
+
+            <tr valign="top" class="">
+                <td width="95px" class="">
+                    <p class="tbl-text">Rev</p></td>
+                <td width="72px" class="">
+                    <p class="tbl-text">Include</p></td>
+                <td width="84px" class="">
+                    <p class="tbl-text">100</p></td>
+                <td width="84px" class="">
+                    <p class="tbl-text"> </p></td>
+            </tr>
+
+            <tr valign="top" class="">
+                <td width="95px" class="">
+                    <p class="tbl-text">Rev</p></td>
+                <td width="72px" class="">
+                    <p class="tbl-text">Include</p></td>
+                <td width="84px" class="">
+                    <p class="tbl-text">131</p></td>
+                <td width="84px" class="">
+                    <p class="tbl-text"> </p></td>
+            </tr>
+
+            <tr valign="top" class="">
+                <td width="95px" class="">
+                    <p class="tbl-text">Rev</p></td>
+                <td width="72px" class="">
+                    <p class="tbl-text">Exclude</p></td>
+                <td width="84px" class="">
+                    <p class="tbl-text">121</p></td>
+                <td width="84px" class="">
+                    <p class="tbl-text"> </p></td>
+            </tr>
+
+            <tr valign="top" class="">
+                <td width="95px" class="">
+                    <p class="tbl-text">Bill</p></td>
+                <td width="72px" class="">
+                    <p class="tbl-text">Include</p></td>
+                <td width="84px" class="">
+                    <p class="tbl-text">111</p></td>
+                <td width="84px" class="">
+                    <p class="tbl-text"> </p></td>
+            </tr>
+
+            <tr valign="top" class="">
+                <td width="95px" class="">
+                    <p class="tbl-text">Bill</p></td>
+                <td width="72px" class="">
+                    <p class="tbl-text">Include</p></td>
+                <td width="84px" class="">
+                    <p class="tbl-text">113</p></td>
+                <td width="84px" class="">
+                    <p class="tbl-text">122</p></td>
+            </tr>
+
+            <tr valign="top" class="">
+                <td width="95px" class="">
+                    <p class="tbl-text">Bill</p></td>
+                <td width="72px" class="">
+                    <p class="tbl-text">Exclude</p></td>
+                <td width="84px" class="">
+                    <p class="tbl-text">114</p></td>
+                <td width="84px" class="">
+                    <p class="tbl-text"> </p></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <p class="body-text1"> </p>
+
+        <p class="example-hdr-hdt"><span class="0">Evaluation Results</span></p>
+
+        <!--(Table)=========================================================-->
+        <table cellspacing="0" width="300" x-use-null-cells="" class="6">
+
+            <tbody class="">
+            <tr valign="top" class="">
+                <td width="120px" class="7">
+                    <p class="tbl-header1">Rev Code on claim</p></td>
+                <td width="120px" class="7">
+                    <p class="tbl-header1">Bill Code on claim</p></td>
+                <td width="60px" class="">
+                    <p class="tbl-header1">Match?</p></td>
+            </tr>
+
+            <tr valign="top" class="">
+                <td width="120px" class="7">
+                    <p class="tbl-text">100</p></td>
+                <td width="120px" class="7">
+                    <p class="tbl-text">113</p></td>
+                <td width="60px" class="">
+                    <p class="tbl-text">Y</p></td>
+            </tr>
+
+            <tr valign="top" class="">
+                <td width="120px" class="7">
+                    <p class="tbl-text">131</p></td>
+                <td width="120px" class="7">
+                    <p class="tbl-text">114</p></td>
+                <td width="60px" class="">
+                    <p class="tbl-text">N</p></td>
+            </tr>
+
+            <tr valign="top" class="">
+                <td width="120px" class="7">
+                    <p class="tbl-text">121</p></td>
+                <td width="120px" class="7">
+                    <p class="tbl-text">111</p></td>
+                <td width="60px" class="">
+                    <p class="tbl-text">N</p></td>
+            </tr>
+
+            <tr valign="top" class="">
+                <td width="120px" class="7">
+                    <p class="tbl-text">100</p></td>
+                <td width="120px" class="7">
+                    <p class="tbl-text">122</p></td>
+                <td width="60px" class="">
+                    <p class="tbl-text">Y</p></td>
+            </tr>
+            </tbody>
+        </table>
+
+
+    </div>
+
+
+
+    <div class="calibreEbNav">
+
+        <a href="Copying_Price_Determinants_to_a_New_Record.htm" class="calibreAPrev">previous page
+        </a>
+
+
+        <a href="../9r5qt-dn4su.html" class="calibreAHome">start
+        </a>
+
+
+        <a href="Whole_Claim_Pricing_How_DIAMOND_Thinks.htm" class="calibreANext">next page
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+</html>

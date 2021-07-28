@@ -1,0 +1,57 @@
+<!-- Copyright (c) 2021 . All Rights Reserved. -->
+<div class="container-fluid">
+    <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+    <div class="card-block">
+        <form>
+            <div class="container-fluid">
+                <div class="card-block">
+                    <form [formGroup]="esiDetailsForm" novalidate>
+                        <div class="form-group row bg-dark text-white">
+                            <div class="offset-2 form-control-static mb-0 font-weight-bold " i18n>
+                                Group Number
+                                <br>
+                                <span class=" required-field-label pt-1">  {{groupNumber}}</span>
+                            </div>
+                            <div class=" offset-2 form-control-static mb-0 font-weight-bold" i18n>
+                                Group Name
+                                <br>
+                                <span class=" pt-1 required-field-label"> {{groupName}}</span>
+                            </div>
+                            <div class="row"></div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-md-12 mt-3 mt-2 p-0">
+                                <dmnd-dynamic-config-grid
+                                        [prevState]="pharmacyESIDetailsFormState" [isResetForm]="resetInlineGrid" [isSaveForm]="saveInlineGrid"
+                                        [title]="''" [showRemoveButton]="false"
+                                        [config]="pharmacyESIDetailsConfig" [displayCheckBox]="false" [submitBtnText]="SubmitBtn"
+                                        [showSubmitButton]="true" [showResetButton]="true" [restoreBtnText]="RestoreBtnText"
+                                        (formSubmitted)="saveForm($event)" [showAddNewline]="false" (onRestoreClick)="resetAllClick()"
+                                ></dmnd-dynamic-config-grid>
+                            </div>
+
+                        </div>
+                        <div class="form-group row">
+                        </div>
+
+                        <div class="form-group row">
+                        </div>
+
+                        <div class="form-group row">
+                            <!-- Button with label of Close -->
+                            <div class="col-md-2">
+                                <button (click)="ngbActiveModal.dismiss()" class="btn btn-small btn-primary" id="close" name="close" type="button">Close
+                                </button>
+                            </div>
+
+                        </div>
+
+                        <div class="form-group row">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

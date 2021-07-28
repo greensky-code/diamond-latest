@@ -1,0 +1,182 @@
+<!-- Copyright (c) 2020 . All Rights Reserved. -->
+<div class="container-fluid">
+    <div class="card-block">
+        <form [formGroup]="vendorAddressForm" novalidate>
+            <h2 class="form-title card-label-admin">Vendor Address</h2>
+            <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+            <app-pop-up-message #popUpMesssage (buttonclickEvent)="popUpButtonHandler($event)"  [(popupMessage)] = "popUpMessage"></app-pop-up-message>
+                        
+            <div class="form-group row">
+            </div>
+            
+                        <!-- DataGrid with Name of DataGrid001 -->
+                    <button (click)="dataGrid001GridOptionsExportCsv()">Export</button>
+                    <ag-grid-angular #agGrid class="ag-theme-fresh" [gridOptions]="dataGrid001GridOptions"
+                    style="width: 100%; height: 300px;"
+                    [enableSorting]="true"
+                    [enableFilter]="true"
+                    [floatingFilter]="true"
+                    [pagination]="true"
+                    [showToolPanel]="true">
+                    </ag-grid-angular>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of Name 2 -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('name2') }">
+                     <label class="col-form-label" for="name2" i18n>Name 2</label>
+                     <input type="text" id="name2"  class="form-control" formControlName="name2"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('name2')">
+                      {{ formValidation.errorMessage('name2') }}
+                     </small>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of Address Line 2 -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('addressLine2') }">
+                     <label class="col-form-label" for="addressLine2" i18n>Address Line 2</label>
+                     <input type="text" id="addressLine2"  class="form-control" formControlName="addressLine2"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('addressLine2')">
+                      {{ formValidation.errorMessage('addressLine2') }}
+                     </small>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of City -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('city') }">
+                     <label class="col-form-label" for="city" i18n>City</label>
+                     <input type="text" id="city"  class="form-control" formControlName="city"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('city')">
+                      {{ formValidation.errorMessage('city') }}
+                     </small>
+                 </div>
+            
+                <!-- Textbox with label of Country -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('country001') }">
+                     <label class="col-form-label" for="country001" i18n>Country</label>
+                     <input type="text" id="country001"  class="form-control" formControlName="country001"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('country001')">
+                      {{ formValidation.errorMessage('country001') }}
+                     </small>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of State -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('state') }">
+                     <label class="col-form-label" for="state" i18n>State</label>
+                     <input type="text" id="state"  class="form-control" formControlName="state"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('state')">
+                      {{ formValidation.errorMessage('state') }}
+                     </small>
+                 </div>
+            
+                <!-- Textbox with label of ZIP Code -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('zipCode') }">
+                     <label class="col-form-label" for="zipCode" i18n>ZIP Code</label>
+                     <input type="text" id="zipCode"  class="form-control" formControlName="zipCode"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('zipCode')">
+                      {{ formValidation.errorMessage('zipCode') }}
+                     </small>
+                 </div>
+            
+                <!-- Textbox with label of Country -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('country002') }">
+                     <label class="col-form-label" for="country002" i18n>Country</label>
+                     <input type="text" id="country002"  class="form-control" formControlName="country002"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('country002')">
+                      {{ formValidation.errorMessage('country002') }}
+                     </small>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of Billing Override Address -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('billingOverrideAddress') }">
+                     <label class="col-form-label" for="billingOverrideAddress" i18n>Billing Override Address</label>
+                     <input type="text" id="billingOverrideAddress"  class="form-control" formControlName="billingOverrideAddress"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('billingOverrideAddress')">
+                      {{ formValidation.errorMessage('billingOverrideAddress') }}
+                     </small>
+                 </div>
+            
+                <!-- Textbox with label of Prim Addr -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('primAddr') }">
+                     <label class="col-form-label" for="primAddr" i18n>Prim Addr</label>
+                     <input type="text" id="primAddr"  class="form-control" formControlName="primAddr"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('primAddr')">
+                      {{ formValidation.errorMessage('primAddr') }}
+                     </small>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of User Define 1 -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('userDefine1') }">
+                     <label class="col-form-label" for="userDefine1" i18n>User Define 1</label>
+                     <input type="text" id="userDefine1"  class="form-control" formControlName="userDefine1"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('userDefine1')">
+                      {{ formValidation.errorMessage('userDefine1') }}
+                     </small>
+                 </div>
+            
+                <!-- Textbox with label of User Define 2 -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('userDefine2') }">
+                     <label class="col-form-label" for="userDefine2" i18n>User Define 2</label>
+                     <input type="text" id="userDefine2"  class="form-control" formControlName="userDefine2"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('userDefine2')">
+                      {{ formValidation.errorMessage('userDefine2') }}
+                     </small>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of User Date 1 -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('userDate1') }">
+                     <label class="col-form-label" for="userDate1" i18n>User Date 1</label>
+                     <input type="text" id="userDate1"  class="form-control" formControlName="userDate1"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('userDate1')">
+                      {{ formValidation.errorMessage('userDate1') }}
+                     </small>
+                 </div>
+            
+                <!-- Textbox with label of User Date 2 -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('userDate2') }">
+                     <label class="col-form-label" for="userDate2" i18n>User Date 2</label>
+                     <input type="text" id="userDate2"  class="form-control" formControlName="userDate2"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('userDate2')">
+                      {{ formValidation.errorMessage('userDate2') }}
+                     </small>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+            </div>
+            
+                        <!-- DataGrid with Name of DataGrid002 -->
+                    <button (click)="dataGrid002GridOptionsExportCsv()">Export</button>
+                    <ag-grid-angular #agGrid class="ag-theme-fresh" [gridOptions]="dataGrid002GridOptions"
+                    style="width: 100%; height: 300px;"
+                    [enableSorting]="true"
+                    [enableFilter]="true"
+                    [floatingFilter]="true"
+                    [pagination]="true"
+                    [showToolPanel]="true">
+                    </ag-grid-angular>
+            
+            <div class="form-group row">
+            </div>
+        </form>
+    </div>
+</div>

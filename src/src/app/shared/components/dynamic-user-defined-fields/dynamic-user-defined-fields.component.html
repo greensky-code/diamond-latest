@@ -1,0 +1,46 @@
+<div [formGroup]="userDefinedFieldForm" class="form-group row">
+    <div *ngFor="let userDefinedText of userDefinedTexts" class="col-md-6">
+        <div [ngSwitch]="userDefinedText.userDefineValidateFlag">
+            <div *ngSwitchCase="'N'">
+                <label [attr.for]="userDefinedText.userDefineName"
+                       [class.clr-blue]="userDefinedText.userDefineRequired === 'Y'" i18n>
+                    {{userDefinedText.userDefineText}}</label>
+                <input [formControlName]="userDefinedText.userDefineName" [id]="userDefinedText.userDefineName"
+                       [maxlength]="userDefinedText.maxLen" [name]="userDefinedText.userDefineName"
+                       class="form-control" type="text" (keydown.tab)="nextElementFocus($event, userDefinedText.userDefineName)"/>
+            </div>
+
+            <div *ngSwitchCase="'Y'">
+                <label [attr.for]="userDefinedText.userDefineName"
+                       [class.clr-blue]="userDefinedText.userDefineRequired === 'Y'" i18n>{{userDefinedText.userDefineText}}</label>
+                <select [formControlName]="userDefinedText.userDefineName" [id]="userDefinedText.userDefineName"
+                        [name]="userDefinedText.userDefineName" class="form-control"
+                        (keydown.tab)="nextElementFocus($event, userDefinedText.userDefineName)">
+                    <option *ngFor="let opt of userDefinedText.userDefinedValidateCodes"
+                            [value]="opt.userValidCode">{{opt.userValidCode}}&nbsp; {{opt.userValidCodeShortDesc}}&nbsp; {{opt.userValidCodeLongDesc}}</option>
+                    <option value=""></option>
+                </select>
+            </div>
+
+            <div *ngSwitchCase="'B'">
+                <label [attr.for]="userDefinedText.userDefineName"
+                       [class.clr-blue]="userDefinedText.userDefineRequired === 'Y'" i18n>{{userDefinedText.userDefineText}}</label>
+                <select [formControlName]="userDefinedText.userDefineName" [id]="userDefinedText.userDefineName"
+                        [name]="userDefinedText.userDefineName" class="form-control"
+                        (keydown.tab)="nextElementFocus($event, userDefinedText.userDefineName)">
+                    <option *ngFor="let opt of userDefinedText.userDefinedValidateCodes"
+                            [value]="opt.userValidCode">{{opt.userValidCodeShortDesc}}</option>
+                </select>
+            </div>
+
+            <div *ngSwitchCase="'D'">
+                <app-datepicker [field]="userDefinedText.userDefineName" [formGroup]="userDefinedFieldForm"
+                                [formValidation]="formValidation"
+                                [isRequired]="userDefinedText.userDefineRequired === 'Y'"
+                                [labelText]="userDefinedText.userDefineText | titlecase"
+                                (keydown.tab)="nextElementFocus($event, userDefinedText.userDefineName)">
+                </app-datepicker>
+            </div>
+        </div>
+    </div>
+</div>

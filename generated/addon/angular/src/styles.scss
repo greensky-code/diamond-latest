@@ -1,0 +1,305 @@
+/*
+ * Application specific LESS file. LESS is a dynamic style sheet language that
+ * compiled into a css file. LESS addresses several maintainability problems
+ * with css. A good online course on less is: "A Better CSS: LESS and SASS" on
+ * pluralsight.com.
+ *
+ * All css syntax is valid LESS syntax. LESS adds additional or alternative syntax
+ * that is easier to use than standard css.
+ *
+ * The color problem - can't name colors. Allows you to define standard, reusable
+ * colors and other elements so that they can be changed in one place.
+ *
+ * The Duplication Problem - duplicate values in the same rule. You often have to
+ * define different elements with the same value in the same role for several browsers.
+ * Put repeatable sets of code and put into one place.
+ *
+ * The Cascading Problem -
+ * e.g. #form input[type=textbox], #form  textarea
+ * Have to change the names of all instances of the rule name if the name "form" is
+ * changed.
+ *
+ * The Calculation Problem -
+ * Can't do calculations in the css.
+ * e.g. font-size: html.font-size + 8px where html.font-size is 14x.
+ *
+ * The Importing Problem
+ * For performance, would like to make efficient css for you by combining them into one so that
+ * you get smart caching of the css and better performance.
+ */
+// green, blue, orange
+
+@import '~bootstrap/scss/bootstrap';
+@import "~font-awesome/css/font-awesome.css";
+
+body {
+  font-family: HCo Gotham SSm, Verdana, Geneva, sans-serif;;
+}
+
+$theme-colors: (
+        'primary': #209cf1,
+        'accent': #118503,
+        'secondary': #f68621,
+        'error': #c00,
+        'foreground': #0170bc,
+);
+
+
+@function theme-color($key: 'primary') {
+  @return map-get($theme-colors, $key);
+}
+
+$color-primary: theme-color();
+$color-accent: theme-color('accent');
+$color-secondary: theme-color('secondary');
+$color-error: theme-color('error');
+$color-foreground: theme-color('foreground');
+
+diamond-app {
+  .navbar-dark .navbar-brand {
+    color: #209cf1 !important;
+  }
+
+  a {
+    color: #209cf1 !important;
+  }
+}
+
+functionalgroups {
+  .img-wrapper {
+    width: 100%;
+    height: 152px;
+    text-indent: -9999px;
+    border-radius: 4px;
+  }
+
+  .carousel-caption {
+    color: black;
+  }
+}
+
+.button {
+  background-color: $color-primary !important;
+  color: white;
+  padding: 7px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+  border: 1px solid transparent;
+  font-weight: 500;
+  font-family: HCo Gotham SSm, Verdana, Geneva, sans-serif;
+  vertical-align: middle;
+  white-space: normal;
+  border-radius: .5rem;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.button:hover {
+  background-color: $color-foreground !important;
+  color: white;
+}
+
+
+.diamond-dropdown-icon :before {
+  border-color: rgba(147, 148, 150, .75) transparent transparent rgba(147, 148, 150, .75);
+  border-style: solid;
+  border-width: 1px;
+  content: "";
+  height: 1rem;
+  // left: calc(50% - .3rem);
+  padding: 0;
+  position: absolute;
+  top: -.5rem;
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+  -webkit-transform-origin: center;
+  transform-origin: center;
+  width: 1rem;
+  background-color: white !important;
+}
+
+groupmaster {
+  .dropdown-menu.show {
+    margin-top: 1rem;
+  }
+}
+
+.diamond-dropdown-icon .dropmenu:before {
+  background-color: #fff !important;
+  z-index: 1000;
+}
+
+.help-modal {
+  min-width: 560px !important;
+}
+
+div {
+  border: 0 solid red;
+}
+
+/* Need for cursor pointer to work correctly in angular-bootstrap. Suggested by angular-bootstrap*/
+.nav,
+.pagination,
+.carousel,
+.panel-title a {
+  cursor: pointer;
+}
+
+/* Needed for the blue gradient color for accordian and panels as form headers */
+.panel-default > .panel-heading {
+  background-color: #337ab7;
+  color: white;
+  cursor: pointer;
+}
+
+.panel-heading a {
+  background-color: #337ab7;
+  font-family: arial;
+  color: white;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.app_sub_nav_text {
+  font-size: 12px;
+}
+
+.app-header {
+  font-family: Arial;
+  border-bottom: 1px solid white;
+}
+
+/* Wrap content of a grid-ui header */
+.ui-grid-header-cell .ui-grid-cell-contents {
+  height: 48px;
+  white-space: normal;
+  -ms-text-overflow: clip;
+  -o-text-overflow: clip;
+  text-overflow: clip;
+  overflow: visible;
+}
+
+table, th, td {
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 5px;
+}
+
+.tab-content {
+  border-left: 1px solid #ddd;
+  border-right: 1px solid #ddd;
+  padding: 10px;
+}
+
+.navbar {
+  padding-top: 10px;
+  padding-bottom: 20px;
+  background-color: white;
+}
+
+/* Set the width and height of Ag-grid */
+.ag-fresh {
+  width: 100%;
+  height: 300px;
+}
+
+.ag-grid-button-bar {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.elevator-card {
+  margin-top: 10px;
+
+}
+
+.elevator-collapse, .cursor-pointer {
+  cursor: pointer;
+}
+
+.elevator .card-header {
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.elevator .card .card-body {
+  margin: 10px 10px 10px 10px;
+}
+
+.hide-elevator-card-body {
+  display: none;
+}
+
+.tab-content {
+  border-left: 1px solid #ddd;
+  border-right: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  padding: 10px;
+}
+
+.ag-paging-panel span {
+  font-size: 18px;
+}
+
+.ag-header-cell-text {
+  font-size: 18px;
+}
+
+.ag-cell {
+  font-size: 16px;
+}
+
+.checkbox {
+  margin-left: 5px;
+}
+
+
+.place-holder {
+  margin-top: 80px;
+  margin-bottom: 100px;
+}
+
+
+.btn-login {
+  width: 78px !important;
+}
+
+li {
+  list-style-type: none;
+  padding: 0;
+  margin-left: 0;
+}
+
+.menu {
+  padding-left: 10px;
+}
+
+.menu .nav-item {
+  margin-left: 0;
+  padding-left: 0;
+  cursor: pointer;
+}
+
+.menu .nav-item .nav-link {
+  margin-left: 0;
+  padding-left: 0;
+  cursor: pointer;
+}
+
+.dropdown-item {
+  cursor: pointer;
+}
+
+.modal-xl {
+  max-width: 80%;
+}
+
+#username{
+  text-transform: uppercase;
+}

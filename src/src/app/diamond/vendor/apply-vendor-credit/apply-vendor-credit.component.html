@@ -1,0 +1,92 @@
+<!-- Copyright (c) 2021 . All Rights Reserved. -->
+<div class="container-fluid">
+    <div class="card-block">
+        <div class="row">
+            <div class="col-md-9">
+        <button type="button" *ngIf="showIcon" class="modal-close close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <form [formGroup]="applyVendorCreditForm" novalidate>
+            <h2 class="form-title card-label-admin">Apply Vendor Credit</h2>
+           
+                        
+            <div class="form-group row">
+                <!-- DynamicText with label of Vendor ID -->
+                 <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('vendorId') }">
+                     <label class="col-form-label" for="vendorId" i18n>Vendor ID</label>
+                     <input type="text"    readonly id="vendorId" formControlName="vendorId" class="form-control"/>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- DynamicText with label of Vendor Address -->
+                 <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('vendorAddress') }">
+                     <label class="col-form-label" for="vendorAddress" i18n>Vendor Address</label>
+                     <input type="text"    readonly id="vendorAddress" formControlName="vendorAddress" class="form-control"/>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- DynamicText with label of Adv Pay Account -->
+                 <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('advPayAccount') }">
+                     <label class="col-form-label" for="advPayAccount" i18n>Adv Pay Account</label>
+                     <input type="text"    readonly id="advPayAccount" formControlName="advPayAccount" class="form-control"/>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- DynamicText with label of Seq No -->
+                 <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('seqNo') }">
+                     <label class="col-form-label" for="seqNo" i18n>Seq No</label>
+                     <input type="text"    readonly id="seqNo" formControlName="seqNo" class="form-control"/>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of G/L Month -->
+                 <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('glMonth') }">
+                     <label class="col-form-label" for="glMonth" i18n>G/L Month</label>
+                     <input type="text" id="glMonth"     class="form-control" formControlName="glMonth"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('glMonth')">
+                      {{ formValidation.errorMessage('glMonth') }}
+                     </small>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Checkbox with label of Apply Credit -->
+                <div class="" [ngClass]="{'has-error': displayMessage.applyCredit }">
+                    <div class="checkbox col-md-12">
+                      <input id="applyCredit"    value="applyCredit" formControlName="applyCredit" type="checkbox">
+                        <label class="checkbox">
+                            Apply Credit
+                         </label>
+                    </div>
+                    <span class="help-block" *ngIf="displayMessage.applyCredit">
+                        {{ displayMessage.applyCredit  }}
+                     </span>
+                </div>
+            
+            </div>
+            
+            <div class="form-group row">
+            </div>
+        </form>
+    </div>
+    
+    <div class="col-md-2" style="margin-top: 3.9rem;">
+        <button class="button" (click)="onFormSubmit()">
+            Okay
+        </button>
+        <button class="button" (click)="activeModal.dismiss('Cross click')">
+            Close
+        </button>
+    </div>
+    </div>
+</div>
+</div>

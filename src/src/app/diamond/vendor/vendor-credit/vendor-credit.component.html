@@ -1,0 +1,296 @@
+<!-- Copyright (c) 2020 . All Rights Reserved. -->
+<div class="container-fluid">
+    <div class="card-block">
+        <div class="row form-title">
+            <h2 class="col-md-6  card-label-admin">Vendor Credit</h2>
+            <div class="col-md"><b class="readonly-label">View Only</b></div>
+        </div>
+        <button type="button" *ngIf="showIcon" class="modal-close close" aria-label="Close" (click)="modalClose()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+
+        <ng-template #loaderTemplate let-loaderValue="value">
+            <div class="row justify-content-center mt-4" *ngIf="loaderValue">
+                <div class="spinner-border text-success" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>
+            </div>
+        </ng-template>
+        <ng-container *ngTemplateOutlet="loaderTemplate;context:{value: inProgress }"></ng-container>
+
+        <ng-container *appWinSelect="{secWin: secWin, userTemplateId: userTemplateId, secModuleId: vendorModuleId}">
+            <div class="row mt-3 mb-3">
+                <menu-bar [menus]="menu" (onMenuClick)="onMenuItemClick($event)"></menu-bar>
+            </div>
+
+            <form  [formGroup]="vendorCreditForm" novalidate>
+
+                <div class="form-group row">
+                    <!-- Textbox with label of Vendor ID -->
+                     <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('vendorId001') }">
+                         <label class="col-form-label" for="vendorId001" i18n>Vendor ID</label>
+                         <input  (keydown)="onLookupFieldChange($event)" type="text" id="vendorId001"  [fieldLevelSec]="'Seq Vend Id'" [params]="{secColDetails: secColDetails}"   class="form-control" formControlName="vendorId001"/>
+                          <small class="text-danger" *ngIf="formValidation.isValidField('vendorId001')">
+                          {{ formValidation.errorMessage('vendorId001') }}
+                         </small>
+                     </div>
+
+                    <!-- Textbox with label of Vendor Address -->
+                     <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('vendorAddress001') }">
+                         <label class="col-form-label" for="vendorAddress001" i18n>Vendor Address</label>
+                        <div class="input-group" #myDrop="ngbDropdown" ngbDropdown>
+                            <input readonly ngbDropdownToggle type="text" (change)="onAddressChange($event)" class="bg-white form-control" id="vendorAddress001" [value]="vendorAddress1" formControlName="vendorAddress001" [fieldLevelSec]="'Seq Vend Address'" [params]="{secColDetails: secColDetails}" [disabled]="vendorAddressStatus">
+                            <div class="input-group-append" role="group">
+                                <button ngbDropdownToggle class="btn border" [disabled]="vendorAddressStatus"></button>
+                            </div>
+                            <div ngbDropdownMenu aria-labelledby="dropdown" class="max-dropdown-height w-100" [disabled]="vendorAddressStatus">
+                                <button ngbDropdownItem [value]="add.seqVendAddress"  *ngFor="let add of Address let i = index" (click)="setVendorAddress1_DROPD(add.seqVendAddress)">{{add.name2?add.name2 + ',' : ''}} {{add.addressLine1?add.addressLine1 + ', ':''}}{{add.city?add.city+', ':''}}{{add.state?add.state+', ':''}}{{add.zipCode?add.zipCode+', ':''}}</button>
+                            </div>
+                        </div>
+                         <!-- <select id="vendorAddress001" (change)="onAddressChange($event)" [fieldLevelSec]="'Seq Vend Address'" [params]="{secColDetails: secColDetails}"   class="form-control" formControlName="vendorAddress001">
+                            <option value="">Select</option>
+                            <option [value]="add.seqVendAddress" *ngFor="let add of Address">{{add.addressLine1}},{{add.addressLine3}},{{add.city}}</option>
+                        </select> -->
+                          <small class="text-danger" *ngIf="formValidation.isValidField('vendorAddress001')">
+                          {{ formValidation.errorMessage('vendorAddress001') }}
+                         </small>
+                     </div>
+
+                </div>
+
+                <div class="form-group row">
+                </div>
+
+                            <!-- DataGrid with Name of DataGrid -->
+                        <ag-grid-angular #agGrid class="ag-theme-fresh" [gridOptions]="dataGridGridOptions"
+                        style="width: 100%; height: 300px;"
+                        [enableSorting]="true"
+                        [enableFilter]="true"
+                        [floatingFilter]="true"
+                        [pagination]="true"
+                        [showToolPanel]="true"
+                        (selectionChanged)="onChangeGrid()">
+                        </ag-grid-angular>
+
+                <div class="form-group row">
+                </div>
+
+                <ng-container *ngIf="vendorCreditsCustomSelected">
+                    <div class="form-group row">
+                        <div class="col-md-4 form-control-static mb-0" i18n>
+                            Credit Type: <b>Adv Payment</b>
+                        </div>
+
+                        <!-- Textbox with label of Credit Reason -->
+                         <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('creditReason') }">
+                             <label class="col-form-label clr-blue" for="creditReason" i18n>Credit Reason</label>
+                             <input type="text" id="creditReason" (change)="ValidateReasonCode($event)" [fieldLevelSec]="'Credit Reason'" [params]="{secColDetails: secColDetails}"   class="form-control" formControlName="creditReason"
+                                    (keydown)="onCreditReasonKeyDown($event)"
+                             />
+                              <small class="text-danger" *ngIf="formValidation.isValidField('creditReason')">
+                              {{ formValidation.errorMessage('creditReason') }}
+                             </small>
+                         </div>
+
+                        <!-- DynamicText with label of Appr Status -->
+                         <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('apprStatus') }">
+                             <label class="col-form-label" for="apprStatus" i18n>Appr Status</label>
+                             <input type="text"  [fieldLevelSec]="'Credit Status'" [params]="{secColDetails: secColDetails}"  readonly id="apprStatus" formControlName="apprStatus" class="form-control"/>
+                         </div>
+
+                    </div>
+
+                    <div class="form-group row">
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-md-4 form-control-static mb-0" i18n>
+                          <h4><u> Adv Pay Information</u></h4>
+                        </div>
+
+                    </div>
+
+                    <div class="form-group row">
+                        <!-- Textbox with label of Adv Pay Acc No -->
+                         <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('advPayAccNo') }">
+                             <label class="col-form-label clr-blue" for="advPayAccNo" i18n>Adv Pay Acc No</label>
+                             <input type="text" id="advPayAccNo" (change)="ValidateAccountNumber($event,1)" [fieldLevelSec]="'Seq Vend Adv Pay Acc'" [params]="{secColDetails: secColDetails}"   class="form-control" formControlName="advPayAccNo"
+                                    (keydown)="onAdvPayAccNoKeyDown($event)" />
+                              <small class="text-danger" *ngIf="formValidation.isValidField('advPayAccNo')">
+                              {{ formValidation.errorMessage('advPayAccNo') }}
+                             </small>
+                         </div>
+
+                        <!-- DynamicText with label of Check Number -->
+                         <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('checkNumber') }">
+                             <label class="col-form-label clr-blue" for="checkNumber" i18n>Check Number</label>
+                             <input type="text"  [fieldLevelSec]="'Check Eft Number'" (change)="ValidateCheckNumber($event,1)" [params]="{secColDetails: secColDetails}"   id="checkNumber" formControlName="checkNumber" class="form-control"
+                                    (keydown)="onCheckNumberKeyDown($event)" />
+                         </div>
+
+                    </div>
+
+                    <div class="form-group row">
+                        <!-- DynamicText with label of Balance Amt -->
+                         <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('balanceAmt') }">
+                             <label class="col-form-label" for="balanceAmt" i18n>Balance Amt</label>
+                             <input type="text"  [fieldLevelSec]="''" [params]="" (change)="inputEvent()"  readonly id="balanceAmt" formControlName="balanceAmt" class="form-control"/>
+                         </div>
+
+                        <!-- DynamicText with label of Selected For Pay -->
+                         <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('selectedForPay') }">
+                             <label class="col-form-label" for="selectedForPay" i18n>Selected For Pay</label>
+                             <input type="text"  [fieldLevelSec]="'Offset From Amt'" [params]="{secColDetails: secColDetails}"  readonly id="selectedForPay" formControlName="selectedForPay" class="form-control"/>
+                         </div>
+
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-md-4 form-control-static mb-0" i18n>
+                          <h4><u> Offset From</u></h4>
+                        </div>
+
+                    </div>
+
+                    <div class="form-group row">
+                        <!-- Textbox with label of Offset Amt -->
+                         <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('offsetAmt') }">
+                             <label class="col-form-label clr-blue" for="offsetAmt" i18n>Offset Amt</label>
+                             <input type="text" id="offsetAmt" (change)="ValidateOffsetAmount($event)"  [fieldLevelSec]="'Apply Offset To'" [params]="{secColDetails: secColDetails}"   class="form-control" formControlName="offsetAmt"/>
+                              <small class="text-danger" *ngIf="formValidation.isValidField('offsetAmt')">
+                              {{ formValidation.errorMessage('offsetAmt') }}
+                             </small>
+                         </div>
+
+                        <!-- DynamicText with label of Company Code -->
+                         <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('companyCode001') }">
+                             <label class="col-form-label" for="companyCode001" i18n>Company Code</label>
+                             <input type="text"  [fieldLevelSec]="'Check Eft Company Code'" [params]="{secColDetails: secColDetails}"  readonly id="companyCode001" formControlName="companyCode001" class="form-control"/>
+                         </div>
+
+                        <!-- DynamicText with label of GL Ref Code -->
+                         <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('glRefCode') }">
+                             <label class="col-form-label" for="glRefCode" i18n>GL Ref Code</label>
+                             <input type="text"  [fieldLevelSec]="'Check Eft Gl Ref Code'" [params]="{secColDetails: secColDetails}"  readonly id="glRefCode" formControlName="glRefCode" class="form-control"/>
+                         </div>
+
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-md-4 form-control-static mb-0" i18n>
+                            <h4><u>Offset To</u></h4>
+                        </div>
+
+                    </div>
+
+                    <div class="form-group row">
+                        <!-- Textbox with label of Apply To -->
+                         <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('applyTo') }">
+                             <label class="col-form-label clr-blue" for="applyTo" i18n>Apply To</label>
+                                <select id="applyTo" (change)="onchangeApplyTo($event)"  [fieldLevelSec]="'Apply Credit'" [params]="{secColDetails: secColDetails}"   class="form-control" formControlName="applyTo">
+                                <option value="">-Select-</option>
+                                <option *ngFor="let dddwDtl of applyOffsetTo" [value]="dddwDtl.dddwDtlPrimaryKey.dataVal">{{dddwDtl.dddwDtlPrimaryKey.displayVal}}-{{dddwDtl.dddwDtlPrimaryKey.dataVal}}</option>
+                                </select>
+                              <small class="text-danger" *ngIf="formValidation.isValidField('applyTo')">
+                              {{ formValidation.errorMessage('applyTo') }}
+                             </small>
+                         </div>
+
+                        <!-- DynamicText with label of Vendor ID -->
+                         <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('vendorId002') }">
+                             <label class="col-form-label" for="vendorId002" i18n>Vendor ID</label>
+                             <input type="text"   id="vendorId002" formControlName="vendorId002" class="form-control"
+                                    (keydown)="onVendorIdKeyDown($event)" />
+                         </div>
+
+                        <!-- Textbox with label of Vendor Address -->
+                         <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('vendorAddress002') }">
+                             <label class="col-form-label" for="vendorAddress002" i18n>Vendor Address</label>
+                            <div class="input-group" #myDrop="ngbDropdown" ngbDropdown>
+                                <input readonly ngbDropdownToggle type="text"  class="bg-white form-control" id="vendorAddress002" [value]="vendorAddress1" formControlName="vendorAddress002">
+                                <div class="input-group-append" role="group">
+                                    <button ngbDropdownToggle class="btn border"></button>
+                                </div>
+                                <div ngbDropdownMenu aria-labelledby="dropdown" class="max-dropdown-height">
+                                    <button #buttonDropDown ngbDropdownItem [value]="add.seqVendAddress" id="addrDropDown" *ngFor="let add of Address let i = index"  (click)="setVendorAddress2_DROPD(add.seqVendAddress)">{{add.name2?add.name2 + ',' : ''}} {{add.addressLine1?add.addressLine1 + ', ':''}}{{add.city?add.city+', ':''}}{{add.state?add.state+', ':''}}{{add.zipCode?add.zipCode+', ':''}}</button>
+                                </div>
+                            </div>
+                              <small class="text-danger" *ngIf="formValidation.isValidField('vendorAddress002')">
+                              {{ formValidation.errorMessage('vendorAddress002') }}
+                             </small>
+                         </div>
+
+                    </div>
+
+                    <div class="form-group row">
+                        <!-- DynamicText with label of Account No -->
+                         <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('accountNo') }">
+                             <label class="col-form-label clr-blue" for="accountNo" i18n>Account No</label>
+                             <input type="text"     id="accountNo" formControlName="accountNo" class="form-control"
+                                    (keydown)="onAccountNoKeyDown($event)" (change)="validateOffsetToNumber($event)" />
+                         </div>
+
+                        <!-- DynamicText with label of Company Code -->
+                         <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('companyCode002') }">
+                             <label class="col-form-label" for="companyCode002" i18n>Company Code</label>
+                             <input type="text"   readonly id="companyCode002" formControlName="companyCode002" class="form-control"/>
+                         </div>
+
+                        <!-- DynamicText with label of GI Ref Code -->
+                         <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('giRefCode') }">
+                             <label class="col-form-label" for="giRefCode" i18n>GI Ref Code</label>
+                             <input type="text"    readonly id="giRefCode" formControlName="giRefCode" class="form-control"/>
+                         </div>
+
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-md-4 form-control-static mb-0" i18n>
+                           <h4><u>User Define Information</u></h4>
+                        </div>
+
+                    </div>
+
+                    <div class="form-group row">
+                        <!-- Textbox with label of User Define 1 -->
+                         <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('userDefine1') }">
+                             <label class="col-form-label" for="userDefine1" i18n>User Define 1</label>
+                             <input type="text" id="userDefine1" (change)="inputEvent()"  [fieldLevelSec]="'User Defined 1'" [params]="{secColDetails: secColDetails}"   class="form-control" formControlName="userDefine1"/>
+                              <small class="text-danger" *ngIf="formValidation.isValidField('userDefine1')">
+                              {{ formValidation.errorMessage('userDefine1') }}
+                             </small>
+                         </div>
+
+                        <!-- Textbox with label of User Date 1 -->
+                         <div class="col-md-6">
+                           <app-datepicker [formGroup]="vendorCreditForm" [formValidation]="formValidation" [field]="'userDate1'" [labelText]="'User Date 1'"></app-datepicker>
+                         </div>
+
+                    </div>
+
+                    <div class="form-group row">
+                        <!-- Textbox with label of User Define 2 -->
+                         <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('userDefine2') }">
+                             <label class="col-form-label" for="userDefine2" i18n>User Define 2</label>
+                             <input type="text" id="userDefine2" (change)="inputEvent()"  [fieldLevelSec]="'User Defined 2'" [params]="{secColDetails: secColDetails}"   class="form-control" formControlName="userDefine2"/>
+                              <small class="text-danger" *ngIf="formValidation.isValidField('userDefine2')">
+                              {{ formValidation.errorMessage('userDefine2') }}
+                             </small>
+                         </div>
+
+                        <!-- Textbox with label of User Date 2 -->
+                         <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('userDate2') }">
+                          <app-datepicker [formGroup]="vendorCreditForm" [formValidation]="formValidation" [field]="'userDate2'" [labelText]="'User Date 2'"></app-datepicker>
+                         </div>
+
+                    </div>
+
+                    <div class="form-group row">
+                    </div>
+                </ng-container>
+            </form>
+        </ng-container>
+    </div>
+</div>
+<ng-keyboard-shortcuts [shortcuts]="shortcuts"></ng-keyboard-shortcuts>
+<ng-keyboard-shortcuts-help [key]="'f1'" [closeKey]="'escape'" [title]="'Hotkeys Help'"></ng-keyboard-shortcuts-help>

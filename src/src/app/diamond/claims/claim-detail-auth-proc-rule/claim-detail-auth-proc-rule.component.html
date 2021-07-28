@@ -1,0 +1,102 @@
+<!-- Copyright (c) 2021 . All Rights Reserved. -->
+<div class="container-fluid">
+    <div class="card-block">
+        <div class="row form-title">
+            <h2 class="col-md-6 card-label-admin">Claim Detail Auth Proc Rules</h2>
+        </div>
+        <button type="button" *ngIf="showIcon" class="close" aria-label="Close" (click)="modalClose()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+        <app-pop-up-message #popUpMesssage (buttonclickEvent)="popUpButtonHandler($event)"  [(popupMessage)] = "popUpMessage"></app-pop-up-message>
+
+        <div class="row mt-3 mb-3">
+            <menu-bar [menus]="menu" (onMenuClick)="onMenuItemClick($event)"></menu-bar>
+        </div>
+
+        <form [formGroup]="claimDetailAuthProcRuleForm" novalidate>
+            <div class="form-group row">
+                <!-- DynamicText with label of Rule ID -->
+                 <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('ruleId') }">
+                     <label class="col-form-label" for="ruleId" i18n>Rule ID</label>
+                     <input type="text" [fieldLevelSec]="'Rule Id'" id="ruleId" formControlName="ruleId"
+                            class="form-control" #authProcRuleIds
+                            (keydown)="onLookupFieldChange($event, authProcRuleIds.value)"/>
+                 </div>
+            </div>
+
+            <div class="form-group row">
+                <!-- Textbox with label of Description -->
+                <div class="col-md-8" [ngClass]="{'has-danger': formValidation.isValidField('description') }">
+                    <label class="col-form-label" for="description" i18n>Description</label>
+                    <input type="text" id="description"  [fieldLevelSec]="'Description'"    class="form-control" formControlName="description"/>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('description')">
+                        {{ formValidation.errorMessage('description') }}
+                    </small>
+                </div>
+            </div>
+
+            <div class="form-group row">
+            </div>
+
+            <div class="form-group row">
+                <div class="col-md-4 form-control-static mb-0" i18n>
+                    <h6>Rule Determinant</h6>
+                </div>
+
+            </div>
+
+<!--                <div class="form-group row">
+                &lt;!&ndash; Textbox with label of Submt vs Auth Proc Code &ndash;&gt;
+                <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('submtVsAuthProcCode') }">
+                    <label class="col-form-label" for="submtVsAuthProcCode" i18n>Submt vs Auth Proc Code</label>
+                    <input type="text" id="submtVsAuthProcCode"  [fieldLevelSec]="'Submt Vs Auth Proc Code'"    class="form-control" formControlName="submtVsAuthProcCode"/>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('submtVsAuthProcCode')">
+                        {{ formValidation.errorMessage('submtVsAuthProcCode') }}
+                    </small>
+                </div>
+
+            </div>-->
+
+            <!-- Textbox with label of Sbmt Vs Auth Proc Code -->
+            <div class="form-group row">
+                <div [ngClass]="{'has-danger': formValidation.isValidField('submtVsAuthProcCode') }" class="col-md-4">
+                    <select #valueChange (change)='onSbmtVsAuthOrProcChange(valueChange.value)'  class="form-control" [formGroup]="claimDetailAuthProcRuleForm" formControlName="submtVsAuthProcCode" id="submtVsAuthProcCode"
+                            name="submtVsAuthProcCode">
+                        <option *ngFor="let submtVsAuthProcCode of submtVsAuthProcCodes"
+                                [value]="submtVsAuthProcCode.key">{{ submtVsAuthProcCode.value }}</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <!-- Checkbox with label of Price on Auth Proc ? -->
+                <div class="col-md-4" [ngClass]="{'has-error': displayMessage.priceOnAuthProc }">
+                        <label  class="col-form-label" for="priceOnAuthProc" i18n>
+                            Price on Auth Proc ? <span style="padding-left: 10px"></span>
+                        </label>
+                        <input id="priceOnAuthProc"  [fieldLevelSec]="'Price On Auth Proc Code'" value="priceOnAuthProc" formControlName="priceOnAuthProc" type="checkbox" checked="false">
+                    <span class="help-block" *ngIf="displayMessage.priceOnAuthProc">
+                    {{ displayMessage.priceOnAuthProc  }}
+                 </span>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <!-- Textbox with label of Auth Proc Status -->
+                <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('authProcStatus') }">
+                    <label class="col-form-label" for="authProcStatus" i18n>Auth Proc Status</label>
+                    <select #valChange (change)='onAuthProcStatusChange(valChange.value)' class="form-control" [formGroup]="claimDetailAuthProcRuleForm"  formControlName="authProcStatus" id="authProcStatus"
+                            name="authProcStatus">
+                        <option *ngFor="let authProcStat of authProcStatuses"
+                                [value]="authProcStat.key">{{ authProcStat.value }}</option>
+                    </select>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+<ng-keyboard-shortcuts [shortcuts]="shortcuts"></ng-keyboard-shortcuts>
+<ng-keyboard-shortcuts-help [key]="'f2'" [closeKey]="'escape'" [title]="'Hotkeys Help'"></ng-keyboard-shortcuts-help>

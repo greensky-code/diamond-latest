@@ -1,0 +1,248 @@
+<!-- Copyright (c) 2021 . All Rights Reserved. -->
+<div class="container-fluid">
+    <div class="card-block">
+        <form [formGroup]="timelyFilingRulesForm" novalidate>
+            <h2 class="form-title card-label-admin">Timely Filing Rules</h2>
+            <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+            <app-pop-up-message #popUpMesssage (buttonclickEvent)="popUpButtonHandler($event)"  [(popupMessage)] = "popUpMessage"></app-pop-up-message>
+                        
+            <div class="form-group row">
+                <!-- Textbox with label of Claim Type -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('claimType') }">
+                     <label class="col-form-label" for="claimType" i18n>Claim Type</label>
+                     <input type="text" id="claimType"  [fieldLevelSec]="'Claim Type'" params]="Timely Filing Rules"   class="form-control" formControlName="claimType"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('claimType')">
+                      {{ formValidation.errorMessage('claimType') }}
+                     </small>
+                 </div>
+            
+                <!-- DynamicText with label of Claim Type Description -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('claimTypeDescription') }">
+                     <label class="col-form-label" for="claimTypeDescription" i18n>Claim Type Description</label>
+                     <input type="text"  [fieldLevelSec]="'Description'" params]="Timely Filing Rules"  readonly id="claimTypeDescription" formControlName="claimTypeDescription" class="form-control"/>
+                 </div>
+            
+                <!-- Textbox with label of Rule Order -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('ruleOrder') }">
+                     <label class="col-form-label" for="ruleOrder" i18n>Rule Order</label>
+                     <input type="text" id="ruleOrder"  [fieldLevelSec]="'Rule Order'" params]="Timely Filing Rules"   class="form-control" formControlName="ruleOrder"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('ruleOrder')">
+                      {{ formValidation.errorMessage('ruleOrder') }}
+                     </small>
+                 </div>
+            
+            </div>
+            
+                        <!-- DataGrid with Name of DataGrid -->
+                    <button (click)="dataGridGridOptionsExportCsv()">Export</button>
+                    <ag-grid-angular #agGrid class="ag-theme-fresh" [gridOptions]="dataGridGridOptions"
+                    style="width: 100%; height: 300px;"
+                    [enableSorting]="true"
+                    [enableFilter]="true"
+                    [floatingFilter]="true"
+                    [pagination]="true"
+                    [showToolPanel]="true">
+                    </ag-grid-angular>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of Effective Date -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('effectiveDate') }">
+                     <label class="col-form-label" for="effectiveDate" i18n>Effective Date</label>
+                     <input type="text" id="effectiveDate"  [fieldLevelSec]="'Effective Date'" params]="Timely Filing Rules"   class="form-control" formControlName="effectiveDate"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('effectiveDate')">
+                      {{ formValidation.errorMessage('effectiveDate') }}
+                     </small>
+                 </div>
+            
+                <!-- Textbox with label of Term Date -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('termDate') }">
+                     <label class="col-form-label" for="termDate" i18n>Term Date</label>
+                     <input type="text" id="termDate"  [fieldLevelSec]="'Term Date'" params]="Timely Filing Rules"   class="form-control" formControlName="termDate"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('termDate')">
+                      {{ formValidation.errorMessage('termDate') }}
+                     </small>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of Description -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('description') }">
+                     <label class="col-form-label" for="description" i18n>Description</label>
+                     <input type="text" id="description"  [fieldLevelSec]="'Action'" params]="Timely Filing Rules"   class="form-control" formControlName="description"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('description')">
+                      {{ formValidation.errorMessage('description') }}
+                     </small>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <div class="col-md-2 form-control-static mb-0" i18n>
+                    Timely Filing Criteria
+                </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- DynamicText with label of Line of Business -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('lineOfBusiness') }">
+                     <label class="col-form-label" for="lineOfBusiness" i18n>Line of Business</label>
+                     <input type="text"  [fieldLevelSec]="'Insert Process'" params]="Timely Filing Rules"  readonly id="lineOfBusiness" formControlName="lineOfBusiness" class="form-control"/>
+                 </div>
+            
+                <!-- DynamicText with label of Company Code -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('companyCode') }">
+                     <label class="col-form-label" for="companyCode" i18n>Company Code</label>
+                     <input type="text"  [fieldLevelSec]="'Company Code Select'" params]="Timely Filing Rules"  readonly id="companyCode" formControlName="companyCode" class="form-control"/>
+                 </div>
+            
+                <!-- DynamicText with label of Bill Type -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('billType') }">
+                     <label class="col-form-label" for="billType" i18n>Bill Type</label>
+                     <input type="text"  [fieldLevelSec]="'Bill Type Select'" params]="Timely Filing Rules"  readonly id="billType" formControlName="billType" class="form-control"/>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- DynamicText with label of Provider Par Status -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('providerParStatus') }">
+                     <label class="col-form-label" for="providerParStatus" i18n>Provider Par Status</label>
+                     <input type="text"  [fieldLevelSec]="'Prov Status Select'" params]="Timely Filing Rules"  readonly id="providerParStatus" formControlName="providerParStatus" class="form-control"/>
+                 </div>
+            
+                <!-- DynamicText with label of Service Delivery State -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('serviceDeliveryState') }">
+                     <label class="col-form-label" for="serviceDeliveryState" i18n>Service Delivery State</label>
+                     <input type="text"  [fieldLevelSec]="'Service State Select'" params]="Timely Filing Rules"  readonly id="serviceDeliveryState" formControlName="serviceDeliveryState" class="form-control"/>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- DynamicText with label of Authorization Level -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('authorizationLevel') }">
+                     <label class="col-form-label" for="authorizationLevel" i18n>Authorization Level</label>
+                     <input type="text"  [fieldLevelSec]="'Auth Level Select'" params]="Timely Filing Rules"  readonly id="authorizationLevel" formControlName="authorizationLevel" class="form-control"/>
+                 </div>
+            
+                <!-- DynamicText with label of Revenue Code -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('revenueCode') }">
+                     <label class="col-form-label" for="revenueCode" i18n>Revenue Code</label>
+                     <input type="text"  [fieldLevelSec]="'Revenue Code Select'" params]="Timely Filing Rules"  readonly id="revenueCode" formControlName="revenueCode" class="form-control"/>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of Calc From Date -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('calcFromDate') }">
+                     <label class="col-form-label" for="calcFromDate" i18n>Calc From Date</label>
+                     <input type="text" id="calcFromDate"  [fieldLevelSec]="'Calc From Date'" params]="Timely Filing Rules"   class="form-control" formControlName="calcFromDate"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('calcFromDate')">
+                      {{ formValidation.errorMessage('calcFromDate') }}
+                     </small>
+                 </div>
+            
+                <!-- Textbox with label of Calc Thru Date -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('calcThruDate') }">
+                     <label class="col-form-label" for="calcThruDate" i18n>Calc Thru Date</label>
+                     <input type="text" id="calcThruDate"  [fieldLevelSec]="'Calc Thru Date'" params]="Timely Filing Rules"   class="form-control" formControlName="calcThruDate"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('calcThruDate')">
+                      {{ formValidation.errorMessage('calcThruDate') }}
+                     </small>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of Filing Limit Days -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('filingLimitDays') }">
+                     <label class="col-form-label" for="filingLimitDays" i18n>Filing Limit Days</label>
+                     <input type="text" id="filingLimitDays"  [fieldLevelSec]="'Filing Limit Days'" params]="Timely Filing Rules"   class="form-control" formControlName="filingLimitDays"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('filingLimitDays')">
+                      {{ formValidation.errorMessage('filingLimitDays') }}
+                     </small>
+                 </div>
+            
+                <!-- Checkbox with label of Ignore Prov. Limit Days -->
+                <div class="" [ngClass]="{'has-error': displayMessage.ignoreProvLimitDays }">
+                    <div class="checkbox col-md-12">
+                      <input id="ignoreProvLimitDays"  [fieldLevelSec]="'Prov Lim Days Flag'" params]="Timely Filing Rules"  value="ignoreProvLimitDays" formControlName="ignoreProvLimitDays" type="checkbox">
+                        <label class="checkbox">
+                            Ignore Prov. Limit Days
+                         </label>
+                    </div>
+                    <span class="help-block" *ngIf="displayMessage.ignoreProvLimitDays">
+                        {{ displayMessage.ignoreProvLimitDays  }}
+                     </span>
+                </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of Action -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('action') }">
+                     <label class="col-form-label" for="action" i18n>Action</label>
+                     <input type="text" id="action"  [fieldLevelSec]="''" params]=""   class="form-control" formControlName="action"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('action')">
+                      {{ formValidation.errorMessage('action') }}
+                     </small>
+                 </div>
+            
+                <!-- Checkbox with label of Apply Action to all Detail Lines -->
+                <div class="" [ngClass]="{'has-error': displayMessage.applyActionToAllDetailLin }">
+                    <div class="checkbox col-md-12">
+                      <input id="applyActionToAllDetailLin"  [fieldLevelSec]="'Apply Action To All Dtl Lines'" params]="Timely Filing Rules"  value="applyActionToAllDetailLin" formControlName="applyActionToAllDetailLin" type="checkbox">
+                        <label class="checkbox">
+                            Apply Action to all Detail Lines
+                         </label>
+                    </div>
+                    <span class="help-block" *ngIf="displayMessage.applyActionToAllDetailLin">
+                        {{ displayMessage.applyActionToAllDetailLin  }}
+                     </span>
+                </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of Reason Code -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('reasonCode') }">
+                     <label class="col-form-label" for="reasonCode" i18n>Reason Code</label>
+                     <input type="text" id="reasonCode"  [fieldLevelSec]="'Reason Code'" params]="Timely Filing Rules"   class="form-control" formControlName="reasonCode"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('reasonCode')">
+                      {{ formValidation.errorMessage('reasonCode') }}
+                     </small>
+                 </div>
+            
+                <div class="col-md-2 form-control-static mb-0" i18n>
+                    Claim Received past the plans claim submission time Limit
+                </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Checkbox with label of Message To Operator -->
+                <div class="" [ngClass]="{'has-error': displayMessage.messageToOperator }">
+                    <div class="checkbox col-md-12">
+                      <input id="messageToOperator"  [fieldLevelSec]="'Message To Operator'" params]="Timely Filing Rules"  value="messageToOperator" formControlName="messageToOperator" type="checkbox">
+                        <label class="checkbox">
+                            Message To Operator
+                         </label>
+                    </div>
+                    <span class="help-block" *ngIf="displayMessage.messageToOperator">
+                        {{ displayMessage.messageToOperator  }}
+                     </span>
+                </div>
+            
+            </div>
+            
+            <div class="form-group row">
+            </div>
+        </form>
+    </div>
+</div>

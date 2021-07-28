@@ -1,0 +1,226 @@
+<!-- Copyright (c) 2021 . All Rights Reserved. -->
+<div class="container-fluid">
+    <div class="card-block">
+        <form [formGroup]="localCurrencyConversionForm" novalidate>
+            <h2 class="form-title card-label-admin">Local Currency Conversion</h2>
+            <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+            <app-pop-up-message #popUpMesssage (buttonclickEvent)="popUpButtonHandler($event)"  [(popupMessage)] = "popUpMessage"></app-pop-up-message>
+                        
+            <div class="form-group row">
+                <!-- DynamicText with Name of DynamicText001 -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('dynamicText001') }">
+                     <label class="col-form-label" for="dynamicText001" i18n>&nbsp;</label>
+                     <input type="text"  [fieldLevelSec]="''" params]=""  readonly id="dynamicText001" formControlName="dynamicText001" class="form-control"/>
+                 </div>
+            
+                <!-- DynamicText with Name of DynamicText002 -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('dynamicText002') }">
+                     <label class="col-form-label" for="dynamicText002" i18n>&nbsp;</label>
+                     <input type="text"  [fieldLevelSec]="''" params]=""  readonly id="dynamicText002" formControlName="dynamicText002" class="form-control"/>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- DynamicText with Name of DynamicText003 -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('dynamicText003') }">
+                     <label class="col-form-label" for="dynamicText003" i18n>&nbsp;</label>
+                     <input type="text"  [fieldLevelSec]="''" params]=""  readonly id="dynamicText003" formControlName="dynamicText003" class="form-control"/>
+                 </div>
+            
+                <!-- DynamicText with Name of DynamicText004 -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('dynamicText004') }">
+                     <label class="col-form-label" for="dynamicText004" i18n>&nbsp;</label>
+                     <input type="text"  [fieldLevelSec]="''" params]=""  readonly id="dynamicText004" formControlName="dynamicText004" class="form-control"/>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- DynamicText with label of Claim Number -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('claimNumber') }">
+                     <label class="col-form-label" for="claimNumber" i18n>Claim Number</label>
+                     <input type="text"  [fieldLevelSec]="''" params]=""  readonly id="claimNumber" formControlName="claimNumber" class="form-control"/>
+                 </div>
+            
+                <div class="col-md-2 form-control-static mb-0" i18n>
+                    Image Number ^Lb
+                </div>
+            
+                <!-- DynamicText with label of Incurred Country -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('incurredCountry') }">
+                     <label class="col-form-label" for="incurredCountry" i18n>Incurred Country</label>
+                     <input type="text"  [fieldLevelSec]="''" params]=""  readonly id="incurredCountry" formControlName="incurredCountry" class="form-control"/>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+                <!-- DropdownList with label of Currency -->
+                <div class="selectContainer col-md-2 " [ngClass]="{'has-danger': formValidation.isValidField('currency') }">
+                    <label class="col-form-label" for="currency" i18n>Currency</label>
+                    <select class="form-control" id="currency"  [fieldLevelSec]="''" params]=""  name="Currency" formControlName="currency">
+                        <option value="">Please Select</option>
+                    </select>
+                </div>
+            
+                <!-- DropdownList with Name of DropdownList -->
+                <div class="selectContainer col-md-2 " [ngClass]="{'has-danger': formValidation.isValidField('dropdownList') }">
+                    <label class="col-form-label" for="dropdownList" i18n>&nbsp;</label>
+                    <select class="form-control" id="dropdownlist"  [fieldLevelSec]="''" params]=""  name="DropdownList" formControlName="dropdownList">
+                        <option value="">Please Select</option>
+                    </select>
+                </div>
+            
+            </div>
+            
+            <div class="form-group row">
+            </div>
+            
+                        <!-- DataGrid with Name of DataGrid001 -->
+                    <button (click)="dataGrid001GridOptionsExportCsv()">Export</button>
+                    <ag-grid-angular #agGrid class="ag-theme-fresh" [gridOptions]="dataGrid001GridOptions"
+                    style="width: 100%; height: 300px;"
+                    [enableSorting]="true"
+                    [enableFilter]="true"
+                    [floatingFilter]="true"
+                    [pagination]="true"
+                    [showToolPanel]="true">
+                    </ag-grid-angular>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+                <div class="col-md-2 form-control-static mb-0" i18n>
+                    Total Invoices Amt
+                </div>
+            
+                <!-- Textbox with Name of Textbox -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('textbox') }">
+                     <label class="col-form-label" for="textbox" i18n>&nbsp;</label>
+                     <input type="text" id="textbox"  [fieldLevelSec]="''" params]=""   class="form-control" formControlName="textbox"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('textbox')">
+                      {{ formValidation.errorMessage('textbox') }}
+                     </small>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Checkbox with label of Skip the invoice amount validation? ^CB Yes ^Cb -->
+                <div class="" [ngClass]="{'has-error': displayMessage.skipTheInvoiceAmountValida }">
+                    <div class="checkbox col-md-12">
+                      <input id="skipTheInvoiceAmountValida"  [fieldLevelSec]="''" params]=""  value="skipTheInvoiceAmountValida" formControlName="skipTheInvoiceAmountValida" type="checkbox">
+                        <label class="checkbox">
+                            Skip the invoice amount validation? ^CB Yes ^Cb
+                         </label>
+                    </div>
+                    <span class="help-block" *ngIf="displayMessage.skipTheInvoiceAmountValida">
+                        {{ displayMessage.skipTheInvoiceAmountValida  }}
+                     </span>
+                </div>
+            
+            </div>
+            
+            <div class="form-group row">
+            </div>
+            
+                        <!-- DataGrid with Name of DataGrid002 -->
+                    <button (click)="dataGrid002GridOptionsExportCsv()">Export</button>
+                    <ag-grid-angular #agGrid class="ag-theme-fresh" [gridOptions]="dataGrid002GridOptions"
+                    style="width: 100%; height: 300px;"
+                    [enableSorting]="true"
+                    [enableFilter]="true"
+                    [floatingFilter]="true"
+                    [pagination]="true"
+                    [showToolPanel]="true">
+                    </ag-grid-angular>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+                <div class="col-md-2 form-control-static mb-0" i18n>
+                    Total Amt
+                </div>
+            
+                <!-- DynamicText with Name of DynamicText005 -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('dynamicText005') }">
+                     <label class="col-form-label" for="dynamicText005" i18n>&nbsp;</label>
+                     <input type="text"  [fieldLevelSec]="''" params]=""  readonly id="dynamicText005" formControlName="dynamicText005" class="form-control"/>
+                 </div>
+            
+                <!-- DynamicText with Name of DynamicText006 -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('dynamicText006') }">
+                     <label class="col-form-label" for="dynamicText006" i18n>&nbsp;</label>
+                     <input type="text"  [fieldLevelSec]="''" params]=""  readonly id="dynamicText006" formControlName="dynamicText006" class="form-control"/>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+                <!-- Button with label of Edit Currency -->
+                <div class="col-md-2">
+                    <button type="button" id="editCurrency" name="editCurrency" class="btn btn-small btn-primary">Edit Currency</button>
+                
+                
+                </div>
+            
+                <!-- Button with label of Delete Selected -->
+                <div class="col-md-2">
+                    <button type="button" id="deleteSelected" name="deleteSelected" class="btn btn-small btn-primary">Delete Selected</button>
+                
+                
+                </div>
+            
+                <!-- Button with label of Add new -->
+                <div class="col-md-2">
+                    <button type="button" id="addNew" name="addNew" class="btn btn-small btn-primary">Add new</button>
+                
+                
+                </div>
+            
+                <!-- Button with label of Save Changes -->
+                <div class="col-md-2">
+                    <button type="button" id="saveChanges" name="saveChanges" class="btn btn-small btn-primary">Save Changes</button>
+                
+                
+                </div>
+            
+            </div>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+                <!-- Button with label of Cancel -->
+                <div class="col-md-2">
+                    <button type="button" id="cancel" name="cancel" class="btn btn-small btn-primary">Cancel</button>
+                
+                
+                </div>
+            
+                <!-- Button with label of Continue -->
+                <div class="col-md-2">
+                    <button type="button" id="continue" name="continue" class="btn btn-small btn-primary">Continue</button>
+                
+                
+                </div>
+            
+            </div>
+        </form>
+    </div>
+</div>

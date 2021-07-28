@@ -1,0 +1,72 @@
+<!-- Copyright (c) 2021 . All Rights Reserved. -->
+<div class="container-fluid">
+    <div class="card-block">
+        <form [formGroup]="administrativeDetailForm" novalidate>
+            
+            <app-pop-up-message #popUpMesssage (buttonclickEvent)="popUpButtonHandler($event)"
+                                [popupMessage]="popUpMessage"></app-pop-up-message>
+
+
+            <div class="form-group row bg-dark text-white">
+                <div class="col-md-4 offset-2 form-control-static mb-0 font-weight-bold " i18n>
+                    Group Number
+                    <br>
+                    <span class="col-md required-field-label justify-content-center pt-1">  {{groupNumber}}</span>
+                </div>
+                <div class="col-md-4 offset-2 form-control-static mb-0 font-weight-bold" i18n>
+                    Group Name
+                    <br>
+                    <span class="col-md pt-1 required-field-label justify-content-center"> {{groupName}}</span>
+                </div>
+            </div>
+
+            <nav ngbNav #navSub="ngbNav" class="nav-tabs" [(activeId)]="activeTab">
+                <ng-container [ngbNavItem]="1">
+                    <a ngbNavLink (click)="OnChange(1)">Filing Details</a>
+                    <ng-template ngbNavContent *ngIf="showFilling">
+                        <div class="form-group row">
+                            <ng-template #loaderTemplate let-loaderValue="value">
+                                <div class="row justify-content-center mt-4" style="display: flex;margin-left: auto;margin-right: auto;" *ngIf="loaderValue">
+                                    <div class="spinner-border text-success" role="status">
+                                        <span class="sr-only">Loading...</span>
+                                    </div>
+                                </div>
+                            </ng-template>
+                            <ng-container *ngTemplateOutlet="loaderTemplate; context:{value: loader }"></ng-container>
+                            <div class="col-md-12 mt-3 p-2"  *ngIf="isInitialDataLoaded">
+                                <dmnd-dynamic-config-grid *ngIf="isInitialDataLoaded"
+                                                          [prevState]="procAddGroupFilingsFormState" [isResetForm]="resetInlineGrid"
+                                                          [title]="''" [showRemoveButton]="false"
+                                                          [config]="procAddGroupFilingsConfig" [displayCheckBox]="false"
+                                                          (formSubmitted)="saveForm($event)"
+                                                          [submitBtnText]="SubmitBtn"
+                                                          [isAllowAddNewRow]="isAllowAddNewRow"
+                                                          (onChangeFields)="onFilingDetailFieldChange($event)"
+                                                          (onNewRowAdded)="onFilingDetailNewRowAdded($event)"
+                                                          [showAddNewline]="true"
+                                ></dmnd-dynamic-config-grid>
+                            </div>
+
+                        </div>
+                        <!-- <div class="row">
+                            <div class="col-md-6 d-flex">
+                                <button type="button" (click)="Close()" class="mx-auto btn btn-primary">Close</button>
+                            </div>
+                            <div class="col-md-6 d-flex">
+                                <button type="button" (click)="cancle()" class="mx-auto btn btn-primary">Cancel</button>
+                            </div>
+                        </div> -->
+                    </ng-template>
+                </ng-container>
+                <ng-container [ngbNavItem]="2">
+                    <a ngbNavLink (click)="OnChange(2)">State Mandate Detail</a>
+                    <ng-template ngbNavContent *ngIf="showState">
+                        <app-state-mandate-detail *ngIf="groupMaster != undefined" [parentComponent]="this"></app-state-mandate-detail>
+
+                    </ng-template>
+                </ng-container>
+            </nav>
+            <div [ngbNavOutlet]="navSub" class="mt-2"></div>
+        </form>
+    </div>
+</div>

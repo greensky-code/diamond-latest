@@ -1,0 +1,183 @@
+<!-- Copyright (c) 2021 . All Rights Reserved. -->
+<div class="container-fluid">
+    <div class="card-block">
+        <form [formGroup]="authWaiveRulesForm" novalidate>
+            <h2 class="form-title card-label-admin">Auth Waive Rules</h2>
+            <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+            <app-pop-up-message #popUpMesssage (buttonclickEvent)="popUpButtonHandler($event)"  [(popupMessage)] = "popUpMessage"></app-pop-up-message>
+                        
+            <div class="form-group row">
+            </div>
+            
+                        <!-- DataGrid with Name of DataGrid001 -->
+                    <button (click)="dataGrid001GridOptionsExportCsv()">Export</button>
+                    <ag-grid-angular #agGrid class="ag-theme-fresh" [gridOptions]="dataGrid001GridOptions"
+                    style="width: 100%; height: 300px;"
+                    [enableSorting]="true"
+                    [enableFilter]="true"
+                    [floatingFilter]="true"
+                    [pagination]="true"
+                    [showToolPanel]="true">
+                    </ag-grid-angular>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of Claim Type -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('claimType') }">
+                     <label class="col-form-label" for="claimType" i18n>Claim Type</label>
+                     <input type="text" id="claimType"  [fieldLevelSec]="''" params]=""   class="form-control" formControlName="claimType"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('claimType')">
+                      {{ formValidation.errorMessage('claimType') }}
+                     </small>
+                 </div>
+            
+                <!-- Textbox with label of From Date -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('fromDate') }">
+                     <label class="col-form-label" for="fromDate" i18n>From Date</label>
+                     <div class="input-group">
+                    <input id="fromDate"  [fieldLevelSec]="''" params]=""  class="form-control" angular-mydatepicker name="fromDate" (click)="fromDateId.toggleCalendar()"
+                    formControlName="fromDate"[options]="datePickerConfig" #fromDateId="angular-mydatepicker"/>
+                    <div class="input-group-append">
+                        <button type="button" class="btn btn-secondary" (click)="fromDateId.clearDate()">
+                          <i class="fa fa-close"></i>
+                        </button>
+                      </div>
+                      <div class="input-group-append">
+                        <button type="button" class="btn btn-secondary" (click)="fromDateId.toggleCalendar()">
+                          <i class="fa fa-calendar-o"></i>
+                        </button>
+                      </div>
+                    </div>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('fromDate')">
+                      {{ formValidation.errorMessage('fromDate') }}
+                     </small>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of Order -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('order') }">
+                     <label class="col-form-label" for="order" i18n>Order</label>
+                     <input type="text" id="order"  [fieldLevelSec]="''" params]=""   class="form-control" formControlName="order"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('order')">
+                      {{ formValidation.errorMessage('order') }}
+                     </small>
+                 </div>
+            
+                <!-- Textbox with label of Thru Date -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('thruDate') }">
+                     <label class="col-form-label" for="thruDate" i18n>Thru Date</label>
+                     <div class="input-group">
+                    <input id="thruDate"  [fieldLevelSec]="''" params]=""  class="form-control" angular-mydatepicker name="thruDate" (click)="thruDateId.toggleCalendar()"
+                    formControlName="thruDate"[options]="datePickerConfig" #thruDateId="angular-mydatepicker"/>
+                    <div class="input-group-append">
+                        <button type="button" class="btn btn-secondary" (click)="thruDateId.clearDate()">
+                          <i class="fa fa-close"></i>
+                        </button>
+                      </div>
+                      <div class="input-group-append">
+                        <button type="button" class="btn btn-secondary" (click)="thruDateId.toggleCalendar()">
+                          <i class="fa fa-calendar-o"></i>
+                        </button>
+                      </div>
+                    </div>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('thruDate')">
+                      {{ formValidation.errorMessage('thruDate') }}
+                     </small>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of Description -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('description001') }">
+                     <label class="col-form-label" for="description001" i18n>Description</label>
+                     <input type="text" id="description001"  [fieldLevelSec]="''" params]=""   class="form-control" formControlName="description001"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('description001')">
+                      {{ formValidation.errorMessage('description001') }}
+                     </small>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+            </div>
+            
+                        <!-- DataGrid with Name of DataGrid002 -->
+                    <button (click)="dataGrid002GridOptionsExportCsv()">Export</button>
+                    <ag-grid-angular #agGrid class="ag-theme-fresh" [gridOptions]="dataGrid002GridOptions"
+                    style="width: 100%; height: 300px;"
+                    [enableSorting]="true"
+                    [enableFilter]="true"
+                    [floatingFilter]="true"
+                    [pagination]="true"
+                    [showToolPanel]="true">
+                    </ag-grid-angular>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+                <!-- DynamicText with label of Search Sequence -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('searchSequence') }">
+                     <label class="col-form-label" for="searchSequence" i18n>Search Sequence</label>
+                     <input type="text"  [fieldLevelSec]="''" params]=""  readonly id="searchSequence" formControlName="searchSequence" class="form-control"/>
+                 </div>
+            
+                <!-- DynamicText with label of Determinant -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('determinant') }">
+                     <label class="col-form-label" for="determinant" i18n>Determinant</label>
+                     <input type="text"  [fieldLevelSec]="''" params]=""  readonly id="determinant" formControlName="determinant" class="form-control"/>
+                 </div>
+            
+                <!-- Textbox with label of Operator -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('operator') }">
+                     <label class="col-form-label" for="operator" i18n>Operator</label>
+                     <input type="text" id="operator"  [fieldLevelSec]="''" params]=""   class="form-control" formControlName="operator"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('operator')">
+                      {{ formValidation.errorMessage('operator') }}
+                     </small>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of Description -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('description002') }">
+                     <label class="col-form-label" for="description002" i18n>Description</label>
+                     <input type="text" id="description002"  [fieldLevelSec]="''" params]=""   class="form-control" formControlName="description002"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('description002')">
+                      {{ formValidation.errorMessage('description002') }}
+                     </small>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+            </div>
+            
+                        <!-- DataGrid with Name of DataGrid003 -->
+                    <button (click)="dataGrid003GridOptionsExportCsv()">Export</button>
+                    <ag-grid-angular #agGrid class="ag-theme-fresh" [gridOptions]="dataGrid003GridOptions"
+                    style="width: 100%; height: 300px;"
+                    [enableSorting]="true"
+                    [enableFilter]="true"
+                    [floatingFilter]="true"
+                    [pagination]="true"
+                    [showToolPanel]="true">
+                    </ag-grid-angular>
+            
+            <div class="form-group row">
+            </div>
+        </form>
+    </div>
+</div>

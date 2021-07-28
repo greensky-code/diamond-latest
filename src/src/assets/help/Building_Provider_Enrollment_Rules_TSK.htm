@@ -1,0 +1,352 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+    <title>Building Provider Enrollment Rules</title>
+    <!--(Meta)==========================================================-->
+    <meta name="copyright"
+          value="© Copyright 2002 Health Systems Design Corp., a wholly owned subsidiary of Perot Systems Corporation. All rights reserved"/>
+    <meta content="RoboHELP by eHelp Corporation - www.ehelp.com" name="generator"/>
+    <meta content="0.1" name="generator-major-version"/>
+    <meta content="1" name="generator-minor-version"/>
+    <meta content="kadov" name="filetype"/>
+    <meta content="1" name="filetype-version"/>
+    <meta content="0" name="page-count"/>
+    <meta content="0" name="layout-height"/>
+    <meta content="0" name="layout-width"/>
+    <!--(Links)=========================================================-->
+    <!--(Scripts)=======================================================-->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+
+</head>
+<body>
+
+<div class="calibreMeta">
+    <div class="calibreMetaTitle">
+
+
+        <h1>
+            <a href="../bai44-9x3eu.html">DIAMOND 950C/S Help
+            </a>
+        </h1>
+
+
+    </div>
+    <div class="calibreMetaAuthor">
+        Unknown
+
+    </div>
+</div>
+
+<div class="calibreMain">
+
+    <div class="calibreEbookContent">
+
+        <div class="calibreEbNavTop">
+
+            <a href="Provider_Member_Enrollment_Overview_PROC_OVW.htm" class="calibreAPrev">previous page
+            </a>
+
+
+            <a href="Provider_Member_Enrollment_How_DIAMOND_Thinks.htm" class="calibreANext">next page
+            </a>
+
+        </div>
+
+
+        <h4 class="calibre1">Building Provider Enrollment Rules</h4>
+
+        <!--(Table)=========================================================-->
+        <table cellspacing="0" width="528" x-use-null-cells="" class="calibre172">
+
+            <tbody class="calibre11">
+            <tr valign="top" class="">
+                <td width="528px" class="">
+                    <p class="map-links"><a
+                            href="Building_Provider_Enrollment_Rules_TSK.htm#PrvEnrol_Restrictions_TASK_MID"><img
+                            alt="image\assets/help/MidTopic_shg.gif" border="0" height="10" src="assets/help/MidTopic_shg.gif" width="18"
+                            class=""/></a>Restrictions</p></td>
+            </tr>
+
+            <tr valign="top" class="">
+                <td width="528px" class="">
+                    <p class="map-links"><a
+                            href="Building_Provider_Enrollment_Rules_TSK.htm#PrvEnrol_Instructions_-_Creating_Enrollment_Records_Using_the_Enrollment_Utility_TASK_MID"><img
+                            alt="image\assets/help/MidTopic_shg.gif" border="0" height="10" src="assets/help/MidTopic_shg.gif" width="18"
+                            class=""/></a> Instructions – Creating Enrollment Records Using the Enrollment Utility</p></td>
+            </tr>
+
+            <tr valign="top" class="">
+                <td width="528px" class="">
+                    <p class="map-links"><a
+                            href="Building_Provider_Enrollment_Rules_TSK.htm#ProvEnrol_Instructions_-_Creating_Enrollment_Records_Manually_TASK_MID"><img
+                            alt="image\assets/help/MidTopic_shg.gif" border="0" height="10" src="assets/help/MidTopic_shg.gif" width="18"
+                            class=""/></a>Instructions – Creating Enrollment Records Manually</p></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <p class="doc-level"><a name="PrvEnrol_Restrictions_TASK_MID"></a>Restrictions</p>
+
+        <p class="body-text">You should run the Provider Enrollment Utility when
+            release R5.1 is installed. Do not run the utility during Member or Claims
+            Batch processing.</p>
+
+        <p class="doc-level"><a
+                name="PrvEnrol_Instructions_-_Creating_Enrollment_Records_Using_the_Enrollment_Utility_TASK_MID"></a>Instructions
+            – Creating Enrollment Records Using the Enrollment Utility</p>
+
+        <!--(Table)=========================================================-->
+        <table cellspacing="0" width="527" x-use-null-cells="" class="calibre172">
+
+            <tbody class="calibre11">
+            <tr valign="top" class="">
+                <td width="250px" class="">
+                    <p class="tbl-header">Step</p></td>
+                <td width="276px" class="">
+                    <p class="tbl-header">Comment</p></td>
+            </tr>
+
+            <tr valign="top" class="">
+                <td width="250px" class="">
+                    <p class="step1">1. Preparation for activating
+                        provider/member enrollment functionality for the first time using the
+                        Provider/Member Enrollment Utility (see Provider/Member Enrollment user
+                        documentation):</p>
+                    <ul class="">
+
+                        <li class="kadov-p-cstep--bullet"><p class="step--bullet">Install
+                            DIAMOND Release 5.1.</p></li>
+
+                        <li class="kadov-p-cstep--bullet"><p class="step--bullet">Activate
+                            the PROVENROL parameter (see PARAM Reference documentation).</p></li>
+
+                        <li class="kadov-p-cstep--bullet"><p class="step--bullet">Run
+                            the Provider/Member Enrollment Utility scripts as outlined in D950C/S
+                            R5.1 Software Installation Guide.</p></li>
+                    </ul>
+                </td>
+                <td width="276px" class="">
+                    <p class="step-comment">As a result of running the
+                        prove_create_util.sh script, you:</p>
+                    <ul class="">
+
+                        <li class="kadov-p-cbullet-list-h1"><p class="step-comment-bullet-noline">Select
+                            the enrollment rule record creation criteria when prompted by DIAMOND.</p></li>
+                    </ul>
+                    <p class="body-text">And, DIAMOND:</p>
+                    <ul class="">
+
+                        <li class="kadov-p-cbullet-list-h1"><p class="step-comment-bullet-noline">Creates
+                            a generic PROVE record, based on the PROVE record creation criteria selected,
+                            for each PCP provider (PROVC &gt; PCP Flag check box must be checked).</p></li>
+                    </ul>
+                    <p class="body-text">As a result of running the mem_enroll_util.sh
+                        script, DIAMOND:</p>
+                    <ul class="">
+
+                        <li class="kadov-p-cbullet-list-h1"><p class="step-comment-bullet-noline">Associates
+                            the record with the provider’s primary address (see Provider/Member Enrollment
+                            user documentation, section Provider/Member Enrollment Utility &gt; PROVE
+                            Record Creation).</p></li>
+
+                        <li class="kadov-p-cbullet-list-h1"><p class="step-comment-bullet-noline">Associates
+                            existing, eligible members with their assigned PCP and corresponding criteria
+                            based PROVE record.</p></li>
+
+                        <li class="kadov-p-cbullet-list-h1"><p class="step-comment-bullet-noline">Increments
+                            the associated provider’s enrollment count (PROVE &gt; Current Enrollment)
+                            in all appropriate PROVE records.</p></li>
+                    </ul>
+                    <p class="body-text">During online member enrollment, when you
+                        select a member’s PCP (MEMBR &gt; PCP ID), DIAMOND evaluates the associated
+                        provider enrollment rule(s) before assigning the PCP to the member. DIAMOND
+                        updates the associated PROVE record enrollment count when the PCP is assigned
+                        to the member.</p>
+                    <p class="body-text">During Member Batch processing, DIAMOND evaluates
+                        the provider’s PROVE rule based on the provider’s primary address.</p></td>
+            </tr>
+
+            <tr valign="top" class="">
+                <td width="250px" class="">
+                    <p class="step1">2. After running the
+                        Provider/Member Enrollment Utility and as required for each provider,
+                        use PROVE to:</p>
+                    <ul class="">
+
+                        <li class="kadov-p-cstep--bullet"><p class="step--bullet">Create
+                            additional provider contract/LOB/IPA/panel/provider address enrollment
+                            rule records for existing providers.</p></li>
+
+                        <li class="kadov-p-cstep--bullet"><p class="step--bullet">Create
+                            new provider contract/LOB/IPA/panel/provider address records for newly
+                            added providers.</p></li>
+
+                        <li class="kadov-p-cstep--bullet"><p class="step--bullet">Change
+                            override edits using Special menu &gt; Override Enrollment Edits.</p></li>
+
+                        <li class="kadov-p-cstep--bullet"><p class="step--bullet">Change
+                            the current enrollment count using the Special menu &gt; Current Member
+                            Enrollment.</p></li>
+
+                        <li class="kadov-p-cstep--bullet"><p class="step--bullet">Change
+                            Enrollment Utility created (generic) enrollment rule criteria using the
+                            Special menu &gt; Modify Enrollment Criteria. For example, clearing the
+                            Accepts New Patients check box to indicate that the provider does not
+                            accept new patients and/or changing the Gender from Both to Male.</p></li>
+
+                        <li class="kadov-p-cstep--bullet"><p class="step--bullet">Terminate
+                            or unterminate an enrollment rule record using Special menu &gt; Term/Unterminate
+                            Provider Enrollment.</p></li>
+                    </ul>
+                </td>
+                <td width="276px" class="">
+                    <p class="step-comment">You use MEMBR, Special menu
+                        – Provider Change to reassign existing members (previously associated
+                        with a different PROVE record) to new provider or additional provider
+                        address PROVE records.</p>
+                    <p class="body-text">The provider’s PROVC &gt; PCP Flag check box
+                        must be selected on each contract record before you create an associated
+                        PROVE record.</p>
+                    <p class="body-text">You must have access to the Modify Enrollment
+                        Criteria and the Current Member Enrollment commands (see SFUNC Reference
+                        documentation). You use these commands to change/correct the Enrollment
+                        Utility created PROVE generic records. In the future, if a provider’s
+                        enrollment rule changes (based on the provider’s contract record), you
+                        should terminate the existing PROVE record and create a new PROVE record
+                        based on the new criteria.</p>
+                    <p class="body-text2"> </p></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <p class="body-text2"> </p>
+
+        <p class="doc-level"><a name="ProvEnrol_Instructions_-_Creating_Enrollment_Records_Manually_TASK_MID"></a>Instructions
+            – Creating Enrollment Records Manually</p>
+
+        <!--(Table)=========================================================-->
+        <table cellspacing="0" width="527" x-use-null-cells="" class="calibre172">
+
+            <tbody class="calibre11">
+            <tr valign="top" class="">
+                <td width="250px" class="">
+                    <p class="tbl-header">Step</p></td>
+                <td width="276px" class="">
+                    <p class="tbl-header">Comment</p></td>
+            </tr>
+
+            <tr valign="top" class="">
+                <td width="250px" class="">
+                    <p class="step1">1. Install DIAMOND Release
+                        5.1</p></td>
+                <td width="276px" class="">
+                    <p class="step-comment">See R5.1 Software Installation
+                        Guide.</p></td>
+            </tr>
+
+            <tr valign="top" class="">
+                <td width="250px" class="">
+                    <p class="step1">2. Activate the PROVENROL
+                        parameter (see PARAM reference documentation).</p></td>
+                <td width="276px" class="">
+                    <p class="step-comment">When R5.1 is installed, the
+                        PROVENROL parameter defaults to No = not activated.</p></td>
+            </tr>
+
+            <tr valign="top" class="">
+                <td width="250px" class="">
+                    <p class="step1">3. Use PROVE to manually
+                        create enrollment rules, one-by-one, on each valid PCP/provider contract/LOB/IPA/panel/provider
+                        address basis.</p></td>
+                <td width="276px" class="">
+                    <p class="step-comment">The provider’s PROVC &gt;
+                        PCP Flag check box must be selected on each contract record before you
+                        create an associated PROVE record.</p>
+                    <p class="body-text">As this is a manual process, the initial PROVE
+                        &gt; Current Enrollment count should be set by the user using the Special
+                        menu – Current Member Enrollment.</p>
+                    <p class="body-text">During online member enrollment, when you
+                        select a member’s PCP (MEMBR &gt; PCP ID), DIAMOND evaluates the associated
+                        provider enrollment rule(s) before assigning the PCP to the member. DIAMOND
+                        updates the associated PROVE record enrollment count when the PCP is assigned
+                        to the member.</p>
+                    <p class="body-text">During Member Batch processing, DIAMOND evaluates
+                        the provider’s PROVE rule based on the provider’s primary address.</p></td>
+            </tr>
+
+            <tr valign="top" class="">
+                <td width="250px" class="">
+                    <p class="step1">4. After you create
+                        all of the initial enrollment rules manually, continue to use PROVE to:</p>
+                    <ul class="calibre9">
+
+                        <li class="kadov-p-cstep--bullet"><p class="step--bullet">Create
+                            additional provider contract/LOB/IPA/panel/provider address enrollment
+                            rule records for existing providers.</p></li>
+
+                        <li class="kadov-p-cstep--bullet"><p class="step--bullet">Create
+                            new provider contract/LOB/IPA/panel/provider address records for newly
+                            added providers.</p></li>
+
+                        <li class="kadov-p-cstep--bullet"><p class="step--bullet">Change
+                            override edits using Special menu &gt; Override Enrollment Edits.</p></li>
+
+                        <li class="kadov-p-cstep--bullet"><p class="step--bullet">Change
+                            the current enrollment count using the Special menu &gt; Current Member
+                            Enrollment.</p></li>
+
+                        <li class="kadov-p-cstep--bullet"><p class="step--bullet">Correct
+                            enrollment rule criteria using the Special menu &gt; Modify Enrollment
+                            Criteria. For example, un-checking the Accepts New Patients check box
+                            to indicate that the provider does not accept new patients and/or changing
+                            the Gender from Both to Male.</p></li>
+
+                        <li class="kadov-p-cstep--bullet"><p class="step--bullet">Terminate
+                            or unterminate an enrollment rule record using Special menu &gt; Term/Unterminate
+                            Provider Enrollment.</p></li>
+                    </ul>
+                </td>
+                <td width="276px" class="">
+                    <p class="step-comment">You use MEMBR, Special menu
+                        &gt; Provider Change to reassign existing members (previously associated
+                        with a different PROVE record) to new provider or additional provider
+                        address PROVE records.</p>
+                    <p class="body-text">The provider’s PROVC &gt; PCP Flag check box
+                        must be selected on each contract record before you create an associated
+                        PROVE record.</p>
+                    <p class="body-text">You must have access to the Modify Enrollment
+                        Criteria and the Current Member Enrollment commands (see SFUNC Reference
+                        documentation). You use these commands to change/correct the Enrollment
+                        Utility created PROVE generic records. In the future, if a provider’s
+                        enrollment rule changes (based on the provider’s contract record), you
+                        should terminate the existing PROVE record and create a new PROVE record
+                        based on the new criteria.</p></td>
+            </tr>
+            </tbody>
+        </table>
+
+
+    </div>
+
+
+    <div class="calibreEbNav">
+
+        <a href="Provider_Member_Enrollment_Overview_PROC_OVW.htm" class="calibreAPrev">previous page
+        </a>
+
+
+        <a href="../bai44-9x3eu.html" class="calibreAHome">start
+        </a>
+
+
+        <a href="Provider_Member_Enrollment_How_DIAMOND_Thinks.htm" class="calibreANext">next page
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+</html>

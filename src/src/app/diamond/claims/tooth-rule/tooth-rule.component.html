@@ -1,0 +1,210 @@
+<!-- Copyright (c) 2021 . All Rights Reserved. -->
+<div class="container-fluid">
+    <div class="card-block">
+        <div class="row form-title">
+            <h2 class="col-md-6 card-label-admin">Tooth Rule</h2>
+            <div class="col-md"><b class="readonly-label">View Only</b></div>
+        </div>
+        <button type="button" *ngIf="showIcon" class="modal-close close" aria-label="Close"
+                (click)="activeModal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+        <app-pop-up-message #popUpMesssage (buttonclickEvent)="popUpButtonHandler($event)"
+                            [(popupMessage)]="popUpMessage"></app-pop-up-message>
+
+        <ng-template #loaderTemplate let-loaderValue="value">
+            <div class="row justify-content-center mt-4" *ngIf="loaderValue">
+                <div class="spinner-border text-success" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>
+            </div>
+        </ng-template>
+        <ng-container *ngTemplateOutlet="loaderTemplate;context:{value: secProgress }"></ng-container>
+
+        <ng-container *appWinSelect="{secWin: secWin, userTemplateId: userTemplateId, secModuleId: memberModuleId}">
+            <div class="row mt-3 mb-3">
+                <menu-bar [menus]="menu" (onMenuClick)="onMenuItemClick($event)"></menu-bar>
+            </div>
+
+            <form [formGroup]="toothRuleForm" novalidate>
+                <div class="form-group row">
+                    <!-- DynamicText with label of Tooth Rule ID -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('toothRuleId') }">
+                        <label class="col-form-label" for="toothRuleId" i18n>Tooth Rule ID</label>
+                        <input [readonly]="isToothRuleIdDisabled" type="text" readonly id="toothRuleId" formControlName="toothRuleId" #toothRuleIds
+                               class="form-control" (keydown)="onLookupFieldChange($event, toothRuleIds.value)"/>
+                    </div>
+                </div>
+
+                <ng-container *ngIf="showToothRuleFields">
+
+                    <div class="form-group row"></div>
+
+                    <div class="form-group row">
+                        <div class="col-md-12 form-control-static mb-0" i18n>
+                            <h4><u> General Information </u></h4>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <!-- Textbox with label of Tooth Number -->
+                        <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('toothNumber') }">
+                            <label class="col-form-label" for="toothNumber" i18n>Tooth Number</label>
+                            <select id="toothNumber" disabled class="form-control" formControlName="toothNumber">
+                                <option value="null"> -Select- </option>
+                                <option *ngFor="let code of toothNumbers" [value]="code.systemCode">
+                                    {{code.systemCode}} {{code.systemCodeDesc2}}</option>
+                            </select>
+                        </div>
+
+                        <!-- Textbox with label of Procedure Code -->
+                        <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('procedureCode') }">
+                            <label class="col-form-label" for="procedureCode" i18n>Procedure Code</label>
+                            <input readonly type="text" id="procedureCode" class="form-control" formControlName="procedureCode"/>
+                            <small class="text-danger" *ngIf="formValidation.isValidField('procedureCode')">
+                                {{ formValidation.errorMessage('procedureCode') }}
+                            </small>
+                        </div>
+
+                        <!-- Textbox with label of Description -->
+                        <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('description') }">
+                            <label class="col-form-label" for="description" i18n>Description</label>
+                            <input readonly type="text" id="description" class="form-control" formControlName="description"/>
+                            <small class="text-danger" *ngIf="formValidation.isValidField('description')">
+                                {{ formValidation.errorMessage('description') }}
+                            </small>
+                        </div>
+                    </div>
+
+                    <div class="form-group row"></div>
+
+                    <div class="form-group row">
+                        <!-- Textbox with label of Eff Date -->
+                        <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('effDate') }">
+                            <app-datepicker [formGroup]="toothRuleForm"
+                                            [formValidation]="formValidation"
+                                            [field]="'effDate'" [labelText]="'Eff Date'"></app-datepicker>
+                        </div>
+
+                        <!-- Textbox with label of Term Date -->
+
+                        <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('termDate') }">
+                            <app-datepicker [formGroup]="toothRuleForm"
+                                            [formValidation]="formValidation"
+                                            [field]="'termDate'" [labelText]="'Term Date'"></app-datepicker>
+                        </div>
+
+                        <!-- Textbox with label of Term Reason -->
+                        <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('termReason') }">
+                            <label class="col-form-label" for="termReason" i18n>Term Reason</label>
+                            <input readonly type="text" id="termReason" class="form-control" formControlName="termReason"/>
+                            <small class="text-danger" *ngIf="formValidation.isValidField('termReason')">
+                                {{ formValidation.errorMessage('termReason') }}
+                            </small>
+                        </div>
+                    </div>
+
+                    <hr/>
+
+                    <div class="form-group row">
+                        <div class="col-md-12 form-control-static mb-0" i18n>
+                            <h4><u> Rule Criteria </u></h4>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <!-- Textbox with label of From Age -->
+                        <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('fromAge') }">
+                            <label class="col-form-label" for="fromAge" i18n>From Age</label>
+                            <input readonly type="text" id="fromAge" class="form-control" formControlName="fromAge"/>
+                            <small class="text-danger" *ngIf="formValidation.isValidField('fromAge')">
+                                {{ formValidation.errorMessage('fromAge') }}
+                            </small>
+                        </div>
+
+                        <!-- Textbox with label of To Age -->
+                        <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('toAge') }">
+                            <label class="col-form-label" for="toAge" i18n>To Age</label>
+                            <input readonly type="text" id="toAge" class="form-control" formControlName="toAge"/>
+                            <small class="text-danger" *ngIf="formValidation.isValidField('toAge')">
+                                {{ formValidation.errorMessage('toAge') }}
+                            </small>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <!-- DynamicText with label of Surface -->
+                        <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('surface') }">
+                            <label class="col-form-label" for="surface" i18n>Surface</label>
+                            <input type="text" readonly id="surface" formControlName="surface" class="form-control"/>
+                        </div>
+
+                        <!-- DynamicText with label of Arch -->
+                        <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('arch') }">
+                            <label class="col-form-label" for="arch" i18n>Arch</label>
+                            <input type="text" readonly id="arch" formControlName="arch" class="form-control"/>
+                        </div>
+
+                        <!-- DynamicText with label of Quadrant -->
+                        <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('quadrant') }">
+                            <label class="col-form-label" for="quadrant" i18n>Quadrant</label>
+                            <input type="text" readonly id="quadrant" formControlName="quadrant" class="form-control"/>
+                        </div>
+
+                        <!-- DynamicText with label of Oral Cavity -->
+                        <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('oralCavity') }">
+                            <label class="col-form-label" for="oralCavity" i18n>Oral Cavity</label>
+                            <input type="text" readonly id="oralCavity" formControlName="oralCavity" class="form-control"/>
+                        </div>
+                    </div>
+
+                    <div class="form-group row"></div>
+
+                    <div class="form-group row">
+                        <div class="col-md-12 form-control-static mb-0" i18n>
+                            <h4><u> User Defined Information </u></h4>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <!-- Textbox with label of User Defined 1 -->
+                        <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('userDefined1') }">
+                            <label class="col-form-label" for="userDefined1" i18n>User Defined 1</label>
+                            <input readonly type="text" id="userDefined1" class="form-control" formControlName="userDefined1"/>
+                            <small class="text-danger" *ngIf="formValidation.isValidField('userDefined1')">
+                                {{ formValidation.errorMessage('userDefined1') }}
+                            </small>
+                        </div>
+
+                        <!-- Textbox with label of User Date 1 -->
+                        <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('userDate1') }">
+                            <app-datepicker [formGroup]="toothRuleForm"
+                                            [formValidation]="formValidation"
+                                            [field]="'userDate1'" [labelText]="'User Date 1'"></app-datepicker>
+                        </div>
+
+                        <!-- Textbox with label of User Defined 2 -->
+                        <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('userDefined2') }">
+                            <label class="col-form-label" for="userDefined2" i18n>User Defined 2</label>
+                            <input readonly type="text" id="userDefined2" class="form-control" formControlName="userDefined2"/>
+                            <small class="text-danger" *ngIf="formValidation.isValidField('userDefined2')">
+                                {{ formValidation.errorMessage('userDefined2') }}
+                            </small>
+                        </div>
+
+                        <!-- Textbox with label of User Date 2 -->
+                        <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('userDate2') }">
+                            <app-datepicker [formGroup]="toothRuleForm"
+                                            [formValidation]="formValidation"
+                                            [field]="'userDate2'" [labelText]="'User Date 2'"></app-datepicker>
+                        </div>
+                    </div>
+                </ng-container>
+            </form>
+        </ng-container>
+    </div>
+</div>
+
+<ng-keyboard-shortcuts [shortcuts]="shortcuts"></ng-keyboard-shortcuts>
+<ng-keyboard-shortcuts-help [key]="'f2'" [closeKey]="'escape'" [title]="'Hotkeys Help'"></ng-keyboard-shortcuts-help>

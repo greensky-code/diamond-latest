@@ -1,0 +1,95 @@
+<!-- Copyright (c) 2021 . All Rights Reserved. -->
+<div class="container-fluid">
+    <div class="card-block">
+        <form [formGroup]="systemCodesMaintenanceForm" novalidate>
+            <div class="row form-title">
+                <h2 class="col-md-4  card-label-admin">System Codes Maintenance</h2>
+                <div class="col-md"><b class="readonly-label">View Only</b></div>
+            </div>
+            <button type="button" *ngIf="showIcon" class="modal-close close" aria-label="Close"
+                (click)="activeModal.dismiss('Cross click')">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+            <app-pop-up-message #popUpMesssage (buttonclickEvent)="popUpButtonHandler($event)"
+                [(popupMessage)]="popUpMessage"></app-pop-up-message>
+            <div class="row mt-3">
+                <menu-bar [menus]="menu" (onMenuClick)="onMenuItemClick($event)"></menu-bar>
+            </div>
+            <div class="form-group row">
+            </div>
+
+            <!-- DataGrid with Name of DataGrid -->
+            <button (click)="dataGridGridOptionsExportCsv()">Export</button>
+            <ag-grid-angular #agGrid class="ag-theme-fresh" [gridOptions]="dataGridGridOptions"
+                style="width: 100%; height: 300px;" [enableSorting]="true" [enableFilter]="true" [floatingFilter]="true"
+                [pagination]="true" [showToolPanel]="true" (selectionChanged)="grid1SelectionChange()"
+                (click)="setActionStatus(1)" (gridReady)="onGridReady($event)">
+            </ag-grid-angular>
+
+            <div class="form-group row">
+            </div>
+
+            <div class="form-group row">
+                <!-- DynamicText with label of System Code Type -->
+                <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('systemCodeType') }">
+                    <label class="col-form-label clr-blue" for="systemCodeType" i18n>System Code Type</label>
+                    <input type="text" [fieldLevelSec]="'System Code Type'" params="System Codes" readonly
+                        id="systemCodeType" formControlName="systemCodeType" class="form-control " />
+                </div>
+
+                <!-- DynamicText with label of System Code -->
+                <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('systemCode') }">
+                    <label class="col-form-label clr-blue" for="systemCode" i18n>System Code</label>
+                    <input type="text" [fieldLevelSec]="'System Code'" params="System Codes" readonly id="systemCode"
+                        formControlName="systemCode" class="form-control" />
+                </div>
+
+                <!-- Checkbox with label of Activated -->
+                <div class="col-md-4" [ngClass]="{'has-error': displayMessage.activated }">
+                    <div class="checkbox col-md-12 mt-4 pt-2">
+                        <input id="activated" [fieldLevelSec]="''" params="" value="activated"
+                            formControlName="activated" type="checkbox">
+                        <label class="checkbox">
+                            Activated
+                        </label>
+                    </div>
+                    <span class="help-block" *ngIf="displayMessage.activated">
+                        {{ displayMessage.activated }}
+                    </span>
+                </div>
+
+            </div>
+
+            <div class="form-group row">
+                <!-- DynamicText with label of Language -->
+                <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('language') }">
+                    <label class="col-form-label" for="language" i18n>Language</label>
+                    <input type="text" [fieldLevelSec]="'Language Id'" params="System Code Token" readonly id="language"
+                        formControlName="language" class="form-control clr-blue" />
+                </div>
+
+            </div>
+
+            <div class="form-group row">
+                <!-- DynamicText with label of Short Description -->
+                <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('shortDescription') }">
+                    <label class="col-form-label clr-blue" for="shortDescription" i18n>Short Description</label>
+                    <input type="text" [fieldLevelSec]="''" params="" readonly id="shortDescription"
+                        formControlName="shortDescription" class="form-control" />
+                </div>
+
+            </div>
+
+            <div class="form-group row">
+                <!-- DynamicText with label of Long Description -->
+                <div class="col-md-8" [ngClass]="{'has-danger': formValidation.isValidField('longDescription') }">
+                    <label class="col-form-label" for="longDescription" i18n>Long Description</label>
+                    <input type="text" [fieldLevelSec]="''" params="" readonly id="longDescription"
+                        formControlName="longDescription" class="form-control" />
+                </div>
+
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,112 @@
+<!-- Copyright (c) 2021 . All Rights Reserved. -->
+<div class="container-fluid">
+    <div class="card-block">
+        <form [formGroup]="memberAuthorizationDisplayForm" novalidate>
+            <h2 class="form-title card-label-admin">Member Authorization Display</h2>
+            <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+            <app-pop-up-message #popUpMesssage (buttonclickEvent)="popUpButtonHandler($event)"  [(popupMessage)] = "popUpMessage"></app-pop-up-message>
+                        
+            <div class="form-group row">
+            </div>
+            
+                        <!-- DataGrid with Name of DataGrid -->
+                    <button (click)="dataGridGridOptionsExportCsv()">Export</button>
+                    <ag-grid-angular #agGrid class="ag-theme-fresh" [gridOptions]="dataGridGridOptions"
+                    style="width: 100%; height: 300px;"
+                    [enableSorting]="true"
+                    [enableFilter]="true"
+                    [floatingFilter]="true"
+                    [pagination]="true"
+                    [showToolPanel]="true">
+                    </ag-grid-angular>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+                <!-- DynamicText with label of Memeber Number -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('memeberNumber') }">
+                     <label class="col-form-label" for="memeberNumber" i18n>Memeber Number</label>
+                     <input type="text"  [fieldLevelSec]="'Member Gender'" params]="Auth Master"  readonly id="memeberNumber" formControlName="memeberNumber" class="form-control"/>
+                 </div>
+            
+                <!-- DynamicText with Name of DynamicText -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('dynamicText') }">
+                     <label class="col-form-label" for="dynamicText" i18n>&nbsp;</label>
+                     <input type="text"  [fieldLevelSec]="'Diagnosis 1 Text'" params]="Auth Master"  readonly id="dynamicText" formControlName="dynamicText" class="form-control"/>
+                 </div>
+            
+                <!-- Button with label of Choose Member -->
+                <div class="col-md-2">
+                    <button type="button" id="chooseMember" name="chooseMember" class="btn btn-small btn-primary">Choose Member</button>
+                
+                
+                </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- DynamicText with label of Name -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('name') }">
+                     <label class="col-form-label" for="name" i18n>Name</label>
+                     <input type="text"  [fieldLevelSec]="'Caller Name'" params]="Auth Master"  readonly id="name" formControlName="name" class="form-control"/>
+                 </div>
+            
+                <div class="col-md-2 form-control-static mb-0" i18n>
+                    Provider, Dates, Days/Visit >
+                </div>
+            
+                <!-- Button with label of Auth Info 1 -->
+                <div class="col-md-2">
+                    <button type="button" id="authInfo1" name="authInfo1" class="btn btn-small btn-primary">Auth Info 1</button>
+                
+                
+                </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- DynamicText with label of DOB -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('dob') }">
+                     <label class="col-form-label" for="dob" i18n>DOB</label>
+                     <input type="text"  [fieldLevelSec]="''" params]=""  readonly id="dob" formControlName="dob" class="form-control"/>
+                 </div>
+            
+                <!-- DynamicText with label of Gender -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('gender') }">
+                     <label class="col-form-label" for="gender" i18n>Gender</label>
+                     <input type="text"  [fieldLevelSec]="''" params]=""  readonly id="gender" formControlName="gender" class="form-control"/>
+                 </div>
+            
+                <div class="col-md-2 form-control-static mb-0" i18n>
+                    Dx Codes, Discharge,Intake >
+                </div>
+            
+                <!-- Button with label of Auth Info 2 -->
+                <div class="col-md-2">
+                    <button type="button" id="authInfo2" name="authInfo2" class="btn btn-small btn-primary">Auth Info 2</button>
+                
+                
+                </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <div class="col-md-2 form-control-static mb-0" i18n>
+                    Review, Service, Status, Surgical Procedures >
+                </div>
+            
+                <!-- Button with label of Auth Info 3 -->
+                <div class="col-md-2">
+                    <button type="button" id="authInfo3" name="authInfo3" class="btn btn-small btn-primary">Auth Info 3</button>
+                
+                
+                </div>
+            
+            </div>
+        </form>
+    </div>
+</div>

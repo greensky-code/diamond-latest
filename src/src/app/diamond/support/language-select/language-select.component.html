@@ -1,0 +1,41 @@
+<!-- Copyright (c) 2021 . All Rights Reserved. -->
+<div class="container-fluid">
+    <div class="card-block">
+        <form [formGroup]="languageForm" novalidate>
+            <h2 class="form-title card-label-admin">Language Selection </h2>
+            <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+            <app-pop-up-message #popUpMesssage (buttonclickEvent)="popUpButtonHandler($event)"  [(popupMessage)] = "popUpMessage"></app-pop-up-message>
+
+            <div class="form-group row">
+
+            </div>
+
+            <div class="form-group row">
+                    <div class="col-md-4" >
+                    <label class="col-form-label required-field-label" for="langCodeddl" i18n>Language Code </label>
+                    <select class="form-control" id="langCodeddl" #defaultCountry name="langCodeddl" formControlName="langCodeddl">
+                            <option [value]="lang.languageId"
+                                    *ngFor="let lang of languageMasters">{{lang.description}}</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2" >
+                            <button  type="button" class="button mr-1 fa-rotate-level-down"
+                            (click)="onSubmit()">
+                        OK
+                    </button>
+                    </div>
+                    <div class="col-md-2" >
+                        <button  type="button" class="button mr-1 fa-rotate-level-down"
+                                (click)="onSubmit()">
+                            Cancel
+                        </button>
+                    </div>
+            </div>
+
+
+        </form>
+    </div>
+</div>

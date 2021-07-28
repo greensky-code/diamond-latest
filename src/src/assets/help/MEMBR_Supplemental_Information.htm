@@ -1,0 +1,196 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+    <title>MEMBR Supplemental Information</title>
+    <!--(Meta)==========================================================-->
+    <meta name="copyright"
+          value="© Copyright 2002 Health Systems Design Corp., a wholly owned subsidiary of Perot Systems Corporation. All rights reserved"/>
+    <meta content="RoboHELP by eHelp Corporation - www.ehelp.com" name="generator"/>
+    <meta content="0.1" name="generator-major-version"/>
+    <meta content="1" name="generator-minor-version"/>
+    <meta content="kadov" name="filetype"/>
+    <meta content="1" name="filetype-version"/>
+    <meta content="0" name="page-count"/>
+    <meta content="0" name="layout-height"/>
+    <meta content="0" name="layout-width"/>
+    <!--(Links)=========================================================-->
+    <!--(Scripts)=======================================================-->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+</head>
+<body>
+
+<div class="calibreMeta">
+    <div class="calibreMetaTitle">
+
+
+        <h1>
+            <a href="../ib0gc-jzzjl.html">DIAMOND 950 Help
+            </a>
+        </h1>
+
+
+    </div>
+    <div class="calibreMetaAuthor">
+        Unknown
+
+    </div>
+</div>
+
+<div class="calibreMain">
+
+    <div class="calibreEbookContent">
+
+        <div class="calibreEbNavTop">
+
+            <a href="Request_an_ID_card_for_a_member.htm" class="calibreAPrev">previous page
+            </a>
+
+
+            <a href="ACCUM_Benefit_Accumulator_Base_Value_Entry.htm" class="calibreANext">next page
+            </a>
+
+        </div>
+
+
+        <h4 class="calibre1">MEMBR Supplemental Information</h4>
+
+        <p class="doc-level"><a name="MEMBR_About_Privacy_Indicator_SUPP"></a>About
+            the Privacy Indicator</p>
+
+        <p class="body-text">Using the member Privacy Indicator, you can indicate
+            if a member has prohibited release of his or her member information to
+            outside entities. When creating a new member record in MEMBR, the Privacy
+            On check box is set automatically with the default value in the PRIVACYIND
+            parameter; you may override the default setting. The member’s privacy
+            preference is stored in the member’s eligibility record. Once you have
+            saved the member record, you may only update the Privacy Indicator using
+            the Modify Privacy Indicator function.</p>
+
+        <p class="body-text">When you modify the Privacy Indicator using the Modify
+            Privacy Indicator function, DIAMOND:</p>
+
+        <ul class="calibre15">
+
+            <li class="kadov-p-cbullet-text-block"><p class="bullet-text-block">Terminates
+                the current eligibility record</p></li>
+
+            <li class="kadov-p-cbullet-text-block"><p class="bullet-text-block">Creates
+                a new eligibility record with the updated Privacy Indicator and all data
+                from the terminated record</p></li>
+
+            <li class="kadov-p-cbullet-text-block"><p class="bullet-text-block">Creates
+                a Notes entry of note type PRI recording the change.</p></li>
+        </ul>
+
+        <p class="doc-level">Verifying Student/Dependent Status</p>
+
+        <p class="body-text">When the <span class="calibre41">Verify Student/Dependent
+ Status</span> command is selected from the <span class="calibre41">Special</span>
+            menu, the <span class="calibre41">Dependent Verification Status</span>
+            dialog box displays, on which a dependent status is entered: S Student,
+            H Handicapped, and a verified thru date is entered. DIAMOND checks the
+            verified through date during claims processing and issues a warning message
+            if the member’s relationship code (the code in the <span class="calibre41">Rel
+ Code</span> list in keyword MEMBR) indicates that the member is a child
+            (C) or other dependent (O), and the member’s age as of the claim date
+            of service is greater than the member’s associated Group Contract (GRUPC)
+            record’s "Student Age To" and the primary date of service on
+            the claim is greater than the verified through date on the member’s Dependent
+            Verification Status record.</p>
+
+        <p class="doc-level"><a name="MEMBR_Notes_on_Benefit_Start_Date_SUPP"></a>Notes
+            on Benefit Start Date</p>
+
+        <p class="body-text">By default, DIAMOND determines subscriber/family member
+            benefit eligibility (for claims adjudication) and benefit accumulation
+            periods based on the associated benefit rules’ time frame and number of
+            years/days (see BRULE — Time Frame, No. Years/Days). For benefit rules
+            with a time frame of "Contract Yr," <span class="calibre30">DIAMOND</span>
+            determines benefit eligibility and benefit accumulation periods based
+            on the subscriber’s/family member’s associated group contract effective
+            date (see GRUPC — Effective Date).</p>
+
+        <p class="body-text">If you enter a benefit start date in this field, you
+            override the <span class="calibre109">DIAMOND</span> default
+            and the subscriber’s/family member’s benefit eligibility and benefit accumulation
+            periods are based on the subscriber’s/family member’s Benefit Start Date
+            (not the GRUPC — Effective Date). To create benefit eligibility and benefit
+            accumulation periods based on the entered Benefit Start Date, the subscriber’s/family
+            member’s associated benefits rules must have a BRULE — Time Frame of "Contract
+            Yr."</p>
+
+        <p class="body-text">The Benefit Start Date usually remains unchanged from
+            one eligibility period to the next, unless the subscriber’s group or plan
+            changes.</p>
+
+        <p class="body-text">If the member is a subscriber (normally Person Number
+            01) with no prior period of eligibility, enter the date from which benefits
+            will begin to accumulate. <span class="calibre109">DIAMOND</span>
+            automatically updates all existing family member’s eligibility records
+            with this Benefit Start Date.</p>
+
+        <p class="body-text">If the member is a subscriber with a prior period of
+            eligibility, <span class="calibre109">DIAMOND</span> displays
+            the Benefit Start Date from the prior period. Press TAB to accept the
+            displayed date or enter a new Benefit Start Date if required as a result
+            of a group or plan change.</p>
+
+        <p class="body-text">For all family members other than the subscriber<span class="calibre20">,</span> <span
+                class="calibre109">DIAMOND</span>
+            displays the subscriber’s Benefit Start Date for the eligibility period.</p>
+
+        <p class="tip-note-warning">Warning</p>
+
+        <p class="numbered-list">1. You can adversely affect benefit accumulation
+            when you change a Benefit Start Date. You should only change the Benefit
+            Start Date to correct an error or when a subscriber changes groups or
+            plans. Remember, when you change a subscriber’s Benefit Start Date, DIAMOND
+            automatically updates the Benefit Start Date of all associated family
+            members.</p>
+
+        <p class="numbered-list">2. If you are reinstating a subscriber/family
+            member(s) who have a Benefit Start Date:</p>
+
+        <ul class="calibre15">
+
+            <li class="kadov-p-cbullet-text-block"><p class="bullet-text-block">Reinstate
+                the subscriber first in MEMBR (Special&gt;Reinstate) and leave the Benefit
+                Start Date blank.</p></li>
+
+            <li class="kadov-p-cbullet-text-block"><p class="bullet-text-block">Reinstate
+                all family members.</p></li>
+
+            <li class="kadov-p-cbullet-text-block"><p class="bullet-text-block">After
+                all family members are reinstated, return to the subscriber’s MEMBR record
+                and enter the Benefit Start Date. DIAMOND automatically updates the Benefit
+                Start Date of all associated family members.</p></li>
+        </ul>
+
+        <p class="body-text">See BRULE Type 00 — Time Frame, Contract Yr. for examples.</p>
+
+
+    </div>
+
+
+
+    <div class="calibreEbNav">
+
+        <a href="Request_an_ID_card_for_a_member.htm" class="calibreAPrev">previous page
+        </a>
+
+
+        <a href="../ib0gc-jzzjl.html" class="calibreAHome">start
+        </a>
+
+
+        <a href="ACCUM_Benefit_Accumulator_Base_Value_Entry.htm" class="calibreANext">next page
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+</html>

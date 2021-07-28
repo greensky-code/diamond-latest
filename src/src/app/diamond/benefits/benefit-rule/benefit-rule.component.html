@@ -1,0 +1,726 @@
+<!-- Copyright (c) 2020 . All Rights Reserved. -->
+<div class="container-fluid">
+    <div class="card-block">
+
+            <h2 class="form-title card-label-admin">Benefit Rule</h2>
+            <button type="button" *ngIf="showIcon" class="modal-close close" aria-label="Close"
+            (click)="modalClose()">
+            <span aria-hidden="true">&times;</span>
+            </button>
+            <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+            <app-pop-up-message #popUpMesssage (buttonclickEvent)="popUpButtonHandler($event)"
+                                [popupMessage]="popUpMessage"></app-pop-up-message>
+
+        <ng-template #loaderTemplate let-loaderValue = "value"  >
+            <div class="row justify-content-center mt-4" *ngIf="loaderValue">
+                <div class="spinner-border text-success" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>
+            </div>
+        </ng-template>
+
+        <ng-container *ngTemplateOutlet="loaderTemplate;context:{value: secProgress }"></ng-container>
+
+        <ng-container *appWinSelect="{secWin: secWin, userTemplateId: userTemplateId, secModuleId: memberModuleId}">
+
+            <form [formGroup]="benefitRuleForm" *ngIf="!secProgress">
+                <div class="row mt-3">
+                    <menu-bar [menus]="menu" (onMenuClick)="onMenuItemClick($event)"></menu-bar>
+                </div>
+                <div class="form-group row">
+                </div>
+
+                <ag-grid-angular #agGrid class="ag-theme-fresh" [gridOptions]="dataGridGridOptions"
+
+                                 style="width: 100%; height: 300px;" [enableSorting]="true" [enableFilter]="true"
+                                 [floatingFilter]="true"
+                                 rowSelection="single"
+                                 [pagination]="true" [showToolPanel]="true" (rowSelected)="onRowSelected($event)">
+                </ag-grid-angular>
+
+                <div class="form-group row">
+                    <!-- Textbox with label of Rule ID -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('ruleId') }">
+                        <label class="col-form-label clr-blue" for="ruleId" i18n><b>Rule ID</b></label>
+                        <input type="text" id="ruleId" class="form-control" formControlName="ruleId" #ruleIdField
+                               (keydown)="onRuleIdFieldChange($event)"
+                               (change)="onChangeRuleId($event.target.value)"
+                               [fieldLevelSec]="'RULE_ID'" [params]="{secColDetails: secColDetails, isEditState: editBenefitRule}"/>
+                        <small class="text-danger" *ngIf="formValidation.isValidField('ruleId')">
+                            {{ formValidation.errorMessage('ruleId') }}
+                        </small>
+                    </div>
+
+
+                    <!-- DropdownList with label of Level -->
+                    <div class="col-md-4">
+                        <label class="required-field-label" for="ruleType" i18n>Type</label>
+                        <div class="selectContainer ">
+                            <select class="form-control" id="ruleType" #typeField name="type" formControlName="ruleType" (change)="onRuleTypeValueChange($event)">
+                                <option [value]="rType.dddwDtlPrimaryKey.dataVal"
+                                        *ngFor="let rType of ruleTypes; let i = index"
+                                        [selected]="!benefitRuleForm.value.type? (rType.dddwDtlPrimaryKey.displayVal === '00'):
+                             (rType.dddwDtlPrimaryKey.dataVal === benefitRuleForm.value.type) ">
+                                    {{rType.dddwDtlPrimaryKey.displayVal}}
+                                </option>
+                            </select>
+                        </div>
+                        <small class="text-danger" *ngIf="formValidation.isValidField('ruleType')">
+                            {{ formValidation.errorMessage('ruleType') }}
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <!-- Textbox with label of Short Desc -->
+                    <div class="col-md-8" [ngClass]="{'has-danger': formValidation.isValidField('shortDescription') }">
+                        <label class="col-form-label clr-blue" for="shortDescription" i18n><b>Short Desc</b></label>
+                        <input type="text" id="shortDescription" class="form-control" formControlName="shortDescription"
+
+                               [fieldLevelSec]="'SHORT_DESCRIPTION'" [params]="{secColDetails: secColDetails, isEditState: editBenefitRule}"/>
+                        <small class="text-danger" *ngIf="formValidation.isValidField('shortDescription')">
+                            {{ formValidation.errorMessage('shortDescription') }}
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <!-- Textbox with label of Med Def -->
+                    <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('medDef') }">
+                        <label class="col-form-label clr-blue" for="medDefFilter" i18n><b>Med Def</b></label>
+                        <input type="text" id="medDefFilter" class="form-control" formControlName="medDefFilter"
+
+                               [fieldLevelSec]="'MED_DEF_FILTER'" [params]="{secColDetails: secColDetails, isEditState: editBenefitRule}"/>
+                        <small class="text-danger" *ngIf="formValidation.isValidField('medDefFilter')">
+                            {{ formValidation.errorMessage('medDefFilter') }}
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <!-- Textbox with label of Narrative -->
+                    <div class="col-md-12" [ngClass]="{'has-danger': formValidation.isValidField('narrative') }">
+                        <label class="col-form-label" for="narrative" i18n><b>Narrative</b></label>
+                        <input type="text" id="narrative" class="form-control" formControlName="narrative"
+
+                               [fieldLevelSec]="'NARRATIVE'" [params]="{secColDetails: secColDetails, isEditState: editBenefitRule}"/>
+                        <small class="text-danger" *ngIf="formValidation.isValidField('narrative')">
+                            {{ formValidation.errorMessage('narrative') }}
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-md-12 form-control-static mb-0" i18n>
+                        <h3 class="card-border"><span  class="line-center">Rule Attributes</span></h3>
+                    </div>
+                </div>
+                <ng-container *ngIf="selectedRuleType == '80'">
+
+                    <h3>FULL COVERAGE</h3>
+                    <ng-container *ngTemplateOutlet="limitTypeAmountTTemplate">
+                    </ng-container>
+
+                    <ng-container *ngTemplateOutlet="countTowardsMaxTemplate"></ng-container>
+                    <ng-container *ngTemplateOutlet="reasonCodeTemplate"></ng-container>
+
+
+                    <ng-container *ngTemplateOutlet="middleAttributeTemplate"></ng-container>
+                    <ng-container *ngTemplateOutlet="otherMedDefTemplate"></ng-container>
+
+
+                </ng-container>
+
+                <ng-container *ngIf="selectedRuleType == '70'">
+                    <h3>UTILIZATION REVIEW</h3>
+                    <ng-container *ngTemplateOutlet="messageTemplate"></ng-container>
+                </ng-container>
+
+                <ng-container *ngIf="selectedRuleType == '60'">
+                    <h3>EXCLUSIONS</h3>
+                    <ng-container *ngTemplateOutlet="reasonCodeTemplate"></ng-container>
+                </ng-container>
+
+                <ng-container *ngIf="selectedRuleType == '50'">
+                    <h3>MESSAGE AND HOLD</h3>
+                    <ng-container *ngTemplateOutlet="reasonCodeTemplate"></ng-container>
+                    <ng-container *ngTemplateOutlet="messageTemplate"></ng-container>
+                </ng-container>
+
+
+                <ng-container *ngIf="selectedRuleType == '40'">
+                    <h3>OUT OF POCKET MAXIMUM</h3>
+
+                    <div class="form-group row">
+                        <!-- Textbox with label of Message -->
+                        <div class="col-md-4"
+                             [ngClass]="{'has-danger': formValidation.isValidField('maxOutOfPocketAmount') }">
+                            <label class="col-form-label" for="maxOutOfPocketAmount" i18n><b>Maximum Out of Pocket
+                                Amount</b></label>
+                            <input type="text" id="maxOutOfPocketAmount" [textMask]="{mask: mask.twoDigitDecimalNum}" placeholder=".00" class="form-control"
+                                   [fieldLevelSec]="'ATTRIBUTE_NUM_1'" [params]="{secColDetails: secColDetails, isEditState: editBenefitRule}"
+
+                                   formControlName="maxOutOfPocketAmount"/>
+                            <small class="text-danger" *ngIf="formValidation.isValidField('maxOutOfPocketAmount')">
+                                {{ formValidation.errorMessage('maxOutOfPocketAmount') }}
+                            </small>
+                        </div>
+                    </div>
+
+                    <ng-container *ngTemplateOutlet="countTowardsMaxTemplate"></ng-container>
+
+                    <ng-container *ngTemplateOutlet="reasonCodeTemplate"></ng-container>
+                    <ng-container *ngTemplateOutlet="middleAttributeTemplate"></ng-container>
+                    <ng-container *ngTemplateOutlet="otherMedDefTemplate"></ng-container>
+
+                </ng-container>
+
+
+                <ng-container *ngIf="selectedRuleType == '30'">
+                    <h3>DEDUCTIBLE</h3>
+
+                    <div class="form-group row d-flex align-items-center col-md-4 m-checkbox">
+                        <label class="col-form-label" for="perAdmitDeductible" i18n><b>Per Admit Deductible?</b></label>
+                        <div class="selectContainer col ">
+                            <input style="height: 20px; width: 20px" type="checkbox" id="perAdmitDeductible" value="Y"
+                                   [checked]="benefitRuleForm.value.perAdmitDeductible === 'Y'"
+                                   formControlName="perAdmitDeductible">
+                        </div>
+
+                    </div>
+
+                    <div class="form-group row">
+                        <!-- Textbox with label of Other Individual Deductible -->
+                        <div class="col-md-4"
+                             [ngClass]="{'has-danger': formValidation.isValidField('individualDeductible') }">
+                            <label class="col-form-label" for="individualDeductible" i18n><b> Individual
+                                Deductible </b></label>
+                            <input type="text" id="individualDeductible" class="form-control" [textMask]="{mask: mask.twoDigitDecimalNum}" placeholder=".00"
+                                   [fieldLevelSec]="'ATTRIBUTE_NUM_1'" [params]="{secColDetails: secColDetails, isEditState: editBenefitRule}"
+
+                                   formControlName="individualDeductible"/>
+                            <small class="text-danger" *ngIf="formValidation.isValidField('individualDeductible')">
+                                {{ formValidation.errorMessage('individualDeductible') }}
+                            </small>
+                        </div>
+
+                        <!-- Textbox with label of Other Family Deductible -->
+                        <div class="col-md-4"
+                             [ngClass]="{'has-danger': formValidation.isValidField('familyDeductible') }">
+                            <label class="col-form-label" for="familyDeductible" i18n><b> Family Deductible </b></label>
+                            <input type="text" id="familyDeductible" class="form-control" [textMask]="{mask: mask.twoDigitDecimalNum}" placeholder=".00"
+                                   [fieldLevelSec]="'ATTRIBUTE_NUM_2'" [params]="{secColDetails: secColDetails, isEditState: editBenefitRule}"
+
+                                   formControlName="familyDeductible"/>
+                            <small class="text-danger" *ngIf="formValidation.isValidField('familyDeductible')">
+                                {{ formValidation.errorMessage('familyDeductible') }}
+                            </small>
+                        </div>
+
+                    </div>
+
+                    <div class="form-group row d-flex align-items-center col-md-4 m-checkbox">
+                        <label class="col-form-label" for="childrenCountIndividual" i18n><b>Children Count
+                            Individual?</b></label>
+                        <div class="selectContainer col ">
+                            <input style="height: 20px; width: 20px" type="checkbox" id="childrenCountIndividual" value="Y"
+                                   [checked]="benefitRuleForm.value.childrenCountIndividual === 'Y'"
+                                   formControlName="childrenCountIndividual">
+                        </div>
+                    </div>
+
+                    <ng-container *ngTemplateOutlet="countTowardsMaxTemplate"></ng-container>
+                    <ng-container *ngTemplateOutlet="reasonCodeTemplate"></ng-container>
+                    <ng-container *ngTemplateOutlet="renewlTemplate"></ng-container>
+                    <ng-container *ngTemplateOutlet="middleAttributeTemplate"></ng-container>
+                    <ng-container *ngTemplateOutlet="otherMedDefTemplate"></ng-container>
+
+                </ng-container>
+
+                <ng-container *ngIf="selectedRuleType == '20'">
+                    <h3>LIMITS</h3>
+                    <div class="form-group row">
+                        <!-- Textbox with label of limit type -->
+                        <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('limitType') }">
+                            <label class="col-form-label" for="limitType01" i18n><b>Limit Type</b></label>
+                            <!--<input type="text" id="limitType01" class="form-control" formControlName="limitType"
+                                   [fieldLevelSec]="'ATTRIBUTE_CHAR_5'" [params]="{secColDetails: secColDetails, isEditState: editBenefitRule}"/>-->
+                            <select type="text" id="limitType01" class="form-control" formControlName="limitType"
+                                    (change)="limitTypeEvent($event)"
+                                    [fieldLevelSec]="'ATTRIBUTE_CHAR_5'" [params]="{secColDetails: secColDetails, isEditState: editBenefitRule}">
+                                <option [value]="o.value" *ngFor="let o of limitTypes">{{o.key}}</option>
+                            </select>
+                            <small class="text-danger" *ngIf="formValidation.isValidField('limitType')">
+                                {{ formValidation.errorMessage('limitType') }}
+                            </small>
+                        </div>
+
+                        <div class="col-md-8" *ngIf="multiplyByQuantityDisplayStatus">
+                            <ng-container *ngTemplateOutlet="multiplybyQuantTemplate"></ng-container>
+                        </div>
+
+
+                    </div>
+
+                    <div class="form-group row" *ngIf="twoDigitalMaskStatus">
+                        <!-- Textbox with label of limit type -->
+                        <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('amount') }">
+                            <label class="col-form-label" for="amount01" i18n><b>Amount</b></label>
+                            <input type="text" id="amount01" [textMask]="{mask: mask.twoDigitDecimalNum}" placeholder=".00" class="form-control" formControlName="amount"
+
+                                   [fieldLevelSec]="'ATTRIBUTE_NUM_1'" [params]="{secColDetails: secColDetails, isEditState: editBenefitRule}"/>
+                            <small class="text-danger" *ngIf="formValidation.isValidField('amount')">
+                                {{ formValidation.errorMessage('amount') }}
+                            </small>
+                        </div>
+                    </div>
+
+                    <div class="form-group row" *ngIf="!twoDigitalMaskStatus">
+                        <!-- Textbox with label of limit type -->
+                        <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('amount') }">
+                            <label class="col-form-label" for="amount01" i18n><b>Amount</b></label>
+                            <input type="text" id="amount01" placeholder=".00" class="form-control" formControlName="amount"
+
+                                   [fieldLevelSec]="'ATTRIBUTE_NUM_1'" [params]="{secColDetails: secColDetails, isEditState: editBenefitRule}"/>
+                            <small class="text-danger" *ngIf="formValidation.isValidField('amount')">
+                                {{ formValidation.errorMessage('amount') }}
+                            </small>
+                        </div>
+                    </div>
+
+                    <ng-container *ngTemplateOutlet="countTowardsMaxTemplate"></ng-container>
+                    <ng-container *ngTemplateOutlet="reasonCodeTemplate"></ng-container>
+                    <ng-container *ngTemplateOutlet="renewlTemplate"></ng-container>
+                    <ng-container *ngTemplateOutlet="middleAttributeTemplate"></ng-container>
+                    <ng-container *ngTemplateOutlet="otherMedDefTemplate"></ng-container>
+
+                    <h3>Specific Matches</h3>
+                    <div class="form-group d-flex align-items-center col-md-4 m-checkbox">
+                        <label class="col-form-label" for="perProvider" i18n><b>Per Provider</b></label>
+                        <div class="selectContainer col pt-2 ">
+                            <input style="height: 20px; width: 20px" type="checkbox" id="perProvider" value="Y"
+                                   [checked]="benefitRuleForm.value.perProvider === 'Y'"
+                                   formControlName="perProvider">
+                        </div>
+
+                    </div>
+
+                </ng-container>
+
+                <ng-container *ngIf="selectedRuleType == '10'">
+                    <h3>COINSURANCE RULE</h3>
+                    <div class="form-group row">
+                        <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('coinsurePercnt') }">
+                            <label class="col-form-label" for="coinsurePercnt" i18n><b>Coinsure %</b></label>
+                            <input type="text" id="coinsurePercnt" class="form-control" formControlName="coinsurePercnt"
+                                   [fieldLevelSec]="'ATTRIBUTE_NUM_1'" (keydown)="onKeydownCoinsurePercnt($event)"
+                                   [params]="{secColDetails: secColDetails, isEditState: editBenefitRule}"/>
+                            <small class="text-danger" *ngIf="formValidation.isValidField('coinsurePercnt')">
+                                {{ formValidation.errorMessage('coinsurePercnt') }}
+                            </small>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('maxCoins') }">
+                            <label class="col-form-label" for="maxCoins" i18n><b>Maximum Coins</b></label>
+                            <input type="text" id="maxCoins" class="form-control" formControlName="maxCoins"
+
+                                   [fieldLevelSec]="'ATTRIBUTE_NUM_2'" [params]="{secColDetails: secColDetails, isEditState: editBenefitRule}"/>
+                            <small class="text-danger" *ngIf="formValidation.isValidField('maxCoins')">
+                                {{ formValidation.errorMessage('maxCoins') }}
+                            </small>
+                        </div>
+                    </div>
+
+                    <ng-container *ngTemplateOutlet="countTowardsMaxTemplate"></ng-container>
+                    <ng-container *ngTemplateOutlet="reasonCodeTemplate"></ng-container>
+                    <ng-container *ngTemplateOutlet="renewlTemplate"></ng-container>
+                    <ng-container *ngTemplateOutlet="middleAttributeTemplate"></ng-container>
+                    <ng-container *ngTemplateOutlet="otherMedDefTemplate"></ng-container>
+
+
+                </ng-container>
+
+                <ng-container *ngIf="selectedRuleType == '00'">
+                    <h3>COPAY RULE</h3>
+
+                    <div class="form-group row">
+                        <!-- Textbox -->
+                        <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('copayAmount') }">
+                            <label class="col-form-label" for="copayAmount" i18n><b>Copay Amount</b></label>
+                            <input type="text" id="copayAmount" class="form-control" [textMask]="{mask: mask.twoDigitDecimalNum}" formControlName="copayAmount" placeholder=".00"
+
+                                   [fieldLevelSec]="'ATTRIBUTE_NUM_1'" [params]="{secColDetails: secColDetails, isEditState: editBenefitRule}"/>
+                            <small class="text-danger" *ngIf="formValidation.isValidField('copayAmount')">
+                                {{ formValidation.errorMessage('copayAmount') }}
+                            </small>
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-group row">
+                        <!-- Textbox with label of quantityGreaterOrEqual  -->
+                        <div class="col-md-4"
+                             [ngClass]="{'has-danger': formValidation.isValidField('quantityGreaterOrEq') }">
+                            <label class="col-form-label" for="quantityGreaterOrEq" i18n><b>Apply only if: Quant
+                                >=</b></label>
+                            <input type="text" id="quantityGreaterOrEq" class="form-control" formControlName="quantityGreaterOrEq"
+                                   [fieldLevelSec]="'ATTRIBUTE_NUM_2'" [params]="{secColDetails: secColDetails, isEditState: editBenefitRule}"
+                                (change)="onChangeQuant($event)"/>
+                            <small class="text-danger" *ngIf="formValidation.isValidField('quantityGreaterOrEq')">
+                                {{ formValidation.errorMessage('quantityGreaterOrEq') }}
+                            </small>
+                        </div>
+
+                        <!-- Textbox with label of quantitylessAndEq -->
+                        <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('quantitylessAndEq') }">
+                            <label class="col-form-label" for="quantitylessAndEq" i18n><b> and Quant <=</b></label>
+                            <input type="text" id="quantitylessAndEq" class="form-control"
+                                   [fieldLevelSec]="'ATTRIBUTE_NUM_3'" [params]="{secColDetails: secColDetails, isEditState: editBenefitRule}"
+                                   formControlName="quantitylessAndEq" (change)="onChangeQuant($event)"/>
+                            <small class="text-danger" *ngIf="formValidation.isValidField('quantitylessAndEq')">
+                                {{ formValidation.errorMessage('quantitylessAndEq') }}
+                            </small>
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-group row">
+                        <ng-container *ngTemplateOutlet="multiplybyQuantTemplate"></ng-container>
+
+
+                        <!-- Textbox with label of Maximum Copay -->
+                        <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('maximumCopay') }">
+                            <label class="col-form-label" for="maximumCopay" i18n><b> Maximum Copay </b></label>
+                            <input type="text" id="maximumCopay" class="form-control" [textMask]="{mask: mask.twoDigitDecimalNum}" formControlName="maximumCopay" placeholder=".00"
+
+                                   [fieldLevelSec]="'ATTRIBUTE_NUM_4'" [params]="{secColDetails: secColDetails, isEditState: editBenefitRule}"/>
+                            <small class="text-danger" *ngIf="formValidation.isValidField('maximumCopay')">
+                                {{ formValidation.errorMessage('maximumCopay') }}
+                            </small>
+                        </div>
+                    </div>
+
+                    <ng-container *ngTemplateOutlet="countTowardsMaxTemplate"></ng-container>
+                    <ng-container *ngTemplateOutlet="reasonCodeTemplate"></ng-container>
+                    <ng-container *ngTemplateOutlet="renewlTemplate"></ng-container>
+                    <ng-container *ngTemplateOutlet="middleAttributeTemplate"></ng-container>
+                    <ng-container *ngTemplateOutlet="otherMedDefTemplate"></ng-container>
+
+                </ng-container>
+
+
+                <ng-template #multiplybyQuantTemplate>
+                    <div class="form-group d-flex align-items-center col-md-4 m-checkbox">
+                        <label class="col-form-label" for="multiplyByQuantity" i18n><b>Multiply by Quantity</b></label>
+                        <div class="selectContainer col ">
+                            <input style="height: 20px; width: 20px" type="checkbox" id="multiplyByQuantity" value="Y"
+                                   [checked]="benefitRuleForm.value.multiplyByQuantity === 'Y'"
+                                   formControlName="multiplyByQuantity">
+                        </div>
+
+                    </div>
+                </ng-template>
+
+                <ng-template #reasonCodeTemplate>
+                    <div class="form-group row">
+                        <div class="col-md-4">
+                            <label class="required-field-label" for="reasonCode" i18n>Reason Code</label>
+                            <div class="selectContainer "
+                                 [ngClass]="{'required-field': formValidation.isValidField('reasonCode') }">
+
+                                <div class="input-group" #myDrop="ngbDropdown" ngbDropdown>
+                                    <input ngbDropdownToggle type="text" class="form-control" id="reasonCode" [value]="selectedReasonCode" formControlName="reasonCode"
+                                           (keyup)="reasonCodeKeyEvent($event)"
+                                           [fieldLevelSec]="'ATTRIBUTE_CHAR_13'" [params]="{secColDetails: secColDetails, isEditState: editBenefitRule}">
+                                    <div class="input-group-append"  role="group" >
+                                        <button ngbDropdownToggle class="btn border" ></button>
+                                    </div>
+                                    <div ngbDropdownMenu aria-labelledby="dropdown" class="max-dropdown-height">
+                                        <button ngbDropdownItem value="{{reasonCode.reasonCode}}" (click)="selectedReasonCode = reasonCode.reasonCode; benefitRuleForm.get('reasonCode').setValue(reasonCode.reasonCode);"
+                                                *ngFor="let reasonCode of filteredReasonCodeValue; let i = index" >{{reasonCode.reasonCode}} - {{reasonCode.description}}</button>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <small class="text-danger" *ngIf="formValidation.isValidField('reasonCode')">
+                                {{ formValidation.errorMessage('reasonCode') }}
+                            </small>
+
+
+                        </div>
+                    </div>
+
+                </ng-template>
+
+
+                <!--<ng-template #allGroupTemplate>
+                    <div class="form-group row d-flex align-items-center col-md-4 m-checkbox">
+                        <label class="col-form-label" for="allGroup" i18n><b>All Group</b></label>
+                        <div class="selectContainer col ">
+                            <input style="height: 20px; width: 20px" type="checkbox" id="allGroup"
+                                   [fieldLevelSec]="'ATTRIBUTE_CHAR_3'" [params]="{secColDetails: secColDetails, isEditState: editBenefitRule}"
+                                   formControlName="allGroup">
+                        </div>
+
+                    </div>
+
+                </ng-template>-->
+
+                <ng-template #limitTypeAmountTTemplate>
+                    <div class="form-group row">
+                        <!-- Textbox with label of Message -->
+                        <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('limitType') }">
+                            <label class="col-form-label" for="limitType01" i18n><b>Limit Type</b></label>
+                            <select type="text" id="limitType01" class="form-control" formControlName="limitType"
+
+                                    [fieldLevelSec]="'ATTRIBUTE_CHAR_5'" [params]="{secColDetails: secColDetails, isEditState: editBenefitRule}">
+                                <option [value]="o.value" *ngFor="let o of limitTypes">{{o.key}}</option>
+                            </select>
+                            <small class="text-danger" *ngIf="formValidation.isValidField('limitType')">
+                                {{ formValidation.errorMessage('limitType') }}
+                            </small>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <!-- Textbox with label of Message -->
+                        <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('amount') }">
+                            <label class="col-form-label" for="amount" i18n><b>Amount</b></label>
+                            <input type="text" id="amount" class="form-control" [textMask]="{mask: mask.twoDigitDecimalNum}" formControlName="amount" placeholder=".00"
+
+                                   [fieldLevelSec]="'ATTRIBUTE_NUM_1'" [params]="{secColDetails: secColDetails, isEditState: editBenefitRule}"/>
+                            <small class="text-danger" *ngIf="formValidation.isValidField('amount')">
+                                {{ formValidation.errorMessage('amount') }}
+                            </small>
+                        </div>
+                    </div>
+                </ng-template>
+
+                <ng-template #renewlTemplate>
+                    <div class="form-group row">
+
+
+                        <!-- Textbox with label of Message -->
+                        <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('renewal') }">
+                            <label class="col-form-label" for="renewal" i18n><b> Renewal </b></label>
+                            <select type="text" id="renewal" class="form-control" formControlName="renewal" (change)="selectRenewal($event)"
+
+                                    [fieldLevelSec]="'ATTRIBUTE_CHAR_9'" [params]="{secColDetails: secColDetails, isEditState: editBenefitRule}">
+                                <option [value]="o.value" *ngFor="let o of renewals">{{o.key}}</option>
+                            </select>
+                            <small class="text-danger" *ngIf="formValidation.isValidField('renewal')">
+                                {{ formValidation.errorMessage('renewal') }}
+                            </small>
+                        </div>
+                        <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('renewalDate') }">
+                            <label class="col-form-label " [ngClass]="mandatoryStatus? 'clr-blue':''" for="renewalDate" i18n><b> No. Yrs/Months/Days </b></label>
+                            <input type="text" id="renewalDate" class="form-control" formControlName="renewalDate"
+
+                                   [fieldLevelSec]="'ATTRIBUTE_CHAR_8'" [params]="{secColDetails: secColDetails, isEditState: editBenefitRule}"/>
+                            <small class="text-danger" *ngIf="formValidation.isValidField('renewalDate')">
+                                {{ formValidation.errorMessage('renewalDate') }}
+                            </small>
+                        </div>
+
+                        <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('renewalFrom') }">
+                            <label class="col-form-label " [ngClass]="mandatoryStatus? 'clr-blue':''"  for="renewalFrom" i18n><b> From </b></label>
+                            <select type="text" id="renewalFrom" class="form-control" formControlName="renewalFrom"
+
+                                    [fieldLevelSec]="'ATTRIBUTE_CHAR_7'" [params]="{secColDetails: secColDetails, isEditState: editBenefitRule}">
+                                <option [value]="o.value" *ngFor="let o of froms">{{o.key}}</option>
+                            </select>
+                            <small class="text-danger" *ngIf="formValidation.isValidField('renewalFrom')">
+                                {{ formValidation.errorMessage('renewalFrom') }}
+                            </small>
+                        </div>
+
+                    </div>
+                </ng-template>
+
+
+                <!-- template for Time-Frame, NO of timeframe days, carryover, .... family, all group etc   -->
+                <ng-template #middleAttributeTemplate>
+
+                    <div class="form-group row">
+                        <!-- Textbox with label of timeFrame -->
+                        <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('timeFrame') }">
+                            <label class="col-form-label required-field-label" for="timeFrame" i18n><b>Time
+                                Frame</b></label>
+                            <select type="text" id="timeFrame" class="form-control" formControlName="timeFrame"
+                                    (change)="onChangeTimeFrame($event)"
+                                    [fieldLevelSec]="'ATTRIBUTE_CHAR_14'" [params]="{secColDetails: secColDetails, isEditState: editBenefitRule}">
+                                <option [value]="o.value" *ngFor="let o of timeFrames">{{o.key}}</option>
+                            </select>
+                            <small class="text-danger" *ngIf="formValidation.isValidField('timeFrame')">
+                                {{ formValidation.errorMessage('timeFrame') }}
+                            </small>
+                        </div>
+
+                        <!-- Textbox with label of timeFrameNoYearsDays -->
+                        <div class="col-md-4"
+                             [ngClass]="{'has-danger': formValidation.isValidField('timeFrameNoYearsDays') }">
+                            <label class="col-form-label" [class.clr-blue]="benefitRuleForm.get('timeFrame').value !== 'L'" for="timeFrameNoYearsDays" i18n><b>No. Years/Days </b></label>
+                            <input type="text" id="timeFrameNoYearsDays" class="form-control"
+                                   [attr.disabled]="benefitRuleForm.get('timeFrame').value === 'L' ? 'disabled' : null"
+                                   [fieldLevelSec]="'ATTRIBUTE_NUM_6'" [params]="{secColDetails: secColDetails, isEditState: editBenefitRule}"
+
+                                   formControlName="timeFrameNoYearsDays"/>
+                            <small class="text-danger" *ngIf="formValidation.isValidField('timeFrameNoYearsDays')">
+                                {{ formValidation.errorMessage('timeFrameNoYearsDays') }}
+                            </small>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <!-- Textbox with label of Carry Over -->
+                        <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('carryOver') }">
+                            <label class="col-form-label required-field-label" for="carryOver" i18n><b> Carryover </b></label>
+                            <select type="text" id="carryOver" class="form-control" formControlName="carryOver"
+                                    (change)="onChangeCarryOver($event)"
+                                    [fieldLevelSec]="'ATTRIBUTE_CHAR_1'" [params]="{secColDetails: secColDetails, isEditState: editBenefitRule}" >
+                                <option [value]="o.value" *ngFor="let o of carryOvers">{{o.key}}</option>
+                            </select>
+                            <small class="text-danger" *ngIf="formValidation.isValidField('carryOver')">
+                                {{ formValidation.errorMessage('carryOver') }}
+                            </small>
+                        </div>
+
+                        <!-- Textbox with label of carryOverNoYearsDays -->
+                        <div class="col-md-4"
+                             [ngClass]="{'has-danger': formValidation.isValidField('carryOverNoYearsDays') }">
+                            <label class="col-form-label"  [class.clr-blue]="benefitRuleForm.get('carryOver').value !== 'N'" for="carryOverNoYearsDays" i18n><b>No. Years/Days </b></label>
+                            <input type="text" id="carryOverNoYearsDays" class="form-control"
+                                   [attr.disabled]="benefitRuleForm.get('carryOver').value === 'N' ? 'disabled' : null"
+                                   [fieldLevelSec]="'ATTRIBUTE_NUM_7'" [params]="{secColDetails: secColDetails, isEditState: editBenefitRule}"
+
+                                   formControlName="carryOverNoYearsDays"/>
+                            <small class="text-danger" *ngIf="formValidation.isValidField('carryOverNoYearsDays')">
+                                {{ formValidation.errorMessage('carryOverNoYearsDays') }}
+                            </small>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <!-- Textbox with label of Carry Over -->
+                        <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('claimType') }">
+                            <label class="col-form-label required-field-label" for="claimType" i18n><b> Claim
+                                Type </b></label>
+                            <select type="text" id="claimType" class="form-control" formControlName="claimType"
+
+                                    [fieldLevelSec]="'ATTRIBUTE_CHAR_2'" [params]="{secColDetails: secColDetails, isEditState: editBenefitRule}">
+                                <option [value]="o.value" *ngFor="let o of claimTypes">{{o.key}}</option>
+                            </select>
+                            <small class="text-danger" *ngIf="formValidation.isValidField('claimType')">
+                                {{ formValidation.errorMessage('claimType') }}
+                            </small>
+                        </div>
+
+                        <!-- Textbox with label of memberOrFamily -->
+                        <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('memberOrFamily') }">
+                            <label class="col-form-label required-field-label" for="memberOrFamily" i18n><b>
+                                Member/Family </b></label>
+                            <select type="text" id="memberOrFamily" class="form-control" formControlName="memberOrFamily"
+
+                                    [fieldLevelSec]="'ATTRIBUTE_CHAR_4'" [params]="{secColDetails: secColDetails, isEditState: editBenefitRule}">
+                                <option [value]="o.value" *ngFor="let o of memberFamilies">{{o.key}}</option>
+                            </select>
+                            <small class="text-danger" *ngIf="formValidation.isValidField('memberOrFamily')">
+                                {{ formValidation.errorMessage('memberOrFamily') }}
+                            </small>
+                        </div>
+
+                        <!-- Checkbox with label of Match on Details for Inpatient Stay ? -->
+                        <!--<div class="col-sm-4" [ngClass]="{'has-danger': formValidation.isValidField('allGroup') }">
+                            <div class="checkbox col-md-12 mt-4">
+                                <label class="checkbox">
+                                    <input id="allGroup" [fieldLevelSec]="'ATTRIBUTE_CHAR_3'" [params]="{secColDetails: secColDetails, isEditState: editBenefitRule}"  value="Y" formControlName="allGroup" type="checkbox">
+                                    All Groups?
+                                </label>
+                            </div>
+                            <span class="help-block" *ngIf="displayMessage.allGroup">
+                                {{ displayMessage.allGroup  }}
+                             </span>
+                        </div>-->
+                        <div class="form-group row d-flex align-items-center col-md-4 m-checkbox">
+                            <label class="col-form-label" for="allGroup" i18n><b>All Groups?</b></label>
+                            <div class="selectContainer col pt-2">
+                                <input style="height: 20px; width: 20px" type="checkbox" id="allGroup"
+                                        [checked]="benefitRuleForm.value.allGroup === 'Y'"
+                                       formControlName="allGroup" value="Y">
+                            </div>
+
+                        </div>
+                    </div>
+
+                </ng-template>
+
+                <ng-template #otherMedDefTemplate>
+                    <div class="form-group row">
+                        <!-- Textbox with label of Other Med Defs -->
+                        <div class="col-md-4"
+                             [ngClass]="{'has-danger': formValidation.isValidField('otherMedDefinitions') }">
+                            <label class="col-form-label" for="otherMedDefinitions" i18n><b> Other Med Defs </b></label>
+                            <input type="text" id="otherMedDefinitions" class="form-control"
+                                   [fieldLevelSec]="'MED_DEF_FILTER'" [params]="{secColDetails: secColDetails, isEditState: editBenefitRule}"
+
+                                   formControlName="otherMedDefinitions"/>
+                            <small class="text-danger" *ngIf="formValidation.isValidField('otherMedDefinitions')">
+                                {{ formValidation.errorMessage('otherMedDefinitions') }}
+                            </small>
+                        </div>
+
+                    </div>
+                </ng-template>
+
+                <ng-template #countTowardsMaxTemplate>
+
+                    <div class="form-group row">
+                        <!-- Textbox with label of count toward max -->
+                        <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('countTowardMax') }">
+                            <label class="col-form-label" for="countTowardMax" i18n><b>Count Toward Max</b></label>
+                            <input type="text" id="countTowardMax" class="form-control" formControlName="countTowardMax"
+                                   [fieldLevelSec]="'MED_DEF_FILTER'" [params]="{secColDetails: secColDetails, isEditState: editBenefitRule}"/>
+                            <small class="text-danger" *ngIf="formValidation.isValidField('countTowardMax')">
+                                {{ formValidation.errorMessage('countTowardMax') }}
+                            </small>
+                        </div>
+                    </div>
+                </ng-template>
+
+                <ng-template #messageTemplate>
+                    <div class="form-group row">
+                        <!-- Textbox with label of Other Med Defs -->
+                        <div class="col-md-8"
+                             [ngClass]="{'has-danger': formValidation.isValidField('message') }">
+                            <label class="col-form-label" for="message" i18n><b>Message </b></label>
+                            <input type="text" id="message" class="form-control"
+                                   [fieldLevelSec]="'ATTRIBUTE_CHAR_10'" [params]="{secColDetails: secColDetails, isEditState: editBenefitRule}"
+
+                                   formControlName="message"/>
+                            <small class="text-danger" *ngIf="formValidation.isValidField('message')">
+                                {{ formValidation.errorMessage('message') }}
+                            </small>
+                            </div>
+
+                    </div>
+                </ng-template>
+
+
+            </form>
+        </ng-container>
+    </div>
+</div>
+
+
+<ng-template #loaderTemplate let-loaderValue="value">
+    <div class="row justify-content-center mt-4" *ngIf="loaderValue">
+        <div class="spinner-border text-success" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+</ng-template>
+
+
+<ng-keyboard-shortcuts [shortcuts]="shortcuts"></ng-keyboard-shortcuts>
+<ng-keyboard-shortcuts-help [key]="'f2'" [closeKey]="'escape'" [title]="'Hotkeys Help'"></ng-keyboard-shortcuts-help>

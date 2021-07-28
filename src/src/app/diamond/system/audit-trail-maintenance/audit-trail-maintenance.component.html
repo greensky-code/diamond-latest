@@ -1,0 +1,47 @@
+<!-- Copyright (c) 2021 . All Rights Reserved. -->
+<div class="container-fluid">
+    <div class="card-block">
+        <div class="row form-title">
+            <h2 class="col-md-6 card-label-admin">Audit Trail Maintenance</h2>
+            <div class="col-md"><b class="readonly-label">View Only</b></div>
+        </div>
+        <button type="button" *ngIf="showIcon" class="modal-close close" aria-label="Close"
+                (click)="activeModal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+        <app-pop-up-message #popUpMesssage (buttonclickEvent)="popUpButtonHandler($event)"  [(popupMessage)] = "popUpMessage"></app-pop-up-message>
+
+        <ng-template #loaderTemplate let-loaderValue="value">
+            <div class="row justify-content-center mt-4" *ngIf="loaderValue">
+                <div class="spinner-border text-success" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>
+            </div>
+        </ng-template>
+        <ng-container *ngTemplateOutlet="loaderTemplate;context:{value: secProgress }"></ng-container>
+
+        <ng-container *appWinSelect="{secWin: secWin, userTemplateId: userTemplateId, secModuleId: memberModuleId}">
+            <div class="row mt-3 mb-3">
+                <menu-bar [menus]="menu" (onMenuClick)="onMenuItemClick($event)"></menu-bar>
+            </div>
+            <form [formGroup]="auditTrailMaintenanceForm" novalidate>
+                <div class="form-group row">
+                </div>
+
+                <!-- DataGrid with Name of DataGrid -->
+                <ag-grid-angular #agGrid class="ag-theme-fresh" [gridOptions]="dataGridGridOptions"
+                                 style="width: 100%; height: 300px;"
+                                 [enableSorting]="true"
+                                 [enableFilter]="true"
+                                 [floatingFilter]="true"
+                                 [pagination]="true"
+                                 [showToolPanel]="true">
+                </ag-grid-angular>
+
+                <div class="form-group row">
+                </div>
+            </form>
+        </ng-container>
+    </div>
+</div>

@@ -1,0 +1,47 @@
+<h2 class="form-title card-label-admin">{{title}}</h2>
+<button type="button" *ngIf="showIcon" class="modal-close close" aria-label="Close"
+    (click)="activeModal.dismiss('Cross click')">
+    <span aria-hidden="true">&times;</span>
+</button>
+<form class="mt-4" [formGroup]="inputForm" novalidate>
+    <div class="form-group row" style="margin: 10px 0px;" *ngIf="passedType=='text'">
+        <label class="col-form-label" for="inputValue" i18n>{{labelText}}</label>
+        <div class="col-md-6">
+            <input type="text" id="inputValue" class="form-control" formControlName="inputValue" value="{{passedValue}}"/>
+        </div>
+    </div>
+
+    <div class="col-md-6" style="margin: 10px 0px;"  *ngIf="passedType=='date'">
+        <label for="inputName" i18n>{{labelText}}</label>
+        <div class="input-group">
+          <input id="inputName" class="form-control" angular-mydatepicker name="inputValue"
+            (click)="commonDateId.toggleCalendar()" 
+            [options]="datePickerConfig" #commonDateId="angular-mydatepicker" formControlName="inputValue" value="{{passedValue}}"/>
+          <div class="input-group-append">
+            <button type="button" class="btn btn-secondary" (click)="commonDateId.clearDate()">
+              <fa-icon [icon]="['far', 'window-close']"></fa-icon>
+            </button>
+          </div>
+          <div class="input-group-append">
+            <button type="button" class="btn btn-secondary" (click)="commonDateId.toggleCalendar()">
+              <fa-icon [icon]="['far', 'calendar']"></fa-icon>
+            </button>
+          </div>
+        </div>
+        <!-- <small class="text-danger" *ngIf="formValidation.isValidField('inputValue')">
+            {{ formValidation.errorMessage('inputValue') }}
+        </small> -->
+      </div>
+  
+
+    <div class="form-group row text-right mr-2">
+        <!-- Button with label of Select All -->
+        <div class="col-md-12">
+            <button type="button" id="buttonOk" name="ok" class="btn btn-small btn-primary mr-1" (click)="submit()">OK</button>
+            <button type="button" id="buttonCancel" name="cancel" class="btn btn-small btn-secondary"
+                (click)="activeModal.dismiss('Cross click')">Cancel</button>
+
+        </div>
+
+    </div>
+</form>

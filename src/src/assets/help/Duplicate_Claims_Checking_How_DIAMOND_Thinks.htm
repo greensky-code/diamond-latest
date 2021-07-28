@@ -1,0 +1,439 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+    <!-- $MVD$:fontset("Courier New","Courier New") -->
+    <title>Duplicate Claims Checking, How DIAMOND Thinks</title>
+    <meta content="RoboHelp by eHelp Corporation www.ehelp.com" name="generator"/>
+    <meta name="copyright"
+          value="© Copyright 2002 Health Systems Design Corp., a wholly owned subsidiary of Perot Systems Corporation. All rights reserved"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+</head>
+<body>
+
+<div class="calibreMeta">
+    <div class="calibreMetaTitle">
+
+
+        <h1>
+            <a href="../bj5if-qozss.html">DIAMOND 950 Help
+            </a>
+        </h1>
+
+
+    </div>
+    <div class="calibreMetaAuthor">
+        Unknown
+
+    </div>
+</div>
+
+<div class="calibreMain">
+
+    <div class="calibreEbookContent">
+
+        <div class="calibreEbNavTop">
+
+            <a href="Capitation_Special_Fund_Distribution_How_DIAMOND_Thinks.htm" class="calibreAPrev">previous page
+            </a>
+
+
+            <a href="Adding_a_Claim_Evaluation_Rule.htm" class="calibreANext">next page
+            </a>
+
+        </div>
+
+
+        <h4 class="calibre1">Duplicate Claims Checking, How DIAMOND Thinks</h4>
+        <table cellpadding="1" cellspacing="0" width="510" class="calibre172">
+            <tbody class="calibre8">
+            <tr valign="top" class="calibre172">
+                <td width="510" class="">
+                    <p class="map-links1"><a
+                            href="Duplicate_Claims_Checking_How_DIAMOND_Thinks.htm#Duplicate_Claims_Checking_Using_different_duplicate_criteria_for_different_kinds_of_business-or_not_MID"><img
+                            alt="image\assets/help/MidTopic_shg.gif" border="0" src="assets/help/MidTopic_shg.gif"
+                            usemap="#AreaMap0" class=""/>
+                    </a> Using different duplicate criteria for different kinds of business
+                    </p>
+                </td>
+            </tr>
+            <tr valign="top" class="calibre172">
+                <td width="510" class="">
+                    <p class="map-links1"><a
+                            href="Duplicate_Claims_Checking_How_DIAMOND_Thinks.htm#Duplicate_Claims_Checking_System_Performance_Implications_of_DUPRL_MID"><img
+                            alt="image\assets/help/MidTopic_shg.gif" border="0" src="assets/help/MidTopic_shg.gif"
+                            usemap="#AreaMap1" class=""/>
+                    </a> System Performance Implications of DUPRL
+                    </p>
+                </td>
+            </tr>
+            <tr valign="top" class="calibre172">
+                <td width="510" class="">
+                    <p class="map-links1"><a
+                            href="Duplicate_Claims_Checking_How_DIAMOND_Thinks.htm#Duplicate_Claims_Checking_How_DIAMOND_makes_a_match_MID"><img
+                            alt="image\assets/help/MidTopic_shg.gif" border="0" src="assets/help/MidTopic_shg.gif"
+                            usemap="#AreaMap2" class=""/>
+                    </a> How DIAMOND makes a match
+                    </p>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <p class="body-text">Keyword DUPRL enables DIAMOND to automatically detect potential duplicate claims and take
+            specified action when a potential duplicate is identified.</p>
+        <p class="body-text1"> </p>
+        <p class="body-text">Rules for detecting duplicate claims (both online and batch) can be different for each of
+            the claim types: professional services, institutional, and dental.</p>
+        <p class="body-text">The degree of certainty that a claim is a duplicate can determine the degree of action that
+            is taken. For example, a potential duplicate claim with more stringent match criteria can be automatically
+            denied, while a potential duplicate claim with less stringent match criteria can be automatically held. </p>
+        <p class="body-text">Different duplicate criteria can be applied at the header and detail levels of a claim.</p>
+        <p class="body-text">Keyword DUPRL uses fall-through logic much like that used for the calculation of medical
+            definitions. Set up the most specific duplicate checking criteria to be applied first in Rule Level 1, and
+            increasingly less specific Rule level 2 and Rule Level 3 respectively.</p>
+        <p class="tip-note-warning">Warning</p>
+        <p class="body-text">DIAMOND does not include denied claims in the duplicate evaluation. Therefore DIAMOND will
+            not identify as a duplicate a claim that compared to a denied claim, meets the all the criteria of a
+            potential duplicate.</p>
+        <p class="doc-level"><a
+                name="Duplicate_Claims_Checking_Using_different_duplicate_criteria_for_different_kinds_of_business-or_not_MID"></a>Using
+            different duplicate criteria for different kinds of business</p>
+        <p class="body-text">Duplicate checking rules may be set up to work differently depending on the kind of
+            business being administered. This feature is helpful if you operate both as a third party administrator for
+            some groups, where very careful examination of potential duplicate claims is required and also as a fully
+            insured, capitated program for other groups that have a high percentage of claims falling within capitation
+            and therefore not requiring close scrutiny for duplicates.</p>
+        <p class="body-text">Each duplicate check rule ID is linked to a line of business code (set up in LINBS) so
+            different rules can apply to different lines of business. DIAMOND applies the rule according to the line of
+            business associated with the member (patient) on the claim. </p>
+        <p class="doc-level"><a name="Duplicate_Claims_Checking_How_DIAMOND_makes_a_match_MID"></a>How DIAMOND makes a
+            match</p>
+        <p class="body-text">Keyword DUPRL contains three levels of rules. They are evaluated twice during claims
+            processing and applied in level order. Once a match is found between the claim and the criteria in a rule
+            level, the action specified in that rule level is applied and no further duplicate checking is performed at
+            that point in processing. For all evaluations of claims against duplicate checking rules, a match is only
+            detected when all of the fields indicated within the Dup Rule Level criteria match. And, logically, an exact
+            match on member ID (subscriber ID + person number) is required before any rules are evaluated.</p>
+        <p class="body-text">The most specific criteria for a match should be set at the highest level. For example,
+            your organization may feel that a claim with matches on the following fields can be considered a duplicate
+            claim:</p>
+        <ul class="calibre2">
+            <li class="calibre168">
+                <p class="bullet-text-block">Rendering provider</p></li>
+            <li class="calibre168">
+                <p class="bullet-text-block">Total billed amount</p></li>
+            <li class="calibre168">
+                <p class="bullet-text-block">Detail date of service</p></li>
+            <li class="calibre168">
+                <p class="bullet-text-block">Procedure code</p></li>
+        </ul>
+        <p class="body-text">If duplicate information is found, then the claim can be automatically denied. In this
+            case, you would enter these criteria as Duplicate Rule Level 1, along with the appropriate action (deny) and
+            reason code.</p>
+        <p class="body-text">Your organization may consider a claim to be a likely duplicate if there is a match
+            on: </p>
+        <ul class="calibre2">
+            <li class="calibre168">
+                <p class="bullet-text-block">Detail date of service and </p></li>
+            <li class="calibre168">
+                <p class="bullet-text-block">Procedure code</p></li>
+        </ul>
+        <p class="body-text">Even if the provider is different, you may want to have the claim manually investigated. In
+            this case, you would enter these criteria in Duplicate Rule Level 2 (or 3) along with the appropriate action
+            (hold) and reason code. </p>
+        <p class="body-text">As claims are evaluated against these two rules, a hit on the Level 1 Rule will cause
+            DIAMOND to take the Level 1 action and apply the specified reason code to the claim. Once a match is made,
+            DIAMOND will perform no more duplicate checking (Level 2 or Level 3). If there is no match on Level 1,
+            DIAMOND will proceed to check the Level 2 criteria, and if there is a match, will take the Level 2 action
+            and apply the specified reason code to the claim. If no match is made on Level 2, DIAMOND will move on to
+            check Level 3.</p>
+        <p class="doc-level1">Header vs. Detail Criteria</p>
+        <p class="body-text">Depending on your company’s business requirements, you may decide to have claims operators
+            manually check claims that have duplicate information at the header level, regardless of the information at
+            the detail level. In this case you would set duplicate rules to cast a wider net to match on the claim
+            header level. However, if your company desires more automated actions from the duplicate checking system,
+            setting duplicate rules at the claim detail level narrows the scope of possible duplicates. </p>
+        <p class="tip-note-warning">Warning:</p>
+        <p class="body-text">Combining both header level and detail level rules in one duplicate rule sequence may cause
+            more than one action to be applied to a claim.</p>
+        <p class="example-hdr-hdt">Example 1:</p>
+        <p class="body-text2"><img alt="image\DupRuleScreen_shg.gif" border="0" src="assets/help/DupRuleScreen_shg.gif"
+                                   usemap="#AreaMap3" class=""/>
+        </p>
+        <p class="body-text">When DIAMOND process the following two claims against this duplicate rule:</p>
+        <table cellpadding="1" cellspacing="0" width="456" class="calibre172">
+            <tbody class="calibre8">
+            <tr valign="top" class="calibre172">
+                <td colspan="2" width="222" class="">
+                    <p class="tbl-header">Claim 1</p></td>
+                <td colspan="2" width="234" class="">
+                    <p class="tbl-header">Claim 2</p></td>
+            </tr>
+            <tr valign="top" class="calibre172">
+                <td colspan="2" width="222" class="">
+                    <p class="body-text"><span class="calibre5">Header</span></p></td>
+                <td colspan="2" width="234" class="">
+                    <p class="body-text"><span class="calibre5">Header</span></p></td>
+            </tr>
+            <tr valign="top" class="calibre172">
+                <td width="90" class="">
+                    <p class="tbl-text-noline">Date of Service</p></td>
+                <td width="132" class="">
+                    <p class="tbl-text-noline">2/19/2000</p></td>
+                <td width="114" class="">
+                    <p class="tbl-text-noline">Date of Service</p></td>
+                <td width="120" class="">
+                    <p class="tbl-text-noline">2/19/2000</p></td>
+            </tr>
+            <tr valign="top" class="calibre172">
+                <td width="90" class="">
+                    <p class="tbl-text-noline">Provider</p></td>
+                <td width="132" class="">
+                    <p class="tbl-text-noline">JSMITH</p></td>
+                <td width="114" class="">
+                    <p class="tbl-text-noline">Provider</p></td>
+                <td width="120" class="">
+                    <p class="tbl-text-noline">JSMITH</p></td>
+            </tr>
+            <tr valign="top" class="calibre172">
+                <td width="90" class="">
+                    <p class="tbl-text-noline">Billed Amount</p></td>
+                <td width="132" class="">
+                    <p class="tbl-text-noline">$230.00</p></td>
+                <td width="114" class="">
+                    <p class="tbl-text-noline">Billed Amount</p></td>
+                <td width="120" class="">
+                    <p class="tbl-text-noline">$230.00</p></td>
+            </tr>
+            <tr valign="top" class="calibre172">
+                <td colspan="2" width="222" class="">
+                    <p class="body-text"><span class="calibre5">Detail</span></p></td>
+                <td colspan="2" width="234" class="">
+                    <p class="body-text"><span class="calibre5">Detail</span></p></td>
+            </tr>
+            <tr valign="top" class="calibre172">
+                <td width="90" class="">
+                    <p class="tbl-text-noline">Date of Service</p></td>
+                <td width="132" class="">
+                    <p class="tbl-text-noline">2/19/2000</p></td>
+                <td width="114" class="">
+                    <p class="tbl-text-noline">Date of Service</p></td>
+                <td width="120" class="">
+                    <p class="tbl-text-noline">2/19/2000</p></td>
+            </tr>
+            <tr valign="top" class="calibre172">
+                <td width="90" class="">
+                    <p class="tbl-text-noline">Billed Amount</p></td>
+                <td width="132" class="">
+                    <p class="tbl-text-noline">$230.00</p></td>
+                <td width="114" class="">
+                    <p class="tbl-text-noline">Billed Amount</p></td>
+                <td width="120" class="">
+                    <p class="tbl-text-noline">$230.00</p></td>
+            </tr>
+            <tr valign="top" class="calibre172">
+                <td width="90" class="">
+                    <p class="tbl-text-noline">Procedure</p></td>
+                <td width="132" class="">
+                    <p class="tbl-text-noline">21435</p></td>
+                <td width="114" class="">
+                    <p class="tbl-text-noline">Procedure</p></td>
+                <td width="120" class="">
+                    <p class="tbl-text-noline">21435</p></td>
+            </tr>
+            <tr valign="top" class="calibre172">
+                <td width="90" class="">
+                    <p class="tbl-text-noline">Medef</p></td>
+                <td width="132" class="">
+                    <p class="tbl-text-noline">106</p></td>
+                <td width="114" class="">
+                    <p class="tbl-text-noline">Medef</p></td>
+                <td width="120" class="">
+                    <p class="tbl-text-noline">106</p></td>
+            </tr>
+            </tbody>
+        </table>
+        <p class="bullet-text-block1">Results:</p>
+        <ul class="calibre2">
+            <li class="calibre168">
+                <p class="bullet-text-block">Assume Claim 1 would finalize and post.</p></li>
+            <li class="calibre168">
+                <p class="bullet-text-block">During claim entry for Claim 2, DIAMOND performs the first duplicate check
+                    when the operator tabs from the claim header to the claim detail. Because all determinants in the
+                    rule must be true for the rule to apply, claim 2 will not match on Rule Level 1, or Rule Level 2
+                    criteria because there are detail determinants in both of these rules and Claim 2 detail lines have
+                    not yet been entered. Claim 2 will match on Rule Level 3 because there are no detail determinants in
+                    the rule and apply a header hold on the claim and a reason code of DUPHD.</p></li>
+            <li class="calibre168">
+                <p class="bullet-text-block">Once the operator enters the detail lines, DIAMOND performs the duplicate
+                    check again, after adjudication. DIAMOND will check the Rule Levels in order, starting with Rule
+                    Level 1. Claim 2 will match on Rule Level 1 because all of the determinants match. DIAMOND will deny
+                    all the claim detail lines and apply reason code DUPDN.</p></li>
+            <li class="calibre168">
+                <p class="bullet-text-block">Claim 2 will not finalize because of the header hold applied during the
+                    first rule evaluation run, even though the claim is an exact duplicate of the original claim and all
+                    detail lines are denied. In this case, the claim would have to be manually reviewed and the header
+                    hold archived as historical before the claim can be automatically denied as a duplicate.</p></li>
+        </ul>
+        <p class="example-hdr-hdt">Example 2:</p>
+        <p class="body-text2"><img alt="image\DupRuleScreen2_shg.gif" border="0" src="assets/help/DupRuleScreen2_shg.gif"
+                                   usemap="#AreaMap4" class=""/>
+        </p>
+        <p class="body-text">When DIAMOND processes the same two claims against this duplicate rule:</p>
+        <table cellpadding="1" cellspacing="0" width="456" class="calibre172">
+            <tbody class="calibre8">
+            <tr valign="top" class="calibre172">
+                <td colspan="2" width="222" class="">
+                    <p class="tbl-header">Claim 1</p></td>
+                <td colspan="2" width="234" class="">
+                    <p class="tbl-header">Claim 2</p></td>
+            </tr>
+            <tr valign="top" class="calibre172">
+                <td colspan="2" width="222" class="">
+                    <p class="body-text"><span class="calibre5">Header</span></p></td>
+                <td colspan="2" width="234" class="">
+                    <p class="body-text"><span class="calibre5">Header</span></p></td>
+            </tr>
+            <tr valign="top" class="calibre172">
+                <td width="90" class="">
+                    <p class="tbl-text-noline">Date of Service</p></td>
+                <td width="132" class="">
+                    <p class="tbl-text-noline">2/19/2000</p></td>
+                <td width="114" class="">
+                    <p class="tbl-text-noline">Date of Service</p></td>
+                <td width="120" class="">
+                    <p class="tbl-text-noline">2/19/2000</p></td>
+            </tr>
+            <tr valign="top" class="calibre172">
+                <td width="90" class="">
+                    <p class="tbl-text-noline">Provider</p></td>
+                <td width="132" class="">
+                    <p class="tbl-text-noline">JSMITH</p></td>
+                <td width="114" class="">
+                    <p class="tbl-text-noline">Provider</p></td>
+                <td width="120" class="">
+                    <p class="tbl-text-noline">JSMITH</p></td>
+            </tr>
+            <tr valign="top" class="calibre172">
+                <td width="90" class="">
+                    <p class="tbl-text-noline">Billed Amount</p></td>
+                <td width="132" class="">
+                    <p class="tbl-text-noline">$230.00</p></td>
+                <td width="114" class="">
+                    <p class="tbl-text-noline">Billed Amount</p></td>
+                <td width="120" class="">
+                    <p class="tbl-text-noline">$230.00</p></td>
+            </tr>
+            <tr valign="top" class="calibre172">
+                <td colspan="2" width="222" class="">
+                    <p class="body-text"><span class="calibre5">Detail</span></p></td>
+                <td colspan="2" width="234" class="">
+                    <p class="body-text"><span class="calibre5">Detail</span></p></td>
+            </tr>
+            <tr valign="top" class="calibre172">
+                <td width="90" class="">
+                    <p class="tbl-text-noline">Date of Service</p></td>
+                <td width="132" class="">
+                    <p class="tbl-text-noline">2/19/2000</p></td>
+                <td width="114" class="">
+                    <p class="tbl-text-noline">Date of Service</p></td>
+                <td width="120" class="">
+                    <p class="tbl-text-noline">2/19/2000</p></td>
+            </tr>
+            <tr valign="top" class="calibre172">
+                <td width="90" class="">
+                    <p class="tbl-text-noline">Billed Amount</p></td>
+                <td width="132" class="">
+                    <p class="tbl-text-noline">$230.00</p></td>
+                <td width="114" class="">
+                    <p class="tbl-text-noline">Billed Amount</p></td>
+                <td width="120" class="">
+                    <p class="tbl-text-noline">$230.00</p></td>
+            </tr>
+            <tr valign="top" class="calibre172">
+                <td width="90" class="">
+                    <p class="tbl-text-noline">Procedure</p></td>
+                <td width="132" class="">
+                    <p class="tbl-text-noline">21435</p></td>
+                <td width="114" class="">
+                    <p class="tbl-text-noline">Procedure</p></td>
+                <td width="120" class="">
+                    <p class="tbl-text-noline">21435</p></td>
+            </tr>
+            <tr valign="top" class="calibre172">
+                <td width="90" class="">
+                    <p class="tbl-text-noline">Medef</p></td>
+                <td width="132" class="">
+                    <p class="tbl-text-noline">106</p></td>
+                <td width="114" class="">
+                    <p class="tbl-text-noline">Medef</p></td>
+                <td width="120" class="">
+                    <p class="tbl-text-noline">106</p></td>
+            </tr>
+            </tbody>
+        </table>
+        <p class="bullet-text-block1">Results:</p>
+        <ul class="calibre2">
+            <li class="calibre168">
+                <p class="bullet-text-block">Assume Claim 1 would finalize and post.</p></li>
+            <li class="calibre168">
+                <p class="bullet-text-block">During claim entry for Claim 2, DIAMOND performs the first dup check when
+                    the operator tabs from the claim header to the claim detail. Because all determinants in the rule
+                    must be true for the rule to apply, claim 2 will not match on Rule 1, Rule 2, or Rule 3 because they
+                    all include claim detail criteria. </p></li>
+            <li class="calibre168">
+                <p class="bullet-text-block">Once the operator enters the claim detail lines, DIAMOND performs the
+                    duplicate check again, after adjudication. DIAMOND will check the Rule Levels in order, starting
+                    with Rule Level 1. Claim 2 will match on Rule Level 1 because all of the determinants match. DIAMOND
+                    will deny all the claim detail lines and apply reason code DUPDN.</p></li>
+            <li class="calibre168">
+                <p class="bullet-text-block">Claim 2 will finalize as a denied claim.</p></li>
+        </ul>
+        <p class="doc-level1">Special Duplicate Checking for Dental Claims</p>
+        <p class="body-text">You can select the DUPRL detail level <span class="calibre5">Same Tooth</span> check box to
+            include tooth attributes in duplicate checking for dental claims. As a DUPRL detail level criterion, <span
+                    class="calibre5">Same Tooth</span> is part of DIAMOND’s claim detail level duplicate checking
+            described above. When the <span class="calibre5">Same Tooth</span> check box is selected, DIAMOND includes
+            the following logic in its evaluation of each claim detail line.</p>
+        <p class="body-text">DIAMOND first checks the PROCD record for the procedure code on the claim detail line. If
+            the PROCD record has one or more tooth attribute check boxes selected, DIAMOND uses the selected attributes
+            as duplicate criteria. The PROCD tooth attributes check boxes available include <span class="calibre5">Tooth # Req</span>,
+            <span class="calibre5">Surface Req</span>, <span class="calibre5">Arch Req</span>, <span class="calibre5">Quadrant Req</span>,
+            and <span class="calibre5">Oral</span> <span class="calibre5">Cav Req</span>. </p>
+        <p class="body-text">When DIAMOND performs duplicate checking for each claim detail line on the current claim,
+            the DUPRL <span class="calibre5">Same Tooth</span> criterion is satisfied if all selected PROCD tooth
+            attributes values match those of a previous claim detail line. If all tooth attributes and values match, and
+            the claim line also satisfies all other duplicate rule attributes, then DIAMOND applies the duplicate rule
+            action and reason code as detailed in <a
+                    href="Duplicate_Claims_Checking_How_DIAMOND_Thinks.htm#Duplicate_Claims_Checking_How_DIAMOND_makes_a_match_MID">How
+                DIAMOND makes a match</a>.</p>
+        <p class="doc-level"><a name="Duplicate_Claims_Checking_System_Performance_Implications_of_DUPRL_MID"></a>System
+            Performance Implications of DUPRL</p>
+        <p class="body-text">The criteria available for evaluating whether or not a claim is a duplicate can reference
+            data on the claim header or data on the claim detail line. Rules that evaluate header data only execute
+            faster than those that look at data on both header and detail.</p>
+
+
+    </div>
+
+
+    <div class="calibreEbNav">
+
+        <a href="Capitation_Special_Fund_Distribution_How_DIAMOND_Thinks.htm" class="calibreAPrev">previous page
+        </a>
+
+
+        <a href="../bj5if-qozss.html" class="calibreAHome">start
+        </a>
+
+
+        <a href="Adding_a_Claim_Evaluation_Rule.htm" class="calibreANext">next page
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+</html>

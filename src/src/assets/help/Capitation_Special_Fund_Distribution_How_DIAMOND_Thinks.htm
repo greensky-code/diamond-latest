@@ -1,0 +1,1735 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+    <title>Capitation/Special Fund Distribution, How DIAMOND Thinks</title>
+    <!--(Meta)==========================================================-->
+    <meta name="copyright"
+          value="© Copyright 2002 Health Systems Design Corp., a wholly owned subsidiary of Perot Systems Corporation. All rights reserved"/>
+    <meta content="RoboHELP by eHelp Corporation - www.ehelp.com" name="generator"/>
+    <meta content="0.1" name="generator-major-version"/>
+    <meta content="1" name="generator-minor-version"/>
+    <meta content="kadov" name="filetype"/>
+    <meta content="1" name="filetype-version"/>
+    <meta content="1" name="page-count"/>
+    <meta content="6080" name="layout-height"/>
+    <meta content="642" name="layout-width"/>
+    <!--(Links)=========================================================-->
+    <!--(Scripts)=======================================================-->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+</head>
+<body>
+
+<div class="calibreMeta">
+    <div class="calibreMetaTitle">
+
+
+        <h1>
+            <a href="../bj5if-qozss.html">DIAMOND 950 Help
+            </a>
+        </h1>
+
+
+    </div>
+    <div class="calibreMetaAuthor">
+        Unknown
+
+    </div>
+</div>
+
+<div class="calibreMain">
+
+    <div class="calibreEbookContent">
+
+        <div class="calibreEbNavTop">
+
+            <a href="Setting_Up_Cap_Special_Fund_Models_TASK.htm" class="calibreAPrev">previous page
+            </a>
+
+
+            <a href="Duplicate_Claims_Checking_How_DIAMOND_Thinks.htm" class="calibreANext">next page
+            </a>
+
+        </div>
+
+
+        <h4 class="calibre1">Capitation/Special Fund Distribution, How DIAMOND Thinks</h4>
+
+        <!--(Table)=========================================================-->
+        <table cellspacing="0" width="594" x-use-null-cells="" class="calibre172">
+
+            <tbody class="calibre8">
+            <tr valign="top" class="">
+                <td width="594px" class="">
+                    <p class="map-links"><a
+                            href="Capitation_Special_Fund_Distribution_How_DIAMOND_Thinks.htm#CFDST_Relationship:_Pricing_and_Cap_Special_Fund_Distribution_HDT_MID"><img
+                            alt="image\assets/help/MidTopic_shg.gif" border="0" height="10" src="assets/help/MidTopic_shg.gif" width="18"
+                            class=""/></a> Relationship: Pricing and Cap/Spec Fund Distribution</p></td>
+            </tr>
+
+            <tr valign="top" class="">
+                <td width="594px" class="">
+                    <p class="map-links"><a
+                            href="Capitation_Special_Fund_Distribution_How_DIAMOND_Thinks.htm#CFDST_Cap_Special_Fund_Distribution_HDT_MID"><img
+                            alt="image\assets/help/MidTopic_shg.gif" border="0" height="10" src="assets/help/MidTopic_shg.gif" width="18"
+                            class=""/></a> Cap/Special Fund Distribution</p></td>
+            </tr>
+
+            <tr valign="top" class="">
+                <td width="594px" class="">
+                    <p class="map-links"><a
+                            href="Capitation_Special_Fund_Distribution_How_DIAMOND_Thinks.htm#CFDST_Claims_with_Various_Status_Codes_on_Different_Detail_Lines_HDT_MID"><img
+                            alt="image\assets/help/MidTopic_shg.gif" border="0" height="10" src="assets/help/MidTopic_shg.gif" width="18"
+                            class=""/></a> Claims with Various Status Codes on Different Detail
+                        Lines</p></td>
+            </tr>
+
+            <tr valign="top" class="">
+                <td width="594px" class="">
+                    <p class="map-links"><a
+                            href="Capitation_Special_Fund_Distribution_How_DIAMOND_Thinks.htm#CFDST_Use_of_the_Cap_Fund_Override_Flag_HDT_MID"><img
+                            alt="image\assets/help/MidTopic_shg.gif" border="0" height="10" src="assets/help/MidTopic_shg.gif" width="18"
+                            class=""/></a>Use of the Cap Fund Override Flag</p></td>
+            </tr>
+
+            <tr valign="top" class="">
+                <td width="594px" class="calibre175">
+                    <p class="map-links"><a
+                            href="Capitation_Special_Fund_Distribution_How_DIAMOND_Thinks.htm#CFDST_Examples_HDT_MID"><img
+                            alt="image\assets/help/MidTopic_shg.gif" border="0" height="10" src="assets/help/MidTopic_shg.gif" width="18"
+                            class=""/></a>Examples</p></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <p class="body-text">DIAMOND allows you to pay providers an allocation from
+            a specified fund of dollars. These funds may be established as part of
+            a capitation arrangement, but otherwise are not associated with traditional
+            capitation. Paying providers from a specified fund is referred to in DIAMOND
+            as Capitation/Special Fund Distribution (CFD), or Cap/Special Fund for
+            short. </p>
+
+        <p class="doc-level"><a name="CFDST_Relationship:_Pricing_and_Cap_Special_Fund_Distribution_HDT_MID"></a>Relationship:
+            Pricing and Cap/Special Fund Distribution</p>
+
+        <p class="body-text">When you price an INCLM/PSCLM claim detail line, DIAMOND
+            performs the provider pricing contract search. If the provider contract
+            found includes a Contract Type of Capitation Funding and a Cap/Special
+            Fund (CFD) Model, DIAMOND assigns a Claim Status of F (Cap Fund) and a
+            Cap Fund Status of 1 (Cap Fund) to the claim line. A Cap Fund Status of
+            1 indicates that the claim line should be evaluated for inclusion in any
+            Cap/Special Fund batch runs (CFDST) for the corresponding Model. Pricing
+            also adds the Cap Fund Model ID and Cap Fund Submodel ID from the provider
+            contract to the claim detail line record, as well as total unit value
+            if the line was priced using the Unit Value pricing calculation method.
+            You can view this Cap Fund information using the INCLM/PSCLM Special menu
+            command View Cap Fund Info.</p>
+
+        <p class="body-text">If the provider contract found does not have a Contract
+            Type of Cap Fund, DIAMOND assigns a Cap Fund Status of 0 (Not a Cap Fund)
+            and the claim line will not be included in any CFDST runs.</p>
+
+        <p class="doc-level"><a name="CFDST_Cap_Special_Fund_Distribution_HDT_MID"></a>Cap/Special
+            Fund Distribution</p>
+
+        <p class="body-text">Note— Generally, you will want to wait several weeks
+            after the end of a Cap/Special Fund Distribution month before running
+            the distribution for that month. This allows all claim lines (or nearly
+            all claim lines) with service dates in the capitation month to be entered,
+            priced and adjudicated, and thus to be ready for Cap/Special Fund Distribution
+            processing. </p>
+
+        <p class="body-text">When you run a CFDST batch job in Run mode (edit mode),
+            DIAMOND performs the following processing logic:</p>
+
+        <p class="doc-level1">1. Selects Qualifying Claim Detail Lines </p>
+
+        <p class="body-text"><span class="calibre169">For the CFD Model ID, DIAMOND selects
+ "qualifying" claim detail lines (PSCLM and/or INCLM) for the
+ capitation fund distribution process. Claim lines qualify if they meet
+ the following requirements:</span></p>
+
+        <ul class="calibre2">
+
+            <li class="kadov-p-cstep-comment-bullet-noline"><p class="bullet-list-h">Claim
+                line has been priced, or priced and adjudicated as noted on the corresponding
+                GRUPD record (Group Req)</p></li>
+
+            <li class="kadov-p-cstep-comment-bullet-noline"><p class="bullet-list-h">Provider
+                Contract found for the Provider of service and date of service on the
+                claim includes a Contract Type of Capitation Funding and the Capitation
+                Fund Model ID of the model being processed</p></li>
+
+            <li class="kadov-p-cstep-comment-bullet-noline"><p class="bullet-list-h">Capitation
+                Fund Process Status is 1 (Cap Fund).</p></li>
+
+            <li class="kadov-p-cstep-comment-bullet-noline"><p class="bullet-list-h">Processing
+                Status is not Hold (Header holds which do not set the detail line Process
+                Status to Hold do not affect Capitation Fund Distribution.)</p></li>
+
+            <li class="kadov-p-cstep-comment-bullet-noline"><p class="bullet-list-h">Claim
+                Status is not Denied.</p></li>
+
+            <li class="kadov-p-cstep-comment-bullet-noline"><p class="bullet-list-h">From
+                Date of service falls within the date range specified on the CFDST job
+                or the claim line has been manually flagged as a Capitation Fund payable,
+                that is, flagged to qualify regardless of the From Date specified on the
+                CFDST job. (You flag detail lines using the PSCLM/INCLM Special menu command
+                – Override Cap Fund Dates.) More specifically, unless flagged for Cap/Special
+                Fund (CF) Distribution the claim detail line from Date must fall between
+                the CFDST From date and the last day of the CFD Distribution month being
+                run in order to qualify. (The specified CFDST From date must be equal
+                to or less than the first day of the month for the CFDST Cap Month being
+                run). </p></li>
+
+            <li class="kadov-p-cstep-comment-bullet-noline"><p class="bullet-list-h">Claim
+                detail line Audit Status is not set to Y (Yes).</p></li>
+
+            <li class="kadov-p-cstep-comment-bullet-noline"><p class="bullet-list-h">All
+                other claim lines on the same claim satisfy all requirements to qualify.</p></li>
+        </ul>
+
+        <p class="doc-level2">Important:</p>
+
+        <p class="body-text"><span class="calibre169">Again, in order for any claim detail
+ line to be selected for Cap/Special Fund processing, all lines on the
+ claim must qualify. </span>All claim detail lines on a claim must be included
+            in a single CFDST run. If a claim has multiple detail lines, all lines
+            must meet all requirements for qualifying or none of the lines will be
+            selected by the CFDST run.</p>
+
+        <p class="body-text">So for example, if a claim includes 20 claim detail
+            lines and one has a Process Status of Hold, DIAMOND will not select any
+            lines on the claim for Cap/Special Fund Distribution regardless of whether
+            the other 19 lines qualify. The hold must be relieved for any lines on
+            this claim to be included.</p>
+
+        <p class="body-text">Also, if a claim includes detail lines with From Dates
+            of service in two or more months, you should split the claim by month
+            in order to include the claim in Cap/Special Fund Distribution processing.
+            Otherwise, if you run a monthly CFDST run with a date range specific to
+            each month, DIAMOND will not select lines from this claim. See the examples
+            below. </p>
+
+        <p class="example-hdr-hdt">Date Requirement, Example 1</p>
+
+        <p class="body-text-block">The claim includes the following two detail lines,
+            with From Dates which fall in a single month:</p>
+
+        <!--(Table)=========================================================-->
+        <table cellspacing="0" width="282" x-use-null-cells="" class="calibre176">
+
+            <tbody class="calibre8">
+            <tr valign="top" class="">
+                <td width="186px" class="calibre177">
+                    <p class="tbl-header">From DOS</p></td>
+                <td width="96px" class="">
+                    <p class="tbl-header">To DOS</p></td>
+            </tr>
+
+            <tr valign="top" class="">
+                <td width="186px" class="calibre177">
+                    <p class="tbl-text">1-25-1998</p></td>
+                <td width="96px" class="">
+                    <p class="tbl-text">1-25-1998</p></td>
+            </tr>
+
+            <tr valign="top" class="">
+                <td width="186px" class="calibre177">
+                    <p class="tbl-text">1-31-1998</p></td>
+                <td width="96px" class="">
+                    <p class="tbl-text">2-4-1998</p></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <p class="body-text-block">CFDST is run for January with a From Date of January
+            1. DIAMOND automatically uses a through date of January 31, the last day
+            of the month. Both claim detail lines meet the date requirement and will
+            be included in the January CFDST run.</p>
+
+        <p class="example-hdr-hdt">Date Requirements, Example 2</p>
+
+        <p class="body-text-block">The claim includes the following three detail
+            lines, which include From Dates in two different months:</p>
+
+        <!--(Table)=========================================================-->
+        <table cellspacing="0" width="282" x-use-null-cells="" class="calibre176">
+
+            <tbody class="calibre8">
+            <tr valign="top" class="">
+                <td width="186px" class="calibre177">
+                    <p class="tbl-header">From DOS</p></td>
+                <td width="96px" class="">
+                    <p class="tbl-header">To DOS</p></td>
+            </tr>
+
+            <tr valign="top" class="">
+                <td width="186px" class="calibre177">
+                    <p class="tbl-text">1-25-1998</p></td>
+                <td width="96px" class="">
+                    <p class="tbl-text">1-25-1998</p></td>
+            </tr>
+
+            <tr valign="top" class="">
+                <td width="186px" class="calibre177">
+                    <p class="tbl-text">1-30-1998</p></td>
+                <td width="96px" class="">
+                    <p class="tbl-text">1-30-1998</p></td>
+            </tr>
+
+            <tr valign="top" class="">
+                <td width="186px" class="calibre177">
+                    <p class="tbl-text">2-2-1998</p></td>
+                <td width="96px" class="">
+                    <p class="tbl-text">2-2-1998</p></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <p class="body-text-block">CFDST is run for January with a From Date of January
+            1. DIAMOND automatically uses a through date of January 31, the last day
+            of the month. The first two claim detail lines meet the date requirement
+            for the January run but the last line does not. No claim detail lines
+            are selected for the Cap/Special Fund Distribution batch job for January.
+        </p>
+
+        <p class="body-text-block">CFDST is run for February with a From Date of
+            February 1. DIAMOND automatically uses a through date of February 28 (February
+            29 if a leap year), the last day of the month. The first two claim detail
+            lines do not meet the date requirement for the January run while the last
+            line does. Again, no claim detail lines are selected for the Cap/Special
+            Fund Distribution batch job for February.</p>
+
+        <p class="body-text-block">It is recommended that you split such a claim
+            manually by From Dates into a January claim and a February claim prior
+            to running the CFD batch job. (You can specify a CFDST From Date of January
+            1 on the February CFDST run or manually flag the claim detail lines for
+            Cap/Special Fund Distribution using the INCLM/PSCLM Special menu command
+            Override Cap Fund Dates. </p>
+
+        <p class="doc-level1">2. Sums All Qualifying Claim Lines</p>
+
+        <p class="body-text"><span class="calibre169">After DIAMOND selects all qualifying
+ claim lines, DIAMOND totals either the Allowed Amounts or Net Amounts
+ (based on the CFMOD Allocation Method you specified for the current Model)
+ for all the qualifying claim lines for all providers.</span></p>
+
+        <p class="doc-level1">3. Calculates CFD Distribution Percentage</p>
+
+        <p class="body-text"><span class="calibre169">DIAMOND calculates a </span>CF Distribution
+            Allocation Rate <span class="calibre169">to use as a basis for calculating
+ an Adjusted Net Amount for each of the qualifying claim detail lines.</span></p>
+
+        <p class="body-text"><span class="calibre169">DIAMOND calculates the </span>CF
+            Distribution Allocation Rate <span class="calibre169">as:</span></p>
+
+        <p class="formula">CFD Distribution Allocation Rate=</p>
+
+        <p class="formula1">CFDST Allocation amount ÷Total Allowed Amounts or Net
+            Amounts for all qualifying claim lines (based on the CFMOD – Allocation
+            Method )</p>
+
+        <p class="body-text">If the CFDST Allocation amount is zero, DIAMOND uses
+            the CFMOD Minimum Allocation percentage for the current Model as the CF
+            Distribution Allocation Rate. The CFDST Allocation amount cannot be negative.</p>
+
+        <p class="doc-level1">4. Compares Distribution Allocation Rate to the CFMOD
+            Min/Max Percentages</p>
+
+        <p class="body-text">Before calculating the Adjusted Net Amounts on the Claim
+            detail lines, DIAMOND compares the CF Distribution Allocation Rate to
+            the CFMOD Minimum Allocation and Maximum Allocation percentage values
+            you specified for the current model. </p>
+
+        <p class="body-text">DIAMOND selects the CFD Allocation Rate to use as follows:</p>
+
+        <p class="formula">If the CFD Distribution Allocation Rate is <span class="calibre159">greater</span>
+            <span class="calibre159">than</span> (or equal
+            to) the CFMOD Min Allocation % <span class="calibre158">and</span>
+            <span class="calibre159">less</span> <span class="calibre159">than</span> (or equal to)
+            the CFMOD Max Allocation %</p>
+
+        <p class="formula1">Then use CF Distribution Allocation Rate</p>
+
+        <p class="formula">If the CFD Distribution Allocation Rate is <span class="calibre159">less
+ than</span> the CFMOD Min Allocation %</p>
+
+        <p class="formula1">Then use CFMOD Min Allocation % as the new CF Distribution
+            Allocation Rate</p>
+
+        <p class="formula">If the CFD Distribution Allocation Rate is <span class="calibre159">more</span>
+            <span class="calibre159">than</span> the CFMOD
+            Max Allocation %</p>
+
+        <p class="formula1">Then use CFMOD Max Allocation % as the new CF Distribution
+            Allocation Rate</p>
+
+        <p class="doc-level1">5. Calculates Adjusted Net Amounts and Cap Fund Withhold
+            Amounts</p>
+
+        <p class="body-text">DIAMOND calculates Adjusted Net Amounts and Cap Fund
+            Withhold Amounts for each qualifying claim detail line as follows (using
+            the CF Distribution Allocation Rate from Step 4):</p>
+
+        <p class="formula">If the CFMOD Allocation Method for the current model is
+            <span class="calibre5">Net Amount</span>:</p>
+
+        <p class="formula2">Then Adjusted Net Amount = Original
+            Net Amount x CF Distribution Allocation Rate</p>
+
+        <p class="formula1">And Cap Fund Withhold Amount = Adjusted Net Amount -
+            Original Net Amount</p>
+
+        <p class="formula">If the CFMOD Allocation Method for the current model is
+            <span class="calibre5">Allowed Amount</span>:</p>
+
+        <p class="formula2">Then Adjusted Net Amount = Original
+            Allowed Amount x Distribution Allocation Rate</p>
+
+        <p class="formula1">And Cap Fund Withhold Amount = Adjusted Net Amount -
+            Original Net Amount</p>
+
+        <p class="doc-level2">Note-</p>
+
+        <p class="body-text">It is possible for DIAMOND to calculate an Adjusted
+            Net Amount greater than 100% of the original Net Amount. This can occur
+            when the Total Allowed Amounts or Net Amounts (per the CFMOD Allocation
+            Method) for all qualifying claim lines is less than the CFDST Allocation
+            for the month and the CFMOD Maximum Allowance % for the model is greater
+            than 100%.</p>
+
+        <p class="doc-level1">6. Updates Status When CFDST Run (edit) Mode Job Completes
+            Successfully</p>
+
+        <p class="body-text">When the CFDST Run mode job is completed successfully,
+            the claim line is updated with a Cap Fund Status of 2 (Successful Run).
+            (You can view CFD information using the INCLM/PSCLM Special menu command
+            View Cap Fund Info.) The CFDST job Status is set to Successful Run. The
+            Net Amount, Cap Fund Withhold amount and Cap Fund Run Month are not updated
+            until you review the CFDST Summary Audit Report and Detail Audit Report,
+            and run CFDST in Post mode. (Reviewing the audit reports is not required
+            to run CFDST in Post mode, but is recommended. If you cancel the job,
+            the audit reports are no longer available.)</p>
+
+        <p class="body-text">See CFDST reference documentation for information on
+            these audit reports.</p>
+
+        <p class="doc-level1">7. Posts Results</p>
+
+        <p class="body-text">When you run the CFDST job in Post mode, DIAMOND posts
+            the results of the Run (edit) mode job, including the following:</p>
+
+        <ul class="calibre2">
+
+            <li class="kadov-p-cstep-comment-bullet-noline"><p class="bullet-list-h">Updates
+                each claim detail line with the Adjusted Net Amount, Capitation Withhold
+                Amount and Cap Fund Status of 3 (Posted) and the Cap Fund Run Month.</p></li>
+
+            <li class="kadov-p-cstep-comment-bullet-noline"><p class="bullet-list-h">DIAMOND
+                calculates the Capitation Fund Withhold Amount for each detail line as
+                the original Net Amount (prior to CFD) minus the Adjusted Net Amount (after
+                CFD). A Cap Fund Withhold Amount may be negative. Note that there are
+                two separate withhold amount fields on the claim line, the Withhold Amount
+                and Cap Fund Withhold Amount. Each may be assigned it’s own general ledger
+                information and reflected on a Remittance Advice (RA), Explanation of
+                Benefits (EOB) or Explanation of Payments (EOP).</p></li>
+
+            <li class="kadov-p-cstep-comment-bullet-noline"><p class="bullet-list-h">Note
+                that once the Cap Fund Status is 3 (Posted), the claim line is available
+                for evaluation to be selected for accounts payable processing. See APUPD
+                reference documentation for more information on accounts payable processing.</p></li>
+
+            <li class="kadov-p-cbullet-list-h"><p class="bullet-list-h"><span class="calibre169">Updates the CFDST job Status to Posted.</span>
+            </p></li>
+
+            <li class="kadov-p-cbullet-list-h"><p class="bullet-list-h"><span class="calibre169">The CFDST job results are saved in an historical table
+ that you can access with a report writer for ad hoc reporting purposes.</span></p></li>
+        </ul>
+
+        <p class="doc-level1">8. Generates Final Cap/Special Fund Distribution Reports</p>
+
+        <p class="body-text">Once a CFDST job is successfully completed, you may
+            view or print audit reports for the job using CFDST Special menu commands
+            Summary Audit Report and Detail Audit Report.</p>
+
+        <p class="body-text">See CFDST reference documentation for information on
+            these reports.</p>
+
+        <p class="doc-level"><a name="CFDST_Claims_with_Various_Status_Codes_on_Different_Detail_Lines_HDT_MID"></a>Claims
+            with Various Status Codes on Different Detail Lines:</p>
+
+        <p class="body-text">When a claim is submitted and the rendering provider
+            only has a Cap/Special Fund contract, then all the claim lines should
+            price using that Cap/Special Fund contract. Should that claim adjudicate
+            normally with all the lines being eligible for payment less copays, deductibles,
+            and coinsurance, the lines will have a Processing status of U, unposted.
+            These lines then will be eligible for the CFD batch run for their CFD
+            Model and month so long as the From Date of Service on the detail line
+            falls in period from the Cap Fund From Date through the last day of the
+            fund month being run.</p>
+
+        <p class="body-text">Should DIAMOND deny a claim line as a not covered service
+            (for example, a cosmetic procedure not covered in the benefit plan) the
+            claim line will price using the Cap Fund contract for the rendering provider.
+            Adjudication will change the Claim Status of the one denied line to Denied
+            and change the Processing status to U, Unposted. You may then be left
+            with at least one line with a Claim Status of Cap Fund and one line with
+            a Claim Status of Denied. Only the Cap Fund Claim status line is eligible
+            for the CFD batch run.</p>
+
+        <p class="body-text">The above situation will be the same if the lines are
+            changed to another status, for example, if they are made Informational
+            (like in INCLM), or if they are a Payable line, or a Capitated Service.</p>
+
+        <p class="body-text">Also, under any of these circumstances, <span class="calibre158">should
+ any of the claim lines have a Processing Status of Held, then none of
+ the claim lines will "qualify" for the Cap Fund distribution
+ run</span>.</p>
+
+        <p class="doc-level"><a name="CFDST_Use_of_the_Cap_Fund_Override_Flag_HDT_MID"></a>Use
+            of the Cap Fund Override Flag:</p>
+
+        <p class="body-text">When using the Override Cap Fund Dates flag (INCLM/PSCLM
+            - Override Cap Fund Dates), <span class="calibre157">all</span>
+            claim lines that meet the CFDST DOS criteria need to be flagged in order
+            for the Cap Fund line (claim status of F) to be included in the CF run.
+            These other claim lines on the claim must be flagged as Override Cap Fund
+            Dates<span class="calibre157"> even though they do not have a
+ Claim Status of Cap Fund. </span>(These lines do not get picked up for
+            the CF run, but they must be flagged in order for the Cap Fund line to
+            get picked up by the CF run. This is due to the way that DIAMOND evaluates
+            picking up whole claims for Cap/Special Fund processing.)</p>
+
+        <p class="doc-level2">Note –</p>
+
+        <p class="body-text">It is important when using the Cap Fund Flag Override
+            to put the flag on all the claim lines prior to any claim line being <span
+                    class="calibre159">finalized</span>. If a
+            claim has finalized lines on it prior to putting the override flag on
+            all the lines, it will not be picked up for a CFD run. The only way to
+            get claim lines (F) included in CFD processing when there are already
+            Finalized lines on the claim is to: </p>
+
+        <ul class="calibre2">
+
+            <li class="kadov-p-cstep-comment-bullet-noline"><p class="bullet-list-h">Set
+                the override flags when the claim is entered so that every line has the
+                flag on it before it gets picked up in an APUPD run.</p></li>
+
+            <li class="kadov-p-cstep-comment-bullet-noline"><p class="bullet-list-h">Alternatively,
+                if one or more claim lines Finalize, you can include the lines in a CFD
+                batch run by: </p></li>
+
+            <li class="kadov-p-cstep-comment-bullet-noline"><p class="bullet-list-h">Adjusting
+                the Cap Fund From Date, or </p></li>
+
+            <li class="kadov-p-cstep-comment-bullet-noline"><p class="bullet-list-h">Manually
+                splitting the claim and creating a new claim just for the CFD lines, then
+                using the Cap Fund Override flag on all the new claim lines.</p></li>
+        </ul>
+
+        <p class="doc-level2"><a name="CFDST_Examples_HDT_MID"></a>Examples</p>
+
+        <p class="body-text">Below are examples of how Cap/Special Fund Distribution
+            works.</p>
+
+        <p class="doc-level2">Background for Examples 1 and 2:</p>
+
+        <p class="body-text">You define a fund model "ALRGY" to proportionally
+            distribute its monthly funds based on claim detail Net Amount. For the
+            month of January there is $100 available in the "ALRGY" fund.
+            Four doctors, Dr. A, Dr. B, Dr. C and Dr. D are responsible for all the
+            allergy care of a population of 100 members and have valid provider contracts
+            with Def Contract Type F (Cap Fund) and which include the capitation fund
+            model "ALRGY."</p>
+
+        <p class="body-text">January claim detail lines submitted for providers for
+            whom these contracts are in force are as follows.</p>
+
+        <p class="body-text1"> </p>
+
+        <!--(Table)=========================================================-->
+        <table cellspacing="0" width="466" x-use-null-cells="" class="calibre172">
+
+            <tbody class="calibre8">
+            <tr valign="top" class="">
+                <td width="64px" class="">
+                    <p class="tbl-header1"> </p></td>
+                <td width="66px" class="">
+                    <p class="tbl-header"><span class="">Billed Amount </span></p></td>
+                <td width="102px" class="">
+                    <p class="tbl-header"><span class="">Allowed Amount (Pricing
+ Only) </span></p></td>
+                <td width="72px" class="">
+                    <p class="tbl-header1"> </p>
+                    <p class="tbl-header"><span class="">Copay </span></p></td>
+                <td width="162px" class="">
+                    <p class="tbl-header"><span class="">Net Amount Payable after
+ Pricing and Adjudication </span></p></td>
+            </tr>
+
+            <tr valign="top" class="">
+                <td width="64px" class="">
+                    <p class="tbl-text">Dr. A</p></td>
+                <td width="66px" class="">
+                    <p class="tbl-text">$80.00</p></td>
+                <td width="102px" class="">
+                    <p class="tbl-text">$60.00</p></td>
+                <td width="72px" class="">
+                    <p class="tbl-text">$10.00</p></td>
+                <td width="162px" class="">
+                    <p class="tbl-text">$50.00</p></td>
+            </tr>
+
+            <tr valign="top" class="">
+                <td width="64px" class="">
+                    <p class="tbl-text">Dr. B</p></td>
+                <td width="66px" class="">
+                    <p class="tbl-text">0</p></td>
+                <td width="102px" class="">
+                    <p class="tbl-text">0 </p></td>
+                <td width="72px" class="">
+                    <p class="tbl-text">0</p></td>
+                <td width="162px" class="">
+                    <p class="tbl-text">0</p></td>
+            </tr>
+
+            <tr valign="top" class="">
+                <td width="64px" class="">
+                    <p class="tbl-text">Dr. C</p></td>
+                <td width="66px" class="">
+                    <p class="tbl-text">$60.00</p></td>
+                <td width="102px" class="">
+                    <p class="tbl-text">$50.00</p></td>
+                <td width="72px" class="">
+                    <p class="tbl-text">$10.00</p></td>
+                <td width="162px" class="">
+                    <p class="tbl-text">$40.00</p></td>
+            </tr>
+
+            <tr valign="top" class="">
+                <td width="64px" class="">
+                    <p class="tbl-text">Dr. D</p></td>
+                <td width="66px" class="">
+                    <p class="tbl-text">$55.00</p></td>
+                <td width="102px" class="">
+                    <p class="tbl-text">$35.00</p></td>
+                <td width="72px" class="">
+                    <p class="tbl-text">0</p></td>
+                <td width="162px" class="">
+                    <p class="tbl-text">$35.00</p></td>
+            </tr>
+
+            <tr valign="top" class="">
+                <td width="64px" class="">
+                    <p class="tbl-text">Totals </p></td>
+                <td width="66px" class="">
+                    <p class="tbl-text">$195.00</p></td>
+                <td width="102px" class="">
+                    <p class="tbl-text">$145.00</p></td>
+                <td width="72px" class="">
+                    <p class="tbl-text">$20.00</p></td>
+                <td width="162px" class="">
+                    <p class="tbl-text">$125.00</p></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <p class="example-hdr-hdt">Example 1: CFMOD Allocation Method = Net Amount</p>
+
+        <ul class="calibre2">
+
+            <li class="kadov-p-cstep-comment-bullet-noline"><p class="bullet-list-h">January
+                CFDST capitation fund Allocation = $100</p></li>
+
+            <li class="kadov-p-cstep-comment-bullet-noline"><p class="bullet-list-h">Total
+                Net Amount for claims submitted in January = $125</p></li>
+
+            <li class="kadov-p-cstep-comment-bullet-noline"><p class="bullet-list-h">CFMOD
+                ALGRY Model Allocation Method = Net Amount</p></li>
+        </ul>
+
+        <p class="body-text-block">DIAMOND calculates an Adjusted Net Amount for
+            each claim line as $100/$125 or 80% of the previous Net Amount. DIAMOND
+            then calculates the Cap Fund Withhold Amount as the original Net Amount
+            (before CFD processing) minus the adjusted Net amount (after CFD processing).
+            The total Net Amount for all providers then equals the $100 Allocation
+            in the "ALRGY" capitation fund for January, as follows:</p>
+
+        <!--(Table)=========================================================-->
+        <table cellspacing="0" width="532" x-use-null-cells="" class="calibre172">
+
+            <tbody class="calibre8">
+            <tr valign="top" class="">
+                <td width="58px" class="">
+                    <p class="tbl-header1"> </p></td>
+                <td width="60px" class="">
+                    <p class="tbl-header1"> </p>
+                    <p class="tbl-header1"> </p>
+                    <p class="tbl-header1"> </p>
+                    <p class="tbl-header1"> </p>
+                    <p class="tbl-header"><span class="">Billed Amount </span></p></td>
+                <td width="60px" class="">
+                    <p class="tbl-header1"> </p>
+                    <p class="tbl-header1"> </p>
+                    <p class="tbl-header"><span class="">Allowed Amount </span></p>
+                    <p class="tbl-header"><span class="">(Pricing Only)</span></p></td>
+                <td width="84px" class="">
+                    <p class="tbl-header1"> </p>
+                    <p class="tbl-header1"> </p>
+                    <p class="tbl-header"><span class="">Copay </span></p>
+                    <p class="tbl-header"><span class="">Coinsurance </span></p>
+                    <p class="tbl-header"><span class="">Deductible </span></p></td>
+                <td width="84px" class="">
+                    <p class="tbl-header1"> </p>
+                    <p class="tbl-header1"> </p>
+                    <p class="tbl-header"><span class="">Net Amount Payable after
+ Pricing and Adjudication </span></p></td>
+                <td width="90px" class="">
+                    <p class="tbl-header"><span class="">Adjusted Net Amount Payable
+ after Cap Fund Distribution</span></p>
+                    <p class="tbl-header"><span class="">(80% of Net Amount)</span></p></td>
+                <td width="96px" class="">
+                    <p class="tbl-header"><span class="">Cap Fund Withhold Amount
+ </span></p>
+                    <p class="tbl-header"><span class="">(Net Amt after Pricing/Adj
+ minus Net Amt after Cap Fund)</span></p></td>
+            </tr>
+
+            <tr valign="top" class="">
+                <td width="58px" class="">
+                    <p class="tbl-text">Dr. A</p></td>
+                <td width="60px" class="">
+                    <p class="tbl-text">$80.00</p></td>
+                <td width="60px" class="">
+                    <p class="tbl-text">$60.00</p></td>
+                <td width="84px" class="">
+                    <p class="tbl-text">$10.00</p></td>
+                <td width="84px" class="">
+                    <p class="tbl-text">$50.00</p></td>
+                <td width="90px" class="">
+                    <p class="tbl-text">$40.00</p></td>
+                <td width="96px" class="">
+                    <p class="tbl-text">$10.00</p></td>
+            </tr>
+
+            <tr valign="top" class="">
+                <td width="58px" class="">
+                    <p class="tbl-text">Dr. B</p></td>
+                <td width="60px" class="">
+                    <p class="tbl-text">0</p></td>
+                <td width="60px" class="">
+                    <p class="tbl-text">0 </p></td>
+                <td width="84px" class="">
+                    <p class="tbl-text">0</p></td>
+                <td width="84px" class="">
+                    <p class="tbl-text">0</p></td>
+                <td width="90px" class="">
+                    <p class="tbl-text">0</p></td>
+                <td width="96px" class="">
+                    <p class="tbl-text">0</p></td>
+            </tr>
+
+            <tr valign="top" class="">
+                <td width="58px" class="">
+                    <p class="tbl-text">Dr. C</p></td>
+                <td width="60px" class="">
+                    <p class="tbl-text">$60.00</p></td>
+                <td width="60px" class="">
+                    <p class="tbl-text">$50.00</p></td>
+                <td width="84px" class="">
+                    <p class="tbl-text">$10.00</p></td>
+                <td width="84px" class="">
+                    <p class="tbl-text">$40.00</p></td>
+                <td width="90px" class="">
+                    <p class="tbl-text">$32.00</p></td>
+                <td width="96px" class="">
+                    <p class="tbl-text">$8.00</p></td>
+            </tr>
+
+            <tr valign="top" class="">
+                <td width="58px" class="">
+                    <p class="tbl-text">Dr. D</p></td>
+                <td width="60px" class="">
+                    <p class="tbl-text">$55.00</p></td>
+                <td width="60px" class="">
+                    <p class="tbl-text">$35.00</p></td>
+                <td width="84px" class="">
+                    <p class="tbl-text">0</p></td>
+                <td width="84px" class="">
+                    <p class="tbl-text">$35.00</p></td>
+                <td width="90px" class="">
+                    <p class="tbl-text">$28.00</p></td>
+                <td width="96px" class="">
+                    <p class="tbl-text">$7.00</p></td>
+            </tr>
+
+            <tr valign="top" class="">
+                <td width="58px" class="">
+                    <p class="tbl-text">Totals </p></td>
+                <td width="60px" class="">
+                    <p class="tbl-text">$195.00</p></td>
+                <td width="60px" class="">
+                    <p class="tbl-text">$145.00</p></td>
+                <td width="84px" class="">
+                    <p class="tbl-text">$20.00</p></td>
+                <td width="84px" class="">
+                    <p class="tbl-text">$125.00</p></td>
+                <td width="90px" class="">
+                    <p class="tbl-text">$100.00</p></td>
+                <td width="96px" class="">
+                    <p class="tbl-text">$25.00</p></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <p class="example-hdr-hdt">Example 2: CFMOD Allocation Method = Allowed Amount</p>
+
+        <ul class="calibre2">
+
+            <li class="kadov-p-cstep-comment-bullet-noline"><p class="bullet-list-h">January
+                CFDST capitation fund Allocation = $100</p></li>
+
+            <li class="kadov-p-cstep-comment-bullet-noline"><p class="bullet-list-h">Total
+                Allowed Amount for claims submitted in January = $145</p></li>
+
+            <li class="kadov-p-cstep-comment-bullet-noline"><p class="bullet-list-h">CFMOD
+                ALGRY Model Allocation Method = Allowed Amount</p></li>
+        </ul>
+
+        <p class="body-text-block">DIAMOND calculates an Adjusted Net Amount for
+            each claim line as $100/$145 or 68.96% of the Allowed Amount. DIAMOND
+            then calculates the Cap Fund Withhold Amount as the original Net Amount
+            (before CFD processing) minus the Adjusted Net amount (after CFD processing).
+            The total Net Amount for all providers equals the $100 in the "ALRGY"
+            capitation fund, as follows:</p>
+
+        <p class="body-text-block1"> </p>
+
+        <!--(Table)=========================================================-->
+        <table cellspacing="0" width="532" x-use-null-cells="" class="calibre172">
+
+            <tbody class="calibre8">
+            <tr valign="top" class="">
+                <td width="58px" class="">
+                    <p class="tbl-header1"> </p></td>
+                <td width="60px" class="">
+                    <p class="tbl-header1"> </p>
+                    <p class="tbl-header1"> </p>
+                    <p class="tbl-header1"> </p>
+                    <p class="tbl-header1"> </p>
+                    <p class="tbl-header1"> </p>
+                    <p class="tbl-header"><span class="">Billed Amount </span></p></td>
+                <td width="60px" class="">
+                    <p class="tbl-header1"> </p>
+                    <p class="tbl-header1"> </p>
+                    <p class="tbl-header1"> </p>
+                    <p class="tbl-header"><span class="">Allowed Amount </span></p>
+                    <p class="tbl-header"><span class="">(Pricing Only)</span></p></td>
+                <td width="84px" class="">
+                    <p class="tbl-header1"> </p>
+                    <p class="tbl-header1"> </p>
+                    <p class="body-text1"> </p>
+                    <p class="tbl-header1"> </p>
+                    <p class="tbl-header"><span class="">Copay</span></p>
+                    <p class="tbl-header"><span class="">Coinsurance</span></p>
+                    <p class="tbl-header"><span class="">Deductible </span></p></td>
+                <td width="84px" class="">
+                    <p class="tbl-header1"> </p>
+                    <p class="tbl-header1"> </p>
+                    <p class="tbl-header1"> </p>
+                    <p class="tbl-header"><span class="">Net Amount Payable after
+ Pricing and Adjudication </span></p></td>
+                <td width="90px" class="">
+                    <p class="tbl-header"><span class="">Adjusted Net Amount Payable
+ after Cap Fund Distribution</span></p>
+                    <p class="tbl-header"><span class="">(68.96% of Allowed Amount)</span></p></td>
+                <td width="96px" class="">
+                    <p class="tbl-header1"> </p>
+                    <p class="tbl-header"><span class="">Cap Fund Withhold Amount
+ </span></p>
+                    <p class="tbl-header"><span class="">(Net Amt after Pricing/Adj
+ minus Net Amt after Cap Fund)</span></p></td>
+            </tr>
+
+            <tr valign="top" class="">
+                <td width="58px" class="">
+                    <p class="tbl-text">Dr. A</p></td>
+                <td width="60px" class="">
+                    <p class="tbl-text">$80.00</p></td>
+                <td width="60px" class="">
+                    <p class="tbl-text">$60.00</p></td>
+                <td width="84px" class="">
+                    <p class="tbl-text">$10.00</p></td>
+                <td width="84px" class="">
+                    <p class="tbl-text">$50.00</p></td>
+                <td width="90px" class="">
+                    <p class="tbl-text">$41.38</p></td>
+                <td width="96px" class="">
+                    <p class="tbl-text">$8.62</p></td>
+            </tr>
+
+            <tr valign="top" class="">
+                <td width="58px" class="">
+                    <p class="tbl-text">Dr. B</p></td>
+                <td width="60px" class="">
+                    <p class="tbl-text">0</p></td>
+                <td width="60px" class="">
+                    <p class="tbl-text">0 </p></td>
+                <td width="84px" class="">
+                    <p class="tbl-text">0</p></td>
+                <td width="84px" class="">
+                    <p class="tbl-text">0</p></td>
+                <td width="90px" class="">
+                    <p class="tbl-text">0</p></td>
+                <td width="96px" class="">
+                    <p class="tbl-text">0</p></td>
+            </tr>
+
+            <tr valign="top" class="">
+                <td width="58px" class="">
+                    <p class="tbl-text">Dr. C</p></td>
+                <td width="60px" class="">
+                    <p class="tbl-text">$60.00</p></td>
+                <td width="60px" class="">
+                    <p class="tbl-text">$50.00</p></td>
+                <td width="84px" class="">
+                    <p class="tbl-text">$10.00</p></td>
+                <td width="84px" class="">
+                    <p class="tbl-text">$40.00</p></td>
+                <td width="90px" class="">
+                    <p class="tbl-text">$34.48</p></td>
+                <td width="96px" class="">
+                    <p class="tbl-text">$5.52</p></td>
+            </tr>
+
+            <tr valign="top" class="">
+                <td width="58px" class="">
+                    <p class="tbl-text">Dr. D</p></td>
+                <td width="60px" class="">
+                    <p class="tbl-text">$55.00</p></td>
+                <td width="60px" class="">
+                    <p class="tbl-text">$35.00</p></td>
+                <td width="84px" class="">
+                    <p class="tbl-text">0</p></td>
+                <td width="84px" class="">
+                    <p class="tbl-text">$35.00</p></td>
+                <td width="90px" class="">
+                    <p class="tbl-text">$24.14</p></td>
+                <td width="96px" class="">
+                    <p class="tbl-text">$10.86</p></td>
+            </tr>
+
+            <tr valign="top" class="">
+                <td width="58px" class="">
+                    <p class="tbl-text">Totals </p></td>
+                <td width="60px" class="">
+                    <p class="tbl-text">$195.00</p></td>
+                <td width="60px" class="">
+                    <p class="tbl-text">$145.00</p></td>
+                <td width="84px" class="">
+                    <p class="tbl-text">$20.00</p></td>
+                <td width="84px" class="">
+                    <p class="tbl-text">$125.00</p></td>
+                <td width="90px" class="">
+                    <p class="tbl-text">$100.00</p></td>
+                <td width="96px" class="">
+                    <p class="tbl-text">$25.00</p></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <p class="example-hdr-hdt">Example 3: Using Default to Maximum Allocation
+            Method with the Net Allocation Method</p>
+
+        <ul class="calibre2">
+
+            <li class="kadov-p-cstep-comment-bullet-noline"><p class="bullet-list-h">March
+                CFDST run </p></li>
+
+            <li class="kadov-p-cstep-comment-bullet-noline"><p class="bullet-list-h">Allocation
+                Method on Model = Net Amount </p></li>
+
+            <li class="kadov-p-cstep-comment-bullet-noline"><p class="bullet-list-h">Maximum
+                Allocation % = 80% , Minimum Allocation % = 50% </p></li>
+
+            <li class="kadov-p-cstep-comment-bullet-noline"><p class="bullet-list-h">Allocation
+                Amount = $120.00</p></li>
+
+            <li class="kadov-p-cstep-comment-bullet-noline"><p class="bullet-list-h">Allocation
+                Amount / Net Amount payable = Allocation Rate </p></li>
+
+            <li class="kadov-p-cstep-comment-bullet-noline"><p class="bullet-list-h">120.00
+                / 125 = .96 or 96%</p></li>
+        </ul>
+
+        <p class="body-text-block">This Calculated Allocation Rate exceeds the Maximum
+            Allocation rate specified on the Model of 80%, therefore the distribution
+            process will use the 80% as the default allocation rate. In this situation,
+            the <span class="calibre157">total payment is less than the original
+ Allocation Amount</span>. </p>
+
+        <!--(Table)=========================================================-->
+        <table cellspacing="0" width="532" x-use-null-cells="" class="calibre172">
+
+            <tbody class="calibre8">
+            <tr valign="top" class="">
+                <td width="58px" class="">
+                    <p class="tbl-header1"> </p></td>
+                <td width="60px" class="">
+                    <p class="tbl-header1"> </p>
+                    <p class="body-text1"> </p>
+                    <p class="tbl-header1"> </p>
+                    <p class="tbl-header"><span class="">Billed Amount </span></p></td>
+                <td width="60px" class="">
+                    <p class="tbl-header1"> </p>
+                    <p class="tbl-header"><span class="">Allowed Amount (Pricing
+ Only)</span></p></td>
+                <td width="84px" class="">
+                    <p class="tbl-header1"> </p>
+                    <p class="tbl-header"><span class="">Copay</span></p>
+                    <p class="tbl-header"><span class="">Coinsurance</span></p>
+                    <p class="tbl-header"><span class="">Deductible </span></p></td>
+                <td width="84px" class="">
+                    <p class="tbl-header1"> </p>
+                    <p class="tbl-header"><span class="">Net Amount Payable after
+ Pricing and Adjudication </span></p></td>
+                <td width="90px" class="">
+                    <p class="tbl-header"><span class="">Adjusted Net Amount Payable
+ after Cap Fund Distribution </span></p></td>
+                <td width="96px" class="">
+                    <p class="tbl-header1"> </p>
+                    <p class="tbl-header1"> </p>
+                    <p class="tbl-header"><span class="">Cap Fund Withhold Amount
+ </span></p></td>
+            </tr>
+
+            <tr valign="top" class="">
+                <td width="58px" class="">
+                    <p class="tbl-text">Dr. A</p></td>
+                <td width="60px" class="">
+                    <p class="tbl-text">$80.00</p></td>
+                <td width="60px" class="">
+                    <p class="tbl-text">$60.00</p></td>
+                <td width="84px" class="">
+                    <p class="tbl-text">$10.00</p></td>
+                <td width="84px" class="">
+                    <p class="tbl-text">$50.00</p></td>
+                <td width="90px" class="">
+                    <p class="tbl-text">$40.00</p></td>
+                <td width="96px" class="">
+                    <p class="tbl-text">$10.00</p></td>
+            </tr>
+
+            <tr valign="top" class="">
+                <td width="58px" class="">
+                    <p class="tbl-text">Dr.B </p></td>
+                <td width="60px" class="">
+                    <p class="tbl-text">0</p></td>
+                <td width="60px" class="">
+                    <p class="tbl-text">0</p></td>
+                <td width="84px" class="">
+                    <p class="tbl-text">0</p></td>
+                <td width="84px" class="">
+                    <p class="tbl-text">0</p></td>
+                <td width="90px" class="">
+                    <p class="tbl-text">0</p></td>
+                <td width="96px" class="">
+                    <p class="tbl-text">0</p></td>
+            </tr>
+
+            <tr valign="top" class="">
+                <td width="58px" class="">
+                    <p class="tbl-text">Dr. C</p></td>
+                <td width="60px" class="">
+                    <p class="tbl-text">$60.00</p></td>
+                <td width="60px" class="">
+                    <p class="tbl-text">$50.00</p></td>
+                <td width="84px" class="">
+                    <p class="tbl-text">$10.00</p></td>
+                <td width="84px" class="">
+                    <p class="tbl-text">$40.00</p></td>
+                <td width="90px" class="">
+                    <p class="tbl-text">$32.00</p></td>
+                <td width="96px" class="">
+                    <p class="tbl-text">$8.00</p></td>
+            </tr>
+
+            <tr valign="top" class="">
+                <td width="58px" class="">
+                    <p class="tbl-text">Dr. D</p></td>
+                <td width="60px" class="">
+                    <p class="tbl-text">$55.00</p></td>
+                <td width="60px" class="">
+                    <p class="tbl-text">$35.00</p></td>
+                <td width="84px" class="">
+                    <p class="tbl-text">0</p></td>
+                <td width="84px" class="">
+                    <p class="tbl-text">$35.00</p></td>
+                <td width="90px" class="">
+                    <p class="tbl-text">$28.00</p></td>
+                <td width="96px" class="">
+                    <p class="tbl-text">$7.00</p></td>
+            </tr>
+
+            <tr valign="top" class="">
+                <td width="58px" class="">
+                    <p class="tbl-text">Totals </p></td>
+                <td width="60px" class="">
+                    <p class="tbl-text">$195.00</p></td>
+                <td width="60px" class="">
+                    <p class="tbl-text">$145.00</p></td>
+                <td width="84px" class="">
+                    <p class="tbl-text">$20.00</p></td>
+                <td width="84px" class="">
+                    <p class="tbl-text">$125.00</p></td>
+                <td width="90px" class="">
+                    <p class="tbl-text">$100.00</p></td>
+                <td width="96px" class="">
+                    <p class="tbl-text">$25.00</p></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <p class="example-hdr-hdt">Example 4: Using Default to Minimum Allocation
+            Method with the Net Allocation Method</p>
+
+        <ul class="calibre2">
+
+            <li class="kadov-p-cstep-comment-bullet-noline"><p class="bullet-list-h">April
+                CFDST run  </p></li>
+
+            <li class="kadov-p-cstep-comment-bullet-noline"><p class="bullet-list-h">Allocation
+                Method on Model = Net Amount </p></li>
+
+            <li class="kadov-p-cstep-comment-bullet-noline"><p class="bullet-list-h">Maximum
+                Allocation % = 80% , Minimum Allocation % = 50% </p></li>
+
+            <li class="kadov-p-cstep-comment-bullet-noline"><p class="bullet-list-h">Allocation
+                Amount = $52.00</p></li>
+
+            <li class="kadov-p-cstep-comment-bullet-noline"><p class="bullet-list-h">Allocation
+                Amount / Net Amount payable = Allocation Rate </p></li>
+
+            <li class="kadov-p-cstep-comment-bullet-noline"><p class="bullet-list-h">52.00
+                / 125 = .<span class="calibre158">416
+ or 41.6</span> % </p></li>
+        </ul>
+
+        <p class="body-text-block">The Calculated Allocation Rate is less than the
+            Minimum Allocation rate specified on the Model of 50%, therefore the distribution
+            process will use the 50% as the default allocation rate. In this situation,
+            <span class="calibre157">the total payment is more than the Allocation
+ Amount</span>.</p>
+
+        <p class="body-text-block1"> </p>
+
+        <!--(Table)=========================================================-->
+        <table cellspacing="0" width="532" x-use-null-cells="" class="calibre172">
+
+            <tbody class="calibre8">
+            <tr valign="top" class="">
+                <td width="58px" class="">
+                    <p class="tbl-header1"> </p></td>
+                <td width="60px" class="">
+                    <p class="tbl-header1"> </p>
+                    <p class="body-text1"> </p>
+                    <p class="tbl-header1"> </p>
+                    <p class="tbl-header"><span class="">Billed Amount </span></p></td>
+                <td width="60px" class="">
+                    <p class="tbl-header1"> </p>
+                    <p class="tbl-header"><span class="">Allowed Amount (Pricing
+ Only)</span></p></td>
+                <td width="84px" class="">
+                    <p class="tbl-header1"> </p>
+                    <p class="tbl-header"><span class="">Copay</span></p>
+                    <p class="tbl-header"><span class="">CoInsurance</span></p>
+                    <p class="tbl-header"><span class="">Deductible </span></p></td>
+                <td width="84px" class="">
+                    <p class="tbl-header1"> </p>
+                    <p class="tbl-header"><span class="">Net Amount Payable after
+ Pricing and Adjudication </span></p></td>
+                <td width="90px" class="">
+                    <p class="tbl-header"><span class="">Adjusted Net Amount Payable
+ after Cap Fund Distribution </span></p></td>
+                <td width="96px" class="">
+                    <p class="tbl-header1"> </p>
+                    <p class="tbl-header1"> </p>
+                    <p class="tbl-header"><span class="">Cap Fund Withhold Amount
+ </span></p></td>
+            </tr>
+
+            <tr valign="top" class="">
+                <td width="58px" class="">
+                    <p class="tbl-text">Dr. A</p></td>
+                <td width="60px" class="">
+                    <p class="tbl-text">$80.00</p></td>
+                <td width="60px" class="">
+                    <p class="tbl-text">$60.00</p></td>
+                <td width="84px" class="">
+                    <p class="tbl-text">$10.00</p></td>
+                <td width="84px" class="">
+                    <p class="tbl-text">$50.00</p></td>
+                <td width="90px" class="">
+                    <p class="tbl-text">$25.00</p></td>
+                <td width="96px" class="">
+                    <p class="tbl-text">$25.00</p></td>
+            </tr>
+
+            <tr valign="top" class="">
+                <td width="58px" class="">
+                    <p class="tbl-text">Dr.B </p></td>
+                <td width="60px" class="">
+                    <p class="tbl-text">0</p></td>
+                <td width="60px" class="">
+                    <p class="tbl-text">0</p></td>
+                <td width="84px" class="">
+                    <p class="tbl-text">0</p></td>
+                <td width="84px" class="">
+                    <p class="tbl-text">0</p></td>
+                <td width="90px" class="">
+                    <p class="tbl-text">0</p></td>
+                <td width="96px" class="">
+                    <p class="tbl-text">0</p></td>
+            </tr>
+
+            <tr valign="top" class="">
+                <td width="58px" class="">
+                    <p class="tbl-text">Dr. C</p></td>
+                <td width="60px" class="">
+                    <p class="tbl-text">$60.00</p></td>
+                <td width="60px" class="">
+                    <p class="tbl-text">$50.00</p></td>
+                <td width="84px" class="">
+                    <p class="tbl-text">$10.00</p></td>
+                <td width="84px" class="">
+                    <p class="tbl-text">$40.00</p></td>
+                <td width="90px" class="">
+                    <p class="tbl-text">$20.00</p></td>
+                <td width="96px" class="">
+                    <p class="tbl-text">$20.00</p></td>
+            </tr>
+
+            <tr valign="top" class="">
+                <td width="58px" class="">
+                    <p class="tbl-text">Dr. D</p></td>
+                <td width="60px" class="">
+                    <p class="tbl-text">$55.00</p></td>
+                <td width="60px" class="">
+                    <p class="tbl-text">$35.00</p></td>
+                <td width="84px" class="">
+                    <p class="tbl-text">0</p></td>
+                <td width="84px" class="">
+                    <p class="tbl-text">$35.00</p></td>
+                <td width="90px" class="">
+                    <p class="tbl-text">$17.50</p></td>
+                <td width="96px" class="">
+                    <p class="tbl-text">$17.50</p></td>
+            </tr>
+
+            <tr valign="top" class="">
+                <td width="58px" class="">
+                    <p class="tbl-text">Totals </p></td>
+                <td width="60px" class="">
+                    <p class="tbl-text">$195.00</p></td>
+                <td width="60px" class="">
+                    <p class="tbl-text">$145.00</p></td>
+                <td width="84px" class="">
+                    <p class="tbl-text">$20.00</p></td>
+                <td width="84px" class="">
+                    <p class="tbl-text">$125.00</p></td>
+                <td width="90px" class="">
+                    <p class="tbl-text">$62.50</p></td>
+                <td width="96px" class="">
+                    <p class="tbl-text">$62.50</p></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <p class="example-hdr-hdt">Example 5: Using Default to Maximum Allocation
+            Method with the Allowed Allocation Method</p>
+
+        <ul class="calibre2">
+
+            <li class="kadov-p-cstep-comment-bullet-noline"><p class="bullet-list-h">May
+                CFDST run  </p></li>
+
+            <li class="kadov-p-cstep-comment-bullet-noline"><p class="bullet-list-h">Allocation
+                Method on Model = Allowed Amount </p></li>
+
+            <li class="kadov-p-cstep-comment-bullet-noline"><p class="bullet-list-h">Maximum
+                Allocation % = 80% , Minimum Allocation % = 50% </p></li>
+
+            <li class="kadov-p-cstep-comment-bullet-noline"><p class="bullet-list-h">Allocation
+                Amount = $135.00</p></li>
+
+            <li class="kadov-p-cstep-comment-bullet-noline"><p class="bullet-list-h">Allocation
+                Amount / Net Amount payable = Allocation Rate </p></li>
+
+            <li class="kadov-p-cstep-comment-bullet-noline"><p class="bullet-list-h">135.00
+                / 145 = .931 or 93.1% </p></li>
+        </ul>
+
+        <p class="body-text-block">This Calculated Allocation Rate exceeds the Maximum
+            Allocation rate specified on the Model of 80%, therefore the distribution
+            process will use the 80% as the default allocation rate. In this situation,
+            the <span class="calibre157">total payment is less than the original
+ Allocation Amount.</span></p>
+
+        <p class="body-text-block1"> </p>
+
+        <!--(Table)=========================================================-->
+        <table cellspacing="0" width="532" x-use-null-cells="" class="calibre172">
+
+            <tbody class="calibre8">
+            <tr valign="top" class="">
+                <td width="58px" class="">
+                    <p class="tbl-header1"> </p></td>
+                <td width="60px" class="">
+                    <p class="tbl-header1"> </p>
+                    <p class="body-text1"> </p>
+                    <p class="tbl-header1"> </p>
+                    <p class="tbl-header"><span class="">Billed Amount </span></p></td>
+                <td width="60px" class="">
+                    <p class="tbl-header1"> </p>
+                    <p class="tbl-header"><span class="">Allowed Amount (Pricing
+ Only)</span></p></td>
+                <td width="84px" class="">
+                    <p class="tbl-header1"> </p>
+                    <p class="tbl-header"><span class="">Copay</span></p>
+                    <p class="tbl-header"><span class="">CoInsurance</span></p>
+                    <p class="tbl-header"><span class="">Deductible </span></p></td>
+                <td width="84px" class="">
+                    <p class="tbl-header1"> </p>
+                    <p class="tbl-header"><span class="">Net Amount Payable after
+ Pricing and Adjudication </span></p></td>
+                <td width="90px" class="">
+                    <p class="tbl-header"><span class="">Adjusted Net Amount Payable
+ after Cap Fund Distribution </span></p></td>
+                <td width="96px" class="">
+                    <p class="tbl-header1"> </p>
+                    <p class="tbl-header1"> </p>
+                    <p class="tbl-header"><span class="">Cap Fund Withhold Amount
+ </span></p></td>
+            </tr>
+
+            <tr valign="top" class="">
+                <td width="58px" class="">
+                    <p class="tbl-text">Dr. A</p></td>
+                <td width="60px" class="">
+                    <p class="tbl-text">$80.00</p></td>
+                <td width="60px" class="">
+                    <p class="tbl-text">$60.00</p></td>
+                <td width="84px" class="">
+                    <p class="tbl-text">$10.00</p></td>
+                <td width="84px" class="">
+                    <p class="tbl-text">$50.00</p></td>
+                <td width="90px" class="">
+                    <p class="tbl-text">$48.00</p></td>
+                <td width="96px" class="">
+                    <p class="tbl-text">$2.00</p></td>
+            </tr>
+
+            <tr valign="top" class="">
+                <td width="58px" class="">
+                    <p class="tbl-text">Dr.B </p></td>
+                <td width="60px" class="">
+                    <p class="tbl-text">0</p></td>
+                <td width="60px" class="">
+                    <p class="tbl-text">0</p></td>
+                <td width="84px" class="">
+                    <p class="tbl-text">0</p></td>
+                <td width="84px" class="">
+                    <p class="tbl-text">0</p></td>
+                <td width="90px" class="">
+                    <p class="tbl-text">0</p></td>
+                <td width="96px" class="">
+                    <p class="tbl-text">0</p></td>
+            </tr>
+
+            <tr valign="top" class="">
+                <td width="58px" class="">
+                    <p class="tbl-text">Dr. C</p></td>
+                <td width="60px" class="">
+                    <p class="tbl-text">$60.00</p></td>
+                <td width="60px" class="">
+                    <p class="tbl-text">$50.00</p></td>
+                <td width="84px" class="">
+                    <p class="tbl-text">$10.00</p></td>
+                <td width="84px" class="">
+                    <p class="tbl-text">$40.00</p></td>
+                <td width="90px" class="">
+                    <p class="tbl-text">$40.00</p></td>
+                <td width="96px" class="">
+                    <p class="tbl-text">$0.00</p></td>
+            </tr>
+
+            <tr valign="top" class="">
+                <td width="58px" class="">
+                    <p class="tbl-text">Dr. D</p></td>
+                <td width="60px" class="">
+                    <p class="tbl-text">$55.00</p></td>
+                <td width="60px" class="">
+                    <p class="tbl-text">$35.00</p></td>
+                <td width="84px" class="">
+                    <p class="tbl-text">0</p></td>
+                <td width="84px" class="">
+                    <p class="tbl-text">$35.00</p></td>
+                <td width="90px" class="">
+                    <p class="tbl-text">$28.00</p></td>
+                <td width="96px" class="">
+                    <p class="tbl-text">$7.00</p></td>
+            </tr>
+
+            <tr valign="top" class="">
+                <td width="58px" class="">
+                    <p class="tbl-text">Totals </p></td>
+                <td width="60px" class="">
+                    <p class="tbl-text">$195.00</p></td>
+                <td width="60px" class="">
+                    <p class="tbl-text">$145.00</p></td>
+                <td width="84px" class="">
+                    <p class="tbl-text">$20.00</p></td>
+                <td width="84px" class="">
+                    <p class="tbl-text">$125.00</p></td>
+                <td width="90px" class="">
+                    <p class="tbl-text">$116.00</p></td>
+                <td width="96px" class="">
+                    <p class="tbl-text">$9.00</p></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <p class="example-hdr-hdt">Example 6: Using Default to Minimum Allocation
+            Method with the Allowed Allocation Method </p>
+
+        <ul class="calibre2">
+
+            <li class="kadov-p-cstep-comment-bullet-noline"><p class="bullet-list-h">June
+                CFDST run </p></li>
+
+            <li class="kadov-p-cstep-comment-bullet-noline"><p class="bullet-list-h">Allocation
+                Method on Model = Allowed Amount </p></li>
+
+            <li class="kadov-p-cstep-comment-bullet-noline"><p class="bullet-list-h">Maximum
+                Allocation % = 80% , Minimum Allocation % = 50% </p></li>
+
+            <li class="kadov-p-cstep-comment-bullet-noline"><p class="bullet-list-h">Allocation
+                Amount = $52.00</p></li>
+
+            <li class="kadov-p-cstep-comment-bullet-noline"><p class="bullet-list-h">Allocation
+                Amount / Net Amount payable = Allocation Rate </p></li>
+
+            <li class="kadov-p-cstep-comment-bullet-noline"><p class="bullet-list-h">52.00
+                / 145 = .<span class="calibre158">3586
+ or 35.86</span> % </p></li>
+        </ul>
+
+        <p class="body-text-block">The Calculated Allocation Rate is less than the
+            Minimum Allocation rate specified on the Model of 50%, therefore the distribution
+            process will use the 50%, as the default allocation rate. In this situation,
+            <span class="calibre157">the total payment is more than the Allocation
+ Amount</span>.</p>
+
+        <!--(Table)=========================================================-->
+        <table cellspacing="0" width="532" x-use-null-cells="" class="calibre172">
+
+            <tbody class="calibre8">
+            <tr valign="top" class="">
+                <td width="58px" class="">
+                    <p class="tbl-header1"> </p></td>
+                <td width="60px" class="">
+                    <p class="tbl-header1"> </p>
+                    <p class="body-text1"> </p>
+                    <p class="tbl-header1"> </p>
+                    <p class="tbl-header"><span class="">Billed Amount </span></p></td>
+                <td width="60px" class="">
+                    <p class="tbl-header1"> </p>
+                    <p class="tbl-header"><span class="">Allowed Amount (Pricing
+ Only)</span></p></td>
+                <td width="84px" class="">
+                    <p class="tbl-header1"> </p>
+                    <p class="tbl-header"><span class="">Copay</span></p>
+                    <p class="tbl-header"><span class="">CoInsurance</span></p>
+                    <p class="tbl-header"><span class="">Deductible </span></p></td>
+                <td width="84px" class="">
+                    <p class="tbl-header1"> </p>
+                    <p class="tbl-header"><span class="">Net Amount Payable after
+ Pricing and Adjudication </span></p></td>
+                <td width="90px" class="">
+                    <p class="tbl-header"><span class="">Adjusted Net Amount Payable
+ after Cap Fund Distribution </span></p></td>
+                <td width="96px" class="">
+                    <p class="tbl-header1"> </p>
+                    <p class="tbl-header1"> </p>
+                    <p class="tbl-header"><span class="">Cap Fund Withhold Amount
+ </span></p></td>
+            </tr>
+
+            <tr valign="top" class="">
+                <td width="58px" class="">
+                    <p class="tbl-text">Dr. A</p></td>
+                <td width="60px" class="">
+                    <p class="tbl-text">$80.00</p></td>
+                <td width="60px" class="">
+                    <p class="tbl-text">$60.00</p></td>
+                <td width="84px" class="">
+                    <p class="tbl-text">$10.00</p></td>
+                <td width="84px" class="">
+                    <p class="tbl-text">$50.00</p></td>
+                <td width="90px" class="">
+                    <p class="tbl-text">$30.00</p></td>
+                <td width="96px" class="">
+                    <p class="tbl-text">$20.00</p></td>
+            </tr>
+
+            <tr valign="top" class="">
+                <td width="58px" class="">
+                    <p class="tbl-text">Dr.B </p></td>
+                <td width="60px" class="">
+                    <p class="tbl-text">0</p></td>
+                <td width="60px" class="">
+                    <p class="tbl-text">0</p></td>
+                <td width="84px" class="">
+                    <p class="tbl-text">0</p></td>
+                <td width="84px" class="">
+                    <p class="tbl-text">0</p></td>
+                <td width="90px" class="">
+                    <p class="tbl-text">0</p></td>
+                <td width="96px" class="">
+                    <p class="tbl-text">0</p></td>
+            </tr>
+
+            <tr valign="top" class="">
+                <td width="58px" class="">
+                    <p class="tbl-text">Dr. C</p></td>
+                <td width="60px" class="">
+                    <p class="tbl-text">$60.00</p></td>
+                <td width="60px" class="">
+                    <p class="tbl-text">$50.00</p></td>
+                <td width="84px" class="">
+                    <p class="tbl-text">$10.00</p></td>
+                <td width="84px" class="">
+                    <p class="tbl-text">$40.00</p></td>
+                <td width="90px" class="">
+                    <p class="tbl-text">$25.00</p></td>
+                <td width="96px" class="">
+                    <p class="tbl-text">$15.00</p></td>
+            </tr>
+
+            <tr valign="top" class="">
+                <td width="58px" class="">
+                    <p class="tbl-text">Dr. D</p></td>
+                <td width="60px" class="">
+                    <p class="tbl-text">$55.00</p></td>
+                <td width="60px" class="">
+                    <p class="tbl-text">$35.00</p></td>
+                <td width="84px" class="">
+                    <p class="tbl-text">0</p></td>
+                <td width="84px" class="">
+                    <p class="tbl-text">$35.00</p></td>
+                <td width="90px" class="">
+                    <p class="tbl-text">$17.50</p></td>
+                <td width="96px" class="">
+                    <p class="tbl-text">$17.50</p></td>
+            </tr>
+
+            <tr valign="top" class="">
+                <td width="58px" class="">
+                    <p class="tbl-text">Totals </p></td>
+                <td width="60px" class="">
+                    <p class="tbl-text">$195.00</p></td>
+                <td width="60px" class="">
+                    <p class="tbl-text">$145.00</p></td>
+                <td width="84px" class="">
+                    <p class="tbl-text">$20.00</p></td>
+                <td width="84px" class="">
+                    <p class="tbl-text">$125.00</p></td>
+                <td width="90px" class="">
+                    <p class="tbl-text">$72.50</p></td>
+                <td width="96px" class="">
+                    <p class="tbl-text">$52.50</p></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <p class="example-hdr-hdt">Example 7: Example of the Cap Fund Withhold Amount
+            being Negative when we use the Calculated Allocation Rate</p>
+
+        <ul class="calibre2">
+
+            <li class="kadov-p-cstep-comment-bullet-noline"><p class="bullet-list-h">July
+                CFDST run </p></li>
+
+            <li class="kadov-p-cstep-comment-bullet-noline"><p class="bullet-list-h">Allocation
+                Method on Model = Allowed Amount </p></li>
+
+            <li class="kadov-p-cstep-comment-bullet-noline"><p class="bullet-list-h">Maximum
+                Allocation % = 100% , Minimum Allocation % = 50% </p></li>
+
+            <li class="kadov-p-cstep-comment-bullet-noline"><p class="bullet-list-h">Allocation
+                Amount = $135.00</p></li>
+
+            <li class="kadov-p-cstep-comment-bullet-noline"><p class="bullet-list-h">Allocation
+                Amount / Net Amount payable = Allocation Rate </p></li>
+
+            <li class="kadov-p-cstep-comment-bullet-noline"><p class="bullet-list-h">135.00
+                / 145 = .9310 or 93.10%</p></li>
+        </ul>
+
+        <p class="body-text-block">This Calculated Allocation Rate is within the
+            Maximum Allocation rate specified on the Model of 100% and the Minimum
+            Allocation Rate of 50%, therefore the distribution process will use the
+            93.10% as the allocation rate. In this situation, the total payment is
+            the full Allocation Amount of $135.00 but some Cap Fund Withhold Amounts
+            that will be negative. </p>
+
+        <!--(Table)=========================================================-->
+        <table cellspacing="0" width="532" x-use-null-cells="" class="calibre172">
+
+            <tbody class="calibre8">
+            <tr valign="top" class="">
+                <td width="58px" class="">
+                    <p class="tbl-header1"> </p></td>
+                <td width="60px" class="">
+                    <p class="tbl-header1"> </p>
+                    <p class="tbl-header1"> </p>
+                    <p class="body-text1"> </p>
+                    <p class="tbl-header"><span class="">Billed Amount </span></p></td>
+                <td width="60px" class="">
+                    <p class="tbl-header1"> </p>
+                    <p class="tbl-header"><span class="">Allowed Amount (Pricing
+ Only)</span></p></td>
+                <td width="84px" class="">
+                    <p class="tbl-header1"> </p>
+                    <p class="tbl-header"><span class="">Copay</span></p>
+                    <p class="tbl-header"><span class="">CoInsurance</span></p>
+                    <p class="tbl-header"><span class="">Deductible </span></p></td>
+                <td width="84px" class="">
+                    <p class="tbl-header1"> </p>
+                    <p class="tbl-header"><span class="">Net Amount Payable after
+ Pricing and Adjudication </span></p></td>
+                <td width="90px" class="">
+                    <p class="tbl-header"><span class="">Adjusted Net Amount Payable
+ after Cap Fund Distribution </span></p></td>
+                <td width="96px" class="">
+                    <p class="tbl-header1"> </p>
+                    <p class="tbl-header1"> </p>
+                    <p class="tbl-header"><span class="">Cap Fund Withhold Amount
+ </span></p></td>
+            </tr>
+
+            <tr valign="top" class="">
+                <td width="58px" class="">
+                    <p class="tbl-text">Dr. A</p></td>
+                <td width="60px" class="">
+                    <p class="tbl-text">$80.00</p></td>
+                <td width="60px" class="">
+                    <p class="tbl-text">$60.00</p></td>
+                <td width="84px" class="">
+                    <p class="tbl-text">$10.00</p></td>
+                <td width="84px" class="">
+                    <p class="tbl-text">$50.00</p></td>
+                <td width="90px" class="">
+                    <p class="tbl-text">$55.86</p></td>
+                <td width="96px" class="">
+                    <p class="tbl-text">$-5.86</p></td>
+            </tr>
+
+            <tr valign="top" class="">
+                <td width="58px" class="">
+                    <p class="tbl-text">Dr.B </p></td>
+                <td width="60px" class="">
+                    <p class="tbl-text">0</p></td>
+                <td width="60px" class="">
+                    <p class="tbl-text">0</p></td>
+                <td width="84px" class="">
+                    <p class="tbl-text">0</p></td>
+                <td width="84px" class="">
+                    <p class="tbl-text">0</p></td>
+                <td width="90px" class="">
+                    <p class="tbl-text">0</p></td>
+                <td width="96px" class="">
+                    <p class="tbl-text">0</p></td>
+            </tr>
+
+            <tr valign="top" class="">
+                <td width="58px" class="">
+                    <p class="tbl-text">Dr. C</p></td>
+                <td width="60px" class="">
+                    <p class="tbl-text">$60.00</p></td>
+                <td width="60px" class="">
+                    <p class="tbl-text">$50.00</p></td>
+                <td width="84px" class="">
+                    <p class="tbl-text">$10.00</p></td>
+                <td width="84px" class="">
+                    <p class="tbl-text">$40.00</p></td>
+                <td width="90px" class="">
+                    <p class="tbl-text">$46.55</p></td>
+                <td width="96px" class="">
+                    <p class="tbl-text">$-6.55</p></td>
+            </tr>
+
+            <tr valign="top" class="">
+                <td width="58px" class="">
+                    <p class="tbl-text">Dr. D</p></td>
+                <td width="60px" class="">
+                    <p class="tbl-text">$55.00</p></td>
+                <td width="60px" class="">
+                    <p class="tbl-text">$35.00</p></td>
+                <td width="84px" class="">
+                    <p class="tbl-text">0</p></td>
+                <td width="84px" class="">
+                    <p class="tbl-text">$35.00</p></td>
+                <td width="90px" class="">
+                    <p class="tbl-text">$32.59</p></td>
+                <td width="96px" class="">
+                    <p class="tbl-text">$2.41</p></td>
+            </tr>
+
+            <tr valign="top" class="">
+                <td width="58px" class="">
+                    <p class="tbl-text">Totals </p></td>
+                <td width="60px" class="">
+                    <p class="tbl-text">$195.00</p></td>
+                <td width="60px" class="">
+                    <p class="tbl-text">$145.00</p></td>
+                <td width="84px" class="">
+                    <p class="tbl-text">$20.00</p></td>
+                <td width="84px" class="">
+                    <p class="tbl-text">$125.00</p></td>
+                <td width="90px" class="">
+                    <p class="tbl-text">$135.00</p></td>
+                <td width="96px" class="">
+                    <p class="tbl-text">$-10.00</p></td>
+            </tr>
+            </tbody>
+        </table>
+
+
+    </div>
+
+
+
+
+    <div class="calibreEbNav">
+
+        <a href="Setting_Up_Cap_Special_Fund_Models_TASK.htm" class="calibreAPrev">previous page
+        </a>
+
+
+        <a href="../bj5if-qozss.html" class="calibreAHome">start
+        </a>
+
+
+        <a href="Duplicate_Claims_Checking_How_DIAMOND_Thinks.htm" class="calibreANext">next page
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+</html>

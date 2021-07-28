@@ -1,0 +1,105 @@
+<!-- Copyright (c) 2020 . All Rights Reserved. -->
+<div class="container-fluid">
+    <div class="card-block">
+        <form [formGroup]="lookupForm" novalidate>
+            <h2 class="form-title card-label-admin">Lookup</h2>
+            <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+            <app-pop-up-message #popUpMesssage (buttonclickEvent)="popUpButtonHandler($event)"  [(popupMessage)] = "popUpMessage"></app-pop-up-message>
+                        
+            <div class="form-group row">
+                <!-- Button with label of Ok -->
+                <div class="col-md-2">
+                    <button type="button" id="ok" name="ok" class="btn btn-small btn-primary">Ok</button>
+                
+                
+                </div>
+            
+                <!-- Button with label of Search -->
+                <div class="col-md-2">
+                    <button type="button" id="search" name="search" class="btn btn-small btn-primary">Search</button>
+                
+                
+                </div>
+            
+                <div class="col-md-2 form-control-static mb-0" i18n>
+                    BU^Reset
+                </div>
+            
+                <!-- Button with label of Cancel -->
+                <div class="col-md-2">
+                    <button type="button" id="cancel" name="cancel" class="btn btn-small btn-primary">Cancel</button>
+                
+                
+                </div>
+            
+                <!-- Button with label of Default -->
+                <div class="col-md-2">
+                    <button type="button" id="default" name="default" class="btn btn-small btn-primary">Default</button>
+                
+                
+                </div>
+            
+                <!-- Button with label of Custom -->
+                <div class="col-md-2">
+                    <button type="button" id="custom" name="custom" class="btn btn-small btn-primary">Custom</button>
+                
+                
+                </div>
+            
+                <!-- Button with label of Columns -->
+                <div class="col-md-2">
+                    <button type="button" id="columns" name="columns" class="btn btn-small btn-primary">Columns</button>
+                
+                
+                </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Checkbox with label of ^CB Match All Ca -->
+                <div class="" [ngClass]="{'has-error': displayMessage.cbMatchAllCa }">
+                    <div class="checkbox col-md-12">
+                      <input id="cbMatchAllCa"  [fieldLevelSec]="''" params]=""  value="cbMatchAllCa" formControlName="cbMatchAllCa" type="checkbox">
+                        <label class="checkbox">
+                            ^CB Match All Ca
+                         </label>
+                    </div>
+                    <span class="help-block" *ngIf="displayMessage.cbMatchAllCa">
+                        {{ displayMessage.cbMatchAllCa  }}
+                     </span>
+                </div>
+            
+                <!-- Checkbox with label of ^CB Match All Contra -->
+                <div class="" [ngClass]="{'has-error': displayMessage.cbMatchAllContra }">
+                    <div class="checkbox col-md-12">
+                      <input id="cbMatchAllContra"  [fieldLevelSec]="''" params]=""  value="cbMatchAllContra" formControlName="cbMatchAllContra" type="checkbox">
+                        <label class="checkbox">
+                            ^CB Match All Contra
+                         </label>
+                    </div>
+                    <span class="help-block" *ngIf="displayMessage.cbMatchAllContra">
+                        {{ displayMessage.cbMatchAllContra  }}
+                     </span>
+                </div>
+            
+            </div>
+            
+            <div class="form-group row">
+            </div>
+            
+                        <!-- DataGrid with Name of DataGrid -->
+                    <button (click)="dataGridGridOptionsExportCsv()">Export</button>
+                    <ag-grid-angular #agGrid class="ag-theme-fresh" [gridOptions]="dataGridGridOptions"
+                    style="width: 100%; height: 300px;"
+                    [enableSorting]="true"
+                    [enableFilter]="true"
+                    [floatingFilter]="true"
+                    [pagination]="true"
+                    [showToolPanel]="true">
+                    </ag-grid-angular>
+            
+            <div class="form-group row">
+            </div>
+        </form>
+    </div>
+</div>

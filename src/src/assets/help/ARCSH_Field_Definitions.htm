@@ -1,0 +1,665 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+    <title>ARCSH Field Definitions</title>
+    <!--(Meta)==========================================================-->
+    <meta name="copyright"
+          value="© Copyright 2002 Health Systems Design Corp., a wholly owned subsidiary of Perot Systems Corporation. All rights reserved"/>
+    <meta content="RoboHELP by eHelp Corporation - www.ehelp.com" name="generator"/>
+    <meta content="0.1" name="generator-major-version"/>
+    <meta content="1" name="generator-minor-version"/>
+    <meta content="kadov" name="filetype"/>
+    <meta content="1" name="filetype-version"/>
+    <meta content="1" name="page-count"/>
+    <meta content="1642" name="layout-height"/>
+    <meta content="656" name="layout-width"/>
+    <!--(Links)=========================================================-->
+    <!--(Scripts)=======================================================-->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+</head>
+<body>
+
+<div class="calibreMeta">
+    <div class="calibreMetaTitle">
+
+
+        <h1>
+            <a href="../l0urk-a4ma7.html">DIAMOND 950 Help
+            </a>
+        </h1>
+
+
+    </div>
+    <div class="calibreMetaAuthor">
+        Unknown
+
+    </div>
+</div>
+
+<div class="calibreMain">
+
+    <div class="calibreEbookContent">
+
+        <div class="calibreEbNavTop">
+
+            <a href="ARCSH_Field_Map.htm" class="calibreAPrev">previous page
+            </a>
+
+
+            <a href="ARCSH_Functions_on_the_Menu_Bar.htm" class="calibreANext">next page
+            </a>
+
+        </div>
+
+
+        <!--(Table)=========================================================-->
+        <table cellspacing="0" width="500" x-use-null-cells="" class="calibre109">
+            <colgroup class="calibre19">
+                <col class="calibre110"/>
+                <col class="calibre111"/>
+
+            </colgroup>
+            <tbody class="calibre10">
+            <tr valign="top" class="calibre11">
+                <td width="70%" class="calibre112">
+                    <h4 class="calibre62">ARCSH Field Definitions</h4></td>
+                <td width="30%" class="calibre113">
+                    <p class="body-text1"><img border="0" height="53" src="assets/help/Field_definitions_Req_legend.gif" width="97"
+                                               x-maintain-ratio="TRUE" class="calibre114"/></p></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <!--(Table)=========================================================-->
+        <table cellspacing="0" width="500" x-use-null-cells="" class="calibre115">
+            <colgroup class="calibre19">
+                <col class="calibre116"/>
+                <col class="calibre117"/>
+                <col class="calibre118"/>
+                <col class="calibre119"/>
+                <col class="calibre118"/>
+
+            </colgroup>
+            <tbody class="calibre10">
+            <tr valign="top" class="calibre11">
+                <td width="110px" class="calibre120">
+                    <p class="tableheading">Field Name</p></td>
+                <td width="15px" class="calibre121">
+                    <p class="tableheading1">Req</p></td>
+                <td width="140px" class="calibre122">
+                    <p class="tableheading">Description</p></td>
+                <td width="95px" class="calibre123">
+                    <p class="tableheading">Source</p></td>
+                <td width="140px" class="calibre122">
+                    <p class="tableheading">Comments</p></td>
+            </tr>
+            
+            <tr valign="top" class="calibre11">
+                <td width="98px" class="calibre124">
+                    <p class="tbl-r-label"><a name="ARCSH_Amount_FIELD"></a>Amount</p></td>
+                <td width="14px" class="calibre125">
+                    <p class="tbl-text">R</p></td>
+                <td width="105px" class="calibre126">
+                    <p class="tbl-text">Dollar amount of the transaction,
+                        typically the check amount.</p></td>
+                <td width="105px" class="calibre126">
+                    <p class="tbl-text">Manually entered</p></td>
+                <td width="206px" class="calibre126">
+                    <p class="tbl-text">You can type up to 16 digits
+                        before the decimal and 2 digits after the decimal.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre11">
+                <td width="98px" class="calibre124">
+                    <p class="tbl-r-label"><a name="ARCSH_Batch_ID_FIELD"></a>Batch
+                        ID</p></td>
+                <td width="14px" class="calibre125">
+                    <p class="tbl-text">R</p></td>
+                <td width="105px" class="calibre126">
+                    <p class="tbl-text">Unique identifier of a cash
+                        batch.</p></td>
+                <td width="105px" class="calibre126">
+                    <p class="tbl-text">System generated for new
+                        batches, or selected from a predefined list for existing batches </p></td>
+                <td width="206px" class="calibre126">
+                    <p class="tbl-text">F5 lookup is available. </p></td>
+            </tr>
+
+            <tr valign="top" class="calibre11">
+                <td width="98px" class="calibre124">
+                    <p class="tbl-r-label"><a name="ARCSH_Batch_Status_FIELD"></a>Batch
+                        Status</p></td>
+                <td width="14px" class="calibre125">
+                    <p class="tbl-text">O</p></td>
+                <td width="105px" class="calibre126">
+                    <p class="tbl-text">Display of batch status.</p></td>
+                <td width="105px" class="calibre126">
+                    <p class="tbl-text">System generated</p></td>
+                <td width="206px" class="calibre126">
+                    <p class="tbl-list-hdr">Valid values are:</p>
+                    <p class="tbl-list">Open: A new batch was entered and saved.</p>
+                    <p class="tbl-list">Closed: A batch with either a previous status of Open
+                        or of Error (subsequently corrected) was closed using menu command Batch
+                        Close.</p>
+                    <p class="tbl-list">Error: A closed batch was posted using menu command Cash
+                        Post, but error(s) within the batch resulted in no receipts being posted.
+                        Errors must be corrected; batch must be closed again, and posted again.</p>
+                    <p class="tbl-list">Posted: A batch that was closed was posted using menu
+                        command Cash Post.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre11">
+                <td width="98px" class="calibre124">
+                    <p class="tbl-r-label"><a name="ARCSH_Batch_Total_FIELD"></a>Batch
+                        Total</p></td>
+                <td width="14px" class="calibre125">
+                    <p class="tbl-text">R</p></td>
+                <td width="105px" class="calibre126">
+                    <p class="tbl-text">Total dollar amount of all
+                        items in the batch.</p></td>
+                <td width="105px" class="calibre126">
+                    <p class="tbl-text">Manually entered</p></td>
+                <td width="206px" class="calibre126">
+                    <p class="tbl-text">You can type up to 16 digits
+                        before the decimal and 2 digits after the decimal.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre11">
+                <td width="98px" class="calibre124">
+                    <p class="tbl-r-label"><a name="ARCSH_Company_Code_FIELD"></a>Company
+                        Code</p></td>
+                <td width="14px" class="calibre125">
+                    <p class="tbl-text">R</p></td>
+                <td width="105px" class="calibre126">
+                    <p class="tbl-text">General ledger company to
+                        which the cash receipt will be posted.</p></td>
+                <td width="105px" class="calibre126">
+                    <p class="tbl-text">Selected from predefined
+                        list</p></td>
+                <td width="206px" class="calibre126">
+                    <p class="tbl-text">General ledger companies
+                        are maintained in keyword COMPF.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre11">
+                <td width="98px" class="calibre124">
+                    <p class="tbl-r-label"><a name="ARCSH_Customer_ID_FIELD"></a>Customer
+                        ID</p></td>
+                <td width="14px" class="calibre125">
+                    <p class="tbl-text">R</p></td>
+                <td width="105px" class="calibre126">
+                    <p class="tbl-text">Unique identifier of the
+                        customer.</p></td>
+                <td width="105px" class="calibre126">
+                    <p class="tbl-text">Selected from predefined
+                        list</p></td>
+                <td width="206px" class="calibre126">
+                    <p class="tbl-text">Customer IDs are created
+                        by the execution of GPBIL, or in some circumstances, manually in keyword
+                        ARCUS.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre11">
+                <td width="98px" class="calibre124">
+                    <p class="tbl-r-label"><a name="ARCSH_Customer_Type_FIELD"></a>Customer
+                        Type</p></td>
+                <td width="14px" class="calibre125">
+                    <p class="tbl-text">R</p></td>
+                <td width="105px" class="calibre126">
+                    <p class="tbl-text">Category of customer.</p></td>
+                <td width="105px" class="calibre126">
+                    <p class="tbl-text">Selected from predefined
+                        list</p></td>
+                <td width="206px" class="calibre126">
+                    <p class="tbl-list-hdr">Valid values are:</p>
+                    <p class="tbl-list">Annual Billing</p>
+                    <p class="tbl-list">Combined</p>
+                    <p class="tbl-list">Group</p>
+                    <p class="tbl-list">Individual</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre11">
+                <td width="98px" class="calibre124">
+                    <p class="tbl-r-label"><a name="ARCSH_Description_FIELD"></a>Description</p></td>
+                <td width="14px" class="calibre125">
+                    <p class="tbl-text">O</p></td>
+                <td width="105px" class="calibre126">
+                    <p class="tbl-text">Text description of the transaction.</p></td>
+                <td width="105px" class="calibre126">
+                    <p class="tbl-text">Manually entered</p></td>
+                <td width="206px" class="calibre126">
+                    <p class="tbl-text"> </p></td>
+            </tr>
+
+            <tr valign="top" class="calibre11">
+                <td width="98px" class="calibre124">
+                    <p class="tbl-r-label"><a name="ARCSH_GL_Ref_Code_FIELD"></a>GL
+                        Ref Code</p></td>
+                <td width="14px" class="calibre125">
+                    <p class="tbl-text">R</p></td>
+                <td width="105px" class="calibre126">
+                    <p class="tbl-text">Cross reference to the debit
+                        and credit accounts to which the cash receipt will be posted.</p></td>
+                <td width="105px" class="calibre126">
+                    <p class="tbl-text">Selected from predefined
+                        list</p></td>
+                <td width="206px" class="calibre126">
+                    <p class="tbl-text">General ledger reference
+                        codes are maintained in keyword GLREF.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre11">
+                <td width="98px" class="calibre124">
+                    <p class="tbl-r-label"><a name="ARCSH_Invoice_Number_FIELD"></a>Invoice
+                        Number</p></td>
+                <td width="14px" class="calibre125">
+                    <p class="tbl-text">D</p></td>
+                <td width="105px" class="calibre126">
+                    <p class="tbl-text">Automatically assigned control
+                        number associated with each billing period and customer.</p></td>
+                <td width="105px" class="calibre126">
+                    <p class="tbl-text">System generated</p></td>
+                <td width="206px" class="calibre126">
+                    <p class="tbl-text"> </p></td>
+            </tr>
+
+            <tr valign="top" class="calibre11">
+                <td width="98px" class="calibre124">
+                    <p class="tbl-r-label"><a name="ARCSH_Item_Count_FIELD"></a>Item
+                        Count</p></td>
+                <td width="14px" class="calibre125">
+                    <p class="tbl-text">R</p></td>
+                <td width="105px" class="calibre126">
+                    <p class="tbl-text">Number of items in the batch.</p></td>
+                <td width="105px" class="calibre126">
+                    <p class="tbl-text">Manually entered</p></td>
+                <td width="206px" class="calibre126">
+                    <p class="tbl-text"> </p></td>
+            </tr>
+
+            <tr valign="top" class="calibre11">
+                <td width="98px" class="calibre124">
+                    <p class="tbl-r-label"><a name="ARCSH_Post_Date_FIELD"></a>Post
+                        Date</p></td>
+                <td width="14px" class="calibre125">
+                    <p class="tbl-text">D</p></td>
+                <td width="105px" class="calibre126">
+                    <p class="tbl-text">Date the cash batch was posted.</p></td>
+                <td width="105px" class="calibre126">
+                    <p class="tbl-text">System generated as a result
+                        of the Cash Post menu command</p></td>
+                <td width="206px" class="calibre126">
+                    <p class="tbl-text"> </p></td>
+            </tr>
+
+            <tr valign="top" class="calibre11">
+                <td width="98px" class="calibre124">
+                    <p class="tbl-r-label"><a name="ARCSH_Received_Date_FIELD"></a>Received
+                        Date</p></td>
+                <td width="14px" class="calibre125">
+                    <p class="tbl-text">R</p></td>
+                <td width="105px" class="calibre126">
+                    <p class="tbl-text">Date the transaction, typically
+                        the check, was received; default is the system date.</p></td>
+                <td width="105px" class="calibre126">
+                    <p class="tbl-text">Manually entered</p></td>
+                <td width="206px" class="calibre126">
+                    <p class="tbl-text"> </p></td>
+            </tr>
+
+            <tr valign="top" class="calibre11">
+                <td width="98px" class="calibre124">
+                    <p class="tbl-r-label"><a name="ARCSH_Statement_Status_FIELD"></a>Statement
+                        Status</p></td>
+                <td width="14px" class="calibre125">
+                    <p class="tbl-text">D</p></td>
+                <td width="105px" class="calibre126">
+                    <p class="tbl-text">Cash receipts may be printed
+                        on customer invoices. This field displays the availability of this transaction
+                        for printing.</p></td>
+                <td width="105px" class="calibre126">
+                    <p class="tbl-text">System generated</p></td>
+                <td width="206px" class="calibre126">
+                    <p class="tbl-list-hdr">Valid values are:</p>
+                    <p class="tbl-list">Not reflected on bill: Although available to print on
+                        an invoice, it has not yet been printed.</p>
+                    <p class="tbl-list">Reflected on bill—Unposted: The transaction is available
+                        to print because GPBIL Calculate has run, but that run has not yet been
+                        posted.</p>
+                    <p class="tbl-list">Reflected on bill—Posted:</p>
+                    <p class="tbl-text-noline">The transaction is available to print because
+                        both GPBIL Calculate and GPBIL Post have been run.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre11">
+                <td width="98px" class="calibre124">
+                    <p class="tbl-r-label"><a name="ARCSH_Transaction_Date_FIELD"></a>Transaction
+                        Date</p></td>
+                <td width="14px" class="calibre125">
+                    <p class="tbl-text">R</p></td>
+                <td width="105px" class="calibre126">
+                    <p class="tbl-text">Date of the transaction,
+                        typically the date on the check.</p></td>
+                <td width="105px" class="calibre126">
+                    <p class="tbl-text">Manually entered</p></td>
+                <td width="206px" class="calibre126">
+                    <p class="tbl-text"> </p></td>
+            </tr>
+
+            <tr valign="top" class="calibre11">
+                <td width="98px" class="calibre124">
+                    <p class="tbl-r-label"><a name="ARCSH_Transaction_Number_FIELD"></a>Transaction
+                        Number</p></td>
+                <td width="14px" class="calibre125">
+                    <p class="tbl-text">R</p></td>
+                <td width="105px" class="calibre126">
+                    <p class="tbl-text">Identifier of the transaction,
+                        typically the check number.</p></td>
+                <td width="105px" class="calibre126">
+                    <p class="tbl-text">Manually entered</p></td>
+                <td width="206px" class="calibre126">
+                    <p class="tbl-text">You can type up to 35 alphanumeric
+                        characters.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre11">
+                <td width="98px" class="calibre124">
+                    <p class="tbl-r-label"><a name="ARCSH_Transaction_Type_FIELD"></a>Transaction
+                        Type</p></td>
+                <td width="14px" class="calibre125">
+                    <p class="tbl-text">R</p></td>
+                <td width="105px" class="calibre126">
+                    <p class="tbl-text">Category of transaction.</p></td>
+                <td width="105px" class="calibre126">
+                    <p class="tbl-text">Selected from predefined
+                        list</p></td>
+                <td width="206px" class="calibre126">
+                    <p class="tbl-list-hdr">Standard values are</p>
+                    <p class="tbl-list">Cash</p>
+                    <p class="tbl-list">Card</p>
+                    <p class="tbl-list">EFT</p>
+                    <p class="tbl-list">Check</p>
+                    <p class="tbl-text-noline">Transaction types can be updated in CODES, TRANSTYPE.</p></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <p class="body-text"> </p>
+
+
+    </div>
+
+
+    <div class="calibreToc">
+        <h2><a href="../l0urk-a4ma7.html">Table of contents
+        </a></h2>
+        <div>
+            <ul>
+                <li>
+                    <a href=".">Premium</a>
+                    <ul>
+                        <li>
+                            <a href=".">Tasks</a>
+                            <ul>
+                                <li>
+                                    <a href="Looking_up_Billing_History.htm">Looking up Billing History</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href=".">How DIAMOND Thinks</a>
+                            <ul>
+                                <li>
+                                    <a href="Premium_Billing_How_DIAMOND_Thinks.htm">Premium Billing, How DIAMOND
+                                        Thinks</a>
+                                </li>
+                                <li>
+                                    <a href="Rate_Matrix_Examples.htm">Rate Matrix Examples</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href=".">Keyword Reference</a>
+                            <ul>
+                                <li>
+                                    <a href=".">ARADJ</a>
+                                    <ul>
+                                        <li>
+                                            <a href="ARADJ_Accounts_Receivable_Adjustments.htm">ARADJ, A/R
+                                                Adjustments</a>
+                                        </li>
+                                        <li>
+                                            <a href="About_ARADJ.htm">About ARADJ</a>
+                                        </li>
+                                        <li>
+                                            <a href="ARADJ_Field_Map.htm">ARADJ Field Map</a>
+                                        </li>
+                                        <li>
+                                            <a href="ARADJ_Field_Information.htm">ARADJ Field Definitions</a>
+                                        </li>
+                                        <li>
+                                            <a href="ARADJ_Functions_on_Menu_Bar.htm">ARADJ Commands on the Menu Bar</a>
+                                        </li>
+                                        <li>
+                                            <a href="ARADJ_Parameters_Prerequisites.htm">ARADJ Parameters &amp;
+                                                Prerequisites</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href=".">ARCSH</a>
+                                    <ul>
+                                        <li>
+                                            <a href="ARCSH_Cash_Receipts_Entry.htm">ARCSH, A/R Cash Receipts</a>
+                                        </li>
+                                        <li>
+                                            <a href="About_ARCSH.htm">About ARCSH</a>
+                                        </li>
+                                        <li>
+                                            <a href="ARCSH_Field_Map.htm">ARCSH Field Map</a>
+                                        </li>
+                                        <li>
+                                            <a href="ARCSH_Field_Definitions.htm">ARCSH Field Definitions</a>
+                                        </li>
+                                        <li>
+                                            <a href="ARCSH_Functions_on_the_Menu_Bar.htm">ARCSH Commands on the Menu
+                                                Bar</a>
+                                        </li>
+                                        <li>
+                                            <a href="ARCSH_Parameters_Prerequisites.htm">ARCSH Parameters &amp;
+                                                Prerequisites</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href=".">ARCUS</a>
+                                    <ul>
+                                        <li>
+                                            <a href="ARCUS_Accounts_Receivable_Customer_Maintenance.htm">ARCUS, Customer
+                                                Maintenance</a>
+                                        </li>
+                                        <li>
+                                            <a href="About_ARCUS.htm">About ARCUS</a>
+                                        </li>
+                                        <li>
+                                            <a href="ARCUS_Field_Map.htm">ARCUS Field Map</a>
+                                        </li>
+                                        <li>
+                                            <a href="ARCUS_Field_Definitions.htm">ARCUS Field Definitions</a>
+                                        </li>
+                                        <li>
+                                            <a href="ARCUS_Functions_on_the_Menu_Bar.htm">ARCUS Commands on the Menu
+                                                Bar</a>
+                                        </li>
+                                        <li>
+                                            <a href="ARCUS_Parameters_Prerequisites.htm">ARCUS Parameters &amp;
+                                                Prerequisites</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href=".">BLHST</a>
+                                    <ul>
+                                        <li>
+                                            <a href="BLHST_Premium_Billing_History.htm">BLHST, Display Premium Billing
+                                                History</a>
+                                        </li>
+                                        <li>
+                                            <a href="About_BLHST.htm">About BLHST</a>
+                                        </li>
+                                        <li>
+                                            <a href="BLHST_Field_Map.htm">BLHST Field Map</a>
+                                        </li>
+                                        <li>
+                                            <a href="BLHST_Field_Definitions.htm">BLHST Field Definitions</a>
+                                        </li>
+                                        <li>
+                                            <a href="BLHST_Functions_on_Menu_Bar.htm">BLHST Commands on the Menu Bar</a>
+                                        </li>
+                                        <li>
+                                            <a href="BLHST_Parameters_Prerequisites.htm">BLHST Parameters &amp;
+                                                Prerequisites</a>
+                                        </li>
+                                        <li>
+                                            <a href="BLHST_View_Adjustments_Menu_Function.htm">BLHST View Adjustments
+                                                Menu Command</a>
+                                        </li>
+                                        <li>
+                                            <a href="BLHST_View_Group_Summary_Menu_Function.htm">BLHST View Group
+                                                Summary Menu Command</a>
+                                        </li>
+                                        <li>
+                                            <a href="BLHST_View_Invoice_Details_Menu_Function.htm">BLHST View Invoice
+                                                Details Menu Command</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href=".">GPBIL</a>
+                                    <ul>
+                                        <li>
+                                            <a href="GPBIL_Premium_Billing.htm">GPBIL, Premium Billing Setup</a>
+                                        </li>
+                                        <li>
+                                            <a href="About_GPBIL.htm">About GPBIL</a>
+                                        </li>
+                                        <li>
+                                            <a href="GPBIL_Field_Map.htm">GPBIL Field Map</a>
+                                        </li>
+                                        <li>
+                                            <a href="GPBIL_Field_Definitions.htm">GPBIL Field Definitions</a>
+                                        </li>
+                                        <li>
+                                            <a href="GPBIL_Functions_on_Menu_Bar.htm">GPBIL Commands on the Menu Bar</a>
+                                        </li>
+                                        <li>
+                                            <a href="GPBIL_Parameters_Prerequisites.htm">GPBIL Parameters &amp;
+                                                Prerequisites</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href=".">MATRX</a>
+                                    <ul>
+                                        <li>
+                                            <a href="MATRX_Matrix_Determinant.htm">MATRX, A/R Matrix Determinants</a>
+                                        </li>
+                                        <li>
+                                            <a href="About_MATRX.htm">About MATRX</a>
+                                        </li>
+                                        <li>
+                                            <a href="MATRX_Field_Map.htm">MATRX Field Map</a>
+                                        </li>
+                                        <li>
+                                            <a href="MATRX_Field_Definitions.htm">MATRX Field Definitions</a>
+                                        </li>
+                                        <li>
+                                            <a href="MATRX_Functions_on_Menu_Bar.htm">MATRX Commands on the Menu Bar</a>
+                                        </li>
+                                        <li>
+                                            <a href="MATRX_Parameters_Prerequisites.htm">MATRX Parameters &amp;
+                                                Prerequisites</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href=".">PREMM</a>
+                                    <ul>
+                                        <li>
+                                            <a href="PREMM_Matrix_Premium_Rate_Entry.htm">PREMM, A/R Matrix Premium Rate
+                                                Entry</a>
+                                        </li>
+                                        <li>
+                                            <a href="About_PREMM.htm">About PREMM</a>
+                                        </li>
+                                        <li>
+                                            <a href="PREMM_Field_Map.htm">PREMM Field Map</a>
+                                        </li>
+                                        <li>
+                                            <a href="PREMM_Field_Definitions.htm">PREMM Field Definitions</a>
+                                        </li>
+                                        <li>
+                                            <a href="PREMM_Functions_on_Menu_Bar.htm">PREMM Commands on the Menu Bar</a>
+                                        </li>
+                                        <li>
+                                            <a href="PREMM_Parameters_Prerequisites.htm">PREMM Parameters &amp;
+                                                Prerequisites</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href=".">SUBSC</a>
+                                    <ul>
+                                        <li>
+                                            <a href="SUBSC_Subscriber_Update.htm">SUBSC, Subscriber Update</a>
+                                        </li>
+                                        <li>
+                                            <a href="About_SUBSC.htm">About SUBSC</a>
+                                        </li>
+                                        <li>
+                                            <a href="SUBSC_Field_Map.htm">SUBSC Field Map</a>
+                                        </li>
+                                        <li>
+                                            <a href="SUBSC_Field_Definitions.htm">SUBSC Field Definitions</a>
+                                        </li>
+                                        <li>
+                                            <a href="SUBSC_Functions_on_Menu_Bar.htm">SUBSC Commands on the Menu Bar</a>
+                                        </li>
+                                        <li>
+                                            <a href="SUBSC_Parameters_Prerequisites.htm">SUBSC Parameters &amp;
+                                                Prerequisites</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+
+    </div>
+
+
+    <div class="calibreEbNav">
+
+        <a href="ARCSH_Field_Map.htm" class="calibreAPrev">previous page
+        </a>
+
+
+        <a href="../l0urk-a4ma7.html" class="calibreAHome">start
+        </a>
+
+
+        <a href="ARCSH_Functions_on_the_Menu_Bar.htm" class="calibreANext">next page
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+</html>

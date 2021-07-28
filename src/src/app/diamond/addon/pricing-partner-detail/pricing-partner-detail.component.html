@@ -1,0 +1,54 @@
+<!-- Copyright (c) 2021 . All Rights Reserved. -->
+<div class="container-fluid">
+    <div class="card-block">
+
+        <div class="modal-body" *ngIf="popUpMessage && popUpMessage.message">
+            <div class="row">
+                <div class="col-md-9 offset-md-1 alert"
+                     [ngClass]="popUpMessage.messageType === 'SUCCESS'? 'alert-success': 'alert-danger'">
+                    <fa-icon style="color: darkorange" [icon]="popUpMessage.icon == iconTypes.CLOSE? faWindowClose: infoIcon"></fa-icon>
+                    <span class="mr-1"> {{popUpMessage?.message}}</span>
+                </div>
+            </div>
+        </div>
+
+        <form [formGroup]="administrativeDetailForm" novalidate>
+            <div class="form-group row bg-dark text-white">
+                <div class="col-md-4 offset-2 form-control-static mb-0 font-weight-bold " i18n>
+                    Group Number
+                    <br>
+                    <span class="col-md required-field-label justify-content-center pt-1">  {{groupNumber}}</span>
+                </div>
+                <div class="col-md-4 offset-2 form-control-static mb-0 font-weight-bold" i18n>
+                    Group Name
+                    <br>
+                   <span class="col-md pt-1 required-field-label justify-content-center"> {{groupName}}</span>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <ng-template #loaderTemplate let-loaderValue="value">
+                    <div class="row justify-content-center mt-4" style="display: flex;margin-left: auto;margin-right: auto;" *ngIf="loaderValue">
+                        <div class="spinner-border text-success" role="status">
+                            <span class="sr-only">Loading...</span>
+                        </div>
+                    </div>
+                </ng-template>
+                <ng-container *ngTemplateOutlet="loaderTemplate; context:{value: loader }"></ng-container>
+                <div class="col-md-12 mt-3 mt-2 p-0" *ngIf="isLoadGrid">
+                    <dmnd-dynamic-config-grid *ngIf="isLoadGrid"
+                            [prevState]="pricingPartnerDetailsFormState" [isResetForm]="resetInlineGrid" [isSaveForm]="saveInlineGrid"
+                            [title]="''" [showRemoveButton]="false"
+                            [config]="pricingPartnerDetailsConfig" [displayCheckBox]="false"
+                            (onChangeFields)="formFieldValueChanged($event)" [showSubmitButton]="false"
+                            (formSubmitted)="saveForm($event)"
+                            (onCancelClick)="onCancelClick($event)"
+                            (onNewRowAdded)="onRowAdded($event)"
+                            [showAddNewline]="showAddNewLine"
+                    ></dmnd-dynamic-config-grid>
+                </div>
+
+            </div>
+        </form>
+    </div>
+</div>

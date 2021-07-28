@@ -1,0 +1,460 @@
+/*
+ * Application specific LESS file. LESS is a dynamic style sheet language that
+ * compiled into a css file. LESS addresses several maintainability problems
+ * with css. A good online course on less is: "A Better CSS: LESS and SASS" on
+ * pluralsight.com.
+ *
+ * All css syntax is valid LESS syntax. LESS adds additional or alternative syntax
+ * that is easier to use than standard css.
+ *
+ * The color problem - can't name colors. Allows you to define standard, reusable
+ * colors and other elements so that they can be changed in one place.
+ *
+ * The Duplication Problem - duplicate values in the same rule. You often have to
+ * define different elements with the same value in the same role for several browsers.
+ * Put repeatable sets of code and put into one place.
+ *
+ * The Cascading Problem -
+ * e.g. #form input[type=textbox], #form  textarea
+ * Have to change the names of all instances of the rule name if the name "form" is
+ * changed.
+ *
+ * The Calculation Problem -
+ * Can't do calculations in the css.
+ * e.g. font-size: html.font-size + 8px where html.font-size is 14x.
+ *
+ * The Importing Problem
+ * For performance, would like to make efficient css for you by combining them into one so that
+ * you get smart caching of the css and better performance.
+ */
+// green, blue, orange
+
+@import '~bootstrap/scss/bootstrap';
+
+
+body {
+  font-family: HCo Gotham SSm, Verdana, Geneva, sans-serif;;
+}
+
+$theme-colors: (
+        'primary': #209cf1,
+        'accent': #118503,
+        'secondary': #f68621,
+        'error': #c00,
+        'foreground': #0170bc,
+        'background': #e7f1f9
+);
+
+
+@function theme-color($key: 'primary') {
+  @return map-get($theme-colors, $key);
+}
+
+$color-primary: theme-color();
+$color-accent: theme-color('accent');
+$color-secondary: theme-color('secondary');
+$color-error: theme-color('error');
+$color-foreground: theme-color('foreground');
+$color-background: theme-color('background');
+
+diamond-app {
+  .navbar-dark .navbar-brand {
+    color: #209cf1 !important;
+  }
+
+  a {
+    color: #209cf1 !important;
+  }
+
+  .username {
+    fa-icon {
+      svg {
+        margin-bottom: -3px;
+      }
+    }
+  }
+}
+
+functionalgroups {
+  .img-wrapper {
+    background: #eee url('assets/header-img.jpg') center center;
+    width: 100%;
+    background-repeat: no-repeat;
+    height: 152px;
+    text-indent: -9999px;
+    border-radius: 4px;
+    background-position: center;
+    background-size: cover;
+  }
+
+  .carousel-caption {
+    color: black;
+  }
+}
+
+.toast {
+  top: 3.2rem;
+  position: fixed;
+  right: 0 !important;
+  margin: 0.5em;
+  z-index: 1200;
+}
+
+.required-field {
+  border: 1px solid red;
+  border-radius: 5px;
+
+  select {
+    color: red !important;
+  }
+}
+
+.required-field-label {
+  color: $color-primary;
+}
+
+
+.button {
+  background-color: $color-primary !important;
+  color: white;
+  padding: 7px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+  border: 1px solid transparent;
+  font-weight: 500;
+  font-family: HCo Gotham SSm, Verdana, Geneva, sans-serif;
+  vertical-align: middle;
+  white-space: normal;
+  border-radius: .5rem;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+.multi-select-button {
+  .dropdown-btn {
+    border-radius: .5rem !important;
+  }
+}
+.button:hover {
+  background-color: $color-foreground !important;
+  color: white;
+}
+
+
+.diamond-dropdown-icon button:before {
+  border-color: rgba(147, 148, 150, .75) transparent transparent rgba(147, 148, 150, .75);
+  border-style: solid;
+  border-width: 1px;
+  content: "";
+  height: 1rem;
+  // left: calc(50% - .3rem);
+  padding: 0;
+  position: absolute;
+  top: -.5rem;
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+  -webkit-transform-origin: center;
+  transform-origin: center;
+  width: 1rem;
+  background-color: white !important;
+}
+
+
+.dropdown-menu.show {
+  margin-top: 1rem;
+}
+
+
+.diamond-dropdown-icon .dropmenu:before {
+  background-color: #fff !important;
+  z-index: 1000;
+}
+
+.help-modal {
+  min-width: 560px !important;
+ // z-index: 99000 !important;
+}
+
+.help-modal__container{     //TODO add classes related to specific Modal, instead of all modals
+   z-index: 99000 !important;
+
+}
+
+@media (min-width: 576px) {
+  .modal-dialog {
+    max-width: 1020px !important;
+  }
+  .aradj-textarea {
+    min-width: 578px;
+  }
+}
+
+
+div {
+  border: 0 solid red;
+}
+
+/* Need for cursor pointer to work correctly in angular-bootstrap. Suggested by angular-bootstrap*/
+.nav,
+.pagination,
+.carousel,
+.panel-title a {
+  cursor: pointer;
+}
+
+/* Needed for the blue gradient color for accordian and panels as form headers */
+.panel-default > .panel-heading {
+  background-color: #337ab7;
+  color: white;
+  cursor: pointer;
+}
+
+.panel-heading a {
+  background-color: #337ab7;
+  font-family: arial;
+  color: white;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.app_sub_nav_text {
+  font-size: 12px;
+}
+
+.app-header {
+  font-family: Arial;
+  border-bottom: 1px solid white;
+}
+
+/* Wrap content of a grid-ui header */
+.ui-grid-header-cell .ui-grid-cell-contents {
+  height: 48px;
+  white-space: normal;
+  -ms-text-overflow: clip;
+  -o-text-overflow: clip;
+  text-overflow: clip;
+  overflow: visible;
+}
+
+table, th, td {
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 5px;
+}
+
+.tab-content {
+  border-left: 1px solid #ddd;
+  border-right: 1px solid #ddd;
+  padding: 10px;
+}
+
+.navbar {
+  padding-top: 10px;
+  padding-bottom: 20px;
+  background-color: white;
+}
+
+/* Set the width and height of Ag-grid */
+.ag-fresh {
+  width: 100%;
+  height: 300px;
+}
+
+.ag-grid-button-bar {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.elevator-card {
+  margin-top: 10px;
+
+}
+
+.elevator-collapse, .cursor-pointer {
+  cursor: pointer;
+}
+
+.elevator .card-header {
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.elevator .card .card-body {
+  margin: 10px 10px 10px 10px;
+}
+
+.hide-elevator-card-body {
+  display: none;
+}
+
+.tab-content {
+  border-left: 1px solid #ddd;
+  border-right: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  padding: 10px;
+}
+
+.ag-paging-panel span {
+  font-size: 18px;
+}
+
+.ag-header-cell-text {
+  font-size: 18px;
+}
+
+.ag-cell {
+  font-size: 16px;
+}
+
+.checkbox {
+  margin-left: 5px;
+}
+
+
+.place-holder {
+  margin-top: 80px;
+  margin-bottom: 100px;
+}
+
+
+.btn-login {
+  width: 78px !important;
+}
+
+li {
+  list-style-type: none;
+  padding: 0;
+  margin-left: 0;
+}
+
+.menu {
+  padding-left: 1.2rem;
+}
+
+.menu .nav-item {
+  margin-left: 0;
+  padding-left: 0;
+  cursor: pointer;
+}
+
+.menu .nav-item .nav-link {
+  margin-left: 0;
+  padding-left: 0;
+  cursor: pointer;
+}
+
+.dropdown-item {
+  cursor: pointer;
+}
+
+.modal-xl {
+  max-width: 80%;
+}
+
+#username, #groupId, .all-uppercase {
+  text-transform: uppercase;
+}
+
+.label-control-color {
+  display: block;
+  height: calc(1.5em + 0.75rem + 2px);
+  padding: 0.375rem 0.75rem;
+  color: blue;
+  margin-top: 36px;
+}
+::ng-deep ngb-toast-container, ::ng-deep .toast {
+  z-index: 700000 !important;
+}
+.label-control {
+  display: block;
+  height: calc(1.5em + 0.75rem + 2px);
+  padding: 0.375rem 0.75rem;
+  margin-top: 36px;
+}
+
+  .form-title {
+    margin-top: 10px;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 10px;
+  }
+  .close {
+    top: 15px;
+    right: 15px;
+    position: absolute;
+  }
+
+//.zindex { TODO add classes related to specific Modal, instead of all modals
+//  z-index: 99000 !important;
+//}
+
+//-----------custom css------------
+//horizontal line with text
+.center-line{
+  position:relative;
+  text-indent: 50px;
+}
+.center-line:before {
+  content: "";
+  display: block;
+  border-top: solid 2px #bebebe;
+  width: 30%;
+  height: 2px;
+  position: absolute;
+  top: 50%;
+  z-index: 0;
+}
+.center-line:after {
+  content: "";
+  display: block;
+  border-top: solid 2px #bebebe;
+  width: 97%;
+  height: 2px;
+  position: absolute;
+  top: 50%;
+  z-index: 0;
+}
+.center-line span {
+  background: #fff;
+  padding: 0 10px;
+  position: relative;
+  z-index: 1;
+}
+
+//right align label
+.label-a-right {display:block; text-align:right;}
+
+.pmbTemplteId .modal-sm {
+  width: 40% !important;
+  max-width: 1000px;
+}
+.pmbTemplteId .modal-dialog .modal-content .modal-header{
+  padding: 0.1rem 0rem;
+}
+
+.pmbTemplteId .modal-dialog .modal-content .modal-header .modal-title {
+  padding: 0.1rem 0rem;
+}
+
+.input-class-check .modal-dialog {
+  max-width: 50% !important;
+}
+
+.blue-color {
+  color: blue;
+}
+
+.label-broken {
+  width: 100%;
+  text-align: right;
+  border-bottom: 1px solid #0d20cf;
+  line-height: 0.1em;
+  margin: 10px 0 20px;
+}
+.label-broken span {
+  background:#fff; padding:0 10px;
+}

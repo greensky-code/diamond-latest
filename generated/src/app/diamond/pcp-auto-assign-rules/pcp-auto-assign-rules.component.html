@@ -1,0 +1,88 @@
+<!-- Copyright (c) 2021 . All Rights Reserved. -->
+<div class="container-fluid">
+    <div class="card-block">
+        <form [formGroup]="pcpAutoAssignRulesForm" novalidate>
+            <h2 class="form-title card-label-admin">Pcp Auto Assign Rules</h2>
+            <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+            <app-pop-up-message #popUpMesssage (buttonclickEvent)="popUpButtonHandler($event)"  [(popupMessage)] = "popUpMessage"></app-pop-up-message>
+                        
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of Rule ID -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('ruleId001') }">
+                     <label class="col-form-label" for="ruleId001" i18n>Rule ID</label>
+                     <input type="text" id="ruleId001"  [fieldLevelSec]="''" params]=""   class="form-control" formControlName="ruleId001"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('ruleId001')">
+                      {{ formValidation.errorMessage('ruleId001') }}
+                     </small>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of Rule ID -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('ruleId002') }">
+                     <label class="col-form-label" for="ruleId002" i18n>Rule ID</label>
+                     <input type="text" id="ruleId002"  [fieldLevelSec]="''" params]=""   class="form-control" formControlName="ruleId002"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('ruleId002')">
+                      {{ formValidation.errorMessage('ruleId002') }}
+                     </small>
+                 </div>
+            
+                <!-- Textbox with label of Rule Type -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('ruleType') }">
+                     <label class="col-form-label" for="ruleType" i18n>Rule Type</label>
+                     <input type="text" id="ruleType"  [fieldLevelSec]="''" params]=""   class="form-control" formControlName="ruleType"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('ruleType')">
+                      {{ formValidation.errorMessage('ruleType') }}
+                     </small>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of Rule Descr -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('ruleDescr') }">
+                     <label class="col-form-label" for="ruleDescr" i18n>Rule Descr</label>
+                     <input type="text" id="ruleDescr"  [fieldLevelSec]="''" params]=""   class="form-control" formControlName="ruleDescr"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('ruleDescr')">
+                      {{ formValidation.errorMessage('ruleDescr') }}
+                     </small>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+                <div class="col-md-2 form-control-static mb-0" i18n>
+                    Pediatric Indicator
+                </div>
+            
+            </div>
+            
+            <div class="form-group row">
+            </div>
+            
+                        <!-- DataGrid with Name of DataGrid -->
+                    <button (click)="dataGridGridOptionsExportCsv()">Export</button>
+                    <ag-grid-angular #agGrid class="ag-theme-fresh" [gridOptions]="dataGridGridOptions"
+                    style="width: 100%; height: 300px;"
+                    [enableSorting]="true"
+                    [enableFilter]="true"
+                    [floatingFilter]="true"
+                    [pagination]="true"
+                    [showToolPanel]="true">
+                    </ag-grid-angular>
+            
+            <div class="form-group row">
+            </div>
+        </form>
+    </div>
+</div>

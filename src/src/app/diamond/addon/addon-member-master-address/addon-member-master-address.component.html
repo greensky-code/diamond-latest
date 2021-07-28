@@ -1,0 +1,72 @@
+<!-- Copyright (c) 2021 . All Rights Reserved. -->
+<div class="container-fluid">
+    <div class="card-block">
+       
+        <nav ngbNav #nav="ngbNav" class="nav-tabs" [(activeId)]="activeTab">
+            <ng-container [ngbNavItem]="0" *ngIf="isAddressOverRide">
+                <a ngbNavLink (click)="OnChange('OVR')">Address OverRide</a>
+                <ng-template ngbNavContent>
+                    <member-master-addon-address [entityType]="entityType" [subscriberId]="subscriberId" [seqMembId]="seqMembId"  [seqSubsId]="seqSubsId" [seqEntityId]="seqEntityId" [seqAddressId]="seqAddressId" [addressCode]="'PMA'"></member-master-addon-address>
+                </ng-template>
+            </ng-container>
+
+            <ng-container [ngbNavItem]="1">
+                <a ngbNavLink (click)="OnChange('PMA')">Primary Mailing</a>
+                <ng-template ngbNavContent>
+                    <member-master-addon-address [entityType]="entityType" [subscriberId]="subscriberId" [seqMembId]="seqMembId"  [seqSubsId]="seqSubsId" [seqEntityId]="seqEntityId" [seqAddressId]="seqAddressId" [addressCode]="'PMA'"></member-master-addon-address>
+                </ng-template>
+            </ng-container>
+            <ng-container [ngbNavItem]="2">
+                <a ngbNavLink (click)="OnChange('PAY')">Primary Payee</a>
+                <ng-template ngbNavContent>
+
+                    <member-master-addon-address [entityType]="entityType" [subscriberId]="subscriberId" [seqMembId]="seqMembId" [seqSubsId]="seqSubsId" [seqEntityId]="seqEntityId" [seqAddressId]="seqAddressId" [addressCode]="'PAY'"></member-master-addon-address>
+
+                </ng-template>
+            </ng-container>
+
+
+            <ng-container [ngbNavItem]="3">
+                <a ngbNavLink (click)="OnChange('CLA')">Cignalinks Group Addresses</a>
+                <ng-template ngbNavContent>
+                    <member-master-addon-address [entityType]="entityType" [subscriberId]="subscriberId" [seqMembId]="seqMembId" [seqSubsId]="seqSubsId" [seqEntityId]="seqEntityId" [seqAddressId]="seqAddressId" [addressCode]="'CLA'"></member-master-addon-address>
+                </ng-template>
+            </ng-container>
+
+
+            <ng-container ngbNavItem [ngbNavItem]="4">
+                <a ngbNavLink (click)="OnChange('COR')">US Network Address</a>
+                <ng-template ngbNavContent>
+                    <member-master-addon-address [entityType]="entityType" [subscriberId]="subscriberId" [seqMembId]="seqMembId" [seqSubsId]="seqSubsId" [seqEntityId]="seqEntityId" [seqAddressId]="seqAddressId" [addressCode]="'COR'"></member-master-addon-address>
+
+                </ng-template>
+            </ng-container>
+
+
+            <ng-container [ngbNavItem]="5">
+                <a ngbNavLink (click)="OnChange('EEA')">Electronic Eligibility</a>
+                <ng-template ngbNavContent>
+                    <member-master-addon-address [entityType]="entityType" [subscriberId]="subscriberId" [seqMembId]="seqMembId" [seqSubsId]="seqSubsId" [seqEntityId]="seqEntityId" [seqAddressId]="seqAddressId" [addressCode]="'EEA'"></member-master-addon-address>
+                </ng-template>
+            </ng-container>
+
+
+            <ng-container [ngbNavItem]="6">
+                <a ngbNavLink (click)="OnChange('IDC')">ID Card</a>
+                <ng-template ngbNavContent>
+                    <member-master-addon-address [entityType]="entityType" [subscriberId]="subscriberId" [seqMembId]="seqMembId" [seqSubsId]="seqSubsId" [seqEntityId]="seqEntityId" [seqAddressId]="seqAddressId" [addressCode]="'IDC'"></member-master-addon-address>
+                </ng-template>
+            </ng-container>
+
+
+            <ng-container [ngbNavItem]="7">
+                <a ngbNavLink (click)="OnChange('LRA')">Cignalink Address</a>
+                <ng-template ngbNavContent>
+                    <member-master-addon-address [entityType]="entityType" [subscriberId]="subscriberId" [seqMembId]="seqMembId" [seqSubsId]="seqSubsId" [seqEntityId]="seqEntityId" [seqAddressId]="seqAddressId" [addressCode]="'LRA'"></member-master-addon-address>
+                </ng-template>
+            </ng-container>
+
+        </nav>
+        <div [ngbNavOutlet]="nav" class="mt-2"></div>
+    </div>
+</div>

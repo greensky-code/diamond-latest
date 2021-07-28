@@ -1,0 +1,230 @@
+<!-- Copyright (c) 2021 . All Rights Reserved. -->
+<div class="container-fluid">
+    <h2 class="form-title card-label-admin">A/R Adjustments</h2>
+    <button type="button" *ngIf="showIcon" class="close" aria-label="Close" (click)="modalClose()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    <ng-container *ngTemplateOutlet="loaderTemplate;context:{value: !isDataLoaded }"></ng-container>
+    <div class="card-block" *ngIf="isDataLoaded">
+        <div class="row">
+            <menu-bar [menus]="menu" (onMenuClick)="onMenuItemClick($event)"></menu-bar>
+          </div>
+        <form [formGroup]="arAdjustmentsForm" novalidate>
+            <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+            <app-pop-up-message #popUpMesssage (buttonclickEvent)="popUpButtonHandler($event)"  [(popupMessage)] = "popUpMessage"></app-pop-up-message>
+
+            <div class="form-group row">
+            </div>
+
+            <div class="form-group row">
+                <!-- DynamicText with label of AR Adjustment ID -->
+                 <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('arAdjustmentId') }">
+                     <label class="col-form-label" for="arAdjustmentId" i18n>AR Adjustment ID</label>
+                     <input type="text" (keydown)="openLookupFieldSearchModel($event)" [fieldLevelSec]="'Customer Id'"  [params]="{secColDetails: secColDetails}" id="arAdjustmentId" formControlName="arAdjustmentId" class="form-control"/>
+                 </div>
+
+            </div>
+
+            <ng-container *ngIf="showArAdjustmentField">
+
+                <div class="form-group row" i18n>
+                    <label class="label-broken col-md-4 text-primary text-right">
+                    <span class="clr-blue">
+                        <b><i>Adjustment Identification</i></b>
+                    </span>
+                    </label>
+                    <label class="col-md-8 label-broken"><span></span></label>
+                </div>
+
+            <div class="form-group row">
+                <!-- DynamicText with label of Customer Type -->
+                 <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('customerType') }">
+                     <label class="col-form-label clr-blue" for="customerType" i18n>Customer Type</label>
+                     <select class="form-control" id="customerType" name="customerType" formControlName="customerType"
+
+                                [fieldLevelSec]="'Customer Type'" [params]="{secColDetails: secColDetails}">
+                        <option [value]="type.dddwDtlPrimaryKey.dataVal" *ngFor="let type of customerTypes; let i = index">
+                            {{type.dddwDtlPrimaryKey.displayVal}}
+                        </option>
+                        </select>
+                    </div>
+            </div>
+
+            <div class="form-group row">
+                <!-- DynamicText with label of Customer ID -->
+                 <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('customerId') }">
+                     <label class="col-form-label clr-blue" for="customerId" i18n>Customer ID</label>
+                     <input type="text" #customerIds (keydown)="openCustomerLookupFieldSearchModel($event, customerIds.value)"
+                      [fieldLevelSec]="'Seq Aradj Id'" [params]="{secColDetails: secColDetails}"   id="customerId" formControlName="customerId" class="form-control"/>
+                 </div>
+
+                <!-- DynamicText with Name of DynamicText -->
+                 <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('dynamicText') }">
+                     <label class="col-form-label" for="dynamicText" i18n>&nbsp;</label>
+                     <input type="text"  readonly [fieldLevelSec]="''" [params]="{secColDetails: secColDetails}"   id="dynamicText" formControlName="dynamicText"
+                      class="form-control"/>
+                 </div>
+
+            </div>
+
+            <div class="form-group row">
+                <!-- DynamicText with label of Transaction Date -->
+                 <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('transactionDate') }">
+                     <app-datepicker [formGroup]="arAdjustmentsForm"
+                                     [formValidation]="formValidation"
+                                     [isRequired]="true"
+                                     [field]="'transactionDate'" [labelText]="'Transaction Date'"></app-datepicker>
+                 </div>
+
+            </div>
+
+            <div class="form-group row">
+            </div>
+            <hr>
+                <div class="form-group row" i18n>
+                    <label class="label-broken col-md-4 text-primary text-right">
+                    <span class="clr-blue">
+                        <b><i>Adjustment Information</i></b>
+                    </span>
+                    </label>
+                    <label class="col-md-8 label-broken"><span></span></label>
+                </div>
+
+            <div class="form-group row">
+                <!-- DynamicText with label of Transaction Amt -->
+                 <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('transactionAmt') }">
+                     <label class="col-form-label" for="transactionAmt" i18n>Transaction Amt</label>
+                     <input type="text"  [fieldLevelSec]="'Trans Amt'" [params]="{secColDetails: secColDetails}"  id="transactionAmt" formControlName="transactionAmt" class="form-control" [textMask]="{mask: mask.twoDigitDecimalNum}" placeholder=".00"/>
+                 </div>
+
+            </div>
+
+            <div class="form-group row">
+                <!-- DynamicText with label of Reason Code -->
+                 <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('reasonCode') }">
+                     <label class="col-form-label" for="reasonCode" i18n>Reason Code</label>
+                     <select class="form-control" id="reasonCode" name="reasonCode"
+                      formControlName="reasonCode"
+                                [fieldLevelSec]="'Gl Ref Code'" [params]="{secColDetails: secColDetails}">
+                        <option [value]="reasonCode.reasonCode" *ngFor="let reasonCode of reasonCodeValues; let i = index">
+                            {{reasonCode.reasonCode}} - {{reasonCode.description}}
+                        </option>
+                     </select>
+                 </div>
+
+            </div>
+
+            <div class="form-group row">
+            </div>
+            <hr>
+
+                <div class="form-group row" i18n>
+                    <label class="label-broken col-md-4 text-primary text-right">
+                    <span class="clr-blue">
+                        <b><i>Adjustment Status</i></b>
+                    </span>
+                    </label>
+                    <label class="col-md-8 label-broken"><span></span></label>
+                </div>
+
+            <div class="form-group row">
+                <!-- DynamicText with label of Statement Status -->
+                 <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('statementStatus') }">
+                     <label class="col-form-label" for="statementStatus" i18n>Statement Status</label>
+                     <select class="form-control" id="statementStatus" name="statementStatus"
+                      formControlName="statementStatus"
+                                [fieldLevelSec]="'Statement Status'" [params]="{secColDetails: secColDetails}">
+                        <option [value]="statementStatus.value" *ngFor="let statementStatus of statementStatusValues; let i = index">
+                            {{statementStatus.value}} - {{statementStatus.key}}
+                        </option>
+                     </select>
+                    </div>
+
+            </div>
+
+            <div class="form-group row">
+                <!-- DynamicText with label of Invoice Number -->
+                 <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('invoiceNumber') }">
+                     <label class="col-form-label" for="invoiceNumber" i18n>Invoice Number</label>
+                     <input type="text"  readonly [fieldLevelSec]="'Invoice No'" [params]="{secColDetails: secColDetails}"   id="invoiceNumber" formControlName="invoiceNumber" class="form-control"/>
+                 </div>
+
+            </div>
+
+            <div class="form-group row">
+            </div>
+            <hr>
+                <div class="form-group row" i18n>
+                    <label class="label-broken col-md-4 text-primary text-right">
+                    <span class="clr-blue">
+                        <b><i> GL Distribution Information</i></b>
+                    </span>
+                    </label>
+                    <label class="col-md-8 label-broken"><span></span></label>
+                </div>
+
+
+
+
+                <div class="form-group row">
+                <!-- Textbox with label of Post Date -->
+                 <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('postDate') }">
+                     <app-datepicker [formGroup]="arAdjustmentsForm"
+                                     [formValidation]="formValidation"
+                                     [disabled]="true"
+                                     [field]="'postDate'" [labelText]="'Post Date'"></app-datepicker>
+                 </div>
+
+            </div>
+
+            <div class="form-group row">
+                <!-- DynamicText with label of Company Code -->
+                <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('companyCode') }">
+                    <label class="col-form-label clr-blue" for="companyCode" i18n>Company Code</label>
+                    <select (change)="onCompanyCodeChange($event);"  class="form-control" id="companyCode" name="companyCode" formControlName="companyCode"
+                        [fieldLevelSec]="'Company Code'" [params]="{secColDetails: secColDetails}">
+                        <option [value]="code.companyCode" *ngFor="let code of companyMasters; let i = index">
+                            {{code.companyCode}} - {{code.description}}
+                        </option>
+                    </select>
+                </div>
+
+            </div>
+
+            <div class="form-group row">
+                <!-- DynamicText with label of GL Ref Code -->
+                 <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('glRefCode') }">
+                     <label class="col-form-label clr-blue" for="glRefCode" i18n>GL Ref Code</label>
+                     <select class="form-control" id="glRefCode" name="glRefCode" formControlName="glRefCode"
+
+                     [fieldLevelSec]="'GL Ref Code'" [params]="{secColDetails: secColDetails}">
+                     <option [value]="code.generalLedgerReferencePrimaryKey.glRefCode" *ngFor="let code of selectedGeneralRef; let i = index">
+                        {{code.generalLedgerReferencePrimaryKey.glRefCode}}&nbsp; &nbsp; &nbsp; {{code.description}}
+                     </option>
+                 </select>
+                 </div>
+
+            </div>
+
+            <div class="form-group row">
+                <!-- DynamicText with label of Comments -->
+                 <div class="col-md-8 aradj-textarea" [ngClass]="{'has-danger': formValidation.isValidField('comments') }">
+                     <label class="col-form-label" for="comments" i18n>Comments</label>
+                     <textarea style="min-height: 110px;" type="text" [fieldLevelSec]="''" [params]="{secColDetails: secColDetails}"   id="comments" formControlName="comments"  class="form-control" maxlength="200"></textarea>
+                 </div>
+
+            </div>
+            </ng-container>
+        </form>
+    </div>
+</div>
+
+<ng-template #loaderTemplate let-loaderValue="value">
+    <div class="row justify-content-center mt-4" *ngIf="loaderValue">
+      <div class="spinner-border text-success" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+    </div>
+  </ng-template>
+  <ng-keyboard-shortcuts [shortcuts]="shortcuts"></ng-keyboard-shortcuts>
+  <ng-keyboard-shortcuts-help [key]="'f1'" [closeKey]="'escape'" [title]="'Hotkeys Help'"></ng-keyboard-shortcuts-help>

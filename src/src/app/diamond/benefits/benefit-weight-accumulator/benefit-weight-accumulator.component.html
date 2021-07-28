@@ -1,0 +1,96 @@
+<!-- Copyright (c) 2020 . All Rights Reserved. -->
+<div class="container-fluid">
+  <button type="button" *ngIf="showIcon" class="modal-close close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+    <span aria-hidden="true">&times;</span>
+  </button>
+  <ng-container *ngTemplateOutlet="loaderTemplate;context:{value: !isDataLoaded }"></ng-container>
+  <div class="card-block" *ngIf="isDataLoaded">
+    <div class="row form-title">
+      <h2 class="col-md-6  card-label-admin"> Benefit Weight Accumulator </h2>
+      <div class="col-md"><b class="readonly-label">View Only</b></div>
+      <button type="button" class="close" aria-label="Close" (click)="modalClose()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    </div>
+   
+    <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+    <app-pop-up-message #popUpMesssage (buttonclickEvent)="popUpButtonHandler($event)" [(popupMessage)]="popUpMessage">
+    </app-pop-up-message>
+
+    <ng-template #loaderTemplate let-loaderValue = "value"  >
+      <div class="row justify-content-center mt-4" *ngIf="loaderValue">
+        <div class="spinner-border text-success" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+      </div>
+    </ng-template>
+
+    <ng-container *ngTemplateOutlet="loaderTemplate; context:{value: secProgress }"></ng-container>
+
+    <ng-container
+        *appWinSelect="{secWin: secWin, userTemplateId: userTemplateId, secModuleId: memmoduleid}">
+
+      <div class="row mt-3">
+        <menu-bar [menus]="menu" (onMenuClick)="onMenuItemClick($event)"></menu-bar>
+      </div>
+    <form [formGroup]="benefitWeightAccumulatorForm" novalidate *ngIf="!secProgress">
+
+      <div class="form-group row">
+        <!-- Textbox with label of Accumulator ID -->
+        <div class="col-md-4">
+          <label class="col-form-label" for="accumulatorId" i18n>Accumulator ID</label>
+          <div [ngClass]="{'has-danger': formValidation.isValidField('accumulatorId') }">
+            <div class="input-group mb-3">
+              <input type="text" #accumulatorId (keydown)="onLookupFieldAcumId($event, accumulatorId.value)" id="accumulatorId"
+                class="form-control" formControlName="accumulatorId"
+                     [fieldLevelSec]="'ACCUMULATOR_ID'" [params]="{secColDetails: secColDetails, isEditState: editBenefitWeight}"/>
+              <div class="input-group-append">
+                <div class="input-group-append">
+                  <button class="input-group-text" (click)="findByAccumulatorId(accumulatorId.value)">
+                    <fa-icon [icon]="faSearch"></fa-icon>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <small class="text-danger" *ngIf="formValidation.isValidField('accumulatorId')">
+              {{ formValidation.errorMessage('accumulatorId') }}
+            </small>
+          </div>
+        </div>
+
+      </div>
+      <div class="form-group row" *ngIf="showData">
+        <div class="col-md-8" [ngClass]="{'has-danger': formValidation.isValidField('description') }">
+          <label class="col-form-label" for="description" i18n>Description</label>
+          <input type="text" id="description" class="form-control" formControlName="description"
+                 [fieldLevelSec]="'DESCRIPTION'" [params]="{secColDetails: secColDetails, isEditState: editBenefitWeight}"/>
+          <small class="text-danger" *ngIf="formValidation.isValidField('description')">
+            {{ formValidation.errorMessage('description') }}
+          </small>
+        </div>
+      </div>
+    </form>
+
+    <div class="col-md-12 mt-3 p-0" *ngIf="showData">
+      <dynamic-form [prevState]="benefitAccumDetailData"
+                    [isResetForm]="isResetForm"
+                    [title]="'Details'"
+                    [config]="benefitWeightAccumDetailConfig"
+                    (onKeyUpFields)="dynamicEvent()"
+                    (formSubmitted)="saveBenefitWeightDetail($event)"></dynamic-form>
+    </div>
+
+    <div class="form-group row">
+    </div>
+    </ng-container>
+  </div>
+</div>
+<ng-template #loaderTemplate let-loaderValue="value">
+  <div class="row justify-content-center mt-4" *ngIf="loaderValue">
+    <div class="spinner-border text-success" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+  </div>
+</ng-template>
+<ng-keyboard-shortcuts [shortcuts]="shortcuts"></ng-keyboard-shortcuts>
+<ng-keyboard-shortcuts-help [key]="'f2'" [closeKey]="'escape'" [title]="'Hotkeys Help'"></ng-keyboard-shortcuts-help>

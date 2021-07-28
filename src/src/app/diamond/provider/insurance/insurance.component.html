@@ -1,0 +1,185 @@
+<!-- Copyright (c) 2021 . All Rights Reserved. -->
+<div class="container-fluid">
+    <div class="modal-header">
+        <h2 class="modal-title">Insurance</h2>
+        <button type="button" *ngIf="showIcon" class="close" aria-label="Close"
+                (click)="activeModal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+    <app-pop-up-message #popUpMesssage (buttonclickEvent)="popUpButtonHandler($event)"
+                        [(popupMessage)] = "popUpMessage"></app-pop-up-message>
+
+    <div class="card-block">
+
+        <ng-template #loaderTemplate let-loaderValue = "value"  >
+            <div class="row justify-content-center mt-4" *ngIf="loaderValue">
+                <div class="spinner-border text-success" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>
+            </div>
+        </ng-template>
+        <ng-container *ngTemplateOutlet="loaderTemplate;context:{value: secProgress }"></ng-container>
+
+        <ng-container *appWinSelect="{secWin: secWin, userTemplateId: userTemplateId, secModuleId: secModuleId}">
+            <form [formGroup]="insuranceForm" novalidate *ngIf="!secProgress">
+
+            <div class="form-group row">
+                <!-- TextArea with label of Carrier 1 -->
+                 <div class="col-md-5" [ngClass]="{'has-danger': formValidation.isValidField('carrier1') }">
+                     <label class="col-form-label" for="carrier1" i18n>Carrier 1</label>
+                     <input id="carrier1" name="carrier1" [fieldLevelSec]="'INSURANCE_CARRIER_1'" [params]="{secColDetails: secColDetails, isEditState: editProvCredential}"  class="form-control" formControlName="carrier1"/>
+                     <small class="text-danger" *ngIf="formValidation.isValidField('carrier1')">
+                         {{ formValidation.errorMessage('carrier1') }}
+                     </small>
+                 </div>
+            
+                <!-- TextArea with label of Carrier 2 -->
+                 <div class="col-md-5" [ngClass]="{'has-danger': formValidation.isValidField('carrier2') }">
+                     <label class="col-form-label" for="carrier2" i18n>Carrier 2</label>
+                     <input id="carrier2" name="carrier2" [fieldLevelSec]="'INSURANCE_CARRIER_2'" [params]="{secColDetails: secColDetails, isEditState: editProvCredential}"  class="form-control" formControlName="carrier2"/>
+                     <small class="text-danger" *ngIf="formValidation.isValidField('carrier2')">
+                         {{ formValidation.errorMessage('carrier2') }}
+                     </small>
+                 </div>
+
+                <div class="col-md-2" style="padding-top: 32px" [ngClass]="{'has-danger': formValidation.isValidField('carrier2') }">
+                    <button type="button" (click)="saveChanges(); backToScreen();"
+                            class="button" data-dismiss="modal" i18n>Ok</button>
+                </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of Policy 1 -->
+                 <div class="col-md-5" [ngClass]="{'has-danger': formValidation.isValidField('policy1') }">
+                     <label class="col-form-label" for="policy1" i18n>Policy 1</label>
+                     <input type="text" id="policy1"  [fieldLevelSec]="'INSURANCE_POLICY_1'" [params]="{secColDetails: secColDetails, isEditState: editProvCredential}"   class="form-control" formControlName="policy1"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('policy1')">
+                      {{ formValidation.errorMessage('policy1') }}
+                     </small>
+                 </div>
+            
+                <!-- Textbox with label of Policy 2 -->
+                 <div class="col-md-5" [ngClass]="{'has-danger': formValidation.isValidField('policy2') }">
+                     <label class="col-form-label" for="policy2" i18n>Policy 2</label>
+                     <input type="text" id="policy2"  [fieldLevelSec]="'INSURANCE_POLICY_2'" [params]="{secColDetails: secColDetails, isEditState: editProvCredential}"   class="form-control" formControlName="policy2"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('policy2')">
+                      {{ formValidation.errorMessage('policy2') }}
+                     </small>
+                 </div>
+
+                <div class="col-md-2" style="padding-top: 32px" [ngClass]="{'has-danger': formValidation.isValidField('carrier2') }">
+                    <button type="button" (click)="activeModal.dismiss('Cross click')"
+                            class="button" data-dismiss="modal" i18n>Cancel</button>
+                </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of From 1 -->
+                <div class="col-md-5" style="padding-top: 6px;">
+                    <app-datepicker [isRequired]="false" [formGroup]="insuranceForm"
+                                    [formValidation]="formValidation" [field]="'from1'"
+                                    [labelText]="'From 1'"
+                                    [fieldLevelSec]="'EFFECTIVE_FROM_1'" [params]="{secColDetails: secColDetails, isEditState: editProvCredential}"
+                    ></app-datepicker>
+                </div>
+            
+                <!-- Textbox with label of From 2 -->
+                <div class="col-md-5" style="padding-top: 6px;">
+                    <app-datepicker [isRequired]="false" [formGroup]="insuranceForm"
+                                    [formValidation]="formValidation" [field]="'from2'"
+                                    [labelText]="'From 2'"
+                                    [fieldLevelSec]="'EFFECTIVE_FROM_2'" [params]="{secColDetails: secColDetails, isEditState: editProvCredential}"
+                    ></app-datepicker>
+                </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of To 1 -->
+                <div class="col-md-5" style="padding-top: 6px;">
+                    <app-datepicker [isRequired]="false" [formGroup]="insuranceForm"
+                                    [formValidation]="formValidation" [field]="'to1'"
+                                    [labelText]="'To 1'"
+                                    [fieldLevelSec]="'EFFECTIVE_TO_1'" [params]="{secColDetails: secColDetails, isEditState: editProvCredential}"
+                    ></app-datepicker>
+                </div>
+            
+                <!-- Textbox with label of To 2 -->
+                <div class="col-md-5" style="padding-top: 6px;">
+                    <app-datepicker [isRequired]="false" [formGroup]="insuranceForm"
+                                    [formValidation]="formValidation" [field]="'to2'"
+                                    [labelText]="'To 2'"
+                                    [fieldLevelSec]="'EFFECTIVE_TO_2'" [params]="{secColDetails: secColDetails, isEditState: editProvCredential}"
+                    ></app-datepicker>
+                </div>
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of Claim Limit 1 -->
+                 <div class="col-md-5" [ngClass]="{'has-danger': formValidation.isValidField('claimLimit1') }">
+                     <label class="col-form-label" for="claimLimit1" i18n>Claim Limit 1</label>
+                     <input type="number" id="claimLimit1"  [fieldLevelSec]="'CLAIM_LIMIT_1'" [params]="{secColDetails: secColDetails, isEditState: editProvCredential}"   class="form-control" formControlName="claimLimit1"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('claimLimit1')">
+                      {{ formValidation.errorMessage('claimLimit1') }}
+                     </small>
+                 </div>
+            
+                <!-- Textbox with label of Claim Limit 2 -->
+                 <div class="col-md-5" [ngClass]="{'has-danger': formValidation.isValidField('claimLimit2') }">
+                     <label class="col-form-label" for="claimLimit2" i18n>Claim Limit 2</label>
+                     <input type="number" id="claimLimit2"  [fieldLevelSec]="'CLAIM_LIMIT_2'" [params]="{secColDetails: secColDetails, isEditState: editProvCredential}"   class="form-control" formControlName="claimLimit2"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('claimLimit2')">
+                      {{ formValidation.errorMessage('claimLimit2') }}
+                     </small>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of Aggreg Limit 1 -->
+                 <div class="col-md-5" [ngClass]="{'has-danger': formValidation.isValidField('aggregLimit1') }">
+                     <label class="col-form-label" for="aggregLimit1" i18n>Aggreg Limit 1</label>
+                     <input type="number" id="aggregLimit1"  [fieldLevelSec]="'AGGREG_LIMIT_1'" [params]="{secColDetails: secColDetails, isEditState: editProvCredential}"   class="form-control" formControlName="aggregLimit1"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('aggregLimit1')">
+                      {{ formValidation.errorMessage('aggregLimit1') }}
+                     </small>
+                 </div>
+            
+                <!-- Textbox with label of Aggreg Limit 2 -->
+                 <div class="col-md-5" [ngClass]="{'has-danger': formValidation.isValidField('aggregLimit2') }">
+                     <label class="col-form-label" for="aggregLimit2" i18n>Aggreg Limit 2</label>
+                     <input type="number" id="aggregLimit2"  [fieldLevelSec]="'AGGREG_LIMIT_2'" [params]="{secColDetails: secColDetails, isEditState: editProvCredential}"   class="form-control" formControlName="aggregLimit2"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('aggregLimit2')">
+                      {{ formValidation.errorMessage('aggregLimit2') }}
+                     </small>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of Policy Descr 1 -->
+                 <div class="col-md-5" [ngClass]="{'has-danger': formValidation.isValidField('policyDescr1') }">
+                     <label class="col-form-label" for="policyDescr1" i18n>Policy Descr 1</label>
+                     <textarea id="policyDescr1"  [fieldLevelSec]="'POLICY_DESCR_1'" [params]="{secColDetails: secColDetails, isEditState: editProvCredential}"   class="form-control" formControlName="policyDescr1"></textarea>
+                 </div>
+            
+                <!-- Textbox with label of Policy Descr 2 -->
+                 <div class="col-md-5" [ngClass]="{'has-danger': formValidation.isValidField('policyDescr2') }">
+                     <label class="col-form-label" for="policyDescr2" i18n>Policy Descr 2</label>
+                     <textarea id="policyDescr2"  [fieldLevelSec]="'POLICY_DESCR_2'" [params]="{secColDetails: secColDetails, isEditState: editProvCredential}"   class="form-control" formControlName="policyDescr2"></textarea>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+            </div>
+        </form>
+        </ng-container>
+    </div>
+</div>
+<ng-keyboard-shortcuts [shortcuts]="shortcuts"></ng-keyboard-shortcuts>
+<ng-keyboard-shortcuts-help [key]="'f1'" [closeKey]="'escape'" [title]="'Hotkeys Help'"></ng-keyboard-shortcuts-help>

@@ -1,0 +1,230 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+    <title>Covering Provider, How DIAMOND Thinks</title>
+    <!--(Meta)==========================================================-->
+    <meta name="copyright"
+          value="© Copyright 2002 Health Systems Design Corp., a wholly owned subsidiary of Perot Systems Corporation. All rights reserved"/>
+    <meta content="RoboHELP by eHelp Corporation - www.ehelp.com" name="generator"/>
+    <meta content="0.1" name="generator-major-version"/>
+    <meta content="1" name="generator-minor-version"/>
+    <meta content="kadov" name="filetype"/>
+    <meta content="1" name="filetype-version"/>
+    <meta content="1" name="page-count"/>
+    <meta content="890" name="layout-height"/>
+    <meta content="623" name="layout-width"/>
+    <!--(Links)=========================================================-->
+    <!--(Scripts)=======================================================-->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+
+</head>
+<body>
+
+<div class="calibreMeta">
+    <div class="calibreMetaTitle">
+
+
+        <h1>
+            <a href="../bai44-9x3eu.html">DIAMOND 950C/S Help
+            </a>
+        </h1>
+
+
+    </div>
+    <div class="calibreMetaAuthor">
+        Unknown
+
+    </div>
+</div>
+
+<div class="calibreMain">
+
+    <div class="calibreEbookContent">
+
+        <div class="calibreEbNavTop">
+
+            <a href="Site_Validation%2c_How_DIAMOND_Thinks.htm" class="calibreAPrev">previous page
+            </a>
+
+
+            <a href="Default_Provider_Vendor_Set_Up_Sequence.htm" class="calibreANext">next page
+            </a>
+
+        </div>
+
+
+        <h4 class="calibre1">Covering Provider, How DIAMOND Thinks</h4>
+
+        <!--(Table)=========================================================-->
+        <table cellspacing="0" width="500" x-use-null-cells="" class="calibre50">
+
+            <tbody class="">
+            <tr valign="top" class="">
+                <td width="192px" class="calibre51">
+                    <p class="map-links"><a
+                            href="Covering_Provider_How_DIAMOND_Thinks.htm#Covering_Provider_HDT_What_is_Ccvering_Provider_MID"><img
+                            alt="image\assets/help/MidTopic_shg.gif" border="0" height="10"
+                            src="assets/help/MidTopic_shg.gif" width="18" class=""/></a> What is Covering
+                        Provider?</p></td>
+                <td width="180px" class="">
+                    <p class="map-links"><a
+                            href="Covering_Provider_How_DIAMOND_Thinks.htm#Covering_Provider_HDT_Using_Covering_Provider_MID"><img
+                            alt="image\assets/help/MidTopic_shg.gif" border="0" height="10"
+                            src="assets/help/MidTopic_shg.gif" width="18" class=""/></a> Using Covering
+                        Provider</p></td>
+            </tr>
+
+            <tr valign="top" class="">
+                <td width="192px" class="">
+                    <p class="map-links"><a
+                            href="Covering_Provider_How_DIAMOND_Thinks.htm#Covering_Provider_HDT_Setting_Up_Covering_Provider_MID"><img
+                            alt="image\assets/help/MidTopic_shg.gif" border="0" height="10"
+                            src="assets/help/MidTopic_shg.gif" width="18" class=""/></a> Setting Up Covering
+                        Provider</p></td>
+                <td width="180px" class="">
+                    <p class="map-links"><a
+                            href="Covering_Provider_How_DIAMOND_Thinks.htm#Covering_Provider_How_DIAMOND_Thinks_Covering_Provider_Logic_MID"><img
+                            alt="image\assets/help/MidTopic_shg.gif" border="0" height="10"
+                            src="assets/help/MidTopic_shg.gif" width="18" class=""/></a> Covering Provider
+                        Logic</p></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <p class="doc-level"><a name="Covering_Provider_HDT_What_is_Ccvering_Provider_MID"></a>What
+            is Covering Provider?</p>
+
+        <p class="body-text">You can use the Covering Provider functionality for
+            a physician that arranges to have another physician cover his or her patients.
+            Typically, specialists cover for other specialists and primary care providers
+            (PCPs) cover for other PCPs. </p>
+
+        <p class="doc-level"><a name="Covering_Provider_HDT_Setting_Up_Covering_Provider_MID"></a>Setting
+            Up Covering Provider</p>
+
+        <p class="body-text">To set up Covering Provider, you must do the following:</p>
+
+        <ol class="calibre7">
+
+            <li class="kadov-p-cnumbered-list1"><p class="numbered-list">Check
+                the VENDORFIRST parameter in keyword PARAM (Parameters). The <span class="calibre8">Parameter
+ 1</span> box must be set N in order to use Covering Provider. For more
+                information on the VENDORFIRST parameter, see <a href="System.chm::/PARAM_VENDORFIRST_FIELD.htm">PARAM
+                    Record Definitions</a>.</p></li>
+
+            <li class="kadov-p-cnumbered-list1"><p class="numbered-list">In
+                keyword LINBS (Line of Business), the following fields must be set up
+                for the line of business:</p></li>
+        </ol>
+
+        <ul class="calibre9">
+
+            <li class="kadov-p-cbullet-list-h1"><p class="bullet-list-h1">The
+                <span class="calibre8">PCP Required</span> list must be set
+                to <span class="calibre8">R – Required</span>.</p></li>
+
+            <li class="kadov-p-cbullet-list-h1"><p class="bullet-list-h1">The
+                <span class="calibre8">Auth/Claim Match</span> check box must
+                be selected.</p></li>
+
+            <li class="kadov-p-cbullet-list-h1"><p class="bullet-list-h1">The
+                <span class="calibre8">Days Before</span> and <span class="calibre8">Days
+ After</span> boxes must have dates that are applicable for your business
+                needs. These dates are evaluated against the request date on the authorization.</p></li>
+
+            <li class="kadov-p-cbullet-list-h1"><p class="bullet-list-h1">The
+                <span class="calibre8">Covering Prov</span> check box must be
+                selected. If you cannot select this check box, then the VENDORFIRST parameter
+                in keyword PARAM has the <span class="calibre8">Parameter 1</span>
+                box set to <span class="calibre8">Y</span>, and it has to be
+                set to <span class="calibre8">N</span> in order for you to use
+                Covering Provider.</p></li>
+        </ul>
+
+        <ol start="3" class="calibre7">
+
+            <li class="kadov-p-cnumbered-list1"><p class="numbered-list">In
+                keyword CVPVC (Covering Provider Group Codes), add a name and ID for a
+                covering provider group.</p></li>
+
+            <li class="kadov-p-cnumbered-list1"><p class="numbered-list">In
+                keyword CVPVG (Covering Provider Groups), add providers to your provider
+                groups. Also select a reimbursement method.</p></li>
+
+            <li class="kadov-p-cnumbered-list1"><p class="numbered-list">In
+                keyword PROVC (Provider Contracts), display the provider and in the <span
+                        class="calibre8">Cov Group</span> box, type ID of the covering
+                provider group. F5 lookup is available.</p></li>
+        </ol>
+
+        <p class="doc-level"><a name="Covering_Provider_HDT_Using_Covering_Provider_MID"></a>Using
+            Covering Provider</p>
+
+        <p class="body-text">You can change the original provider to a covering provider
+            on the detail window in keywords PSCLM (Professional Services Claims)
+            and DNCLM (Dental Services Claims). Display the claim line on the detail
+            window. On the <span class="calibre8">Special</span> menu, click
+            <span class="calibre8">Covering Provider Info</span>. Click
+            <span class="calibre8">Change</span> to change to the provider
+            to another provider. Then, price or adjudicate the claim again. The claim
+            will re-price according to the covering provider method that was selected
+            in keyword CVPVG.</p>
+
+        <p class="doc-level"><a name="Covering_Provider_How_DIAMOND_Thinks_Covering_Provider_Logic_MID"></a>Covering
+            Provider Logic</p>
+
+        <p class="body-text">Covering Provider uses the setting in the Parameter1
+            box of the parameter record DUPAUTHRUL2 to determine whether to use the
+            Admit Date or the Req Date to calculate acceptable dates.</p>
+
+        <p class="doc-level1">Considerations</p>
+
+        <ul class="calibre9">
+
+            <li class="kadov-p-cbullet-list-h2"><p class="bullet-list-h2">Vendor First
+                logic cannot be used with Covering Provider logic</p></li>
+
+            <li class="kadov-p-cbullet-list-h2"><p class="bullet-list-h2">All match
+                rules must include Provider ID as a criteria</p></li>
+
+            <li class="kadov-p-cbullet-list-h2"><p class="bullet-list-h2">Days before
+                and days after is reading the Authorization request date</p></li>
+
+            <li class="kadov-p-cbullet-list-h2"><p class="bullet-list-h2">A provider
+                can only be a part of one covering provider group, per contract</p></li>
+
+            <li class="kadov-p-cbullet-list-h2"><p class="bullet-list-h2">Providers
+                covering for one another can have different vendors if the <span class="calibre8">Reimb
+ Method</span> list is set to <span class="calibre8">Use Covering
+ Provider pricing rules</span> in keyword CVPVG</p></li>
+
+            <li class="kadov-p-cbullet-list-h2"><p class="bullet-list-h2">Days/Visits
+                used will be correctly applied to the Authorization when Covering Provider
+                is automatically applied to the claim</p></li>
+        </ul>
+
+
+    </div>
+
+
+    <div class="calibreEbNav">
+
+        <a href="Site_Validation%2c_How_DIAMOND_Thinks.htm" class="calibreAPrev">previous page
+        </a>
+
+
+        <a href="../bai44-9x3eu.html" class="calibreAHome">start
+        </a>
+
+
+        <a href="Default_Provider_Vendor_Set_Up_Sequence.htm" class="calibreANext">next page
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+</html>

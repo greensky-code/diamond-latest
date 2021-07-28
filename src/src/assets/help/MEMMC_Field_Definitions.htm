@@ -1,0 +1,740 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+    <title>MEMMC Field Definitions</title>
+    <!--(Meta)==========================================================-->
+    <meta name="copyright"
+          value="© Copyright 2002 Health Systems Design Corp., a wholly owned subsidiary of Perot Systems Corporation. All rights reserved"/>
+    <meta content="RoboHELP by eHelp Corporation - www.ehelp.com" name="generator"/>
+    <meta content="0.1" name="generator-major-version"/>
+    <meta content="1" name="generator-minor-version"/>
+    <meta content="kadov" name="filetype"/>
+    <meta content="1" name="filetype-version"/>
+    <meta content="1" name="page-count"/>
+    <meta content="3468" name="layout-height"/>
+    <meta content="551" name="layout-width"/>
+    <meta content="ESRD;PIP-DCG;Eff;CMS;Geo;PBP;Acknowl;Ind;Addr;Req;McareSts;Y;N;C" name="x-ignored-words"/>
+    <!--(Links)=========================================================-->
+    <!--(Scripts)=======================================================-->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+</head>
+<body>
+
+<div class="calibreMeta">
+    <div class="calibreMetaTitle">
+
+
+        <h1>
+            <a href="../ib0gc-jzzjl.html">DIAMOND 950 Help
+            </a>
+        </h1>
+
+
+    </div>
+    <div class="calibreMetaAuthor">
+        Unknown
+
+    </div>
+</div>
+
+<div class="calibreMain">
+
+    <div class="calibreEbookContent">
+
+        <div class="calibreEbNavTop">
+
+            <a href="MEMMC_Field_Map.htm" class="calibreAPrev">previous page
+            </a>
+
+
+            <a href="MEMMC_Commands_on_the_Menu_Bar.htm" class="calibreANext">next page
+            </a>
+
+        </div>
+
+
+        <!--(Table)=========================================================-->
+        <table cellspacing="0" width="530" x-use-null-cells="" class="calibre125">
+
+            <tbody class="calibre3">
+            <tr valign="top" class="calibre4">
+                <td width="427px" class="calibre126">
+                    <p class="tbl-header-nonscroll"><span class="calibre127"><span class="calibre128">MEMMC Field Definitions</span></span>
+                    </p>
+                    <p class="tbl-header-nonscroll">Field Name  Req Description Source Comments</p></td>
+                <td width="103px" class="calibre129">
+                    <p class="legend"><img alt="image\FieldDef_Legend_shg.gif" border="0" height="53"
+                                           src="assets/help/FieldDef_Legend_shg.gif" width="97" class="calibre130"/></p></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <!--(Table)=========================================================-->
+        <table cellspacing="0" width="530" x-use-null-cells="" class="calibre125">
+            <colgroup class="calibre25">
+                <col class="calibre131"/>
+                <col class="calibre131"/>
+                <col class="calibre131"/>
+                <col class="calibre131"/>
+                <col class="calibre131"/>
+
+            </colgroup>
+            <tbody class="calibre3">
+            <tr valign="top" class="calibre4">
+                <td width="98px" class="calibre132">
+                    <p class="tbl-r-label"><a name="MEMMC_DIAMOND_ID_FIELD"></a>DIAMOND
+                        ID</p></td>
+                <td width="14px" class="calibre133">
+                    <p class="tbl-text">O</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Unique identifying number
+                        associated with every instance of a person in the Member Master records.</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Manually entered</p></td>
+                <td width="206px" class="calibre135">
+                    <p class="tbl-text">Use of a DIAMOND ID allows
+                        tracking of more than one instance of coverage for a person in DIAMOND.</p>
+                    <p class="tbl-text-noline">If this person has more than one insurance coverage,
+                        the other instances of the person appear in a popup and the appropriate
+                        one can be selected from the list.</p>
+                    <p class="tbl-text-noline">For more information, see <a href="Dual_Coverage_How_DIAMOND_Thinks.htm">Dual
+                        Coverage, How DIAMOND Thinks</a>.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="98px" class="calibre132">
+                    <p class="tbl-r-label"><a name="MEMMC_Subscriber_ID_FIELD"></a>Subscriber
+                        ID</p></td>
+                <td width="14px" class="calibre133">
+                    <p class="tbl-text">R</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Unique identifier of a subscriber
+                        and subscriber unit (family). </p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Manually entered</p></td>
+                <td width="206px" class="calibre135">
+                    <p class="tbl-text">F5 lookup is available.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="98px" class="calibre132">
+                    <p class="tbl-r-label"><a name="MEMMC_Medicaid_FIELD"></a>Medicaid</p></td>
+                <td width="14px" class="calibre133">
+                    <p class="tbl-text">O</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Indicates positive Medicaid
+                        status</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Displayed or Manually entered</p></td>
+                <td width="206px" class="calibre135">
+                    <p class="tbl-text">Valid values entered in the
+                        corresponding eligibility period's MELIG box <span class="calibre41">McareSts</span>
+                        (Medicare Status) position 6 display here if the corresponding eligibility
+                        period includes a Medicare + Choice line of business. </p>
+                    <p class="tbl-text-noline">You can manually enter a different value which
+                        is then also displayed in the MELIG box <span class="calibre41">McareSts</span>
+                        position 6.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="98px" class="calibre132">
+                    <p class="tbl-r-label"><a name="MEMMC_Disabled_FIELD"></a>Disabled</p></td>
+                <td width="14px" class="calibre133">
+                    <p class="tbl-text">O</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Indicates positive Disabled
+                        status</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Displayed or manually entered</p></td>
+                <td width="206px" class="calibre135">
+                    <p class="tbl-text">Valid values entered in the
+                        corresponding eligibility period's MELIG box <span class="calibre41">McareSts</span>
+                        (Medicare Status) position 7 display here if the corresponding eligibility
+                        period includes a Medicare + Choice line of business. </p>
+                    <p class="tbl-text-noline">You can manually enter a different value which
+                        is then also displayed in the MELIG box <span class="calibre41">McareSts</span>
+                        position 7.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="98px" class="calibre132">
+                    <p class="tbl-r-label"><a name="MEMMC_Hospice_FIELD"></a>Hospice</p></td>
+                <td width="14px" class="calibre133">
+                    <p class="tbl-text">O</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Indicates positive Hospice
+                        status</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Displayed or manually entered</p></td>
+                <td width="206px" class="calibre135">
+                    <p class="tbl-text">Valid values entered in the
+                        corresponding eligibility period's MELIG box <span class="calibre41">McareSts</span>
+                        (Medicare Status) position 8 display here if the corresponding eligibility
+                        period includes a Medicare + Choice line of business. </p>
+                    <p class="tbl-text-noline">You can manually enter a different value which
+                        is then also displayed in the MELIG box <span class="calibre41">McareSts</span>
+                        position 8.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="98px" class="calibre132">
+                    <p class="tbl-r-label"><a name="MEMMC_Institutional_FIELD"></a>Institutional</p></td>
+                <td width="14px" class="calibre133">
+                    <p class="tbl-text">O</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Indicates positive Institutional
+                        status</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Displayed or manually entered</p></td>
+                <td width="206px" class="calibre135">
+                    <p class="tbl-text">Valid values entered in the
+                        corresponding eligibility period's MELIG box <span class="calibre41">McareSts</span>
+                        (Medicare Status) position 9 display here if the corresponding eligibility
+                        period includes a Medicare + Choice line of business. </p>
+                    <p class="tbl-text-noline">You can manually enter a different value which
+                        is then also displayed in the MELIG box <span class="calibre41">McareSts</span>
+                        position 9.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="98px" class="calibre132">
+                    <p class="tbl-r-label"><a name="MEMMC_ESRD_FIELD"></a>ESRD</p></td>
+                <td width="14px" class="calibre133">
+                    <p class="tbl-text">O</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Indicates positive ESRD status</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Displayed or Manually entered</p></td>
+                <td width="206px" class="calibre135">
+                    <p class="tbl-text">Valid values entered in the
+                        corresponding eligibility period's MELIG box <span class="calibre41">McareSts</span>
+                        (Medicare Status) position 10 display here if the corresponding eligibility
+                        period includes a Medicare + Choice line of business. </p>
+                    <p class="tbl-text-noline">You can manually enter a different value which
+                        is then also displayed in the MELIG box <span class="calibre41">McareSts</span>
+                        position 10.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="98px" class="calibre132">
+                    <p class="tbl-r-label"><a name="MEMMC_Working_Aged_FIELD"></a>Working
+                        Aged</p></td>
+                <td width="14px" class="calibre133">
+                    <p class="tbl-text">O</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Indicates positive Working
+                        Aged status</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Displayed or manually entered</p></td>
+                <td width="206px" class="calibre135">
+                    <p class="tbl-text">Valid values entered in the
+                        corresponding eligibility period's MELIG box <span class="calibre41">McareSts</span>
+                        (Medicare Status) position 11 display here if the corresponding eligibility
+                        period includes a Medicare + Choice line of business. </p>
+                    <p class="tbl-text-noline">You can manually enter a different value which
+                        is then also displayed in the MELIG box <span class="calibre41">McareSts</span>
+                        position 11.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="98px" class="calibre132">
+                    <p class="tbl-r-label"><a name="MEMMC_Welfare_FIELD"></a>Welfare</p></td>
+                <td width="14px" class="calibre133">
+                    <p class="tbl-text">O</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Indicates positive Welfare
+                        status</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Manually entered</p></td>
+                <td width="206px" class="calibre135">
+                    <p class="tbl-list-hdr">Valid values:</p>
+                    <p class="tbl-list-txt">Y Positive Welfare status</p>
+                    <p class="tbl-list-txt">N Not positive Welfare status</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="98px" class="calibre132">
+                    <p class="tbl-r-label"><a name="MEMMC_PIP-DCG_FIELD"></a>PIP-DCG</p></td>
+                <td width="14px" class="calibre133">
+                    <p class="tbl-text">O</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">PIP-DCG factor</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Manually entered</p></td>
+                <td width="206px" class="calibre135">
+                    <p class="tbl-text">Valid values:</p>
+                    <p class="tbl-list-txt">1-99</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="98px" class="calibre132">
+                    <p class="tbl-r-label"><a name="MEMMC_Part_A_FIELD"></a>Part
+                        A</p></td>
+                <td width="14px" class="calibre133">
+                    <p class="tbl-text">R</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Indicates member entitlement
+                        to Medicare Part A coverage</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Manually entered</p></td>
+                <td width="206px" class="calibre135">
+                    <p class="tbl-list-hdr">Valid values:</p>
+                    <p class="tbl-list-txt">Y Entitled to Medicare Part A coverage</p>
+                    <p class="tbl-list-txt">N Not entitled to Medicare Part A coverage</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="98px" class="calibre132">
+                    <p class="tbl-r-label"><a name="MEMMC_Part_B_FIELD"></a>Part
+                        B</p></td>
+                <td width="14px" class="calibre133">
+                    <p class="tbl-text">R</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Indicates member entitlement
+                        to Part B coverage</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Manually entered</p></td>
+                <td width="206px" class="calibre135">
+                    <p class="tbl-list-hdr">Valid values:</p>
+                    <p class="tbl-list-txt">Y Entitled to Medicare Part B coverage</p>
+                    <p class="tbl-list-txt">N Not entitled to Medicare Part B coverage</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="98px" class="calibre132">
+                    <p class="tbl-r-label"><a name="MEMMC_Medicare_Part_A_Effective_Date_FIELD"></a>Medicare
+                        Part A Eff Dt</p></td>
+                <td width="14px" class="calibre133">
+                    <p class="tbl-text">R</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Effective date of member’s
+                        Medicare Part A coverage</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Manually entered</p></td>
+                <td width="206px" class="calibre135">
+                    <p class="tbl-text"> </p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="98px" class="calibre132">
+                    <p class="tbl-r-label"><a name="MEMMC_Medicare_Part_B_Enrollment_Date_FIELD"></a>Medicare
+                        Part B Enrol Dt</p></td>
+                <td width="14px" class="calibre133">
+                    <p class="tbl-text">R</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Effective date of member’s
+                        Medicare Part B coverage</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Manually entered</p></td>
+                <td width="206px" class="calibre135">
+                    <p class="tbl-text"> </p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td colspan="1" rowspan="1" width="98px" class="calibre132">
+                    <p class="tbl-r-label"><a name="Medicare_Part_A_B_Term_Date"></a>Medicare
+                        Part A/B Term Dt</p></td>
+                <td colspan="1" rowspan="1" width="14px" class="calibre133">
+                    <p class="tbl-text">O</p></td>
+                <td colspan="1" rowspan="1" width="105px" class="calibre134">
+                    <p class="tbl-text">Termination date of Medicare
+                        Part and Part B coverage</p></td>
+                <td colspan="1" rowspan="1" width="105px" class="calibre134">
+                    <p class="tbl-text">Manually entered</p></td>
+                <td colspan="1" rowspan="1" width="206px" class="calibre135">
+                    <p class="tbl-text"> </p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="98px" class="calibre132">
+                    <p class="tbl-r-label"><a name="MEMMC_CMS_State_Cd_FIELD"></a>CMS
+                        State Cd</p></td>
+                <td width="14px" class="calibre133">
+                    <p class="tbl-text">O</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">State code assigned by the
+                        Centers for Medicare &amp; Medicaid Services (CMS)</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Displayed or manually entered</p></td>
+                <td width="206px" class="calibre135">
+                    <p class="tbl-text">Valid values entered in the
+                        corresponding eligibility period's MELIG box <span class="calibre41">McareSts</span>
+                        (Medicare Status) positions 1-2 display here if the corresponding eligibility
+                        period includes a Medicare + Choice line of business. </p>
+                    <p class="tbl-text-noline">You can manually enter a different value which
+                        is then also displayed in the MELIG box <span class="calibre41">McareSts</span>
+                        positions 1-2.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="98px" class="calibre132">
+                    <p class="tbl-r-label"><a name="MEMMC_CMS_County_Cd_FIELD"></a>CMS
+                        County Cd</p></td>
+                <td width="14px" class="calibre133">
+                    <p class="tbl-text">O</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">County code assigned by the
+                        Centers for Medicare &amp; Medicaid Services (CMS) </p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Displayed or manually entered</p></td>
+                <td width="206px" class="calibre135">
+                    <p class="tbl-text">Valid values entered in the
+                        corresponding eligibility period's MELIG box <span class="calibre41">McareSts</span>
+                        (Medicare Status) positions 3-5 display here if the corresponding eligibility
+                        period includes a Medicare + Choice line of business. </p>
+                    <p class="tbl-text-noline">You can manually enter a different value which
+                        is then also displayed in the MELIG box <span class="calibre41">McareSts</span>
+                        positions 3-5.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="98px" class="calibre132">
+                    <p class="tbl-r-label"><a name="MEMMC_Geo_Code_FIELD"></a>Geo
+                        Code</p></td>
+                <td width="14px" class="calibre133">
+                    <p class="tbl-text">R</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Geographic code assigned
+                        by the Centers for Medicare &amp; Medicaid Services (CMS), based on the
+                        member's residential zip code and the CMS state and county code</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Manually entered</p></td>
+                <td width="206px" class="calibre135">
+                    <p class="tbl-text"> </p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="98px" class="calibre132">
+                    <p class="tbl-r-label"><a name="MEMMC_PBP_FIELD"></a>PBP</p></td>
+                <td width="14px" class="calibre133">
+                    <p class="tbl-text">R</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Plan Benefit package assigned
+                        by the Centers for Medicare &amp; Medicaid Services (CMS), based on the
+                        benefits filed for a county or counties.</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Manually entered</p></td>
+                <td width="206px" class="calibre135">
+                    <p class="tbl-text"> </p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="98px" class="calibre132">
+                    <p class="tbl-r-label"><a name="MEMMC_PBP_Acknowl_Indicator_FIELD"></a>PBP
+                        Acknowl Ind</p></td>
+                <td width="14px" class="calibre133">
+                    <p class="tbl-text">O</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Indicator of whether member
+                        has acknowledged a change in PBP (Plan Benefit Package)</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Selected with check box</p></td>
+                <td width="206px" class="calibre135">
+                    <p class="tbl-text">Valid values:</p>
+                    <p class="tbl-list-txt">Selected - Member has acknowledged a change in PBP
+                        (Plan Benefit Package)</p>
+                    <p class="tbl-list-txt">Cleared - Member has not acknowledged a change in
+                        PBP (Plan Benefit Package)</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="98px" class="calibre132">
+                    <p class="tbl-r-label"><a name="MEMMC_Eff_Date_FIELD"></a>Eff
+                        Date</p></td>
+                <td width="14px" class="calibre133">
+                    <p class="tbl-text">C</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">PBP Acknowledgement receipt
+                        date</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Manually entered</p></td>
+                <td width="206px" class="calibre135">
+                    <p class="tbl-text">Required if the <span class="calibre41">PBP 
+ Acknowl Ind</span> check box is selected.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="98px" class="calibre132">
+                    <p class="tbl-r-label"><a name="MEMMC_Provider_ID_FIELD"></a>Provider
+                        ID</p></td>
+                <td width="14px" class="calibre133">
+                    <p class="tbl-text">O</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Institutional Provider identification
+                        number</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Manually entered</p></td>
+                <td width="206px" class="calibre135">
+                    <p class="tbl-text">F5 lookup is available. You
+                        can enter a Provider ID not in the Provider Master table.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="98px" class="calibre132">
+                    <p class="tbl-r-label"><a name="MEMMC_Facility_Name_FIELD"></a>Facility
+                        Name</p></td>
+                <td width="14px" class="calibre133">
+                    <p class="tbl-text">C</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Institutional facility name</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Manually entered</p></td>
+                <td width="206px" class="calibre135">
+                    <p class="tbl-text">Required if <span class="calibre41">Institutional</span>
+                        box = Y.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="98px" class="calibre132">
+                    <p class="tbl-r-label"><a name="MEMMC_Addr_1_FIELD"></a>Addr
+                        1</p></td>
+                <td width="14px" class="calibre133">
+                    <p class="tbl-text">O</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Address line 1 of the institutional
+                        facility</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Manually entered</p></td>
+                <td width="206px" class="calibre135">
+                    <p class="tbl-text"> </p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="98px" class="calibre132">
+                    <p class="tbl-r-label"><a name="MEMMC_Addr_2_FIELD"></a>Addr
+                        2</p></td>
+                <td width="14px" class="calibre133">
+                    <p class="tbl-text">O</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Address line 2 of the institutional
+                        facility</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Manually entered</p></td>
+                <td width="206px" class="calibre135">
+                    <p class="tbl-text"> </p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="98px" class="calibre132">
+                    <p class="tbl-r-label"><a name="MEMMC_City_FIELD"></a>City</p></td>
+                <td width="14px" class="calibre133">
+                    <p class="tbl-text">O</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">City where the institutional
+                        facility is located</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Manually entered</p></td>
+                <td width="206px" class="calibre135">
+                    <p class="tbl-text"> </p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td colspan="1" rowspan="1" width="98px" class="calibre132">
+                    <p class="tbl-r-label"><a name="County">County</a></p></td>
+                <td colspan="1" rowspan="1" width="14px" class="calibre133">
+                    <p class="tbl-text">O</p></td>
+                <td colspan="1" rowspan="1" width="105px" class="calibre134">
+                    <p class="tbl-text">County where the institutional
+                        facility is located</p></td>
+                <td colspan="1" rowspan="1" width="105px" class="calibre134">
+                    <p class="tbl-text">Manually entered</p></td>
+                <td colspan="1" rowspan="1" width="206px" class="calibre135">
+                    <p class="tbl-text"> </p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="98px" class="calibre132">
+                    <p class="tbl-r-label"><a name="MEMMC_State_FIELD"></a>State</p></td>
+                <td width="14px" class="calibre133">
+                    <p class="tbl-text">O</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">State where the institutional
+                        facility is located</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Manually entered</p></td>
+                <td width="206px" class="calibre135">
+                    <p class="tbl-text"> </p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="98px" class="calibre132">
+                    <p class="tbl-r-label"><a name="MEMMC_Zip_Code_FIELD"></a>Zip
+                        Code</p></td>
+                <td width="14px" class="calibre133">
+                    <p class="tbl-text">O</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Zip Code where the institutional
+                        facility is located</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Manually entered</p></td>
+                <td width="206px" class="calibre135">
+                    <p class="tbl-text"> </p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="98px" class="calibre132">
+                    <p class="tbl-r-label"><a name="MEMMC_Country_FIELD"></a>Country</p></td>
+                <td width="14px" class="calibre133">
+                    <p class="tbl-text">O</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Country where the institutional
+                        facility is located</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Manually entered</p></td>
+                <td width="206px" class="calibre135">
+                    <p class="tbl-text"> </p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="98px" class="calibre132">
+                    <p class="tbl-r-label"><a name="MEMMC_Phone_Number_FIELD"></a>Phone
+                        Number</p></td>
+                <td width="14px" class="calibre133">
+                    <p class="tbl-text">O</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Phone number of the institutional
+                        facility</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Manually entered</p></td>
+                <td width="206px" class="calibre135">
+                    <p class="tbl-text"> </p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="98px" class="calibre132">
+                    <p class="tbl-r-label"><a name="MEMMC_Admit_Date_FIELD"></a>Admit
+                        Date</p></td>
+                <td width="14px" class="calibre133">
+                    <p class="tbl-text">O</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Date of admission of member
+                        to institutional facility</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Manually entered</p></td>
+                <td width="206px" class="calibre135">
+                    <p class="tbl-text"> </p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="98px" class="calibre132">
+                    <p class="tbl-r-label"><a name="MEMMC_Discharge_Dt_FIELD"></a>Discharge
+                        Dt</p></td>
+                <td width="14px" class="calibre133">
+                    <p class="tbl-text">O</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Date of discharge of member
+                        from institutional facility</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Manually entered</p></td>
+                <td width="206px" class="calibre135">
+                    <p class="tbl-text"> </p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="98px" class="calibre132">
+                    <p class="tbl-r-label"><a name="MEMMC_Medicaid_Medicare_Certification_FIELD"></a>Medicaid/Medicare
+                        Certification</p></td>
+                <td width="14px" class="calibre133">
+                    <p class="tbl-text">O</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Indicates whether institutional
+                        facility is qualified for Medicaid/Medicare certification</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Manually entered</p></td>
+                <td width="206px" class="calibre135">
+                    <p class="tbl-list-hdr">Valid values:</p>
+                    <p class="tbl-list-txt">Y Qualified for Medicaid/Medicare certification</p>
+                    <p class="tbl-list-txt">N Not qualified for Medicaid/Medicare certification</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="98px" class="calibre132">
+                    <p class="tbl-r-label"><a name="MEMMC_UserDef1_FIELD"></a>UserDef1</p></td>
+                <td width="14px" class="calibre133">
+                    <p class="tbl-text">C</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Conditionally required field
+                        defined during implementation of DIAMOND</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Manually entered</p></td>
+                <td width="206px" class="calibre135">
+                    <p class="tbl-text">The literal and validation
+                        for this field are defined as part of system set up using keyword UDTXT
+                        (User Defined Fields).</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="98px" class="calibre132">
+                    <p class="tbl-r-label"><a name="MEMMC_UserDef2_FIELD"></a>UserDef2</p></td>
+                <td width="14px" class="calibre133">
+                    <p class="tbl-text">C</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Conditionally required field
+                        defined during implementation of DIAMOND</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Manually entered</p></td>
+                <td width="206px" class="calibre135">
+                    <p class="tbl-text">The literal and validation
+                        for this field are defined as part of system set up using keyword UDTXT
+                        (User Defined Fields).</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="98px" class="calibre132">
+                    <p class="tbl-r-label"><a name="MEMMC_UserDate1_FIELD"></a>UserDate1</p></td>
+                <td width="14px" class="calibre133">
+                    <p class="tbl-text">O</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Optional date field defined
+                        during implementation of DIAMOND</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Manually entered</p></td>
+                <td width="206px" class="calibre135">
+                    <p class="tbl-text">The literal for this field
+                        is defined as part of system set up using keyword UDTXT.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="98px" class="calibre132">
+                    <p class="tbl-r-label"><a name="MEMMC_UserDate2_FIELD"></a>UserDate2</p></td>
+                <td width="14px" class="calibre133">
+                    <p class="tbl-text">O</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Optional date field defined
+                        during implementation of DIAMOND</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Manually entered</p></td>
+                <td width="206px" class="calibre135">
+                    <p class="tbl-text">The literal for this field
+                        is defined as part of system set up using keyword UDTXT.</p></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <p class="body-text"> </p>
+
+
+    </div>
+
+
+    <div class="calibreEbNav">
+
+        <a href="MEMMC_Field_Map.htm" class="calibreAPrev">previous page
+        </a>
+
+
+        <a href="../ib0gc-jzzjl.html" class="calibreAHome">start
+        </a>
+
+
+        <a href="MEMMC_Commands_on_the_Menu_Bar.htm" class="calibreANext">next page
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+</html>

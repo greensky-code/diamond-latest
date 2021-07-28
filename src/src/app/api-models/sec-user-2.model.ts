@@ -1,0 +1,52 @@
+/* Copyright (c) 2020 . All Rights Reserved. */
+
+export class SecUser2 {
+  userId: string;
+  fname: string;
+  mi: string;
+  lname: string;
+  initials: string;
+  tel: string;
+  ext: string;
+  fax: string;
+  loginMenu: string;
+  claimLimit: number;
+  pendClaimOvr: string;
+  grpAffil: string;
+  ipaAffil: string;
+  provAffil: string;
+  panAffil: string;
+  venAffil: string;
+  lobAffil: string;
+  suPriv: string;
+  secId: string;
+  insertDatetime: string;
+  insertUser: string;
+  insertProcess: string;
+  updateDatetime: string;
+  updateUser: string;
+  updateProcess: string;
+  dfltTemplate: string;
+  userType: string;
+  description: string;
+  curUsrDept: string;
+  usrLocation: string;
+  templateFlg: string;
+  usrSecurityLevel: string;
+  noteSecurityLevel: string;
+  languageId: number;
+  sfldlId: string;
+  userDefined1: string;
+  userDefined2: string;
+  userDate1: string;
+  userDate2: string;
+  resetPwdInd: string;
+  usePwdProfInd: string;
+  qsupervisorPriv: string;
+  effDate: string;
+  termDate: string;
+  termReason: string;
+    insertDatetimeDisplay: string;
+    updateDatetimeDisplay: string;
+  accountStatus: string;
+}

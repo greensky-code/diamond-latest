@@ -1,0 +1,76 @@
+<!-- Copyright (c) 2021 . All Rights Reserved. -->
+<div class="container-fluid">
+    <div class="card-block">
+        <h2 class="form-title card-label-admin">Provider Addresses</h2>
+        <button type="button" class="close" aria-label="Close"
+                (click)="ngbActiveModal.dismiss()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="main-content">
+        <div class="main-header row">
+            <div class="col-sm-6 detail pull-left">
+                <label>{{memberMaster.firstName}} {{memberMaster.lastName}}</label><br/>
+                <label>{{memberMaster.subscriberId}}</label>
+            </div>
+            <div class="col-sm-6 pull-right detail">
+                <label>{{instClaimHeader.groupMaster.shortName}}</label><br/>
+                <label>{{instClaimHeader.groupMaster.groupId}}</label>
+            </div>
+        </div>
+        <div class="sub-main-header">
+            <div class="text-center">
+                <span class="f-b">Claim ID: </span><span>{{instClaimHeader.claimNumber}}</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                <span class="f-b" *ngIf="instClaimHeader.userDefined2">Doc ID: </span><span *ngIf="instClaimHeader.userDefined2">{{instClaimHeader.userDefined2}}</span>
+            </div>
+            <div>&nbsp;&nbsp;&nbsp;&nbsp;</div>
+        </div>
+        <div class="desc-content row">
+            <div class="address-table col-sm-12">
+                <div class="table-header row">
+                    <div class="col">&nbsp;</div>
+                    <div class="col">Member Name</div>
+                    <div class="col">Address Type</div>
+                    <div class="col">Address</div>
+                    <div class="col">&nbsp;</div>
+                </div>
+                <div class="row table-message">
+                    <label class="text-center col-sm-12">Worldlink Claim being paid to provider. {{claimAddress}}</label>
+                </div>
+                <div class="address-rec row" *ngFor="let a of addresses">
+                    <div class="col">
+                        <span *ngIf="a.eobSentHere === true" class="badge badge-danger">EOB Sent Here</span><br *ngIf="a.eobSentHere === true"/>
+                        <span *ngIf="a.checkSentHere === true" class="badge badge-danger">Payment Sent Here</span><br *ngIf="a.checkSentHere === true"/>
+                    </div>
+                    <div class="col">{{memberMaster.firstName}} {{memberMaster.lastName}}</div>
+                    <div class="col"><a href="javascript:void(0)" (click)="openAddressPage(a)">{{getAddressCodeName(a)}}</a></div>
+                    <div class="col">
+                        <span *ngIf="a.address1">{{a.address1}}</span><br *ngIf="a.address1"/>
+                        <span *ngIf="a.address2">{{a.address2}}</span><br *ngIf="a.address2"/>
+                        <span *ngIf="a.address3">{{a.address3}}</span><br *ngIf="a.address3"/>
+                        <span *ngIf="a.address4">{{a.address4}}</span><br *ngIf="a.address4"/>
+                        <span *ngIf="a.address5">{{a.address5}}</span><br *ngIf="a.address5"/>
+                        <span *ngIf="a.address6">{{a.address6}}</span><br *ngIf="a.address6"/>
+                        <span *ngIf="a.address7">{{a.address7}}</span><br *ngIf="a.address7"/>
+                        <span *ngIf="a.address8">{{a.address8}}</span><br *ngIf="a.address8"/>
+                    </div>
+                    <div class="col">&nbsp;</div>
+                </div>
+            </div>
+            <div class="text-center links col-sm-12">
+                <a href="javascript:void(0)" class="add-link" (click)="showPrimaryMailingScreen()">Add New Address</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="javascript:void(0)" class="add-link">Add New Address Override</a>
+            </div>
+        </div>
+        <div class="">
+            <label>Copy the PIF Url to Clipboard <a href="javascript:void(0)">Visalia</a>&nbsp;&nbsp;<a href="javascript:void(0)">Wilmington</a></label>
+            <div class="text-center pt-2 buttons">
+                <input type="button" class="btn btn-default submit-btn" value="Continue" (click)="onSubmit()" />&nbsp;&nbsp;&nbsp;&nbsp;
+                <input type="button" class="btn btn-default submit-btn" value="Local Currency Conversion" (click)="onClickCurrencyConversion()" />
+            </div>
+            <div class="text-center">
+                <span class="text3">AddOn System Test Environment</span>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,715 @@
+<!-- Copyright (c) 2021 . All Rights Reserved. -->
+<div class="container-fluid">
+    <div class="card-block">
+        <div class="row form-title">
+            <h2 class="col-md-6  card-label-admin">Dental Service Claims</h2>
+            <div class="col-md"><b class="readonly-label">View Only</b></div>
+        </div>
+        <button type="button" *ngIf="showIcon" class="modal-close close" aria-label="Close"
+            (click)="modalClose()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+        <app-pop-up-message #popUpMesssage (buttonclickEvent)="popUpButtonHandler($event)"
+            [popupMessage]="popUpMessage"></app-pop-up-message>
+
+        <ng-template #loaderTemplate let-loaderValue="value">
+            <div class="row justify-content-center mt-4" *ngIf="loaderValue">
+                <div class="spinner-border text-success" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>
+            </div>
+        </ng-template>
+        <ng-container *ngTemplateOutlet="loaderTemplate;context:{value: secProgress }"></ng-container>
+
+        <ng-container *appWinSelect="{secWin: secWin, userTemplateId: userTemplateId, secModuleId: memberModuleId}">
+            <div class="row mt-3 mb-3">
+                <menu-bar [menus]="menu" (onMenuClick)="onMenuItemClick($event)"></menu-bar>
+            </div>
+
+            <form [formGroup]="dentalServiceClaimsForm" novalidate>
+                <div class="form-group row">
+                    <!-- DynamicText with label of Claim Number -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('claimNumber') }">
+                        <label class="col-form-label" for="claimNumber" i18n>Claim Number</label>
+                        <input type="text" id="claimNumber" #claimNumbers [readonly]="isDentalClaimIdDisabled"
+                            (keydown)="onLookupFieldChange($event, claimNumbers.value)" formControlName="claimNumber"
+                            class="form-control" />
+                    </div>
+                </div>
+
+                <div class="form-group row"></div>
+
+                <div class="form-group row">
+                    <!-- Textbox with label of Svc Date -->
+                    <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('svcDate') }">
+                        <label class="col-form-label text-primary" for="svcDate" i18n>Svc Date</label>
+                        <input type="text" id="svcDate" class="form-control" readonly formControlName="svcDate" />
+                        <small class="text-danger" *ngIf="formValidation.isValidField('svcDate')">
+                            {{ formValidation.errorMessage('svcDate') }}
+                        </small>
+                    </div>
+
+                    <!-- Textbox with label of Thru Date -->
+                    <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('thruDate') }">
+                        <label class="col-form-label" for="thruDate" i18n>Thru Date</label>
+                        <input type="text" id="thruDate" class="form-control" readonly formControlName="thruDate" />
+                        <small class="text-danger" *ngIf="formValidation.isValidField('thruDate')">
+                            {{ formValidation.errorMessage('thruDate') }}
+                        </small>
+                    </div>
+
+                    <!-- Textbox with label of Auth No -->
+                    <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('authNo') }">
+                        <label class="col-form-label" for="authNo" i18n>Auth No</label>
+                        <input type="text" id="authNo" class="form-control" readonly formControlName="authNo" />
+                        <small class="text-danger" *ngIf="formValidation.isValidField('authNo')">
+                            {{ formValidation.errorMessage('authNo') }}
+                        </small>
+                    </div>
+
+                    <!-- Textbox with Name of Textbox001 -->
+                    <div class="col-md-1" [ngClass]="{'has-danger': formValidation.isValidField('textbox001') }">
+                        <label class="col-form-label" for="textbox001" i18n>&nbsp;</label>
+                        <input type="text" id="textbox001" class="form-control" readonly formControlName="textbox001" />
+                        <small class="text-danger" *ngIf="formValidation.isValidField('textbox001')">
+                            {{ formValidation.errorMessage('textbox001') }}
+                        </small>
+                    </div>
+
+                    <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('lvl') }">
+                        <label class="col-form-label" for="lvl" i18n>Lvl</label>
+                        <input type="text" id="lvl" class="form-control" readonly formControlName="lvl" />
+                        <small class="text-danger" *ngIf="formValidation.isValidField('lvl')">
+                            {{ formValidation.errorMessage('lvl') }}
+                        </small>
+                    </div>
+
+                    <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('method') }">
+                        <label class="col-form-label" for="method" i18n>Method</label>
+                        <input type="text" id="method" class="form-control" readonly formControlName="method" />
+                        <small class="text-danger text-primary" *ngIf="formValidation.isValidField('method')">
+                            {{ formValidation.errorMessage('method') }}
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-md-12 form-control-static mb-0" i18n>
+                        <h4><u> Member Information </u></h4>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <!-- DynamicText with label of DIAMOND ID -->
+                    <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('diamondId') }">
+                        <label class="col-form-label" for="diamondId" i18n>DIAMOND ID</label>
+                        <input type="text" id="diamondId" formControlName="diamondId" class="form-control" readonly />
+                    </div>
+
+                    <!-- Textbox with label of Member ID -->
+                    <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('memberId') }">
+                        <label class="col-form-label text-primary" for="memberId" i18n>Member ID</label>
+                        <input type="text" id="memberId" class="form-control" readonly formControlName="memberId" />
+                        <small class="text-danger" *ngIf="formValidation.isValidField('memberId')">
+                            {{ formValidation.errorMessage('memberId') }}
+                        </small>
+                    </div>
+
+                    <div class="col-md-1" [ngClass]="{'has-danger': formValidation.isValidField('personNo') }">
+                        <label class="col-form-label" for="personNo" i18n>&nbsp;</label>
+                        <input type="text" id="personNo" formControlName="personNo" class="form-control" readonly />
+                    </div>
+
+                    <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('name') }">
+                        <label class="col-form-label" for="name" i18n>&nbsp;</label>
+                        <input type="text" id="name" formControlName="name" class="form-control text-primary" readonly />
+                    </div>
+
+                    <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('gender') }">
+                        <label class="col-form-label" for="gender" i18n>Gender</label>
+                        <input type="text" id="gender" class="form-control text-primary" readonly formControlName="gender" />
+                        <small class="text-danger" *ngIf="formValidation.isValidField('gender')">
+                            {{ formValidation.errorMessage('gender') }}
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('dob') }">
+                        <label class="col-form-label" for="dob" i18n>Date Of Birth</label>
+                        <input type="text" id="dob" class="form-control text-primary" readonly formControlName="dob" />
+                        <small class="text-danger" *ngIf="formValidation.isValidField('dob')">
+                            {{ formValidation.errorMessage('dob') }}
+                        </small>
+                    </div>
+
+                    <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('age') }">
+                        <label class="col-form-label" for="age" i18n>Age</label>
+                        <input type="text" id="age" class="form-control text-primary" readonly formControlName="age" />
+                        <small class="text-danger" *ngIf="formValidation.isValidField('age')">
+                            {{ formValidation.errorMessage('age') }}
+                        </small>
+                    </div>
+
+                    <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('ResState') }">
+                        <label class="col-form-label" for="ResState" i18n>Residence State</label>
+                        <input type="text" id="ResState" class="form-control text-primary" readonly formControlName="ResState" />
+                        <small class="text-danger" *ngIf="formValidation.isValidField('ResState')">
+                            {{ formValidation.errorMessage('ResState') }}
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('pcpId') }">
+                        <label class="col-form-label" for="pcpId" i18n>PCP ID</label>
+                        <input type="text" id="pcpId" class="form-control" readonly formControlName="pcpId" />
+                        <small class="text-danger" *ngIf="formValidation.isValidField('pcpId')">
+                            {{ formValidation.errorMessage('pcpId') }}
+                        </small>
+                    </div>
+
+                    <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('pcpName') }">
+                        <label class="col-form-label" for="pcpName" i18n>&nbsp;</label>
+                        <input type="text" id="pcpName" formControlName="pcpName" class="form-control" readonly />
+                    </div>
+
+                    <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('groupId') }">
+                        <label class="col-form-label" for="groupId" i18n>Group Id</label>
+                        <input type="text" id="groupId" class="form-control text-primary" readonly formControlName="groupId" />
+                        <small class="text-danger" *ngIf="formValidation.isValidField('groupId')">
+                            {{ formValidation.errorMessage('groupId') }}
+                        </small>
+                    </div>
+
+                    <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('groupName') }">
+                        <label class="col-form-label" for="groupName" i18n>&nbsp;</label>
+                        <input type="text" id="groupName" formControlName="groupName" class="form-control text-primary" readonly />
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('state') }">
+                        <label class="col-form-label" for="state" i18n>State</label>
+                        <input type="text" id="state" class="form-control text-primary" readonly formControlName="state" />
+                        <small class="text-danger" *ngIf="formValidation.isValidField('state')">
+                            {{ formValidation.errorMessage('state') }}
+                        </small>
+                    </div>
+
+                    <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('type') }">
+                        <label class="col-form-label" for="type" i18n>Type</label>
+                        <input type="text" id="type" class="form-control" readonly formControlName="type" />
+                        <small class="text-danger" *ngIf="formValidation.isValidField('type')">
+                            {{ formValidation.errorMessage('type') }}
+                        </small>
+                    </div>
+
+                    <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('plan') }">
+                        <label class="col-form-label" for="plan" i18n>Plan</label>
+                        <input type="text" id="plan" class="form-control text-primary" readonly formControlName="plan" />
+                        <small class="text-danger" *ngIf="formValidation.isValidField('plan')">
+                            {{ formValidation.errorMessage('plan') }}
+                        </small>
+                    </div>
+
+                    <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('spec') }">
+                        <label class="col-form-label" for="spec" i18n>Spec</label>
+                        <input type="text" id="spec" class="form-control text-primary" readonly formControlName="spec" />
+                        <small class="text-danger" *ngIf="formValidation.isValidField('spec')">
+                            {{ formValidation.errorMessage('spec') }}
+                        </small>
+                    </div>
+
+                    <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('ipa') }">
+                        <label class="col-form-label" for="ipa" i18n>IPA</label>
+                        <input type="text" id="ipa" class="form-control" readonly formControlName="ipa" />
+                        <small class="text-danger" *ngIf="formValidation.isValidField('ipa')">
+                            {{ formValidation.errorMessage('ipa') }}
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('guCategory') }">
+                        <label class="col-form-label" for="guCategory" i18n>GU Category</label>
+                        <input type="text" id="guCategory" class="form-control" readonly formControlName="guCategory" />
+                        <small class="text-danger" *ngIf="formValidation.isValidField('guCategory')">
+                            {{ formValidation.errorMessage('guCategory') }}
+                        </small>
+                    </div>
+
+                    <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('guEffDate') }">
+                        <label class="col-form-label" for="guEffDate" i18n>GU Cat. Effective.Date</label>
+                        <input type="text" id="guEffDate" class="form-control" readonly formControlName="guEffDate" />
+                        <small class="text-danger" *ngIf="formValidation.isValidField('guEffDate')">
+                            {{ formValidation.errorMessage('guEffDate') }}
+                        </small>
+                    </div>
+
+                    <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('lob') }">
+                        <label class="col-form-label" for="lob" i18n>LOB</label>
+                        <input type="text" id="lob" class="form-control text-primary" readonly formControlName="lob" />
+                        <small class="text-danger" *ngIf="formValidation.isValidField('lob')">
+                            {{ formValidation.errorMessage('lob') }}
+                        </small>
+                    </div>
+
+                    <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('panel') }">
+                        <label class="col-form-label" for="panel" i18n>Panel</label>
+                        <input type="text" id="panel" class="form-control" readonly formControlName="panel" />
+                        <small class="text-danger" *ngIf="formValidation.isValidField('panel')">
+                            {{ formValidation.errorMessage('panel') }}
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-md-12 form-control-static mb-0" i18n>
+                        <h4><u> Provider Information </u></h4>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <!-- Textbox with label of Ref Prov -->
+                    <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('refProv') }">
+                        <label class="col-form-label" for="refProv" i18n>Ref Prov</label>
+                        <input #refProvField type="text" id="refProv" class="form-control" readonly formControlName="refProv"
+                               (keydown)="openProMasterSearchModel($event)"/>
+                        <small class="text-danger" *ngIf="formValidation.isValidField('refProv')">
+                            {{ formValidation.errorMessage('refProv') }}
+                        </small>
+                    </div>
+
+                    <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('refProvShortname') }">
+                        <label class="col-form-label" for="refProvShortname" i18n>&nbsp;</label>
+                        <input type="text" id="refProvShortname" formControlName="refProvShortname" class="form-control text-primary"
+                            readonly />
+                    </div>
+
+                    <!-- DynamicText with label of Pay Stub -->
+                    <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('paySub') }">
+                        <label class="col-form-label" for="paySub" i18n>Pay Sub</label>
+                        <input type="text" id="paySub" formControlName="paySub" class="form-control text-primary" readonly />
+                    </div>
+
+                    <!-- DynamicText with label of Pay Dep -->
+                    <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('payDep') }">
+                        <label class="col-form-label" for="payDep" i18n>Pay Dep</label>
+                        <input type="text" id="payDep" formControlName="payDep" class="form-control text-primary" readonly />
+                    </div>
+
+                </div>
+
+                <div class="form-group row">
+
+                    <!-- DynamicText with label of Pay Stub -->
+                    <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('refProvType') }">
+                        <label class="col-form-label" for="refProvType" i18n>Ref. Provider Type</label>
+                        <input type="text" id="refProvType" formControlName="refProvType" class="form-control"
+                            readonly />
+                    </div>
+
+                    <!-- DynamicText with label of Pay Stub -->
+                    <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('refProvSpec') }">
+                        <label class="col-form-label" for="refProvSpec" i18n>Ref. Provider Spec</label>
+                        <input type="text" id="refProvSpec" formControlName="refProvSpec" class="form-control text-primary"
+                            readonly />
+                    </div>
+
+                    <!-- DynamicText with label of Pay Dep -->
+                    <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('RefProvIpa') }">
+                        <label class="col-form-label" for="RefProvIpa" i18n>Ref. Provider IPA</label>
+                        <input type="text" id="RefProvIpa" formControlName="RefProvIpa" class="form-control" readonly />
+                    </div>
+
+                </div>
+
+                <hr />
+
+                <div class="form-group row">
+                    <!-- Textbox with label of Provider -->
+                    <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('provider') }">
+                        <label class="col-form-label text-primary" for="provider" i18n>Provider</label>
+                        <input type="text" id="provider" class="form-control" readonly formControlName="provider" />
+                        <small class="text-danger" *ngIf="formValidation.isValidField('provider')">
+                            {{ formValidation.errorMessage('provider') }}
+                        </small>
+                    </div>
+
+                    <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('provShortname') }">
+                        <label class="col-form-label" for="provShortname" i18n>&nbsp;</label>
+                        <input type="text" id="provShortname" formControlName="provShortname" class="form-control text-primary"
+                            readonly />
+                    </div>
+
+                    <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('accNum') }">
+                        <label class="col-form-label" for="accNum" i18n>Acc. Number</label>
+                        <input type="text" id="accNum" class="form-control" readonly formControlName="accNum" />
+                        <small class="text-danger" *ngIf="formValidation.isValidField('accNum')">
+                            {{ formValidation.errorMessage('accNum') }}
+                        </small>
+                    </div>
+
+                    <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('covProv') }">
+                        <label class="col-form-label" for="covProv" i18n>Cov. Prov</label>
+                        <input type="text" id="covProv" class="form-control" readonly formControlName="covProv" />
+                        <small class="text-danger" *ngIf="formValidation.isValidField('covProv')">
+                            {{ formValidation.errorMessage('covProv') }}
+                        </small>
+                    </div>
+
+                    <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('covMthd') }">
+                        <label class="col-form-label" for="covMthd" i18n>Cov. Mthd</label>
+                        <input type="text" id="covMthd" class="form-control" readonly formControlName="covMthd" />
+                        <small class="text-danger" *ngIf="formValidation.isValidField('covMthd')">
+                            {{ formValidation.errorMessage('covMthd') }}
+                        </small>
+                    </div>
+
+                </div>
+
+                <div class="form-group row">
+                    <!-- DynamicText with label of Addr -->
+                    <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('provAddr') }">
+                        <label class="col-form-label" for="provAddr" i18n>Provider Addr</label>
+                        <input type="text" id="provAddr" formControlName="provAddr" class="form-control" readonly />
+                    </div>
+
+                    <!-- Textbox with label of Zip -->
+                    <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('zip') }">
+                        <label class="col-form-label" for="zip" i18n>Zip</label>
+                        <input type="text" id="zip" class="form-control" readonly formControlName="zip" />
+                        <small class="text-danger" *ngIf="formValidation.isValidField('zip')">
+                            {{ formValidation.errorMessage('zip') }}
+                        </small>
+                    </div>
+
+                    <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('inSvcArea') }">
+                        <label class="col-form-label" for="inSvcArea" i18n>In Svc Area</label>
+                        <input type="text" id="inSvcArea" class="form-control" readonly formControlName="inSvcArea" />
+                        <small class="text-danger" *ngIf="formValidation.isValidField('inSvcArea')">
+                            {{ formValidation.errorMessage('inSvcArea') }}
+                        </small>
+                    </div>
+
+                </div>
+
+                <div class="form-group row">
+
+                    <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('provType') }">
+                        <label class="col-form-label" for="provType" i18n>Provider Type</label>
+                        <input type="text" id="provType" class="form-control text-primary" readonly formControlName="provType" />
+                        <small class="text-danger" *ngIf="formValidation.isValidField('provType')">
+                            {{ formValidation.errorMessage('provType') }}
+                        </small>
+                    </div>
+
+                    <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('provSpec') }">
+                        <label class="col-form-label" for="provSpec" i18n>Provider Spec</label>
+                        <input type="text" id="provSpec" class="form-control text-primary" readonly formControlName="provSpec" />
+                        <small class="text-danger" *ngIf="formValidation.isValidField('provSpec')">
+                            {{ formValidation.errorMessage('provSpec') }}
+                        </small>
+                    </div>
+
+                    <!-- Textbox with label of Par -->
+                    <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('par') }">
+                        <label class="col-form-label" for="par" i18n>Par</label>
+                        <input type="text" id="par" class="form-control" readonly formControlName="par" />
+                        <small class="text-danger" *ngIf="formValidation.isValidField('par')">
+                            {{ formValidation.errorMessage('par') }}
+                        </small>
+                    </div>
+
+                    <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('provIpa') }">
+                        <label class="col-form-label" for="provIpa" i18n>Provider IPA</label>
+                        <input type="text" id="provIpa" class="form-control" readonly formControlName="provIpa" />
+                        <small class="text-danger" *ngIf="formValidation.isValidField('provIpa')">
+                            {{ formValidation.errorMessage('provIpa') }}
+                        </small>
+                    </div>
+                </div>
+                <hr />
+
+                <div class="form-group row">
+                    <!-- Textbox with label of Vendor -->
+                    <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('vendor') }">
+                        <label class="col-form-label text-primary" for="vendor" i18n>Vendor</label>
+                        <input type="text" id="vendor" class="form-control" readonly formControlName="vendor" />
+                        <small class="text-danger" *ngIf="formValidation.isValidField('vendor')">
+                            {{ formValidation.errorMessage('vendor') }}
+                        </small>
+                    </div>
+
+                    <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('vendorShortName') }">
+                        <label class="col-form-label" for="vendorShortName" i18n>&nbsp;</label>
+                        <input type="text" id="vendorShortName" formControlName="vendorShortName" class="text-primary form-control"
+                            readonly />
+                    </div>
+
+                    <!-- DynamicText with label of Addr -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('vendorAddr') }">
+                        <label class="col-form-label text-primary" for="vendorAddr" i18n>Vendor Addr</label>
+                        <input type="text" id="vendorAddr" formControlName="vendorAddr" class="form-control" readonly />
+                    </div>
+
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-md-12 form-control-static mb-0" i18n>
+                        <h4><u> Claim Information </u></h4>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <!-- Textbox with label of Plc Of Svc -->
+                    <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('plcOfSvc') }">
+                        <label class="col-form-label text-primary" for="plcOfSvc" i18n>Plc Of Svc</label>
+                        <input type="text" id="plcOfSvc" (keydown.F5)="onF5KeySvc($event.target.value);preventDefault();" class="form-control" formControlName="plcOfSvc" />
+                        <small class="text-danger" *ngIf="formValidation.isValidField('plcOfSvc')">
+                            {{ formValidation.errorMessage('plcOfSvc') }}
+                        </small>
+                    </div>
+
+                    <!-- Textbox with label of Serv Rsn -->
+                    <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('servRsn') }">
+                        <label class="col-form-label" for="servRsn" i18n>Serv Rsn</label>
+                        <input type="text" id="servRsn" class="form-control" (keydown.F5)="onF5KeyServRsn($event.target.value);preventDefault();" formControlName="servRsn" />
+                        <small class="text-danger" *ngIf="formValidation.isValidField('servRsn')">
+                            {{ formValidation.errorMessage('servRsn') }}
+                        </small>
+                    </div>
+
+                    <!-- Textbox with label of Total Billed -->
+                    <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('totalBilled') }">
+                        <label class="col-form-label" for="totalBilled" i18n>Total Billed</label>
+                        <input type="text" id="totalBilled" class="form-control" formControlName="totalBilled" />
+                        <small class="text-danger" *ngIf="formValidation.isValidField('totalBilled')">
+                            {{ formValidation.errorMessage('totalBilled') }}
+                        </small>
+                    </div>
+
+                    <!-- Textbox with label of Date Recv -->
+                    <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('dateRecv') }">
+                        <app-datepicker [formGroup]="dentalServiceClaimsForm" [formValidation]="formValidation"
+                                        [field]="'dateRecv'" [labelText]="'Date Recv'"
+                                        [isRequired]="true"></app-datepicker>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+
+                    <!-- Textbox with label of Dx 1 -->
+                    <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('dx1') }">
+                        <label class="col-form-label" for="dx1" i18n>Dx 1</label>
+                        <input type="text" id="dx1" (keydown.F5)="onF5KeyDx1($event.target.value);preventDefault();" class="form-control" formControlName="dx1" />
+                        <small class="text-danger" *ngIf="formValidation.isValidField('dx1')">
+                            {{ formValidation.errorMessage('dx1') }}
+                        </small>
+                    </div>
+
+                    <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('dx1name') }">
+                        <label class="col-form-label" for="dx1name" i18n>&nbsp;</label>
+                        <input type="text" id="dx1name" formControlName="dx1name" class="form-control text-primary" readonly />
+                    </div>
+
+                    <!-- DynamicText with label of Dx 2 -->
+                    <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('dx2') }">
+                        <label class="col-form-label" for="dx2" i18n>Dx 2</label>
+                        <input type="text" id="dx2" (keydown.F5)="onF5KeyDx2($event.target.value);preventDefault();" formControlName="dx2" class="form-control" />
+                    </div>
+
+                    <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('dx2name') }">
+                        <label class="col-form-label" for="dx2name" i18n>&nbsp;</label>
+                        <input type="text" id="dx2name" formControlName="dx2name" class="form-control text-primary" readonly />
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <!-- DynamicText with label of Dx 3 -->
+                    <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('dx3') }">
+                        <label class="col-form-label" for="dx3" i18n>Dx 3</label>
+                        <input type="text" id="dx3" (keydown.F5)="onF5KeyDx3($event.target.value);preventDefault();" formControlName="dx3" class="form-control" />
+                    </div>
+
+                    <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('dx3name') }">
+                        <label class="col-form-label" for="dx3name" i18n>&nbsp;</label>
+                        <input type="text" id="dx3name" formControlName="dx3name" class="form-control text-primary" readonly />
+                    </div>
+
+                    <!-- DynamicText with label of Dx 4 -->
+                    <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('dx4') }">
+                        <label class="col-form-label" for="dx4" i18n>Dx 4</label>
+                        <input type="text" id="dx4" (keydown.F5)="onF5KeyDx4($event.target.value);preventDefault();" formControlName="dx4" class="form-control" />
+                    </div>
+
+                    <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('dx4name') }">
+                        <label class="col-form-label" for="dx4name" i18n>&nbsp;</label>
+                        <input type="text" id="dx4name" formControlName="dx4name" class="form-control text-primary" readonly />
+                    </div>
+
+                </div>
+
+                <div class="form-group row">
+
+                    <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('auditStatus') }">
+                        <label class="col-form-label" for="auditStatus" i18n>Audit Status</label>
+                        <input type="text" id="auditStatus" class="form-control" readonly
+                            formControlName="auditStatus" />
+                        <small class="text-danger" *ngIf="formValidation.isValidField('auditStatus')">
+                            {{ formValidation.errorMessage('auditStatus') }}
+                        </small>
+                    </div>
+
+                    <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('holds') }">
+                        <label class="col-form-label" for="holds" i18n>Holds</label>
+                        <input type="text" id="holds" class="form-control" readonly formControlName="holds" />
+                        <small class="text-danger" *ngIf="formValidation.isValidField('holds')">
+                            {{ formValidation.errorMessage('holds') }}
+                        </small>
+                    </div>
+
+                    <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('eobInd') }">
+                        <label class="col-form-label" for="eobInd" i18n>EOB Ind</label>
+                        <input type="text" id="eobInd" class="form-control" formControlName="eobInd" />
+                        <small class="text-danger" *ngIf="formValidation.isValidField('eobInd')">
+                            {{ formValidation.errorMessage('eobInd') }}
+                        </small>
+                    </div>
+
+                    <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('hdrChgd') }">
+                        <label class="col-form-label" for="hdrChgd" i18n>Hdr Chgd</label>
+                        <input type="text" id="hdrChgd" class="form-control" readonly formControlName="hdrChgd" />
+                        <small class="text-danger" *ngIf="formValidation.isValidField('hdrChgd')">
+                            {{ formValidation.errorMessage('hdrChgd') }}
+                        </small>
+                    </div>
+
+                    <!-- DynamicText with label of Privacy Applies -->
+                    <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('privacyApplies') }">
+                        <label class="col-form-label" for="privacyApplies" i18n>Privacy Applies</label>
+                        <input type="text" id="privacyApplies" formControlName="privacyApplies" class="form-control text-primary"
+                            readonly />
+                    </div>
+                </div>
+
+                <div class="form-group row">
+
+                    <!-- Textbox with label of User Def 1 -->
+                    <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('userDef1') }">
+                        <label class="col-form-label" for="userDef1" i18n>User Def 1</label>
+                        <input type="text" id="userDef1" class="form-control" formControlName="userDef1" />
+                        <small class="text-danger" *ngIf="formValidation.isValidField('userDef1')">
+                            {{ formValidation.errorMessage('userDef1') }}
+                        </small>
+                    </div>
+
+                    <!-- Textbox with label of User Def 2 -->
+                    <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('userDef2') }">
+                        <label class="col-form-label" for="userDef2" i18n>User Def 2</label>
+                        <input type="text" id="userDef2" class="form-control" formControlName="userDef2" />
+                        <small class="text-danger" *ngIf="formValidation.isValidField('userDef2')">
+                            {{ formValidation.errorMessage('userDef2') }}
+                        </small>
+                    </div>
+
+                    <!-- Textbox with label of Facility ID -->
+                    <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('facilityId') }">
+                        <label class="col-form-label" for="facilityId" i18n>Facility ID</label>
+                        <input type="text" id="facilityId" class="form-control" readonly formControlName="facilityId" />
+                        <small class="text-danger" *ngIf="formValidation.isValidField('facilityId')">
+                            {{ formValidation.errorMessage('facilityId') }}
+                        </small>
+                    </div>
+
+                    <!-- Textbox with label of Batch Number -->
+                    <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('batchNumber') }">
+                        <label class="col-form-label" for="batchNumber" i18n>Batch Number</label>
+                        <input type="text" id="batchNumber" class="form-control" readonly
+                            formControlName="batchNumber" />
+                        <small class="text-danger" *ngIf="formValidation.isValidField('batchNumber')">
+                            {{ formValidation.errorMessage('batchNumber') }}
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <!-- Textbox with label of Security Code -->
+                    <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('securityCode') }">
+                        <label class="col-form-label" for="securityCode" i18n>Security Code</label>
+                        <input type="text" id="securityCode" class="form-control" readonly
+                            formControlName="securityCode" />
+                        <small class="text-danger" *ngIf="formValidation.isValidField('securityCode')">
+                            {{ formValidation.errorMessage('securityCode') }}
+                        </small>
+                    </div>
+
+                    <!-- Textbox with label of Security Code -->
+                    <!--                        <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('clmCode') }">-->
+                    <!--                            <label class="col-form-label" for="clmCode" i18n>Clm Subm Rsn Code</label>-->
+                    <!--                            <input type="text" id="clmCode" class="form-control" readonly formControlName="clmCode"/>-->
+                    <!--                            <small class="text-danger" *ngIf="formValidation.isValidField('clmCode')">-->
+                    <!--                                {{ formValidation.errorMessage('clmCode') }}-->
+                    <!--                            </small>-->
+                    <!--                        </div>-->
+                    <!-- Checkbox with label of Invalid Data -->
+
+                    <div class="checkbox col-md-12">
+                        <input id="invalidData" value="invalidData" formControlName="invalidData" type="checkbox">
+                        <label class="checkbox">
+                            Invalid Data
+                        </label>
+                    </div>
+                    <span class="help-block" *ngIf="displayMessage.invalidData">
+                        {{ displayMessage.invalidData }}
+                    </span>
+
+                </div>
+
+                <ng-template #paySubscriberTemplate>
+
+
+                    <div class="container-fluid">
+                        <div class="card-block">
+
+                            <h2 class="form-title card-label-admin">Claim Header Pay Subscriber</h2>
+                            <button type="button" *ngIf="showIcon" class="close" aria-label="Close"
+                                    (click)="paySubModalRef.dismiss()">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+
+                            <div class="row">
+                                <div class="col-md-8 offset-1 mt-4 mb-4">
+                                    <div class="form-group row">
+                                        <!-- Textbox with label of paySubscriber -->
+                                        <label class="checkbox font-weight-bold" for="paySubscriber" i18n>Pay Subscriber</label>
+                                        <div [ngClass]="{'has-error': displayMessage.paySubscriber }" class="col-md-2">
+                                            <div class="checkbox">
+                                                <input formControlName="paySubscriber" id="paySubscriber" type="checkbox"  style="height: 20px; width: 20px">
+                                            </div>
+                                            <span *ngIf="displayMessage.paySubscriber" class="help-block">{{ displayMessage.paySubscriber  }}</span>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="col-md-3 mb-1">
+                                    <button class="col-sm-12 button" (click)="saveProfClaimHeader()">OK</button>
+                                    <button class="col-sm-12 button mt-1" (click)="paySubModalRef.dismiss()">Cancel</button>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+
+                </ng-template>
+            </form>
+        </ng-container>
+
+    </div>
+</div>
+
+<ng-keyboard-shortcuts [shortcuts]="shortcuts"></ng-keyboard-shortcuts>
+<ng-keyboard-shortcuts-help [key]="'f2'" [closeKey]="'escape'" [title]="'Hotkeys Help'"></ng-keyboard-shortcuts-help>

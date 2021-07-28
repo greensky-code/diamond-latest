@@ -1,0 +1,800 @@
+<!-- Copyright (c) 2021 . All Rights Reserved. -->
+<div class="container-fluid">
+    <div class="card-block">
+        <h2 class="form-title card-label-admin">Claim Duplicate Check Rules</h2>
+        <button type="button" *ngIf="showIcon" class="close" aria-label="Close"
+                (click)="modalClose()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+
+        <ng-template #loaderTemplate let-loaderValue="value">
+            <div class="row justify-content-center mt-4" *ngIf="loaderValue">
+                <div class="spinner-border text-success" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>
+            </div>
+        </ng-template>
+
+
+        <ng-container *ngTemplateOutlet="loaderTemplate;context:{value: secProgress }"></ng-container>
+        <ng-container *appWinSelect="{secWin: secWin, userTemplateId: userTemplateId, secModuleId: moduleId}">
+
+        </ng-container>
+        <div class="row mt-3">
+            <menu-bar [menus]="menu" (onMenuClick)="onMenuItemClick($event)"></menu-bar>
+        </div>
+
+        <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+        <app-pop-up-message #popUpMesssage (buttonclickEvent)="popUpButtonHandler($event)"
+                            [(popupMessage)]="popUpMessage"></app-pop-up-message>
+
+        <form [formGroup]="claimDuplicateCheckRulesForm"  *ngIf="!secProgress" novalidate>
+            <div class="form-group row">
+            </div>
+
+            <!-- DataGrid with Name of DataGrid -->
+            <!--<button (click)="dataGridGridOptionsExportCsv()">Export</button>-->
+            <ag-grid-angular #agGrid class="ag-theme-fresh" [gridOptions]="dataGridGridOptions"
+                             style="width: 100%; height: 300px;"
+                             [enableSorting]="true"
+                             [enableFilter]="false"
+                             [floatingFilter]="false"
+                             [pagination]="true"
+                             [showToolPanel]="true"
+                             (selectionChanged)="Grid1SelectionChange()">
+            </ag-grid-angular>
+
+            <div class="form-group row">
+            </div>
+
+            <div class="form-group row">
+                <!-- Textbox with label of Dup Rule -->
+                <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('dupRule') }">
+                    <label class="col-form-label clr-blue" for="dupRule" i18n>Dup Rule</label>
+                    <input type="text" id="dupRule" [fieldLevelSec]="''" [params]="" class="form-control"
+                           formControlName="dupRule" [attr.disabled]="claimsDuplicateRule ? 'disabled' : null" />
+                    <small class="text-danger" *ngIf="formValidation.isValidField('dupRule')">
+                        {{ formValidation.errorMessage('dupRule') }}
+                    </small>
+                </div>
+
+                <!-- Textbox with label of Claim Type -->
+                <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('claimType') }">
+                    <label class="col-form-label clr-blue" for="claimType" i18n>Claim Type</label>
+                    <select type="text" id="claimType" [fieldLevelSec]="'Claim Type'" [params]="'Claims Duplicate Rule'"
+                            class="form-control" formControlName="claimType"  [attr.disabled]="claimsDuplicateRule ? 'disabled' : null" >
+                        <option [value]="o.value" *ngFor="let o of claimTypes">{{o.key}}</option>
+                    </select>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('claimType')">
+                        {{ formValidation.errorMessage('claimType') }}
+                    </small>
+                </div>
+
+                <!-- Textbox with label of Desc -->
+                <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('desc') }">
+                    <label class="col-form-label clr-blue" for="desc" i18n>Desc</label>
+                    <input type="text" id="desc" [fieldLevelSec]="'Description'" [params]="'Claims Duplicate Rule'"
+                           class="form-control" formControlName="desc"/>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('desc')">
+                        {{ formValidation.errorMessage('desc') }}
+                    </small>
+                </div>
+
+            </div>
+
+            <div class="form-group row">
+            </div>
+
+            <div class="form-group row">
+            </div>
+
+            <div class="form-group row">
+                <div class="col-md-4 form-control-static mb-0" i18n>
+                    <span class="clr-blue">Dup Rule Level 1</span>
+                </div>
+
+                <div class="col-md-4 form-control-static mb-0" i18n>
+                    <span class="clr-blue">Dup Rule Level 2</span>
+                </div>
+
+                <div class="col-md-4 form-control-static mb-0" i18n>
+                    <span class="clr-blue">Dup Rule Level 3</span>
+                </div>
+
+            </div>
+
+            <div class="form-group row">
+            </div>
+
+            <div class="form-group row">
+                <div class="col-md-12 form-control-static mb-0" i18n>
+                    <h3 class="card-border"><span  class="line-center">Header</span></h3>
+                </div>
+
+            </div>
+
+            <div class="form-group row">
+            </div>
+
+            <div class="form-group row">
+                <!-- Checkbox with label of Primary DOS -->
+                <div class="col-md-4" [ngClass]="{'has-error': displayMessage.primaryDos001 }">
+                    <div class="checkbox ">
+                        <input id="primaryDos001" [fieldLevelSec]="'Prim Dt Used 1'" [params]="'Claims Duplicate Rule'"
+                               value="Y" formControlName="primaryDos001" type="checkbox" (change)="onChangCheckbox($event, 'primaryDos001')">
+                        <label class="checkbox">
+                            Primary DOS
+                        </label>
+                    </div>
+                    <span class="help-block" *ngIf="displayMessage.primaryDos001">
+                        {{ displayMessage.primaryDos001  }}
+                     </span>
+                </div>
+
+                <!-- Checkbox with label of Primary DOS -->
+                <div class="col-md-4" [ngClass]="{'has-error': displayMessage.primaryDos002 }">
+                    <div class="checkbox ">
+                        <input id="primaryDos002" [fieldLevelSec]="'Prim Dt Used 2'" [params]="'Claims Duplicate Rule'"
+                               value="Y" formControlName="primaryDos002" type="checkbox"  (change)="onChangCheckbox($event, 'primaryDos002')">
+                        <label class="checkbox">
+                            Primary DOS
+                        </label>
+                    </div>
+                    <span class="help-block" *ngIf="displayMessage.primaryDos002">
+                        {{ displayMessage.primaryDos002  }}
+                     </span>
+                </div>
+
+                <!-- Checkbox with label of Primary DOS -->
+                <div class="col-md-4" [ngClass]="{'has-error': displayMessage.primaryDos003 }">
+                    <div class="checkbox ">
+                        <input id="primaryDos003" [fieldLevelSec]="'Prim Dt Used 3'" [params]="'Claims Duplicate Rule'"
+                               value="Y" formControlName="primaryDos003" type="checkbox" (change)="onChangCheckbox($event, 'primaryDos003')">
+                        <label class="checkbox">
+                            Primary DOS
+                        </label>
+                    </div>
+                    <span class="help-block" *ngIf="displayMessage.primaryDos003">
+                        {{ displayMessage.primaryDos003  }}
+                     </span>
+                </div>
+
+            </div>
+
+            <div class="form-group row">
+                <!-- Textbox with label of Days Before DOS -->
+                <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('daysBeforeDos001') }">
+                    <label class="col-form-label" for="daysBeforeDos001" i18n
+                    [class.clr-blue]="(claimDuplicateCheckRulesForm.get('primaryDos001').value == true || claimDuplicateCheckRulesForm.get('primaryDos001').value == 'Y')">Days Before DOS</label>
+                    <input type="text" id="daysBeforeDos001" [fieldLevelSec]="'Prim Dt Days Bef 1'"
+                           [attr.disabled]="(claimDuplicateCheckRulesForm.get('primaryDos001').value == true || claimDuplicateCheckRulesForm.get('primaryDos001').value == 'Y') ? null : 'disabled'"
+                           [params]="'Claims Duplicate Rule'" class="form-control" formControlName="daysBeforeDos001"/>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('daysBeforeDos001')">
+                        {{ formValidation.errorMessage('daysBeforeDos001') }}
+                    </small>
+                </div>
+
+                <!-- Textbox with label of Days Before DOS -->
+                <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('daysBeforeDos002') }">
+                    <label class="col-form-label" for="daysBeforeDos002" i18n
+                           [class.clr-blue]="(claimDuplicateCheckRulesForm.get('primaryDos002').value == true || claimDuplicateCheckRulesForm.get('primaryDos002').value == 'Y')">Days Before DOS</label>
+                    <input type="text" id="daysBeforeDos002" [fieldLevelSec]="'Prim Dt Days Bef 2'"
+                           [attr.disabled]="(claimDuplicateCheckRulesForm.get('primaryDos002').value == true || claimDuplicateCheckRulesForm.get('primaryDos002').value == 'Y') ? null : 'disabled'"
+                           [params]="'Claims Duplicate Rule'" class="form-control" formControlName="daysBeforeDos002"/>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('daysBeforeDos002')">
+                        {{ formValidation.errorMessage('daysBeforeDos002') }}
+                    </small>
+                </div>
+
+                <!-- Textbox with label of Days Before DOS -->
+                <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('daysBeforeDos003') }">
+                    <label class="col-form-label" for="daysBeforeDos003" i18n
+                           [class.clr-blue]="(claimDuplicateCheckRulesForm.get('primaryDos003').value == true || claimDuplicateCheckRulesForm.get('primaryDos003').value == 'Y')">Days Before DOS</label>
+                    <input type="text" id="daysBeforeDos003" [fieldLevelSec]="'Prim Dt Days Bef 3'"
+                           [attr.disabled]="(claimDuplicateCheckRulesForm.get('primaryDos003').value == true || claimDuplicateCheckRulesForm.get('primaryDos003').value == 'Y') ? null : 'disabled'"
+                           [params]="'Claims Duplicate Rule'" class="form-control" formControlName="daysBeforeDos003"/>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('daysBeforeDos003')">
+                        {{ formValidation.errorMessage('daysBeforeDos003') }}
+                    </small>
+                </div>
+
+            </div>
+
+            <div class="form-group row">
+                <!-- Textbox with label of Days After DOS -->
+                <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('daysAfterDos001') }">
+                    <label class="col-form-label" for="daysAfterDos001" i18n
+                           [class.clr-blue]="(claimDuplicateCheckRulesForm.get('primaryDos001').value == true || claimDuplicateCheckRulesForm.get('primaryDos001').value == 'Y')">Days After DOS</label>
+                    <input type="text" id="daysAfterDos001" [fieldLevelSec]="'Prim Dt Days Aft 1'"
+                           [attr.disabled]="(claimDuplicateCheckRulesForm.get('primaryDos001').value == true || claimDuplicateCheckRulesForm.get('primaryDos001').value == 'Y') ? null : 'disabled'"
+                           [params]="'Claims Duplicate Rule'" class="form-control" formControlName="daysAfterDos001"/>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('daysAfterDos001')">
+                        {{ formValidation.errorMessage('daysAfterDos001') }}
+                    </small>
+                </div>
+
+                <!-- Textbox with label of Days After DOS -->
+                <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('daysAfterDos002') }">
+                    <label class="col-form-label" for="daysAfterDos002" i18n
+                           [class.clr-blue]="(claimDuplicateCheckRulesForm.get('primaryDos002').value == true || claimDuplicateCheckRulesForm.get('primaryDos002').value == 'Y')">Days After DOS</label>
+                    <input type="text" id="daysAfterDos002" [fieldLevelSec]="'Prim Dt Days Aft 2'"
+                           [attr.disabled]="(claimDuplicateCheckRulesForm.get('primaryDos002').value == true || claimDuplicateCheckRulesForm.get('primaryDos002').value == 'Y') ? null : 'disabled'"
+                           [params]="'Claims Duplicate Rule'" class="form-control" formControlName="daysAfterDos002"/>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('daysAfterDos002')">
+                        {{ formValidation.errorMessage('daysAfterDos002') }}
+                    </small>
+                </div>
+
+                <!-- Textbox with label of Days After DOS -->
+                <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('daysAfterDos003') }">
+                    <label class="col-form-label" for="daysAfterDos003" i18n
+                           [class.clr-blue]="(claimDuplicateCheckRulesForm.get('primaryDos003').value == true || claimDuplicateCheckRulesForm.get('primaryDos003').value == 'Y')">Days After DOS</label>
+                    <input type="text" id="daysAfterDos003" [fieldLevelSec]="'Prim Dt Days Aft 3'"
+                           [attr.disabled]="(claimDuplicateCheckRulesForm.get('primaryDos003').value == true || claimDuplicateCheckRulesForm.get('primaryDos003').value == 'Y') ? null : 'disabled'"
+                           [params]="'Claims Duplicate Rule'" class="form-control" formControlName="daysAfterDos003"/>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('daysAfterDos003')">
+                        {{ formValidation.errorMessage('daysAfterDos003') }}
+                    </small>
+                </div>
+
+            </div>
+
+            <div class="form-group row">
+                <!-- Checkbox with label of Provider -->
+                <div class="col-md-4" [ngClass]="{'has-error': displayMessage.provider001 }">
+                    <div class="checkbox ">
+                        <input id="provider001" [fieldLevelSec]="''" [params]="" value="provider001"
+                               formControlName="provider001" type="checkbox"  (change)="onChangCheckbox($event, 'provider001')">
+                        <label class="checkbox">
+                            Provider
+                        </label>
+                    </div>
+                    <span class="help-block" *ngIf="displayMessage.provider001">
+                        {{ displayMessage.provider001  }}
+                     </span>
+                </div>
+
+                <!-- Checkbox with label of Provider -->
+                <div class="col-md-4" [ngClass]="{'has-error': displayMessage.provider002 }">
+                    <div class="checkbox ">
+                        <input id="provider002" [fieldLevelSec]="''" [params]="" value="provider002"
+                               formControlName="provider002" type="checkbox" (change)="onChangCheckbox($event, 'provider002')">
+                        <label class="checkbox">
+                            Provider
+                        </label>
+                    </div>
+                    <span class="help-block" *ngIf="displayMessage.provider002">
+                        {{ displayMessage.provider002  }}
+                     </span>
+                </div>
+
+                <!-- Checkbox with label of Provider -->
+                <div class="col-md-4" [ngClass]="{'has-error': displayMessage.provider003 }">
+                    <div class="checkbox ">
+                        <input id="provider003" [fieldLevelSec]="''" [params]="" value="provider003"
+                               formControlName="provider003" type="checkbox" (change)="onChangCheckbox($event, 'provider003')">
+                        <label class="checkbox">
+                            Provider
+                        </label>
+                    </div>
+                    <span class="help-block" *ngIf="displayMessage.provider003">
+                        {{ displayMessage.provider003  }}
+                     </span>
+                </div>
+
+            </div>
+
+            <div class="form-group row">
+                <!-- Checkbox with label of Total Billed -->
+                <div class="col-md-4" [ngClass]="{'has-error': displayMessage.totalBilled001 }">
+                    <div class="checkbox ">
+                        <input id="totalBilled001" [fieldLevelSec]="'Same Tot Bill 1'" [params]="'Claims Duplicate Rule'"
+                               value="totalBilled001" formControlName="totalBilled001" type="checkbox" (change)="onChangCheckbox($event, 'totalBilled001')">
+                        <label class="checkbox">
+                            Total Billed
+                        </label>
+                    </div>
+                    <span class="help-block" *ngIf="displayMessage.totalBilled001">
+                        {{ displayMessage.totalBilled001  }}
+                     </span>
+                </div>
+
+                <!-- Checkbox with label of Total Billed -->
+                <div class="col-md-4" [ngClass]="{'has-error': displayMessage.totalBilled002 }">
+                    <div class="checkbox ">
+                        <input id="totalBilled002" [fieldLevelSec]="'Same Tot Bill 2'" [params]="'Claims Duplicate Rule'"
+                               value="totalBilled002" formControlName="totalBilled002" type="checkbox" (change)="onChangCheckbox($event, 'totalBilled002')">
+                        <label class="checkbox">
+                            Total Billed
+                        </label>
+                    </div>
+                    <span class="help-block" *ngIf="displayMessage.totalBilled002">
+                        {{ displayMessage.totalBilled002  }}
+                     </span>
+                </div>
+
+                <!-- Checkbox with label of Total Billed -->
+                <div class="col-md-4" [ngClass]="{'has-error': displayMessage.totalBilled003 }">
+                    <div class="checkbox ">
+                        <input id="totalBilled003" [fieldLevelSec]="'Same Tot Bill 3'" [params]="'Claims Duplicate Rule'"
+                               value="totalBilled003" formControlName="totalBilled003" type="checkbox" (change)="onChangCheckbox($event, 'totalBilled003')">
+                        <label class="checkbox">
+                            Total Billed
+                        </label>
+                    </div>
+                    <span class="help-block" *ngIf="displayMessage.totalBilled003">
+                        {{ displayMessage.totalBilled003  }}
+                     </span>
+                </div>
+
+            </div>
+
+            <div class="form-group row">
+                <!-- Checkbox with label of Place Of Service -->
+                <div class="col-md-4" [ngClass]="{'has-error': displayMessage.placeOfService001 }">
+                    <div class="checkbox ">
+                        <input id="placeOfService001" [fieldLevelSec]="'Same Plc Serv 1'"
+                               [params]="'Claims Duplicate Rule'" value="placeOfService001"
+                               formControlName="placeOfService001" type="checkbox" (change)="onChangCheckbox($event, 'placeOfService001')">
+                        <label class="checkbox">
+                            Place Of Service
+                        </label>
+                    </div>
+                    <span class="help-block" *ngIf="displayMessage.placeOfService001">
+                        {{ displayMessage.placeOfService001  }}
+                     </span>
+                </div>
+
+                <!-- Checkbox with label of Place Of Service -->
+                <div class="col-md-4" [ngClass]="{'has-error': displayMessage.placeOfService002 }">
+                    <div class="checkbox ">
+                        <input id="placeOfService002" [fieldLevelSec]="'Same Plc Serv 2'"
+                               [params]="'Claims Duplicate Rule'" value="placeOfService002"
+                               formControlName="placeOfService002" type="checkbox" (change)="onChangCheckbox($event, 'placeOfService002')">
+                        <label class="checkbox">
+                            Place Of Service
+                        </label>
+                    </div>
+                    <span class="help-block" *ngIf="displayMessage.placeOfService002">
+                        {{ displayMessage.placeOfService002  }}
+                     </span>
+                </div>
+
+                <!-- Checkbox with label of lace Of Service -->
+                <div class="col-md-4" [ngClass]="{'has-error': displayMessage.placeOfService003 }">
+                    <div class="checkbox ">
+                        <input id="placeOfService003" [fieldLevelSec]="'Same Plc Serv 3'" [params]="'Claims Duplicate Rule'"
+                               value="placeOfService003" formControlName="placeOfService003" type="checkbox" (change)="onChangCheckbox($event, 'placeOfService003')">
+                        <label class="checkbox">
+                            Place Of Service
+                        </label>
+                    </div>
+                    <span class="help-block" *ngIf="displayMessage.placeOfService003">
+                        {{ displayMessage.placeOfService003  }}
+                     </span>
+                </div>
+
+            </div>
+
+            <div class="form-group row">
+            </div>
+
+            <div class="form-group row">
+                <div class="col-md-12 form-control-static mb-0" i18n>
+                    <h3 class="card-border"><span  class="line-center">Detail</span></h3>
+                </div>
+
+            </div>
+
+            <div class="form-group row">
+            </div>
+
+            <div class="form-group row">
+                <!-- Checkbox with label of Detail DOS -->
+                <div class="col-md-4" [ngClass]="{'has-error': displayMessage.detailDos001 }">
+                    <div class="checkbox ">
+                        <input id="detailDos001" [fieldLevelSec]="''" [params]="" value="detailDos001"
+                               formControlName="detailDos001" type="checkbox" (change)="onChangCheckbox($event, 'detailDos001')">
+                        <label class="checkbox">
+                            Detail DOS
+                        </label>
+                    </div>
+                    <span class="help-block" *ngIf="displayMessage.detailDos001">
+                        {{ displayMessage.detailDos001  }}
+                     </span>
+                </div>
+
+                <!-- Checkbox with label of Detail DOS -->
+                <div class="col-md-4" [ngClass]="{'has-error': displayMessage.detailDos002 }">
+                    <div class="checkbox ">
+                        <input id="detailDos002" [fieldLevelSec]="''" [params]="" value="detailDos002"
+                               formControlName="detailDos002" type="checkbox"  (change)="onChangCheckbox($event, 'detailDos002')">
+                        <label class="checkbox">
+                            Detail DOS
+                        </label>
+                    </div>
+                    <span class="help-block" *ngIf="displayMessage.detailDos002">
+                        {{ displayMessage.detailDos002  }}
+                     </span>
+                </div>
+
+                <!-- Checkbox with label of etail DOS -->
+                <div class="col-md-4" [ngClass]="{'has-error': displayMessage.etailDos }">
+                    <div class="checkbox ">
+                        <input id="detailDos003" [fieldLevelSec]="''" [params]="" value="detailDos003"
+                               formControlName="detailDos003" type="checkbox" (change)="onChangCheckbox($event, 'detailDos003')">
+                        <label class="checkbox">
+                            Detail DOS
+                        </label>
+                    </div>
+                    <span class="help-block" *ngIf="displayMessage.detailDos003">
+                        {{ displayMessage.detailDos003  }}
+                     </span>
+                </div>
+
+            </div>
+
+            <div class="form-group row">
+                <!-- Textbox with label of Days Before DOS -->
+                <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('daysBeforeDos004') }">
+                    <label class="col-form-label" for="daysBeforeDos004" i18n
+                           [class.clr-blue]="(claimDuplicateCheckRulesForm.get('detailDos001').value == true || claimDuplicateCheckRulesForm.get('detailDos001').value == 'Y')">Days Before DOS</label>
+                    <input type="text" id="daysBeforeDos004" [fieldLevelSec]="''" [params]="" class="form-control"
+                           [attr.disabled]="(claimDuplicateCheckRulesForm.get('detailDos001').value == true || claimDuplicateCheckRulesForm.get('detailDos001').value == 'Y') ? null : 'disabled'"
+                           formControlName="daysBeforeDos004"/>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('daysBeforeDos004')">
+                        {{ formValidation.errorMessage('daysBeforeDos004') }}
+                    </small>
+                </div>
+
+                <!-- Textbox with label of Days Before DOS -->
+                <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('daysBeforeDos005') }">
+                    <label class="col-form-label" for="daysBeforeDos005" i18n
+                           [class.clr-blue]="(claimDuplicateCheckRulesForm.get('detailDos002').value == true || claimDuplicateCheckRulesForm.get('detailDos002').value == 'Y')">Days Before DOS</label>
+                    <input type="text" id="daysBeforeDos005" [fieldLevelSec]="''" [params]="" class="form-control"
+                           [attr.disabled]="(claimDuplicateCheckRulesForm.get('detailDos002').value == true || claimDuplicateCheckRulesForm.get('detailDos002').value == 'Y') ? null : 'disabled'"
+                           formControlName="daysBeforeDos005"/>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('daysBeforeDos005')">
+                        {{ formValidation.errorMessage('daysBeforeDos005') }}
+                    </small>
+                </div>
+
+                <!-- Textbox with label of Days Before DOS -->
+                <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('daysBeforeDos006') }">
+                    <label class="col-form-label" for="daysBeforeDos006" i18n
+                           [class.clr-blue]="(claimDuplicateCheckRulesForm.get('detailDos003').value == true || claimDuplicateCheckRulesForm.get('detailDos003').value == 'Y')">Days Before DOS</label>
+                    <input type="text" id="daysBeforeDos006" [fieldLevelSec]="''" [params]="" class="form-control"
+                           [attr.disabled]="(claimDuplicateCheckRulesForm.get('detailDos003').value == true || claimDuplicateCheckRulesForm.get('detailDos003').value == 'Y') ? null : 'disabled'"
+                           formControlName="daysBeforeDos006"/>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('daysBeforeDos006')">
+                        {{ formValidation.errorMessage('daysBeforeDos006') }}
+                    </small>
+                </div>
+
+            </div>
+
+            <div class="form-group row">
+                <!-- Textbox with label of Days After DOS -->
+                <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('daysAfterDos004') }">
+                    <label class="col-form-label" for="daysAfterDos004" i18n
+                           [class.clr-blue]="(claimDuplicateCheckRulesForm.get('detailDos001').value == true || claimDuplicateCheckRulesForm.get('detailDos001').value == 'Y')">Days After DOS</label>
+                    <input type="text" id="daysAfterDos004" [fieldLevelSec]="'Spec Dt Days Aft 1'"
+                           [attr.disabled]="(claimDuplicateCheckRulesForm.get('detailDos001').value == true || claimDuplicateCheckRulesForm.get('detailDos001').value == 'Y') ? null : 'disabled'"
+                           [params]="'Claims Duplicate Rule'" class="form-control" formControlName="daysAfterDos004"/>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('daysAfterDos004')">
+                        {{ formValidation.errorMessage('daysAfterDos004') }}
+                    </small>
+                </div>
+
+                <!-- Textbox with label of Days After DOS -->
+                <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('daysAfterDos005') }">
+                    <label class="col-form-label" for="daysAfterDos005" i18n
+                           [class.clr-blue]="(claimDuplicateCheckRulesForm.get('detailDos002').value == true || claimDuplicateCheckRulesForm.get('detailDos002').value == 'Y')">Days After DOS</label>
+                    <input type="text" id="daysAfterDos005" [fieldLevelSec]="'Spec Dt Days Aft 2'"
+                           [attr.disabled]="(claimDuplicateCheckRulesForm.get('detailDos002').value == true || claimDuplicateCheckRulesForm.get('detailDos002').value == 'Y') ? null : 'disabled'"
+                           [params]="'Claims Duplicate Rule'" class="form-control" formControlName="daysAfterDos005"/>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('daysAfterDos005')">
+                        {{ formValidation.errorMessage('daysAfterDos005') }}
+                    </small>
+                </div>
+
+                <!-- Textbox with label of Days After DOS -->
+                <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('daysAfterDos006') }">
+                    <label class="col-form-label" for="daysAfterDos006" i18n
+                           [class.clr-blue]="(claimDuplicateCheckRulesForm.get('detailDos003').value == true || claimDuplicateCheckRulesForm.get('detailDos003').value == 'Y')">Days After DOS</label>
+                    <input type="text" id="daysAfterDos006" [fieldLevelSec]="'Spec Dt Days Aft 3'"
+                           [attr.disabled]="(claimDuplicateCheckRulesForm.get('detailDos003').value == true || claimDuplicateCheckRulesForm.get('detailDos003').value == 'Y') ? null : 'disabled'"
+                           [params]="'Claims Duplicate Rule'" class="form-control" formControlName="daysAfterDos006"/>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('daysAfterDos006')">
+                        {{ formValidation.errorMessage('daysAfterDos006') }}
+                    </small>
+                </div>
+
+            </div>
+
+            <div class="form-group row">
+                <!-- Checkbox with label of Billed Amount -->
+                <div class="col-md-4" [ngClass]="{'has-error': displayMessage.billedAmount001 }">
+                    <div class="checkbox ">
+                        <input id="billedAmount001" [fieldLevelSec]="'Same Bill Amt 1'" [params]="'Claims Duplicate Rule'"
+                               value="billedAmount001" formControlName="billedAmount001" type="checkbox" (change)="onChangCheckbox($event, 'billedAmount001')">
+                        <label class="checkbox">
+                            Billed Amount
+                        </label>
+                    </div>
+                    <span class="help-block" *ngIf="displayMessage.billedAmount001">
+                        {{ displayMessage.billedAmount001  }}
+                     </span>
+                </div>
+
+                <!-- Checkbox with label of Billed Amount -->
+                <div class="col-md-4" [ngClass]="{'has-error': displayMessage.billedAmount002 }">
+                    <div class="checkbox ">
+                        <input id="billedAmount002" [fieldLevelSec]="'Same Bill Amt 2'" [params]="'Claims Duplicate Rule'"
+                               value="billedAmount002" formControlName="billedAmount002" type="checkbox" (change)="onChangCheckbox($event, 'billedAmount002')">
+                        <label class="checkbox">
+                            Billed Amount
+                        </label>
+                    </div>
+                    <span class="help-block" *ngIf="displayMessage.billedAmount002">
+                        {{ displayMessage.billedAmount002  }}
+                     </span>
+                </div>
+
+                <!-- Checkbox with label of Billed Amount -->
+                <div class="col-md-4" [ngClass]="{'has-error': displayMessage.billedAmount003 }">
+                    <div class="checkbox ">
+                        <input id="billedAmount003" [fieldLevelSec]="'Same Bill Amt 3'" [params]="'Claims Duplicate Rule'"
+                               value="billedAmount003" formControlName="billedAmount003" type="checkbox" (change)="onChangCheckbox($event, 'billedAmount003')">
+                        <label class="checkbox">
+                            Billed Amount
+                        </label>
+                    </div>
+                    <span class="help-block" *ngIf="displayMessage.billedAmount003">
+                        {{ displayMessage.billedAmount003  }}
+                     </span>
+                </div>
+
+            </div>
+
+            <div class="form-group row">
+                <!-- Checkbox with label of Procedure Code -->
+                <div class="col-md-4" [ngClass]="{'has-error': displayMessage.procedureCode001 }">
+                    <div class="checkbox ">
+                        <input id="procedureCode001" [fieldLevelSec]="'Same Proc Code 1'"
+                               [params]="'Claims Duplicate Rule'" value="procedureCode001"
+                               formControlName="procedureCode001" type="checkbox"  (change)="onChangCheckbox($event, 'procedureCode001')">
+                        <label class="checkbox">
+                            Procedure Code
+                        </label>
+                    </div>
+                    <span class="help-block" *ngIf="displayMessage.procedureCode001">
+                        {{ displayMessage.procedureCode001  }}
+                     </span>
+                </div>
+
+                <!-- Checkbox with label of Procedure Code -->
+                <div class="col-md-4" [ngClass]="{'has-error': displayMessage.procedureCode002 }">
+                    <div class="checkbox ">
+                        <input id="procedureCode002" [fieldLevelSec]="'Same Proc Code 2'"
+                               [params]="'Claims Duplicate Rule'" value="procedureCode002"
+                               formControlName="procedureCode002" type="checkbox" (change)="onChangCheckbox($event, 'procedureCode002')">
+                        <label class="checkbox">
+                            Procedure Code
+                        </label>
+                    </div>
+                    <span class="help-block" *ngIf="displayMessage.procedureCode002">
+                        {{ displayMessage.procedureCode002  }}
+                     </span>
+                </div>
+
+                <!-- Checkbox with label of Procedure Code -->
+                <div class="col-md-4" [ngClass]="{'has-error': displayMessage.procedureCode003 }">
+                    <div class="checkbox ">
+                        <input id="procedureCode003" [fieldLevelSec]="'Same Proc Code 3'"
+                               [params]="'Claims Duplicate Rule'" value="procedureCode003"
+                               formControlName="procedureCode003" type="checkbox" (change)="onChangCheckbox($event, 'procedureCode003')">
+                        <label class="checkbox">
+                            Procedure Code
+                        </label>
+                    </div>
+                    <span class="help-block" *ngIf="displayMessage.procedureCode003">
+                        {{ displayMessage.procedureCode003  }}
+                     </span>
+                </div>
+
+            </div>
+
+            <div class="form-group row">
+                <!-- Checkbox with label of Med Def -->
+                <div class="col-md-4" [ngClass]="{'has-error': displayMessage.medDef001 }">
+                    <div class="checkbox ">
+                        <input id="medDef001" [fieldLevelSec]="'Same Med Def 1'" [params]="'Claims Duplicate Rule'"
+                               value="medDef001" formControlName="medDef001" type="checkbox" (change)="onChangCheckbox($event, 'medDef001')">
+                        <label class="checkbox">
+                            Med Def
+                        </label>
+                    </div>
+                    <span class="help-block" *ngIf="displayMessage.medDef001">
+                        {{ displayMessage.medDef001  }}
+                     </span>
+                </div>
+
+                <!-- Checkbox with label of Med Def -->
+                <div class="col-md-4" [ngClass]="{'has-error': displayMessage.medDef002 }">
+                    <div class="checkbox ">
+                        <input id="medDef002" [fieldLevelSec]="'Same Med Def 2'" [params]="'Claims Duplicate Rule'"
+                               value="medDef002" formControlName="medDef002" type="checkbox" (change)="onChangCheckbox($event, 'medDef002')">
+                        <label class="checkbox">
+                            Med Def
+                        </label>
+                    </div>
+                    <span class="help-block" *ngIf="displayMessage.medDef002">
+                        {{ displayMessage.medDef002  }}
+                     </span>
+                </div>
+
+                <!-- Checkbox with label of Med Def -->
+                <div class="col-md-4" [ngClass]="{'has-error': displayMessage.medDef003 }">
+                    <div class="checkbox ">
+                        <input id="medDef003" [fieldLevelSec]="'Same Med Def 3'" [params]="'Claims Duplicate Rule'"
+                               value="medDef003" formControlName="medDef003" type="checkbox" (change)="onChangCheckbox($event, 'medDef003')">
+                        <label class="checkbox">
+                            Med Def
+                        </label>
+                    </div>
+                    <span class="help-block" *ngIf="displayMessage.medDef003">
+                        {{ displayMessage.medDef003  }}
+                     </span>
+                </div>
+
+            </div>
+
+            <div class="form-group row">
+                <!-- Checkbox with label of Proc Modifier -->
+                <div class="col-md-4" [ngClass]="{'has-error': displayMessage.procModifier001 }">
+                    <div class="checkbox " *ngIf="(claimDuplicateCheckRulesForm.get('procedureCode001').value == true || claimDuplicateCheckRulesForm.get('procedureCode001').value == 'Y')">
+                        <input id="procModifier001" [fieldLevelSec]="'Same Proc Mod 1'" [params]="'Claims Duplicate Rule'"
+                               value="procModifier001" formControlName="procModifier001" type="checkbox" (change)="onChangCheckbox($event, 'procModifier001')">
+                        <label class="checkbox">
+                            Proc Modifier
+                        </label>
+                    </div>
+                    <span class="help-block" *ngIf="displayMessage.procModifier001">
+                        {{ displayMessage.procModifier001  }}
+                     </span>
+                </div>
+
+                <!-- Checkbox with label of Proc Modifier -->
+                <div class="col-md-4" [ngClass]="{'has-error': displayMessage.procModifier002 }">
+                    <div class="checkbox " *ngIf="(claimDuplicateCheckRulesForm.get('procedureCode002').value == true || claimDuplicateCheckRulesForm.get('procedureCode002').value == 'Y')">
+                        <input id="procModifier002" [fieldLevelSec]="'Same Proc Mod 2'" [params]="'Claims Duplicate Rule'"
+                               value="procModifier002" formControlName="procModifier002" type="checkbox" (change)="onChangCheckbox($event, 'procModifier002')">
+                        <label class="checkbox">
+                            Proc Modifier
+                        </label>
+                    </div>
+                    <span class="help-block" *ngIf="displayMessage.procModifier002">
+                        {{ displayMessage.procModifier002  }}
+                     </span>
+                </div>
+
+                <!-- Checkbox with label of Proc Modifier -->
+                <div class="col-md-4" [ngClass]="{'has-error': displayMessage.procModifier003 }">
+                    <div class="checkbox " *ngIf="(claimDuplicateCheckRulesForm.get('procedureCode003').value == true || claimDuplicateCheckRulesForm.get('procedureCode003').value == 'Y')">
+                        <input id="procModifier003" [fieldLevelSec]="'Same Proc Mod 3'" [params]="'Claims Duplicate Rule'"
+                               value="procModifier003" formControlName="procModifier003" type="checkbox" (change)="onChangCheckbox($event, 'procModifier003')">
+                        <label class="checkbox">
+                            Proc Modifier
+                        </label>
+                    </div>
+                    <span class="help-block" *ngIf="displayMessage.procModifier003">
+                        {{ displayMessage.procModifier003  }}
+                     </span>
+                </div>
+
+            </div>
+
+            <div class="form-group row">
+            </div>
+
+            <div class="form-group row">
+                <div class="col-md-12 form-control-static mb-0" i18n>
+                    <h3 class="card-border"><span  class="line-center">Action</span></h3>
+                </div>
+
+            </div>
+
+            <div class="form-group row">
+            </div>
+
+            <div class="form-group row">
+                <!-- Textbox with label of Action -->
+                <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('action002') }">
+                    <label class="col-form-label" for="action002" i18n>Action</label>
+                    <select type="text" id="action002" [fieldLevelSec]="'Action 2'" [params]="'Claims Duplicate Rule'"
+                            class="form-control" formControlName="action002" (change)="onChangeAction1($event)">
+                        <option [value]="o.value" *ngFor="let o of action1Options">{{o.key}}</option>
+                    </select>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('action002')">
+                        {{ formValidation.errorMessage('action002') }}
+                    </small>
+                </div>
+
+                <!-- Textbox with label of Action -->
+                <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('action003') }">
+                    <label class="col-form-label" for="action003" i18n>Action</label>
+                    <select type="text" id="action003" [fieldLevelSec]="'Action 3'" [params]="'Claims Duplicate Rule'"
+                            class="form-control" formControlName="action003"  (change)="onChangeAction2($event)">
+                        <option [value]="o.value" *ngFor="let o of action2Options">{{o.key}}</option>
+                    </select>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('action003')">
+                        {{ formValidation.errorMessage('action003') }}
+                    </small>
+                </div>
+
+                <!-- Textbox with label of Action -->
+                <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('action004') }">
+                    <label class="col-form-label" for="action004" i18n>Action</label>
+                    <select type="text" id="action004" [fieldLevelSec]="'Action 4'" [params]="'Claims Duplicate Rule'"
+                            class="form-control" formControlName="action004"  (change)="onChangeAction3($event)">
+                        <option [value]="o.value" *ngFor="let o of action3Options">{{o.key}}</option>
+                    </select>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('action004')">
+                        {{ formValidation.errorMessage('action004') }}
+                    </small>
+                </div>
+
+            </div>
+
+            <div class="form-group row">
+                <!-- Textbox with label of Reason Code -->
+                <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('reasonCode001') }">
+                    <label class="col-form-label" for="reasonCode001" i18n
+                           [class.clr-blue]="isLoadAction1">Reason Code</label>
+                    <select id="reasonCode001" class="form-control" [fieldLevelSec]="'Reason Code 1'" [attr.disabled]="!isLoadAction1 ? 'disabled' : null"
+                            [params]="'Claims Duplicate Rule'" name="reasonCode001" formControlName="reasonCode001">
+                        <option value="">-Select-</option>
+                        <option *ngFor="let code of reasonCode1Options" [value]="code.reasonCode">{{code.reasonCode}} - {{code.description}}</option>
+                    </select>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('reasonCode001')">
+                        {{ formValidation.errorMessage('reasonCode001') }}
+                    </small>
+                </div>
+
+                <!-- Textbox with label of Reason Code -->
+                <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('reasonCode002') }">
+                    <label class="col-form-label" for="reasonCode002" i18n [class.clr-blue]="isLoadAction2">Reason Code</label>
+                    <select id="reasonCode002" class="form-control" [fieldLevelSec]="'Reason Code 2'"  [attr.disabled]="!isLoadAction2 ? 'disabled' : null"
+                            [params]="'Claims Duplicate Rule'" name="reasonCode002" formControlName="reasonCode002">
+                        <option value="">-Select-</option>
+                        <option *ngFor="let code of reasonCode2Options" [value]="code.reasonCode">{{code.reasonCode}} - {{code.description}}</option>
+                    </select>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('reasonCode002')">
+                        {{ formValidation.errorMessage('reasonCode002') }}
+                    </small>
+                </div>
+
+                <!-- Textbox with label of Reason Code -->
+                <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('reasonCode003') }">
+                    <label class="col-form-label" for="reasonCode003" i18n [class.clr-blue]="isLoadAction3">Reason Code</label>
+                    <select id="reasonCode003" class="form-control" [fieldLevelSec]="'Reason Code 3'"  [attr.disabled]="!isLoadAction3 ? 'disabled' : null"
+                            [params]="'Claims Duplicate Rule'" name="reasonCode003" formControlName="reasonCode003">
+                        <option value="">-Select-</option>
+                        <option *ngFor="let code of reasonCode3Options" [value]="code.reasonCode">{{code.reasonCode}} - {{code.description}}</option>
+                    </select>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('reasonCode003')">
+                        {{ formValidation.errorMessage('reasonCode003') }}
+                    </small>
+                </div>
+
+            </div>
+
+            <div class="form-group row">
+            </div>
+        </form>
+    </div>
+</div>
+
+<ng-keyboard-shortcuts [shortcuts]="shortcuts"></ng-keyboard-shortcuts>
+<ng-keyboard-shortcuts-help [key]="'f2'" [closeKey]="'escape'" [title]="'Hotkeys Help'"></ng-keyboard-shortcuts-help>

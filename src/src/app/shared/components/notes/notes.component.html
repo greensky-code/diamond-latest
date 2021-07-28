@@ -1,0 +1,351 @@
+<!-- Copyright (c) 2020 . All Rights Reserved. -->
+<div class="container-fluid">
+    <div class="card-block">
+<!--            <h4 class="modal-title">Group Master</h4>-->
+        <button type="button" *ngIf="showIcon" class="close" aria-label="Close"
+                (click)="modalClose()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <h2 class="form-title card-label-admin">Notes</h2>
+        <div class="row mt-3 mb-3">
+            <menu-bar [menus]="menu" (onMenuClick)="onMenuItemClick($event)"></menu-bar>
+        </div>
+        <form [formGroup]="notesForm" novalidate>
+            <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+            <app-pop-up-message #popUpMesssage (buttonclickEvent)="popUpButtonHandler($event)"
+                                [popupMessage]="popUpMessage"></app-pop-up-message>
+
+            <div class="form-group row">
+                <div class="col-md row">
+                    <div class="col-md-4 border-right">
+                        <b> Filter Notes By</b>
+                        <div class="row">
+
+                            <!-- Checkbox with label of All Types -->
+                            <div class="col-md">
+                                <div class="checkbox">
+                                    <input value="allTypes" type="radio" name="allTypes" [checked]="!selectedType01" (change)="onChangeNoteType($event)">
+                                    <label class="checkbox">All Types</label>
+                                </div>
+                            </div>
+
+                            <div class="col-md mr-2">
+                                <div class="form-group row">
+                                    <div class="input-group">
+                                        <select class="form-control" [(ngModel)]="selectedType01" [ngModelOptions]="{standalone: true}" id="notetype" name="notetype" #dropdown  (change)="onClickType($event)">
+                                            <option *ngFor="let noteType of noteTypes;let i=index;" [value]="noteType.noteType" selected="i==0">{{noteType.noteType}} - {{noteType.description}}</option>
+                                        </select>
+
+                                        <!-- <label class="col-sm-4 col-form-label p-0 " for="type" i18n>Type</label>
+                                        <input ngbDropdownToggle type="text" class="form-control" id="type" [value]='selectedType01'>
+                                        <div class="input-group-append"  role="group" >
+                                            <button ngbDropdownToggle class="btn border" ></button>
+                                        </div>
+                                        <div ngbDropdownMenu aria-labelledby="dropdown" class="max-dropdown-height">
+                                            <button ngbDropdownItem value="{{noteType.noteType}}" (click)="onClickType(noteType)"
+                                                    *ngFor="let noteType of noteTypes; let i = index" >{{noteType.noteType}} - {{noteType.description}}</button>
+                                        </div> -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 border-right">
+                        <b>Sort By</b>
+                        <div class="row">
+                            <!-- Checkbox with label of Priority -->
+                            <div class="col-md">
+                                <div class="checkbox">
+                                    <input name="noteMasterSortByOrder" checked type="radio" (click)="onClickSortByPriority($event)">
+                                    <label class="checkbox">Priority</label>
+                                </div>
+                            </div>
+
+                            <!-- Checkbox with label of Notes Dates -->
+                            <div class="col-md-6">
+                                <div class="checkbox">
+                                    <input name="noteMasterSortByOrder" type="radio" (click)="onClickSortByNotesDate($event)">
+                                    <label class="checkbox">Notes Date</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <!-- Checkbox with label of Follow Up Date -->
+                            <div>
+                                <div class="checkbox col-md-12">
+                                    <input name="noteMasterSortByOrder" type="radio" (click)="onClickSortByFollowUpDate($event)">
+                                    <label class="checkbox">Follow Up Date</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 ">
+                        <b>Consolidate Notes By</b>
+                        <div class="row">
+                            <!-- Checkbox with label of None -->
+                            <div class="col-md">
+                                <div class="checkbox">
+                                    <input id="consolidateNotesBy" name="consolidateNotesBy" value="none" [attr.checked]="selectedCheckbox == 0 ? 'checked' : null" type="radio" (click)="onClickConsolidateNotesBy($event)">
+                                    <label class="checkbox">None</label>
+                                </div>
+                            </div>
+                            <!-- Checkbox with label of Group -->
+                            <div class="col-md-6">
+                                <div class="checkbox">
+                                    <input id="consolidateNotesBy" name="consolidateNotesBy" value="GROUP" [attr.checked]="selectedCheckbox == 1 ? 'checked' : null" type="radio" (click)="onClickConsolidateNotesBy($event)">
+                                    <label class="checkbox">
+                                        Group
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <!-- Checkbox with label of Member -->
+                            <div class="col-md">
+                                <div class="checkbox">
+                                    <input id="consolidateNotesBy" name="consolidateNotesBy" value="MEMBR" [attr.checked]="selectedCheckbox == 2 ? 'checked' : null"  type="radio" (click)="onClickConsolidateNotesBy($event)">
+                                    <label class="checkbox">Member</label>
+                                </div>
+                            </div>
+
+                            <!-- Checkbox with label of Provider -->
+                            <div class="col-md-6">
+                                <div class="checkbox">
+                                    <input id="consolidateNotesBy" name="consolidateNotesBy" value="PROVP" [attr.checked]="selectedCheckbox == 3 ? 'checked' : null"  type="radio" (click)="onClickConsolidateNotesBy($event)"> 
+                                    <label class="checkbox">Provider</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <!-- Button with label of List -->
+                    <div class="col-md form-group" *ngIf="isList">
+                        <button type="button" id="select" name="select" class="btn btn-small btn-outline-dark" (click)="onSelectNoteMaster()">Select</button>
+                    </div>
+                    <div class="col-md form-group" *ngIf="!isList">
+                        <button type="button" id="list" name="list" class="btn btn-small btn-outline-dark"  (click)="onListNoteMaster()">List</button>
+                    </div>
+
+                    <div class="col-md">
+                        <button #closeBtn type="button" id="close" name="close" class="btn btn-small" [ngClass]="clickedOpen?'btn-outline-primary':'btn-outline-dark'" (click)="activeModal.dismiss('Cross click')">Close</button>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="container-fluid my-3 border p1">
+            <div class="" *ngIf="!isList">
+                <div class="form-group row">
+                    <!-- Text Type -->
+                    <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('notetype') }">
+                        <label class="col-form-label clr-blue" for="notetype" i18n>Type</label>
+                        <input *ngIf="noteMaster" type="text" [attr.disabled]="editNoteMaster" id="notetype" formControlName="notetype" class="form-control" />
+                        <div *ngIf="!noteMaster" class="input-group">
+                            <select class="form-control" formControlName="notetype" id="notetype" name="notetype" #dropdown (change)="onChangeType($event)">
+                                <option *ngFor="let noteType of noteTypes" [value]="noteType.noteType">{{noteType.noteType}} - {{noteType.description}}</option>
+                            </select>
+                        </div>
+                        <small class="text-danger" *ngIf="formValidation.isValidField('notetype')">
+                            {{ formValidation.errorMessage('notetype') }}
+                        </small>
+                    </div>
+
+                    <!-- DynamicText with label of Priority -->
+                    <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('priority') }">
+                        <label class="col-form-label clr-blue" for="priority" i18n>Priority</label>
+                        <input type="text" (keydown)="onChangePriority($event)" [attr.readonly]="editNoteMaster ? 'readonly' : null" id="priority" formControlName="priority" class="form-control" />
+                        <small class="text-danger" *ngIf="formValidation.isValidField('priority')">
+                            {{ formValidation.errorMessage('priority') }}
+                        </small>
+                    </div>
+
+                    <!-- Textbox with label of Date -->
+                    <div class="col-md-2">
+                        <app-datepicker [formGroup]="notesForm" [formValidation]="formValidation" [field]="'date'" [showClearButton]="false"
+                                        [labelText]="'Date'" [isRequired]="true" [readonly]="editNoteMaster" [disabled]="editNoteMaster"></app-datepicker>
+                    </div>
+
+                    <!-- Textbox with label of Followup Date -->
+                    <div class="col-md-2">
+                        <app-datepicker [formGroup]="notesForm" [formValidation]="formValidation" [field]="'followUpDate'" [showClearButton]="false"
+                                        [labelText]="'Followup Date'" [isRequired]="false" ></app-datepicker>
+                    </div>
+
+                    <!-- Textbox with label of Followup Code -->
+                    <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('followupCode') }">
+                        <label class="col-form-label" for="followupCode" i18n>Followup Code</label>
+                        <input type="text" id="followupCode" class="form-control" formControlName="followupCode"/>
+                        <small class="text-danger" *ngIf="formValidation.isValidField('followupCode')">
+                            {{ formValidation.errorMessage('followupCode') }}
+                        </small>
+                    </div>
+
+                </div>
+
+                <div class="form-group row">
+                    <!-- TextArea with Name of TextArea -->
+                    <div class="col-md-12" [ngClass]="{'has-danger': formValidation.isValidField('textArea') }">
+                        <label class="col-form-label" for="textArea" i18n>&nbsp;</label>
+                        <textarea style="min-height: 200px" id="textArea" name="textArea" class="form-control" formControlName="textArea"></textarea>
+                    </div>
+
+                </div>
+            </div>
+            <div *ngIf="isList">
+                <ag-grid-angular #agGrid class="ag-theme-fresh" [gridOptions]="dataGridGridOptions"
+                                 style="width: 100%; height: 300px;"
+                                 [enableSorting]="true"
+                                 [rowSelection]="'single'"
+                                 [pagination]="true"
+                                 [showToolPanel]="true"
+                                 [defaultColDef]="defaultColDef"
+                                 (rowDoubleClicked)="onSelectNoteMaster()">
+                </ag-grid-angular>
+            </div>
+
+            
+            <div class="form-group row" *ngIf="displayForm || !isList">
+                <!-- Textbox with label of Expire Date -->
+                <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('expireDate') }">
+                    <app-datepicker [formGroup]="notesForm" [formValidation]="formValidation" [field]="'expireDate'" [showClearButton]="false" [labelText]="'Expire Date'" [isRequired]="false"></app-datepicker>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('expireDate')">
+                        {{ formValidation.errorMessage('expireDate') }}
+                    </small>
+                </div>
+            </div>
+
+            <div class="form-group row" *ngIf="displayForm">
+                <!-- Textbox with label of User Label 1 -->
+                <div class="col-md-6 row">
+                    <div class="col-sm-8" *ngIf="notesForm.value.userDefined1Show" [ngClass]="{'has-danger': formValidation.isValidField('userDefined1') }">
+                        <label class="col-form-label" [ngClass]="noteType.userDefined1Req == 'Y' ? 'clr-blue' : ''" for="userDefined1" i18n controlName="userDefined1Label"></label>
+                        <input type="text" id="userDefined1"  class="form-control" formControlName="userDefined1"/>
+                        <small class="text-danger" *ngIf="formValidation.isValidField('userDefined1')">
+                            {{ formValidation.errorMessage('userDefined1') }}
+                        </small>
+                    </div>
+                </div>
+
+                <!-- Textbox with label of User Date 1 -->
+                <div class="col-md-6 row" *ngIf="displayForm">
+                    <div class="col-sm-8" *ngIf="notesForm.value.userDate1Show" [ngClass]="{'has-danger': formValidation.isValidField('userDate1') }">
+                        <label class="col-form-label" [ngClass]="noteType.userDate1Req == 'Y' ? 'clr-blue' : ''" for="userDate1" i18n controlName="userDate1Label"></label>
+                        <app-datepicker [formGroup]="notesForm" [formValidation]="formValidation" [field]="'userDate1'" [showClearButton]="false"></app-datepicker>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="form-group row" *ngIf="displayForm">
+                <div class="col-md-6 row">
+                    <div class="col-sm-8" *ngIf="notesForm.value.userDefined2Show" [ngClass]="{'has-danger': formValidation.isValidField('userDefined2') }">
+                        <label class="col-form-label" [ngClass]="noteType.userDefined2Req == 'Y' ? 'clr-blue' : ''" for="userDefined2" i18n controlName="userDefined2Label"></label>
+                        <input type="text" id="userDefined2"  class="form-control" formControlName="userDefined2"/>
+                        <small class="text-danger" *ngIf="formValidation.isValidField('userDefined2')">
+                            {{ formValidation.errorMessage('userDefined2') }}
+                        </small>
+                    </div>
+                </div>
+
+                <!-- Textbox with label of User Date 2 -->
+                <div class="col-md-6 row" *ngIf="displayForm">
+                    <div class="col-sm-8" *ngIf="notesForm.value.userDate2Show" [ngClass]="{'has-danger': formValidation.isValidField('userDate2') }">
+                        <label class="col-form-label" [ngClass]="noteType.userDate2Req == 'Y' ? 'clr-blue' : ''" for="userDate2" i18n controlName="userDate2Label"></label>
+                        <app-datepicker [formGroup]="notesForm" [formValidation]="formValidation" [field]="'userDate2'" [showClearButton]="false"></app-datepicker>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="form-group row" *ngIf="displayForm">
+                <div class="col-md-6 row">
+                    <div class="col-sm-8" *ngIf="notesForm.value.userDefined3Show" [ngClass]="{'has-danger': formValidation.isValidField('userDefined3') }">
+                        <label class="col-form-label" [ngClass]="noteType.userDefined3Req == 'Y' ? 'clr-blue' : ''" for="userDefined3" i18n controlName="userDefined3Label"></label>
+                        <input type="text" id="userDefined3"  class="form-control" formControlName="userDefined3"/>
+                        <small class="text-danger" *ngIf="formValidation.isValidField('userDefined3')">
+                            {{ formValidation.errorMessage('userDefined3') }}
+                        </small>
+                    </div>
+                </div>
+
+                <!-- Textbox with label of User Date 3 -->
+                <div class="col-md-6 row" *ngIf="displayForm">
+                    <div class="col-sm-8" *ngIf="notesForm.value.userDate3Show" [ngClass]="{'has-danger': formValidation.isValidField('userDate3') }">
+                        <label class="col-form-label" [ngClass]="noteType.userDate3Req == 'Y' ? 'clr-blue' : ''" for="userDate3" i18n controlName="userDate3Label"></label>
+                        <app-datepicker [formGroup]="notesForm" [formValidation]="formValidation" [field]="'userDate3'" [showClearButton]="false"></app-datepicker>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group row" *ngIf="displayForm">
+                <div class="col-md-6 row" >
+                    <div class="col-sm-8" *ngIf="notesForm.value.userDefined4Show" [ngClass]="{'has-danger': formValidation.isValidField('userDefined4') }">
+                        <label class="col-form-label" [ngClass]="noteType.userDefined4Req == 'Y' ? 'clr-blue' : ''" for="userDefined4" i18n controlName="userDefined4Label"></label>
+                        <input type="text" id="userDefined4"  class="form-control" formControlName="userDefined4"/>
+                        <small class="text-danger" *ngIf="formValidation.isValidField('userDefined4')">
+                            {{ formValidation.errorMessage('userDefined4') }}
+                        </small>
+                    </div>
+                </div>
+
+                <!-- Textbox with label of User Date 4 -->
+                <div class="col-md-6 row" *ngIf="displayForm">
+                    <div class="col-sm-8" *ngIf="notesForm.value.userDate4Show" [ngClass]="{'has-danger': formValidation.isValidField('userDate4') }">
+                        <label class="col-form-label" [ngClass]="noteType.userDate4Req == 'Y' ? 'clr-blue' : ''" for="userDate4" i18n controlName="userDate4Label"></label>
+                        <app-datepicker [formGroup]="notesForm" [formValidation]="formValidation" [field]="'userDate4'" [showClearButton]="false"></app-datepicker>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="form-group row" *ngIf="displayForm">
+                <div class="col-md-6 row">
+                    <div class="col-sm-8" *ngIf="notesForm.value.userDefined5Show" [ngClass]="{'has-danger': formValidation.isValidField('userDefined5') }">
+                        <label class="col-form-label" [ngClass]="noteType.userDefined5Req == 'Y' ? 'clr-blue' : ''" for="userDefined5" i18n controlName="userDefined5Label"></label>
+                        <input type="text" id="userDefined5"  class="form-control" formControlName="userDefined5"/>
+                        <small class="text-danger" *ngIf="formValidation.isValidField('userDefined5')">
+                            {{ formValidation.errorMessage('userDefined5') }}
+                        </small>
+                    </div>
+                </div>
+                <div class="col-md-6 row" *ngIf="displayForm">
+                    <!-- Textbox with label of User Date 5 -->
+                    <div class="col-sm-8" *ngIf="notesForm.value.userDate5Show" [ngClass]="{'has-danger': formValidation.isValidField('userDate5') }">
+                        <label class="col-form-label"  [ngClass]="noteType.userDate5Req == 'Y' ? 'clr-blue' : ''"  for="userDate5" i18n controlName="userDate5Label"></label>
+                        <app-datepicker [formGroup]="notesForm" [formValidation]="formValidation" [field]="'userDate5'" [showClearButton]="false"></app-datepicker>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group row" *ngIf="displayForm || !isList">
+                <div class="col-md-6 row" >
+                    <div class="col-sm-8">
+                        <label class="col-form-label" for="insertUser" i18n>Inserted By: </label>
+                        <span class="clr-blue p2" id='insertUser'>{{insertUser}}</span>
+                    </div>
+                </div>
+                <div class="col-md-6 row">
+                    <div class="col-sm-8">
+                        <label class="col-form-label" for="updateUser" i18n>Updated By: </label>
+                        <span class="clr-blue p2" id='updateUser'>{{updateUser}}</span>
+                    </div>
+                </div>
+            </div>
+            </div>
+            <div class="text-center">
+                <span>Source: </span><span class="clr-blue">{{winId}}</span>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+<ng-keyboard-shortcuts [shortcuts]="shortcuts"></ng-keyboard-shortcuts>
+<ng-keyboard-shortcuts-help [key]="'f1'" [closeKey]="'escape'" [title]="'Hotkeys Help'"></ng-keyboard-shortcuts-help>

@@ -1,0 +1,429 @@
+<!-- Copyright (c) 2021 . All Rights Reserved. -->
+<div class="container-fluid">
+    <div class="card-block">
+        <div class="row form-title">
+            <h2 class="col-md-6 card-label-admin">Institutional Claims</h2>
+        </div>
+        <button type="button" *ngIf="showIcon" class="modal-close close" aria-label="Close"
+                (click)="activeModal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+        <app-pop-up-message #popUpMesssage (buttonclickEvent)="popUpButtonHandler($event)"
+                            [popupMessage] = "popUpMessage"></app-pop-up-message>
+
+        <ng-template #loaderTemplate let-loaderValue = "value"  >
+            <div class="row justify-content-center mt-4" *ngIf="loaderValue">
+                <div class="spinner-border text-success" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>
+            </div>
+        </ng-template>
+        <ng-container *ngTemplateOutlet="loaderTemplate;context:{value: secProgress }"></ng-container>
+
+        <ng-container *appWinSelect="{secWin: secWin, userTemplateId: userTemplateId, secModuleId: secModuleId}">
+            <div class="row mt-3 mb-3">
+                <menu-bar [menus]="menu" (onMenuClick)="onMenuItemClick($event)"></menu-bar>
+            </div>
+
+            <form [formGroup]="instClaimDetailForm" novalidate *ngIf="!secProgress">
+
+                <div class="form-group row">
+                    <!-- DynamicText with label of Claim Number -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('claimNumber') }">
+                        <label class="col-form-label" for="claimNumber" i18n>Claim Number</label>
+                        <input type="text" readonly [fieldLevelSec]="''" [params]="{secColDetails: secColDetails, isEditState: editInstClaimDetail}"  readonly id="claimNumber" formControlName="claimNumber" class="form-control"/>
+                    </div>
+
+                </div>
+
+                <!-- DataGrid with Name of DataGrid -->
+                <ag-grid-angular #agGrid class="ag-theme-fresh" [gridOptions]="dataGridGridOptions"
+                    style="width: 100%; height: 300px;"
+                    [enableSorting]="true"
+                    [enableFilter]="true"
+                    [floatingFilter]="true"
+                    [pagination]="true"
+                    [showToolPanel]="true"
+                    [rowSelection]="'single'"
+                    [rowData]="instClaimDetails"
+                    (rowClicked)="onInstClaimDetailSelected($event)">
+                </ag-grid-angular>
+
+                <div class="form-group row">
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('detailServiceDate') }">
+                        <app-datepicker [fieldLevelSec]="'Date'" [field]="'detailServiceDate'"
+                            [formGroup]="instClaimDetailForm"
+                            [formValidation]="formValidation" [isRequired]="true"
+                            [labelText]="'Date'"
+                            (onDateChanged)="validateDetailServiceDate($event)"
+                            [params]="{secColDetails: secColDetails, isEditState: editInstClaimDetail}">
+                        </app-datepicker>
+                    </div>
+
+                    <!-- DynamicText with label of DOB -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('procedureCode') }">
+                        <label class="col-form-label clr-blue" for="procedureCode" i18n>Proc</label>
+                        <input type="text"  [fieldLevelSec]="''" [params]="{secColDetails: secColDetails, isEditState: editInstClaimDetail}" id="procedureCode" formControlName="procedureCode" class="form-control"/>
+                    </div>
+
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('shortDec')}">
+                        <label class="col-form-label text-white" for="shortDec" i18n>Short Dec</label>
+                        <input type="text"  [fieldLevelSec]="''" disabled  id="shortDec" formControlName="shortDec" class="form-control text-primary"/>
+                    </div>
+
+                    <!-- DynamicText with label of DOB -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('quantity') }">
+                    <label class="col-form-label clr-blue" for="quantity" i18n>Qty</label>
+                        <input type="text"  [fieldLevelSec]="''" [params]="{secColDetails: secColDetails, isEditState: editInstClaimDetail}" id="quantity" formControlName="quantity" class="form-control"/>
+                    </div>
+
+                    <!-- DynamicText with label of DOB -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('accommodationRate') }">
+                        <label class="col-form-label" for="accommodationRate" i18n>Accom Rate</label>
+                        <input type="text"  [fieldLevelSec]="''" [params]="{secColDetails: secColDetails, isEditState: editInstClaimDetail}" id="accommodationRate" formControlName="accommodationRate" class="form-control"/>
+                    </div>
+
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('detailThruDate') }">
+                        <app-datepicker [fieldLevelSec]="'Thru'" [field]="'detailThruDate'"
+                            [formGroup]="instClaimDetailForm"
+                            [formValidation]="formValidation" [isRequired]="true"
+                            [labelText]="'Thru'"
+                            (onDateChanged)="validateDetailThruDate($event)"
+                            [params]="{secColDetails: secColDetails, isEditState: editInstClaimDetail}">
+                        </app-datepicker>
+                    </div>
+
+                    <!-- DynamicText with label of DOB -->
+                    <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('alternateProcedureCode') }">
+                        <label class="col-form-label" for="alternateProcedureCode" i18n>Alt Proc</label>
+                        <input type="text"  [fieldLevelSec]="''" [params]="{secColDetails: secColDetails, isEditState: editInstClaimDetail}" id="alternateProcedureCode" formControlName="alternateProcedureCode" class="form-control"/>
+                    </div>
+
+                    <!-- DynamicText with label of DOB -->
+                    <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('dxPtr') }">
+                        <label class="col-form-label" for="dxPtr" i18n>Dx Ptr</label>
+                        <input type="text"  [fieldLevelSec]="''" [params]="{secColDetails: secColDetails, isEditState: editInstClaimDetail}" id="dxPtr" formControlName="dxPtr" class="form-control"/>
+                    </div>
+
+                    <!-- DynamicText with label of DOB -->
+                    <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('billedAmount') }">
+                        <label class="col-form-label clr-blue" for="billedAmount" i18n>Billed</label>
+                        <input type="text"  [fieldLevelSec]="''" [params]="{secColDetails: secColDetails, isEditState: editInstClaimDetail}" id="billedAmount" formControlName="billedAmount" class="form-control"/>
+                    </div>
+
+                </div>
+
+                <div class="form-group row">
+                    <!-- DynamicText with label of DOB -->
+                    <div class="col-md-3 " [ngClass]="{'has-danger': formValidation.isValidField('procedureMod1') }">
+                        <label class="col-form-label" for="procedureMod1" i18n>Mods</label>
+                        <select class="form-control" id="procedureMod1" #mod
+                                name="procedureMod1"
+                                formControlName="procedureMod1"
+                                (change)="mod1DropDownChanged()"
+                        >
+                            <option [value]="mod.modificationCode"
+                                    *ngFor="let mod of modsValue">{{mod.modificationCode}} {{"  "}}  {{mod.description}}</option>
+                        </select>
+                    </div>
+
+                    <!-- DynamicText with label of DOB -->
+                    <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('procedureMod2') }">
+                        <label class="col-form-label" for="procedureMod2" i18n>&nbsp;</label>
+                        <select class="form-control" id="procedureMod2"
+                                name="procedureMod2"
+                                formControlName="procedureMod2"
+                                [attr.disabled]="mod1Status?null:'disabled'"
+                                (change)="mod2DropDownChanged()"
+                        >
+                            <option [value]="mod.modificationCode"
+                                    *ngFor="let mod of modsValue">{{mod.modificationCode}}      {{mod.description}}</option>
+                        </select>
+                    </div>
+
+                    <!-- DynamicText with label of DOB -->
+                    <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('procedureMod3') }">
+                        <label class="col-form-label" for="procedureMod3" i18n>&nbsp;</label>
+                        <select class="form-control" id="procedureMod3"
+                                name="procedureMod3"
+                                formControlName="procedureMod3"
+                                [attr.disabled]="mod2Status?null:'disabled'"
+                                (change)="mod3DropDownChanged()"
+                        >
+                            <option [value]="mod.modificationCode"
+                                    *ngFor="let mod of modsValue">{{mod.modificationCode}}      {{mod.description}}</option>
+                        </select>
+                    </div>
+
+                    <!-- DynamicText with label of DOB -->
+                    <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('procedureMod4') }">
+                        <label class="col-form-label" for="procedureMod4" i18n>&nbsp;</label>
+                        <select class="form-control" id="procedureMod4"
+                                name="procedureMod4"
+                                formControlName="procedureMod4"
+                                [attr.disabled]="mod3Status?null:'disabled'"
+                        >
+                            <option [value]="mod.modificationCode"
+                                    *ngFor="let mod of modsValue">{{mod.modificationCode}}      {{mod.description}}</option>
+                        </select>
+                    </div>
+
+                </div>
+
+                <hr>
+
+                <div class="form-group row">
+                    <!-- DynamicText with label of OC Allowed -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('ocAllowed') }">
+                        <label class="col-form-label" for="ocAllowed" i18n>OC Allowed</label>
+                        <input type="text" id="ocAllowed"  [fieldLevelSec]="'Oc Allowed Amt'" [params]="{secColDetails: secColDetails, isEditState: editInstClaimDetail}"  readonlyid="ocAllowed" formControlName="ocAllowed" class="form-control"/>
+                    </div>
+
+                    <!-- DynamicText with label of Quantity -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('addBackAmount') }">
+                        <label class="col-form-label" for="addBackAmount" i18n>Add Back Amt</label>
+                        <input type="text"  [fieldLevelSec]="''" [params]="{secColDetails: secColDetails, isEditState: editInstClaimDetail}"  readonly id="addBackAmount" formControlName="addBackAmount" class="form-control"/>
+                    </div>
+
+                    <!-- DynamicText with label of Claim Status -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('claimStatus') }">
+                        <label class="col-form-label required-field-label" for="claimStatus" i18n>Claim Status</label>
+                        <select type="text" id="claimStatus" class="form-control"
+                                [params]="{secColDetails: secColDetails, isEditState: editProfSvcClaimDetail}"
+                                formControlName="claimStatus">
+                            <option *ngFor="let dddwDtl of claimStatusData" [value]="dddwDtl.value">
+                                {{dddwDtl.key}}
+                            </option>
+                        </select>
+                        <small class="text-danger" *ngIf="formValidation.isValidField('claimStatus')">
+                            {{ formValidation.errorMessage('claimStatus') }}
+                        </small>
+                    </div>
+
+                </div>
+
+                <div class="form-group row">
+                    <!-- DynamicText with label of OC Paid -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('ocPaid') }">
+                        <label class="col-form-label" for="ocPaid" i18n>OC Paid Amt</label>
+                        <input type="text"  [fieldLevelSec]="'Eob Id'" [params]="{secColDetails: secColDetails, isEditState: editInstClaimDetail}" id="ocPaid" formControlName="ocPaid" class="form-control"/>
+                    </div>
+
+                    <!-- DynamicText with label of OC Paid Rsn -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('ocPaidRsn') }">
+                        <label class="col-form-label" for="ocPaidRsn" i18n>OC Paid Rsn</label>
+                        <input type="text"  [fieldLevelSec]="'Other Carrier Rsn'" [params]="{secColDetails: secColDetails, isEditState: editInstClaimDetail}" id="ocPaidRsn" formControlName="ocPaidRsn" class="form-control"/>
+                    </div>
+
+                    <!-- DynamicText with label of Process Status -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('processStatus') }">
+                        <label class="col-form-label required-field-label" for="processStatus" i18n>Proc
+                            Status</label>
+                        <select type="text" id="processStatus" class="form-control"
+                                [params]="{secColDetails: secColDetails, isEditState: editProfSvcClaimDetail}"
+                                formControlName="processStatus">
+                            <option *ngFor="let dddwDtl of procStatusData" [value]="dddwDtl.value">
+                                {{dddwDtl.key}}
+                            </option>
+                        </select>
+                        <small class="text-danger" *ngIf="formValidation.isValidField('processStatus')">
+                            {{ formValidation.errorMessage('processStatus') }}
+                        </small>
+                    </div>
+
+                </div>
+
+                <div class="form-group row">
+                    <!-- DynamicText with label of Allowed -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('allowed') }">
+                        <label class="col-form-label" for="allowed" i18n>Allowed Amt</label>
+                        <input type="text"  [fieldLevelSec]="'Allowed Amt'" [params]="{secColDetails: secColDetails, isEditState: editInstClaimDetail}" id="allowed" formControlName="allowed" class="form-control"/>
+                    </div>
+
+                    <!-- DynamicText with label of Allowed Rsn -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('allowedRsn') }">
+                        <label class="col-form-label" for="allowedRsn" i18n>Allowed Rsn</label>
+                        <input type="text"  [fieldLevelSec]="'Allowed Reason'" [params]="{secColDetails: secColDetails, isEditState: editInstClaimDetail}" id="allowedRsn" formControlName="allowedRsn" class="form-control"/>
+                    </div>
+
+                    <!-- DynamicText with label of Company Code -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('companyCode') }">
+                        <label class="col-form-label clr-blue" for="companyCode" i18n>Company Code</label>
+                        <input type="text"  [fieldLevelSec]="'Company Code'" [params]="{secColDetails: secColDetails, isEditState: editInstClaimDetail}" id="companyCode" formControlName="companyCode" class="form-control"/>
+                    </div>
+
+                </div>
+
+                <div class="form-group row">
+                    <!-- DynamicText with label of Total NOt Cov -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('totalNotCov') }">
+                        <label class="col-form-label" for="totalNotCov" i18n>Total Not Cov</label>
+                        <input type="text"  [fieldLevelSec]="'Total Units'" [params]="{secColDetails: secColDetails, isEditState: editInstClaimDetail}" id="totalNotCov" formControlName="totalNotCov" class="form-control"/>
+                    </div>
+
+                    <!-- DynamicText with label of Not Covered Rsn -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('notCoveredRsn') }">
+                        <label class="col-form-label" for="notCoveredRsn" i18n>Not Cov Rsn</label>
+                        <input type="text"  [fieldLevelSec]="'Not Covered Reason'" [params]="{secColDetails: secColDetails, isEditState: editInstClaimDetail}" id="notCoveredRsn" formControlName="notCoveredRsn" class="form-control"/>
+                    </div>
+
+                    <!-- DynamicText with label of G/L Reference -->
+
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('glReference') }">
+                        <label class="col-form-label clr-blue" for="glReference" i18n>G/L Reference</label>
+                        <input type="text"  [fieldLevelSec]="'Gl Ref Code'" [params]="{secColDetails: secColDetails, isEditState: editInstClaimDetail}" id="glReference" formControlName="glReference" class="form-control"/>
+                    </div>
+
+                </div>
+
+                <div class="form-group row">
+                    <!-- DynamicText with label of Total Copay -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('totalCopay') }">
+                        <label class="col-form-label" for="totalCopay" i18n>Total Copay</label>
+                        <input type="text"  [fieldLevelSec]="''" [params]="{secColDetails: secColDetails, isEditState: editInstClaimDetail}" id="totalCopay" formControlName="totalCopay" class="form-control"/>
+                    </div>
+
+                    <!-- DynamicText with label of Copay Rsn -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('copayRsn') }">
+                        <label class="col-form-label" for="copayRsn" i18n>Copay Rsn</label>
+                        <input type="text"  [fieldLevelSec]="''" [params]="{secColDetails: secColDetails, isEditState: editInstClaimDetail}"  id="copayRsn" formControlName="copayRsn" class="form-control"/>
+                    </div>
+
+                    <!-- DynamicText with label of Medical Def Code -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('medicalDefCode') }">
+                        <label class="col-form-label" for="medicalDefCode" i18n>Medical Def:</label>
+                        <input type="text"  [fieldLevelSec]="''" [params]="{secColDetails: secColDetails, isEditState: editInstClaimDetail}"
+                               id="medicalDefCode" formControlName="medicalDefCode" class="form-control"/>
+                    </div>
+
+                </div>
+
+                <div class="form-group row">
+                    <!-- DynamicText with label of Total Coins -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('totalCoins') }">
+                        <label class="col-form-label" for="totalCoins" i18n>Total Co-ins</label>
+                        <input type="text"  [fieldLevelSec]="''" [params]="{secColDetails: secColDetails, isEditState: editInstClaimDetail}" id="totalCoins" formControlName="totalCoins" class="form-control"/>
+                    </div>
+
+                    <!-- DynamicText with label of Coinsurance Rsn -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('coinsuranceRsn') }">
+                        <label class="col-form-label" for="coinsuranceRsn" i18n>Co-ins Rsn</label>
+                        <input type="text"  [fieldLevelSec]="''" [params]="{secColDetails: secColDetails, isEditState: editInstClaimDetail}" id="coinsuranceRsn" formControlName="coinsuranceRsn" class="form-control"/>
+                    </div>
+
+                    <!-- DynamicText with label of Adjud Method -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('adjudMethod') }">
+                        <label class="col-form-label" for="adjudMethod" i18n>Adj Method</label>
+                        <input type="text"  [fieldLevelSec]="''" [params]="{secColDetails: secColDetails, isEditState: editInstClaimDetail}"  readonly id="adjudMethod" formControlName="adjudMethod" class="form-control"/>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <!-- DynamicText with label of Total Deduct -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('totalDeduct') }">
+                        <label class="col-form-label" for="totalDeduct" i18n>Total Deduct</label>
+                        <input type="text"  [fieldLevelSec]="''" [params]="{secColDetails: secColDetails, isEditState: editInstClaimDetail}" id="totalDeduct" formControlName="totalDeduct" class="form-control"/>
+                    </div>
+
+                    <!-- DynamicText with label of Deduct Rsn -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('deductRsn') }">
+                        <label class="col-form-label" for="deductRsn" i18n>Deduct Rsn</label>
+                        <input type="text"  [fieldLevelSec]="'Deductible Amt'" [params]="{secColDetails: secColDetails, isEditState: editInstClaimDetail}" id="deductRsn" formControlName="deductRsn" class="form-control"/>
+                    </div>
+
+                    <!-- DynamicText with label of Post Date -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('postDate') }">
+                        <label class="col-form-label" for="postDate" i18n>Post Date</label>
+                        <input type="text"  [fieldLevelSec]="'Svc To Date'" [params]="{secColDetails: secColDetails, isEditState: editInstClaimDetail}"  readonly id="postDate" formControlName="postDate" class="form-control"/>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <!-- DynamicText with label of Withold Amt -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('witholdAmt') }">
+                        <label class="col-form-label" for="witholdAmt" i18n>Withhold Amt</label>
+                        <input type="text"  [fieldLevelSec]="'Withhold Amt'" [params]="{secColDetails: secColDetails, isEditState: editInstClaimDetail}" id="witholdAmt" formControlName="witholdAmt" class="form-control"/>
+                    </div>
+
+                    <!-- DynamicText with label of Adjust Rsn -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('adjustRsn') }">
+                        <label class="col-form-label" for="adjustRsn" i18n>Adjust Rsn</label>
+                        <input type="text"  [fieldLevelSec]="'Adjustment Reason'" [params]="{secColDetails: secColDetails, isEditState: editInstClaimDetail}" id="adjustRsn" formControlName="adjustRsn" class="form-control"/>
+                    </div>
+
+                    <!-- DynamicText with label of Claim Status -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('auditStatus') }">
+                        <label class="col-form-label" for="auditStatus" i18n>APC Status</label>
+                        <input type="text"  [fieldLevelSec]="'Audit Status'" [params]="{secColDetails: secColDetails, isEditState: editInstClaimDetail}"  readonly id="auditStatus" formControlName="auditStatus" class="form-control"/>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <!-- DynamicText with label of Cob patliab -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('cobPatliab') }">
+                        <label class="col-form-label" for="cobPatliab" i18n>Cob Pat Liab</label>
+                        <input type="text"  [fieldLevelSec]="'Cob Pat Liab Cvrg Amt'" [params]="{secColDetails: secColDetails, isEditState: editInstClaimDetail}"  readonly id="cobPatliab" formControlName="cobPatliab" class="form-control"/>
+                    </div>
+
+
+                    <!-- DynamicText with label of Withhold Surplus -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('withholdSurplus') }">
+                        <label class="col-form-label" for="withholdSurplus" i18n>Withhold Surplus</label>
+                        <input type="text"  [fieldLevelSec]="''" [params]="{secColDetails: secColDetails, isEditState: editInstClaimDetail}"  readonly id="withholdSurplus" formControlName="withholdSurplus" class="form-control"/>
+                    </div>
+
+                    <!-- DynamicText with label of Paid Net Amt -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('paidNetAmt') }">
+                        <label class="col-form-label" for="paidNetAmt" i18n>Paid Net Amt</label>
+                        <input type="text"  [fieldLevelSec]="'Interest Amt'" [params]="{secColDetails: secColDetails, isEditState: editInstClaimDetail}"  readonly id="paidNetAmt" formControlName="paidNetAmt" class="form-control"/>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <!-- DynamicText with label of Net Amount -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('netAmount') }">
+                        <label class="col-form-label" for="netAmount" i18n>Net Amount</label>
+                        <input type="text"  [fieldLevelSec]="'Bma Amount'" [params]="{secColDetails: secColDetails, isEditState: editInstClaimDetail}"  readonly id="netAmount" formControlName="netAmount" class="form-control"/>
+                    </div>
+
+                    <!-- DynamicText with label of Message -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('message') }">
+                        <label class="col-form-label" for="message" i18n>Message</label>
+                        <input type="text"  [fieldLevelSec]="''" [params]="{secColDetails: secColDetails, isEditState: editInstClaimDetail}"  readonly id="message" formControlName="message" class="form-control"/>
+                    </div>
+
+                    <!-- Checkbox with label of Admin Fee -->
+                    <div class="col-md-4" [ngClass]="{'has-error': displayMessage.adminFee }">
+                        <div class="checkbox col-md-12 mt-4 pt-3">
+                            <label class="checkbox mr-3" for="adminFee" i18n>Admin Fee</label>
+                            <input type="checkbox" id="adminFee" value="false"
+                                   formControlName="adminFee">
+                        </div>
+                        <span class="help-block" *ngIf="displayMessage.adminFee">{{ displayMessage.adminFee  }}</span>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <!-- DynamicText with label of OC Pd Surplus -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('ocPdSurplus') }">
+                        <label class="col-form-label" for="ocPdSurplus" i18n>OC Pd Surplus</label>
+                        <input type="text"  [fieldLevelSec]="''" [params]="{secColDetails: secColDetails, isEditState: editInstClaimDetail}"  readonly id="ocPdSurplus" formControlName="ocPdSurplus" class="form-control"/>
+                    </div>
+
+                    <!-- DynamicText with label of Holds -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('holds') }">
+                        <label class="col-form-label" for="holds" i18n>Holds</label>
+                        <input type="text"  [fieldLevelSec]="'Hold Reason 1'" [params]="{secColDetails: secColDetails, isEditState: editInstClaimDetail}"  readonly id="holds" formControlName="holds" class="form-control"/>
+                    </div>
+                </div>
+
+            </form>
+        </ng-container>
+    </div>
+</div>
+<ng-keyboard-shortcuts [shortcuts]="shortcuts" [disabled]="isChildModalOpen"></ng-keyboard-shortcuts>
+<ng-keyboard-shortcuts-help [key]="'f2'" [closeKey]="'escape'" [title]="'Hotkeys Help'"></ng-keyboard-shortcuts-help>

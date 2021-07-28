@@ -1,0 +1,51 @@
+<!-- Copyright (c) 2020 . All Rights Reserved. -->
+<div class="container-fluid">
+    <div class="card-block">
+        <form [formGroup]="memberTerminateUnterminateForm" novalidate>
+            <h2 class="form-title card-label-admin">Member Terminate Unterminate</h2>
+            <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+            <app-pop-up-message #popUpMesssage (buttonclickEvent)="popUpButtonHandler($event)"  [(popupMessage)] = "popUpMessage"></app-pop-up-message>
+                        
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of Term Date -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('termDate') }">
+                     <label class="col-form-label" for="termDate" i18n>Term Date</label>
+                     <input type="text" id="termDate"  class="form-control" formControlName="termDate"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('termDate')">
+                      {{ formValidation.errorMessage('termDate') }}
+                     </small>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- DynamicText with label of Term Reason -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('termReason') }">
+                     <label class="col-form-label" for="termReason" i18n>Term Reason</label>
+                     <input type="text" readonly id="termReason" formControlName="termReason" class="form-control"/>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Button with label of OK -->
+                <div class="col-md-2">
+                    <button type="button" id="ok" name="ok" class="btn btn-small btn-primary">OK</button>
+                
+                
+                </div>
+            
+                <!-- Button with label of Cancel -->
+                <div class="col-md-2">
+                    <button type="button" id="cancel" name="cancel" class="btn btn-small btn-primary">Cancel</button>
+                
+                
+                </div>
+            
+            </div>
+        </form>
+    </div>
+</div>

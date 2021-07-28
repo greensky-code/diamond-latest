@@ -1,0 +1,480 @@
+<!-- Copyright (c) 2020 . All Rights Reserved. -->
+<div class="container-fluid">
+    <div class="card-block">
+
+
+        <div class="row form-title">
+            <h2 class="col-md-6  card-label-admin"> Alias Responsible Party Privacy</h2>
+            <div class="col-md"><b class="readonly-label">View Only</b></div>
+        </div>
+        <button type="button" *ngIf="showIcon" class="close" aria-label="Close" (click)="modalClose()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+        <app-pop-up-message #popUpMesssage (buttonclickEvent)="popUpButtonHandler($event)"
+                            [(popupMessage)]="popUpMessage"></app-pop-up-message>
+        <ng-template #loaderTemplate let-loaderValue="value">
+            <div class="row justify-content-center mt-4" *ngIf="loaderValue">
+                <div class="spinner-border text-success" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>
+            </div>
+        </ng-template>
+
+        <ng-container *ngTemplateOutlet="loaderTemplate;context:{value: secProgress }"></ng-container>
+
+        <ng-container
+                *appWinSelect="{secWin: secWin, userTemplateId: userTemplateId, secModuleId: memberModuleId}">
+
+            <div class="row">
+                <menu-bar [menus]="menu" (onMenuClick)="onMenuItemClick($event)"></menu-bar>
+            </div>
+
+            <form [formGroup]="aliasResponsiblePartyPrivacyForm" novalidate *ngIf="!secProgress">
+                <div class="form-group row">
+                    <!-- Textbox with label of DIAMOND ID -->
+                    <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('diamondId') }">
+                        <label class="col-form-label" for="diamondId" i18n>DIAMOND ID</label>
+                        <input type="text" id="diamondId" disabled class="form-control" formControlName="diamondId"
+                               [fieldLevelSec]="'DIAMOND_ID'"
+                               [params]="{secColDetails: secColDetails, isEditState: true}"/>
+                        <small class="text-danger" *ngIf="formValidation.isValidField('diamondId')">
+                            {{ formValidation.errorMessage('diamondId') }}
+                        </small>
+                    </div>
+
+                    <!-- Textbox with label of Subscriber ID -->
+                    <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('subscriberId') }">
+                        <label class="col-form-label" for="subscriberId" i18n>Subscriber ID</label>
+                        <input type="text" id="subscriberId" (change)="onChangeSubscriberId($event)"
+                               class="form-control" formControlName="subscriberId"
+                               (keydown)="onLookupFieldChange($event)"
+                               [fieldLevelSec]="'SUBSCRIBER_ID'"
+                               [params]="{secColDetails: secColDetails, isEditState: true}"/>
+                        <small class="text-danger" *ngIf="formValidation.isValidField('subscriberId')">
+                            {{ formValidation.errorMessage('subscriberId') }}
+                        </small>
+                    </div>
+                </div>
+
+                <!-- DataGrid with Name of DataGrid001 -->
+                <ag-grid-angular #agGrid class="ag-theme-fresh" rowSelection='single'
+                                 [gridOptions]="dataGrid001GridOptions"
+                                 style="width: 100%; height: 300px;"
+                                 [enableSorting]="true"
+                                 [enableFilter]="false"
+                                 [floatingFilter]="false"
+                                 [pagination]="true"
+                                 [showToolPanel]="true"
+                                 (selectionChanged)="grid1SelectionChange()">
+                </ag-grid-angular>
+
+                <div class="form-group row mt-2">
+                    <div class="col-md-6 form-control-static mb-0" i18n>
+                        <h4><u>Alias Information</u></h4>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <!-- Textbox with label of Last Name -->
+                    <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('lastName001') }">
+                        <label class="col-form-label" for="lastName001" i18n>Last Name</label>
+                        <input type="text" id="lastName001" class="form-control" formControlName="lastName001"
+                               [fieldLevelSec]="'AKA_LAST_NAME'" (change)="inputEvent()"
+                               [params]="{secColDetails: secColDetails, isEditState: true}"/>
+                        <small class="text-danger" *ngIf="formValidation.isValidField('lastName001')">
+                            {{ formValidation.errorMessage('lastName001') }}
+                        </small>
+                    </div>
+
+                    <!-- Textbox with label of First -->
+                    <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('first001') }">
+                        <label class="col-form-label" for="first001" i18n>First</label>
+                        <input type="text" id="first001" class="form-control" formControlName="first001"
+                               [fieldLevelSec]="'AKA_FIRST_NAME'" (change)="inputEvent()"
+                               [params]="{secColDetails: secColDetails, isEditState: true}"/>
+                        <small class="text-danger" *ngIf="formValidation.isValidField('first001')">
+                            {{ formValidation.errorMessage('first001') }}
+                        </small>
+                    </div>
+
+                </div>
+
+                <div class="form-group row">
+                    <!-- Textbox with label of Addr 1 -->
+                    <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('addr1001') }">
+                        <label class="col-form-label" for="addr1001" i18n>Addr 1</label>
+                        <input type="text" id="addr1001" class="form-control" formControlName="addr1001"
+                               [fieldLevelSec]="'AKA_ADDRESS_LINE_1'" (change)="inputEvent()"
+                               [params]="{secColDetails: secColDetails, isEditState: true}"/>
+                        <small class="text-danger" *ngIf="formValidation.isValidField('addr1001')">
+                            {{ formValidation.errorMessage('addr1001') }}
+                        </small>
+                    </div>
+
+                    <!-- Textbox with label of Addr 2 -->
+                    <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('addr2001') }">
+                        <label class="col-form-label" for="addr2001" i18n>Addr 2</label>
+                        <input type="text" id="addr2001" class="form-control" formControlName="addr2001"
+                               [fieldLevelSec]="'AKA_ADDRESS_LINE_1'" (change)="inputEvent()"
+                               [params]="{secColDetails: secColDetails, isEditState: true}"/>
+                        <small class="text-danger" *ngIf="formValidation.isValidField('addr2001')">
+                            {{ formValidation.errorMessage('addr2001') }}
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <!-- Textbox with label of City -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('city001') }">
+                        <label class="col-form-label" for="city001" i18n>City</label>
+                        <input type="text" id="city001" class="form-control" formControlName="city001"
+                               [fieldLevelSec]="'AKA_CITY'" (change)="inputEvent()"
+                               [params]="{secColDetails: secColDetails, isEditState: true}"/>
+                        <small class="text-danger" *ngIf="formValidation.isValidField('city001')">
+                            {{ formValidation.errorMessage('city001') }}
+                        </small>
+                    </div>
+
+                    <!-- Textbox with label of State -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('state001') }">
+                        <label class="col-form-label" for="state001" i18n>State</label>
+                        <input type="text" id="state001" class="form-control" formControlName="state001"
+                               [fieldLevelSec]="'AKA_STATE'" (change)="inputEvent()"
+                               [params]="{secColDetails: secColDetails, isEditState: true}"/>
+                        <small class="text-danger" *ngIf="formValidation.isValidField('state001')">
+                            {{ formValidation.errorMessage('state001') }}
+                        </small>
+                    </div>
+
+                    <!-- Textbox with label of Zip Code -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('zipCode001') }">
+                        <label class="col-form-label" for="zipCode001" i18n>Zip Code</label>
+                        <input type="text" id="zipCode001" class="form-control" formControlName="zipCode001"
+                               (blur)="findDetailByZipCode($event,1)"
+                               [fieldLevelSec]="'AKA_ZIP_CODE'" (change)="inputEvent()"
+                               [params]="{secColDetails: secColDetails, isEditState: true}"/>
+                        <small class="text-danger"
+                               *ngIf="formValidation.isValidField('zipCode001') && aliasResponsiblePartyPrivacyForm.get('zipCode001').errors.zipCoceValidator">
+                            Zip Code Must be 0,5 or 9 characters
+                        </small>
+                    </div>
+
+                </div>
+
+                <div class="form-group row">
+                    <!-- Textbox with label of Phone Number -->
+                    <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('phoneNumber001') }">
+                        <label class="col-form-label" for="phoneNumber001" i18n>Phone Number</label>
+                        <input type="text" id="phoneNumber001" maxlength="10" class="form-control"
+                               formControlName="phoneNumber001"
+                               [fieldLevelSec]="'AKA_PHONE_NUMBER'" (change)="inputEvent()"
+                               [params]="{secColDetails: secColDetails, isEditState: true}"/>
+                        <small class="text-danger"
+                               *ngIf="formValidation.isValidField('phoneNumber001') && aliasResponsiblePartyPrivacyForm.get('phoneNumber001').errors.pattern">
+                            Phone Number Must be Numeric
+                        </small>
+                        <small class="text-danger"
+                               *ngIf="formValidation.isValidField('phoneNumber001') && aliasResponsiblePartyPrivacyForm.get('phoneNumber001').errors.phoneValidator">
+                            Phone Number Must be 0,7 or 10 digits
+                        </small>
+                    </div>
+
+                    <!-- Textbox with label of Country -->
+                    <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('country001') }">
+                        <label class="col-form-label" for="country001" i18n>Country</label>
+                        <select id="country001" class="form-control" formControlName="country001"
+                                [fieldLevelSec]="'AKA_COUNTRY'" (change)="inputEvent()"
+                                [params]="{secColDetails: secColDetails, isEditState: true}">
+                            <option [value]="c.countryCode" *ngFor="let c of countries;">{{c.countryCode}}</option>
+                        </select>
+                        <small class="text-danger" *ngIf="formValidation.isValidField('country001')">
+                            {{ formValidation.errorMessage('country001') }}
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <!-- DynamicText with Name of DynamicText001 -->
+                    <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('dynamicText001') }">
+                        <label class="col-form-label text-primary" i18n>Add Type: R4 - Alias Res/Primary</label>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-md-6 form-control-static mb-0" i18n>
+                        <h4><u> Responsible Party Information</u></h4>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <!-- Textbox with label of Last Name -->
+                    <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('lastName002') }">
+                        <label class="col-form-label" for="lastName002" i18n>Last Name</label>
+                        <input type="text" id="lastName002" class="form-control" formControlName="lastName002"
+                               [fieldLevelSec]="'RESP_LAST_NAME'" (change)="inputEvent()"
+                               [params]="{secColDetails: secColDetails, isEditState: true}"/>
+                        <small class="text-danger" *ngIf="formValidation.isValidField('lastName002')">
+                            {{ formValidation.errorMessage('lastName002') }}
+                        </small>
+                    </div>
+
+                    <!-- Textbox with label of First -->
+                    <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('first002') }">
+                        <label class="col-form-label" for="first002" i18n>First</label>
+                        <input type="text" id="first002" class="form-control" formControlName="first002"
+                               [fieldLevelSec]="'RESP_FIRST_NAME'" (change)="inputEvent()"
+                               [params]="{secColDetails: secColDetails, isEditState: true}"/>
+                        <small class="text-danger" *ngIf="formValidation.isValidField('first002')">
+                            {{ formValidation.errorMessage('first002') }}
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <!-- Textbox with label of Addr 1 -->
+                    <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('addr1002') }">
+                        <label class="col-form-label" for="addr1002" i18n>Addr 1</label>
+                        <input type="text" id="addr1002" class="form-control" formControlName="addr1002"
+                               [fieldLevelSec]="'RESP_ADDRESS_LINE_1'" (change)="inputEvent()"
+                               [params]="{secColDetails: secColDetails, isEditState: true}"/>
+                        <small class="text-danger" *ngIf="formValidation.isValidField('addr1002')">
+                            {{ formValidation.errorMessage('addr1002') }}
+                        </small>
+                    </div>
+
+                    <!-- Textbox with label of Addr 2 -->
+                    <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('addr2002') }">
+                        <label class="col-form-label" for="addr2002" i18n>Addr 2</label>
+                        <input type="text" id="addr2002" class="form-control" formControlName="addr2002"
+                               [fieldLevelSec]="'RESP_ADDRESS_LINE_2'" (change)="inputEvent()"
+                               [params]="{secColDetails: secColDetails, isEditState: true}"/>
+                        <small class="text-danger" *ngIf="formValidation.isValidField('addr2002')">
+                            {{ formValidation.errorMessage('addr2002') }}
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <!-- Textbox with label of City -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('city002') }">
+                        <label class="col-form-label" for="city002" i18n>City</label>
+                        <input type="text" id="city002" class="form-control" formControlName="city002"
+                               [fieldLevelSec]="'RESP_CITY'" (change)="inputEvent()"
+                               [params]="{secColDetails: secColDetails, isEditState: true}"/>
+                        <small class="text-danger" *ngIf="formValidation.isValidField('city002')">
+                            {{ formValidation.errorMessage('city002') }}
+                        </small>
+                    </div>
+
+                    <!-- Textbox with label of State -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('state002') }">
+                        <label class="col-form-label" for="state002" i18n>State</label>
+                        <input type="text" id="state002" class="form-control" formControlName="state002"
+                               [fieldLevelSec]="'RESP_STATE'" (change)="inputEvent()"
+                               [params]="{secColDetails: secColDetails, isEditState: true}"/>
+                        <small class="text-danger" *ngIf="formValidation.isValidField('state002')">
+                            {{ formValidation.errorMessage('state002') }}
+                        </small>
+                    </div>
+
+                    <!-- Textbox with label of Zip Code -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('zipCode002') }">
+                        <label class="col-form-label" for="zipCode002" i18n>Zip Code</label>
+                        <input type="text" id="zipCode002" class="form-control" formControlName="zipCode002"
+                               (blur)="findDetailByZipCode($event,2)"
+                               [fieldLevelSec]="'RESP_ZIP_CODE'" (change)="inputEvent()"
+                               [params]="{secColDetails: secColDetails, isEditState: true}"/>
+                        <small class="text-danger"
+                               *ngIf="formValidation.isValidField('zipCode002') && aliasResponsiblePartyPrivacyForm.get('zipCode002').errors.zipCoceValidator">
+                            Zip Code Must be 0,5 or 9 characters
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <!-- Textbox with label of Phone Number -->
+                    <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('phoneNumber002') }">
+                        <label class="col-form-label" for="phoneNumber002" i18n>Phone Number</label>
+                        <input type="text" id="phoneNumber002" maxlength="10" class="form-control"
+                               formControlName="phoneNumber002"
+                               [fieldLevelSec]="'RESP_PHONE_NUMBER'" (change)="inputEvent()"
+                               [params]="{secColDetails: secColDetails, isEditState: true}"/>
+                        <small class="text-danger"
+                               *ngIf="formValidation.isValidField('phoneNumber002') && aliasResponsiblePartyPrivacyForm.get('phoneNumber002').errors.pattern">
+                            Phone Number Must be Numeric
+                        </small>
+                        <small class="text-danger"
+                               *ngIf="formValidation.isValidField('phoneNumber002') && aliasResponsiblePartyPrivacyForm.get('phoneNumber002').errors.phoneValidator">
+                            Phone Number Must be 0,7 or 10 digits
+                        </small>
+                    </div>
+
+                    <!-- Textbox with label of Country -->
+                    <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('country002') }">
+                        <label class="col-form-label" for="country002" i18n>Country</label>
+                        <select id="country002" class="form-control" formControlName="country002"
+                                [fieldLevelSec]="'RESP_COUNTRY'" (change)="inputEvent()"
+                                [params]="{secColDetails: secColDetails, isEditState: true}">
+                            <option [value]="c.countryCode" *ngFor="let c of countries;">{{c.countryCode}}</option>
+                        </select>
+                        <!-- // <input type="text" id="country002"  class="form-control" formControlName="country002"/> -->
+                        <small class="text-danger" *ngIf="formValidation.isValidField('country002')">
+                            {{ formValidation.errorMessage('country002') }}
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <!-- DynamicText with Name of DynamicText002 -->
+                    <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('dynamicText002') }">
+                        <label class="col-form-label text-primary" i18n>Add Type: R5 - Responsible Party
+                            Res/Primary</label>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-md-6 form-control-static mb-0" i18n>
+                        <h4><u> Privacy Information</u></h4>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <!-- Textbox with label of Last Name -->
+                    <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('lastName003') }">
+                        <label class="col-form-label" for="lastName003" i18n>Last Name</label>
+                        <input type="text" id="lastName003" class="form-control" formControlName="lastName003"
+                               [fieldLevelSec]="'PRIV_LAST_NAME'"
+                               [params]="{secColDetails: secColDetails, isEditState: true}"/>
+                        <small class="text-danger" *ngIf="formValidation.isValidField('lastName003')">
+                            {{ formValidation.errorMessage('lastName003') }}
+                        </small>
+                    </div>
+
+                    <!-- Textbox with label of First -->
+                    <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('firstName003') }">
+                        <label class="col-form-label" for="firstName003" i18n>First</label>
+                        <input type="text" id="firstName003" class="form-control" formControlName="firstName003"
+                               [fieldLevelSec]="'PRIV_FIRST_NAME'"
+                               [params]="{secColDetails: secColDetails, isEditState: true}"/>
+                        <small class="text-danger" *ngIf="formValidation.isValidField('firstName003')">
+                            {{ formValidation.errorMessage('firstName003') }}
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <!-- Textbox with label of Addr 1 -->
+                    <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('addr1003') }">
+                        <label class="col-form-label" for="addr1003" i18n>Addr 1</label>
+                        <input type="text" id="addr1003" class="form-control" formControlName="addr1003"
+                               [fieldLevelSec]="'PRIV_ADDRESS_LINE_1'"
+                               [params]="{secColDetails: secColDetails, isEditState: true}"/>
+                        <small class="text-danger" *ngIf="formValidation.isValidField('addr1003')">
+                            {{ formValidation.errorMessage('addr1003') }}
+                        </small>
+                    </div>
+
+                    <!-- Textbox with label of Addr 2 -->
+                    <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('addr2003') }">
+                        <label class="col-form-label" for="addr2003" i18n>Addr 2</label>
+                        <input type="text" id="addr2003" class="form-control" formControlName="addr2003"
+                               [fieldLevelSec]="'PRIV_ADDRESS_LINE_2'"
+                               [params]="{secColDetails: secColDetails, isEditState: true}"/>
+                        <small class="text-danger" *ngIf="formValidation.isValidField('addr2003')">
+                            {{ formValidation.errorMessage('addr2003') }}
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <!-- Textbox with label of City -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('city003') }">
+                        <label class="col-form-label" for="city003" i18n>City</label>
+                        <input type="text" id="city003" class="form-control" formControlName="city003"
+                               [fieldLevelSec]="'PRIV_CITY'"
+                               [params]="{secColDetails: secColDetails, isEditState: true}"/>
+                        <small class="text-danger" *ngIf="formValidation.isValidField('city003')">
+                            {{ formValidation.errorMessage('city003') }}
+                        </small>
+                    </div>
+
+                    <!-- Textbox with label of State -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('state003') }">
+                        <label class="col-form-label" for="state003" i18n>State</label>
+                        <input type="text" id="state003" class="form-control" formControlName="state003"
+                               [fieldLevelSec]="'PRIV_STATE'"
+                               [params]="{secColDetails: secColDetails, isEditState: true}"/>
+                        <small class="text-danger" *ngIf="formValidation.isValidField('state003')">
+                            {{ formValidation.errorMessage('state003') }}
+                        </small>
+                    </div>
+
+                    <!-- Textbox with label of Zip Code -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('zipCode003') }">
+                        <label class="col-form-label" for="zipCode003" i18n>Zip Code</label>
+                        <input type="text" id="zipCode003" class="form-control" formControlName="zipCode003"
+                               (blur)="findDetailByZipCode($event,3)"
+                               [fieldLevelSec]="'PRIV_ZIP_CODE'"
+                               [params]="{secColDetails: secColDetails, isEditState: true}"/>
+                        <small class="text-danger"
+                               *ngIf="formValidation.isValidField('zipCode003') && aliasResponsiblePartyPrivacyForm.get('zipCode003').errors.zipCoceValidator">
+                            Zip Code Must be 0,5 or 9 characters
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <!-- Textbox with label of Phone Number -->
+                    <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('phoneNumber003') }">
+                        <label class="col-form-label" for="phoneNumber003" i18n>Phone Number</label>
+                        <input type="text" id="phoneNumber003" maxlength="10" class="form-control"
+                               formControlName="phoneNumber003"
+                               [fieldLevelSec]="'PRIV_PHONE_NUMBER'"
+                               [params]="{secColDetails: secColDetails, isEditState: true}"/>
+                        <small class="text-danger"
+                               *ngIf="formValidation.isValidField('phoneNumber003') && aliasResponsiblePartyPrivacyForm.get('phoneNumber003').errors.pattern">
+                            Phone Number Must be Numeric
+                        </small>
+                        <small class="text-danger"
+                               *ngIf="formValidation.isValidField('phoneNumber003') && aliasResponsiblePartyPrivacyForm.get('phoneNumber003').errors.phoneValidator">
+                            Phone Number Must be 0 , 7 or 10 digits
+                        </small>
+                    </div>
+
+                    <!-- Textbox with label of Country -->
+                    <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('country003') }">
+                        <label class="col-form-label" for="country003" i18n>Country</label>
+                        <select id="country003" class="form-control" formControlName="country003"
+                                [fieldLevelSec]="'PRIV_COUNTRY'"
+                                [params]="{secColDetails: secColDetails, isEditState: true}">
+                            <option [value]="c.countryCode" *ngFor="let c of countries;">{{c.countryCode}}</option>
+                        </select>
+                        <!-- <input type="text" id="country003"  class="form-control" formControlName="country003"/> -->
+                        <small class="text-danger" *ngIf="formValidation.isValidField('country003')">
+                            {{ formValidation.errorMessage('country003') }}
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-md-6 form-control-static mb-0" i18n>
+                        <h4><u> Contact Information</u></h4>
+                    </div>
+                </div>
+                <div class="col-md-12 mt-3 p-0">
+                    <dynamic-form [prevState]="contactsState" [isResetForm]="isResetForm" [title]="'Contacts'"
+                                  [config]="memberContactFormConfig"
+                                  (formSubmitted)="saveMemberContact($event)"></dynamic-form>
+                </div>
+                <div class="form-group row">
+                </div>
+            </form>
+        </ng-container>
+    </div>
+</div>
+
+
+<ng-keyboard-shortcuts [shortcuts]="shortcuts"></ng-keyboard-shortcuts>
+<ng-keyboard-shortcuts-help [key]="'f2'" [closeKey]="'escape'" [title]="'Hotkeys Help'"></ng-keyboard-shortcuts-help>
+

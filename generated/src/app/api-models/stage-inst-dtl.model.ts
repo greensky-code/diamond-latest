@@ -1,0 +1,56 @@
+/* Copyright (c) 2020 . All Rights Reserved. */
+
+export class StageInstDtl {
+  batchId: string;
+  transactionId: number;
+  lineNo: number;
+  subLineCode: string;
+  lineStatus: string;
+  detailSvcDate: Date;
+  detailThruDate: Date;
+  diagnosisCodePtr: number;
+  procedureCode: string;
+  procedureModifier: string;
+  quantity: number;
+  billedAmt: number;
+  allowedFactor: number;
+  allowedAmt: number;
+  allowedRsn: string;
+  notCoveredAmt: number;
+  notCoveredRsn: string;
+  copay1Amt: number;
+  copay1Rsn: string;
+  copay2Amt: number;
+  copay2Rsn: string;
+  deductibleAmt: number;
+  deductibleRsn: string;
+  otherCarrierAmt: number;
+  otherCarrierRsn: string;
+  withholdAmt: number;
+  netAmt: number;
+  adjustmentRsn: string;
+  checkDate: Date;
+  adjudDate: Date;
+  alternateProcCode: string;
+  accomodationRate: number;
+  nationalUnlabeled1: string;
+  interestAmt: number;
+  discountAmt: number;
+  paidNetAmt: number;
+  uncleanDays: number;
+  overrideUncleanDays: number;
+  ocAllowedAmt: number;
+  revenueCodeDesc: string;
+  processingStatusOut: string;
+  claimStatusOut: string;
+  sysRevCode: string;
+  sysBilledAmt: number;
+  procCodeQualifier: string;
+  procedureModifier2: string;
+  procedureModifier3: string;
+  procedureModifier4: string;
+  unitMeasType: string;
+  altProcCodeQualifier: string;
+  dtlClaimNumber: string;
+  insertDatetime: Date;
+}

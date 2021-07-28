@@ -1,0 +1,31 @@
+<div class="container-fluid row">
+    <div class="card-block col-md-10 ">
+        <div class="modal-header">
+            <h4 class="modal-title">Group User Fields</h4>
+            <button (click)="activeModal.dismiss('Cross click')" *ngIf="showIcon" aria-label="Close" class="modal-close close"
+                    type="button">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <form [formGroup]="groupUserFieldsForm" class="mt-2" novalidate>
+            <app-alert-message *ngIf="alertMessage" [alertMessage]="alertMessage"></app-alert-message>
+            <app-pop-up-message #popUpMesssage (buttonclickEvent)="popUpButtonHandler($event)" *ngIf="popUpMessage"
+                                [popupMessage]="popUpMessage"></app-pop-up-message>
+            <app-dynamic-user-defined-fields [dataWindowId]="dataWindowId"
+                                             [winID]="winID"></app-dynamic-user-defined-fields>
+            <div class="form-group">
+                <label>Comments:</label>
+                <input id="comments" formControlName="comments" class="form-control" type="text"/>
+            </div>
+
+        </form>
+    </div>
+    <div class="col-md-2" style="margin-top: 3.9rem;">
+        <button (click)="update()" class="button">
+            Ok
+        </button>
+        <button (click)="close()" class="button">
+            Close
+        </button>
+    </div>
+</div>

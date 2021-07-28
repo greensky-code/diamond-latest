@@ -1,0 +1,297 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+    <title>Line of Business, How DIAMOND Thinks</title>
+    <!--(Meta)==========================================================-->
+    <meta name="copyright"
+          value="© Copyright 2002 Health Systems Design Corp., a wholly owned subsidiary of Perot Systems Corporation. All rights reserved"/>
+    <meta content="About.htt" name="template"/>
+    <meta content="RoboHELP by eHelp Corporation - www.ehelp.com" name="generator"/>
+    <meta content="0.1" name="generator-major-version"/>
+    <meta content="1" name="generator-minor-version"/>
+    <meta content="kadov" name="filetype"/>
+    <meta content="1" name="filetype-version"/>
+    <meta content="1" name="page-count"/>
+    <meta content="1854" name="layout-height"/>
+    <meta content="678" name="layout-width"/>
+    <!--(Links)=========================================================-->
+    <!--(Scripts)=======================================================-->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+</head>
+<body>
+
+<div class="calibreMeta">
+    <div class="calibreMetaTitle">
+
+
+        <h1>
+            <a href="../2nlvj-mfnql.html">DIAMOND 950 Help
+            </a>
+        </h1>
+
+
+    </div>
+    <div class="calibreMetaAuthor">
+        Unknown
+
+    </div>
+</div>
+
+<div class="calibreMain">
+
+    <div class="calibreEbookContent">
+
+        <div class="calibreEbNavTop">
+
+            <a href="Adding_a_G_L_Reference_Code_for_Administrative_Fees.htm" class="calibreAPrev">previous page
+            </a>
+
+
+            <a href="Add_a_Modifier_code.htm" class="calibreANext">next page
+            </a>
+
+        </div>
+
+
+        <h1 class="calibre1">Line of Business, How DIAMOND Thinks</h1>
+
+        <p class="text">This topic provides processing logic information about:</p>
+
+        <p class="text"><a href="#Introduction">Introduction</a></p>
+
+        <p class="text"><a
+                href="Line_of_Business_How_DIAMOND_Thinks.htm#How_Line_of_Business_Controls_Processing_How_LINBS_affects_claim_pricing_MID">How
+            LINBS Affects Claim Pricing</a></p>
+
+        <p class="text"><a
+                href="Line_of_Business_How_DIAMOND_Thinks.htm#LineofBus_Claims_Discount_and_Interest_Calculations_MID">Claims
+            Discount and Interest Calculations</a></p>
+
+        <p class="text"><a
+                href="Line_of_Business_How_DIAMOND_Thinks.htm#How_Line_of_Business_Controls_Processing_How_LINBS_affects_authorization_claim_matching_MID">How
+            LINBS Affects Authorization/Claim Matching</a></p>
+
+        <p class="text"><a
+                href="Line_of_Business_How_DIAMOND_Thinks.htm#How_Line_of_Business_Controls_Processing_Subscriber_dependent_eligibility_consistency_MID">Subscriber/Dependent
+            Eligibility Consistency</a></p>
+
+        <p class="text"><a
+                href="Line_of_Business_How_DIAMOND_Thinks.htm#How_Line_of_Business_Controls_Processing_A_note_on_EOBs_for_ineligible_members_MID">EOBs
+            for Ineligible Members</a></p>
+
+        <p class="text"><a
+                href="Line_of_Business_How_DIAMOND_Thinks.htm#How_Line_of_Business_Controls_Processing_Default_Provider_Logic_MID">Default
+            Provider Logic</a></p>
+
+        <h2 class="calibre20"><a name="Introduction">Introduction</a></h2>
+
+        <p class="text">The line of business record can be used to categorize different
+            products offered by a health plan. Or, because of the variety of attributes
+            that can be associated with a line of business code, keyword LINBS can
+            distinguish different kinds of products according to how providers, payees,
+            claims, and members are handled. </p>
+
+        <p class="text">This document explains the options you have for governing
+            processing depending on the line of business.</p>
+
+        <h2 class="calibre20"><a
+                name="How_Line_of_Business_Controls_Processing_How_LINBS_affects_claim_pricing_MID"></a>How
+            LINBS Affects Claim Pricing</h2>
+
+        <h3 class="calibre2">Allowed Amount Versus Billed Amount Edits</h3>
+
+        <p class="text">While in institutional claims the allowed amount can at times
+            be greater than the billed amount (per diem is one example), this is not
+            generally allowed for professional services or dental services claims.
+            If a line of business does allow this for professional services or dental
+            services claims, you may permit it with an entry in the Allowed &gt; Billed
+            field.</p>
+
+        <p class="text">If you select this check box, when professional services
+            or dental services claims associated with this line of business are priced,
+            DIAMOND processing determines the allowed amount and does not lower the
+            allowed amount to equal the billed amount if billed is less than allowed.</p>
+
+        <p class="text">See BENEF, Apply Pat Liability To, PSCLM, Add Back Amt, or
+            DNCLM, Add Back Amt User Documentation for additional information.</p>
+
+        <h3 class="calibre2">Alternate (or ‘target’) Revenue and CPT4/HCPCS Codes</h3>
+
+        <p class="text">For more information, see <a href="Provider.chm::/Provider_Contracts_How_DIAMOND_Thinks.htm">Provider
+            Contracts, How DIAMOND Thinks</a>.</p>
+
+        <h3 class="calibre2">How DIAMOND Selects a Contract When Pricing a Claim</h3>
+
+        <p class="text"><span class="calibre39">For more information, see </span><a
+                href="Provider.chm::/Provider_Contracts_How_DIAMOND_Thinks.htm">Provider
+            Contracts, How DIAMOND Thinks</a>.</p>
+
+        <h2 class="calibre20"><a name="LineofBus_Claims_Discount_and_Interest_Calculations_MID"></a>Claims
+            Discount and Interest Calculations</h2>
+
+        <p class="text">At the line of business, you can set if you want to automatically
+            calculate discounts, interest, both discounts and interest, or neither,
+            for payable and reversed payable claim lines.</p>
+
+        <p class="text">For a complete explanation of claims discount and interest
+            calculations, see <a href="Claims.chm::/Claims_Discount_and_Interest_Calculations_How_DIAMOND_Thinks.htm">Claims
+                Discount and Interest Calculations, How DIAMOND Thinks</a>. </p>
+
+        <h2 class="calibre20"><a
+                name="How_Line_of_Business_Controls_Processing_How_LINBS_affects_authorization_claim_matching_MID"></a>How
+            LINBS Affects Authorization/Claim Matching</h2>
+
+        <p class="text">The line of business record determines whether or not DIAMOND
+            processing attempts to automatically match authorizations to claims during
+            claims processing. In other words, the line of business record enables
+            this feature. However, there are many parameters and rules required to
+            enable authorization/claims matching to work. See <a
+                    href="Claims.chm::/Authorization_Claim_Links_How_DIAMOND_Thinks.htm">Authorization
+                Claim Links, How DIAMOND Thinks</a>, which includes references to the
+            other keywords and functions necessary to enable this functionality.</p>
+
+        <p class="text">There are several entries in keyword LINBS that, in combination,
+            enable and govern some aspects authorizations/claims matching. They are
+            Auth/Claim Match, Days Before, Days After, Covering Prov, and Waive Match
+            Order. For specific entries and definitions, see <a href="LINBS_Field_Definitions.htm">LINBS
+                Field Definitions</a>.</p>
+
+        <p class="text">The Auth/Claim Match field has three functions.</p>
+
+        <ol class="calibre3">
+
+            <li class="kadov-p-cstep"><p class="step">It enables the authorization/claims
+                matching feature, both for the initial claims processing and the Authorization
+                Match/Waive command on the menu bar in keywords DNCLM, INCLM, and PSCLM.
+            </p></li>
+
+            <li class="kadov-p-cstep"><p class="step">It turns the same feature for
+                covering providers, if you want to have DIAMOND processing match authorizations
+                to services rendered by covering providers on behalf of the original authorized
+                provider. To enable this feature, both this field and the Covering Prov
+                field must be selected. </p></li>
+
+            <li class="kadov-p-cstep"><p class="step">It enables you to use the ‘days
+                before’ and ‘days after’ feature used by keyword ARULE, the authorization/claims
+                matching rules.</p></li>
+        </ol>
+
+        <p class="text">The Days After and Days Before fields have two functions.</p>
+
+        <ol class="calibre3">
+
+            <li class="kadov-p-cstep"><p class="step">They define the acceptable date
+                range outside of which a claim is considered "outside the authorized
+                date," leading to the claim action specified in keyword ARULE.</p></li>
+
+            <li class="kadov-p-cstep"><p class="step">They define the acceptable date
+                range in the same way for covering providers.</p></li>
+        </ol>
+
+        <p class="text">In both cases and for both Days After and Days Before, the
+            number of days entered is attached to the primary date of service on the
+            claim (PSCLM, the Svc Date on the header window; INCLM, the Admit Date
+            on the header window). If the request date on the authorization is within
+            the calculated range, it is a potentially valid authorization for the
+            subject claim and is eligible for matching.</p>
+
+        <p class="text"><span class="calibre4">Important Note</span>  The
+            VENDORFIRST parameter logic cannot be used if you select the Covering
+            Prov check box (the VENDORFIRST Parameter 1 must be "blank.")</p>
+
+        <h2 class="calibre20"><a
+                name="How_Line_of_Business_Controls_Processing_Subscriber_dependent_eligibility_consistency_MID"></a>Subscriber/Dependent
+            Eligibility Consistency</h2>
+
+        <p class="text">You can relax the standard edits DIAMOND processing uses
+            to make sure that dependents cannot have eligibility and benefits which
+            are outside of or different from the subscribers. In most commercial health
+            plans, this consistency is critical. In some situations and programs (e.g.
+            Medicaid, often) the eligibility of dependents can be different from that
+            of the head of household or subscriber. Therefore, by line of business
+            you may choose to eliminate this editing.</p>
+
+        <p class="text">When consistency tests are enforced, <span class="calibre40">DIAMOND</span>
+            processing requires that all dependents must be enrolled in the same group
+            and plan as the subscriber. In addition, the dependents’ effective and
+            termination dates must fall within the eligibility period of the subscriber;
+            i.e., dependents are eligible for coverage based on the subscriber’s eligibility
+            dates and the dependents will<span class="calibre41"> </span>not
+            be eligible after the subscriber is terminated.</p>
+
+        <p class="text">If you choose to relax the edits, consistency tests are not<span class="calibre41"> </span>enforced.
+            In addition, be aware that:</p>
+
+        <ul class="calibre17">
+
+            <li class="kadov-p-cbullet"><p class="bullet">Keyword GPBIL (Premium Billing)
+                cannot be used for this line of business, since billing logic assumes
+                that all members of a family are enrolled in the same benefit plan and
+                that the eligibility periods of the dependents always fall within the
+                eligibility period of the subscriber.</p></li>
+
+            <li class="kadov-p-cbullet"><p class="bullet">Family unit-oriented benefit
+                rules (such a family deductibles) cannot<span class="calibre41">
+ </span>be used for this line of business.</p></li>
+
+            <li class="kadov-p-cbullet"><p class="bullet">The <span class="calibre4">Member
+ Address Ripple</span> command on the <span class="calibre4">Special</span>
+                menu in keyword MEMBR cannot be used for this line of business.</p></li>
+        </ul>
+
+        <h2 class="calibre20"><a
+                name="How_Line_of_Business_Controls_Processing_A_note_on_EOBs_for_ineligible_members_MID"></a>EOBs
+            for Ineligible Members</h2>
+
+        <p class="text">You may enter a rule in keyword LINBS to print EOBs. An exception
+            to this rule for claims processed online is when a member is determined
+            to be ineligible. When this happens, DIAMOND processing uses the DFLTPRINTSTAT
+            parameters to decide whether to print an EOB. </p>
+
+        <h2 class="calibre20"><a name="How_Line_of_Business_Controls_Processing_Default_Provider_Logic_MID"></a>Default
+            Provider Logic</h2>
+
+        <p class="text">Keyword PROVC (Provider Contracts) maintains the data that
+            defines the contractual relationship between the healthcare organization
+            and the healthcare provider. During claims processing, <span class="calibre40">DIAMOND</span>
+            processing must determine a relationship between the rendering provider
+            and the member. To do this, <span class="calibre40">DIAMOND</span>
+            processing uses provider contract search logic and the associated line
+            of business contract search criteria sets to "match" a provider’s
+            contract to the member.</p>
+
+        <p class="text">Instead of creating and managing unique contract records
+            for each provider, line of business, IPA, and panel combination, it may
+            be more efficient to create and manage only the very specific relationships
+            of a provider to line(s) of business, IPA(s), and panel(s), using more
+            general contracts shared by many providers who have the same relationship
+            with the healthcare organization. This approach can significantly reduce
+            the number of contract records you must enter and maintain.</p>
+
+        <p class="text">For more information, see <a href="Provider.chm::/Provider_Contracts_How_DIAMOND_Thinks.htm">Provider
+            Contracts, How DIAMOND Thinks</a>.</p>
+
+
+    </div>
+
+    <div class="calibreEbNav">
+
+        <a href="Adding_a_G_L_Reference_Code_for_Administrative_Fees.htm" class="calibreAPrev">previous page
+        </a>
+
+
+        <a href="../2nlvj-mfnql.html" class="calibreAHome">start
+        </a>
+
+
+        <a href="Add_a_Modifier_code.htm" class="calibreANext">next page
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+</html>

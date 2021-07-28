@@ -1,0 +1,24 @@
+<ng-container *ngIf="confirmationMessage?.message || confirmationMessage?.title">
+
+
+    <div class="modal-header">
+        <h4 class="modal-title">{{confirmationMessage?.title}}</h4>
+        <button *ngIf="confirmationMessage.displayCloseBtn" type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body" *ngIf="confirmationMessage.message">
+        <div class="row">
+            <div class="col-md-9 offset-md-1 alert"
+                 [ngClass]="confirmationMessage.messageType === 'SUCCESS'? 'alert-success': 'alert-danger'">
+                <fa-icon style="color: darkorange" [icon]="infoIcon"></fa-icon>
+               <span class="mr-1"> {{confirmationMessage?.message}}</span>
+            </div>
+        </div>
+
+    </div>
+</ng-container>
+<div class="modal-footer {{confirmationMessage.buttonHeaderClass}}" *ngIf="confirmationMessage?.buttons">
+    <button type="button" *ngFor="let button of confirmationMessage?.buttons" (click)="triggerClick(button)"
+            class="button" data-dismiss="modal" [disabled]="button.disabled">{{button.text}}</button>
+</div>

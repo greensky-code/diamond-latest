@@ -1,0 +1,556 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+    <title>PROVF Field Definitions</title>
+    <!--(Meta)==========================================================-->
+    <meta name="copyright"
+          value="© Copyright 2002 Health Systems Design Corp., a wholly owned subsidiary of Perot Systems Corporation. All rights reserved"/>
+    <meta content="RoboHELP by eHelp Corporation - www.ehelp.com" name="generator"/>
+    <meta content="0.1" name="generator-major-version"/>
+    <meta content="1" name="generator-minor-version"/>
+    <meta content="kadov" name="filetype"/>
+    <meta content="1" name="filetype-version"/>
+    <meta content="1" name="page-count"/>
+    <meta content="1923" name="layout-height"/>
+    <meta content="644" name="layout-width"/>
+    <!--(Links)=========================================================-->
+    <!--(Scripts)=======================================================-->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+
+</head>
+<body>
+
+<div class="calibreMeta">
+    <div class="calibreMetaTitle">
+
+
+        <h1>
+            <a href="../bai44-9x3eu.html">DIAMOND 950C/S Help
+            </a>
+        </h1>
+
+
+    </div>
+    <div class="calibreMetaAuthor">
+        Unknown
+
+    </div>
+</div>
+
+<div class="calibreMain">
+
+    <div class="calibreEbookContent">
+
+        <div class="calibreEbNavTop">
+
+            <a href="PROVF_Field_Map.htm" class="calibreAPrev">previous page
+            </a>
+
+
+            <a href="PROVF_Functions_on_Menu_Bar.htm" class="calibreANext">next page
+            </a>
+
+        </div>
+
+
+        <!--(Table)=========================================================-->
+        <table cellspacing="0" width="500" x-use-null-cells="" class="calibre109">
+            <colgroup class="calibre19">
+                <col class="calibre110"/>
+                <col class="calibre111"/>
+
+            </colgroup>
+            <tbody class="calibre10">
+            <tr valign="top" class="calibre11">
+                <td width="70%" class="calibre112">
+                    <h4 class="calibre62">PROVF Field Definitions</h4></td>
+                <td width="30%" class="calibre113">
+                    <p class="body-text1"><img border="0" height="53" src="assets/help/Field_definitions_Req_legend.gif" width="97"
+                                               x-maintain-ratio="TRUE" class="calibre114"/></p></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <!--(Table)=========================================================-->
+        <table cellspacing="0" width="500" x-use-null-cells="" class="calibre115">
+            <colgroup class="calibre19">
+                <col class="calibre116"/>
+                <col class="calibre117"/>
+                <col class="calibre118"/>
+                <col class="calibre119"/>
+                <col class="calibre118"/>
+
+            </colgroup>
+            <tbody class="calibre10">
+            <tr valign="top" class="calibre11">
+                <td width="110px" class="calibre120">
+                    <p class="tableheading">Field Name</p></td>
+                <td width="15px" class="calibre121">
+                    <p class="tableheading1">Req</p></td>
+                <td width="140px" class="calibre122">
+                    <p class="tableheading">Description</p></td>
+                <td width="95px" class="calibre123">
+                    <p class="tableheading">Source</p></td>
+                <td width="140px" class="calibre122">
+                    <p class="tableheading">Comments</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre11">
+                <td width="98px" class="calibre124">
+                    <p class="tbl-r-label"><a name="PROVF_Auth_Class_FIELD"></a>Auth
+                        Class</p></td>
+                <td width="14px" class="calibre125">
+                    <p class="tbl-text">O</p></td>
+                <td width="105px" class="calibre126">
+                    <p class="tbl-text">A category of provider that
+                        is used for purposes of defining claim situations where the requirement
+                        for an authorization is waived.</p></td>
+                <td width="105px" class="calibre126">
+                    <p class="tbl-text">Manually entered</p></td>
+                <td width="206px" class="calibre127">
+                    <p class="tbl-text">Authorization waive rules
+                        are maintained in AWAVE.</p>
+                    <p class="tbl-text-noline">Valid values are A-Z, 0-9.</p>
+                    <p class="tbl-text-noline">If both an Admitting and Attending Provider is
+                        entered, the Attending Provider is used to determine the auth class value
+                        and whether the claim should be waived.</p>
+                    <p class="tbl-text-noline">If either an Admitting or Attending Provider is
+                        entered, this entered provider is used to determine the auth class value
+                        and if the claim should be waived.</p>
+                    <p class="tbl-text-noline">See Authorization Claim Links, How DIAMOND Thinks
+                        &gt; Waiving the Authorization Requirement &gt; Using the Authorization
+                        Class to Waive Authorizations for more information.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre11">
+                <td width="98px" class="calibre124">
+                    <p class="tbl-r-label"><a name="PROVF_Board_Status_FIELD"></a>Board
+                        Status</p></td>
+                <td width="14px" class="calibre125">
+                    <p class="tbl-text">O</p></td>
+                <td width="105px" class="calibre126">
+                    <p class="tbl-text">Indicator of provider’s status
+                        with board certification.</p></td>
+                <td width="105px" class="calibre126">
+                    <p class="tbl-text">Selected from predefined
+                        list</p></td>
+                <td width="206px" class="calibre127">
+                    <p class="tbl-list-hdr">Values are</p>
+                    <p class="tbl-list-txt">Certified </p>
+                    <p class="tbl-list-txt">Eligible</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre11">
+                <td width="98px" class="calibre124">
+                    <p class="tbl-r-label"><a name="PROVF_Date_of_Birth_FIELD"></a>Date
+                        of Birth</p></td>
+                <td width="14px" class="calibre125">
+                    <p class="tbl-text">O</p></td>
+                <td width="105px" class="calibre126">
+                    <p class="tbl-text">Birth date of individual
+                        provider.</p></td>
+                <td width="105px" class="calibre126">
+                    <p class="tbl-text">Manually entered</p></td>
+                <td width="206px" class="calibre127">
+                    <p class="tbl-text">Field is protected from entry
+                        if provider is an institution.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre11">
+                <td width="98px" class="calibre124">
+                    <p class="tbl-r-label"><a name="PROVF_Default_IPA_ID_FIELD"></a>Default
+                        IPA ID</p></td>
+                <td width="14px" class="calibre125">
+                    <p class="tbl-text">O</p></td>
+                <td width="105px" class="calibre126">
+                    <p class="tbl-text">Most commonly used IPA for
+                        this provider.</p></td>
+                <td width="105px" class="calibre126">
+                    <p class="tbl-text">Selected from predefined
+                        list</p></td>
+                <td width="206px" class="calibre127">
+                    <p class="tbl-text"> </p></td>
+            </tr>
+
+            <tr valign="top" class="calibre11">
+                <td width="98px" class="calibre124">
+                    <p class="tbl-r-label"><a name="PROVF_Default_Vendor_Addr_FIELD"></a>Default
+                        Vendor Addr</p></td>
+                <td width="14px" class="calibre125">
+                    <p class="tbl-text">R</p></td>
+                <td width="105px" class="calibre126">
+                    <p class="tbl-text">The address for the payee
+                        (vendor) which, unless an alternate address is selected, will be used.</p></td>
+                <td width="105px" class="calibre126">
+                    <p class="tbl-text">Selected from predefined
+                        list</p></td>
+                <td width="206px" class="calibre127">
+                    <p class="tbl-text">The vendor address can be
+                        selected during claims processing.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre11">
+                <td width="98px" class="calibre124">
+                    <p class="tbl-r-label"><a name="PROVF_Default_Vendor_ID_FIELD"></a>Default
+                        Vendor ID</p></td>
+                <td width="14px" class="calibre125">
+                    <p class="tbl-text">R</p></td>
+                <td width="105px" class="calibre126">
+                    <p class="tbl-text">The vendor ID which, unless
+                        a different vendor is selected, will be used as the payee for this provider.</p></td>
+                <td width="105px" class="calibre126">
+                    <p class="tbl-text">Selected from predefined
+                        list</p></td>
+                <td width="206px" class="calibre127">
+                    <p class="tbl-text">Other vendor IDs are associated
+                        with provider contracts (PROVC).</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre11">
+                <td width="98px" class="calibre124">
+                    <p class="tbl-r-label"><a name="PROVF_Directory_Incl_FIELD"></a>Directory
+                        Incl</p></td>
+                <td width="14px" class="calibre125">
+                    <p class="tbl-text">O</p></td>
+                <td width="105px" class="calibre126">
+                    <p class="tbl-text">Indicator of whether this
+                        provider is listed in the directory under this specialty.</p></td>
+                <td width="105px" class="calibre126">
+                    <p class="tbl-text">Selected with check box</p></td>
+                <td width="206px" class="calibre127">
+                    <p class="tbl-text">This field is informational
+                        only.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre11">
+                <td width="98px" class="calibre124">
+                    <p class="tbl-r-label"><a name="PROVF_First_Nm_FIELD"></a>First
+                        Nm</p></td>
+                <td width="14px" class="calibre125">
+                    <p class="tbl-text">O</p></td>
+                <td width="105px" class="calibre126">
+                    <p class="tbl-text">If an individual, the first
+                        name.</p></td>
+                <td width="105px" class="calibre126">
+                    <p class="tbl-text">Manually entered</p></td>
+                <td width="206px" class="calibre127">
+                    <p class="tbl-text">Field is protected from entry
+                        if provider is an institution.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre11">
+                <td width="98px" class="calibre124">
+                    <p class="tbl-r-label"><a name="PROVF_Full_Nm_or_Last_Nm_FIELD"></a>Full
+                        Nm or Last Nm</p></td>
+                <td width="14px" class="calibre125">
+                    <p class="tbl-text">O</p></td>
+                <td width="105px" class="calibre126">
+                    <p class="tbl-text">If an individual, his or
+                        her last name; if an institution, the full name.</p></td>
+                <td width="105px" class="calibre126">
+                    <p class="tbl-text">Manually entered</p></td>
+                <td width="206px" class="calibre127">
+                    <p class="tbl-text"> </p></td>
+            </tr>
+
+            <tr valign="top" class="calibre11">
+                <td width="98px" class="calibre124">
+                    <p class="tbl-r-label"><a name="PROVF_Institutional_FIELD"></a>Institutional</p></td>
+                <td width="14px" class="calibre125">
+                    <p class="tbl-text">O</p></td>
+                <td width="105px" class="calibre126">
+                    <p class="tbl-text">Check box indicating provider
+                        is an institution, not an individual.</p></td>
+                <td width="105px" class="calibre126">
+                    <p class="tbl-text">Selected with check box</p></td>
+                <td width="206px" class="calibre127">
+                    <p class="tbl-text"> </p></td>
+            </tr>
+
+            <tr valign="top" class="calibre11">
+                <td width="98px" class="calibre124">
+                    <p class="tbl-r-label"><a name="PROVF_Language_1-3_FIELD"></a>Language
+                        1-3</p></td>
+                <td width="14px" class="calibre125">
+                    <p class="tbl-text">O</p></td>
+                <td width="105px" class="calibre126">
+                    <p class="tbl-text">Languages spoken by the provider.</p></td>
+                <td width="105px" class="calibre126">
+                    <p class="tbl-text">Selected from predefined
+                        list</p></td>
+                <td width="206px" class="calibre127">
+                    <p class="tbl-text">Languages are maintained
+                        in LANGM.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre11">
+                <td width="98px" class="calibre124">
+                    <p class="tbl-r-label"><a name="PROVF_License_FIELD"></a>License</p></td>
+                <td width="14px" class="calibre125">
+                    <p class="tbl-text">O</p></td>
+                <td width="105px" class="calibre126">
+                    <p class="tbl-text">A category of license.</p></td>
+                <td width="105px" class="calibre126">
+                    <p class="tbl-text">Selected from predefined
+                        list</p></td>
+                <td width="206px" class="calibre127">
+                    <p class="tbl-text">License categories are maintained
+                        in TITLE with a type License.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre11">
+                <td width="98px" class="calibre124">
+                    <p class="tbl-r-label"><a name="PROVF_Max_Enroll_Lmt_FIELD"></a>Max
+                        Enroll Lmt</p></td>
+                <td width="14px" class="calibre125">
+                    <p class="tbl-text">O</p></td>
+                <td width="105px" class="calibre126">
+                    <p class="tbl-text">Maximum number of PCP member
+                        assignments allowed</p></td>
+                <td width="105px" class="calibre126">
+                    <p class="tbl-text">Manually entered</p></td>
+                <td width="206px" class="calibre127">
+                    <p class="tbl-text">Includes all effective combinations
+                        of the provider’s LINBS, IPA, Panel, and Address records.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre11">
+                <td width="98px" class="calibre124">
+                    <p class="tbl-r-label"><a name="PROVF_MI_FIELD"></a>MI</p></td>
+                <td width="14px" class="calibre125">
+                    <p class="tbl-text">O</p></td>
+                <td width="105px" class="calibre126">
+                    <p class="tbl-text">If an individual, the middle
+                        initial.</p></td>
+                <td width="105px" class="calibre126">
+                    <p class="tbl-text">Manually entered</p></td>
+                <td width="206px" class="calibre127">
+                    <p class="tbl-text">Field is protected from entry
+                        if provider is an institution.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre11">
+                <td width="98px" class="calibre124">
+                    <p class="tbl-r-label"><a name="PROVF_National_Provider_ID_FIELD"></a>National
+                        Provider ID</p></td>
+                <td width="14px" class="calibre125">
+                    <p class="tbl-text">O</p></td>
+                <td width="105px" class="calibre126">
+                    <p class="tbl-text">Unique National Provider
+                        ID as established by the Heath Care Financing Administration.</p></td>
+                <td width="105px" class="calibre126">
+                    <p class="tbl-text">System generated or manually
+                        entered.</p></td>
+                <td width="206px" class="calibre127">
+                    <p class="tbl-text">Up to 10 alphanumeric characters
+                        are available.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre11">
+                <td width="98px" class="calibre124">
+                    <p class="tbl-r-label"><a name="PROVF_Non_Specific_Prov_FIELD"></a>Non
+                        Specific Prov</p></td>
+                <td width="14px" class="calibre125">
+                    <p class="tbl-text">O</p></td>
+                <td width="105px" class="calibre126">
+                    <p class="tbl-text">If checked, this provider
+                        record is available to use as a proxy for out of area providers.</p></td>
+                <td width="105px" class="calibre126">
+                    <p class="tbl-text">Selected with check box</p></td>
+                <td width="206px" class="calibre127">
+                    <p class="tbl-text">See Provider Master, How
+                        DIAMOND Thinks user documentation for information about how this field
+                        is used.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre11">
+                <td width="98px" class="calibre124">
+                    <p class="tbl-r-label"><a name="PROVF_Primary_FIELD"></a>Primary</p></td>
+                <td width="14px" class="calibre125">
+                    <p class="tbl-text">R</p></td>
+                <td width="105px" class="calibre126">
+                    <p class="tbl-text">Indicator that this is the
+                        provider’s primary specialty.</p></td>
+                <td width="105px" class="calibre126">
+                    <p class="tbl-text">Selected with check box</p></td>
+                <td width="206px" class="calibre127">
+                    <p class="tbl-text">One of the specialties entered
+                        for each provider must be Primary.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre11">
+                <td width="98px" class="calibre124">
+                    <p class="tbl-r-label"><a name="PROVF_Provider_ID_FIELD"></a>Provider
+                        ID</p></td>
+                <td width="14px" class="calibre125">
+                    <p class="tbl-text">R</p></td>
+                <td width="105px" class="calibre126">
+                    <p class="tbl-text">Unique identifier of the
+                        provider.</p></td>
+                <td width="105px" class="calibre126">
+                    <p class="tbl-text">System generated or manually
+                        entered</p></td>
+                <td width="206px" class="calibre127">
+                    <p class="tbl-text"> </p></td>
+            </tr>
+
+            <tr valign="top" class="calibre11">
+                <td width="98px" class="calibre124">
+                    <p class="tbl-r-label"><a name="PROVF_Salutation_FIELD"></a>Salutation</p></td>
+                <td width="14px" class="calibre125">
+                    <p class="tbl-text">O</p></td>
+                <td width="105px" class="calibre126">
+                    <p class="tbl-text">The title of the provider.</p></td>
+                <td width="105px" class="calibre126">
+                    <p class="tbl-text">Selected from predefined
+                        list</p></td>
+                <td width="206px" class="calibre127">
+                    <p class="tbl-text">Field is protected if provider
+                        is an institution.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre11">
+                <td width="98px" class="calibre124">
+                    <p class="tbl-r-label"><a name="PROVF_Short_Name_FIELD"></a>Short
+                        Name</p></td>
+                <td width="14px" class="calibre125">
+                    <p class="tbl-text">R</p></td>
+                <td width="105px" class="calibre126">
+                    <p class="tbl-text">An abbreviated name used
+                        during F5 lookups.</p></td>
+                <td width="105px" class="calibre126">
+                    <p class="tbl-text">System generated but can
+                        be manually overridden</p></td>
+                <td width="206px" class="calibre127">
+                    <p class="tbl-text">System generated scheme:</p>
+                    <p class="tbl-text-noline">If provider is an institution, first 15 characters
+                        of the Full Name.</p>
+                    <p class="tbl-text-noline">If provider is an individual, either the first
+                        15 characters of Last Nm or the entire Last Nm + as many characters of
+                        the first name as necessary to equal 15 characters total.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre11">
+                <td width="98px" class="calibre124">
+                    <p class="tbl-r-label"><a name="PROVF_Specialty_Type_FIELD"></a>Specialty
+                        Type</p></td>
+                <td width="14px" class="calibre125">
+                    <p class="tbl-text">R</p></td>
+                <td width="105px" class="calibre126">
+                    <p class="tbl-text">A category of provider.</p></td>
+                <td width="105px" class="calibre126">
+                    <p class="tbl-text">Selected from predefined
+                        list</p></td>
+                <td width="206px" class="calibre127">
+                    <p class="tbl-text">At least one Specialty Type
+                        is required; one of the Specialty Types entered must be indicated as Primary.
+                        Types and specialties are maintained in PTYPE.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre11">
+                <td width="98px" class="calibre124">
+                    <p class="tbl-r-label"><a name="PROVF_Type_FIELD"></a>Type</p></td>
+                <td width="14px" class="calibre125">
+                    <p class="tbl-text">R</p></td>
+                <td width="105px" class="calibre126">
+                    <p class="tbl-text">A category of provider.</p></td>
+                <td width="105px" class="calibre126">
+                    <p class="tbl-text">Selected from predefined
+                        list</p></td>
+                <td width="206px" class="calibre127">
+                    <p class="tbl-text">Provider Types are maintained
+                        in PTYPE.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre11">
+                <td width="98px" class="calibre124">
+                    <p class="tbl-r-label"><a name="PROVF_User_Def_Date_1-3_FIELD"></a>User
+                        Def Date 1-3</p></td>
+                <td width="14px" class="calibre125">
+                    <p class="tbl-text">O</p></td>
+                <td width="105px" class="calibre126">
+                    <p class="tbl-text">Implementation specific date.</p></td>
+                <td width="105px" class="calibre126">
+                    <p class="tbl-text">Manually entered</p></td>
+                <td width="206px" class="calibre127">
+                    <p class="tbl-text"> </p></td>
+            </tr>
+
+            <tr valign="top" class="calibre11">
+                <td width="98px" class="calibre124">
+                    <p class="tbl-r-label"><a name="PROVF_User_Defined_1-12_FIELD"></a>User
+                        Defined 1-12</p></td>
+                <td width="14px" class="calibre125">
+                    <p class="tbl-text">O</p></td>
+                <td width="105px" class="calibre126">
+                    <p class="tbl-text">Implementation specific values.</p></td>
+                <td width="105px" class="calibre126">
+                    <p class="tbl-text">Manually entered</p></td>
+                <td width="206px" class="calibre127">
+                    <p class="tbl-text">User defined literals and
+                        valid values may be defined in UDTXT.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre11">
+                <td width="98px" class="calibre124">
+                    <p class="tbl-r-label"><a name="PROVF_User_ID_1-3_FIELD"></a>User
+                        ID 1-3</p></td>
+                <td width="14px" class="calibre125">
+                    <p class="tbl-text">O</p></td>
+                <td width="105px" class="calibre126">
+                    <p class="tbl-text">Implementation specific ID
+                        numbers.</p></td>
+                <td width="105px" class="calibre126">
+                    <p class="tbl-text">Manually entered, or selected
+                        from a predefined list</p></td>
+                <td width="206px" class="calibre127">
+                    <p class="tbl-text">User defined literals and
+                        valid values may be defined in UDTXT.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre11">
+                <td width="98px" class="calibre124">
+                    <p class="tbl-r-label"><a name="PROVF_Xref_ID_FIELD"></a>Xref
+                        ID</p></td>
+                <td width="14px" class="calibre125">
+                    <p class="tbl-text">O</p></td>
+                <td width="105px" class="calibre126">
+                    <p class="tbl-text">A valid Provider ID which
+                        identifies the same provider as this record.</p></td>
+                <td width="105px" class="calibre126">
+                    <p class="tbl-text">Selected from predefined
+                        list</p></td>
+                <td width="206px" class="calibre127">
+                    <p class="tbl-text">Serves as a link between
+                        two records for the same provider.</p></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <p class="body-text"> </p>
+
+
+    </div>
+
+
+    <div class="calibreEbNav">
+
+        <a href="PROVF_Field_Map.htm" class="calibreAPrev">previous page
+        </a>
+
+
+        <a href="../bai44-9x3eu.html" class="calibreAHome">start
+        </a>
+
+
+        <a href="PROVF_Functions_on_Menu_Bar.htm" class="calibreANext">next page
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+</html>

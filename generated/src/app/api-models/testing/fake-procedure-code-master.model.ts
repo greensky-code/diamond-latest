@@ -1,0 +1,146 @@
+/* Copyright (c) 2021 . All Rights Reserved. */
+
+import { Injectable } from '@angular/core';
+import { Http, Response, URLSearchParams, RequestOptions } from '@angular/http';
+import { Observable } from 'rxjs/Rx';
+import { Headers } from '@angular/http';
+import 'rxjs/add/operator/map'
+import 'rxjs/add/operator/toPromise';
+import 'rxjs/add/operator/map';
+import { ProcedureCodeMaster} from "../../api-models"
+
+var procedureCodeMaster1 = new ProcedureCodeMaster();
+procedureCodeMaster1.procedureCode ="sample data1";
+procedureCodeMaster1.shortDescription ="sample data1";
+procedureCodeMaster1.asteriskProcedure ="sample data1";
+procedureCodeMaster1.fullDescription ="sample data1";
+procedureCodeMaster1.primaryGrouping ="sample data1";
+procedureCodeMaster1.secondaryGrouping ="sample data1";
+procedureCodeMaster1.followUpDays =123;
+procedureCodeMaster1.codeClass ="sample data1";
+procedureCodeMaster1.countAsDays ="sample data1";
+procedureCodeMaster1.holdReason ="sample data1";
+procedureCodeMaster1.holdDate =new Date('2010-01-01');
+procedureCodeMaster1.bilateralAlternate ="sample data1";
+procedureCodeMaster1.blockIndicator ="sample data1";
+procedureCodeMaster1.blockStartProc ="sample data1";
+procedureCodeMaster1.userDefined1 ="sample data1";
+procedureCodeMaster1.userDefined2 ="sample data1";
+procedureCodeMaster1.allowedReason ="sample data1";
+procedureCodeMaster1.fromAge =123;
+procedureCodeMaster1.toAge =123;
+procedureCodeMaster1.patientGender ="sample data1";
+procedureCodeMaster1.securityCode ="sample data1";
+procedureCodeMaster1.insertDatetime =new Date('2010-01-01');
+procedureCodeMaster1.insertUser ="sample data1";
+procedureCodeMaster1.insertProcess ="sample data1";
+procedureCodeMaster1.updateDatetime =new Date('2010-01-01');
+procedureCodeMaster1.updateUser ="sample data1";
+procedureCodeMaster1.updateProcess ="sample data1";
+procedureCodeMaster1.effectiveDate =new Date('2010-01-01');
+procedureCodeMaster1.termDate =new Date('2010-01-01');
+procedureCodeMaster1.targetRevCodeFlg ="sample data1";
+procedureCodeMaster1.priceIndicatorFlg ="sample data1";
+procedureCodeMaster1.productServiceIdQualifier ="sample data1";
+procedureCodeMaster1.toothNumberRequired ="sample data1";
+procedureCodeMaster1.surfaceRequired ="sample data1";
+procedureCodeMaster1.archRequired ="sample data1";
+procedureCodeMaster1.quadrantRequired ="sample data1";
+procedureCodeMaster1.oralCavityRequired ="sample data1";
+procedureCodeMaster1.weightedValue =123;
+procedureCodeMaster1.userDate1 =new Date('2010-01-01');
+procedureCodeMaster1.userDate2 =new Date('2010-01-01');
+procedureCodeMaster1.instAuthDtlLnk ="sample data1";
+
+var procedureCodeMaster2 = new ProcedureCodeMaster();
+procedureCodeMaster2.procedureCode ="sample data2";
+procedureCodeMaster2.shortDescription ="sample data2";
+procedureCodeMaster2.asteriskProcedure ="sample data2";
+procedureCodeMaster2.fullDescription ="sample data2";
+procedureCodeMaster2.primaryGrouping ="sample data2";
+procedureCodeMaster2.secondaryGrouping ="sample data2";
+procedureCodeMaster2.followUpDays =123;
+procedureCodeMaster2.codeClass ="sample data2";
+procedureCodeMaster2.countAsDays ="sample data2";
+procedureCodeMaster2.holdReason ="sample data2";
+procedureCodeMaster2.holdDate =new Date('2010-01-01');
+procedureCodeMaster2.bilateralAlternate ="sample data2";
+procedureCodeMaster2.blockIndicator ="sample data2";
+procedureCodeMaster2.blockStartProc ="sample data2";
+procedureCodeMaster2.userDefined1 ="sample data2";
+procedureCodeMaster2.userDefined2 ="sample data2";
+procedureCodeMaster2.allowedReason ="sample data2";
+procedureCodeMaster2.fromAge =123;
+procedureCodeMaster2.toAge =123;
+procedureCodeMaster2.patientGender ="sample data2";
+procedureCodeMaster2.securityCode ="sample data2";
+procedureCodeMaster2.insertDatetime =new Date('2010-01-01');
+procedureCodeMaster2.insertUser ="sample data2";
+procedureCodeMaster2.insertProcess ="sample data2";
+procedureCodeMaster2.updateDatetime =new Date('2010-01-01');
+procedureCodeMaster2.updateUser ="sample data2";
+procedureCodeMaster2.updateProcess ="sample data2";
+procedureCodeMaster2.effectiveDate =new Date('2010-01-01');
+procedureCodeMaster2.termDate =new Date('2010-01-01');
+procedureCodeMaster2.targetRevCodeFlg ="sample data2";
+procedureCodeMaster2.priceIndicatorFlg ="sample data2";
+procedureCodeMaster2.productServiceIdQualifier ="sample data2";
+procedureCodeMaster2.toothNumberRequired ="sample data2";
+procedureCodeMaster2.surfaceRequired ="sample data2";
+procedureCodeMaster2.archRequired ="sample data2";
+procedureCodeMaster2.quadrantRequired ="sample data2";
+procedureCodeMaster2.oralCavityRequired ="sample data2";
+procedureCodeMaster2.weightedValue =123;
+procedureCodeMaster2.userDate1 =new Date('2010-01-01');
+procedureCodeMaster2.userDate2 =new Date('2010-01-01');
+procedureCodeMaster2.instAuthDtlLnk ="sample data2";
+
+var procedureCodeMaster3 = new ProcedureCodeMaster();
+procedureCodeMaster3.procedureCode ="sample data3";
+procedureCodeMaster3.shortDescription ="sample data3";
+procedureCodeMaster3.asteriskProcedure ="sample data3";
+procedureCodeMaster3.fullDescription ="sample data3";
+procedureCodeMaster3.primaryGrouping ="sample data3";
+procedureCodeMaster3.secondaryGrouping ="sample data3";
+procedureCodeMaster3.followUpDays =123;
+procedureCodeMaster3.codeClass ="sample data3";
+procedureCodeMaster3.countAsDays ="sample data3";
+procedureCodeMaster3.holdReason ="sample data3";
+procedureCodeMaster3.holdDate =new Date('2010-01-01');
+procedureCodeMaster3.bilateralAlternate ="sample data3";
+procedureCodeMaster3.blockIndicator ="sample data3";
+procedureCodeMaster3.blockStartProc ="sample data3";
+procedureCodeMaster3.userDefined1 ="sample data3";
+procedureCodeMaster3.userDefined2 ="sample data3";
+procedureCodeMaster3.allowedReason ="sample data3";
+procedureCodeMaster3.fromAge =123;
+procedureCodeMaster3.toAge =123;
+procedureCodeMaster3.patientGender ="sample data3";
+procedureCodeMaster3.securityCode ="sample data3";
+procedureCodeMaster3.insertDatetime =new Date('2010-01-01');
+procedureCodeMaster3.insertUser ="sample data3";
+procedureCodeMaster3.insertProcess ="sample data3";
+procedureCodeMaster3.updateDatetime =new Date('2010-01-01');
+procedureCodeMaster3.updateUser ="sample data3";
+procedureCodeMaster3.updateProcess ="sample data3";
+procedureCodeMaster3.effectiveDate =new Date('2010-01-01');
+procedureCodeMaster3.termDate =new Date('2010-01-01');
+procedureCodeMaster3.targetRevCodeFlg ="sample data3";
+procedureCodeMaster3.priceIndicatorFlg ="sample data3";
+procedureCodeMaster3.productServiceIdQualifier ="sample data3";
+procedureCodeMaster3.toothNumberRequired ="sample data3";
+procedureCodeMaster3.surfaceRequired ="sample data3";
+procedureCodeMaster3.archRequired ="sample data3";
+procedureCodeMaster3.quadrantRequired ="sample data3";
+procedureCodeMaster3.oralCavityRequired ="sample data3";
+procedureCodeMaster3.weightedValue =123;
+procedureCodeMaster3.userDate1 =new Date('2010-01-01');
+procedureCodeMaster3.userDate2 =new Date('2010-01-01');
+procedureCodeMaster3.instAuthDtlLnk ="sample data3";
+
+
+export const ProcedureCodeMasters: ProcedureCodeMaster[] = [
+    procedureCodeMaster1,
+    procedureCodeMaster2,
+    procedureCodeMaster3,
+];

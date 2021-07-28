@@ -1,0 +1,49 @@
+<!-- Copyright (c) 2021 . All Rights Reserved. -->
+<div class="container-fluid">
+    <ng-template #loaderTemplate let-loaderValue="value">
+        <div class="row justify-content-center mt-4" *ngIf="loaderValue">
+            <div class="spinner-border text-success" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+        </div>
+    </ng-template>
+
+    <ng-container *ngTemplateOutlet="loaderTemplate; context:{value: secProgress }"></ng-container>
+    <div class="card-block" *ngIf="!secProgress">
+        <button type="button" class="close" aria-label="Close"
+                (click)="activeModal.dismiss()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+
+
+
+
+        <nav ngbNav #nav="ngbNav" class="nav-tabs">
+            <ng-container ngbNavItem>
+                <a ngbNavLink>Billing Local Address</a>
+                <ng-template ngbNavContent #BILTab>
+                    <addon-address [groupName]="groupName" [seqGroupId]="seqGroupId" [groupNumber]="groupNumber"
+                                   [entityType]="entityType" [seqEntityId]="seqEntityId"
+                                   [seqAddressId]="seqAddressId" addressCode="BIL"></addon-address>
+                </ng-template>
+            </ng-container>
+
+
+            <ng-container ngbNavItem>
+                <a ngbNavLink>Cignalinks Group Address</a>
+                <ng-template ngbNavContent #CLATab>
+                    <addon-address [groupName]="groupName" [seqGroupId]="seqGroupId" [groupNumber]="groupNumber"
+                                   [entityType]="entityType" [seqEntityId]="seqEntityId"
+                                   [seqAddressId]="seqAddressId" addressCode="CLA"></addon-address>
+                </ng-template>
+            </ng-container>
+
+
+        </nav>
+
+        <div [ngbNavOutlet]="nav" class="mt-2" ></div>
+
+
+    </div>
+</div>
+

@@ -1,0 +1,322 @@
+<!-- Copyright (c) 2021 . All Rights Reserved. -->
+<div class="container-fluid">
+    <div class="card-block">
+        <form [formGroup]="contractPricingDetailsForm" novalidate>
+            <h2 class="form-title card-label-admin">Contract Pricing Details</h2>
+            <div class="row">
+<!--                <menu-bar [menus]="menu" (onMenuClick)="onMenuItemClick($event)"></menu-bar>-->
+                <menu-bar [menus]="menu" (onMenuClick)="onMenuItemClick($event)"></menu-bar>
+            </div>
+
+
+
+
+
+            <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+            <app-pop-up-message #popUpMesssage (buttonclickEvent)="popUpButtonHandler($event)"  [(popupMessage)] = "popUpMessage"></app-pop-up-message>
+                        
+            <!-- DataGrid with Name of DataGrid001 -->
+            <!--<button (click)="dataGrid001GridOptionsExportCsv()">Export</button>-->
+            <ag-grid-angular #agGrid [enableFilter]="true" [enableSorting]="true"
+                [floatingFilter]="false"
+                [gridOptions]="dataGrid001GridOptions"
+                [pagination]="true"
+                [showToolPanel]="true"
+                class="ag-theme-fresh"
+                (selectionChanged)="onProviderGridSelectRow($event)"
+                style="width: 100%; height: 300px;">
+            </ag-grid-angular>
+            
+            <div class="form-group row">
+            </div>
+            
+                <!-- DataGrid with Name of DataGrid002 -->
+            <!--<button (click)="dataGrid002GridOptionsExportCsv()">Export</button>-->
+            <ag-grid-angular #agGrid [enableFilter]="true" [enableSorting]="true"
+                [floatingFilter]="true"
+                [gridOptions]="dataGrid002GridOptions"
+                [pagination]="true"
+                [showToolPanel]="true"
+                class="ag-theme-fresh"
+                (selectionChanged)="onClaimGridSelectRow($event)"
+                style="width: 100%; height: 300px;">
+            </ag-grid-angular>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+                <div class="col-md-2 form-control-static mb-0" i18n>
+                    Identifier
+                </div>
+            
+            </div>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of Claim Type -->
+                 <div [ngClass]="{'has-danger': formValidation.isValidField('claimType') }" class="col-md-4">
+                     <!--<label class="col-form-label clr-blue" for="claimType" i18n>Claim Type</label>
+                     <input class="form-control" formControlName="claimType"  id="claimType" type="text"/>-->
+                     <label class="col-form-label" for="claimType" i18n>Claim Type</label>
+                     <select type="text" id="claimType" class="form-control" formControlName="claimType">
+                         <option [value]="type.systemCode" *ngFor="let type of claimTypes">{{type.systemCode}} {{type.systemCodeDesc2}}</option>
+                     </select>
+                      <small *ngIf="formValidation.isValidField('claimType')" class="text-danger">
+                      {{ formValidation.errorMessage('claimType') }}
+                     </small>
+                 </div>
+            
+                <!-- Textbox with label of Order -->
+                 <div [ngClass]="{'has-danger': formValidation.isValidField('order') }" class="col-md-4">
+                     <label class="col-form-label clr-blue" for="order" i18n>Order</label>
+                     <input class="form-control" formControlName="order"  id="order" type="text"/>
+                      <small *ngIf="formValidation.isValidField('order')" class="text-danger">
+                      {{ formValidation.errorMessage('order') }}
+                     </small>
+                 </div>
+            
+                <!-- Textbox with label of Search Sequence -->
+                 <div [ngClass]="{'has-danger': formValidation.isValidField('searchSequence') }" class="col-md-4">
+                     <label class="col-form-label clr-blue" for="searchSequence" i18n>Search Sequence</label>
+                     <input class="form-control" formControlName="searchSequence"  id="searchSequence" type="text"/>
+                      <small *ngIf="formValidation.isValidField('searchSequence')" class="text-danger">
+                      {{ formValidation.errorMessage('searchSequence') }}
+                     </small>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <div class="col-md-2 form-control-static mb-0" i18n>
+                    Determinant
+                </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of Det Table -->
+                 <div [ngClass]="{'has-danger': formValidation.isValidField('detTable') }" class="col-md-4">
+                     <label class="col-form-label" for="detTable" i18n>Det Table</label>
+                     <input class="form-control" formControlName="detTable"  id="detTable" type="text"
+                            (keydown)="onLookupFieldDetTable($event)"/>
+                      <small *ngIf="formValidation.isValidField('detTable')" class="text-danger">
+                      {{ formValidation.errorMessage('detTable') }}
+                     </small>
+                 </div>
+            
+                <!-- Textbox with label of Determinant -->
+                 <div [ngClass]="{'has-danger': formValidation.isValidField('determinant002') }" class="col-md-4">
+                     <label class="col-form-label" for="determinant002" i18n>Determinant</label>
+                     <input class="form-control" formControlName="determinant002"  id="determinant002" type="text"/>
+                      <small *ngIf="formValidation.isValidField('determinant002')" class="text-danger">
+                      {{ formValidation.errorMessage('determinant002') }}
+                     </small>
+                 </div>
+            
+                <!-- Textbox with label of Operator -->
+                 <div [ngClass]="{'has-danger': formValidation.isValidField('operator') }" class="col-md-4">
+                     <label class="col-form-label" for="operator" i18n>Operator</label>
+                     <!--<input class="form-control" formControlName="operator"  id="operator" type="text"/>-->
+                     <select type="text" id="operator" class="form-control" formControlName="operator">
+                         <option [value]="o.value" *ngFor="let o of operators">{{o.key}}</option>
+                     </select>
+                      <small *ngIf="formValidation.isValidField('operator')" class="text-danger">
+                      {{ formValidation.errorMessage('operator') }}
+                     </small>
+                 </div>
+            
+            </div>
+
+            <div class="form-group row">
+            </div>
+            
+                <!-- DataGrid with Name of DataGrid003 -->
+            <!--<button (click)="dataGrid003GridOptionsExportCsv()">Export</button>-->
+            <!--<ag-grid-angular #agGrid [enableFilter]="true" [enableSorting]="true"
+                [floatingFilter]="false"
+                [gridOptions]="dataGrid003GridOptions"
+                [pagination]="true"
+                [showToolPanel]="true"
+                class="ag-theme-fresh"
+                style="width: 100%; height: 300px;">
+            </ag-grid-angular>-->
+            <dynamic-form [prevState]="ordersState" [isResetForm]="isOrderResetForm" [title]="'Values'" [config]="orderFormConfig"
+                          (formSubmitted)="saveProvContractOrder($event)" [showSubmitButton]="'true'"></dynamic-form>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+                <div class="col-md-2 form-control-static mb-0" i18n>
+                    Pricing Factors
+                </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of Contract Type -->
+                 <div [ngClass]="{'has-danger': formValidation.isValidField('contractType') }" class="col-md-4">
+                     <label class="col-form-label clr-blue" for="contractType" i18n>Contract Type</label>
+                     <!--<input class="form-control" formControlName="contractType"  id="contractType" type="text"/>-->
+                     <select type="text" id="contractType" class="form-control" formControlName="contractType">
+                         <option [value]="t.value" *ngFor="let t of contractTypes">{{t.key}}</option>
+                     </select>
+                      <small *ngIf="formValidation.isValidField('contractType')" class="text-danger">
+                      {{ formValidation.errorMessage('contractType') }}
+                     </small>
+                 </div>
+            
+                <!-- Textbox with label of Pricing Region -->
+                 <div [ngClass]="{'has-danger': formValidation.isValidField('pricingRegion') }" class="col-md-4">
+                     <label class="col-form-label" for="pricingRegion" i18n>Pricing Region</label>
+                     <select type="text" id="pricingRegion" class="form-control" formControlName="pricingRegion">
+                         <option [value]="o.regionMasterPrimaryKey.regionCode" *ngFor="let o of pricingRegions">{{o.regionMasterPrimaryKey.regionCode}} &nbsp; {{o.description}}</option>
+                     </select>
+                      <small *ngIf="formValidation.isValidField('pricingRegion')" class="text-danger">
+                      {{ formValidation.errorMessage('pricingRegion') }}
+                     </small>
+                 </div>
+            
+                <!-- Textbox with label of Pct Allowed -->
+                 <div [ngClass]="{'has-danger': formValidation.isValidField('pctAllowed') }" class="col-md-4">
+                     <label class="col-form-label" for="pctAllowed" i18n>Pct Allowed</label>
+                     <input class="form-control" formControlName="pctAllowed"  id="pctAllowed" type="text"/>
+                      <small *ngIf="formValidation.isValidField('pctAllowed')" class="text-danger">
+                      {{ formValidation.errorMessage('pctAllowed') }}
+                     </small>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of Price Rule -->
+                 <div [ngClass]="{'has-danger': formValidation.isValidField('priceRule') }" class="col-md-4">
+                     <label class="col-form-label" for="priceRule" i18n>Price Rule</label>
+                     <select id="priceRule" name="priceRule1" class="form-control" formControlName="priceRule">
+                         <option value="">-Select-</option>
+                         <option *ngFor="let rule of priceRules" [value]="rule.priceRule">{{rule.priceRule}} &nbsp;&nbsp;&nbsp; {{rule.description}}</option>
+                     </select>
+                      <small *ngIf="formValidation.isValidField('priceRule')" class="text-danger">
+                      {{ formValidation.errorMessage('priceRule') }}
+                     </small>
+                 </div>
+            
+                <!-- Textbox with label of Service Region -->
+                 <div [ngClass]="{'has-danger': formValidation.isValidField('serviceRegion') }" class="col-md-4">
+                     <label class="col-form-label" for="serviceRegion" i18n>Service Region</label>
+                     <select type="text" id="serviceRegion" class="form-control" formControlName="serviceRegion">
+                         <option [value]="o.regionMasterPrimaryKey.regionCode" *ngFor="let o of serviceRegions">{{o.regionMasterPrimaryKey.regionCode}} &nbsp; {{o.description}}</option>
+                     </select>
+                      <small *ngIf="formValidation.isValidField('serviceRegion')" class="text-danger">
+                      {{ formValidation.errorMessage('serviceRegion') }}
+                     </small>
+                 </div>
+            
+                <!-- Textbox with label of Pct Of Billed -->
+                 <div [ngClass]="{'has-danger': formValidation.isValidField('pctOfBilled') }" class="col-md-4">
+                     <label class="col-form-label" for="pctOfBilled" i18n>Pct Of Billed</label>
+                     <input class="form-control" formControlName="pctOfBilled"  id="pctOfBilled" type="text"/>
+                      <small *ngIf="formValidation.isValidField('pctOfBilled')" class="text-danger">
+                      {{ formValidation.errorMessage('pctOfBilled') }}
+                     </small>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of Geo Regio -->
+                <div class="col-md-4">&nbsp;&nbsp;&nbsp;</div>
+                 <div [ngClass]="{'has-danger': formValidation.isValidField('geoRegio') }" class="col-md-4">
+                     <label class="col-form-label" for="geoRegio" i18n>Geo Region</label>
+                     <!--<input class="form-control" formControlName="geoRegio"  id="geoRegio" type="text"/>-->
+                     <select type="text" id="geoRegio" class="form-control" formControlName="geoRegio">
+                         <option [value]="o.regionMasterPrimaryKey.regionCode" *ngFor="let o of geoRegions">{{o.regionMasterPrimaryKey.regionCode}} &nbsp; {{o.description}}</option>
+                     </select>
+                      <small *ngIf="formValidation.isValidField('geoRegio')" class="text-danger">
+                      {{ formValidation.errorMessage('geoRegio') }}
+                     </small>
+                 </div>
+            
+                <!-- Textbox with label of Pct Withhold -->
+                 <div [ngClass]="{'has-danger': formValidation.isValidField('pctWithhold') }" class="col-md-4">
+                     <label class="col-form-label" for="pctWithhold" i18n>Pct Withhold</label>
+                     <input class="form-control" formControlName="pctWithhold"  id="pctWithhold" type="text"/>
+                      <small *ngIf="formValidation.isValidField('pctWithhold')" class="text-danger">
+                      {{ formValidation.errorMessage('pctWithhold') }}
+                     </small>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <div class="col-md-12 form-control-static mb-0" i18n>
+                    Outpatient Procedure code edit
+                </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Checkbox with label of Target Rev Code Edit -->
+                <div [ngClass]="{'has-error': displayMessage.targetRevCodeEdit }" class="">
+                    <div class="checkbox col-md-12 pt-5">
+                      <input formControlName="targetRevCodeEdit" id="targetRevCodeEdit" type="checkbox" value="Y">
+                        <label class="checkbox">
+                            Target Rev Code Edit
+                         </label>
+                    </div>
+                    <span *ngIf="displayMessage.targetRevCodeEdit" class="help-block">
+                        {{ displayMessage.targetRevCodeEdit  }}
+                     </span>
+                </div>
+            
+                <!-- Textbox with label of Action -->
+                 <div [ngClass]="{'has-danger': formValidation.isValidField('action') }" class="col-md-2">
+                     <label class="col-form-label" for="action" i18n>Action</label>
+                     <!--<input class="form-control" formControlName="action"  id="action" type="text"/>-->
+                     <select type="text" id="action" class="form-control" formControlName="action" (change)="onActionChange($event)">
+                         <option [value]="o.value" *ngFor="let o of targetRevActions">{{o.key}}</option>
+                     </select>
+                      <small *ngIf="formValidation.isValidField('action')" class="text-danger">
+                      {{ formValidation.errorMessage('action') }}
+                     </small>
+                 </div>
+            
+                <!-- Textbox with label of Reason -->
+                 <div [ngClass]="{'has-danger': formValidation.isValidField('reason') }" class="col-md-2">
+                     <label class="col-form-label" for="reason" i18n>Reason</label>
+                     <!--<input class="form-control" formControlName="reason"  id="reason" type="text"/>-->
+                     <select type="text" id="reason" class="form-control" formControlName="reason">
+                         <ng-container *ngFor="let o of targetRevReasons">
+                            <option [value]="o.reasonCode" *ngIf="o.reasonCodeType === this.contractPricingDetailsForm.get('action').value">{{o.reasonCode}} &nbsp; {{o.description}}</option>
+                         </ng-container>
+                     </select>
+                      <small *ngIf="formValidation.isValidField('reason')" class="text-danger">
+                      {{ formValidation.errorMessage('reason') }}
+                     </small>
+                 </div>
+
+
+            </div>
+                <dynamic-form [prevState]="ordersStatePriceShed" [isResetForm]="isOrderResetFormPriceShed" [title]="''"  [showSubmitButton]="'true'"
+                              [config]="orderFormPricesScheduleConfig" (formSubmitted)="savePriceSchedOrderDetails($event)"></dynamic-form>
+
+            
+                <!-- DataGrid with Name of DataGrid004 -->
+            <!--<button (click)="dataGrid004GridOptionsExportCsv()">Export</button>-->
+<!--            <ag-grid-angular #agGrid [enableFilter]="true" [enableSorting]="true"-->
+<!--                [floatingFilter]="true"-->
+<!--                [gridOptions]="dataGrid004GridOptions"-->
+<!--                [pagination]="true"-->
+<!--                [showToolPanel]="true"-->
+<!--                class="ag-theme-fresh"-->
+<!--                style="width: 100%; height: 300px;">-->
+<!--            </ag-grid-angular>-->
+            
+            <div class="form-group row">
+            </div>
+        </form>
+    </div>
+</div>

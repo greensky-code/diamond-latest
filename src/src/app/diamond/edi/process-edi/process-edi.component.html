@@ -1,0 +1,368 @@
+<!-- Copyright (c) 2021 . All Rights Reserved. -->
+<div class="container-fluid">
+    <div class="card-block">
+        <div class="row form-title">
+            <h2 class="col-md-6  card-label-admin"> Process EDI </h2>
+        </div>
+
+        <button (click)="modalClose()" *ngIf="showIcon" aria-label="Close" class="modal-close close"
+                type="button">
+            <span aria-hidden="true">&times;</span>
+        </button>
+
+        <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+        <app-pop-up-message #popUpMesssage (buttonclickEvent)="popUpButtonHandler($event)"
+                            [(popupMessage)]="popUpMessage"></app-pop-up-message>
+
+        <div class="row mt-3">
+            <menu-bar (onMenuClick)="onMenuItemClick($event)" [menus]="menu"></menu-bar>
+        </div>
+
+        <form [formGroup]="processEdiForm" novalidate>
+            <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+            <app-pop-up-message #popUpMesssage (buttonclickEvent)="popUpButtonHandler($event)"
+                                [(popupMessage)]="popUpMessage"></app-pop-up-message>
+
+            <!-- DataGrid with Name of DataGrid -->
+            <ag-grid-angular #agGrid (selectionChanged)="onGridSelectionChange()"
+                             [enableFilter]="false"
+                             [enableSorting]="true"
+                             [floatingFilter]="false"
+                             [gridOptions]="dataGridGridOptions"
+                             [pagination]="true"
+                             [showToolPanel]="true"
+                             class="ag-theme-fresh"
+                             style="width: 100%; height: 300px;"
+            >
+            </ag-grid-angular>
+
+            <div class="form-group row">
+            </div>
+
+            <div class="form-group row">
+                <label class="label-broken col-md-4 text-primary text-right">
+                    <span>
+                        <b>Job Setup</b>
+                    </span>
+                </label>
+                <label class="col-md-8 label-broken"><span></span></label>
+            </div>
+
+            <div class="form-group row">
+            </div>
+
+            <div class="form-group row">
+                <!-- Textbox with label of Job ID -->
+                <div [ngClass]="{'has-danger': formValidation.isValidField('jobId') }" class="col-md-4">
+                    <label class="col-form-label clr-blue" for="jobId" i18n>Job ID</label>
+                    <input [fieldLevelSec]="''" class="form-control" formControlName="jobId" id="jobId" type="text"
+                    />
+                    <small *ngIf="formValidation.isValidField('jobId')" class="text-danger">
+                        {{ formValidation.errorMessage('jobId') }}
+                    </small>
+                </div>
+
+                <!-- DynamicText with label of Request User -->
+                <div [ngClass]="{'has-danger': formValidation.isValidField('requestUser') }" class="col-md-4">
+                    <label class="col-form-label" for="requestUser" i18n>Request User</label>
+                    <input [fieldLevelSec]="'Request User'" class="form-control" formControlName="requestUser" id="requestUser"
+                           readonly type="text"/>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <!-- Textbox with label of Transaction Set ID -->
+                <div [ngClass]="{'has-danger': formValidation.isValidField('transactionSetId') }" class="col-md-4 ">
+                    <label class="col-form-label clr-blue" for="transactionSetId" i18n>Transaction Set ID</label>
+                    <input [fieldLevelSec]="''" class="form-control" formControlName="transactionSetId" id="transactionSetId"
+                           type="text"
+                    />
+                    <small *ngIf="formValidation.isValidField('transactionSetId')" class="text-danger">
+                        {{ formValidation.errorMessage('transactionSetId') }}
+                    </small>
+                </div>
+
+                <!-- Textbox with label of Job ID -->
+                <div [ngClass]="{'has-danger': formValidation.isValidField('receivedDate') }" class="col-md-4">
+                    <app-datepicker (onDateChanged)="validateDateReceivedDate($event)"
+                                    [field]="'receivedDate'  "
+                                    [formGroup]="processEdiForm"
+                                    [formValidation]="formValidation"
+                                    [labelText]="'Received Date' " [readonly]="false"
+                                    class="clr-blue"></app-datepicker>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <!-- Textbox with label of Submitter ID -->
+                <div [ngClass]="{'has-danger': formValidation.isValidField('submitterId') }"
+                     class="selectContainer col-md-4 mt-2">
+                    <label class="col-form-label  clr-blue" for="submitterId" i18n>Submitter ID</label>
+                    <select #submitterId class="form-control" formControlName="submitterId" id="submitterId" name="submitterId"
+                            type="text">
+                        <option *ngFor="let submitterProfileMaster of submitterProfileMasters"
+                                [value]="submitterProfileMaster.submitterId"
+                        >
+                            {{submitterProfileMaster.submitterId}} - {{submitterProfileMaster.submitterName}}
+                        </option>
+                    </select>
+                    <small *ngIf="formValidation.isValidField('submitterId')" class="text-danger">
+                        {{ formValidation.errorMessage('submitterId') }}
+                    </small>
+                </div>
+
+                <!-- Textbox with label of File Type -->
+                <div [ngClass]="{'has-danger': formValidation.isValidField('fileType') }"
+                     class="selectContainer col-md-4 mt-2">
+                    <label class="col-form-label  clr-blue" for="fileType" i18n>File Type</label>
+                    <select #fileType class="form-control" formControlName="fileType" id="fileType" name="fileType"
+                            type="text" (change)="onChangeFileType($event.target.value)" >
+                        <option *ngFor="let type of fileTypes" [value]="type.dddwDtlPrimaryKey.dataVal"
+                        >{{type.dddwDtlPrimaryKey.displayVal}}</option>
+                    </select>
+                    <small *ngIf="formValidation.isValidField('fileType')" class="text-danger">
+                        {{ formValidation.errorMessage('fileType') }}
+                    </small>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <!-- Textbox with label of Input File Name -->
+                <div [ngClass]="{'has-danger': formValidation.isValidField('inputFile') }" class="col-md-8">
+                    <label class="col-form-label clr-blue" for="inputFile" i18n>Input File Name</label>
+                    <input [fieldLevelSec]="''" class="form-control" formControlName="inputFile" id="inputFile"
+                           type="text"
+                    />
+                    <small *ngIf="formValidation.isValidField('inputFile')" class="text-danger">
+                        {{ formValidation.errorMessage('inputFile') }}
+                    </small>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="label-broken col-md-4 text-primary text-right">
+                    <span>
+                        <b>Next Action</b>
+                    </span>
+                </label>
+                <label class="col-md-8 label-broken"><span></span></label>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-md-2 clr-blue">
+                    Action:
+                </div>
+
+                <!-- RadioButtonGroup with label of Receive -->
+                <div [ngClass]="{'has-error': displayMessage.action }" class="col-md-2">
+                    <input formControlName="action" id="Receive" name="action" type="radio" value="V"/>
+                    <label class="ml-1 col-form-label" for="Receive" i18n>Receive</label>
+                </div>
+
+                <!-- RadioButton with label of Edit -->
+                <div [ngClass]="{'has-error': displayMessage.action }" class="col-md-2">
+                    <input formControlName="action" id="Edit" name="action" type="radio" value="E"/>
+                    <label class="ml-1 col-form-label" for="Edit" i18n>Edit</label>
+                </div>
+
+                <!-- RadioButton with label of Re-Edit -->
+                <div [ngClass]="{'has-error': displayMessage.action }" class="col-md-2">
+                    <input formControlName="action" id="ReEdit" name="action" type="radio" value="R" [attr.disabled]="reEditDisabled ? 'disabled' : null"/>
+                    <label class="ml-1 col-form-label" for="ReEdit" i18n>Re-Edit</label>
+                </div>
+
+                <!-- RadioButton with label of Post -->
+                <div [ngClass]="{'has-error': displayMessage.action }" class="col-md-2">
+                    <input formControlName="action" id="Post" name="action" type="radio" value="P"/>
+                    <label class="ml-1 col-form-label" for="Post" i18n>Post</label>
+                </div>
+
+                <!-- RadioButton with label of Cancel ^RB -->
+                <div [ngClass]="{'has-error': displayMessage.action }" class="col-md-2">
+                    <input formControlName="action" id="Cancel" name="action" type="radio" value="C"/>
+                    <label class="ml-1 col-form-label" for="Cancel" i18n>Cancel</label>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <!-- DynamicText with label of Status -->
+                <div [ngClass]="{'has-danger': formValidation.isValidField('status') }" class="col-md-4">
+                    <label class="col-form-label" for="status" i18n>Status</label>
+                    <input [fieldLevelSec]="'Status'" class="form-control" formControlName="status" id="status" readonly
+                           type="text"/>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="label-broken col-md-4 text-primary text-right">
+                    <span>
+                        <b>Run Options</b>
+                    </span>
+                </label>
+                <label class="col-md-8 label-broken"><span></span></label>
+            </div>
+
+            <div class="form-group row">
+                <!-- Checkbox with label of Duplicate check -->
+                <div *ngIf="visibleComponent.duplicateCheck" [ngClass]="{'has-error': displayMessage.duplicateCheck }" class="">
+                    <div class="checkbox col-md-12">
+                        <input [fieldLevelSec]="'Update Process'" formControlName="duplicateCheck" id="duplicateCheck"
+                               type="checkbox" value="N" (change)="onRunOptionChange($event)">
+                        <label class="checkbox">
+                            Duplicate check
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Checkbox with label of Duplicate check -->
+                <div *ngIf="visibleComponent.positiveFile" [ngClass]="{'has-error': displayMessage.positiveFile }" class="">
+                    <div class="checkbox col-md-12">
+                        <input [fieldLevelSec]="'Update Process'" formControlName="positiveFile" id="positiveFile"
+                               type="checkbox" value="N" (change)="onRunOptionChange($event)">
+                        <label class="checkbox">
+                            Positive File
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Checkbox with label of Pricing -->
+                <div *ngIf="visibleComponent.pricing" [ngClass]="{'has-error': displayMessage.pricing }" class="">
+                    <div class="checkbox col-md-12">
+                        <input [fieldLevelSec]="'Origin Flag'" formControlName="pricing" id="pricing" type="checkbox"
+                               value="N" (change)="onRunOptionChange($event)">
+                        <label class="checkbox">
+                            Pricing
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Checkbox with label of Duplicate check -->
+                <div *ngIf="visibleComponent.memberSearch" [ngClass]="{'has-error': displayMessage.memberSearch }" class="">
+                    <div class="checkbox col-md-12">
+                        <input [fieldLevelSec]="'Update Process'" formControlName="memberSearch" id="memberSearch"
+                               type="checkbox" value="N" (change)="onRunOptionChange($event)">
+                        <label class="checkbox">
+                            Member Search
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Checkbox with label of Person No Search -->
+                <div [ngClass]="{'has-error': displayMessage.personNoSearch }" class="">
+                    <div class="checkbox col-md-12">
+                        <input [fieldLevelSec]="''" formControlName="personNoSearch" id="personNoSearch"
+                               type="checkbox" value="N" (change)="onRunOptionChange($event)">
+                        <label class="checkbox">
+                            Person No Search
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Checkbox with label of Redo Conversion -->
+                <div [ngClass]="{'has-error': displayMessage.redoConversion }" class="">
+                    <div class="checkbox col-md-12">
+                        <input [fieldLevelSec]="'Redo Conversion'" formControlName="redoConversion" id="redoConversion"
+                               type="checkbox" value="N" (change)="onRunOptionChange($event)">
+                        <label class="checkbox">
+                            Redo Conversion
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Checkbox with label of Adjudication -->
+                <div *ngIf="visibleComponent.adjudication" [ngClass]="{'has-error': displayMessage.adjudication }" class="">
+                    <div class="checkbox col-md-12">
+                        <input [fieldLevelSec]="''" formControlName="adjudication" id="adjudication"
+                               type="checkbox" value="N" (change)="onRunOptionChange($event)">
+                        <label class="checkbox">
+                            Adjudication
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Checkbox with label of Lens Prescription Processing -->
+                <div *ngIf="visibleComponent.lensPresProc" [ngClass]="{'has-error': displayMessage.lensPresProc }" class="">
+                    <div class="checkbox col-md-12">
+                        <input [fieldLevelSec]="''" formControlName="lensPresProc" id="lensPresProc"
+                               type="checkbox" value="N" (change)="onRunOptionChange($event)">
+                        <label class="checkbox">
+                            Lens Prescription Processing
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div [ngClass]="{'has-danger': formValidation.isValidField('effDate') }" class="col-md-4">
+                    <app-datepicker (onDateChanged)="onChangeFieldEffDate($event)"
+                                    [field]="'effDate'"
+                                    [formGroup]="processEdiForm"
+                                    [formValidation]="formValidation" [labelText]="'Default Eff Date'"
+                                    [readonly]="false"></app-datepicker>
+                </div>
+
+                <div [ngClass]="{'has-danger': formValidation.isValidField('termDate') }" class="col-md-4">
+                    <app-datepicker (onDateChanged)="onChangeFieldTermDate($event)"
+                                    [field]="'termDate'"
+                                    [formGroup]="processEdiForm"
+                                    [formValidation]="formValidation" [labelText]="'Default Term Date'"
+                                    [readonly]="false"></app-datepicker>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-md-2 form-control-static mb-0 clr-blue" i18n>
+                    Request Type:
+                </div>
+
+                <!-- RadioButtonGroup with label of Immediate -->
+                <div [ngClass]="{'has-error': displayMessage.requestType }" class="col-md-2">
+                    <input formControlName="requestType" id="immediate" name="requestType" type="radio" value="I"/>
+                    <label class="ml-1 col-form-label" for="immediate" i18n>Immediate</label>
+                </div>
+
+                <!-- RadioButton with label of  Deferred -->
+                <div [ngClass]="{'has-error': displayMessage.requestType }" class="col-md-2">
+                    <input formControlName="requestType" id="deferred" name="requestType" type="radio" value="D" [attr.disabled]="isDeferredDisabled"/>
+                    <label class="ml-1 col-form-label" for="deferred" i18n>Deferred</label>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <!-- Textbox with label of Comments -->
+                <div [ngClass]="{'has-danger': formValidation.isValidField('comments') }" class="col-md-8">
+                    <label class="col-form-label" for="comments" i18n>Comments</label>
+                    <input [fieldLevelSec]="'Comments'" class="form-control" formControlName="comments" id="comments"
+                           type="text"/>
+                    <small *ngIf="formValidation.isValidField('comments')" class="text-danger">
+                        {{ formValidation.errorMessage('comments') }}
+                    </small>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="label-broken col-md-4 text-primary text-right">
+                    <span>
+                        <b>Conversion Program</b>
+                    </span>
+                </label>
+                <label class="col-md-8 label-broken"><span></span></label>
+            </div>
+
+            <div class="form-group row">
+                <!-- Textbox with label of Conversion Program -->
+                <div [ngClass]="{'has-danger': formValidation.isValidField('conversionProgram002') }" class="col-md-8">
+                    <label class="col-form-label" for="conversionProgram002" i18n>Conversion Program</label>
+                    <input [fieldLevelSec]="'Conversion Program'" class="form-control" formControlName="conversionProgram002"
+                           id="conversionProgram002" type="text"/>
+                    <small *ngIf="formValidation.isValidField('conversionProgram002')" class="text-danger">
+                        {{ formValidation.errorMessage('conversionProgram002') }}
+                    </small>
+                </div>
+            </div>
+
+            <div class="form-group row">
+            </div>
+        </form>
+    </div>
+</div>

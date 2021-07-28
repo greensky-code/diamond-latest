@@ -1,0 +1,113 @@
+<!-- Copyright (c) 2021 . All Rights Reserved. -->
+<div class="container-fluid" *ngIf="isLoaded">
+    <div class="card-block">
+        <form [formGroup]="arMatrixDeterminantsForm" novalidate>
+
+            <div class="row form-title">
+                <h2 class="col-md-5  card-label-admin">  A/R Matrix Determinants </h2>
+            </div>
+            <button type="button" class="close" aria-label="Close" (click)="modalClose()">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <div class="row">
+                <menu-bar [menus]="menu" (onMenuClick)="onMenuItemClick($event)"></menu-bar>
+            </div>
+            <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+            <app-pop-up-message #popUpMesssage (buttonclickEvent)="popUpButtonHandler($event)"
+                [(popupMessage)]="popUpMessage"></app-pop-up-message>
+
+            <div class="form-group row">
+            </div>
+
+            <div class="form-group row">
+                <!-- DynamicText with label of Matrix Determinant -->
+                <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('matrixDeterminant') }">
+                    <label class="col-form-label required-field-label" for="matrixDeterminant" i18n>Matrix Determinant</label>
+                    <input type="text" [fieldLevelSec]="'Matrix Determinant'" id="matrixDeterminant"
+                        formControlName="matrixDeterminant" [readonly]="isMatrixDisabled" #matrixDeterminant
+                        (keydown)="onLookupFieldMatrixDeterminant($event)" class="form-control" />
+                </div>
+
+            </div>
+
+            <ng-container *ngIf="showMatrixFields">
+                <div class="form-group row">
+                    <!-- Textbox with label of Matrix Description -->
+                    <div class="col-md-8" [ngClass]="{'has-danger': formValidation.isValidField('matrixDescription') }">
+                        <label class="col-form-label required-field-label" for="matrixDescription" i18n>Matrix Description</label>
+                        <input type="text" id="matrixDescription" [fieldLevelSec]="'Matrix Description'"
+                            class="form-control" formControlName="matrixDescription" />
+                        <small class="text-danger" *ngIf="formValidation.isValidField('matrixDescription')">
+                            {{ formValidation.errorMessage('matrixDescription') }}
+                        </small>
+                    </div>
+
+                </div>
+
+                <div class="form-group row">
+                </div>
+
+                <div class="form-group row">
+                </div>
+
+                <!-- DynamicText with Name of DynamicText001 -->
+                <!-- <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('dynamicText001') }">
+                <label class="col-form-label" for="dynamicText001" i18n>&nbsp;</label>
+                <input type="text"  [fieldLevelSec]="''"  readonly id="dynamicText001" formControlName="dynamicText001" class="form-control"/>
+            </div> -->
+
+                <!-- DataGrid with Name of DataGrid001 -->
+
+                <div>
+                    <dynamic-form
+                            [prevState]="matrixDetermXesState"
+                            #matrixDetermX [isResetForm]="isXResetForm"
+                            [title]="''" [config]="matrixDeterminantXFromConfig"
+                            (formSubmitted)="saveMatrixDeterminantX($event)"
+                            (onChangeFields)="setMatrixDeterminantXFormDataModified($event, false)"
+                            (onKeyUpFields)="onKeyUpMatrixDeterminantXChangeFields($event)"
+                            (onRowClick)="onKeyUpMatrixDeterminantXChangeFields($event)"
+                            (onNewRowAdded)="setMatrixDeterminantXFormDataModified($event, true)"
+                            (onRowDeleted)="setMatrixDeterminantXFormDataModified($event, true)"></dynamic-form>
+                </div>
+                <div class="form-group row">
+                </div>
+
+                <div class="form-group row">
+                </div>
+
+                <div class="form-group row">
+                </div>
+
+                <div class="form-group row">
+                </div>
+
+                <!-- DynamicText with Name of DynamicText002 -->
+                <!-- <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('dynamicText002') }">
+                <label class="col-form-label" for="dynamicText002" i18n>&nbsp;</label>
+                <input type="text"  [fieldLevelSec]="''"  readonly id="dynamicText002" formControlName="dynamicText002" class="form-control"/>
+            </div> -->
+
+                <!-- DataGrid with Name of DataGrid002 -->
+
+                <div>
+                    <dynamic-form
+                            [prevState]="matrixDetermYsState"
+                            #matrixDetermY [isResetForm]="isYResetForm" [title]="''"
+                            [config]="matrixDeterminantYFromConfig"
+                            (formSubmitted)="saveMatrixDeterminantY($event)"
+                            (onChangeFields)="setMatrixDeterminantYFormDataModified($event, false)"
+                            (onKeyUpFields)="onKeyUpMatrixDeterminantYChangeFields($event)"
+                            (onRowClick)="onKeyUpMatrixDeterminantYChangeFields($event)"
+                            (onNewRowAdded)="setMatrixDeterminantYFormDataModified($event, true)"
+                            (onRowDeleted)="setMatrixDeterminantYFormDataModified($event, true)" ></dynamic-form>
+                </div>
+                <div class="form-group row">
+                </div>
+
+            </ng-container>
+        </form>
+    </div>
+</div>
+<ng-keyboard-shortcuts [shortcuts]="shortcuts"></ng-keyboard-shortcuts>
+<ng-keyboard-shortcuts-help [key]="'f2'" [closeKey]="'escape'" [title]="'Hotkeys Help'"></ng-keyboard-shortcuts-help>

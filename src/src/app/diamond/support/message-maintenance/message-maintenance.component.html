@@ -1,0 +1,124 @@
+<!-- Copyright (c) 2021 . All Rights Reserved. -->
+<div class="container-fluid">
+    <div class="card-block">
+        <div class="row form-title">
+            <h2 class="col-md-6  card-label-admin"> Message Maintenance </h2>
+            <div class="col-md"><b class="readonly-label">View Only</b></div>
+        </div>
+        <button type="button" *ngIf="showIcon" class="modal-close close" aria-label="Close"
+                (click)="activeModal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+        <app-pop-up-message #popUpMesssage (buttonclickEvent)="popUpButtonHandler($event)"
+                            [(popupMessage)]="popUpMessage"></app-pop-up-message>
+
+        <ng-template #loaderTemplate let-loaderValue="value">
+            <div class="row justify-content-center mt-4" *ngIf="loaderValue">
+                <div class="spinner-border text-success" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>
+            </div>
+        </ng-template>
+        <ng-container *ngTemplateOutlet="loaderTemplate;context:{value: secProgress }"></ng-container>
+        <ng-container *appWinSelect="{secWin: secWin, userTemplateId: userTemplateId, secModuleId: memberModuleId}">
+            <div class="row mt-3">
+                <menu-bar [menus]="menu" (onMenuClick)="onMenuItemClick($event)"></menu-bar>
+            </div>
+            <form [formGroup]="messageMaintenanceForm" novalidate>
+                <div class="form-group row">
+                </div>
+                <div class="form-group row">
+                    <!-- DynamicText with label of Message ID -->
+                    <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('messageId') }">
+                        <label class="col-form-label" for="messageId" i18n>Message ID</label>
+                        <input [readOnly]="disableMessageId" #messageId type="text" (keydown)="onChangeMessageId($event, messageId.value )" [fieldLevelSec]="'Message Id'" id="messageId"
+                               formControlName="messageId" class="form-control"/>
+                    </div>
+                </div>
+
+                <div *ngIf="isDataFetched" class="form-group row">
+
+                    <!-- DynamicText with label of Message ID -->
+                    <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('messageId2') }">
+                        <label class="col-form-label" for="messageId2" i18n>Message ID</label>
+                        <input type="text" readonly  [fieldLevelSec]="'Message Id'"
+                               id="messageId2" formControlName="messageId2" class="form-control"/>
+                    </div>
+
+                    <!-- DynamicText with label of Message ID -->
+                    <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('messageLevel') }">
+                        <label class="col-form-label clr-blue" for="messageLevel" i18n>Message Level</label>
+                        <input type="text" readonly  [fieldLevelSec]="" id="messageLevel"
+                               formControlName="messageLevel" class="form-control"/>
+                    </div>
+
+                    <!-- DynamicText with label of Message ID -->
+                    <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('replacementText') }">
+                        <label class="col-form-label" for="replacementText" i18n>Replacement Text</label>
+                        <input type="text" readonly  [fieldLevelSec]=" " id="replacementText"
+                               formControlName="replacementText" class="form-control"/>
+                    </div>
+                </div>
+
+                <div *ngIf="isDataFetched" class="form-group row">
+                    <!-- Checkbox with label of Unclean Indicator -->
+                    <div class="" [ngClass]="{'has-error': displayMessage.uncleanIndicator }">
+                        <div class="checkbox col-md-12">
+                            <input id="displayMessage" [fieldLevelSec]="'Unclean Flag'" value="displayMessage"
+                                   formControlName="displayMessage" type="checkbox">
+                            <label class="checkbox">
+                                Display Message
+                            </label>
+                        </div>
+                        <span class="help-block" *ngIf="displayMessage.displayMessage">
+                        {{ displayMessage.displayMessage  }}
+                     </span>
+                    </div>
+
+                    <div class="" [ngClass]="{'has-error': displayMessage.uncleanIndicator }">
+                        <div class="checkbox col-md-12">
+                            <input id="retainMessage" [fieldLevelSec]=" " value="retainMessage"
+                                   formControlName="retainMessage" type="checkbox">
+                            <label class="checkbox">
+                                Retain Message
+                            </label>
+                        </div>
+                        <span class="help-block" *ngIf="displayMessage.retainMessage">
+                        {{ displayMessage.retainMessage  }}
+                     </span>
+                    </div>
+
+                    <div class="" [ngClass]="{'has-error': displayMessage.uncleanIndicator }">
+                        <div class="checkbox col-md-12">
+                            <input id="uncleanIndicator" [fieldLevelSec]="'Unclean Flag'" value="uncleanIndicator"
+                                   formControlName="uncleanIndicator" type="checkbox">
+                            <label class="checkbox">
+                                Unclean Indicator
+                            </label>
+                        </div>
+                        <span class="help-block" *ngIf="displayMessage.uncleanIndicator">
+                        {{ displayMessage.uncleanIndicator  }}
+                     </span>
+                    </div>
+                </div>
+
+                <!-- DataGrid with Name of DataGrid -->
+                <div *ngIf="gridShowStatus">
+                    <ag-grid-angular #agGrid class="ag-theme-fresh" [gridOptions]="dataGridGridOptions"
+                                     style="width: 100%; height: 300px;"
+                                     [enableSorting]="true"
+                                     [enableFilter]="true"
+                                     [floatingFilter]="true"
+                                     (rowClicked)="onRowSelectedGrid($event)"
+                                     [pagination]="true"
+                                     [showToolPanel]="true">
+                    </ag-grid-angular>
+                </div>
+
+                <div class="form-group row">
+                </div>
+            </form>
+        </ng-container>
+    </div>
+</div>

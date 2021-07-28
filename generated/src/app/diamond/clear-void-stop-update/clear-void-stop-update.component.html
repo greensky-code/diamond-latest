@@ -1,0 +1,131 @@
+<!-- Copyright (c) 2021 . All Rights Reserved. -->
+<div class="container-fluid">
+    <div class="card-block">
+        <form [formGroup]="clearVoidStopUpdateForm" novalidate>
+            <h2 class="form-title card-label-admin">Clear Void Stop Update</h2>
+            <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+            <app-pop-up-message #popUpMesssage (buttonclickEvent)="popUpButtonHandler($event)"  [(popupMessage)] = "popUpMessage"></app-pop-up-message>
+                        
+            <div class="form-group row">
+            </div>
+            
+                        <!-- DataGrid with Name of DataGrid -->
+                    <button (click)="dataGridGridOptionsExportCsv()">Export</button>
+                    <ag-grid-angular #agGrid class="ag-theme-fresh" [gridOptions]="dataGridGridOptions"
+                    style="width: 100%; height: 300px;"
+                    [enableSorting]="true"
+                    [enableFilter]="true"
+                    [floatingFilter]="true"
+                    [pagination]="true"
+                    [showToolPanel]="true">
+                    </ag-grid-angular>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+                <!-- DynamicText with label of Job Id -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('jobId') }">
+                     <label class="col-form-label" for="jobId" i18n>Job Id</label>
+                     <input type="text"  [fieldLevelSec]="''" params]=""  readonly id="jobId" formControlName="jobId" class="form-control"/>
+                 </div>
+            
+                <!-- DynamicText with label of Req User -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('reqUser') }">
+                     <label class="col-form-label" for="reqUser" i18n>Req User</label>
+                     <input type="text"  [fieldLevelSec]="''" params]=""  readonly id="reqUser" formControlName="reqUser" class="form-control"/>
+                 </div>
+            
+                <!-- DynamicText with label of Run Date -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('runDate') }">
+                     <label class="col-form-label" for="runDate" i18n>Run Date</label>
+                     <input type="text"  [fieldLevelSec]="''" params]=""  readonly id="runDate" formControlName="runDate" class="form-control"/>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+                <div class="col-md-2 form-control-static mb-0" i18n>
+                    Next Action
+                </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <div class="col-md-2 form-control-static mb-0" i18n>
+                    Action
+                </div>
+            
+                <!-- RadioButton with label of e ^RB -->
+                <div class="col-md-2" [ngClass]="{'has-error': displayMessage.eRb }">
+                    <label class="col-form-label" for="eRb" i18n>e ^RB</label>
+                    <input type="radio"  formControlName="eRb"  [fieldLevelSec]="''" params]=""  value="e ^RB"/>
+                </div>
+            
+                <!-- RadioButton with label of nt ^RB -->
+                <div class="col-md-2" [ngClass]="{'has-error': displayMessage.ntRb }">
+                    <label class="col-form-label" for="ntRb" i18n>nt ^RB</label>
+                    <input type="radio"  formControlName="ntRb"  [fieldLevelSec]="''" params]=""  value="nt ^RB"/>
+                </div>
+            
+                <!-- RadioButton with label of cel ^RB -->
+                <div class="col-md-2" [ngClass]="{'has-error': displayMessage.celRb }">
+                    <label class="col-form-label" for="celRb" i18n>cel ^RB</label>
+                    <input type="radio"  formControlName="celRb"  [fieldLevelSec]="''" params]=""  value="cel ^RB"/>
+                </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- DynamicText with label of Status -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('status') }">
+                     <label class="col-form-label" for="status" i18n>Status</label>
+                     <input type="text"  [fieldLevelSec]="''" params]=""  readonly id="status" formControlName="status" class="form-control"/>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+                <div class="col-md-2 form-control-static mb-0" i18n>
+                    Run Options
+                </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- RadioButtonGroup with label of Request Type -->
+                <div class="form-inline">
+                    <!--  with label of Immediate -->
+                <div class="" [ngClass]="{'has-error': displayMessage.immediate001 }">
+                    <label class="col-form-label" for="immediate001" i18n>Immediate</label>
+                    <input type="radio" value="Immediate"  [fieldLevelSec]="" params]=""  formControlName="radiobuttongroup2650" />
+                </div>
+                    <!--  with label of Deferred -->
+                <div class="" [ngClass]="{'has-error': displayMessage.deferred001 }">
+                    <label class="col-form-label" for="deferred001" i18n>Deferred</label>
+                    <input type="radio" value="Deferred"  [fieldLevelSec]="" params]=""  formControlName="radiobuttongroup2650" />
+                </div>
+                </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of Comments -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('comments') }">
+                     <label class="col-form-label" for="comments" i18n>Comments</label>
+                     <input type="text" id="comments"  [fieldLevelSec]="'Comments'" params]="Check Clear Void Setup"   class="form-control" formControlName="comments"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('comments')">
+                      {{ formValidation.errorMessage('comments') }}
+                     </small>
+                 </div>
+            
+            </div>
+        </form>
+    </div>
+</div>

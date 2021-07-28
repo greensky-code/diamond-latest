@@ -1,0 +1,148 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+    <title>EOBs and RAs - Overview</title>
+    <!--(Meta)==========================================================-->
+    <meta content="Overview.htt" name="template"/>
+    <meta content="RoboHELP by eHelp Corporation - www.ehelp.com" name="generator"/>
+    <meta content="0.1" name="generator-major-version"/>
+    <meta content="1" name="generator-minor-version"/>
+    <meta content="kadov" name="filetype"/>
+    <meta content="1" name="filetype-version"/>
+    <meta content="1" name="page-count"/>
+    <meta content="848" name="layout-height"/>
+    <meta content="675" name="layout-width"/>
+    <!--(Links)=========================================================-->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+   <link href="assets/help/stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="assets/help/page_styles.css" rel="stylesheet" type="text/css"/>
+
+  
+
+
+<link href="assets/help/calibreHtmlOutBasicCss.css" type="text/css" rel="stylesheet" />
+
+</head>
+<body>
+
+<div class="calibreMeta">
+  <div class="calibreMetaTitle">
+  
+  
+    
+    <h1>
+      <a href="../4xeqt-va1vo.html">DIAMOND 950 Help
+</a>
+    </h1>
+    
+    
+  
+  </div>
+  <div class="calibreMetaAuthor">
+    Unknown
+
+  </div>
+</div>
+
+<div class="calibreMain">
+
+  <div class="calibreEbookContent">
+    
+      <div class="calibreEbNavTop">
+        
+          <a href="Voiding_and_Reversing_a_Posted_Check.htm" class="calibreAPrev">previous page
+</a>
+        
+
+        
+          <a href="EOBs_and_RAs_How_DIAMOND_Thinks.htm" class="calibreANext">next page
+</a>
+        
+      </div>
+    
+
+    
+
+<h1 class="calibre3">EOBs and RAs - Overview</h1>
+
+<p class="text">The following flowchart illustrates the EOB and RA process.</p>
+
+<p class="text1"><img alt="image\EOBRAprocess_shg.gif" border="0" height="356" src="assets/help/EOBRAprocess_shg.gif" width="409" class="calibre17"/></p>
+
+<h2 class="calibre10">Process Flow</h2>
+
+<p class="text">During claims processing, DIAMOND processing evaluates if 
+ an EOB and/or an RA should be sent for each claim. </p>
+
+<ol class="calibre8">
+	
+	<li class="kadov-p-cstep"><p class="step">DIAMOND processing checks the 
+ member’s eligibility. If the member is eligible, then DIAMOND continues 
+ to the next step. If the member is not eligible, then the DFLTPRINTSTAT 
+ parameter setup determines the print flag and skip to step 4.</p></li>
+	
+	<li class="kadov-p-cstep"><p class="step">DIAMOND processing reads the 
+ provider’s RA information from the provider contract in keyword PROVC 
+ (Provider Contract); then reads the member’s EOB information from keyword 
+ LINBS (Line of Business).</p></li>
+	
+	<li class="kadov-p-cstep"><p class="step">DIAMOND processing then uses 
+ those two pieces of information to calculate the print flag.</p></li>
+	
+	<li class="kadov-p-cstep"><p class="step">DIAMOND processing searches through 
+ the EOB/RA suppression rules in keyword SEBRA. If any rules apply, the 
+ information from keywords PROVC or LINBS is ignored and the EOB/RA is 
+ suppressed as defined by the rules.</p></li>
+	
+	<li class="kadov-p-cstep"><p class="step">DIAMOND processing then examines 
+ the <span class="calibre9">Pay Subscriber</span> and <span class="calibre9">Pay 
+ Dependent</span> fields in keywords DNCLM, INCLM, or PSCLM. If either 
+ the <span class="calibre9">Pay Subscriber</span> or <span class="calibre9">Pay 
+ Dependent</span> field is set to <span class="calibre9">Y</span>, 
+ then the RA is suppressed.</p></li>
+	
+	<li class="kadov-p-cstep"><p class="step">DIAMOND processing writes the 
+ final print flag to the claim.</p></li>
+	
+	<li class="kadov-p-cstep"><p class="step">You can manually overwrite the 
+ print flag on the claim, at the detail level only, before finalizing the 
+ claim. </p></li>
+</ol>
+
+<p class="stepcont">If the print flag has been manually overwritten, the 
+ Print Flag Status indicator will display "M" for manual. This 
+ status will not change and the print flag will remain as manually selected, 
+ even if the claim header or detail is altered. To change the Print Flag 
+ Status indicator back to "A" for Automatic, you must use the 
+ "Auto" button on the Print Flag Info Special menu window to 
+ reinvoke the automatic process as described in steps 1 - 7.</p>
+
+
+
+
+
+
+  </div>
+
+
+
+  <div class="calibreEbNav">
+    
+      <a href="Voiding_and_Reversing_a_Posted_Check.htm" class="calibreAPrev">previous page
+</a>
+    
+
+    <a href="../4xeqt-va1vo.html" class="calibreAHome">start
+</a>
+
+    
+      <a href="EOBs_and_RAs_How_DIAMOND_Thinks.htm" class="calibreANext">next page
+</a>
+    
+  </div>
+
+</div>
+
+</body>
+</html>

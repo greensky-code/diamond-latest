@@ -1,0 +1,322 @@
+<!-- Copyright (c) 2021 . All Rights Reserved. -->
+<div class="container-fluid">
+    <div class="card-block">
+        <form [formGroup]="priceRuleForm" novalidate>
+            <h2 class="form-title card-label-admin">Price Rule</h2>
+            <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+            <app-pop-up-message #popUpMesssage (buttonclickEvent)="popUpButtonHandler($event)"  [(popupMessage)] = "popUpMessage"></app-pop-up-message>
+            <button type="button" *ngIf="showIcon" class="modal-close close" aria-label="Close" (click)="modalClose()">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <div class="row">
+                <menu-bar [menus]="menu" (onMenuClick)="onMenuItemClick($event)"></menu-bar>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-6 form-control-static mb-0" >
+                    <label class="col-form-label" for="priceRule" i18n>Price Rule : </label>
+                    <input  type="text" (keydown)="onPriceRuleLookup($event)" id="priceRule" class="form-control"
+                           #priceRule formControlName="priceRule" />
+                    <small class="text-danger" *ngIf="formValidation.isValidField('priceRule')">
+                        {{ formValidation.errorMessage('priceRule') }}
+                    </small>
+                </div>
+                <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('textbox001') }">
+                    <label class="col-form-label" for="desc" i18n>&nbsp;</label>
+                    <input type="text" style="color: blue;" readonly id="desc" class="form-control" formControlName="desc" />
+                    <small class="text-danger" *ngIf="formValidation.isValidField('textbox001')">
+                        {{ formValidation.errorMessage('textbox001') }}
+                    </small>
+                </div>
+            </div>
+            <ng-container *ngIf="showPriceRuleFields">
+                <div class="form-group row">
+                <!-- Textbox with Name of Textbox001 -->
+                 <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('textbox001') }">
+                     <label class="col-form-label" for="textbox001" i18n>Description</label>
+                     <input type="text" id="textbox001"     class="form-control" formControlName="textbox001"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('textbox001')">
+                      {{ formValidation.errorMessage('textbox001') }}
+                     </small>
+                 </div>
+
+
+            </div>
+
+            <div class="form-group row">
+                <!-- Checkbox with label of Use External DRG Pricer -->
+                <div class="" [ngClass]="{'has-error': displayMessage.useExternalDrgPricer }">
+                    <div class="checkbox col-md-12">
+                      <input id="useExternalDrgPricer"    value="useExternalDrgPricer" formControlName="useExternalDrgPricer" type="checkbox">
+                        <label class="checkbox">
+                            Use External DRG Pricer
+                         </label>
+                    </div>
+                    <span class="help-block" *ngIf="displayMessage.useExternalDrgPricer">
+                        {{ displayMessage.useExternalDrgPricer  }}
+                     </span>
+                </div>
+
+                <!-- Checkbox with label of Custom Pricer Rules -->
+                <div class="" [ngClass]="{'has-error': displayMessage.customPricerRules }">
+                    <div class="checkbox col-md-12">
+                      <input id="customPricerRules"   value="customPricerRules" formControlName="customPricerRules" type="checkbox">
+                        <label class="checkbox">
+                            Custom Pricer Rules
+                         </label>
+                    </div>
+                    <span class="help-block" *ngIf="displayMessage.customPricerRules">
+                        {{ displayMessage.customPricerRules  }}
+                     </span>
+                </div>
+
+            </div>
+
+            <div class="form-group row">
+                <!-- Textbox with label of Procedure Price Search Option -->
+                 <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('procedurePriceSearchOption') }">
+                     <label class="text-primary col-form-label" for="procedurePriceSearchOption" i18n>Procedure Price Search Option</label>
+                     <select (change)="onChangeProcedure($event)" type="text" id="procedurePriceSearchOption"     class="form-control" formControlName="procedurePriceSearchOption">
+                        <option *ngFor="let dddwDtl of procedurePrice" [value]="dddwDtl.dddwDtlPrimaryKey.dataVal">{{dddwDtl.dddwDtlPrimaryKey.displayVal}}</option>
+                     </select>
+                     <small class="text-danger" *ngIf="formValidation.isValidField('procedurePriceSearchOption')">
+                      {{ formValidation.errorMessage('procedurePriceSearchOption') }}
+                     </small>
+                 </div>
+
+                <!-- Textbox with label of Wildcard Modifier -->
+                 <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('wildcardModifier') }">
+                     <label class="col-form-label clr-blue" for="wildcardModifier" i18n>Wildcard Modifier</label>
+                    <select  type="text" id="wildcardModifier"    class="form-control" formControlName="wildcardModifier">
+                        <option *ngFor="let dddwDtl of modifier" [value]="dddwDtl.modifierCode">{{dddwDtl.modifierCode}} - {{dddwDtl.description}}</option>
+                    </select>
+                     <small class="text-danger" *ngIf="formValidation.isValidField('wildcardModifier')">
+                      {{ formValidation.errorMessage('wildcardModifier') }}
+                     </small>
+                 </div>
+
+            </div>
+
+            <div class="form-group row">
+                <div class="col-md-2 form-control-static mb-0" i18n>
+                    <b><u>Anesthesia</u></b>
+                </div>
+
+            </div>
+            <div class="">
+                <table>
+                    <thead>
+                        <tr style="text-align: center;">
+                            <th>Anesthesia Rates</th>
+                            <th>From Min</th>
+                            <th>Thru Min</th>
+                            <th>Curr Conv</th>
+                            <th>Prior Conv</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                    <b>Tier One</b>
+                            </td>
+                            <td>
+                                <!-- Textbox with Name of Textbox002 -->
+                                <div class="col-md-12" [ngClass]="{'has-danger': formValidation.isValidField('textbox002') }">
+                                    <label class="col-form-label" for="textbox002" i18n>&nbsp;</label>
+                                    <input type="text" id="textbox002" class="form-control" formControlName="textbox002" />
+                                    <small class="text-danger" *ngIf="formValidation.isValidField('textbox002')">
+                                        {{ formValidation.errorMessage('textbox002') }}
+                                    </small>
+                                </div>
+                            </td>
+                            <td>
+                                <!-- Textbox with Name of Textbox003 -->
+                                <div class="col-md-12" [ngClass]="{'has-danger': formValidation.isValidField('textbox003') }">
+                                    <label class="col-form-label" for="textbox003" i18n>&nbsp;</label>
+                                    <input type="text" id="textbox003" class="form-control" formControlName="textbox003" />
+                                    <small class="text-danger" *ngIf="formValidation.isValidField('textbox003')">
+                                        {{ formValidation.errorMessage('textbox003') }}
+                                    </small>
+                                </div>
+
+                            </td>
+                            <td>
+                                    <!-- Textbox with Name of Textbox004 -->
+                                    <div class="col-md-12" [ngClass]="{'has-danger': formValidation.isValidField('textbox004') }">
+                                        <label class="col-form-label" for="textbox004" i18n>&nbsp;</label>
+                                        <input type="text" id="textbox004" class="form-control" formControlName="textbox004" />
+                                        <small class="text-danger" *ngIf="formValidation.isValidField('textbox004')">
+                                            {{ formValidation.errorMessage('textbox004') }}
+                                        </small>
+                                    </div>
+
+                            </td>
+                            <td>
+                                <!-- Textbox with Name of Textbox005 -->
+                                <div class="col-md-12" [ngClass]="{'has-danger': formValidation.isValidField('textbox005') }">
+                                    <label class="col-form-label" for="textbox005" i18n>&nbsp;</label>
+                                    <input type="text" id="textbox005" class="form-control" formControlName="textbox005" />
+                                    <small class="text-danger" *ngIf="formValidation.isValidField('textbox005')">
+                                        {{ formValidation.errorMessage('textbox005') }}
+                                    </small>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><b>Tier Two</b></td>
+                            <td>
+                                <div class="col-md-12" [ngClass]="{'has-danger': formValidation.isValidField('textbox006') }">
+                                    <label class="col-form-label" for="textbox006" i18n>&nbsp;</label>
+                                    <input type="text" id="textbox006" class="form-control" formControlName="textbox006" />
+                                    <small class="text-danger" *ngIf="formValidation.isValidField('textbox006')">
+                                        {{ formValidation.errorMessage('textbox006') }}
+                                    </small>
+                                </div>
+                            </td>
+                            <td>
+                            <!-- Textbox with Name of Textbox007 -->
+                            <div class="col-md-12" [ngClass]="{'has-danger': formValidation.isValidField('textbox007') }">
+                                <label class="col-form-label" for="textbox007" i18n>&nbsp;</label>
+                                <input type="text" id="textbox007" class="form-control" formControlName="textbox007" />
+                                <small class="text-danger" *ngIf="formValidation.isValidField('textbox007')">
+                                    {{ formValidation.errorMessage('textbox007') }}
+                                </small>
+                            </div>
+                            </td>
+                            <td>
+                                <!-- Textbox with Name of Textbox008 -->
+                                <div class="col-md-12" [ngClass]="{'has-danger': formValidation.isValidField('textbox008') }">
+                                    <label class="col-form-label" for="textbox008" i18n>&nbsp;</label>
+                                    <input type="text" id="textbox008" class="form-control" formControlName="textbox008" />
+                                    <small class="text-danger" *ngIf="formValidation.isValidField('textbox008')">
+                                        {{ formValidation.errorMessage('textbox008') }}
+                                    </small>
+                                </div>
+                            </td>
+                            <td>
+                                <!-- Textbox with Name of Textbox009 -->
+                                <div class="col-md-12" [ngClass]="{'has-danger': formValidation.isValidField('textbox009') }">
+                                    <label class="col-form-label" for="textbox009" i18n>&nbsp;</label>
+                                    <input type="text" id="textbox009" class="form-control" formControlName="textbox009" />
+                                    <small class="text-danger" *ngIf="formValidation.isValidField('textbox009')">
+                                        {{ formValidation.errorMessage('textbox009') }}
+                                    </small>
+                                </div>
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td><b>Tier Three</b></td>
+                            <td>
+                                <!-- Textbox with Name of Textbox010 -->
+                                <div class="col-md-12" [ngClass]="{'has-danger': formValidation.isValidField('textbox010') }">
+                                    <label class="col-form-label" for="textbox010" i18n>&nbsp;</label>
+                                    <input type="text" id="textbox010" class="form-control" formControlName="textbox010" />
+                                    <small class="text-danger" *ngIf="formValidation.isValidField('textbox010')">
+                                        {{ formValidation.errorMessage('textbox010') }}
+                                    </small>
+                                </div>
+                            </td>
+                            <td>
+                                <!-- Textbox with Name of Textbox011 -->
+                                <div class="col-md-12" [ngClass]="{'has-danger': formValidation.isValidField('textbox011') }">
+                                    <label class="col-form-label" for="textbox011" i18n>&nbsp;</label>
+                                    <input type="text" id="textbox011" class="form-control" formControlName="textbox011" />
+                                    <small class="text-danger" *ngIf="formValidation.isValidField('textbox011')">
+                                        {{ formValidation.errorMessage('textbox011') }}
+                                    </small>
+                                </div>
+                            </td>
+                            <td>
+                                <!-- Textbox with Name of Textbox012 -->
+                                <div class="col-md-12" [ngClass]="{'has-danger': formValidation.isValidField('textbox012') }">
+                                    <label class="col-form-label" for="textbox012" i18n>&nbsp;</label>
+                                    <input type="text" id="textbox012" class="form-control" formControlName="textbox012" />
+                                    <small class="text-danger" *ngIf="formValidation.isValidField('textbox012')">
+                                        {{ formValidation.errorMessage('textbox012') }}
+                                    </small>
+                                </div>
+                            </td>
+                            <td>
+                                <!-- Textbox with Name of Textbox013 -->
+                                <div class="col-md-12" [ngClass]="{'has-danger': formValidation.isValidField('textbox013') }">
+                                    <label class="col-form-label" for="textbox013" i18n>&nbsp;</label>
+                                    <input type="text" id="textbox013" class="form-control" formControlName="textbox013" />
+                                    <small class="text-danger" *ngIf="formValidation.isValidField('textbox013')">
+                                        {{ formValidation.errorMessage('textbox013') }}
+                                    </small>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                            <b>Tier Four</b>
+                            </td>
+                            <td>
+                            <!-- Textbox with Name of Textbox014 -->
+                            <div class="col-md-12" [ngClass]="{'has-danger': formValidation.isValidField('textbox014') }">
+                                <label class="col-form-label" for="textbox014" i18n>&nbsp;</label>
+                                <input type="text" id="textbox014" class="form-control" formControlName="textbox014" />
+                                <small class="text-danger" *ngIf="formValidation.isValidField('textbox014')">
+                                    {{ formValidation.errorMessage('textbox014') }}
+                                </small>
+                            </div>
+                            </td>
+                            <td>
+                            <!-- Textbox with Name of Textbox015 -->
+                            <div class="col-md-12" [ngClass]="{'has-danger': formValidation.isValidField('textbox015') }">
+                                <label class="col-form-label" for="textbox015" i18n>&nbsp;</label>
+                                <input type="text" id="textbox015" class="form-control" formControlName="textbox015" />
+                                <small class="text-danger" *ngIf="formValidation.isValidField('textbox015')">
+                                    {{ formValidation.errorMessage('textbox015') }}
+                                </small>
+                            </div>
+                                </td>
+                                <td>
+                                <!-- Textbox with Name of Textbox016 -->
+                                <div class="col-md-12" [ngClass]="{'has-danger': formValidation.isValidField('textbox016') }">
+                                    <label class="col-form-label" for="textbox016" i18n>&nbsp;</label>
+                                    <input type="text" id="textbox016" class="form-control" formControlName="textbox016" />
+                                    <small class="text-danger" *ngIf="formValidation.isValidField('textbox016')">
+                                        {{ formValidation.errorMessage('textbox016') }}
+                                    </small>
+                                </div>
+                                    </td>
+                                    <td>
+                                        <!-- Textbox with Name of Textbox017 -->
+                                        <div class="col-md-12" [ngClass]="{'has-danger': formValidation.isValidField('textbox017') }">
+                                            <label class="col-form-label" for="textbox017" i18n>&nbsp;</label>
+                                            <input type="text" id="textbox017" class="form-control" formControlName="textbox017" />
+                                            <small class="text-danger" *ngIf="formValidation.isValidField('textbox017')">
+                                                {{ formValidation.errorMessage('textbox017') }}
+                                            </small>
+                                        </div>
+                                    </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+
+            <div class="form-group row">
+                <!-- Textbox with label of Minimum Min For a Unit -->
+                 <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('minimumMinForAUnit') }">
+                     <label class="col-form-label" for="minimumMinForAUnit" i18n>Minimum Min For a Unit</label>
+                     <input type="text" id="minimumMinForAUnit"   class="form-control" formControlName="minimumMinForAUnit"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('minimumMinForAUnit')">
+                      {{ formValidation.errorMessage('minimumMinForAUnit') }}
+                     </small>
+                 </div>
+
+                <!-- Textbox with label of Curr Conv Effec Date -->
+                 <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('currConvEffecDate') }">
+                    <app-datepicker [formGroup]="priceRuleForm" [formValidation]="formValidation" [field]="'currConvEffecDate'" [labelText]="'Curr Conv Effec Date'"></app-datepicker>
+                 </div>
+
+            </div>
+            </ng-container>
+        </form>
+    </div>
+</div>
+
+<ng-keyboard-shortcuts [shortcuts]="shortcuts"></ng-keyboard-shortcuts>
+<ng-keyboard-shortcuts-help [key]="'f2'" [closeKey]="'escape'" [title]="'Hotkeys Help'"></ng-keyboard-shortcuts-help>

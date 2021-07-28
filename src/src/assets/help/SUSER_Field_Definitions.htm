@@ -1,0 +1,753 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+    <title>SUSER Field Definitions</title>
+    <!--(Meta)==========================================================-->
+    <meta name="copyright"
+          value="© Copyright 2002 Health Systems Design Corp., a wholly owned subsidiary of Perot Systems Corporation. All rights reserved"/>
+    <meta content="Field Definitions.htt" name="template"/>
+    <meta content="RoboHELP by eHelp Corporation - www.ehelp.com" name="generator"/>
+    <meta content="0.1" name="generator-major-version"/>
+    <meta content="1" name="generator-minor-version"/>
+    <meta content="kadov" name="filetype"/>
+    <meta content="1" name="filetype-version"/>
+    <meta content="1" name="page-count"/>
+    <meta content="4375" name="layout-height"/>
+    <meta content="601" name="layout-width"/>
+    <!--(Links)=========================================================-->
+    <!--(Scripts)=======================================================-->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+</head>
+<body>
+
+<div class="calibreMeta">
+    <div class="calibreMetaTitle">
+
+
+        <h1>
+            <a href="../co5tp-ch4tl.html">DIAMOND 950 Help
+            </a>
+        </h1>
+
+
+    </div>
+    <div class="calibreMetaAuthor">
+        Unknown
+
+    </div>
+</div>
+
+<div class="calibreMain">
+
+    <div class="calibreEbookContent">
+
+        <div class="calibreEbNavTop">
+
+            <a href="SUSER_Field_Map.htm" class="calibreAPrev">previous page
+            </a>
+
+
+            <a href="SUSER_Functions_on_Menu_Bar.htm" class="calibreANext">next page
+            </a>
+
+        </div>
+
+
+        <!--(Table)=========================================================-->
+        <table cellspacing="0" width="500" x-use-null-cells="" class="calibre109">
+            <colgroup class="calibre19">
+                <col class="calibre110"/>
+                <col class="calibre111"/>
+
+            </colgroup>
+            <tbody class="calibre10">
+            <tr valign="top" class="calibre11">
+                <td width="70%" class="calibre112">
+                    <h4 class="calibre62">SUSER Field Definitions</h4></td>
+                <td width="30%" class="calibre113">
+                    <p class="body-text1"><img border="0" height="53" src="assets/help/Field_definitions_Req_legend.gif" width="97"
+                                               x-maintain-ratio="TRUE" class="calibre114"/></p></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <!--(Table)=========================================================-->
+        <table cellspacing="0" width="500" x-use-null-cells="" class="calibre115">
+            <colgroup class="calibre19">
+                <col class="calibre116"/>
+                <col class="calibre117"/>
+                <col class="calibre118"/>
+                <col class="calibre119"/>
+                <col class="calibre118"/>
+
+            </colgroup>
+            <tbody class="calibre10">
+            <tr valign="top" class="calibre11">
+                <td width="110px" class="calibre120">
+                    <p class="tableheading">Field Name</p></td>
+                <td width="15px" class="calibre121">
+                    <p class="tableheading1">Req</p></td>
+                <td width="140px" class="calibre122">
+                    <p class="tableheading">Description</p></td>
+                <td width="95px" class="calibre123">
+                    <p class="tableheading">Source</p></td>
+                <td width="140px" class="calibre122">
+                    <p class="tableheading">Comments</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre11">
+                <td colspan="1" rowspan="1" width="110px" class="calibre124">
+                    <p class="tableboldtext"><a name="SUSER_Account_Status_FIELD"></a>Account Status</p></td>
+                <td colspan="1" rowspan="1" width="15px" class="calibre125">
+                    <p class="tabletext">D</p></td>
+                <td colspan="1" rowspan="1" width="140px" class="calibre126">
+                    <p class="tabletext">Indicates if user account’s password has been locked
+                        by the system.</p></td>
+                <td colspan="1" rowspan="1" width="95px" class="calibre127">
+                    <p class="tabletext">System generated.</p></td>
+                <td colspan="1" rowspan="1" width="140px" class="calibre126">
+                    <p class="tabletext">If Account Status is <span class="calibre7">Locked</span>,
+                        a DIAMOND user with security access to the system must unlock the password.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre11">
+                <td width="110px" class="calibre124">
+                    <p class="tableboldtext"><a name="Claim_Limit">Claim Limit</a></p></td>
+                <td width="15px" class="calibre125">
+                    <p class="tabletext">C</p></td>
+                <td width="140px" class="calibre126">
+                    <p class="tabletext">Total claim amount, comprising the Determinant fields
+                        on all the detail line items, over which user is not authorized to process
+                        the claim.</p></td>
+                <td width="95px" class="calibre127">
+                    <p class="tabletext">Manually entered</p></td>
+                <td width="140px" class="calibre126">
+                    <p class="tabletext">You can type up to 16 digits before the decimal and
+                        2 after the decimal.</p>
+                    <p class="tabletext">Field is required if any fields in the Claim Limit Information
+                        section are completed.</p>
+                    <p class="tabletext">Claim detail line items with the <span class="calibre7">Claim</span>
+                        <span class="calibre7">Status</span> list set to <span class="calibre7">D 
+ – Denied</span> or <span class="calibre7">I – Informational</span>
+                        and the <span class="calibre7">Proc</span> <span class="calibre7">Status</span>
+                        list is set to <span class="calibre7">F – Final (posted)</span>,
+                        <span class="calibre7">P – Paid</span>, or <span class="calibre7">N 
+ – Paid (no check)</span> are not included in the accumulation toward this
+                        limit.</p>
+                    <p class="tabletext"><span class="calibre7">Important</span>: When
+                        users with a claim limit access a claim submitted by EDI, and the amount
+                        is over their limit, the claim will be put on hold, even if there are
+                        no changes made to the claim, because the claim logic is reinvoked.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre11">
+                <td width="110px" class="calibre124">
+                    <p class="tableboldtext"><a name="Claim_Type">Claim Type</a></p></td>
+                <td width="15px" class="calibre125">
+                    <p class="tabletext">C</p></td>
+                <td width="140px" class="calibre126">
+                    <p class="tabletext">Type of claim to which the claim limit rules apply.</p></td>
+                <td width="95px" class="calibre127">
+                    <p class="tabletext">Selected from predefined list</p></td>
+                <td width="140px" class="calibre126">
+                    <p class="tabletext">Field is required if any fields in the Claim Limit Information
+                        section are completed.</p>
+                    <p class="tabletext">Claim Types are maintained in keyword CODES.</p>
+                    <p class="tabletext">Valid values are:</p>
+                    <ul class="calibre6">
+
+                        <li class="kadov-p-cstepbullet"><p class="tablebullet">Institutional Claims</p></li>
+
+                        <li class="kadov-p-cstepbullet"><p class="tablebullet">Professional Claims</p></li>
+                    </ul>
+                    <p class="tabletext">Enter a separate claim limit line for each type of claim
+                        (that is, a user can have more than one entry in this table)</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre11">
+                <td width="110px" class="calibre124">
+                    <p class="tableboldtext"><a name="Department">Department</a></p></td>
+                <td width="15px" class="calibre125">
+                    <p class="tabletext">O</p></td>
+                <td width="140px" class="calibre126">
+                    <p class="tabletext">If User ID pertains to a user, then type the user’s
+                        department.</p></td>
+                <td width="95px" class="calibre127">
+                    <p class="tabletext">Manually entered</p></td>
+                <td width="140px" class="calibre126">
+                    <p class="tabletext"> </p></td>
+            </tr>
+
+            <tr valign="top" class="calibre11">
+                <td width="110px" class="calibre124">
+                    <p class="tableboldtext"><a name="Description">Description</a></p></td>
+                <td width="15px" class="calibre125">
+                    <p class="tabletext">O</p></td>
+                <td width="140px" class="calibre126">
+                    <p class="tabletext">Description of the user or user template.</p></td>
+                <td width="95px" class="calibre127">
+                    <p class="tabletext">Manually entered</p></td>
+                <td width="140px" class="calibre126">
+                    <p class="tabletext"> </p></td>
+            </tr>
+
+            <tr valign="top" class="calibre11">
+                <td colspan="1" rowspan="1" width="110px" class="calibre124">
+                    <p class="tableboldtext"><a name="Determinant">Determinant</a></p></td>
+                <td colspan="1" rowspan="1" width="15px" class="calibre125">
+                    <p class="tabletext">C</p></td>
+                <td colspan="1" rowspan="1" width="140px" class="calibre126">
+                    <p class="tabletext">Claim detail line field that will be added to determine
+                        if the Claim Limit has been exceeded.</p></td>
+                <td colspan="1" rowspan="1" width="95px" class="calibre127">
+                    <p class="tabletext">Selected from predefined list</p></td>
+                <td colspan="1" rowspan="1" width="140px" class="calibre126">
+                    <p class="tabletext">Field is required if any fields in the Claim Limit Information
+                        section are completed.</p>
+                    <p class="tabletext">Security claim determinants are maintained in CODES
+                        with a type SECDETERMINANT.</p>
+                    <p class="tabletext">Valid values are:</p>
+                    <ul class="calibre6">
+
+                        <li class="kadov-p-cstepbullet"><p class="tablebullet">A - Allowed Amount</p></li>
+
+                        <li class="kadov-p-cstepbullet"><p class="tablebullet">B - Billed Amount</p></li>
+
+                        <li class="kadov-p-cstepbullet"><p class="tablebullet">N - Net Amount</p></li>
+                    </ul>
+                </td>
+            </tr>
+
+            <tr valign="top" class="calibre11">
+                <td colspan="1" rowspan="1" width="110px" class="calibre124">
+                    <p class="tableboldtext"><a name="Extension">Extension</a></p></td>
+                <td colspan="1" rowspan="1" width="15px" class="calibre125">
+                    <p class="tabletext">O</p></td>
+                <td colspan="1" rowspan="1" width="140px" class="calibre126">
+                    <p class="tabletext">User ID pertains to a user, the user’s telephone extension.</p></td>
+                <td colspan="1" rowspan="1" width="95px" class="calibre127">
+                    <p class="tabletext">Manually entered</p></td>
+                <td colspan="1" rowspan="1" width="140px" class="calibre126">
+                    <p class="tabletext"> </p></td>
+            </tr>
+
+            <tr valign="top" class="calibre11">
+                <td colspan="1" rowspan="1" width="110px" class="calibre124">
+                    <p class="tableboldtext"><a name="Fax">Fax</a></p></td>
+                <td colspan="1" rowspan="1" width="15px" class="calibre125">
+                    <p class="tabletext">O</p></td>
+                <td colspan="1" rowspan="1" width="140px" class="calibre126">
+                    <p class="tabletext">User ID pertains to a user, the user’s fax number.</p></td>
+                <td colspan="1" rowspan="1" width="95px" class="calibre127">
+                    <p class="tabletext">Manually entered</p></td>
+                <td colspan="1" rowspan="1" width="140px" class="calibre126">
+                    <p class="tabletext"> </p></td>
+            </tr>
+
+            <tr valign="top" class="calibre11">
+                <td colspan="1" rowspan="1" width="110px" class="calibre124">
+                    <p class="tableboldtext"><a name="Field_Level_Security_ID">Field Level Security
+                        ID</a></p></td>
+                <td colspan="1" rowspan="1" width="15px" class="calibre125">
+                    <p class="tabletext">O</p></td>
+                <td colspan="1" rowspan="1" width="140px" class="calibre126">
+                    <p class="tabletext">ID of the field level security template attached to
+                        the SUSER record.</p></td>
+                <td colspan="1" rowspan="1" width="95px" class="calibre127">
+                    <p class="tabletext">Selected from predefined list</p></td>
+                <td colspan="1" rowspan="1" width="140px" class="calibre126">
+                    <p class="tabletext">Must be a valid ID number; ID is set up in keyword SFLDL.</p>
+                    <p class="tabletext">F5 lookup is available.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre11">
+                <td colspan="1" rowspan="1" width="110px" class="calibre124">
+                    <p class="tableboldtext"><a name="First_Name">First Name</a></p></td>
+                <td colspan="1" rowspan="1" width="15px" class="calibre125">
+                    <p class="tabletext">O</p></td>
+                <td colspan="1" rowspan="1" width="140px" class="calibre126">
+                    <p class="tabletext">User ID pertains to a user, the user’s first name.</p></td>
+                <td colspan="1" rowspan="1" width="95px" class="calibre127">
+                    <p class="tabletext">Manually entered</p></td>
+                <td colspan="1" rowspan="1" width="140px" class="calibre126">
+                    <p class="tabletext"> </p></td>
+            </tr>
+
+            <tr valign="top" class="calibre11">
+                <td colspan="1" rowspan="1" width="110px" class="calibre124">
+                    <p class="tableboldtext"><a name="Group_Affiliation">Group Affiliation</a></p></td>
+                <td colspan="1" rowspan="1" width="15px" class="calibre125">
+                    <p class="tabletext">D</p></td>
+                <td colspan="1" rowspan="1" width="140px" class="calibre126">
+                    <p class="tabletext">Indicates if this user or template has been affiliated
+                        to one or more groups. Users or templates can only access the groups that
+                        they are affiliated. </p></td>
+                <td colspan="1" rowspan="1" width="95px" class="calibre127">
+                    <p class="tabletext">Displayed</p></td>
+                <td colspan="1" rowspan="1" width="140px" class="calibre126">
+                    <p class="tabletext">Valid values:</p>
+                    <ul class="calibre6">
+
+                        <li class="kadov-p-cstepbullet"><p class="tablebullet">All – This user
+                            or template has been affiliated with all groups. </p></li>
+
+                        <li class="kadov-p-cstepbullet"><p class="tablebullet">Some – This user
+                            or template has been affiliated with some groups. </p></li>
+                    </ul>
+                </td>
+            </tr>
+
+            <tr valign="top" class="calibre11">
+                <td colspan="1" rowspan="1" width="110px" class="calibre124">
+                    <p class="tableboldtext"><a name="Hold_Release">Hold/Release</a></p></td>
+                <td colspan="1" rowspan="1" width="15px" class="calibre125">
+                    <p class="tabletext">C</p></td>
+                <td colspan="1" rowspan="1" width="140px" class="calibre126">
+                    <p class="tabletext">Directs DIAMOND to hold claims that exceed the Claim
+                        Limit. Hold reason can only be removed by a user with a claim limit exceeding
+                        the limit for this user.</p></td>
+                <td colspan="1" rowspan="1" width="95px" class="calibre127">
+                    <p class="tabletext">Selected from predefined list</p></td>
+                <td colspan="1" rowspan="1" width="140px" class="calibre126">
+                    <p class="tabletext">Field is required if any fields in the Claim Limit Information
+                        section are completed.</p>
+                    <p class="tabletext">Valid values are:</p>
+                    <ul class="calibre6">
+
+                        <li class="kadov-p-cstepbullet"><p class="tablebullet">Hold - DIAMOND
+                            will automatically hold a claim with the entry in Reason when the total
+                            of the detail lines, using the entry in the <span class="calibre7">Determinant</span>
+                            list, exceeds the Claim Limit entry.</p></li>
+
+                        <li class="kadov-p-cstepbullet"><p class="tablebullet">Release - Future
+                            functionality</p></li>
+                    </ul>
+                </td>
+            </tr>
+
+            <tr valign="top" class="calibre11">
+                <td colspan="1" rowspan="1" width="110px" class="calibre124">
+                    <p class="tableboldtext"><a name="IPA_Affiliation">IPA Affiliation</a></p></td>
+                <td colspan="1" rowspan="1" width="15px" class="calibre125">
+                    <p class="tabletext">D</p></td>
+                <td colspan="1" rowspan="1" width="140px" class="calibre126">
+                    <p class="tabletext">Indicates if this user or template has been affiliated
+                        to one or more IPAs. Users or templates can only access the IPAs that
+                        they are affiliated.</p></td>
+                <td colspan="1" rowspan="1" width="95px" class="calibre127">
+                    <p class="tabletext">Displayed</p></td>
+                <td colspan="1" rowspan="1" width="140px" class="calibre126">
+                    <p class="tabletext">Valid values:</p>
+                    <ul class="calibre6">
+
+                        <li class="kadov-p-cstepbullet"><p class="tablebullet">All – This user
+                            or template has been affiliated with all IPAs.</p></li>
+
+                        <li class="kadov-p-cstepbullet"><p class="tablebullet">Some – This user
+                            or template has been affiliated with some IPAs.</p></li>
+                    </ul>
+                </td>
+            </tr>
+
+            <tr valign="top" class="calibre11">
+                <td colspan="1" rowspan="1" width="110px" class="calibre124">
+                    <p class="tableboldtext"><a name="Language">Language</a></p></td>
+                <td colspan="1" rowspan="1" width="15px" class="calibre125">
+                    <p class="tabletext">R</p></td>
+                <td colspan="1" rowspan="1" width="140px" class="calibre126">
+                    <p class="tabletext">Language code applicable to this user.</p></td>
+                <td colspan="1" rowspan="1" width="95px" class="calibre127">
+                    <p class="tabletext">Selected from predefined list</p></td>
+                <td colspan="1" rowspan="1" width="140px" class="calibre126">
+                    <p class="tabletext">Language codes are maintained in keyword LANGM.</p>
+                    <p class="tabletext">The selected language may have associated text, menus,
+                        etc., in which the session for this user will be displayed.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre11">
+                <td colspan="1" rowspan="1" width="110px" class="calibre124">
+                    <p class="tableboldtext"><a name="Last_Name">Last Name</a></p></td>
+                <td colspan="1" rowspan="1" width="15px" class="calibre125">
+                    <p class="tabletext">O</p></td>
+                <td colspan="1" rowspan="1" width="140px" class="calibre126">
+                    <p class="tabletext">If User ID pertains to a user, the user’s last name.</p></td>
+                <td colspan="1" rowspan="1" width="95px" class="calibre127">
+                    <p class="tabletext">Manually entered</p></td>
+                <td colspan="1" rowspan="1" width="140px" class="calibre126">
+                    <p class="tabletext"> </p></td>
+            </tr>
+
+            <tr valign="top" class="calibre11">
+                <td colspan="1" rowspan="1" width="110px" class="calibre124">
+                    <p class="tableboldtext"><a name="LOB_Affiliation">LOB Affiliation</a></p></td>
+                <td colspan="1" rowspan="1" width="15px" class="calibre125">
+                    <p class="tabletext">D</p></td>
+                <td colspan="1" rowspan="1" width="140px" class="calibre126">
+                    <p class="tabletext">Indicates if this user or template has been affiliated
+                        to one or more lines of business (LOB). Users or templates can only access
+                        the LOBs that they are affiliated.</p></td>
+                <td colspan="1" rowspan="1" width="95px" class="calibre127">
+                    <p class="tabletext">Displayed</p></td>
+                <td colspan="1" rowspan="1" width="140px" class="calibre126">
+                    <p class="tabletext">Valid values:</p>
+                    <ul class="calibre6">
+
+                        <li class="kadov-p-cstepbullet"><p class="tablebullet">All – This user
+                            or template has been affiliated with all LOBs.</p></li>
+
+                        <li class="kadov-p-cstepbullet"><p class="tablebullet">Some – This user
+                            or template has been affiliated with some LOBs.</p></li>
+                    </ul>
+                </td>
+            </tr>
+
+            <tr valign="top" class="calibre11">
+                <td colspan="1" rowspan="1" width="110px" class="calibre124">
+                    <p class="tableboldtext"><a name="Location">Location</a></p></td>
+                <td colspan="1" rowspan="1" width="15px" class="calibre125">
+                    <p class="tabletext">O</p></td>
+                <td colspan="1" rowspan="1" width="140px" class="calibre126">
+                    <p class="tabletext">If User ID pertains to a user, the user’s location.</p></td>
+                <td colspan="1" rowspan="1" width="95px" class="calibre127">
+                    <p class="tabletext">Manually entered</p></td>
+                <td colspan="1" rowspan="1" width="140px" class="calibre126">
+                    <p class="tabletext"> </p></td>
+            </tr>
+
+            <tr valign="top" class="calibre11">
+                <td colspan="1" rowspan="1" width="110px" class="calibre124">
+                    <p class="tableboldtext"><a name="MI">MI</a></p></td>
+                <td colspan="1" rowspan="1" width="15px" class="calibre125">
+                    <p class="tabletext">O</p></td>
+                <td colspan="1" rowspan="1" width="140px" class="calibre126">
+                    <p class="tabletext">If User ID pertains to a user, the user’s middle initial.</p></td>
+                <td colspan="1" rowspan="1" width="95px" class="calibre127">
+                    <p class="tabletext">Manually entered</p></td>
+                <td colspan="1" rowspan="1" width="140px" class="calibre126">
+                    <p class="tabletext"> </p></td>
+            </tr>
+
+            <tr valign="top" class="calibre11">
+                <td colspan="1" rowspan="1" width="110px" class="calibre124">
+                    <p class="tableboldtext"><a name="Note_Type_Security">Note Type Security</a></p></td>
+                <td colspan="1" rowspan="1" width="15px" class="calibre125">
+                    <p class="tabletext"> </p></td>
+                <td colspan="1" rowspan="1" width="140px" class="calibre126">
+                    <p class="tabletext">Future functionality.</p></td>
+                <td colspan="1" rowspan="1" width="95px" class="calibre127">
+                    <p class="tabletext"> </p></td>
+                <td colspan="1" rowspan="1" width="140px" class="calibre126">
+                    <p class="tabletext">Leave blank.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre11">
+                <td colspan="1" rowspan="1" width="110px" class="calibre124">
+                    <p class="tableboldtext"><a name="Panel_Affiliation">Panel Affiliation</a></p></td>
+                <td colspan="1" rowspan="1" width="15px" class="calibre125">
+                    <p class="tabletext">D</p></td>
+                <td colspan="1" rowspan="1" width="140px" class="calibre126">
+                    <p class="tabletext">Indicates if this user or template has been affiliated
+                        to one or more panels. Users or templates can only access the panels that
+                        they are affiliated.</p></td>
+                <td colspan="1" rowspan="1" width="95px" class="calibre127">
+                    <p class="tabletext">Displayed</p></td>
+                <td colspan="1" rowspan="1" width="140px" class="calibre126">
+                    <p class="tabletext">Valid values:</p>
+                    <ul class="calibre6">
+
+                        <li class="kadov-p-cstepbullet"><p class="tablebullet">All – This user
+                            or template has been affiliated with all panels.</p></li>
+
+                        <li class="kadov-p-cstepbullet"><p class="tablebullet">Some – This user
+                            or template has been affiliated with some panels.</p></li>
+                    </ul>
+                </td>
+            </tr>
+
+            <tr valign="top" class="calibre11">
+                <td colspan="1" rowspan="1" width="110px" class="calibre124">
+                    <p class="tableboldtext"><a name="Provider_Affiliation">Provider Affiliation</a></p></td>
+                <td colspan="1" rowspan="1" width="15px" class="calibre125">
+                    <p class="tabletext">D</p></td>
+                <td colspan="1" rowspan="1" width="140px" class="calibre126">
+                    <p class="tabletext">Indicates if this user or template has been affiliated
+                        to one or more providers. Users or templates can only access the providers
+                        that they are affiliated.</p></td>
+                <td colspan="1" rowspan="1" width="95px" class="calibre127">
+                    <p class="tabletext">Displayed</p></td>
+                <td colspan="1" rowspan="1" width="140px" class="calibre126">
+                    <p class="tabletext">Valid values:</p>
+                    <ul class="calibre6">
+
+                        <li class="kadov-p-cstepbullet"><p class="tablebullet">All – This user
+                            or template has been affiliated with all providers.</p></li>
+
+                        <li class="kadov-p-cstepbullet"><p class="tablebullet">Some – This user
+                            or template has been affiliated with some providers.</p></li>
+                    </ul>
+                </td>
+            </tr>
+
+            <tr valign="top" class="calibre11">
+                <td colspan="1" rowspan="1" width="110px" class="calibre124">
+                    <p class="tableboldtext"><a name="Reason_Code">Reason Code</a></p></td>
+                <td colspan="1" rowspan="1" width="15px" class="calibre125">
+                    <p class="tabletext">C</p></td>
+                <td colspan="1" rowspan="1" width="140px" class="calibre126">
+                    <p class="tabletext">Hold reason code assigned to all claim detail lines
+                        that were added up to exceed the user’s claim limit.</p></td>
+                <td colspan="1" rowspan="1" width="95px" class="calibre127">
+                    <p class="tabletext">Selected from predefined list</p></td>
+                <td colspan="1" rowspan="1" width="140px" class="calibre126">
+                    <p class="tabletext">Field is required if any fields in the Claim Limit Information
+                        section are completed.</p>
+                    <p class="tabletext">Security hold reason codes are maintained in keyword
+                        REASN with a type SC.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre11">
+                <td colspan="1" rowspan="1" width="110px" class="calibre124">
+                    <p class="tableboldtext"><a name="Row_Level_Security">Row Level Security</a></p></td>
+                <td colspan="1" rowspan="1" width="15px" class="calibre125">
+                    <p class="tabletext">R</p></td>
+                <td colspan="1" rowspan="1" width="140px" class="calibre126">
+                    <p class="tabletext">Maximum record access/view security code available to
+                        this user. Applies to keywords PSCLM, INCLM, DNCLM, CLDSP, and DSPBN,
+                        only.</p></td>
+                <td colspan="1" rowspan="1" width="95px" class="calibre127">
+                    <p class="tabletext"> </p></td>
+                <td colspan="1" rowspan="1" width="140px" class="calibre126">
+                    <p class="tabletext">A digit from 0-9 may be entered.</p>
+                    <p class="tabletext">Available for entry only if neither the <span class="calibre7">SU 
+ Priv</span> nor the <span class="calibre7">Template</span> check
+                        boxes are selected.</p>
+                    <p class="tabletext">For example, if you enter <span class="calibre7">5</span>,
+                        then users or templates only have view/change permissions on claims that
+                        have 5 or less in the Security Code field.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre11">
+                <td colspan="1" rowspan="1" width="110px" class="calibre124">
+                    <p class="tableboldtext"><a name="Super_User">Super User</a></p></td>
+                <td colspan="1" rowspan="1" width="15px" class="calibre125">
+                    <p class="tabletext">O</p></td>
+                <td colspan="1" rowspan="1" width="140px" class="calibre126">
+                    <p class="tabletext">If selected, user has unlimited privileges and is known
+                        as a super user.</p></td>
+                <td colspan="1" rowspan="1" width="95px" class="calibre127">
+                    <p class="tabletext">Selected from check box</p></td>
+                <td colspan="1" rowspan="1" width="140px" class="calibre126">
+                    <p class="tabletext"> </p></td>
+            </tr>
+
+            <tr valign="top" class="calibre11">
+                <td colspan="1" rowspan="1" width="110px" class="calibre124">
+                    <p class="tableboldtext"><a name="Telephone">Telephone</a></p></td>
+                <td colspan="1" rowspan="1" width="15px" class="calibre125">
+                    <p class="tabletext">O</p></td>
+                <td colspan="1" rowspan="1" width="140px" class="calibre126">
+                    <p class="tabletext">If User ID pertains to a user, the user’s telephone
+                        number.</p></td>
+                <td colspan="1" rowspan="1" width="95px" class="calibre127">
+                    <p class="tabletext">Manually entered</p></td>
+                <td colspan="1" rowspan="1" width="140px" class="calibre126">
+                    <p class="tabletext"> </p></td>
+            </tr>
+
+            <tr valign="top" class="calibre11">
+                <td colspan="1" rowspan="1" width="110px" class="calibre124">
+                    <p class="tableboldtext"><a name="Template">Template</a></p></td>
+                <td colspan="1" rowspan="1" width="15px" class="calibre125">
+                    <p class="tabletext">O</p></td>
+                <td colspan="1" rowspan="1" width="140px" class="calibre126">
+                    <p class="tabletext">If selected, record pertains to a template rather than
+                        an individual user.</p></td>
+                <td colspan="1" rowspan="1" width="95px" class="calibre127">
+                    <p class="tabletext">Selected from check box</p></td>
+                <td colspan="1" rowspan="1" width="140px" class="calibre126">
+                    <p class="tabletext">A template is designed to apply to multiple individual
+                        users.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre11">
+                <td colspan="1" rowspan="1" width="110px" class="calibre124">
+                    <p class="tableboldtext"><a name="Template_ID">Template ID</a></p></td>
+                <td colspan="1" rowspan="1" width="15px" class="calibre125">
+                    <p class="tabletext">O</p></td>
+                <td colspan="1" rowspan="1" width="140px" class="calibre126">
+                    <p class="tabletext">If record pertains to an individual user, the security
+                        template that applies to this user.</p></td>
+                <td colspan="1" rowspan="1" width="95px" class="calibre127">
+                    <p class="tabletext">Selected from predefined list</p></td>
+                <td colspan="1" rowspan="1" width="140px" class="calibre126">
+                    <p class="tabletext">If entered, the privileges associated with the Template
+                        ID override any entries made for the individual user.</p>
+                    <p class="tabletext">Available for entry only if neither the <span class="calibre7">SU 
+ Priv</span> nor the <span class="calibre7">Template</span> check
+                        boxes are selected.</p>
+                    <p class="tabletext">Template IDs are maintained in keyword SUSER—they are
+                        User IDs with the <span class="calibre7">Template</span> check
+                        box selected.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre11">
+                <td colspan="1" rowspan="1" width="110px" class="calibre124">
+                    <p class="tableboldtext"><a name="SUSER_Use_Password_Profile_FIELD"></a>Use
+                        Password Profile</p></td>
+                <td colspan="1" rowspan="1" width="15px" class="calibre125">
+                    <p class="tabletext">O</p></td>
+                <td colspan="1" rowspan="1" width="140px" class="calibre126">
+                    <p class="tabletext">Indicates if password profile rules should be applied
+                        to the user’s account.</p></td>
+                <td colspan="1" rowspan="1" width="95px" class="calibre127">
+                    <p class="tabletext">Selected by check box.</p></td>
+                <td colspan="1" rowspan="1" width="140px" class="calibre126">
+                    <p class="tabletext"> </p></td>
+            </tr>
+
+            <tr valign="top" class="calibre11">
+                <td colspan="1" rowspan="1" width="110px" class="calibre124">
+                    <p class="tableboldtext"><a name="User_Date_1">User Date 1</a></p></td>
+                <td colspan="1" rowspan="1" width="15px" class="calibre125">
+                    <p class="tabletext">O</p></td>
+                <td colspan="1" rowspan="1" width="140px" class="calibre126">
+                    <p class="tabletext">User defined date. Informational only.</p></td>
+                <td colspan="1" rowspan="1" width="95px" class="calibre127">
+                    <p class="tabletext">Manually entered</p></td>
+                <td colspan="1" rowspan="1" width="140px" class="calibre126">
+                    <p class="tabletext">Must be in DIAMOND date format.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre11">
+                <td colspan="1" rowspan="1" width="110px" class="calibre124">
+                    <p class="tableboldtext"><a name="User_Date_2">User Date 2</a></p></td>
+                <td colspan="1" rowspan="1" width="15px" class="calibre125">
+                    <p class="tabletext">O</p></td>
+                <td colspan="1" rowspan="1" width="140px" class="calibre126">
+                    <p class="tabletext">User defined date. Informational only.</p></td>
+                <td colspan="1" rowspan="1" width="95px" class="calibre127">
+                    <p class="tabletext">Manually entered</p></td>
+                <td colspan="1" rowspan="1" width="140px" class="calibre126">
+                    <p class="tabletext">Must be in DIAMOND date format.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre11">
+                <td colspan="1" rowspan="1" width="110px" class="calibre124">
+                    <p class="tableboldtext"><a name="User_Defined_1">User Defined 1</a></p></td>
+                <td colspan="1" rowspan="1" width="15px" class="calibre125">
+                    <p class="tabletext">O</p></td>
+                <td colspan="1" rowspan="1" width="140px" class="calibre126">
+                    <p class="tabletext">User defined text. Informational only.</p></td>
+                <td colspan="1" rowspan="1" width="95px" class="calibre127">
+                    <p class="tabletext">Manually entered</p></td>
+                <td colspan="1" rowspan="1" width="140px" class="calibre126">
+                    <p class="tabletext">You can type up to 30 alphanumeric characters.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre11">
+                <td colspan="1" rowspan="1" width="110px" class="calibre124">
+                    <p class="tableboldtext"><a name="User_Defined_2">User Defined 2</a></p></td>
+                <td colspan="1" rowspan="1" width="15px" class="calibre125">
+                    <p class="tabletext">O</p></td>
+                <td colspan="1" rowspan="1" width="140px" class="calibre126">
+                    <p class="tabletext">User defined text. Informational only.</p></td>
+                <td colspan="1" rowspan="1" width="95px" class="calibre127">
+                    <p class="tabletext">Manually entered</p></td>
+                <td colspan="1" rowspan="1" width="140px" class="calibre126">
+                    <p class="tabletext">You can type up to 30 alphanumeric characters.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre11">
+                <td colspan="1" rowspan="1" width="110px" class="calibre124">
+                    <p class="tableboldtext"><a name="User_ID">User ID</a></p></td>
+                <td colspan="1" rowspan="1" width="15px" class="calibre125">
+                    <p class="tabletext">R</p></td>
+                <td colspan="1" rowspan="1" width="140px" class="calibre126">
+                    <p class="tabletext">Unique identifier of a DIAMOND user, or of a security
+                        and access template that can be applied to multiple DIAMOND users.</p></td>
+                <td colspan="1" rowspan="1" width="95px" class="calibre127">
+                    <p class="tabletext">Manually entered</p></td>
+                <td colspan="1" rowspan="1" width="140px" class="calibre126">
+                    <p class="tabletext">You can type up to 8 alphanumeric characters.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre11">
+                <td colspan="1" rowspan="1" width="110px" class="calibre124">
+                    <p class="tableboldtext"><a name="User_Type">User Type</a></p></td>
+                <td colspan="1" rowspan="1" width="15px" class="calibre125">
+                    <p class="tabletext">R</p></td>
+                <td colspan="1" rowspan="1" width="140px" class="calibre126">
+                    <p class="tabletext">Category of User ID.</p></td>
+                <td colspan="1" rowspan="1" width="95px" class="calibre127">
+                    <p class="tabletext">Selected from predefined list</p></td>
+                <td colspan="1" rowspan="1" width="140px" class="calibre126">
+                    <p class="tabletext">User types are maintained in keyword CODES.</p>
+                    <p class="tabletext">Valid values are:</p>
+                    <ul class="calibre6">
+
+                        <li class="kadov-p-cstepbullet"><p class="tablebullet">Group: Do not use
+                            (future functionality)</p></li>
+
+                        <li class="kadov-p-cstepbullet"><p class="tablebullet">Member: Do not
+                            use (future functionality)</p></li>
+
+                        <li class="kadov-p-cstepbullet"><p class="tablebullet">Operator: User
+                            is an internal user of DIAMOND.</p></li>
+
+                        <li class="kadov-p-cstepbullet"><p class="tablebullet">Provider: Do not
+                            use (future functionality)</p></li>
+                    </ul>
+                </td>
+            </tr>
+
+            <tr valign="top" class="calibre11">
+                <td colspan="1" rowspan="1" width="110px" class="calibre124">
+                    <p class="tableboldtext"><a name="Vendor_Affiliation">Vendor Affiliation</a></p></td>
+                <td colspan="1" rowspan="1" width="15px" class="calibre125">
+                    <p class="tabletext">D</p></td>
+                <td colspan="1" rowspan="1" width="140px" class="calibre126">
+                    <p class="tabletext">Indicates if this user or template has been affiliated
+                        to one or more vendors. Users or templates can only access the vendors
+                        that they are affiliated.</p></td>
+                <td colspan="1" rowspan="1" width="95px" class="calibre127">
+                    <p class="tabletext">Displayed</p></td>
+                <td colspan="1" rowspan="1" width="140px" class="calibre126">
+                    <p class="tabletext">Valid values:</p>
+                    <ul class="calibre6">
+
+                        <li class="kadov-p-cstepbullet"><p class="tablebullet">All – This user
+                            or template has been affiliated with all vendors.</p></li>
+
+                        <li class="kadov-p-cstepbullet"><p class="tablebullet">Some – This user
+                            or template has been affiliated with some vendors.</p></li>
+                    </ul>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+
+    </div>
+
+
+    <div class="calibreEbNav">
+
+        <a href="SUSER_Field_Map.htm" class="calibreAPrev">previous page
+        </a>
+
+
+        <a href="../co5tp-ch4tl.html" class="calibreAHome">start
+        </a>
+
+
+        <a href="SUSER_Functions_on_Menu_Bar.htm" class="calibreANext">next page
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+</html>

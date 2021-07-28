@@ -1,0 +1,53 @@
+/* Copyright (c) 2020 . All Rights Reserved. */
+
+export class PriceRuleWhole {
+  priceRule: string;
+  seqRuleWhole: number;
+  ruleType: string;
+  ruleOrder: number;
+  tieredSeqNumber: number;
+  effectiveDate: Date;
+  priceDeterminant: string;
+  termDate: Date;
+  description: string;
+  ruleFromDays: number;
+  ruleThruDays: number;
+  daysRangeMethod: string;
+  ruleFromAmt: number;
+  ruleThruAmt: number;
+  ruleAmtType: string;
+  patientFromAge: number;
+  patientThruAge: number;
+  threshQty: number;
+  threshQtyMethod: string;
+  threshAmt: number;
+  threshAmtMethod: string;
+  threshPct: number;
+  threshPctMethod: string;
+  capAmt: number;
+  capAmtMethod: string;
+  capPct: number;
+  capPctMethod: string;
+  calcMethodCode: string;
+  summingDetails: string;
+  allowedReason: string;
+  applyToBucket: string;
+  bucketLogic: string;
+  sysProcedureCode: string;
+  holdReason: string;
+  customPgmName: string;
+  messageToOperator: string;
+  tieredPerdiemDaysFrom: number;
+  tieredPerdiemDaysThru: number;
+  tieredStoplossAmtFrom: number;
+  tieredStoplossAmtThru: number;
+  usePctAllowed: string;
+  allowedFactOvr: number;
+  securityCode: string;
+  insertDatetime: Date;
+  insertUser: string;
+  insertProcess: string;
+  updateDatetime: Date;
+  updateUser: string;
+  updateProcess: string;
+}

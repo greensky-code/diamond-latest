@@ -1,0 +1,333 @@
+<!-- Copyright (c) 2021 . All Rights Reserved. -->
+<div class="container-fluid">
+    <div class="card-block">
+        <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+        <app-pop-up-message #popUpMesssage (buttonclickEvent)="popUpButtonHandler($event)" [popupMessage]="popUpMessage"></app-pop-up-message>
+
+        <div class="w-100">
+            <div class="form-group row bg-dark text-white">
+                <div class="col-md-4 offset-2 form-control-static mb-0 font-weight-bold " i18n>
+                    Group Number
+                    <br>
+                    <span class="col-md required-field-label justify-content-center pt-1"> {{groupNumber}}</span>
+                </div>
+                <div class="col-md-4 offset-2 form-control-static mb-0 font-weight-bold" i18n>
+                    Group Name
+                    <br>
+                    <span class="col-md pt-1 required-field-label justify-content-center"> {{groupName}}</span>
+                </div>
+            </div>
+
+            <div *ngIf="showForm" class="w-100">
+                <div class="row">
+                    <b class="col-md-1 p-0"> Participation Ind
+                        <input type="checkbox" class="form-control" style="height: 25px;width: 25px" (change)="onChangeSelectAll($event)" />
+                    </b>
+
+                    <b class="col-md-1 p-0">Province Ind</b>
+                    <b class="col-md-1 p-0">Country Name</b>
+                    <b class="col-md-1 p-0">Note Type</b>
+                    <b class="col-md-2">Effective Date</b>
+                    <b class="col-md-1 ">Term Date</b>
+                    <b class="col-md-1 ">Renewal Date</b>
+                    <b class="col-md-1">Renewal Ind</b>
+                    <b class="col-md-2 p-0">Contact/Address</b>
+                    <b class="col-md-1 p-0">Clone Country</b>
+                </div>
+
+                <ng-container *ngFor="let rows of cignaLinkDetailsForm; let rowIndex= index">
+
+                    <ngb-accordion [closeOthers]="false" #a="ngbAccordion" [activeIds]="activeIds">
+                        <ngb-panel id="panel-{{rowIndex}}" title="{{rows.group}}">
+                            <ng-template ngbPanelContent>
+                                <ng-container *ngFor="let record of rows.rows; let i = index"  >
+                                    <div [formGroup]="record" class="w-100" style="margin-bottom: 5rem;">
+                                        <div class="row w-100" [ngStyle]="{'min-height': '20px'}">
+                                            <div class="col-md-1 p-0">
+                                                <div class="col-md">
+                                                    <input type="checkbox" class="form-control" style="height: 25px;width: 25px" formControlName="participationInd" />
+                                                </div>
+                                            </div>
+                                            <!-- -----------------------------        ProvInd        -------------      -->
+                                            <div class="selectContainer  p-0 col-md-1">
+                                                <div class="input-group" #myDrop="ngbDropdown" ngbDropdown>
+                                                    <input ngbDropdownToggle type="text" class="form-control" id="provIndex" [value]="record.value.provIndex" formControlName="provIndex">
+                                                    <div class="input-group-append" role="group">
+                                                        <button ngbDropdownToggle class="btn border"></button>
+                                                    </div>
+                                                    <div ngbDropdownMenu aria-labelledby="dropdown" class="max-dropdown-height">
+                                                        <button ngbDropdownItem value="{{option.key}}" (click)="record.controls['provIndex'].patchValue(option.key)" *ngFor="let option of provIndexDropdownValues; let i = index">
+                                                            {{option.key}}
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- -----------------------------        countryName        -------------      -->
+
+                                            <div class="col-md-1 p-0 m-0">
+                                                <input type="text" class="form-control" formControlName="countryName" />
+                                            </div>
+                                            <!-- -----------------------------        noteType        -------------      -->
+
+                                            <div class="col-md-1  p-0">
+
+                                                <input type="text" class="form-control" formControlName="noteType" />
+
+                                            </div>
+                                            <!-- -----------------------------        Eff Date        -------------      -->
+
+                                            <div class="col-md-2  p-0" style="max-width:150px;">
+                                                <div class="form-input ">
+                                                    <div class="input-group">
+                                                        <input class="form-control" angular-mydatepicker name="date" (dateChanged)="onDateChanges(i, $event)" (click)="holdDateId.toggleCalendar()" formControlName="effDate" [options]="datePickerConfig" #holdDateId="angular-mydatepicker" />
+                                                        <div class="input-group-append">
+                                                            <button type="button" class="btn btn-secondary" (click)="holdDateId.toggleCalendar()">
+                                                                <fa-icon [icon]="['far', 'calendar']"></fa-icon>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- -----------------------------        termDate        -------------      -->
+
+                                            <div class="col-md-1  p-0" style="min-width:150px;">
+
+                                                <div class="input-group">
+                                                    <input class="form-control" angular-mydatepicker name="date" (dateChanged)="onDateChanges(i, $event)" (click)="termDate.toggleCalendar()" formControlName="termDate" [options]="datePickerConfig" #termDate="angular-mydatepicker" />
+                                                    <div class="input-group-append">
+                                                        <button type="button" class="btn btn-secondary" (click)="termDate.toggleCalendar()">
+                                                            <fa-icon [icon]="['far', 'calendar']"></fa-icon>
+                                                        </button>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <!-- -----------------------------      renewalDate      -------------      -->
+
+                                            <div class="col-md-1  p-0" style="min-width:150px;">
+                                                <div class="input-group">
+                                                    <input class="form-control" angular-mydatepicker name="date" (dateChanged)="onDateChanges(i, $event)" (click)="renewalDate.toggleCalendar()" formControlName="renewalDate" [options]="datePickerConfig" #renewalDate="angular-mydatepicker" />
+                                                    <div class="input-group-append">
+                                                        <button type="button" class="btn btn-secondary" (click)="renewalDate.toggleCalendar()">
+                                                            <fa-icon [icon]="['far', 'calendar']"></fa-icon>
+                                                        </button>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                            <!-- -----------------------------        renewalInd        -------------      -->
+
+                                            <div class=" pl-0 col-md-1">
+                                                <div class="input-group" #myDrop="ngbDropdown" ngbDropdown>
+                                                    <input ngbDropdownToggle type="text" class="form-control" id="renewalInd{{i}}}" [value]="record.value.renewalInd" formControlName="renewalInd">
+                                                    <div class="input-group-append" role="group">
+                                                        <button ngbDropdownToggle class="btn border"></button>
+                                                    </div>
+                                                    <div ngbDropdownMenu aria-labelledby="dropdown" class="max-dropdown-height">
+                                                        <button ngbDropdownItem value="{{option.key}}" (click)="record.controls['renewalInd'].patchValue(option.key)" *ngFor="let option of renewalIndexDropdowns; let i = index">
+                                                            {{option.key}}
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- -----------------------------        contactOrAdd        -------------      -->
+
+                                            <div class="col-md-1 ">
+                                                <button type="button" class="btn btn-link font-weight-bold cursor-pointer"  [disabled]="record.controls['effDate'].value?null:true"  style="color: red;" (click)="onUpdateLinkClick(record, i, rows, rowIndex)" *ngIf="record.updateLinkStatus===1">Update</button>
+                                                <button type="button" class="btn btn-link font-weight-bold cursor-pointer"  [disabled]="true"  style="color: black;"  *ngIf="record.updateLinkStatus===0">Update</button>
+                                            </div>
+
+
+                                            <div class="col-md-1  ">
+                                                <button type="button" class="btn btn-link font-weight-bold cursor-pointer" style="color: red;" [disabled]="record.controls['effDate'].value?null:true" (click)="openCloneCountryModal(record, i, rows, rowIndex)">Clone</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </ng-container>
+                            </ng-template>
+
+                        </ngb-panel>
+
+                    </ngb-accordion>
+
+
+                </ng-container>
+
+
+            </div>
+
+            <div class="row d-flex justify-content-center">
+
+                <button class="button" (click)="onSubmit()"> Save Changes</button>
+                <button class="button ml-1" (click)="reset()"> ResetAll</button>
+                <button class="button ml-1" (click)="openCloneCignaLinkDetailModal()"> Clone</button>
+                <button class="button ml-1" (click)="viewHistory()"> View History</button>
+            </div>
+        </div>
+
+        <!-- ---------------------------------- Clone modal  ----------------------------->
+        <ng-template #cignLinkDetailsCloneTemplate>
+
+            <div class="container-fluid">
+                <div class="card-block">
+                    <h2 class="form-title card-label-admin">Clone</h2>
+                    <button type="button" *ngIf="showIcon" class="close" aria-label="Close" (click)="cloneModalRef.dismiss()">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <div class="row bg-dark text-white mb-1 pb-2 pt-2 w-100 ml-0">
+                        <div class="col-md-4 offset-2 mb-0 font-weight-bold " i18n>
+                            Group Number
+                            <br>
+                            <span class="col-md required-field-label justify-content-center pt-1"> {{groupNumber}}</span>
+                        </div>
+                        <div class="col-md-4 offset-2 mb-0 font-weight-bold" i18n>
+                            Group Name
+                            <br>
+                            <span class="col-md pt-1 required-field-label justify-content-center"> {{groupName}}</span>
+                        </div>
+                    </div>
+
+                    <!-------------------------       Fields        -------------------->
+                    <div class="row bg-dark text-white w-100 ml-0">
+                        <div class="col-md-4 offset-2 mb-0 font-weight-bold " i18n>
+                            Source Group
+                        </div>
+                        <div class="col-md-4 offset-2 mb-0 font-weight-bold" i18n>
+                            Target Group
+                        </div>
+                    </div>
+                    <div class="row w-100 ml-0 pt-1 pb-1" style="background: lightblue">
+                        <div class="col-md-4 offset-2">
+                            <span class="font-weight-bold">{{groupNumber}} </span>
+                        </div>
+                        <div class="col-md-4 offset-2">
+                            <div class="selectContainer  p-0 col-md-5">
+                                <div class="input-group" #myDrop="ngbDropdown" ngbDropdown>
+                                    <input ngbDropdownToggle type="text" class="form-control" id="targetCloneGroup" [(ngModel)]="cloneTargetGroup" [value]="cloneTargetGroup">
+                                    <div class="input-group-append" role="group">
+                                        <button ngbDropdownToggle class="btn border"></button>
+                                    </div>
+                                    <div ngbDropdownMenu aria-labelledby="dropdown" class="max-dropdown-height">
+                                        <button ngbDropdownItem value="{{option}}" (click)="cloneTargetGroup = option" *ngFor="let option of targetGroupsDropdownValues; let i = index">
+                                            {{option}}
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md d-flex justify-content-center">
+                            <button class="button" (click)="saveCignaLinkDetailsCloneChanges()"> Save Changes</button>
+                            <button class="button ml-1" (click)="reset()"> ResetAll</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </ng-template>
+
+        <!-- ---------------------------------- Clone Country modal  ----------------------------->
+        <ng-template #countryCloneTemplate>
+
+            <div class="container-fluid">
+                <div class="card-block">
+                    <h2 class="form-title card-label-admin">Clone Country</h2>
+                    <button type="button" *ngIf="showIcon" class="close" aria-label="Close" (click)="cloneCountryModalRef.dismiss()">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <div class="row bg-dark text-white mb-1 pb-2 pt-2 w-100 ml-0">
+                        <div class="col-md-4 offset-2 mb-0 font-weight-bold " i18n>
+                            Group Number
+                            <br>
+                            <span class="col-md required-field-label justify-content-center pt-1"> {{groupNumber}}</span>
+                        </div>
+                        <div class="col-md-4 offset-2 mb-0 font-weight-bold" i18n>
+                            Group Name
+                            <br>
+                            <span class="col-md pt-1 required-field-label justify-content-center"> {{groupName}}</span>
+                        </div>
+                    </div>
+
+                    <!-------------------------       Fields        -------------------->
+                    <div class="row bg-dark text-white w-100 ml-0">
+                        <div class="col-md d-flex justify-content-center">
+                            Cloning for Country {{selectedClonedCountryModel.countryCode}}
+                        </div>
+                    </div>
+                    <div class="row bg-dark text-white w-100 ml-0">
+                        <div class="col-md-4 offset-2 mb-0 font-weight-bold " i18n>
+                            Source Group
+                        </div>
+                        <div class="col-md-4 offset-2 mb-0 font-weight-bold" i18n>
+                            Target Group
+                        </div>
+                    </div>
+                    <div class="row w-100 ml-0 pt-1 pb-1" style="background: lightblue">
+                        <div class="col-md-4 offset-2">
+                            <span class="font-weight-bold">{{groupNumber}} </span>
+                        </div>
+                        <div class="col-md-4 offset-2">
+                            <div class="selectContainer  p-0 col-md-5">
+                                <div class="input-group" #myDrop="ngbDropdown" ngbDropdown>
+                                    <input ngbDropdownToggle type="text" class="form-control" id="targetGroup" [(ngModel)]="cloneTargetGroup" [value]="cloneTargetGroup">
+                                    <div class="input-group-append" role="group">
+                                        <button ngbDropdownToggle class="btn border"></button>
+                                    </div>
+                                    <div ngbDropdownMenu aria-labelledby="dropdown" class="max-dropdown-height">
+                                        <button ngbDropdownItem value="{{option}}" (click)="cloneTargetGroup = option" *ngFor="let option of targetGroupsDropdownValues; let i = index">
+                                            {{option}}
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md d-flex justify-content-center">
+                            <button class="button" (click)="onCountryCloneLinkClick()"> Save Changes</button>
+                            <button class="button ml-1" (click)="reset()"> ResetAll</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </ng-template>
+    </div>
+</div>
+
+
+<ng-template #cignLinkDetailsViewHistoryTemplate>
+
+    <div class="container-fluid">
+        <div class="card-block">
+            <h2 class="form-title card-label-admin">View History</h2>
+            <button type="button" *ngIf="showIcon" class="close" aria-label="Close" (click)="viewHistoryModalRef.dismiss()">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <div class="row bg-dark text-white mb-1 pb-2 pt-2 w-100 ml-0">
+                <div class="col-md-12 text-center mb-0 font-weight-bold " i18n>
+                    Group Number:
+                    <span class="col-md required-field-label  pt-1"> {{groupNumber}}</span>
+                </div>
+            </div>
+
+            <!-------------------------       Fields        -------------------->
+            <div class="row d-flex justify-content-center w-100 ml-0" *ngIf="!(contactDetailsHistory.length >0 ); else showHistory">
+                <b> No History Found </b>
+            </div>
+            <!-- <ng-template #showHistory> -->
+            <div class="row w-100 ml-0 pt-1 pb-1" style="background: lightblue">
+                <ag-grid-angular #agGrid class="ag-theme-fresh" [gridOptions]="dataGridGridOptions" style="width: 100%; height: 300px;" [enableSorting]="true" [enableFilter]="true" [floatingFilter]="true" [pagination]="true" [showToolPanel]="true">
+                </ag-grid-angular>
+
+            </div>
+            <!-- </ng-template> -->
+        </div>
+    </div>
+</ng-template>

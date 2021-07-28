@@ -1,0 +1,249 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+    <title>CVSUP Field Definitions</title>
+    <!--(Meta)==========================================================-->
+    <meta name="copyright"
+          value="© Copyright 2002 Health Systems Design Corp., a wholly owned subsidiary of Perot Systems Corporation. All rights reserved"/>
+    <meta content="Field Definitions.htt" name="template"/>
+    <meta content="RoboHELP by eHelp Corporation - www.ehelp.com" name="generator"/>
+    <meta content="0.1" name="generator-major-version"/>
+    <meta content="1" name="generator-minor-version"/>
+    <meta content="kadov" name="filetype"/>
+    <meta content="1" name="filetype-version"/>
+    <meta content="1" name="page-count"/>
+    <meta content="970" name="layout-height"/>
+    <meta content="678" name="layout-width"/>
+    <!--(Links)=========================================================-->
+    <!--(Scripts)=======================================================-->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+</head>
+<body>
+
+<div class="calibreMeta">
+    <div class="calibreMetaTitle">
+
+
+        <h1>
+            <a href="../4xeqt-va1vo.html">DIAMOND 950 Help
+            </a>
+        </h1>
+
+
+    </div>
+    <div class="calibreMetaAuthor">
+        Unknown
+
+    </div>
+</div>
+
+<div class="calibreMain">
+
+    <div class="calibreEbookContent">
+
+        <div class="calibreEbNavTop">
+
+            <a href="CVSUP_Field_Map.htm" class="calibreAPrev">previous page
+            </a>
+
+
+            <a href="CVSUP_Functions_on_Menu_Bar.htm" class="calibreANext">next page
+            </a>
+
+        </div>
+
+
+        <!--(Table)=========================================================-->
+        <table cellspacing="0" width="500" x-use-null-cells="" class="calibre109">
+            <colgroup class="calibre19">
+                <col class="calibre110"/>
+                <col class="calibre111"/>
+
+            </colgroup>
+            <tbody class="calibre10">
+            <tr valign="top" class="calibre11">
+                <td width="70%" class="calibre112">
+                    <h4 class="calibre62">CVSUP Field Definitions</h4></td>
+                <td width="30%" class="calibre113">
+                    <p class="body-text1"><img border="0" height="53" src="assets/help/Field_definitions_Req_legend.gif" width="97"
+                                               x-maintain-ratio="TRUE" class="calibre114"/></p></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <!--(Table)=========================================================-->
+        <table cellspacing="0" width="500" x-use-null-cells="" class="calibre115">
+            <colgroup class="calibre19">
+                <col class="calibre116"/>
+                <col class="calibre117"/>
+                <col class="calibre118"/>
+                <col class="calibre119"/>
+                <col class="calibre118"/>
+
+            </colgroup>
+            <tbody class="calibre10">
+            <tr valign="top" class="calibre11">
+                <td width="110px" class="calibre120">
+                    <p class="tableheading">Field Name</p></td>
+                <td width="15px" class="calibre121">
+                    <p class="tableheading1">Req</p></td>
+                <td width="140px" class="calibre122">
+                    <p class="tableheading">Description</p></td>
+                <td width="95px" class="calibre123">
+                    <p class="tableheading">Source</p></td>
+                <td width="140px" class="calibre122">
+                    <p class="tableheading">Comments</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre11">
+                <td width="110px" class="calibre124">
+                    <p class="tableboldtext"><a name="CVSUP_Action_FIELD"></a>Action</p></td>
+                <td width="15px" class="calibre125">
+                    <p class="tabletext">R</p></td>
+                <td width="140px" class="calibre126">
+                    <p class="tabletext1">Action being requested for this job run.</p></td>
+                <td width="95px" class="calibre127">
+                    <p class="tabletext1">Selected from predefined list</p></td>
+                <td width="140px" class="calibre126">
+                    <p class="tabletext1">Valid values are:</p>
+                    <ul class="calibre6">
+
+                        <li class="kadov-p-cstepbullet"><p class="tablebullet"><span class="calibre9">Run</span>:
+                            Runs accumulated clear, void, stop check/EFT transaction changes and prints
+                            the Clear, Void, Stop Update Audit Report.</p></li>
+
+                        <li class="kadov-p-cstepbullet"><p class="tablebullet"><span class="calibre9">Post</span>:
+                            Posts accumulated transaction changes; removes payment/accounts payable
+                            data for status change "Reissued"; writes status, reason and
+                            date (that existed prior to posting Reissued status changes) to PSCLM/INCLM/DNCLM
+                            (Claims) Notes; creates offsetting payment/accounts payable data for "Reversed"
+                            changes.</p></li>
+
+                        <li class="kadov-p-cstepbullet"><p class="tablebullet"><span class="calibre9">Cancel</span>:
+                            Cancels a job; must be prior to posting.</p></li>
+                    </ul>
+                </td>
+            </tr>
+
+            <tr valign="top" class="calibre11">
+                <td width="110px" class="calibre124">
+                    <p class="tableboldtext"><a name="CVSUP_Comments_FIELD"></a>Comments</p></td>
+                <td width="15px" class="calibre125">
+                    <p class="tabletext">O</p></td>
+                <td width="140px" class="calibre126">
+                    <p class="tabletext1">Text comments about the job.</p></td>
+                <td width="95px" class="calibre127">
+                    <p class="tabletext1">Manually entered</p></td>
+                <td width="140px" class="calibre126">
+                    <p class="tabletext1"> </p></td>
+            </tr>
+
+            <tr valign="top" class="calibre11">
+                <td width="110px" class="calibre124">
+                    <p class="tableboldtext"><a name="CVSUP_Job_ID_FIELD"></a>Job ID</p></td>
+                <td width="15px" class="calibre125">
+                    <p class="tabletext">R</p></td>
+                <td width="140px" class="calibre126">
+                    <p class="tabletext1">Unique identifier of the job.</p></td>
+                <td width="95px" class="calibre127">
+                    <p class="tabletext1">System generated, can be manually overridden.</p></td>
+                <td width="140px" class="calibre126">
+                    <p class="tabletext1"> </p></td>
+            </tr>
+
+            <tr valign="top" class="calibre11">
+                <td width="110px" class="calibre124">
+                    <p class="tableboldtext"><a name="CVSUP_Req_User_FIELD"></a>Req User</p></td>
+                <td width="15px" class="calibre125">
+                    <p class="tabletext">D</p></td>
+                <td width="140px" class="calibre126">
+                    <p class="tabletext1">User submitting the job.</p></td>
+                <td width="95px" class="calibre127">
+                    <p class="tabletext1">Displayed</p></td>
+                <td width="140px" class="calibre126">
+                    <p class="tabletext1"> </p></td>
+            </tr>
+
+            <tr valign="top" class="calibre11">
+                <td colspan="1" rowspan="1" width="110px" class="calibre124">
+                    <p class="tableboldtext"><a name="CVSUP_Request_Type_FIELD"></a>Request Type</p></td>
+                <td colspan="1" rowspan="1" width="15px" class="calibre125">
+                    <p class="tabletext">R</p></td>
+                <td colspan="1" rowspan="1" width="140px" class="calibre126">
+                    <p class="tabletext1">Indicator of when job is to be run.</p></td>
+                <td colspan="1" rowspan="1" width="95px" class="calibre127">
+                    <p class="tabletext1">Selected from predefined list</p></td>
+                <td colspan="1" rowspan="1" width="140px" class="calibre126">
+                    <p class="tabletext1">Only "Immediate" is available as a valid selection.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre11">
+                <td colspan="1" rowspan="1" width="110px" class="calibre124">
+                    <p class="tableboldtext"><a name="CVSUP_Run_Date_FIELD"></a>Run Date</p></td>
+                <td colspan="1" rowspan="1" width="15px" class="calibre125">
+                    <p class="tabletext">D</p></td>
+                <td colspan="1" rowspan="1" width="140px" class="calibre126">
+                    <p class="tabletext1">System date the job is run.</p></td>
+                <td colspan="1" rowspan="1" width="95px" class="calibre127">
+                    <p class="tabletext1">Displayed</p></td>
+                <td colspan="1" rowspan="1" width="140px" class="calibre126">
+                    <p class="tbl-list"> </p></td>
+            </tr>
+
+            <tr valign="top" class="calibre11">
+                <td colspan="1" rowspan="1" width="110px" class="calibre124">
+                    <p class="tableboldtext"><a name="CVSUP_Status_FIELD"></a>Status</p></td>
+                <td colspan="1" rowspan="1" width="15px" class="calibre125">
+                    <p class="tabletext">D</p></td>
+                <td colspan="1" rowspan="1" width="140px" class="calibre126">
+                    <p class="tabletext1">Status of the selected job.</p></td>
+                <td colspan="1" rowspan="1" width="95px" class="calibre127">
+                    <p class="tabletext1">Displayed</p></td>
+                <td colspan="1" rowspan="1" width="140px" class="calibre126">
+                    <p class="tabletext1">Valid values are:</p>
+                    <ul class="calibre6">
+
+                        <li class="kadov-p-cstepbullet"><p class="tablebullet"><span class="calibre9">New</span>: Job
+                            has been saved but not yet run.</p></li>
+
+                        <li class="kadov-p-cstepbullet"><p class="tablebullet"><span class="calibre9">Successful
+ run</span>: Job ran successfully.</p></li>
+
+                        <li class="kadov-p-cstepbullet"><p class="tablebullet"><span class="calibre9">Error</span>: Job
+                            was unsuccessful.</p></li>
+
+                        <li class="kadov-p-cstepbullet"><p class="tablebullet"><span class="calibre9">Canceled</span>:
+                            Job action was Cancel.</p></li>
+                    </ul>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <p class="body-text"> </p>
+
+
+    </div>
+
+
+    <div class="calibreEbNav">
+
+        <a href="CVSUP_Field_Map.htm" class="calibreAPrev">previous page
+        </a>
+
+
+        <a href="../4xeqt-va1vo.html" class="calibreAHome">start
+        </a>
+
+
+        <a href="CVSUP_Functions_on_Menu_Bar.htm" class="calibreANext">next page
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+</html>

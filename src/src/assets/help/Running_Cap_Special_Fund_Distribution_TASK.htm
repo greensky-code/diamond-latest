@@ -1,0 +1,392 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+    <title>Running Cap/Special Fund Distribution</title>
+    <!--(Meta)==========================================================-->
+    <meta name="copyright"
+          value="© Copyright 2002 Health Systems Design Corp., a wholly owned subsidiary of Perot Systems Corporation. All rights reserved"/>
+    <meta content="RoboHELP by eHelp Corporation - www.ehelp.com" name="generator"/>
+    <meta content="0.1" name="generator-major-version"/>
+    <meta content="1" name="generator-minor-version"/>
+    <meta content="kadov" name="filetype"/>
+    <meta content="1" name="filetype-version"/>
+    <meta content="1" name="page-count"/>
+    <meta content="2219" name="layout-height"/>
+    <meta content="642" name="layout-width"/>
+    <!--(Links)=========================================================-->
+    <!--(Scripts)=======================================================-->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+</head>
+<body>
+
+<div class="calibreMeta">
+    <div class="calibreMetaTitle">
+
+
+        <h1>
+            <a href="../bj5if-qozss.html">DIAMOND 950 Help
+            </a>
+        </h1>
+
+
+    </div>
+    <div class="calibreMetaAuthor">
+        Unknown
+
+    </div>
+</div>
+
+<div class="calibreMain">
+
+    <div class="calibreEbookContent">
+
+        <div class="calibreEbNavTop">
+
+            <a href="Capitation_Special_Fund_Distribution_-_Overview.htm" class="calibreAPrev">previous page
+            </a>
+
+
+            <a href="Setting_Up_Cap_Special_Fund_Models_TASK.htm" class="calibreANext">next page
+            </a>
+
+        </div>
+
+
+        <h4 class="calibre1">Running Cap/Special Fund Distribution</h4>
+
+        <!--(Table)=========================================================-->
+        <table cellspacing="0" width="480" x-use-null-cells="" class="calibre172">
+
+            <tbody class="calibre8">
+            <tr valign="top" class="">
+                <td width="120px" class="">
+                    <p class="map-links"><a
+                            href="Running_Cap_Special_Fund_Distribution_TASK.htm#Running_Cap_Special_Fund_Distribution_Restrictions_TASK_MID"><img
+                            alt="image\assets/help/MidTopic_shg.gif" border="0" height="10" src="assets/help/MidTopic_shg.gif" width="18"
+                            class=""/></a> Restrictions</p></td>
+                <td width="126px" class="">
+                    <p class="map-links"><a
+                            href="Running_Cap_Special_Fund_Distribution_TASK.htm#Running_Cap_Special_Fund_Distribution_Ins_TASK_MID"><img
+                            alt="image\assets/help/MidTopic_shg.gif" border="0" height="10" src="assets/help/MidTopic_shg.gif" width="18"
+                            class=""/></a> Instructions</p></td>
+                <td width="234px" class="">
+                    <p class="map-links"><a
+                            href="Running_Cap_Special_Fund_Distribution_TASK.htm#Running_Cap_Special_Fund_Distribution_FAQ_TASK_MID"><img
+                            alt="image\assets/help/MidTopic_shg.gif" border="0" height="10" src="assets/help/MidTopic_shg.gif" width="18"
+                            class=""/></a> Frequently Asked Questions</p></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <p class="body-text">As part of the process of paying providers from a specified
+            fund of dollars, called a Cap/Special Fund in DIAMOND, it is necessary
+            to run a batch job that calculates the amount owed to each provider in
+            the fund for a given period of time. This allocation amount is based upon
+            1) the payment arrangement with the provider as defined in a CFD model
+            and 2) how many claim lines have been entered during the period for the
+            provider. During the batch job, DIAMOND actually modifies the Net Amount
+            on the relevant claim detail lines, inserts any Cap Fund Withhold Amount,
+            and flags them with a Cap Fund Status for Accounts Payable.</p>
+
+        <p class="doc-level"><a name="Running_Cap_Special_Fund_Distribution_Restrictions_TASK_MID"></a>Restrictions</p>
+
+        <p class="body-text">Do not run the Cap/Special Fund Distribution batch job
+            while claims are being entered or processed for the provider or group
+            of providers associated with the CFD fund model selected for the job.
+        </p>
+
+        <p class="doc-level"><a name="Running_Cap_Special_Fund_Distribution_Ins_TASK_MID"></a>Instructions
+        </p>
+
+        <!--(Table)=========================================================-->
+        <table cellspacing="0" width="527" x-use-null-cells="" class="calibre172">
+
+            <tbody class="calibre8">
+            <tr valign="top" class="calibre9">
+                <td width="250px" class="calibre15">
+                    <p class="tbl-header">Step</p></td>
+                <td width="276px" class="calibre16">
+                    <p class="tbl-header">Comment</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre9">
+                <td width="250px" class="calibre17">
+                    <p class="step">1. Check that everything
+                        is ready to run the job:</p>
+                    <ul class="calibre2">
+
+                        <li class="kadov-p-cstep--bullet"><p class="step--bullet1">Partially
+                            entered claims for the providers have been completed.</p></li>
+
+                        <li class="kadov-p-cstep--bullet"><p class="step--bullet1">Holds
+                            on claims for the providers have been resolved.</p></li>
+
+                        <li class="kadov-p-cstep--bullet"><p class="step--bullet1">Claims
+                            for the providers have been split when needed so that the claim detail
+                            lines all have From Dates of service in a single month.</p></li>
+
+                        <li class="kadov-p-cstep--bullet"><p class="step--bullet1">The
+                            allocation amount for the period is available.</p></li>
+                    </ul>
+                </td>
+                <td width="276px" class="calibre18">
+                    <p class="step-comment">Each Cap/Special Fund batch
+                        job can affect unfinalized claim detail lines for any provider included
+                        in the Cap/Special Fund arrangement.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre9">
+                <td width="250px" class="calibre17">
+                    <p class="step">2. Determine the earliest
+                        date of service allowed on a claim line that should be included in the
+                        calculations.</p></td>
+                <td width="276px" class="calibre18">
+                    <p class="step-comment"> </p></td>
+            </tr>
+
+            <tr valign="top" class="calibre9">
+                <td width="250px" class="calibre17">
+                    <p class="step">3. Initiate the job
+                        for a given Cap/Special Fund model using CFDST in Run (edit) mode. Key
+                        items to specify are the monthly allocation amount and the service dates
+                        for this distribution period.</p>
+                    <p class="step-comment-noline1">If you receive an error message or cannot
+                        initiate the job, see "Frequently Asked Questions." </p></td>
+                <td width="276px" class="calibre18">
+                    <p class="step-comment">During the edit run, you
+                        can cancel the job and run a new job for the same model and month/year.
+                        Once a job has posted, you cannot re-run the job or run another job for
+                        the same model and month/year. </p></td>
+            </tr>
+
+            <tr valign="top" class="calibre9">
+                <td width="250px" class="calibre17">
+                    <p class="step">4. Display the results
+                        of the job by using a CFDST function to generate the Audit Report Summary.
+                    </p></td>
+                <td width="276px" class="calibre18">
+                    <p class="step-comment">Each time a run/edit mode
+                        or post mode Cap/Special Fund Distribution run is initiated, a summary
+                        and a detailed CFD Audit report will be generated. These reports can be
+                        viewed on-line and printed if desired. </p></td>
+            </tr>
+
+            <tr valign="top" class="calibre9">
+                <td width="250px" class="calibre17">
+                    <p class="step">5. Review the results
+                        on the Audit Report Summary/Detail to decide if the calculated distribution
+                        amounts are reasonable according to the guidelines established by your
+                        health plan. </p></td>
+                <td width="276px" class="calibre18">
+                    <p class="step-comment">See CFDST reference documentation
+                        for Audit Report Summary and Detail field information.</p>
+                    <p class="body-text">Examples of questions to ask:</p>
+                    <ul class="calibre2">
+
+                        <li class="kadov-p-cstep-comment-bullet-noline"><p class="step-comment-bullet-noline">Are
+                            all providers included on the report that you expected to receive a payment?</p></li>
+
+                        <li class="kadov-p-cstep-comment-bullet-noline"><p class="step-comment-bullet-noline">Do
+                            the calculated amounts seem to correspond to claims utilization for the
+                            period? </p></li>
+                    </ul>
+                </td>
+            </tr>
+
+            <tr valign="top" class="calibre9">
+                <td width="250px" class="calibre17">
+                    <p class="step">6. If the calculated
+                        distribution amounts seem incorrect, cancel the job using CFDST.</p>
+                    <ol class="calibre173">
+
+                        <li class="kadov-p-cstep--alpha-list"><p class="step--alpha-list">Research
+                            the problems and correct them. </p></li>
+
+                        <li class="kadov-p-cstep--alpha-list"><p class="step--alpha-list">You
+                            may need to print the Audit Report Detail using a CFDST function before
+                            researching the cause. See "Frequently Asked Questions" for
+                            help in correcting any problems.</p></li>
+
+                        <li class="kadov-p-cstep--alpha-list"><p class="step--alpha-list">Initiate
+                            another Cap/Special Fund Distribution job in run (edit) mode, changing
+                            the job specifications if necessary. (Return to Step 3.)</p></li>
+                    </ol>
+                </td>
+                <td width="276px" class="calibre18">
+                    <p class="step-comment">See CFDST reference documentation
+                        for Audit Report Detail field information.</p>
+                    <p class="body-text">If you cancel a CFDST job in the run/edit
+                        mode, DIAMOND changes the Cap Fund Status of all the qualifying claim
+                        detail lines from 2 - Successful run back to 1 - Cap Fund.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre9">
+                <td width="250px" class="calibre17">
+                    <p class="step">7. If the calculated
+                        distribution amounts seem correct, run the job in Post mode.</p></td>
+                <td width="276px" class="calibre18">
+                    <p class="step-comment">You cannot cancel a CFDST
+                        job once it is started in Post mode.</p>
+                    <p class="body-text">You cannot run another Cap/Special Fund batch
+                        job for the same model and period once the job completes successfully
+                        in Post mode.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre9">
+                <td width="250px" class="calibre17">
+                    <p class="step">8. Repeat these steps
+                        for any other CFD models that need to be processed for the period.</p></td>
+                <td width="276px" class="calibre18">
+                    <p class="step-comment"> </p></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <p class="doc-level"><a name="Running_Cap_Special_Fund_Distribution_FAQ_TASK_MID"></a>Frequently
+            Asked Questions </p>
+
+        <ul class="calibre2">
+
+            <li class="kadov-p-cfaq"><p class="faq">I reviewed the CFDST Audit
+                Report Detail and did not see any claim detail lines for a certain provider
+                as I expected. What should I do?</p></li>
+        </ul>
+
+        <p class="faq-ans">Check the following. </p>
+
+        <p class="faq-ans">First, review your provider contracts and verify that
+            you entered the required data. Verify that you entered a PROVC &gt; Def
+            Contract Type = F - Cap Fund, a PROVC &gt; Special menu command Contract
+            Pricing Details &gt; Contract Type = F - Cap Fund and the right Cap/Special
+            Fund Model ID. Make corrections as needed. </p>
+
+        <p class="faq-ans">Next, verify that the provider has claim detail lines
+            with a date of service that is between the Cap Fund From Date on the CFDST
+            job and the last day of the Cap Month for the job being initiated (or
+            that the INCLM/PSCLM Override Cap Fund Date Range flag is selected). </p>
+
+        <ul class="calibre2">
+
+            <li class="kadov-p-cfaq"><p class="faq">A provider is inquiring on
+                the status of a specific CFD claim line. How do I research this?</p></li>
+        </ul>
+
+        <p class="faq-ans">Verify that the claim line is a payable Cap/Special Fund
+            Distribution claim line. If yes, check the Cap Fund Status for the line.</p>
+
+        <p class="formula">If Cap Fund Status = 1 - Cap Fund,</p>
+
+        <p class="formula1">the line will be selected when a CFD job is run which
+            includes the lines.</p>
+
+        <p class="formula">If Cap Fund Status = 2 - Successful Run,</p>
+
+        <p class="formula1">the payment will be generated upon posting the corresponding
+            CFD job.</p>
+
+        <p class="formula">If the Cap Fund Status = 3 - Posted,</p>
+
+        <p class="formula1">the claim is ready for Accounts Payable. Check the payment
+            detail to see if this claim has been posted to Accounts Payable.</p>
+
+        <ul class="calibre2">
+
+            <li class="kadov-p-cfaq"><p class="faq">How do I re-run a cancelled
+                Run/Edit job?</p></li>
+        </ul>
+
+        <p class="faq-ans">You must enter and run a new CFDST job with the same specifications.</p>
+
+        <ul class="calibre2">
+
+            <li class="kadov-p-cfaq"><p class="faq">What if I can’t run a Run (edit)
+                mode CFDST job?</p></li>
+        </ul>
+
+        <p class="faq-ans">If you already ran the CFDST job in <span class="calibre157">edit
+ </span>mode, and you want to run CFDST again for the same Model and month/year
+            (for example, if you entered more claims in the interim), you must first
+            cancel the existing run. Then run the CFDST job in Run (edit) mode as
+            usual.</p>
+
+        <p class="faq-ans">If you already ran a job in <span class="calibre157">post</span>
+            mode for this fund model and month/year and had it complete successfully,
+            you cannot run another job for the same fund model and month/year. </p>
+
+        <ul class="calibre2">
+
+            <li class="kadov-p-cfaq"><p class="faq">What happens if I enter claims
+                for Cap/Special Fund Distribution with dates of service included in a
+                previously posted CFDST job? </p></li>
+        </ul>
+
+        <p class="faq-ans">If you have already run CFDST in Post mode for the month
+            including these dates of service, you have a few options. First, you must
+            manually identify and review these lines. Then, you may choose to:</p>
+
+        <ul class="calibre2">
+
+            <li class="kadov-p-cfaq-ans-bullet"><p class="faq-ans-bullet">Deny
+                the lines (for example, for lack of timely submission) </p></li>
+
+            <li class="kadov-p-cfaq-ans-bullet"><p class="faq-ans-bullet">Enter
+                a CFDST From Date that will include the desired dates of service when
+                you run the CFDST job for the next month’s cycle. Caution: If you never
+                run a CFDST job including these dates of service, these claim detail lines
+                will never be selected by a CFDST run.</p></li>
+
+            <li class="kadov-p-cfaq-ans-bullet"><p class="faq-ans-bullet1">Manually
+                flag the lines to be available for CFD selection regardless of the CFDST
+                date requirement (using the PSCLM/INCLM Special Function – Override Cap
+                Fund Dates)</p></li>
+        </ul>
+
+        <p class="faq-ans">Example 1:</p>
+
+        <p class="faq-ans">Part 1: You are running CFDST monthly for Model 1. You
+            run CFDST for Model 1 for the month of January on February 15 with a From
+            Date of 1/1/99. DIAMOND selects all CFD claim detail lines with a From
+            date of service on or after 1/1/99 and through 1/31/99. On 2/20/99, you
+            enter a CFD claim detail line with a From date of service of 1/22/99.
+            You do not manually flag this line for inclusion in the next CFDST run
+            for this model.</p>
+
+        <p class="faq-ans">Part 2: You run CFDST for Model 1 for the month of February
+            on March 15 with a From Date of 2/1/99. DIAMOND does not select the CFD
+            claim detail line with the From date of service of 1/22/99 since it is
+            before the CFDST From Date. As you continue with monthly CFDST runs, this
+            detail line will not be selected. You must manually address this detail
+            line as noted above or specify a From Date early enough to include this
+            line.</p>
+
+        <p class="faq-ans">Example 2:</p>
+
+        <p class="faq-ans">You are entering in a new claim line for 2/15/98, but
+            you have already run the CFDST job for 2/98 for the specified CFD model.
+            When you run the 3/98 CFDST job you may specify the From Date to be 2/15/99
+            to include this claim line in the CFDST run.</p>
+
+
+    </div>
+
+    <div class="calibreEbNav">
+
+        <a href="Capitation_Special_Fund_Distribution_-_Overview.htm" class="calibreAPrev">previous page
+        </a>
+
+
+        <a href="../bj5if-qozss.html" class="calibreAHome">start
+        </a>
+
+
+        <a href="Setting_Up_Cap_Special_Fund_Models_TASK.htm" class="calibreANext">next page
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+</html>

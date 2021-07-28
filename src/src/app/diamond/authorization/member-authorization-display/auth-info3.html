@@ -1,0 +1,226 @@
+<form name="formData" #f="ngForm"  novalidate>
+
+
+
+    <ng-container >
+        <!-- auth form 1 starts here -->
+        <div class="form-group row">
+            <div class="col-md-4 form-control-static mb-0" i18n>
+               <h4 class="fa-underline"> <u>Review Information</u></h4>
+            </div>
+        </div>
+    
+        <div class="form-group row">
+          <!-- DynamicText with label of Member Number -->
+           <div class="col-md-4" >
+               <label class="col-form-label" for="provCode" i18n>Review Type</label>
+               <input type="text"  [fieldLevelSec]="''" [params]=""  readonly id="provCode"  [(ngModel)]="formData.provCode" name="provCode" class="form-control"/>
+           </div>
+      
+          <!-- DynamicText with Name of personNumber -->
+           <div class="col-md-4" >
+               <label class="col-form-label" for="provId" i18n>Reviewer</label>
+               <input type="text"  [fieldLevelSec]="''" [params]=""  readonly id="provId"  [(ngModel)]="formData.provId" name="provId"  class="form-control"/>
+           </div>
+      
+    
+      </div>
+    
+      <div class="form-group row">
+       <!-- DynamicText with label of Member Number -->
+        <div class="col-md-4" >
+            <label class="col-form-label" for="outOfNet" i18n>First Review</label>
+            <input type="text"  [fieldLevelSec]="''" [params]=""  readonly id="outOfNet"  [(ngModel)]="formData.outOfNet" name="outOfNet" class="form-control"/>
+        </div>
+    
+       <!-- DynamicText with Name of personNumber -->
+        <div class="col-md-4" >
+            <label class="col-form-label" for="pcpId" i18n>Next Review</label>
+            <input type="text"  [fieldLevelSec]="''" [params]=""  readonly id="pcpId"  [(ngModel)]="formData.pcpId" name="pcpId" class="form-control"/>
+        </div>
+        <div class="col-md-4">
+          <label class="col-form-label" for="pcpName" i18n>Last Notification</label>
+          <input type="text"  [fieldLevelSec]="''" [params]=""  readonly id="pcpName"  [(ngModel)]="formData.pcpName" name="pcpName" class="form-control"/>
+      </div>
+    
+    </div>
+ 
+    
+ 
+     <div class="form-group row">
+        <div class="col-md-4 form-control-static mb-0" i18n>
+           <h4 class="fa-underline"> <u>Service Information</u></h4>
+        </div>
+    </div>
+ 
+    <div class="form-group row">
+        <!-- DynamicText with label of Member Number -->
+         <div class="col-md-4" >
+             <label class="col-form-label" for="actAdmitDate" i18n>Admit Type</label>
+             <input type="text"  [fieldLevelSec]="''" [params]=""  readonly id="actAdmitDate"  [(ngModel)]="formData.actAdmitDate" name="actAdmitDate" class="form-control"/>
+         </div>
+     
+        <!-- DynamicText with Name of personNumber -->
+         <div class="col-md-4" >
+             <label class="col-form-label" for="authorizedCost" i18n>Admit Reson</label>
+             <input type="text"  [fieldLevelSec]="''" [params]=""  readonly id="authorizedCost"  [(ngModel)]="formData.authorizedCost" name ="authorizedCost" class="form-control"/>
+         </div>
+         <div class="col-md-4" >
+           <label class="col-form-label" for="estCost" i18n>Med Def Code</label>
+           <input type="text"  [fieldLevelSec]="''" [params]=""  readonly id="estCost"  [(ngModel)]="formData.estCost" name="estCost" class="form-control"/>
+       </div>
+     
+     </div>
+ 
+     <div class="form-group row">
+        <!-- DynamicText with label of Member Number -->
+         <div class="col-md-4" >
+             <label class="col-form-label" for="expirationDate" i18n>POS</label>
+             <input type="text"  [fieldLevelSec]="''" [params]=""  readonly id="expirationDate"  [(ngModel)]="formData.expirationDate" name="expirationDate" class="form-control"/>
+         </div>
+     
+        <!-- DynamicText with Name of personNumber -->
+         <div class="col-md-4" >
+             <label class="col-form-label" for="requestedCost" i18n>Bill Type</label>
+             <input type="text"  [fieldLevelSec]="''" [params]=""  readonly id="requestedCost"  [(ngModel)]="formData.requestedCost" name="requestedCost" class="form-control"/>
+         </div>
+ 
+     
+     </div>
+ 
+     
+ 
+     <div class="form-group row">
+        <div class="col-md-4 form-control-static mb-0" i18n>
+           <h4 class="fa-underline"> <u>Auth Status</u></h4>
+        </div>
+    </div>
+ 
+    <div class="form-group row">
+        <!-- DynamicText with label of Member Number -->
+         <div class="col-md-4" >
+             <label class="col-form-label" for="daysVisitsIndicator" i18n>Overall Status</label>
+             <input type="text"  [fieldLevelSec]="''" [params]=""  readonly id="daysVisitsIndicator"  [(ngModel)]="formData.daysVisitsIndicator" name="daysVisitsIndicator" class="form-control"/>
+         </div>
+     
+        <!-- DynamicText with Name of personNumber -->
+         <div class="col-md-4" >
+             <label class="col-form-label" for="normDaysVisits" i18n>Closed Reason</label>
+             <input type="text"  [fieldLevelSec]="''" [params]=""  readonly id="normDaysVisits"  [(ngModel)]="formData.normDaysVisits" name ="normDaysVisits" class="form-control"/>
+         </div>
+         <div class="col-md-4" >
+           <label class="col-form-label" for="datesUserDefined1" i18n>Closed Date</label>
+           <input type="text"  [fieldLevelSec]="''" [params]=""  readonly id="datesUserDefined1"  [(ngModel)]="formData.datesUserDefined1" name ="datesUserDefined1" class="form-control"/>
+       </div>
+     
+     </div>
+ 
+     <div class="form-group row">
+        <!-- DynamicText with label of Member Number -->
+         <div class="col-md-4" >
+             <label class="col-form-label" for="authorizedDaysVis" i18n>Status Date</label>
+             <input type="text"  [fieldLevelSec]="''" [params]=""  readonly id="authorizedDaysVis"  [(ngModel)]="formData.authorizedDaysVis" name="authorizedDaysVis" class="form-control"/>
+         </div>
+     
+        <!-- DynamicText with Name of personNumber -->
+         <div class="col-md-4" >
+             <label class="col-form-label" for="deniedDaysVis" i18n>Denied Reason</label>
+             <input type="text"  [fieldLevelSec]="''" [params]=""  readonly id="deniedDaysVis"  [(ngModel)]="formData.deniedDaysVis" name ="deniedDaysVis" class="form-control"/>
+         </div>
+         <div class="col-md-4" >
+           <label class="col-form-label" for="datesUserDefined2" i18n>Denied Date</label>
+           <input type="text"  [fieldLevelSec]="''" [params]=""  readonly id="datesUserDefined2"  [(ngModel)]="formData.datesUserDefined2" name ="datesUserDefined2" class="form-control"/>
+       </div>
+     
+     </div>
+ 
+     <div class="form-group row">
+        <!-- DynamicText with label of Member Number -->
+         <div class="col-md-4" >
+             <label class="col-form-label" for="reqDaysVisits" i18n>Hold Reason</label>
+             <input type="text"  [fieldLevelSec]="''" [params]=""  readonly id="reqDaysVisits"  [(ngModel)]="formData.reqDaysVisits" name ="reqDaysVisits" class="form-control"/>
+         </div>
+     
+        <!-- DynamicText with Name of personNumber -->
+         <div class="col-md-4" >
+             <label class="col-form-label" for="authDaysVisExtensions" i18n>Hold Date</label>
+             <input type="text"  [fieldLevelSec]="''" [params]=""  readonly id="authDaysVisExtensions"  [(ngModel)]="formData.authDaysVisExtensions" name ="authDaysVisExtensions" class="form-control"/>
+         </div>
+ 
+     
+    </div>
+ 
+    <!-- auth form 1 ends here -->
+    <div class="form-group row">
+        <div class="col-md-4 form-control-static mb-0" i18n>
+            <h4 class="fa-underline"> <u>Surgical Procedures</u></h4>
+        </div>
+    </div>
+    
+    <div class="form-group row">
+        <!-- DynamicText with label of Member Number -->
+        <div class="col-md-3">
+            <label class="col-form-label" for="surgProcedure1" i18n>SP 1</label>
+            <input type="text" [fieldLevelSec]="''" [params]="" readonly id="surgProcedure1" [(ngModel)]="formData.surgProcedure1"
+                name="surgProcedure1" class="form-control" />
+        </div>
+    
+        <div class="col-md-3">
+            <label class="col-form-label" for="surgProcedureDate1" i18n>Date </label>
+            <input type="text" [fieldLevelSec]="''" [params]="" readonly id="date" [(ngModel)]="formData.surgProcedureDate1"
+                name="surgProcedureDate1" class="form-control" />
+        </div>
+        <div class="col-md-3">
+            <label class="col-form-label" for="surgProcedure2" i18n>SP 2 </label>
+            <input type="text" [fieldLevelSec]="''" [params]="" readonly id="surgProcedur" [(ngModel)]="formData.surgProcedure2"
+                name="surgProcedure2 " class="form-control" />
+        </div>
+        <div class="col-md-3">
+            <label class="col-form-label" for="surgProcedureDate2" i18n>Date</label>
+            <input type="text" [fieldLevelSec]="''" [params]="" readonly id="surgProcedureDate1" [(ngModel)]="formData.surgProcedureDate2"
+                name="surgProcedureDate1" class="form-control" />
+        </div>
+        <div class="col-md-3">
+            <label class="col-form-label" for="surgProcedure3" i18n>SP 3 </label>
+            <input type="text" [fieldLevelSec]="''" [params]="" readonly id="surgProcedure3" [(ngModel)]="formData.surgProcedure3"
+                name="surgProcedure3" class="form-control" />
+        </div>
+        <div class="col-md-3">
+            <label class="col-form-label" for="surgProcedureDate3" i18n>Date</label>
+            <input type="text" [fieldLevelSec]="''" [params]="" readonly id="surgProcedureDate3" [(ngModel)]="formData.surgProcedureDate3"
+                name="surgProcedureDate3" class="form-control" />
+        </div>
+        <div class="col-md-3">
+            <label class="col-form-label" for="surgProcedure4" i18n>SP 4</label>
+            <input type="text" [fieldLevelSec]="''" [params]="" readonly id="surgProcedure4" [(ngModel)]="formData.surgProcedure4"
+                name="surgProcedure4" class="form-control" />
+        </div>
+        <div class="col-md-3">
+            <label class="col-form-label" for="surgProcedureDate4" i18n>Date</label>
+            <input type="text" [fieldLevelSec]="''" [params]="" readonly id="surgProcedureDate4" [(ngModel)]="formData.surgProcedureDate4"
+                name="surgProcedureDate4" class="form-control" />
+        </div>
+    
+        <div class="col-md-3">
+            <label class="col-form-label" for="surgProcedure5" i18n>SP 5</label>
+            <input type="text" [fieldLevelSec]="''" [params]="" readonly id="surgProcedure5" [(ngModel)]="formData.surgProcedure5"
+                name="surgProcedure5" class="form-control" />
+        </div>
+        <div class="col-md-3">
+            <label class="col-form-label" for="surgProcedureDate5" i18n>Date</label>
+            <input type="text" [fieldLevelSec]="''" [params]="" readonly id="surgProcedureDate5" [(ngModel)]="formData.surgProcedureDate5"
+                name="surgProcedureDate5" class="form-control" />
+        </div>
+        <div class="col-md-3">
+            <label class="col-form-label" for="surgProcedure6" i18n>SP 6</label>
+            <input type="text" [fieldLevelSec]="''" [params]="" readonly id="surgProcedure6" [(ngModel)]="formData.surgProcedure6"
+                name="surgProcedure6" class="form-control" />
+        </div>
+        <div class="col-md-3">
+            <label class="col-form-label" for="surgProcedureDate6" i18n>Date</label>
+            <input type="text" [fieldLevelSec]="''" [params]="" readonly id="surgProcedureDate6" [(ngModel)]="formData.surgProcedureDate6"
+                name="surgProcedureDate6" class="form-control" />
+        </div>
+    </div>
+    </ng-container>
+ </form>

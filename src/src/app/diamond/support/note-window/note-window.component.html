@@ -1,0 +1,96 @@
+<!-- Copyright (c) 2020 . All Rights Reserved. -->
+<div class="container-fluid">
+    <div class="card-block">
+        <div class="modal-header">
+            <h4 class="modal-title">Note Window</h4>
+            <button type="button" *ngIf="showIcon" class="close" aria-label="Close"
+                    (click)="modalClose()">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <form [formGroup]="noteWindowForm" novalidate>
+            <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+            <app-pop-up-message #popUpMesssage (buttonclickEvent)="popUpButtonHandler($event)"
+                                [popupMessage]="popUpMessage"></app-pop-up-message>
+
+            <div class="row mt-3">
+                <menu-bar [menus]="menu" (onMenuClick)="onMenuItemClick($event)"></menu-bar>
+            </div>
+
+
+            <div class="form-group mt-1 row">
+                <div class="col-md form-control-static mb-0" i18n>
+                    <h4 class="fa-underline"><u>   Windows and their Note Types</u></h4>
+                </div>
+            </div>
+
+            <!-- DataGrid with Name of DataGrid001 -->
+            <ag-grid-angular #agGrid class="ag-theme-fresh mt-1" [gridOptions]="dataGrid001GridOptions"
+                             style="width: 100%; height: 300px;"
+                             (selectionChanged)="onGrid1SelectionChange($event)"
+                             (gridReady)="onGrid1Ready($event)"
+                             [pagination]="true">
+            </ag-grid-angular>
+
+
+            <!-- DataGrid with Name of DataGrid002 -->
+
+            <div class="form-group row">
+                <div class="col-md-12 mt-3 p-0">
+                    <dmnd-dynamic-config-grid
+                            [prevState]="grid2FormState" [isResetForm]="resetInlineGrid2"
+                            (onChangeFields)="onChangeFields($event)"
+                            [title]="''" [showRemoveButton]="false"
+                            [isSaveForm]="isSaveForm"
+                            [config]="grid2Config"
+                            [winId]="noteTypesByWins"
+                            (formSubmitted)="saveGrid2NoteWin($event)"
+                            (onNewRowAdded)="onGrid2NewRowAdded($event)"
+                    ></dmnd-dynamic-config-grid>
+                </div>
+
+            </div>
+
+
+            <div class="form-group row">
+                <div class="col-md form-control-static mb-0" i18n>
+                    <h4 class="fa-underline"><u>    Established Note Link for this window and Note type</u></h4>
+                </div>
+            </div>
+            <!-- DataGrid with Name of DataGrid003 -->
+
+            <ag-grid-angular #agGrid class="ag-theme-fresh" [gridOptions]="dataGrid003GridOptions"
+                             style="width: 100%; height: 300px;"
+                             (rowClicked)="grid3RowSelected($event)"
+                             (selectionChanged)="onGrid3SelectionChange($event)"
+                             (gridReady)="onGrid2Ready($event)"
+                             [pagination]="true"
+            >
+            </ag-grid-angular>
+
+
+            <div class="form-group row">
+                <div class="col-md form-control-static mb-0" i18n>
+                    <h4 class="fa-underline"><u>    Select a link window and context from the above window</u></h4>
+                </div>
+            </div>
+            <!-- DataGrid with Name of DataGrid004 -->
+            <div class="form-group row">
+                <div class="col-md-12 mt-3 p-0">
+                    <dmnd-dynamic-config-grid
+                            [prevState]="grid4FormState" [isResetForm]="resetInlineGrid4"
+                            [title]="''" [showRemoveButton]="false"
+                            [config]="grid4Config"
+                            (formSubmitted)="saveGrid4NoteWinLink($event)"
+                            (onNewRowAdded)="onGrid4NewRowAdded($event)"
+                    ></dmnd-dynamic-config-grid>
+                </div>
+
+            </div>
+
+        </form>
+    </div>
+</div>
+
+<ng-keyboard-shortcuts [shortcuts]="shortcuts"></ng-keyboard-shortcuts>
+<ng-keyboard-shortcuts-help [key]="'f2'" [closeKey]="'escape'" [title]="'Hotkeys Help'"></ng-keyboard-shortcuts-help>

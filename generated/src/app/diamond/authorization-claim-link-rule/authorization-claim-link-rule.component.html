@@ -1,0 +1,281 @@
+<!-- Copyright (c) 2021 . All Rights Reserved. -->
+<div class="container-fluid">
+    <div class="card-block">
+        <form [formGroup]="authorizationClaimLinkRuleForm" novalidate>
+            <h2 class="form-title card-label-admin">Authorization Claim Link Rule</h2>
+            <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+            <app-pop-up-message #popUpMesssage (buttonclickEvent)="popUpButtonHandler($event)"  [(popupMessage)] = "popUpMessage"></app-pop-up-message>
+                        
+                        <!-- DataGrid with Name of DataGrid -->
+                    <button (click)="dataGridGridOptionsExportCsv()">Export</button>
+                    <ag-grid-angular #agGrid class="ag-theme-fresh" [gridOptions]="dataGridGridOptions"
+                    style="width: 100%; height: 300px;"
+                    [enableSorting]="true"
+                    [enableFilter]="true"
+                    [floatingFilter]="true"
+                    [pagination]="true"
+                    [showToolPanel]="true">
+                    </ag-grid-angular>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of Line Of Business -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('lineOfBusiness') }">
+                     <label class="col-form-label" for="lineOfBusiness" i18n>Line Of Business</label>
+                     <input type="text" id="lineOfBusiness"  [fieldLevelSec]="'Line Of Business'" params]="Auth Claim Link Rule"   class="form-control" formControlName="lineOfBusiness"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('lineOfBusiness')">
+                      {{ formValidation.errorMessage('lineOfBusiness') }}
+                     </small>
+                 </div>
+            
+                <!-- DynamicText with Name of DynamicText -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('dynamicText') }">
+                     <label class="col-form-label" for="dynamicText" i18n>&nbsp;</label>
+                     <input type="text"  [fieldLevelSec]="''" params]=""  readonly id="dynamicText" formControlName="dynamicText" class="form-control"/>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of Auth Type -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('authType') }">
+                     <label class="col-form-label" for="authType" i18n>Auth Type</label>
+                     <input type="text" id="authType"  [fieldLevelSec]="'Seq Auth Type'" params]="Auth Claim Link Rule"   class="form-control" formControlName="authType"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('authType')">
+                      {{ formValidation.errorMessage('authType') }}
+                     </small>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <div class="col-md-2 form-control-static mb-0" i18n>
+                    Action
+                </div>
+            
+                <div class="col-md-2 form-control-static mb-0" i18n>
+                    Reason
+                </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <div class="col-md-2 form-control-static mb-0" i18n>
+                    date rules
+                </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of Authorization is Expired -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('authorizationIsExpired') }">
+                     <label class="col-form-label" for="authorizationIsExpired" i18n>Authorization is Expired</label>
+                     <input type="text" id="authorizationIsExpired"  [fieldLevelSec]="'Auth Expired Reason'" params]="Auth Claim Link Rule"   class="form-control" formControlName="authorizationIsExpired"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('authorizationIsExpired')">
+                      {{ formValidation.errorMessage('authorizationIsExpired') }}
+                     </small>
+                 </div>
+            
+                <!-- DynamicText with label of Authorization is Expired reason -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('authorizationIsExpiredReaso') }">
+                     <label class="col-form-label" for="authorizationIsExpiredReaso" i18n>Authorization is Expired reason</label>
+                     <input type="text"  [fieldLevelSec]="'Auth Cost Exceeded Reason'" params]="Auth Claim Link Rule"  readonly id="authorizationIsExpiredReaso" formControlName="authorizationIsExpiredReaso" class="form-control"/>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of Claim Date Outsde Authorization Date -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('claimDateOutsdeAuthorizatio001') }">
+                     <label class="col-form-label" for="claimDateOutsdeAuthorizatio001" i18n>Claim Date Outsde Authorization Date</label>
+                     <input type="text" id="claimDateOutsdeAuthorizatio001"  [fieldLevelSec]="''" params]=""   class="form-control" formControlName="claimDateOutsdeAuthorizatio001"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('claimDateOutsdeAuthorizatio001')">
+                      {{ formValidation.errorMessage('claimDateOutsdeAuthorizatio001') }}
+                     </small>
+                 </div>
+            
+                <!-- DynamicText with label of Claim Date Outsde Authorization Date Reason -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('claimDateOutsdeAuthorizatio002') }">
+                     <label class="col-form-label" for="claimDateOutsdeAuthorizatio002" i18n>Claim Date Outsde Authorization Date Reason</label>
+                     <input type="text"  [fieldLevelSec]="''" params]=""  readonly id="claimDateOutsdeAuthorizatio002" formControlName="claimDateOutsdeAuthorizatio002" class="form-control"/>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <div class="col-md-2 form-control-static mb-0" i18n>
+                    status rules
+                </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of Authorization is Closed -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('authorizationIsClosed') }">
+                     <label class="col-form-label" for="authorizationIsClosed" i18n>Authorization is Closed</label>
+                     <input type="text" id="authorizationIsClosed"  [fieldLevelSec]="'Auth Closed Reason'" params]="Auth Claim Link Rule"   class="form-control" formControlName="authorizationIsClosed"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('authorizationIsClosed')">
+                      {{ formValidation.errorMessage('authorizationIsClosed') }}
+                     </small>
+                 </div>
+            
+                <!-- DynamicText with label of Authorization is Closed Reason -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('authorizationIsClosedReason') }">
+                     <label class="col-form-label" for="authorizationIsClosedReason" i18n>Authorization is Closed Reason</label>
+                     <input type="text"  [fieldLevelSec]="'Auth Quantity Exceeded Reason'" params]="Auth Claim Link Rule"  readonly id="authorizationIsClosedReason" formControlName="authorizationIsClosedReason" class="form-control"/>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of Authorization is New -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('authorizationIsNew') }">
+                     <label class="col-form-label" for="authorizationIsNew" i18n>Authorization is New</label>
+                     <input type="text" id="authorizationIsNew"  [fieldLevelSec]="''" params]=""   class="form-control" formControlName="authorizationIsNew"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('authorizationIsNew')">
+                      {{ formValidation.errorMessage('authorizationIsNew') }}
+                     </small>
+                 </div>
+            
+                <!-- DynamicText with label of Authorization is New Reason -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('authorizationIsNewReason') }">
+                     <label class="col-form-label" for="authorizationIsNewReason" i18n>Authorization is New Reason</label>
+                     <input type="text"  [fieldLevelSec]="'Auth New Reason'" params]="Auth Claim Link Rule"  readonly id="authorizationIsNewReason" formControlName="authorizationIsNewReason" class="form-control"/>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of Authorization is Held -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('authorizationIsHeld') }">
+                     <label class="col-form-label" for="authorizationIsHeld" i18n>Authorization is Held</label>
+                     <input type="text" id="authorizationIsHeld"  [fieldLevelSec]="''" params]=""   class="form-control" formControlName="authorizationIsHeld"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('authorizationIsHeld')">
+                      {{ formValidation.errorMessage('authorizationIsHeld') }}
+                     </small>
+                 </div>
+            
+                <!-- DynamicText with label of Authorization is Held Reason -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('authorizationIsHeldReason') }">
+                     <label class="col-form-label" for="authorizationIsHeldReason" i18n>Authorization is Held Reason</label>
+                     <input type="text"  [fieldLevelSec]="'Auth Held Reason'" params]="Auth Claim Link Rule"  readonly id="authorizationIsHeldReason" formControlName="authorizationIsHeldReason" class="form-control"/>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of Authorization is Denied -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('authorizationIsDenied') }">
+                     <label class="col-form-label" for="authorizationIsDenied" i18n>Authorization is Denied</label>
+                     <input type="text" id="authorizationIsDenied"  [fieldLevelSec]="'Auth Denied Reason'" params]="Auth Claim Link Rule"   class="form-control" formControlName="authorizationIsDenied"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('authorizationIsDenied')">
+                      {{ formValidation.errorMessage('authorizationIsDenied') }}
+                     </small>
+                 </div>
+            
+                <!-- DynamicText with label of Authorization is Denied Reason -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('authorizationIsDeniedReason') }">
+                     <label class="col-form-label" for="authorizationIsDeniedReason" i18n>Authorization is Denied Reason</label>
+                     <input type="text"  [fieldLevelSec]="'Auth Date Reason'" params]="Auth Claim Link Rule"  readonly id="authorizationIsDeniedReason" formControlName="authorizationIsDeniedReason" class="form-control"/>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <div class="col-md-2 form-control-static mb-0" i18n>
+                    condition rules
+                </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of Authorization Visits/Days Exceeded -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('authorizationVisitsdaysExce001') }">
+                     <label class="col-form-label" for="authorizationVisitsdaysExce001" i18n>Authorization Visits/Days Exceeded</label>
+                     <input type="text" id="authorizationVisitsdaysExce001"  [fieldLevelSec]="''" params]=""   class="form-control" formControlName="authorizationVisitsdaysExce001"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('authorizationVisitsdaysExce001')">
+                      {{ formValidation.errorMessage('authorizationVisitsdaysExce001') }}
+                     </small>
+                 </div>
+            
+                <!-- DynamicText with label of Authorization Visits/Days Exceeded Reason -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('authorizationVisitsdaysExce002') }">
+                     <label class="col-form-label" for="authorizationVisitsdaysExce002" i18n>Authorization Visits/Days Exceeded Reason</label>
+                     <input type="text"  [fieldLevelSec]="''" params]=""  readonly id="authorizationVisitsdaysExce002" formControlName="authorizationVisitsdaysExce002" class="form-control"/>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of Authorization Cost Exceeded -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('authorizationCostExceeded') }">
+                     <label class="col-form-label" for="authorizationCostExceeded" i18n>Authorization Cost Exceeded</label>
+                     <input type="text" id="authorizationCostExceeded"  [fieldLevelSec]="'Auth Cost Exceeded Status'" params]="Auth Claim Link Rule"   class="form-control" formControlName="authorizationCostExceeded"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('authorizationCostExceeded')">
+                      {{ formValidation.errorMessage('authorizationCostExceeded') }}
+                     </small>
+                 </div>
+            
+                <!-- DynamicText with label of Authorization Cost Exceeded Reason -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('authorizationCostExceededRe') }">
+                     <label class="col-form-label" for="authorizationCostExceededRe" i18n>Authorization Cost Exceeded Reason</label>
+                     <input type="text"  [fieldLevelSec]="'Auth Quantity Exceeded Status'" params]="Auth Claim Link Rule"  readonly id="authorizationCostExceededRe" formControlName="authorizationCostExceededRe" class="form-control"/>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of Authorization 2nd Opinion Exceeded Required -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('authorization2NdOpinionExce001') }">
+                     <label class="col-form-label" for="authorization2NdOpinionExce001" i18n>Authorization 2nd Opinion Exceeded Required</label>
+                     <input type="text" id="authorization2NdOpinionExce001"  [fieldLevelSec]="''" params]=""   class="form-control" formControlName="authorization2NdOpinionExce001"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('authorization2NdOpinionExce001')">
+                      {{ formValidation.errorMessage('authorization2NdOpinionExce001') }}
+                     </small>
+                 </div>
+            
+                <!-- DynamicText with label of Authorization 2nd Opinion Exceeded Required Reason -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('authorization2NdOpinionExce002') }">
+                     <label class="col-form-label" for="authorization2NdOpinionExce002" i18n>Authorization 2nd Opinion Exceeded Required Reason</label>
+                     <input type="text"  [fieldLevelSec]="''" params]=""  readonly id="authorization2NdOpinionExce002" formControlName="authorization2NdOpinionExce002" class="form-control"/>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of Group or Plan on Claim Does not Match Auth -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('groupOrPlanOnClaimDoesNo001') }">
+                     <label class="col-form-label" for="groupOrPlanOnClaimDoesNo001" i18n>Group or Plan on Claim Does not Match Auth</label>
+                     <input type="text" id="groupOrPlanOnClaimDoesNo001"  [fieldLevelSec]="''" params]=""   class="form-control" formControlName="groupOrPlanOnClaimDoesNo001"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('groupOrPlanOnClaimDoesNo001')">
+                      {{ formValidation.errorMessage('groupOrPlanOnClaimDoesNo001') }}
+                     </small>
+                 </div>
+            
+                <!-- DynamicText with label of Group or Plan on Claim Does not Match Auth Reason -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('groupOrPlanOnClaimDoesNo002') }">
+                     <label class="col-form-label" for="groupOrPlanOnClaimDoesNo002" i18n>Group or Plan on Claim Does not Match Auth Reason</label>
+                     <input type="text"  [fieldLevelSec]="''" params]=""  readonly id="groupOrPlanOnClaimDoesNo002" formControlName="groupOrPlanOnClaimDoesNo002" class="form-control"/>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+            </div>
+        </form>
+    </div>
+</div>

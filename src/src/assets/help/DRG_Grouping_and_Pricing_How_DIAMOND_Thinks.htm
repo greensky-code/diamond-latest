@@ -1,0 +1,292 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+    <title>DRG Grouping and Pricing, How DIAMOND Thinks</title>
+    <!--(Meta)==========================================================-->
+    <meta name="copyright"
+          value="© Copyright 2002 Health Systems Design Corp., a wholly owned subsidiary of Perot Systems Corporation. All rights reserved"/>
+    <meta content="About.htt" name="template"/>
+    <meta content="RoboHELP by eHelp Corporation - www.ehelp.com" name="generator"/>
+    <meta content="0.1" name="generator-major-version"/>
+    <meta content="1" name="generator-minor-version"/>
+    <meta content="kadov" name="filetype"/>
+    <meta content="1" name="filetype-version"/>
+    <meta content="1" name="page-count"/>
+    <meta content="2032" name="layout-height"/>
+    <meta content="536" name="layout-width"/>
+    <meta content="EASYGroupÔ;EPI" name="x-ignored-words"/>
+    <!--(Links)=========================================================-->
+    <!--(Scripts)=======================================================-->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+</head>
+<body>
+
+<div class="calibreMeta">
+    <div class="calibreMetaTitle">
+
+
+        <h1>
+            <a href="../9r5qt-dn4su.html">DIAMOND 950 Help
+            </a>
+        </h1>
+
+
+    </div>
+    <div class="calibreMetaAuthor">
+        Unknown
+
+    </div>
+</div>
+
+<div class="calibreMain">
+
+    <div class="calibreEbookContent">
+
+        <div class="calibreEbNavTop">
+
+            <a href="View_DRG_Grouper_or_Pricer_errors_for_an_institutional_claim.htm" class="calibreAPrev">previous
+                page
+            </a>
+
+
+            <a href="Manually_Pricing_a_Claim_Detail_Line.htm" class="calibreANext">next page
+            </a>
+
+        </div>
+
+
+        <h1 class="calibre1">DRG Grouping and Pricing, How DIAMOND Thinks</h1>
+
+        <p class="text">You can have DIAMOND perform Diagnosis-Related Groups (DRGs)
+            grouping and pricing in four ways:</p>
+
+        <ul class="">
+
+            <li class="kadov-p-cbullet"><p class="bullet">Accept the submitted DRG
+                code or enter a DRG code on the claim, and have DIAMOND perform DRG whole
+                claim pricing</p></li>
+
+            <li class="kadov-p-cbullet"><p class="bullet">Accept the submitted DRG
+                code or enter a DRG code on the claim, and use an external pricer to calculate
+                the price for DRG whole claim pricing</p></li>
+
+            <li class="kadov-p-cbullet"><p class="bullet">Use an external grouper to
+                determine the DRG code and have DIAMOND perform DRG whole claim pricing</p></li>
+
+            <li class="kadov-p-cbullet"><p class="bullet">Use an external grouper to
+                determine the DRG code and an external pricer to calculate the price for
+                DRG whole claim pricing</p></li>
+        </ul>
+
+        <p class="text">For more information on DIAMOND whole claim pricing using
+            DRGs, see <a href="Pricing_DRGs_Without_an_External_Pricer.htm">Pricing
+                DRGs Without an External Pricer</a>. </p>
+
+        <p class="text">For external grouping and pricing, DIAMOND uses the HSS EASYGroup<span
+                class="calibre41">Ô</span> 2000 Optimizer. The HSS Optimizer provides DIAMOND
+            with access to the HSS-supported HCFA Diagnosis-Related Groups (DRG) Grouper
+            and Pricer for online, batch, and API institutional claims processing.
+            The HSS Optimizer determines which version of the HCFA Grouper to use
+            based the claim primary date of service. The Optimizer also interfaces
+            with the single HSS-supported DRG Pricer.</p>
+
+        <p class="text">In order to run the HSS Optimizer, you must copy the HSS
+            Optimizer, Grouper, and Pricer executables to the Daemon directory. For
+            more information, see <a href="Interface/Setting_Up_the_HSS_Optimizer_TASK.htm">Setting
+                Up the HSS Optimizer</a>.</p>
+
+        <p class="text">For more information on DRG grouping using the external grouper,
+            see <a href="Grouping_DRGs_with_an_External_Grouper.htm">Grouping DRGs
+                with an External Grouper</a></p>
+
+        <p class="text">For more information on DRG pricing using the external pricer,
+            see <a href="Pricing_DRGs_With_an_External_Pricer.htm">Pricing DRGs With
+                an External Pricer</a>.</p>
+
+        <h3 class="calibre50">Calculating the Claim Price (Allowed Amount) Using an External DRG
+            Pricer</h3>
+
+        <p class="text">The data returned by the external HSS DRG Pricer includes:</p>
+
+        <ul class="">
+
+            <li class="kadov-p-cbullet"><p class="bullet">Base Reimbursement Amount</p></li>
+
+            <li class="kadov-p-cbullet"><p class="bullet">Outlier Payments</p></li>
+
+            <li class="kadov-p-cbullet"><p class="bullet">Alternate Level Care Days
+                Payments</p></li>
+
+            <li class="kadov-p-cbullet"><p class="bullet">Total Reimbursement (Base
+                Reimbursement Amount + Outlier Payments + Alternate Level Care Days Payments)</p></li>
+
+            <li class="kadov-p-cbullet"><p class="bullet">Outlier Type</p></li>
+
+            <li class="kadov-p-cbullet"><p class="bullet">Average Length of Stay</p></li>
+
+            <li class="kadov-p-cbullet"><p class="bullet">Trauma Indicator</p></li>
+
+            <li class="kadov-p-cbullet"><p class="bullet">Congenital Malformation Indicator</p></li>
+
+            <li class="kadov-p-cbullet"><p class="bullet">Short LOS Outlier Trim</p></li>
+
+            <li class="kadov-p-cbullet"><p class="bullet">Long LOS Outlier Trim</p></li>
+
+            <li class="kadov-p-cbullet"><p class="bullet">Additional Mean LOS</p></li>
+
+            <li class="kadov-p-cbullet"><p class="bullet">DRG Weight</p></li>
+
+            <li class="kadov-p-cbullet"><p class="bullet">Cost Reduction Factor</p></li>
+
+            <li class="kadov-p-cbullet"><p class="bullet">Low Per Diem</p></li>
+
+            <li class="kadov-p-cbullet"><p class="bullet">Transfer Indicator</p></li>
+
+            <li class="kadov-p-cbullet"><p class="bullet">Payment Method Indicator</p></li>
+        </ul>
+
+        <p class="text">You can view these fields using INCLM Special menu command
+            View DRG Pricer Fields.</p>
+
+        <p class="text">When you perform DRG whole claim pricing, DIAMOND inserts
+            the Total Reimbursement as the Allowed Amount on the system generated
+            claim detail line.</p>
+
+        <h3 class="calibre50">HSS Optimizer Interface</h3>
+
+        <p class="text">A DIAMOND bidirectional interface operating in the background
+            accesses the HSS Optimizer. The interface does the following:</p>
+
+        <ul class="">
+
+            <li class="kadov-p-cbullet"><p class="bullet">Writes inpatient claims data
+                files for patient records to be used by the Optimizer</p></li>
+
+            <li class="kadov-p-cbullet"><p class="bullet">Defines whether to group
+                and/or price each record</p></li>
+
+            <li class="kadov-p-cbullet"><p class="bullet">Reads data returned by the
+                Optimizer</p></li>
+
+            <li class="kadov-p-cbullet"><p class="bullet">Updates corresponding fields
+                in DIAMOND</p></li>
+        </ul>
+
+        <p class="text">DIAMOND communicates with external software using the External
+            Process Interface (EPI) Daemon. For more information, see <a
+                    href="System/The_Daemon_and_EPI_Utilities_Overview_PROC_OVW.htm">The
+                Daemon and EPI Utilities – Overview</a>.</p>
+
+        <h3 class="calibre50">When Diagnosis Codes Are Longer Than Grouper and Pricer Accept</h3>
+
+        <p class="text">DIAMOND diagnosis code fields allow you to enter longer values
+            than are permitted by the HSS Grouper and Pricer. When DIAMOND passes
+            a longer diagnosis code than is permitted to one of these third party
+            tools, the tool truncates the value to the permitted length and returns
+            an invalid diagnosis code error.</p>
+
+        <p class="doc-level">Passing Newborn Age and Weight to the HSS Optimizer</p>
+
+        <p class="text">The DIAMOND application passes the following newborn age
+            and weight data to the HSS Optimizer:</p>
+
+        <ul class="">
+
+            <li class="kadov-p-cbullet"><p class="bullet">Newborn Admit Age (in days)</p></li>
+
+            <li class="kadov-p-cbullet"><p class="bullet">Newborn Discharge Age (in
+                days)</p></li>
+
+            <li class="kadov-p-cbullet"><p class="bullet">Newborn Weight (in grams)</p></li>
+        </ul>
+
+        <p class="text">These fields are included on the INCLM menu command UB92
+            Information.</p>
+
+        <p class="text">The DIAMOND application passes these fields according to
+            the following rules:</p>
+
+        <ul class="">
+
+            <li class="kadov-p-cbullet"><p class="bullet">Newborn Admit Age</p></li>
+        </ul>
+
+        <p class="bulletcont">If you enter a valid age (in days), DIAMOND logic passes
+            the age entered.</p>
+
+        <p class="bulletcont">If you do not enter a valid age, DIAMOND logic determines
+            what to pass based on the member age. First, DIAMOND logic retrieves the
+            DOB from the member master record of the member entered on the claim header.
+            The member age is then calculated from the member's DOB to the institutional
+            claim header Admit Date. If the member age is less than one year old,
+            the Newborn Admit Age is calculated and passed. <!--kadov_tag{{<spaces>}}--> <!--kadov_tag{{</spaces>}}-->
+            Newborn
+            Admit Age is calculated as the number of days from the member's DOB to
+            the institutional claim header Admit Date. If the member age is greater
+            than or equal to one year, DIAMOND logic passes all 9's.</p>
+
+        <ul class="">
+
+            <li class="kadov-p-cbullet"><p class="bullet">Newborn Discharge Age</p></li>
+        </ul>
+
+        <p class="bulletcont">If you enter a valid age (in days), DIAMOND logic passes
+            the age entered.</p>
+
+        <p class="bulletcont">If you do not enter a valid age, DIAMOND logic determines
+            what to pass based on the member age. First, DIAMOND logic retrieves the
+            DOB from the member master record of the member entered on the claim header.
+            The member age is then calculated from the member's DOB to the institutional
+            claim header Admit Date. If the member age is less than one year old,
+            the Newborn Discharge Age is calculated and passed. <!--kadov_tag{{<spaces>}}--> 
+            <!--kadov_tag{{</spaces>}}--> Newborn
+            Discharge Age is calculated as the number of days from the member's DOB
+            to the institutional claim header Discharge Date. If the member age is
+            greater than or equal to one year, DIAMOND logic passes all 9's.</p>
+
+        <ul class="">
+
+            <li class="kadov-p-cbullet"><p class="bullet">Newborn Weight</p></li>
+        </ul>
+
+        <p class="bulletcont">If you enter a valid weight (in grams), DIAMOND logic
+            passes the weight entered.</p>
+
+        <p class="bulletcont">If you do not enter a valid weight, DIAMOND logic passes
+            all 9's.</p>
+
+        <h3 class="calibre50">Excluding Outpatient Bill Types from DRG Grouping</h3>
+
+        <p class="text">DRG grouping. During processing, DIAMOND uses the APCBILLTYPES
+            system parameter to determine which bill types are excluded. To define
+            these exclusions, enter all outpatient bill types you want to exclude
+            in Parameters 2 and 3 of the APCBILLTYPE. Separate multiple bill types
+            with a semicolon (;). Typically, bill types 130 through 139 are outpatient
+            bill types.</p>
+
+
+    </div>
+
+
+
+    <div class="calibreEbNav">
+
+        <a href="View_DRG_Grouper_or_Pricer_errors_for_an_institutional_claim.htm" class="calibreAPrev">previous page
+        </a>
+
+
+        <a href="../9r5qt-dn4su.html" class="calibreAHome">start
+        </a>
+
+
+        <a href="Manually_Pricing_a_Claim_Detail_Line.htm" class="calibreANext">next page
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+</html>

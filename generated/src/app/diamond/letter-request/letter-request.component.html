@@ -1,0 +1,65 @@
+<!-- Copyright (c) 2020 . All Rights Reserved. -->
+<div class="container-fluid">
+    <div class="card-block">
+        <form [formGroup]="letterRequestForm" novalidate>
+            <h2 class="form-title card-label-admin">Letter Request</h2>
+            <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+            <app-pop-up-message #popUpMesssage (buttonclickEvent)="popUpButtonHandler($event)"  [(popupMessage)] = "popUpMessage"></app-pop-up-message>
+                        
+                        <!-- DataGrid with Name of DataGrid -->
+                    <button (click)="dataGridGridOptionsExportCsv()">Export</button>
+                    <ag-grid-angular #agGrid class="ag-theme-fresh" [gridOptions]="dataGridGridOptions"
+                    style="width: 100%; height: 300px;"
+                    [enableSorting]="true"
+                    [enableFilter]="true"
+                    [floatingFilter]="true"
+                    [pagination]="true"
+                    [showToolPanel]="true">
+                    </ag-grid-angular>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+                <!-- Button with label of Select -->
+                <div class="col-md-2">
+                    <button type="button" id="select" name="select" class="btn btn-small btn-primary">Select</button>
+                
+                
+                </div>
+            
+                <!-- Button with label of Add. Data -->
+                <div class="col-md-2">
+                    <button type="button" id="addData" name="addData" class="btn btn-small btn-primary">Add. Data</button>
+                
+                
+                </div>
+            
+                <!-- Button with label of View -->
+                <div class="col-md-2">
+                    <button type="button" id="view" name="view" class="btn btn-small btn-primary">View</button>
+                
+                
+                </div>
+            
+                <!-- Button with label of Send -->
+                <div class="col-md-2">
+                    <button type="button" id="send" name="send" class="btn btn-small btn-primary">Send</button>
+                
+                
+                </div>
+            
+                <!-- Button with label of Close -->
+                <div class="col-md-2">
+                    <button type="button" id="close" name="close" class="btn btn-small btn-primary">Close</button>
+                
+                
+                </div>
+            
+            </div>
+            
+            <div class="form-group row">
+            </div>
+        </form>
+    </div>
+</div>

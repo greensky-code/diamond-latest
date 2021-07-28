@@ -1,0 +1,59 @@
+<ul ngbNav #nav="ngbNav">
+
+    <ng-container *ngFor="let menu of menus">
+        <div class="menu" *ngIf="menu.dropdownItems?.length > 0; else menuItemTemplate">
+            <div ngbDropdown class="d-inline-block" (openChange)="toggleMenuClicked($event)">
+                <a id="{{'fileDropdown'+menu.menuItem }}" ngbDropdownToggle>{{menu.menuItem}}
+                </a>
+                <div ngbDropdownMenu aria-labelledby="fileDropdown" class="diamond-dropdown-icon">
+                    <ng-container *ngFor="let dropDown of menu.dropdownItems; let i = index">
+                        <hr class="hline" *ngIf="dropDown.isHorizontal"/>
+
+                        <button [disabled]="dropDown.disabled" ngbDropdownItem
+                                *ngIf="!dropDown.isHorizontal && (dropDown.dropdownItems == null || dropDown.dropdownItems.length == 0)"
+                                (click)="menuItemClicked($event, menu,dropDown.name)"
+                        >
+                            {{dropDown.name}}  {{dropDown.shortcutKey ? '   (' + dropDown.shortcutKey + ')' : ''}}
+
+                        </button>
+                        <div *ngIf="!dropDown.isHorizontal && (dropDown.dropdownItems && dropDown.dropdownItems.length > 0)" #fileDropdown1 = "ngbDropdown" ngbDropdown
+                             (mouseover)="$event.stopPropagation(); fileDropdown1.open();"
+                             (mouseout)="$event.stopPropagation(); fileDropdown1.close();"
+                              class="d-inline-block">
+                            <a id="fileDropdown1" ngbDropdownToggle>{{dropDown.name}}
+                                {{dropDown.shortcutKey ? '   (' + dropDown.shortcutKey + ')' : ''}}
+                            </a>
+                            <div ngbDropdownMenu aria-labelledby="fileDropdown1" class="diamond-dropdown-icon dropdown-custom" >
+                                <ng-container *ngFor="let dd of dropDown.dropdownItems; let i = index">
+
+                                    <hr class="hline" *ngIf="dd.isHorizontal"/>
+
+                                    <button [disabled]="dd.disabled" ngbDropdownItem
+                                            *ngIf="!dd.isHorizontal" (click)="menuItemClicked($event, dropDown,dd.name)">  {{dd.name}}
+
+                                        {{dd.shortcutKey ? '   (' + dd.shortcutKey + ')' : ''}}
+
+                                    </button>
+                                </ng-container>
+                            </div>
+                        </div>
+
+                    </ng-container>
+                </div>
+            </div>
+        </div>
+
+        <ng-template #menuItemTemplate>
+            <div class="menu">
+                <div class="d-inline-block">
+                    <a id="fileDropdow2n" (click)="menuItemClicked($event, menu)">{{ menu.menuItem }}
+                    </a>
+                </div>
+            </div>
+        </ng-template>
+
+
+    </ng-container>
+
+</ul>
+

@@ -1,0 +1,347 @@
+<!-- Copyright (c) 2020 . All Rights Reserved. -->
+<div class="container-fluid">
+    <div class="card-block">
+        <div class="row form-title">
+            <h2 class="col-md-6  card-label-admin">Note Type</h2>
+        </div>
+        <button type="button" *ngIf="showIcon" class="close" aria-label="Close"
+                (click)="modalClose()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <form [formGroup]="noteTypeForm" novalidate>
+            <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+            <app-pop-up-message #popUpMesssage (buttonclickEvent)="popUpButtonHandler($event)"
+                                [popupMessage]="popUpMessage"></app-pop-up-message>
+
+            <div class="row mt-3 mb-3">
+                <menu-bar [menus]="menu" (onMenuClick)="onMenuItemClick($event)"></menu-bar>
+            </div>
+
+            <!-- DataGrid with Name of DataGrid -->
+            <ag-grid-angular #agGrid class="ag-theme-fresh" [gridOptions]="dataGridGridOptions"
+                style="width: 100%; height: 300px;"
+                [enableSorting]="true"
+                [enableFilter]="true"
+                [floatingFilter]="true"
+                [pagination]="true"
+                [showToolPanel]="true"
+                [rowSelection]="'single'"
+                [rowData]="noteTypes"
+                (rowClicked)="onNoteTypeSelected($event)">
+            </ag-grid-angular>
+
+            <br />
+            <br />
+            <div class="form-group row mt-1">
+                <!-- Textbox with label of Note Type -->
+                <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('noteType') }">
+                    <label class="col-form-label required-field-label" for="noteType" i18n>Note Type</label>
+                    <input type="text" id="noteType" name="noteType" [readonly]="isReadOnly"  class="form-control" formControlName="noteType"/>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('noteType')">
+                        {{ formValidation.errorMessage('noteType') }}
+                    </small>
+                </div>
+
+                <!-- Textbox with label of Priority -->
+                <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('priority') }">
+                    <label class="col-form-label required-field-label" for="priority" i18n>Priority</label>
+                    <input type="text" id="priority" class="form-control" formControlName="priority"/>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('priority')">
+                        {{ formValidation.errorMessage('priority') }}
+                    </small>
+                </div>
+
+            </div>
+
+            <div class="form-group row">
+                <!-- Textbox with label of Description -->
+                <div class="col-md-12" [ngClass]="{'has-danger': formValidation.isValidField('description') }">
+                    <label class="col-form-label required-field-label" for="description" i18n>Description</label>
+                    <input type="text" id="description"  class="form-control" formControlName="description"/>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('description')">
+                        {{ formValidation.errorMessage('description') }}
+                    </small>
+                </div>
+            </div>
+
+            <br />
+
+            <div class="form-group row">
+                <div class="col-md-6 row">
+                    <div class="col-sm-8"></div>
+                    <div class="col-sm-4 text-center">
+                        <b>Required</b>
+                    </div>
+                </div>
+                <div class="col-md-6 row">
+                    <div class="col-sm-8"></div>
+                    <div class="col-sm-4 text-center">
+                        <b>Required</b>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <!-- Textbox with label of User Label 1 -->
+                <div class="col-md-6 row">
+                    <div class="col-sm-8" [ngClass]="{'has-danger': formValidation.isValidField('userDefined1') }">
+                        <label class="col-form-label" for="userDefined1" i18n>User Label 1</label>
+                        <input type="text" id="userDefined1"  class="form-control" formControlName="userDefined1"/>
+                        <small class="text-danger" *ngIf="formValidation.isValidField('userDefined1')">
+                            {{ formValidation.errorMessage('userDefined1') }}
+                        </small>
+                    </div>
+
+                    <!-- Checkbox with Name of userDefined1Req -->
+                    <div class="col-sm-4 mt-4 pt-3" [ngClass]="{'has-error': displayMessage.userDefined1Req }" style="padding-top: 6px;">
+                        <div class="checkbox col-md-12 text-center">
+                            <input id="userDefined1Req" value="userDefined1Req" formControlName="userDefined1Req" type="checkbox"
+                                   (change)="checkboxFieldChange($event, 'userDefined1Req')">
+                            <label class="checkbox">
+
+                            </label>
+                        </div>
+                        <span class="help-block" *ngIf="displayMessage.userDefined1Req">
+                        {{ displayMessage.userDefined1Req  }}
+                     </span>
+                    </div>
+                </div>
+
+                <!-- Textbox with label of User Date 1 -->
+                <div class="col-md-6 row">
+                    <div class="col-sm-8" [ngClass]="{'has-danger': formValidation.isValidField('userDate1') }">
+                        <label class="col-form-label" for="userDate1" i18n>User Date 1</label>
+                        <input type="text" id="userDate1"  class="form-control" formControlName="userDate1"/>
+                        <small class="text-danger" *ngIf="formValidation.isValidField('userDate1')">
+                            {{ formValidation.errorMessage('userDate1') }}
+                        </small>
+                    </div>
+
+                    <!-- Checkbox with Name of userDate1Req -->
+                    <div class="col-sm-4 mt-4 pt-3" [ngClass]="{'has-error': displayMessage.userDate1Req }" style="padding-top: 6px;">
+                        <div class="checkbox col-md-12 text-center">
+                            <input id="userDate1Req" value="userDate1Req" formControlName="userDate1Req" type="checkbox"
+                                   (change)="checkboxFieldChange($event, 'userDate1Req')">
+                            <label class="checkbox">
+
+                            </label>
+                        </div>
+                        <span class="help-block" *ngIf="displayMessage.userDate1Req">
+                        {{ displayMessage.userDate1Req  }}
+                     </span>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="form-group row">
+                <div class="col-md-6 row">
+                    <div class="col-sm-8" [ngClass]="{'has-danger': formValidation.isValidField('userDefined2') }">
+                        <label class="col-form-label" for="userDefined2" i18n>User Label 2</label>
+                        <input type="text" id="userDefined2"  class="form-control" formControlName="userDefined2"/>
+                        <small class="text-danger" *ngIf="formValidation.isValidField('userDefined2')">
+                            {{ formValidation.errorMessage('userDefined2') }}
+                        </small>
+                    </div>
+
+                    <!-- Checkbox with Name of userDefined2Req -->
+                    <div class="col-sm-4 mt-4 pt-3" [ngClass]="{'has-error': displayMessage.userDefined2Req }" style="padding-top: 6px;">
+                        <div class="checkbox col-md-12 text-center">
+                            <input id="userDefined2Req" value="userDefined2Req" formControlName="userDefined2Req" type="checkbox"
+                                   (change)="checkboxFieldChange($event, 'userDefined2Req')">
+                            <label class="checkbox">
+
+                            </label>
+                        </div>
+                        <span class="help-block" *ngIf="displayMessage.userDefined2Req">
+                        {{ displayMessage.userDefined2Req  }}
+                     </span>
+                    </div>
+                </div>
+
+                <!-- Textbox with label of User Date 2 -->
+                <div class="col-md-6 row">
+                    <div class="col-sm-8" [ngClass]="{'has-danger': formValidation.isValidField('userDate2') }">
+                        <label class="col-form-label" for="userDate2" i18n>User Date 2</label>
+                        <input type="text" id="userDate2"  class="form-control" formControlName="userDate2"/>
+                        <small class="text-danger" *ngIf="formValidation.isValidField('userDate2')">
+                            {{ formValidation.errorMessage('userDate2') }}
+                        </small>
+                    </div>
+
+                    <!-- Checkbox with Name of userDate2Req -->
+                    <div class="col-sm-4 mt-4 pt-3" [ngClass]="{'has-error': displayMessage.userDate2Req }" style="padding-top: 6px;">
+                        <div class="checkbox col-md-12 text-center">
+                            <input id="userDate2Req" value="userDate2Req" formControlName="userDate2Req" type="checkbox"
+                                   (change)="checkboxFieldChange($event, 'userDate2Req')">
+                            <label class="checkbox">
+
+                            </label>
+                        </div>
+                        <span class="help-block" *ngIf="displayMessage.userDate2Req">
+                        {{ displayMessage.userDate2Req  }}
+                     </span>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="form-group row">
+                <div class="col-md-6 row">
+                    <div class="col-sm-8" [ngClass]="{'has-danger': formValidation.isValidField('userDefined3') }">
+                        <label class="col-form-label" for="userDefined3" i18n>User Label 3</label>
+                        <input type="text" id="userDefined3"  class="form-control" formControlName="userDefined3"/>
+                        <small class="text-danger" *ngIf="formValidation.isValidField('userDefined3')">
+                            {{ formValidation.errorMessage('userDefined3') }}
+                        </small>
+                    </div>
+
+                    <!-- Checkbox with Name of userDefined3Req -->
+                    <div class="col-sm-4 mt-4 pt-3" [ngClass]="{'has-error': displayMessage.userDefined3Req }" style="padding-top: 6px;">
+                        <div class="checkbox col-md-12 text-center">
+                            <input id="userDefined3Req" value="userDefined3Req" formControlName="userDefined3Req" type="checkbox"
+                                   (change)="checkboxFieldChange($event, 'userDefined3Req')">
+                            <label class="checkbox">
+
+                            </label>
+                        </div>
+                        <span class="help-block" *ngIf="displayMessage.userDefined3Req">
+                        {{ displayMessage.userDefined3Req  }}
+                     </span>
+                    </div>
+                </div>
+
+                <!-- Textbox with label of User Date 3 -->
+                <div class="col-md-6 row">
+                    <div class="col-sm-8" [ngClass]="{'has-danger': formValidation.isValidField('userDate3') }">
+                        <label class="col-form-label" for="userDate3" i18n>User Date 3</label>
+                        <input type="text" id="userDate3"  class="form-control" formControlName="userDate3"/>
+                        <small class="text-danger" *ngIf="formValidation.isValidField('userDate3')">
+                            {{ formValidation.errorMessage('userDate3') }}
+                        </small>
+                    </div>
+
+                    <!-- Checkbox with Name of userDate3Req -->
+                    <div class="col-sm-4 mt-4 pt-3" [ngClass]="{'has-error': displayMessage.userDate3Req }" style="padding-top: 6px;">
+                        <div class="checkbox col-md-12 text-center">
+                            <input id="userDate3Req" value="userDate3Req" formControlName="userDate3Req" type="checkbox"
+                                   (change)="checkboxFieldChange($event, 'userDate3Req')">
+                            <label class="checkbox">
+
+                            </label>
+                        </div>
+                        <span class="help-block" *ngIf="displayMessage.userDate3Req">
+                        {{ displayMessage.userDate3Req  }}
+                     </span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-md-6 row">
+                    <div class="col-sm-8" [ngClass]="{'has-danger': formValidation.isValidField('userDefined4') }">
+                        <label class="col-form-label" for="userDefined4" i18n>User Label 4</label>
+                        <input type="text" id="userDefined4"  class="form-control" formControlName="userDefined4"/>
+                        <small class="text-danger" *ngIf="formValidation.isValidField('userDefined4')">
+                            {{ formValidation.errorMessage('userDefined4') }}
+                        </small>
+                    </div>
+
+                    <!-- Checkbox with Name of userDefined7Req -->
+                    <div class="col-sm-4 mt-4 pt-3" [ngClass]="{'has-error': displayMessage.userDefined4Req }" style="padding-top: 6px;">
+                        <div class="checkbox col-md-12 text-center">
+                            <input id="userDefined4Req" value="userDefined4Req" formControlName="userDefined4Req" type="checkbox"
+                                   (change)="checkboxFieldChange($event, 'userDefined4Req')">
+                            <label class="checkbox">
+
+                            </label>
+                        </div>
+                        <span class="help-block" *ngIf="displayMessage.userDefined4Req">
+                        {{ displayMessage.userDefined4Req  }}
+                     </span>
+                    </div>
+                </div>
+
+                <!-- Textbox with label of User Date 4 -->
+                <div class="col-md-6 row">
+                    <div class="col-sm-8" [ngClass]="{'has-danger': formValidation.isValidField('userDate4') }">
+                        <label class="col-form-label" for="userDate4" i18n>User Date 4</label>
+                        <input type="text" id="userDate4"  class="form-control" formControlName="userDate4"/>
+                        <small class="text-danger" *ngIf="formValidation.isValidField('userDate4')">
+                            {{ formValidation.errorMessage('userDate4') }}
+                        </small>
+                    </div>
+
+                    <!-- Checkbox with Name of userDate4Req -->
+                    <div class="col-sm-4 mt-4 pt-3" [ngClass]="{'has-error': displayMessage.userDate4Req }" style="padding-top: 6px;">
+                        <div class="checkbox col-md-12 text-center">
+                            <input id="userDate4Req" value="userDate4Req" formControlName="userDate4Req" type="checkbox"
+                                   (change)="checkboxFieldChange($event, 'userDate4Req')">
+                            <label class="checkbox">
+
+                            </label>
+                        </div>
+                        <span class="help-block" *ngIf="displayMessage.userDate4Req">
+                        {{ displayMessage.userDate4Req  }}
+                     </span>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="form-group row">
+                <div class="col-md-6 row">
+                    <div class="col-sm-8" [ngClass]="{'has-danger': formValidation.isValidField('userDefined5') }">
+                        <label class="col-form-label" for="userDefined5" i18n>User Label 5</label>
+                        <input type="text" id="userDefined5"  class="form-control" formControlName="userDefined5"/>
+                        <small class="text-danger" *ngIf="formValidation.isValidField('userDefined5')">
+                            {{ formValidation.errorMessage('userDefined5') }}
+                        </small>
+                    </div>
+
+                    <!-- Checkbox with Name of userDefined5Req -->
+                    <div class="col-sm-4 mt-4 pt-3" [ngClass]="{'has-error': displayMessage.userDefined5Req }" style="padding-top: 6px;">
+                        <div class="checkbox col-md-12 text-center">
+                            <input id="userDefined5Req" value="userDefined5Req" formControlName="userDefined5Req" type="checkbox"
+                                   (change)="checkboxFieldChange($event, 'userDefined5Req')">
+                            <label class="checkbox">
+
+                            </label>
+                        </div>
+                        <span class="help-block" *ngIf="displayMessage.userDefined5Req">
+                        {{ displayMessage.userDefined5Req  }}
+                     </span>
+                    </div>
+                </div>
+                <div class="col-md-6 row">
+                    <!-- Textbox with label of User Date 5 -->
+                    <div class="col-sm-8" [ngClass]="{'has-danger': formValidation.isValidField('userDate5') }">
+                        <label class="col-form-label" for="userDate5" i18n>User Date 5</label>
+                        <input type="text" id="userDate5"  class="form-control" formControlName="userDate5"/>
+                        <small class="text-danger" *ngIf="formValidation.isValidField('userDate5')">
+                            {{ formValidation.errorMessage('userDate5') }}
+                        </small>
+                    </div>
+
+                    <!-- Checkbox with Name of userDate5Req -->
+                    <div class="col-sm-4 mt-4 pt-3" [ngClass]="{'has-error': displayMessage.userDate5Req }" style="padding-top: 6px;">
+                        <div class="checkbox col-md-12 text-center">
+                            <input id="userDate5Req" value="userDate5Req" formControlName="userDate5Req" type="checkbox"
+                                   (change)="checkboxFieldChange($event, 'userDate5Req')">
+                            <label class="checkbox">
+
+                            </label>
+                        </div>
+                        <span class="help-block" *ngIf="displayMessage.userDate5Req">
+                        {{ displayMessage.userDate5Req  }}
+                     </span>
+                    </div>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+<ng-keyboard-shortcuts [shortcuts]="shortcuts"></ng-keyboard-shortcuts>
+<ng-keyboard-shortcuts-help [key]="'f2'" [closeKey]="'escape'" [title]="'Hotkeys Help'"></ng-keyboard-shortcuts-help>

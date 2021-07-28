@@ -1,0 +1,64 @@
+<!-- Copyright (c) 2020 . All Rights Reserved. -->
+<div class="container-fluid">
+    <div class="card-block">
+        <form [formGroup]="memberClaimHoldCodesForm" novalidate>
+            <h2 class="form-title card-label-admin">Member Claim Hold Codes</h2>
+            <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+            <app-pop-up-message #popUpMesssage (buttonclickEvent)="popUpButtonHandler($event)"  [(popupMessage)] = "popUpMessage"></app-pop-up-message>
+                        
+            <div class="form-group row">
+                <!-- Textbox with label of Claim Hold Code -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('claimHoldCode') }">
+                     <label class="col-form-label" for="claimHoldCode" i18n>Claim Hold Code</label>
+                     <input type="text" id="claimHoldCode"  class="form-control" formControlName="claimHoldCode"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('claimHoldCode')">
+                      {{ formValidation.errorMessage('claimHoldCode') }}
+                     </small>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of Claim Hold Date -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('claimHoldDate') }">
+                     <label class="col-form-label" for="claimHoldDate" i18n>Claim Hold Date</label>
+                     <div class="input-group">
+                    <input id="claimHoldDate" class="form-control" angular-mydatepicker name="claimHoldDate" (click)="claimHoldDateId.toggleCalendar()"
+                    formControlName="claimHoldDate"[options]="datePickerConfig" #claimHoldDateId="angular-mydatepicker"/>
+                    <div class="input-group-append">
+                        <button type="button" class="btn btn-secondary" (click)="claimHoldDateId.clearDate()">
+                          <i class="fa fa-close"></i>
+                        </button>
+                      </div>
+                      <div class="input-group-append">
+                        <button type="button" class="btn btn-secondary" (click)="claimHoldDateId.toggleCalendar()">
+                          <i class="fa fa-calendar-o"></i>
+                        </button>
+                      </div>
+                    </div>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('claimHoldDate')">
+                      {{ formValidation.errorMessage('claimHoldDate') }}
+                     </small>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Button with label of OK -->
+                <div class="col-md-2">
+                    <button type="button" id="ok" name="ok" class="btn btn-small btn-primary">OK</button>
+                
+                
+                </div>
+            
+                <!-- Button with label of Cancel -->
+                <div class="col-md-2">
+                    <button type="button" id="cancel" name="cancel" class="btn btn-small btn-primary">Cancel</button>
+                
+                
+                </div>
+            
+            </div>
+        </form>
+    </div>
+</div>

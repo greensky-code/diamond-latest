@@ -1,0 +1,25 @@
+<ng-container *ngIf="popupMessage?.message || popupMessage?.title">
+
+
+    <div class="modal-header">
+        <h4 class="modal-title">{{popupMessage?.title}}</h4>
+        <button *ngIf="popupMessage.displayCloseBtn" type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body" *ngIf="popupMessage.message">
+        <div class="row">
+            <div class="col-md-9 offset-md-1 alert"
+                 [ngClass]="popupMessage.messageType === 'SUCCESS'? 'alert-success': 'alert-danger'">
+                <fa-icon style="color: darkorange" [icon]="infoIcon"></fa-icon>
+               <span class="mr-1"> {{popupMessage?.message}} {{secondsToDday}} {{popupMessage?.message1}}</span>
+            </div>
+        </div>
+
+    </div>
+</ng-container>
+<div class="modal-footer {{popupMessage.buttonHeaderClass}}" *ngIf="popupMessage?.buttons">
+    <button type="button" *ngFor="let button of popupMessage?.buttons" (click)="triggerClick(button)"
+            class="button" data-dismiss="modal" [disabled]="button.disabled">{{button.text}}</button>
+</div>
+

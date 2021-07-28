@@ -1,0 +1,225 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+    <title>Pricing Anesthesia Time, How DIAMOND Thinks</title>
+    <!--(Meta)==========================================================-->
+    <meta name="copyright"
+          value="© Copyright 2002 Health Systems Design Corp., a wholly owned subsidiary of Perot Systems Corporation. All rights reserved"/>
+    <meta content="RoboHELP by eHelp Corporation - www.ehelp.com" name="generator"/>
+    <meta content="0.1" name="generator-major-version"/>
+    <meta content="1" name="generator-minor-version"/>
+    <meta content="kadov" name="filetype"/>
+    <meta content="1" name="filetype-version"/>
+    <meta content="1" name="page-count"/>
+    <meta content="722" name="layout-height"/>
+    <meta content="644" name="layout-width"/>
+    <!--(Links)=========================================================-->
+    <!--(Scripts)=======================================================-->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+</head>
+<body>
+
+<div class="calibreMeta">
+    <div class="calibreMetaTitle">
+
+
+        <h1>
+            <a href="../9r5qt-dn4su.html">DIAMOND 950 Help
+            </a>
+        </h1>
+
+
+    </div>
+    <div class="calibreMetaAuthor">
+        Unknown
+
+    </div>
+</div>
+
+<div class="calibreMain">
+
+    <div class="calibreEbookContent">
+
+        <div class="calibreEbNavTop">
+
+            <a href="../9r5qt-dn4su.html" class="calibreAPrev">previous page
+            </a>
+
+
+            <a href="Pricing_Claim_Line_Items_How_DIAMOND_Thinks.htm" class="calibreANext">next page
+            </a>
+
+        </div>
+
+
+        <h1 class="calibre1">Pricing Anesthesia Time, How DIAMOND Thinks</h1>
+
+        <p class="body-text">When a claim for anesthesia services is processed in
+            keyword PSCLM (Professional Services Claims), you enter either the total
+            anesthesia time in minutes or you enter the start time and end time and
+            DIAMOND calculates the total anesthesia time, then converts the total
+            time into anesthesia units. </p>
+
+        <p class="body-text">This conversion from minutes to anesthesia units can
+            be constant (10 minutes always equals one unit) or can be tiered by different
+            numbers of minutes over the course of the anesthesia session. For example,
+            in the first hour of anesthesia 20 minutes can equal one unit, the second
+            hour 15 minutes equals one unit, and so forth. Up to four tiers of minutes-to-units
+            can be set up.</p>
+
+        <p class="body-text">In addition, this conversion of minutes-to-units can
+            change; DIAMOND accommodates one current conversion and one prior conversion
+            with an effective date.</p>
+
+        <p class="doc-level">Sample calculation</p>
+
+        <!--(Table)=========================================================-->
+        <table cellspacing="0" width="372" x-use-null-cells="" class="calibre2">
+
+            <tbody class="calibre3">
+            <tr valign="top" class="calibre4">
+                <td width="111px" class="calibre5">
+                    <p class="tbl-header"> </p></td>
+                <td width="62px" class="calibre6">
+                    <p class="tbl-header1">From Min</p></td>
+                <td width="60px" class="calibre7">
+                    <p class="tbl-header1">Thru Min</p></td>
+                <td width="72px" class="calibre8">
+                    <p class="tbl-header1">Curr Conv</p></td>
+                <td width="66px" class="calibre9">
+                    <p class="tbl-header1">Prior Conv</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="111px" class="calibre10">
+                    <p class="tbl-text">Tier One</p></td>
+                <td width="62px" class="calibre11">
+                    <p class="tbl-text">0</p></td>
+                <td width="60px" class="calibre12">
+                    <p class="tbl-text">60</p></td>
+                <td width="72px" class="calibre13">
+                    <p class="tbl-text">20</p></td>
+                <td width="66px" class="calibre14">
+                    <p class="tbl-text">18</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="111px" class="calibre10">
+                    <p class="tbl-text">Tier Two</p></td>
+                <td width="62px" class="calibre11">
+                    <p class="tbl-text">61</p></td>
+                <td width="60px" class="calibre12">
+                    <p class="tbl-text">120</p></td>
+                <td width="72px" class="calibre13">
+                    <p class="tbl-text">15</p></td>
+                <td width="66px" class="calibre14">
+                    <p class="tbl-text">13</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="111px" class="calibre10">
+                    <p class="tbl-text">Tier Three</p></td>
+                <td width="62px" class="calibre11">
+                    <p class="tbl-text">121</p></td>
+                <td width="60px" class="calibre12">
+                    <p class="tbl-text">180</p></td>
+                <td width="72px" class="calibre13">
+                    <p class="tbl-text">10</p></td>
+                <td width="66px" class="calibre14">
+                    <p class="tbl-text">8</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="111px" class="calibre10">
+                    <p class="tbl-text">Tier Four</p></td>
+                <td width="62px" class="calibre11">
+                    <p class="tbl-text">181</p></td>
+                <td width="60px" class="calibre12">
+                    <p class="tbl-text">999</p></td>
+                <td width="72px" class="calibre13">
+                    <p class="tbl-text">5</p></td>
+                <td width="66px" class="calibre14">
+                    <p class="tbl-text">3</p></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <p class="body-text">Minimum Minutes for a Unit = 5</p>
+
+        <p class="body-text">Curr Conv Effec Date = 01/01/1995</p>
+
+        <p class="numbered-list-indent">1. An anesthesia time of 40 minutes
+            (claim dated on or after 1/1/95) is converted to 2 units: </p>
+
+        <p class="body-text-block">40/20 = 2 with no remainder minutes.</p>
+
+        <p class="numbered-list-indent">2. An anesthesia time of 24 minutes
+            (claim dated on or after 1/1/95) is converted to 1 unit: </p>
+
+        <p class="body-text-block">24/20 = 1 with a remainder of 4 minutes (the 4
+            minute remainder is less than the minimum minutes required for a whole
+            unit; DIAMOND does not round up to an additional whole unit).</p>
+
+        <p class="numbered-list-indent">3. An anesthesia time of 26 minutes
+            (claim dated on or after 1/1/95) is converted to 2 units:</p>
+
+        <p class="body-text-block">26/20 = 1 with a remainder of 6 minutes</p>
+
+        <p class="numbered-list-indent">4. An anesthesia time of 167 minutes
+            (claim dated on or after 1/1/95) is converted to 12 units:</p>
+
+        <p class="body-text-block">60/20 = 3 - Tier One maximum reached, remainder
+            of 107 minutes;</p>
+
+        <p class="body-text-block">60/15 = 4 - Tier Two maximum reached, remainder
+            of 47 minutes;</p>
+
+        <p class="body-text-block">47/10 = 4 - Tier Three with a remainder of 7 minutes
+            (the 7 minute remainder is greater than or equal to the minimum minutes
+            required for a whole unit; DIAMOND rounds up to an additional whole unit);
+            3+ 4 + 5 = 12 units.</p>
+
+        <h4 class="calibre15">Anesthesia Modifier codes and Professional Modifier Pricing</h4>
+
+        <p class="body-text">If you are using Professional Modifier Pricing, then
+            in keyword PSCLM, if you enter anesthesia Modifier codes in the first
+            and second <span class="calibre16">Mods</span> box, then DIAMOND
+            will use only the anesthesia Modifier code entered in the first <span class="calibre16">Mods</span> box. The
+            <span class="calibre16">Claim
+ Detail Anesthesia Time</span> dialog box will display twice; once for
+            each anesthesia Modifier code. However, the second dialog box will display
+            the values entered from the first anesthesia Modifier code. If necessary,
+            you can manually add the values together, and then type new values in
+            the <span class="calibre16">Claim Detail Anesthesia Time</span>
+            dialog box.</p>
+
+        <p class="body-text">For more information about Professional Modifier Pricing,
+            see <a href="Support/Modifier_codes_How_DIAMOND_Thinks.htm">Modifier
+                codes, How DIAMOND Thinks</a>. </p>
+
+
+    </div>
+
+
+
+    <div class="calibreEbNav">
+
+        <a href="../9r5qt-dn4su.html" class="calibreAPrev">previous page
+        </a>
+
+
+        <a href="../9r5qt-dn4su.html" class="calibreAHome">start
+        </a>
+
+
+        <a href="Pricing_Claim_Line_Items_How_DIAMOND_Thinks.htm" class="calibreANext">next page
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+</html>

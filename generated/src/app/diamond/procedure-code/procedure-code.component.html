@@ -1,0 +1,436 @@
+<!-- Copyright (c) 2021 . All Rights Reserved. -->
+<div class="container-fluid">
+    <div class="card-block">
+        <form [formGroup]="procedureCodeForm" novalidate>
+            <h2 class="form-title card-label-admin">Procedure Code</h2>
+            <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+            <app-pop-up-message #popUpMesssage (buttonclickEvent)="popUpButtonHandler($event)"  [(popupMessage)] = "popUpMessage"></app-pop-up-message>
+                        
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+                <!-- DynamicText with label of Procedure Code -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('procedureCode') }">
+                     <label class="col-form-label" for="procedureCode" i18n>Procedure Code</label>
+                     <input type="text"  [fieldLevelSec]="'Procedure Code'" params]="Procedure Code Master"  readonly id="procedureCode" formControlName="procedureCode" class="form-control"/>
+                 </div>
+            
+                <!-- DynamicText with Name of DynamicText -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('dynamicText') }">
+                     <label class="col-form-label" for="dynamicText" i18n>&nbsp;</label>
+                     <input type="text"  [fieldLevelSec]="''" params]=""  readonly id="dynamicText" formControlName="dynamicText" class="form-control"/>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of Short Description -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('shortDescription') }">
+                     <label class="col-form-label" for="shortDescription" i18n>Short Description</label>
+                     <input type="text" id="shortDescription"  [fieldLevelSec]="'Short Description'" params]="Procedure Code Master"   class="form-control" formControlName="shortDescription"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('shortDescription')">
+                      {{ formValidation.errorMessage('shortDescription') }}
+                     </small>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of Full Description -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('fullDescription') }">
+                     <label class="col-form-label" for="fullDescription" i18n>Full Description</label>
+                     <input type="text" id="fullDescription"  [fieldLevelSec]="'Full Description'" params]="Procedure Code Master"   class="form-control" formControlName="fullDescription"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('fullDescription')">
+                      {{ formValidation.errorMessage('fullDescription') }}
+                     </small>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of Effective Date -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('effectiveDate') }">
+                     <label class="col-form-label" for="effectiveDate" i18n>Effective Date</label>
+                     <div class="input-group">
+                    <input id="effectiveDate"  [fieldLevelSec]="'Effective Date'" params]="Procedure Code Master"  class="form-control" angular-mydatepicker name="effectiveDate" (click)="effectiveDateId.toggleCalendar()"
+                    formControlName="effectiveDate"[options]="datePickerConfig" #effectiveDateId="angular-mydatepicker"/>
+                    <div class="input-group-append">
+                        <button type="button" class="btn btn-secondary" (click)="effectiveDateId.clearDate()">
+                          <i class="fa fa-close"></i>
+                        </button>
+                      </div>
+                      <div class="input-group-append">
+                        <button type="button" class="btn btn-secondary" (click)="effectiveDateId.toggleCalendar()">
+                          <i class="fa fa-calendar-o"></i>
+                        </button>
+                      </div>
+                    </div>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('effectiveDate')">
+                      {{ formValidation.errorMessage('effectiveDate') }}
+                     </small>
+                 </div>
+            
+                <!-- Textbox with label of Term Date -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('termDate') }">
+                     <label class="col-form-label" for="termDate" i18n>Term Date</label>
+                     <div class="input-group">
+                    <input id="termDate"  [fieldLevelSec]="'Term Date'" params]="Procedure Code Master"  class="form-control" angular-mydatepicker name="termDate" (click)="termDateId.toggleCalendar()"
+                    formControlName="termDate"[options]="datePickerConfig" #termDateId="angular-mydatepicker"/>
+                    <div class="input-group-append">
+                        <button type="button" class="btn btn-secondary" (click)="termDateId.clearDate()">
+                          <i class="fa fa-close"></i>
+                        </button>
+                      </div>
+                      <div class="input-group-append">
+                        <button type="button" class="btn btn-secondary" (click)="termDateId.toggleCalendar()">
+                          <i class="fa fa-calendar-o"></i>
+                        </button>
+                      </div>
+                    </div>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('termDate')">
+                      {{ formValidation.errorMessage('termDate') }}
+                     </small>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of ID Qualifier -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('idQualifier') }">
+                     <label class="col-form-label" for="idQualifier" i18n>ID Qualifier</label>
+                     <input type="text" id="idQualifier"  [fieldLevelSec]="'Product Service Id Qualifier'" params]="Procedure Code Master"   class="form-control" formControlName="idQualifier"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('idQualifier')">
+                      {{ formValidation.errorMessage('idQualifier') }}
+                     </small>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <hr>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of Asterisk Procedure -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('asteriskProcedure') }">
+                     <label class="col-form-label" for="asteriskProcedure" i18n>Asterisk Procedure</label>
+                     <input type="text" id="asteriskProcedure"  [fieldLevelSec]="'Asterisk Procedure'" params]="Procedure Code Master"   class="form-control" formControlName="asteriskProcedure"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('asteriskProcedure')">
+                      {{ formValidation.errorMessage('asteriskProcedure') }}
+                     </small>
+                 </div>
+            
+                <!-- Checkbox with label of Target Revenue Code -->
+                <div class="" [ngClass]="{'has-error': displayMessage.targetRevenueCode }">
+                    <div class="checkbox col-md-12">
+                      <input id="targetRevenueCode"  [fieldLevelSec]="'Target Rev Code Flg'" params]="Procedure Code Master"  value="targetRevenueCode" formControlName="targetRevenueCode" type="checkbox">
+                        <label class="checkbox">
+                            Target Revenue Code
+                         </label>
+                    </div>
+                    <span class="help-block" *ngIf="displayMessage.targetRevenueCode">
+                        {{ displayMessage.targetRevenueCode  }}
+                     </span>
+                </div>
+            
+                <!-- Textbox with label of Med Mgmt Rev -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('medMgmtRev') }">
+                     <label class="col-form-label" for="medMgmtRev" i18n>Med Mgmt Rev</label>
+                     <input type="text" id="medMgmtRev"  [fieldLevelSec]="''" params]=""   class="form-control" formControlName="medMgmtRev"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('medMgmtRev')">
+                      {{ formValidation.errorMessage('medMgmtRev') }}
+                     </small>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of Primary Grouping -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('primaryGrouping') }">
+                     <label class="col-form-label" for="primaryGrouping" i18n>Primary Grouping</label>
+                     <input type="text" id="primaryGrouping"  [fieldLevelSec]="'Primary Grouping'" params]="Procedure Code Master"   class="form-control" formControlName="primaryGrouping"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('primaryGrouping')">
+                      {{ formValidation.errorMessage('primaryGrouping') }}
+                     </small>
+                 </div>
+            
+                <!-- Checkbox with label of Price Indicator -->
+                <div class="" [ngClass]="{'has-error': displayMessage.priceIndicator }">
+                    <div class="checkbox col-md-12">
+                      <input id="priceIndicator"  [fieldLevelSec]="'Price Indicator Flg'" params]="Procedure Code Master"  value="priceIndicator" formControlName="priceIndicator" type="checkbox">
+                        <label class="checkbox">
+                            Price Indicator
+                         </label>
+                    </div>
+                    <span class="help-block" *ngIf="displayMessage.priceIndicator">
+                        {{ displayMessage.priceIndicator  }}
+                     </span>
+                </div>
+            
+                <!-- Textbox with label of User Date 1 -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('userDate1') }">
+                     <label class="col-form-label" for="userDate1" i18n>User Date 1</label>
+                     <div class="input-group">
+                    <input id="userDate1"  [fieldLevelSec]="'User Date 1'" params]="Procedure Code Master"  class="form-control" angular-mydatepicker name="userDate1" (click)="userDate1Id.toggleCalendar()"
+                    formControlName="userDate1"[options]="datePickerConfig" #userDate1Id="angular-mydatepicker"/>
+                    <div class="input-group-append">
+                        <button type="button" class="btn btn-secondary" (click)="userDate1Id.clearDate()">
+                          <i class="fa fa-close"></i>
+                        </button>
+                      </div>
+                      <div class="input-group-append">
+                        <button type="button" class="btn btn-secondary" (click)="userDate1Id.toggleCalendar()">
+                          <i class="fa fa-calendar-o"></i>
+                        </button>
+                      </div>
+                    </div>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('userDate1')">
+                      {{ formValidation.errorMessage('userDate1') }}
+                     </small>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of Secondary Grouping -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('secondaryGrouping') }">
+                     <label class="col-form-label" for="secondaryGrouping" i18n>Secondary Grouping</label>
+                     <input type="text" id="secondaryGrouping"  [fieldLevelSec]="'Secondary Grouping'" params]="Procedure Code Master"   class="form-control" formControlName="secondaryGrouping"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('secondaryGrouping')">
+                      {{ formValidation.errorMessage('secondaryGrouping') }}
+                     </small>
+                 </div>
+            
+                <!-- Checkbox with label of Tooth # Req -->
+                <div class="" [ngClass]="{'has-error': displayMessage.toothReq }">
+                    <div class="checkbox col-md-12">
+                      <input id="toothReq"  [fieldLevelSec]="'Tooth Number Required'" params]="Procedure Code Master"  value="toothReq" formControlName="toothReq" type="checkbox">
+                        <label class="checkbox">
+                            Tooth # Req
+                         </label>
+                    </div>
+                    <span class="help-block" *ngIf="displayMessage.toothReq">
+                        {{ displayMessage.toothReq  }}
+                     </span>
+                </div>
+            
+                <!-- Textbox with label of User Defined 2 -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('userDefined2') }">
+                     <label class="col-form-label" for="userDefined2" i18n>User Defined 2</label>
+                     <input type="text" id="userDefined2"  [fieldLevelSec]="'User Defined 2'" params]="Procedure Code Master"   class="form-control" formControlName="userDefined2"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('userDefined2')">
+                      {{ formValidation.errorMessage('userDefined2') }}
+                     </small>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of Follow Up Days -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('followUpDays') }">
+                     <label class="col-form-label" for="followUpDays" i18n>Follow Up Days</label>
+                     <input type="text" id="followUpDays"  [fieldLevelSec]="'Follow Up Days'" params]="Procedure Code Master"   class="form-control" formControlName="followUpDays"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('followUpDays')">
+                      {{ formValidation.errorMessage('followUpDays') }}
+                     </small>
+                 </div>
+            
+                <!-- Checkbox with label of Surface Req -->
+                <div class="" [ngClass]="{'has-error': displayMessage.surfaceReq }">
+                    <div class="checkbox col-md-12">
+                      <input id="surfaceReq"  [fieldLevelSec]="'Surface Required'" params]="Procedure Code Master"  value="surfaceReq" formControlName="surfaceReq" type="checkbox">
+                        <label class="checkbox">
+                            Surface Req
+                         </label>
+                    </div>
+                    <span class="help-block" *ngIf="displayMessage.surfaceReq">
+                        {{ displayMessage.surfaceReq  }}
+                     </span>
+                </div>
+            
+                <!-- Textbox with label of User Date 2 -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('userDate2') }">
+                     <label class="col-form-label" for="userDate2" i18n>User Date 2</label>
+                     <div class="input-group">
+                    <input id="userDate2"  [fieldLevelSec]="'User Date 2'" params]="Procedure Code Master"  class="form-control" angular-mydatepicker name="userDate2" (click)="userDate2Id.toggleCalendar()"
+                    formControlName="userDate2"[options]="datePickerConfig" #userDate2Id="angular-mydatepicker"/>
+                    <div class="input-group-append">
+                        <button type="button" class="btn btn-secondary" (click)="userDate2Id.clearDate()">
+                          <i class="fa fa-close"></i>
+                        </button>
+                      </div>
+                      <div class="input-group-append">
+                        <button type="button" class="btn btn-secondary" (click)="userDate2Id.toggleCalendar()">
+                          <i class="fa fa-calendar-o"></i>
+                        </button>
+                      </div>
+                    </div>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('userDate2')">
+                      {{ formValidation.errorMessage('userDate2') }}
+                     </small>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of Code Class -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('codeClass') }">
+                     <label class="col-form-label" for="codeClass" i18n>Code Class</label>
+                     <input type="text" id="codeClass"  [fieldLevelSec]="'Code Class'" params]="Procedure Code Master"   class="form-control" formControlName="codeClass"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('codeClass')">
+                      {{ formValidation.errorMessage('codeClass') }}
+                     </small>
+                 </div>
+            
+                <!-- Checkbox with label of Arch Required -->
+                <div class="" [ngClass]="{'has-error': displayMessage.archRequired }">
+                    <div class="checkbox col-md-12">
+                      <input id="archRequired"  [fieldLevelSec]="'Arch Required'" params]="Procedure Code Master"  value="archRequired" formControlName="archRequired" type="checkbox">
+                        <label class="checkbox">
+                            Arch Required
+                         </label>
+                    </div>
+                    <span class="help-block" *ngIf="displayMessage.archRequired">
+                        {{ displayMessage.archRequired  }}
+                     </span>
+                </div>
+            
+                <!-- Textbox with label of Allowed Reason -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('allowedReason') }">
+                     <label class="col-form-label" for="allowedReason" i18n>Allowed Reason</label>
+                     <input type="text" id="allowedReason"  [fieldLevelSec]="'Allowed Reason'" params]="Procedure Code Master"   class="form-control" formControlName="allowedReason"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('allowedReason')">
+                      {{ formValidation.errorMessage('allowedReason') }}
+                     </small>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of Count As Days -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('countAsDays') }">
+                     <label class="col-form-label" for="countAsDays" i18n>Count As Days</label>
+                     <input type="text" id="countAsDays"  [fieldLevelSec]="'Count As Days'" params]="Procedure Code Master"   class="form-control" formControlName="countAsDays"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('countAsDays')">
+                      {{ formValidation.errorMessage('countAsDays') }}
+                     </small>
+                 </div>
+            
+                <!-- Checkbox with label of Quadrant Req -->
+                <div class="" [ngClass]="{'has-error': displayMessage.quadrantReq }">
+                    <div class="checkbox col-md-12">
+                      <input id="quadrantReq"  [fieldLevelSec]="'Quadrant Required'" params]="Procedure Code Master"  value="quadrantReq" formControlName="quadrantReq" type="checkbox">
+                        <label class="checkbox">
+                            Quadrant Req
+                         </label>
+                    </div>
+                    <span class="help-block" *ngIf="displayMessage.quadrantReq">
+                        {{ displayMessage.quadrantReq  }}
+                     </span>
+                </div>
+            
+                <!-- Textbox with label of From Age -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('fromAge') }">
+                     <label class="col-form-label" for="fromAge" i18n>From Age</label>
+                     <input type="text" id="fromAge"  [fieldLevelSec]="'From Age'" params]="Procedure Code Master"   class="form-control" formControlName="fromAge"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('fromAge')">
+                      {{ formValidation.errorMessage('fromAge') }}
+                     </small>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of Hold Reason -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('holdReason') }">
+                     <label class="col-form-label" for="holdReason" i18n>Hold Reason</label>
+                     <input type="text" id="holdReason"  [fieldLevelSec]="'Hold Reason'" params]="Procedure Code Master"   class="form-control" formControlName="holdReason"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('holdReason')">
+                      {{ formValidation.errorMessage('holdReason') }}
+                     </small>
+                 </div>
+            
+                <!-- Checkbox with label of Oral Cav Req -->
+                <div class="" [ngClass]="{'has-error': displayMessage.oralCavReq }">
+                    <div class="checkbox col-md-12">
+                      <input id="oralCavReq"  [fieldLevelSec]="'Oral Cavity Required'" params]="Procedure Code Master"  value="oralCavReq" formControlName="oralCavReq" type="checkbox">
+                        <label class="checkbox">
+                            Oral Cav Req
+                         </label>
+                    </div>
+                    <span class="help-block" *ngIf="displayMessage.oralCavReq">
+                        {{ displayMessage.oralCavReq  }}
+                     </span>
+                </div>
+            
+                <!-- Textbox with label of To Age -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('toAge') }">
+                     <label class="col-form-label" for="toAge" i18n>To Age</label>
+                     <input type="text" id="toAge"  [fieldLevelSec]="'To Age'" params]="Procedure Code Master"   class="form-control" formControlName="toAge"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('toAge')">
+                      {{ formValidation.errorMessage('toAge') }}
+                     </small>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- DynamicText with label of Hold Date -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('holdDate') }">
+                     <label class="col-form-label" for="holdDate" i18n>Hold Date</label>
+                     <input type="text"  [fieldLevelSec]="'Hold Date'" params]="Procedure Code Master"  readonly id="holdDate" formControlName="holdDate" class="form-control"/>
+                 </div>
+            
+                <!-- Checkbox with label of Weighted Val -->
+                <div class="" [ngClass]="{'has-error': displayMessage.weightedVal }">
+                    <div class="checkbox col-md-12">
+                      <input id="weightedVal"  [fieldLevelSec]="'Weighted Value'" params]="Procedure Code Master"  value="weightedVal" formControlName="weightedVal" type="checkbox">
+                        <label class="checkbox">
+                            Weighted Val
+                         </label>
+                    </div>
+                    <span class="help-block" *ngIf="displayMessage.weightedVal">
+                        {{ displayMessage.weightedVal  }}
+                     </span>
+                </div>
+            
+                <!-- Textbox with label of Patient Gender -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('patientGender') }">
+                     <label class="col-form-label" for="patientGender" i18n>Patient Gender</label>
+                     <input type="text" id="patientGender"  [fieldLevelSec]="'Patient Gender'" params]="Procedure Code Master"   class="form-control" formControlName="patientGender"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('patientGender')">
+                      {{ formValidation.errorMessage('patientGender') }}
+                     </small>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Checkbox with label of Inst Auth Detail Link -->
+                <div class="" [ngClass]="{'has-error': displayMessage.instAuthDetailLink }">
+                    <div class="checkbox col-md-12">
+                      <input id="instAuthDetailLink"  [fieldLevelSec]="'Inst Auth Dtl Lnk'" params]="Procedure Code Master"  value="instAuthDetailLink" formControlName="instAuthDetailLink" type="checkbox">
+                        <label class="checkbox">
+                            Inst Auth Detail Link
+                         </label>
+                    </div>
+                    <span class="help-block" *ngIf="displayMessage.instAuthDetailLink">
+                        {{ displayMessage.instAuthDetailLink  }}
+                     </span>
+                </div>
+            
+            </div>
+            
+            <div class="form-group row">
+            </div>
+        </form>
+    </div>
+</div>

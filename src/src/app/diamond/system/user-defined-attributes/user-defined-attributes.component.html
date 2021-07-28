@@ -1,0 +1,172 @@
+<!-- Copyright (c) 2021 . All Rights Reserved. -->
+<div class="container-fluid">
+    <div class="card-block">
+        <form [formGroup]="userDefinedAttributesForm" novalidate>
+            <h2 class="form-title card-label-admin">User Defined Attributes</h2>
+            <button type="button" *ngIf="showIcon" class="modal-close close" aria-label="Close"
+                    (click)="modalClose()">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+            <app-pop-up-message #popUpMesssage (buttonclickEvent)="popUpButtonHandler($event)"  [(popupMessage)] = "popUpMessage"></app-pop-up-message>
+            <div class="form-group row">
+                <div class="row mt-3 mb-3">
+                    <menu-bar [menus]="menu" (onMenuClick)="onMenuItemClick($event)"></menu-bar>
+                </div>
+            </div>
+                <!-- DataGrid with Name of DataGrid -->
+                <ag-grid-angular #agGrid class="ag-theme-fresh" [gridOptions]="dataGridGridOptions"
+                    style="width: 100%; height: 300px;"
+                    [enableSorting]="true"
+                    [enableFilter]="true"
+                    [floatingFilter]="true"
+                    [pagination]="true"
+                    rowSelection="single"
+                    (rowSelected)="onRowSelectedGrid($event)"
+                    [showToolPanel]="true">
+                </ag-grid-angular>
+
+            <div class="form-group row">
+            </div>
+
+            <div class="form-group row">
+                <!-- Checkbox with label of Activated -->
+                <div class="" [ngClass]="{'has-error': displayMessage.activated }">
+                    <div class="checkbox col-md-12">
+                      <input id="activated"  [fieldLevelSec]="'Activated'" [params]="" (change)="changeStatus($event,'activate')" formControlName="activated" type="checkbox">
+                        <label class="checkbox">
+                            Activated
+                         </label>
+                    </div>
+                    <span class="help-block" *ngIf="displayMessage.activated">
+                        {{ displayMessage.activated  }}
+                     </span>
+                </div>
+
+            </div>
+
+            <div class="form-group row">
+                <!-- DynamicText with label of Win ID -->
+                 <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('winId') }">
+                     <label class="col-form-label" for="winId" i18n>Win ID</label>
+                     <input type="text"  [fieldLevelSec]="'Win Id'" [params]=""  readonly id="winId" formControlName="winId" class="form-control userDefiedAttrColor"/>
+                 </div>
+
+            </div>
+
+            <div class="form-group row">
+                <!-- DynamicText with label of Data Window ID -->
+                 <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('dataWindowId') }">
+                     <label class="col-form-label" for="dataWindowId" i18n>Data Window ID</label>
+                     <input type="text"  [fieldLevelSec]="'Datawindow Id'" [params]=""  readonly id="dataWindowId" formControlName="dataWindowId" class="form-control userDefiedAttrColor"/>
+                 </div>
+
+            </div>
+
+            <div class="form-group row">
+                <!-- DynamicText with label of Column Name -->
+                 <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('columnName') }">
+                     <label class="col-form-label" for="columnName" i18n>Column Name</label>
+                     <input type="text"  [fieldLevelSec]="'Column Name'" [params]=""  readonly id="columnName" formControlName="columnName" class="form-control userDefiedAttrColor"/>
+                 </div>
+
+            </div>
+
+            <div class="form-group row">
+                <!-- DynamicText with label of Column Category -->
+                 <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('columnCategory') }">
+                     <label class="col-form-label" for="columnCategory" i18n>Column Category</label>
+                     <input type="text"  [fieldLevelSec]="'Column Category'" [params]=""  readonly id="columnCategory" formControlName="columnCategory" class="form-control userDefiedAttrColor"/>
+                 </div>
+
+            </div>
+
+            <div class="form-group row">
+                <!-- Checkbox with label of Required -->
+                <div class="" [ngClass]="{'has-error': displayMessage.required }">
+                    <div class="checkbox col-md-12">
+                      <input id="required"  [fieldLevelSec]="'User Defined Required'" [params]=""  value="required" (change)="changeStatus($event,'required')" formControlName="required" type="checkbox">
+                        <label class="checkbox">
+                            Required
+                         </label>
+                    </div>
+                    <span class="help-block" *ngIf="displayMessage.required">
+                        {{ displayMessage.required  }}
+                     </span>
+                </div>
+
+            </div>
+
+            <div class="form-group row" *ngIf="ifShowCountryFields" >
+
+                    <div class="" [ngClass]="{'has-error': displayMessage.userDefinedEnableCountry }">
+                            <div class="checkbox col-md-12">
+                              <input id="userDefinedEnableCountry"  [fieldLevelSec]="'User Defined Enable Country'" [params]="" (change)="changeStatus($event,'country')" value="userDefinedEnableCountry" formControlName="userDefinedEnableCountry" type="checkbox">
+                                <label class="checkbox">
+                                    Enable Country
+                                 </label>
+                            </div>
+                            <span class="help-block" *ngIf="displayMessage.userDefinedEnableCountry">
+                                {{ displayMessage.required  }}
+                             </span>
+                        </div>
+            </div>
+
+            <div class="form-group row" *ngIf="ifShowCountryFields">
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('userDefinedDefaultCountry') }">
+                        <label class="col-form-label" for="userDefinedDefaultCountry" i18n>Default Country </label>                            <select class="form-control" id="userDefinedDefaultCountry" #defaultCountry name="userDefinedDefaultCountry" formControlName="userDefinedDefaultCountry">
+                                    <option [value]="country.country"
+                                            *ngFor="let country of countriesList">{{country.country}}</option>
+                                </select>
+                                <small class="text-danger" *ngIf="formValidation.isValidField('userDefinedDefaultCountry')">
+                                    {{ formValidation.errorMessage('userDefinedDefaultCountry') }}
+                                </small> </div>
+            </div>
+
+            <div class="form-group row">
+            </div>
+
+            <ng-container *ngIf="ifShowPanel3">
+            <div class="form-group row">
+                <!-- DynamicText with label of Langauge ID -->
+                 <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('languageDescription') }">
+                     <label class="col-form-label" for="languageDescription" i18n>Langauge ID</label>
+                     <input type="text"  [fieldLevelSec]="''" [params]=""  readonly id="languageDescription" formControlName="languageDescription" class="form-control userDefiedAttrColor"/>
+                 </div>
+
+                    <!-- DynamicText with label of Field Label -->
+                 <div *ngIf="showFieldLabel" class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('userDefinedFieldLabel') }">
+                    <label class="col-form-label" for="userDefinedFieldLabel" i18n>Field Label</label>
+                    <input type="text"  [fieldLevelSec]="''" [params]=""   id="userDefinedFieldLabel" formControlName="userDefinedFieldLabel" class="form-control"/>
+                </div>
+
+            </div>
+
+
+            <div class="form-group row" *ngIf="showValidLength">
+                <!-- Textbox with label of Valid Length -->
+                 <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('validLength') }">
+                     <label class="col-form-label" for="validLength" i18n>Valid Length</label>
+                     <input type="text" id="validLength"  [fieldLevelSec]="'User Defined Valid Lengths'" [params]=""   class="form-control" formControlName="validLength"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('validLength')">
+                      {{ formValidation.errorMessage('validLength') }}
+                     </small>
+                 </div>
+
+                <!-- Textbox with label of Display Mask -->
+                 <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('displayMask') }">
+                     <label class="col-form-label" for="displayMask" i18n>Display Mask</label>
+                     <input type="text" id="displayMask"  [fieldLevelSec]="'User Defined Display Mask'" [params]=""   class="form-control" formControlName="displayMask"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('displayMask')">
+                      {{ formValidation.errorMessage('displayMask') }}
+                     </small>
+                 </div>
+
+            </div>
+
+        </ng-container>
+        </form>
+    </div>
+</div>
+<ng-keyboard-shortcuts [shortcuts]="shortcuts"></ng-keyboard-shortcuts>
+<ng-keyboard-shortcuts-help [key]="'f1'" [closeKey]="'escape'" [title]="'Hotkeys Help'"></ng-keyboard-shortcuts-help>

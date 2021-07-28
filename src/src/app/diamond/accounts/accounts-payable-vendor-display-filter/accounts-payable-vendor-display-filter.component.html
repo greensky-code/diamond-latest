@@ -1,0 +1,182 @@
+<!-- Copyright (c) 2021 . All Rights Reserved. -->
+<div class="container-fluid">
+    <div class="card-block">
+        <form [formGroup]="accountsPayableVendorFilterForm" novalidate>
+            <!--            <h3 class="form-title card-label-admin">Select Customer</h3>-->
+            <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+            <app-pop-up-message #popUpMesssage (buttonclickEvent)="popUpButtonHandler($event)"
+                                [(popupMessage)]="popUpMessage"></app-pop-up-message>
+
+
+            <div class="form-group row">
+                <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('vendorId') }">
+                    <label class="col-form-label clr-blue" for="vendorId" i18n>Vendor ID</label>
+                    <input type="text" id="vendorId" #vendorIds (keydown)="onLookupFieldChange($event, vendorIds.value)"
+                           class="form-control" formControlName="vendorId"/>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('vendorId')">
+                        {{ formValidation.errorMessage('vendorId') }}
+                    </small>
+                </div>
+
+                <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('enteredDate') }">
+                    <label class="col-form-label " for="enteredDate" i18n>Entered Date</label>
+                    <input type="text" id="enteredDate" class="form-control" formControlName="enteredDate"/>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('enteredDate')">
+                        {{ formValidation.errorMessage('enteredDate') }}
+                    </small>
+                </div>
+
+            </div>
+
+            <div class="form-group row">
+                <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('vendorAddress') }">
+                    <label class="col-form-label " for="vendorAddress" i18n>Vendor Address</label>
+                    <select type="text" id="vendorAddress" class="form-control" formControlName="vendorAddress">
+                        <option [value]="c.value"
+                                *ngFor="let c of vendorAddresses">{{c.addressLine1 + ', ' + c.addressLine2 + ', ' + c.city + ', ' + c.county + ', ' + c.state + ', ' + c.zipCode + ', ' + c.country }}</option>
+                    </select>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('vendorAddress')">
+                        {{ formValidation.errorMessage('vendorAddress') }}
+                    </small>
+                </div>
+
+                <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('diamondId') }">
+                    <label class="col-form-label " for="diamondId" i18n>Diamond ID</label>
+                    <input type="text" id="diamondId" class="form-control" formControlName="diamondId"/>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('diamondId')">
+                        {{ formValidation.errorMessage('diamondId') }}
+                    </small>
+                </div>
+
+            </div>
+
+            <div class="form-group row">
+                <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('claimType') }">
+                    <label class="col-form-label clr-blue" for="claimType" i18n>Claim Type</label>
+                    <select type="text" id="claimType" class="form-control" formControlName="claimType">
+                        <option [value]="c.value" *ngFor="let c of fileTypes">{{c.key}}</option>
+                    </select>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('claimType')">
+                        {{ formValidation.errorMessage('claimType') }}
+                    </small>
+                </div>
+
+                <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('subscriberId') }">
+                    <label class="col-form-label " for="subscriberId" i18n>Subscriber ID</label>
+                    <input type="text" id="subscriberId" class="form-control" formControlName="subscriberId"/>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('subscriberId')">
+                        {{ formValidation.errorMessage('subscriberId') }}
+                    </small>
+                </div>
+
+            </div>
+
+
+            <div class="form-group row">
+                <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('processingStatus') }">
+                    <label class="col-form-label " for="processingStatus" i18n>Processing Status</label>
+                    <select type="text" id="processingStatus" class="form-control" formControlName="processingStatus">
+                        <option [value]="c.value" *ngFor="let c of processingStatus">{{c.key}}</option>
+                    </select>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('processingStatus')">
+                        {{ formValidation.errorMessage('processingStatus') }}
+                    </small>
+                </div>
+
+                <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('providerId') }">
+                    <label class="col-form-label " for="providerId" i18n>Provider ID</label>
+                    <input type="text" id="providerId" class="form-control" formControlName="providerId"/>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('providerId')">
+                        {{ formValidation.errorMessage('providerId') }}
+                    </small>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('selectForPayment') }">
+                    <label class="col-form-label " for="selectForPayment" i18n>Select For Payment</label>
+                    <select type="text" id="selectForPayment" class="form-control" formControlName="selectForPayment">
+                        <option [value]="c.value" *ngFor="let c of selectForPayment">{{c.key}}</option>
+                    </select>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('selectForPayment')">
+                        {{ formValidation.errorMessage('selectForPayment') }}
+                    </small>
+                </div>
+
+                <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('fromDOS') }">
+                    <label class="col-form-label " for="fromDOS" i18n>From D.O.S</label>
+                    <input type="text" id="fromDOS" class="form-control" formControlName="fromDOS"/>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('fromDOS')">
+                        {{ formValidation.errorMessage('fromDOS') }}
+                    </small>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('checkNumber') }">
+                    <label class="col-form-label " for="checkNumber" i18n>Check Number</label>
+                    <input type="text" id="checkNumber" class="form-control" formControlName="checkNumber"/>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('checkNumber')">
+                        {{ formValidation.errorMessage('checkNumber') }}
+                    </small>
+                </div>
+
+                <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('thruDOS') }">
+                    <label class="col-form-label " for="thruDOS" i18n>Thru D.O.S</label>
+                    <input type="text" id="thruDOS" class="form-control" formControlName="thruDOS"/>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('thruDOS')">
+                        {{ formValidation.errorMessage('thruDOS') }}
+                    </small>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('checkDate') }">
+                    <label class="col-form-label " for="checkDate" i18n>Check Date</label>
+                    <input type="text" id="checkDate" class="form-control" formControlName="checkDate"/>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('checkDate')">
+                        {{ formValidation.errorMessage('checkDate') }}
+                    </small>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <!-- Button with label of OK -->
+                <div class="col-md-2">
+                    <button type="button" id="clear" name="clear" class="btn btn-small btn-primary button-grp"
+                            (click)="resetForm()">Clear
+                    </button>
+                </div>
+
+                <div class="col-md-2">
+                    <button type="button" id="cancel" name="cancel" class="btn btn-small btn-primary button-grp"
+                            (click)="backToScreen()">Cancel
+                    </button>
+                </div>
+
+                <div class="col-md-2">
+                    <button type="button" id="vendorInfo" name="vendorInfo" class="btn btn-small btn-primary button-grp"
+                            (click)="onSubmitForm('vendorInfo')">Vendor Info
+                    </button>
+                </div>
+
+                <div class="col-md-2">
+                    <button type="button" id="claimDetail" name="claimDetail"
+                            class="btn btn-small btn-primary button-grp" (click)="onSubmitForm('claimDetail')">Claim
+                        Detail
+                    </button>
+                </div>
+
+                <div class="col-md-2">
+                    <button type="button" id="apTransDetail" name="apTransDetail"
+                            class="btn btn-small btn-primary button-grp" (click)="onSubmitForm('apTransDetail')">AP
+                        Trans Detail
+                    </button>
+                </div>
+            </div>
+
+            <div class="form-group row">
+            </div>
+        </form>
+    </div>
+</div>

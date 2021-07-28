@@ -1,0 +1,131 @@
+<!-- Copyright (c) 2021 . All Rights Reserved. -->
+<div class="container-fluid">
+    <div class="card-block">
+        <form [formGroup]="drgInformationForm" novalidate class="col">
+            <h2 class="form-title card-label-admin">Drg Information</h2>
+            <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+            <app-pop-up-message #popUpMesssage (buttonclickEvent)="popUpButtonHandler($event)"  [(popupMessage)] = "popUpMessage"></app-pop-up-message>
+
+            <div class="col-sm-8 pull-left">
+                <div class="form-group col">
+                    <div class="form-group row">
+                    <!-- DropdownList with label of DRG Pricer ID -->
+                    <div class="selectContainer col-md-6 " [ngClass]="{'has-danger': formValidation.isValidField('drgPricerId') }">
+                        <label class="col-form-label" for="drgPricerId" i18n>DRG Pricer ID</label>
+                        <select class="form-control" id="drg_pricer_id"  [fieldLevelSec]="''" [params]=""  name="DRG Pricer ID"
+                                formControlName="drgPricerId" (change)="changeDrgPricerIdDropdown($event)">
+    <!--                        <option value="" >Please Select</option>-->
+                            <option *ngFor="let x of drgPricerIdDropdown" [value]="x.DRG_GROUPER_PRICER_ID">{{x.DRG_GROUPER_PRICER_ID}}&nbsp;&nbsp;&nbsp;&nbsp;{{x.VERSION}}&nbsp;&nbsp;&nbsp;&nbsp;{{x.DESCRIPTION}}</option>
+                        </select>
+                    </div>
+                    <!-- Textbox with label of Pricer Facility Number -->
+                     <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('pricerFacilityNumber') }">
+                         <label class="col-form-label" for="pricerFacilityNumber" i18n>Pricer Facility Number</label>
+                         <input type="text" id="pricerFacilityNumber"  [fieldLevelSec]="''" [params]=""   class="form-control" formControlName="pricerFacilityNumber"/>
+                          <small class="text-danger" *ngIf="formValidation.isValidField('pricerFacilityNumber')">
+                          {{ formValidation.errorMessage('pricerFacilityNumber') }}
+                         </small>
+                     </div>
+                </div>
+
+                <div class="form-group row">
+                    <!-- DynamicText with label of Pricer Version -->
+                     <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('pricerVersion') }">
+                         <label class="col-form-label clr-blue" for="pricerVersion" i18n>Pricer Version</label>
+    <!--                     <input type="text"  [fieldLevelSec]="''" [params]=""  readonly id="pricerVersion" formControlName="pricerVersion" class="form-control"/>-->
+                         <select class="form-control" id="pricer_version"  [fieldLevelSec]="''" [params]=""  name="PRICER_VERSION" formControlName="pricerVersion"
+                            [attr.disabled]="drgInformationForm.get('drgPricerId').value == null ? 'disabled' : null"
+                                 (change)="changePricerVersionDropdown($event)">
+                             <!--                        <option value="" >Please Select</option>-->
+                             <ng-container *ngFor="let x of pricerVersionDropdown">
+                                <option *ngIf="drgInformationForm.get('drgPricerId').value == x.DRG_PRICER_ID" [value]="x.VERSION">{{x.VERSION}}</option>
+                             </ng-container>
+                         </select>
+                     </div>
+
+                    <!-- Textbox with label of DRG Outlier Multiplier -->
+                     <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('drgOutlierMultiplier') }">
+                         <label class="col-form-label" for="drgOutlierMultiplier" i18n>DRG Outlier Multiplier</label>
+                         <input type="text" id="drgOutlierMultiplier"  [fieldLevelSec]="''" [params]=""   class="form-control" formControlName="drgOutlierMultiplier"/>
+                          <small class="text-danger" *ngIf="formValidation.isValidField('drgOutlierMultiplier')">
+                          {{ formValidation.errorMessage('drgOutlierMultiplier') }}
+                         </small>
+                     </div>
+                </div>
+                    <div class="form-group row">
+                    <!-- DynamicText with label of Revision Level -->
+                     <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('revisionLevel') }">
+                         <label class="col-form-label clr-blue" for="revisionLevel" i18n>Revision Level</label>
+    <!--                     <input type="text"  [fieldLevelSec]="''" [params]=""  readonly id="revisionLevel" formControlName="revisionLevel" class="form-control"/>-->
+                         <select class="form-control" id="revision_Level"  [fieldLevelSec]="''" [params]=""  name="REVISION_LEVEL" formControlName="revisionLevel"
+                                 [attr.disabled]="drgInformationForm.get('pricerVersion').value == null ? 'disabled' : null"
+                                 (change)="changeRevisionLevelDropdown($event)">
+                             <!--                        <option value="" >Please Select</option>-->
+                             <ng-container *ngFor="let x of revisionLevelDropdown">
+                                <option *ngIf="drgInformationForm.get('drgPricerId').value == x.DRG_PRICER_ID" [value]="x.REVISION_LEVEL">{{x.REVISION_LEVEL}}&nbsp;&nbsp;&nbsp;&nbsp;{{x.PRICE_DESCRIPTION}}</option>
+                             </ng-container>
+                         </select>
+                     </div>
+
+                    <!-- Textbox with label of DRG Outlier % Of Billed -->
+                     <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('drgOutlierOfBilled') }">
+                         <label class="col-form-label clr-blue" for="drgOutlierOfBilled" i18n>DRG Outlier % Of Billed</label>
+                         <input type="text" id="drgOutlierOfBilled"  [fieldLevelSec]="''" [params]=""   class="form-control" formControlName="drgOutlierOfBilled"/>
+                          <small class="text-danger" *ngIf="formValidation.isValidField('drgOutlierOfBilled')">
+                          {{ formValidation.errorMessage('drgOutlierOfBilled') }}
+                         </small>
+                     </div>
+
+                </div>
+                    <div class="form-group row">
+                    <!-- Textbox with label of DRG Base Multiplier -->
+                     <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('drgBaseMultiplier') }">
+                         <label class="col-form-label" for="drgBaseMultiplier" i18n>DRG Base Multiplier</label>
+                         <input type="text" id="drgBaseMultiplier"  [fieldLevelSec]="''" [params]=""   class="form-control" formControlName="drgBaseMultiplier"/>
+                          <small class="text-danger" *ngIf="formValidation.isValidField('drgBaseMultiplier')">
+                          {{ formValidation.errorMessage('drgBaseMultiplier') }}
+                         </small>
+                     </div>
+
+                    <!-- Textbox with label of Case 2 % If Allowed -->
+                     <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('case2IfAllowed') }">
+                         <label class="col-form-label" for="case2IfAllowed" i18n>Case 2 % If Allowed</label>
+                         <input type="text" id="case2IfAllowed"  [fieldLevelSec]="''" [params]=""   class="form-control" formControlName="case2IfAllowed"/>
+                          <small class="text-danger" *ngIf="formValidation.isValidField('case2IfAllowed')">
+                          {{ formValidation.errorMessage('case2IfAllowed') }}
+                         </small>
+                     </div>
+
+                </div>
+
+                <div class="form-group row">
+                    <!-- Textbox with label of Pricer PaySource -->
+                     <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('pricerPaysource') }">
+                         <label class="col-form-label" for="pricerPaysource" i18n>Pricer PaySource</label>
+                         <input type="text" id="pricerPaysource"  [fieldLevelSec]="''" [params]=""   class="form-control" formControlName="pricerPaysource"/>
+                          <small class="text-danger" *ngIf="formValidation.isValidField('pricerPaysource')">
+                          {{ formValidation.errorMessage('pricerPaysource') }}
+                         </small>
+                     </div>
+
+                    <!-- Textbox with label of Case 3% Of Allowed -->
+                     <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('case3OfAllowed') }">
+                         <label class="col-form-label" for="case3OfAllowed" i18n>Case 3% Of Allowed</label>
+                         <input type="text" id="case3OfAllowed"  [fieldLevelSec]="''" [params]=""   class="form-control" formControlName="case3OfAllowed"/>
+                          <small class="text-danger" *ngIf="formValidation.isValidField('case3OfAllowed')">
+                          {{ formValidation.errorMessage('case3OfAllowed') }}
+                         </small>
+                     </div>
+                </div>
+                </div>
+            </div>
+            <div class="col-sm-4  pull-right">
+                <div class="form-group row ">
+                    <button type="button" (click)="submit()" class="button col-sm-12 mb-4">OK</button>
+                    <button type="button" (click)="cancel()" class="button col-sm-12" >Cancel</button>
+                </div>
+            </div>
+        </form>
+
+    </div>
+</div>

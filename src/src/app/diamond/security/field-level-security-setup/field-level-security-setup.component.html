@@ -1,0 +1,68 @@
+<!-- Copyright (c) 2020 . All Rights Reserved. -->
+<div class="container-fluid">
+    <div class="card-block">
+        <form [formGroup]="fieldLevelSecuritySetupForm" novalidate>
+
+            <div class="row form-title">
+                <h2 class="col-md-5  card-label-admin"> Field Level Security Setup </h2>
+            </div>
+            <button type="button" *ngIf="showIcon" class="modal-close close" aria-label="Close"
+                    (click)="closeModal()">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+            <app-pop-up-message #popUpMesssage (buttonclickEvent)="popUpButtonHandler($event)"
+                                [(popupMessage)]="popUpMessage"></app-pop-up-message>
+            <div class="row mt-3">
+                <menu-bar [menus]="menu" (onMenuClick)="onMenuItemClick($event)"></menu-bar>
+            </div>
+            <div class="form-group row">
+                <!-- Textbox with label of Field Level Security ID -->
+                <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('fieldLevelSecurityId') }">
+                    <label class="col-form-label" for="fieldLevelSecurityId" i18n>Field Level Security ID</label>
+                    <input type="text" id="fieldLevelSecurityId" class="form-control"
+                           formControlName="fieldLevelSecurityId" (keydown)="onChangeSecurityId($event)"/>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('fieldLevelSecurityId')">
+                        {{ formValidation.errorMessage('fieldLevelSecurityId') }}
+                    </small>
+                </div>
+
+            </div>
+
+            <div class="form-group row">
+            </div>
+
+            <div class="form-group row" *ngIf="showFields">
+                <!-- Textbox with label of Description -->
+                <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('description') }">
+                    <label class="col-form-label" for="description" i18n>Description</label>
+                    <input type="text" id="description" class="form-control" formControlName="description"/>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('description')">
+                        {{ formValidation.errorMessage('description') }}
+                    </small>
+                </div>
+
+            </div>
+
+            <div class="form-group row">
+            </div>
+            <div class="col-md-12 mt-3 p-0" style="overflow:scroll; height:490px;">
+                <dynamic-form (onChangeFields)="dynamicformChange($event)" [prevState]="secColDetailState"
+                              [title]="''"
+                              [showSubmitButton]="false"
+                              [isResetForm]="isResetForm"
+                              [isSaveForm]="isSaveForm" [config]="secColDetailFormConfig"
+                              [isAddNewRow]="isAddNewRow"
+                              (onRowClick)="onRowClickEvent($event)" 
+                              (onRowDeleted)="setDeleteData()"
+                              (selectStatus)="setFormDataModified()"
+                              (formSubmitted)="saveSecColDetail($event)"></dynamic-form>
+
+            </div>
+            <div class="form-group row">
+            </div>
+        </form>
+    </div>
+</div>
+<ng-keyboard-shortcuts [shortcuts]="shortcuts"></ng-keyboard-shortcuts>
+<ng-keyboard-shortcuts-help [key]="'f2'" [closeKey]="'escape'" [title]="'Hotkeys Help'"></ng-keyboard-shortcuts-help>

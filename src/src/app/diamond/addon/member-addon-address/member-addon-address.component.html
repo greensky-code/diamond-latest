@@ -1,0 +1,74 @@
+<!-- Copyright (c) 2021 . All Rights Reserved. -->
+<div class="container-fluid">
+    <div class="card-block">
+        <button type="button" class="close" aria-label="Close"
+                (click)="activeModal.dismiss()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        
+
+
+
+        <nav ngbNav #nav="ngbNav" class="nav-tabs" (navChange)="onTabChange($event)">
+            <ng-container [ngbNavItem]="1">
+                <a ngbNavLink>Primary Mailing</a>
+                <ng-template ngbNavContent>
+                    <primary-mailing-address [subscriberId]="subscriberId" 
+                                   [entityType]="entityType"
+                                   [seqAddressId]="seqAddressId" [addressCode]="addressCode"></primary-mailing-address>
+                </ng-template>
+            </ng-container>
+
+            <ng-container  [ngbNavItem]="2">
+                <a ngbNavLink>Primary Payee</a>
+                <ng-template ngbNavContent>
+
+                </ng-template>
+            </ng-container>
+            <ng-container  [ngbNavItem]="3" >
+                <a ngbNavLink>Cignalinks Group Address</a>
+                <ng-template ngbNavContent>
+
+                </ng-template>
+            </ng-container>
+
+
+            <ng-container ngbNavItem  [ngbNavItem]="4">
+                <a ngbNavLink>US Network Address</a>
+                <ng-template ngbNavContent>
+
+                </ng-template>
+            </ng-container>
+
+
+            <ng-container  [ngbNavItem]="5">
+                <a ngbNavLink>Electronic Eligibility</a>
+                <ng-template ngbNavContent>
+
+                </ng-template>
+            </ng-container>
+
+
+            <ng-container  [ngbNavItem]="6">
+                <a ngbNavLink>ID Card</a>
+                <ng-template ngbNavContent>
+
+                </ng-template>
+            </ng-container>
+
+            <ng-container  [ngbNavItem]="7">
+                <a ngbNavLink>Cignalinks Address</a>
+                <ng-template ngbNavContent>
+
+                </ng-template>
+            </ng-container>
+
+
+        </nav>
+
+        <div [ngbNavOutlet]="nav" class="mt-2"></div>
+
+
+    </div>
+</div>
+

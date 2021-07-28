@@ -1,0 +1,85 @@
+<div class="container-fluid">
+    <div class="card-block">
+        <form [formGroup]="otherInfoForm" novalidate>
+            <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+            <app-pop-up-message #popUpMesssage (buttonclickEvent)="popUpButtonHandler($event)"  [(popupMessage)] = "popUpMessage"></app-pop-up-message>
+
+            <div class="form-group row bg-dark text-white">
+                <div class="col-md-4 offset-2 form-control-static mb-0 font-weight-bold " i18n>
+                    Group Number
+                    <br>
+                    <span class="col-md required-field-label justify-content-center pt-1">  {{groupNumber}}</span>
+                </div>
+                <div class="col-md-4 offset-2 form-control-static mb-0 font-weight-bold" i18n>
+                    Group Name
+                    <br>
+                    <span class="col-md pt-1 required-field-label justify-content-center"> {{groupName}}</span>
+                </div>
+            </div>
+
+<!--            <div class="form-group row">-->
+<!--                &lt;!&ndash; DynamicText with label of Group Number &ndash;&gt;-->
+<!--                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('groupNumber') }">-->
+<!--                     <label class="col-form-label" for="groupNumber" i18n>Group Number</label>-->
+<!--                     <input type="text"   [fieldLevelSec]="''" params="" (keydown)="tabKeyDown($event)"  id="groupNumber" formControlName="groupNumber" class="form-control"/>-->
+<!--                 </div>-->
+<!--            -->
+<!--                &lt;!&ndash; DynamicText with label of Group Name &ndash;&gt;-->
+<!--                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('groupName') }">-->
+<!--                     <label class="col-form-label" for="groupName" i18n>Group Name</label>-->
+<!--                     <input type="text"  [fieldLevelSec]="''" params=""   id="groupName" formControlName="groupName" class="form-control"/>-->
+<!--                 </div>-->
+<!--            -->
+<!--            </div>-->
+            
+            <div class="form-group row">
+                <div class="col-md-4">
+                    <label class="col-form-label" for="groupName" i18n>IGO/NGO Indicator</label>
+                    <select  class="form-control" formControlName="indicator">
+                        <option > Select </option>
+                        <option value="Yes"> Yes </option>
+                        <option value="No">No</option>
+                    </select>
+                </div>
+                
+            </div>
+               
+            
+                        <!-- DataGrid with Name of DataGrid
+                    <button (click)="dataGridGridOptionsExportCsv()">Export</button>
+                    <ag-grid-angular #agGrid class="ag-theme-fresh" [gridOptions]="dataGridGridOptions"
+                    style="width: 100%; height: 300px;"
+                    [enableSorting]="true"
+                    [enableFilter]="true"
+                    [floatingFilter]="true"
+                    [pagination]="true"
+                    [showToolPanel]="true">
+                    </ag-grid-angular> -->
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row justify-content-center">
+                <div class="col-md-2 form-control-static mb-0" i18n>
+                    <button (click) = "saveCiebGroupMaster()" class="btn btn-primary">Save Changes</button>
+                </div>
+            
+                <div class="col-md-2 form-control-static mb-0" i18n>
+                    <button (click)="resetAll()" class="btn btn-primary">Reset ALL</button>
+                </div>
+            
+            </div>
+            
+            <div class="form-group row justify-content-center">
+                <div class="col-md-2 form-control-static mb-0" i18n>
+                    <button class="btn w-full btn-primary">Close</button>
+                </div>
+            
+            </div>
+            
+            <div class="form-group row">
+            </div>
+        </form>
+    </div>
+   
+</div>

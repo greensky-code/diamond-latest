@@ -1,0 +1,59 @@
+<!-- Copyright (c) 2020 . All Rights Reserved. -->
+<div class="container-fluid">
+    <div class="card-block">
+
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Shortcut Menu</h5>
+            <button type="button" *ngIf="showIcon" #F3ModalCloseBtn class="close" aria-label="Close" (click)="closeModal()">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+
+        <div class="modal-body">
+            <!-- Copyright (c) 2020 . All Rights Reserved. -->
+            <div class="container-fluid">
+                <div class="card-block">
+                    <form [formGroup]="changePasswordForm" novalidate>
+                        <!-- <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+                        <app-pop-up-message #popUpMesssage (buttonclickEvent)="popUpButtonHandler($event)"
+                                            [(popupMessage)]="popUpMessage"></app-pop-up-message> -->
+
+                        <!--
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Keyword</label>
+                            <input type="keyword" class="form-control" id="keyword">
+                          </div>
+                       -->
+                        <div class="form-group row" (keydown)="onSelectWindow($event)">
+                            <ag-grid-angular #agGrid class="ag-theme-fresh" [gridOptions]="dataGridGridOptions"
+                                             [headerHeight]="0"
+                                             style="width: 100%; height: 300px;"
+                                             [enableSorting]="false"
+                                             [enableFilter]="false"
+                                             [floatingFilter]="false"
+                                             [pagination]="false"
+                                             [rowSelection]="rowSelection"
+                                             [showToolPanel]="false"
+                                             [defaultColDef]="defaultColDef"
+                                             (cellClicked)="onCellClicked($event)"
+                                             (gridReady)="onGridReady($event)">
+                            </ag-grid-angular>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="row">
+                <!-- DataGrid with Name of DataGrid -->
+
+            </div>
+
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="button" (click)="closeModal('OK')" data-dismiss="modal">Ok</button>
+            <button type="button" class="button" id="cancel-btn" (click)="closeModal()" data-dismiss="modal">
+                Cancel
+            </button>
+        </div>
+    </div>
+</div>
+

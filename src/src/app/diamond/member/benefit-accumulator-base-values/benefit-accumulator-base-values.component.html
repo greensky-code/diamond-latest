@@ -1,0 +1,188 @@
+<!-- Copyright (c) 2020 . All Rights Reserved. -->
+<div class="container-fluid">
+    <div class="card-block">
+        <form [formGroup]="benefitAccumulatorBaseValuesForm" novalidate>
+            <note-priority-header-display title="Benefit Accumulator Base Values" [seqSourceId]="seqSourceId" [noteWinId]="windowId"></note-priority-header-display>
+            <button type="button" *ngIf="showIcon" class="close" aria-label="Close" (click)="modalClose()">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+            <app-pop-up-message #popUpMesssage (buttonclickEvent)="popUpButtonHandler($event)"
+                [popupMessage]="popUpMessage"></app-pop-up-message>
+            <div class="row">
+                <menu-bar [menus]="menu" (onMenuClick)="onMenuItemClick($event)"></menu-bar>
+            </div>
+
+
+            <div class="form-group row mt-4">
+                <!-- Button with label of Select Mbr -->
+                <div class="col-md-2">
+                    <button type="button" id="selectMbr" name="selectMbr" class="btn btn-small btn-primary" (click)="selectMember()">Select
+                        Mbr</button>
+                </div>
+                <ng-template #loaderTemplate let-loaderValue="value">
+                    <div class="row justify-content-center" *ngIf="loaderValue">
+                        <div class="spinner-border text-success" role="status">
+                            <span class="sr-only">Loading...</span>
+                        </div>
+                    </div>
+                </ng-template>
+
+                <ng-container *ngTemplateOutlet="loaderTemplate; context:{value: inProgress }"></ng-container>
+
+            </div>
+
+
+            <div class="form-group row">
+                <div class="col-md-4 form-control-static mb-0 text-primary" i18n>
+                    <h4><b>Member Eligibility</b></h4>
+                </div>
+
+            </div>
+
+            <div class="form-group row">
+                <!-- DynamicText with label of Subscriber ID -->
+                <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('subscriberId') }">
+                    <label class="col-form-label" for="subscriberId" i18n>Subscriber ID</label>
+                    <input type="text" readonly id="subscriberId" formControlName="subscriberId" class="form-control" />
+                </div>
+
+                <!-- DynamicText with label of Person No -->
+                <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('personNo') }">
+                    <label class="col-form-label" for="personNo" i18n>Person No</label>
+                    <input type="text" readonly id="personNo" formControlName="personNo" class="form-control" />
+                </div>
+
+                <!-- DynamicText with Name of DynamicText001 -->
+                <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('dynamicText001') }">
+                    <label class="col-form-label" for="dynamicText001" i18n>&nbsp;</label>
+                    <input type="text" readonly id="dynamicText001" formControlName="dynamicText001"
+                        class="form-control" />
+                </div>
+
+            </div>
+
+            <div class="form-group row">
+                <!-- Textbox with label of Effective Date -->
+                <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('effectiveDate') }">
+                    <label class="col-form-label" for="effectiveDate" i18n>Effective Date</label>
+                    <div class="input-group">
+                        <input id="effectiveDate" readonly class="form-control"  formControlName="effectiveDate"/>
+                    </div>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('effectiveDate')">
+                        {{ formValidation.errorMessage('effectiveDate') }}
+                    </small>
+                </div>
+
+                <!-- Textbox with label of Term Date -->
+                <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('termDate') }">
+                    <label class="col-form-label" for="termDate" i18n>Term Date</label>
+                    <div class="input-group">
+                        <input id="termDate" readonly class="form-control" name="termDate"  formControlName="termDate"  />
+                    </div>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('termDate')">
+                        {{ formValidation.errorMessage('termDate') }}
+                    </small>
+                </div>
+
+                <!-- DynamicText with label of Elig Status -->
+                <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('eligStatus') }">
+                    <label class="col-form-label" for="eligStatus" i18n>Elig Status</label>
+                    <input type="text" readonly id="eligStatus" formControlName="eligStatus" class="form-control" />
+                </div>
+
+            </div>
+
+            <div class="form-group row">
+                <!-- DynamicText with label of Group ID -->
+                <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('groupId') }">
+                    <label class="col-form-label" for="groupId" i18n>Group ID</label>
+                    <input type="text" readonly id="groupId" formControlName="groupId" class="form-control" [(ngModel)]="groupId"/>
+                </div>
+
+                <!-- DynamicText with Name of DynamicText002 -->
+                <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('dynamicText002') }">
+                    <label class="col-form-label" for="dynamicText002" i18n>&nbsp;</label>
+                    <input type="text" readonly id="dynamicText002" formControlName="dynamicText002"
+                        class="form-control" [(ngModel)]="shortNameGroupName" />
+                </div>
+
+                <!-- DynamicText with label of Plan Code -->
+                <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('planCode') }">
+                    <label class="col-form-label" for="planCode" i18n>Plan Code</label>
+                    <input type="text" readonly id="planCode" formControlName="planCode" class="form-control" />
+                </div>
+
+            </div>
+
+            <div class="form-group row">
+                <!-- DynamicText with label of Benefit Pkg ID -->
+                <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('benefitPkgId') }">
+                    <label class="col-form-label" for="benefitPkgId" i18n>Benefit Pkg</label>
+                    <input type="text" readonly id="benefitPkgId" formControlName="benefitPkgId" class="form-control" [(ngModel)]="benefitPackageMaster.benefitPackageId" />
+                </div>
+
+                <!-- DynamicText with Name of DynamicText003 -->
+                <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('dynamicText003') }">
+                    <label class="col-form-label" for="dynamicText003" i18n>&nbsp;</label>
+                    <input type="text" readonly id="dynamicText003" formControlName="dynamicText003"
+                        class="form-control" [(ngModel)]="benefitPackageMaster.shortDescription" />
+                </div>
+
+                <!-- DynamicText with label of Relationship Code -->
+                <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('relationshipCode') }">
+                    <label class="col-form-label" for="relationshipCode" i18n>Relationship Code</label>
+                    <input type="text" readonly id="relationshipCode" formControlName="relationshipCode"
+                        class="form-control" />
+                </div>
+
+            </div>
+
+            <div class="form-group row">
+                <!-- DynamicText with label of Riders -->
+                <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('riders') }">
+                    <label class="col-form-label" for="riders" i18n>Riders</label>
+                    <input type="text" readonly id="riders" formControlName="riders" class="form-control" />
+                </div>
+
+            </div>
+
+            <div class="form-group row">
+            </div>
+
+            <div class="form-group row">
+                <div class="col-md-4 form-control-static mb-0 text-primary" i18n>
+                    <h4><b> Benefit Package</b></h4>
+                </div>
+
+            </div>
+
+            <ag-grid-angular #agGrid class="ag-theme-fresh" [gridOptions]="dataGrid001GridOptions"
+                style="width: 100%; height: 300px;" [enableSorting]="true" [enableFilter]="true" [floatingFilter]="true"
+                [pagination]="true" [showToolPanel]="true">
+            </ag-grid-angular>
+
+            <div class="form-group row">
+            </div>
+
+            <div class="form-group row">
+            </div>
+
+            <div class="form-group row">
+                <div class="col-md-4 form-control-static mb-0 text-primary" i18n>
+                    <h4><b>Accumulated Base Values</b></h4>
+                </div>
+
+            </div>
+        <div class="col-md-12 mt-3 p-0">
+            <dynamic-form #dynamicform [showRemoveButton]="showRemoveButton" [isSaveForm]="saveForm"
+                          [prevState]="benefitState" [isAddNewRow]="isAddNewRow" [isResetForm]="isResetForm"
+                          [config]="BenefitAccVBFormConfig" (onChangeFields)="onChangeFields($event)"
+                          (formSubmitted)="saveBenefitAccBV($event)" (onRowClick)="onSelectedRow($event)" ></dynamic-form>
+        </div>
+
+        </form>
+    </div>
+</div>
+<ng-keyboard-shortcuts [shortcuts]="shortcuts"></ng-keyboard-shortcuts>
+<ng-keyboard-shortcuts-help [key]="'f2'" [closeKey]="'escape'" [title]="'Hotkeys Help'"></ng-keyboard-shortcuts-help>

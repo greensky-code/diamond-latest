@@ -1,0 +1,903 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+    <title>PSCLM Parameters &amp; Prerequisites</title>
+    <!--(Meta)==========================================================-->
+    <meta name="copyright"
+          value="© Copyright 2002 Health Systems Design Corp., a wholly owned subsidiary of Perot Systems Corporation. All rights reserved"/>
+    <meta content="RoboHELP by eHelp Corporation - www.ehelp.com" name="generator"/>
+    <meta content="0.1" name="generator-major-version"/>
+    <meta content="1" name="generator-minor-version"/>
+    <meta content="kadov" name="filetype"/>
+    <meta content="1" name="filetype-version"/>
+    <meta content="1" name="page-count"/>
+    <meta content="5524" name="layout-height"/>
+    <meta content="902" name="layout-width"/>
+    <!--(Links)=========================================================-->
+    <!--(Scripts)=======================================================-->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+</head>
+<body>
+
+<div class="calibreMeta">
+    <div class="calibreMetaTitle">
+
+
+        <h1>
+            <a href="../bj5if-qozss.html">DIAMOND 950 Help
+            </a>
+        </h1>
+
+
+    </div>
+    <div class="calibreMetaAuthor">
+        Unknown
+
+    </div>
+</div>
+
+<div class="calibreMain">
+
+    <div class="calibreEbookContent">
+
+        <div class="calibreEbNavTop">
+
+            <a href="PSCLM_Functions_on_Menu_Bar.htm" class="calibreAPrev">previous page
+            </a>
+
+
+            <a href="PSCLM_COB_Information_Menu_Function.htm" class="calibreANext">next page
+            </a>
+
+        </div>
+
+
+        <h1 class="calibre1">PSCLM Parameters and Prerequisites</h1>
+
+        <p class="text">The following is only a brief listing and description of
+            the parameters that affect this keyword. See <a href="System.chm::/PARAM_Record_Map.htm">PARAM
+                Record Map</a> for links to more information about each parameter. How
+            DIAMOND Thinks documents may also give further details on how to configure
+            these parameters for your particular needs.</p>
+
+        <!--(Table)=========================================================-->
+        <table cellspacing="0" width="525" x-use-null-cells="" class="calibre172">
+
+            <tbody class="">
+            <tr valign="top" class="">
+                <td height="23" width="135px" class="">
+                    <p class="tbl-header-nonscroll">Parameter</p></td>
+                <td height="23" width="195px" class="">
+                    <p class="tbl-header-nonscroll">Description</p></td>
+                <td height="23" width="195px" class="">
+                    <p class="tbl-header-nonscroll">Comments</p></td>
+            </tr>
+
+            <tr valign="top" class="">
+                <td width="135px" class="">
+                    <p class="tbl-r-label">BILLEDCHECK</p></td>
+                <td width="195px" class="">
+                    <p class="tbl-text">Controls enforcement of an
+                        edit between the billed amount on the header and the sum of the billed
+                        amounts on the detail lines. </p></td>
+                <td width="195px" class="">
+                    <p class="tbl-list-hdr">Valid entries are:</p>
+                    <ul class="calibre2">
+
+                        <li class="kadov-p-cbulletlvl"><p class="tablebullet">Equal - DIAMOND
+                            will issue a warning on the claim whenever the detail line billed amounts
+                            do not add up to the Total Billed. </p></li>
+
+                        <li class="kadov-p-cbulletlvl"><p class="tablebullet">Greater - DIAMOND
+                            will issue a warning only if the sum of the detail lines is greater than
+                            the Total Billed.</p></li>
+
+                        <li class="kadov-p-cbulletlvl"><p class="tablebullet">Blank - DIAMOND
+                            will not edit the total detail against the Total Billed.</p></li>
+                    </ul>
+                </td>
+            </tr>
+
+            <tr valign="top" class="">
+                <td width="135px" class="">
+                    <p class="tbl-r-label">CLAIMAGE</p></td>
+                <td width="195px" class="">
+                    <p class="tbl-text">Specifies the maximum number
+                        of days allowed between the current (system) date and the claim date of
+                        service.</p></td>
+                <td width="195px" class="">
+                    <p class="tbl-text"> </p></td>
+            </tr>
+
+            <tr valign="top" class="">
+                <td width="135px" class="">
+                    <p class="tbl-r-label">CLAIMAUDIT</p></td>
+                <td width="195px" class="">
+                    <p class="tbl-text">Controls activation of the
+                        ClaimCheck® claim audit function</p></td>
+                <td width="195px" class="">
+                    <p class="tbl-text"> </p></td>
+            </tr>
+
+            <tr valign="top" class="">
+                <td width="135px" class="">
+                    <p class="tbl-r-label">CLAIMDUEDATE</p></td>
+                <td width="195px" class="">
+                    <p class="tbl-text">When the vendor record does
+                        not specify Payment Delay Days, the entry in this record is used instead.
+                    </p></td>
+                <td width="195px" class="">
+                    <p class="tbl-text">The due date is calculated
+                        as the claim receipt date + the number of days specified in this parameter.
+                    </p></td>
+            </tr>
+
+            <tr valign="top" class="">
+                <td width="135px" class="">
+                    <p class="tbl-r-label">CLCHKINVALID</p></td>
+                <td width="195px" class="">
+                    <p class="tbl-text">Determines whether professional
+                        claims submitted using the DDS Claims API that have a claim header Invalid
+                        Data checkbox value of selected are automatically sent to ClaimCheck.</p></td>
+                <td width="195px" class="">
+                    <p class="tbl-list-hdr"> </p></td>
+            </tr>
+
+            <tr valign="top" class="">
+                <td width="135px" class="">
+                    <p class="tbl-r-label">COBCLAIMACTN</p></td>
+                <td width="195px" class="">
+                    <p class="tbl-text">Specifies the action taken
+                        automatically when the member has other primary coverage.</p></td>
+                <td width="195px" class="">
+                    <p class="tbl-list-hdr">Actions are:</p>
+                    <ul class="calibre2">
+
+                        <li class="kadov-p-cbulletlvl"><p class="tablebullet">Warn (default)</p></li>
+
+                        <li class="kadov-p-cbulletlvl"><p class="tablebullet">Deny</p></li>
+
+                        <li class="kadov-p-cbulletlvl"><p class="tablebullet">Hold</p></li>
+
+                        <li class="kadov-p-cbulletlvl"><p class="tablebullet">No Action</p></li>
+                    </ul>
+                    <p class="tbl-text-noline">Action is taken based on whether the claim’s primary
+                        date of service falls within primary other coverage as recorded in the
+                        member’s COBHS record.</p></td>
+            </tr>
+
+            <tr valign="top" class="">
+                <td width="135px" class="">
+                    <p class="tbl-r-label">DFLTPRINTSTAT, Param 1</p></td>
+                <td width="195px" class="">
+                    <p class="tbl-text">Determines whether Explanations
+                        of Benefits (EOBs) and Remittance Advices (RAs) are printed for claims
+                        processed online when the member is ineligible.</p></td>
+                <td width="195px" class="">
+                    <p class="tbl-list-hdr">Values are:</p>
+                    <ul class="calibre2">
+
+                        <li class="kadov-p-cbulletlvl"><p class="tablebullet">0 - No EOB,
+                            no RA</p></li>
+
+                        <li class="kadov-p-cbulletlvl"><p class="tablebullet">1 - Paper
+                            EOB, no RA</p></li>
+
+                        <li class="kadov-p-cbulletlvl"><p class="tablebullet">2 - No EOB,
+                            paper RA</p></li>
+
+                        <li class="kadov-p-cbulletlvl"><p class="tablebullet">3 - Paper
+                            EOB, paper RA</p></li>
+
+                        <li class="kadov-p-cbulletlvl"><p class="tablebullet">4 - No EOB,
+                            electronic RA</p></li>
+
+                        <li class="kadov-p-cbulletlvl"><p class="tablebullet">5 - Paper
+                            EOB, electronic RA </p></li>
+                    </ul>
+                </td>
+            </tr>
+
+            <tr valign="top" class="">
+                <td width="135px" class="">
+                    <p class="tbl-r-label">DFTCNTRCTPRV</p></td>
+                <td width="195px" class="">
+                    <p class="tbl-text">This parameter record stores
+                        the Provider ID and the Oracle Sequence ID used to identify the Default
+                        Provider. </p></td>
+                <td width="195px" class="">
+                    <p class="tbl-text">The Default Provider is used
+                        to create provider contracts in keyword PROVC that apply to more than
+                        one provider. The contract search methods, which may include looking for
+                        a default provider contract, are defined in the LINBS record corresponding
+                        to the member’s eligibility.</p></td>
+            </tr>
+
+            <tr valign="top" class="">
+                <td width="135px" class="">
+                    <p class="tbl-r-label">ELIGSTAT</p></td>
+                <td width="195px" class="">
+                    <p class="tbl-text">Identifies valid eligibility
+                        status codes.</p></td>
+                <td width="195px" class="">
+                    <p class="tbl-text">If the entry in the member’s
+                        Elig Sts field matches an entry in ELIGSTAT, the member is eligible. If
+                        the entry is not found in ELIGSTAT, the member is ineligible.</p></td>
+            </tr>
+
+            <tr valign="top" class="">
+                <td width="135px" class="">
+                    <p class="tbl-r-label">FACILITYIDRQ</p></td>
+                <td width="195px" class="">
+                    <p class="tbl-text">Specifies if the Facility
+                        ID field is optional or required based on the place of service entered
+                        in the header record.</p></td>
+                <td width="195px" class="">
+                    <p class="tbl-text"> </p></td>
+            </tr>
+
+            <tr valign="top" class="">
+                <td width="135px" class="">
+                    <p class="tbl-r-label">GLASSIGN1-6</p></td>
+                <td width="195px" class="">
+                    <p class="tbl-text">Specifies which data fields
+                        on the claim are used to automatically assign the general ledger reference
+                        and company codes to claim detail lines.</p></td>
+                <td width="195px" class="">
+                    <p class="tbl-text"> </p></td>
+            </tr>
+
+            <tr valign="top" class="">
+                <td width="135px" class="">
+                    <p class="tbl-r-label">INVALIDADMHR</p></td>
+                <td width="195px" class="">
+                    <p class="tbl-text">Provides the ability to add
+                        an invalid Admit Hour into the DIAMOND claims modules.</p>
+                    <p class="tbl-text-noline">This parameter is also used by the DDS Claims
+                        API.</p></td>
+                <td width="195px" class="">
+                    <p class="tbl-list-hdr">Parameter 1:</p>
+                    <ul class="calibre2">
+
+                        <li class="kadov-p-cbulletlvl"><p class="tablebullet">Y - Invalid
+                            data is replaced with null value.</p></li>
+
+                        <li class="kadov-p-cbulletlvl"><p class="tablebullet">N - Invalid
+                            data is not replaced; claim is rejected with critical error.</p></li>
+                    </ul>
+                </td>
+            </tr>
+
+            <tr valign="top" class="">
+                <td width="135px" class="">
+                    <p class="tbl-r-label">INVALIDADMPV</p></td>
+                <td width="195px" class="">
+                    <p class="tbl-text">Provides the ability to add
+                        an invalid admitting provider ID into the DIAMOND claims modules; specifies
+                        a replacement code value.</p>
+                    <p class="tbl-text-noline">This parameter is also used by the DDS Claims
+                        API.</p></td>
+                <td width="195px" class="">
+                    <p class="tbl-list-hdr">Parameter 1:</p>
+                    <ul class="calibre2">
+
+                        <li class="kadov-p-cbulletlvl"><p class="tablebullet">Y - Invalid
+                            data is replaced with data from Parameter 2.</p></li>
+
+                        <li class="kadov-p-cbulletlvl"><p class="tablebullet">N - Invalid
+                            data is not replaced; claim is rejected with critical error.</p></li>
+                    </ul>
+                    <p class="tbl-list-hdr-noline">Parameter 2:</p>
+                    <p class="tbl-list">Replacement value.</p></td>
+            </tr>
+
+            <tr valign="top" class="">
+                <td width="135px" class="">
+                    <p class="tbl-r-label">INVALIDADMSO</p></td>
+                <td width="195px" class="">
+                    <p class="tbl-text">Provides the ability to add
+                        an invalid Admit Source into the DIAMOND claims modules.</p>
+                    <p class="tbl-text-noline">This parameter is also used by the DDS Claims
+                        API.</p></td>
+                <td width="195px" class="">
+                    <p class="tbl-list-hdr">Parameter 1:</p>
+                    <ul class="calibre2">
+
+                        <li class="kadov-p-cbulletlvl"><p class="tablebullet">Y - Invalid
+                            data is replaced with null value.</p></li>
+
+                        <li class="kadov-p-cbulletlvl"><p class="tablebullet">N - Invalid
+                            data is not replaced; claim is rejected with critical error.</p></li>
+                    </ul>
+                </td>
+            </tr>
+
+            <tr valign="top" class="">
+                <td width="135px" class="">
+                    <p class="tbl-r-label">INVALIDADMTY</p></td>
+                <td width="195px" class="">
+                    <p class="tbl-text">Provides the ability to add
+                        an invalid admit type into the DIAMOND claims modules.</p>
+                    <p class="tbl-text-noline">This parameter is also used by the DDS Claims
+                        API.</p></td>
+                <td width="195px" class="">
+                    <p class="tbl-list-hdr">Parameter 1:</p>
+                    <ul class="calibre2">
+
+                        <li class="kadov-p-cbulletlvl"><p class="tablebullet">Y - Invalid
+                            data is replaced with null value.</p></li>
+
+                        <li class="kadov-p-cbulletlvl"><p class="tablebullet">N - Invalid
+                            data is not replaced; claim is rejected with critical error.</p></li>
+                    </ul>
+                </td>
+            </tr>
+
+            <tr valign="top" class="">
+                <td width="135px" class="">
+                    <p class="tbl-r-label">INVALIDATTPV</p></td>
+                <td width="195px" class="">
+                    <p class="tbl-text">Provides the ability to add
+                        an invalid attending provider ID into the DIAMOND claims modules; specifies
+                        a replacement code value.</p>
+                    <p class="tbl-text-noline">This parameter is also used by the DDS Claims
+                        API.</p></td>
+                <td width="195px" class="">
+                    <p class="tbl-list-hdr">Parameter 1:</p>
+                    <ul class="calibre2">
+
+                        <li class="kadov-p-cbulletlvl"><p class="tablebullet">Y - Invalid
+                            data is replaced with data from Parameter 2.</p></li>
+
+                        <li class="kadov-p-cbulletlvl"><p class="tablebullet">N - Invalid
+                            data is not replaced; claim is rejected with critical error.</p></li>
+                    </ul>
+                    <p class="tbl-list-hdr-noline">Parameter 2:</p>
+                    <p class="tbl-list">Replacement value.</p></td>
+            </tr>
+
+            <tr valign="top" class="">
+                <td width="135px" class="">
+                    <p class="tbl-r-label">INVALIDBILTY</p></td>
+                <td width="195px" class="">
+                    <p class="tbl-text">Provides the ability to add
+                        an invalid bill type into the DIAMOND claims modules; specifies a replacement
+                        code value.</p>
+                    <p class="tbl-text-noline">This parameter is also used by the DDS Claims
+                        API.</p></td>
+                <td width="195px" class="">
+                    <p class="tbl-list-hdr">Parameter 1:</p>
+                    <ul class="calibre2">
+
+                        <li class="kadov-p-cbulletlvl"><p class="tablebullet">Y - Invalid
+                            data is replaced with data from Parameter 2.</p></li>
+
+                        <li class="kadov-p-cbulletlvl"><p class="tablebullet">N - Invalid
+                            data is not replaced; claim is rejected with critical error.</p></li>
+                    </ul>
+                    <p class="tbl-list-hdr-noline">Parameter 2:</p>
+                    <p class="tbl-list">Replacement value.</p></td>
+            </tr>
+
+            <tr valign="top" class="">
+                <td width="135px" class="">
+                    <p class="tbl-r-label">INVALIDDIAG</p></td>
+                <td width="195px" class="">
+                    <p class="tbl-text">Provides the ability to add
+                        an invalid Diagnosis Code into the DIAMOND claims modules; specifies a
+                        replacement code value.</p>
+                    <p class="tbl-text-noline">This parameter is also used by the DDS Claims
+                        API.</p></td>
+                <td width="195px" class="">
+                    <p class="tbl-list-hdr">Parameter 1:</p>
+                    <ul class="calibre2">
+
+                        <li class="kadov-p-cbulletlvl"><p class="tablebullet">Y - Invalid
+                            data is replaced with data from Parameter 2.</p></li>
+
+                        <li class="kadov-p-cbulletlvl"><p class="tablebullet">N - Invalid
+                            data is not replaced; claim is rejected with critical error.</p></li>
+                    </ul>
+                    <p class="tbl-list-hdr-noline">Parameter 2:</p>
+                    <p class="tbl-list">Replacement value.</p></td>
+            </tr>
+
+            <tr valign="top" class="">
+                <td width="135px" class="">
+                    <p class="tbl-r-label">INVALIDDISHR</p></td>
+                <td width="195px" class="">
+                    <p class="tbl-text">Provides the ability to add
+                        an invalid Discharge Hour into the DIAMOND claims modules.</p>
+                    <p class="tbl-text-noline">This parameter is also used by the DDS Claims
+                        API.</p></td>
+                <td width="195px" class="">
+                    <p class="tbl-list-hdr">Parameter 1:</p>
+                    <ul class="calibre2">
+
+                        <li class="kadov-p-cbulletlvl"><p class="tablebullet">Y - Invalid
+                            data is replaced with null value.</p></li>
+
+                        <li class="kadov-p-cbulletlvl"><p class="tablebullet">N - Invalid
+                            data is not replaced; claim is rejected with critical error.</p></li>
+                    </ul>
+                </td>
+            </tr>
+
+            <tr valign="top" class="">
+                <td width="135px" class="">
+                    <p class="tbl-r-label">INVALIDDRGCD</p></td>
+                <td width="195px" class="">
+                    <p class="tbl-text">Provides the ability to add
+                        an invalid DRG Code into the DIAMOND claims modules; specifies a replacement
+                        code value.</p>
+                    <p class="tbl-text-noline">This parameter is also used by the DDS Claims
+                        API.</p></td>
+                <td width="195px" class="">
+                    <p class="tbl-list-hdr">Parameter 1:</p>
+                    <ul class="calibre2">
+
+                        <li class="kadov-p-cbulletlvl"><p class="tablebullet">Y - Invalid
+                            data is replaced with data from Parameter 2.</p></li>
+
+                        <li class="kadov-p-cbulletlvl"><p class="tablebullet">N - Invalid
+                            data is not replaced; claim is rejected with critical error.</p></li>
+                    </ul>
+                    <p class="tbl-list-hdr-noline">Parameter 2:</p>
+                    <p class="tbl-list">Replacement value.</p></td>
+            </tr>
+
+            <tr valign="top" class="">
+                <td width="135px" class="">
+                    <p class="tbl-r-label">INVALIDFACID</p></td>
+                <td width="195px" class="">
+                    <p class="tbl-text">Provides the ability to add
+                        an invalid submitting facility ID into the DIAMOND claims modules; specifies
+                        a replacement code value.</p>
+                    <p class="tbl-text-noline">This parameter is also used by the DDS Claims
+                        API.</p></td>
+                <td width="195px" class="">
+                    <p class="tbl-list-hdr">Parameter 1:</p>
+                    <ul class="calibre2">
+
+                        <li class="kadov-p-cbulletlvl"><p class="tablebullet">Y - Invalid
+                            data is replaced with data from Parameter 2.</p></li>
+
+                        <li class="kadov-p-cbulletlvl"><p class="tablebullet">N - Invalid
+                            data is not replaced; claim is rejected with critical error.</p></li>
+                    </ul>
+                    <p class="tbl-list-hdr-noline">Parameter 2:</p>
+                    <p class="tbl-list">Replacement value.</p></td>
+            </tr>
+
+            <tr valign="top" class="">
+                <td width="135px" class="">
+                    <p class="tbl-r-label">INVALIDHOLD</p></td>
+                <td width="195px" class="">
+                    <p class="tbl-text">Indicates if DIAMOND should
+                        hold a claim submitted through the DIAMOND Data Service API if invalid
+                        data was replaced with data from one of the following parameters:</p>
+                    <ul class="calibre2">
+
+                        <li class="kadov-p-cstep--bullet"><p class="tbl-list-bullet">INVALIDADMHR</p></li>
+
+                        <li class="kadov-p-cstep--bullet"><p class="tbl-list-bullet">INVALIDADMPV</p></li>
+
+                        <li class="kadov-p-cstep--bullet"><p class="tbl-list-bullet">INVALIDADMSO</p></li>
+
+                        <li class="kadov-p-cstep--bullet"><p class="tbl-list-bullet">INVALIDADMTY</p></li>
+
+                        <li class="kadov-p-cstep--bullet"><p class="tbl-list-bullet">INVALIDATTPV</p></li>
+
+                        <li class="kadov-p-cstep--bullet"><p class="tbl-list-bullet">INVALIDBILTY</p></li>
+
+                        <li class="kadov-p-cstep--bullet"><p class="tbl-list-bullet">INVALIDDIAG</p></li>
+
+                        <li class="kadov-p-cstep--bullet"><p class="tbl-list-bullet">INVALIDDISHR</p></li>
+
+                        <li class="kadov-p-cstep--bullet"><p class="tbl-list-bullet">INVALIDDRGCD</p></li>
+
+                        <li class="kadov-p-cstep--bullet"><p class="tbl-list-bullet">INVALIDFACID</p></li>
+
+                        <li class="kadov-p-cstep--bullet"><p class="tbl-list-bullet">INVALIDMBRID</p></li>
+
+                        <li class="kadov-p-cstep--bullet"><p class="tbl-list-bullet">INVALIDMODIF</p></li>
+
+                        <li class="kadov-p-cstep--bullet"><p class="tbl-list-bullet">INVALIDOCCCD</p></li>
+
+                        <li class="kadov-p-cstep--bullet"><p class="tbl-list-bullet">INVALIDPATST</p></li>
+
+                        <li class="kadov-p-cstep--bullet"><p class="tbl-list-bullet">INVALIDPOS</p></li>
+
+                        <li class="kadov-p-cstep--bullet"><p class="tbl-list-bullet">INVALIDPROC</p></li>
+
+                        <li class="kadov-p-cstep--bullet"><p class="tbl-list-bullet">INVALIDPRVID</p></li>
+
+                        <li class="kadov-p-cstep--bullet"><p class="tbl-list-bullet">INVALIDREFPV</p></li>
+
+                        <li class="kadov-p-cstep--bullet"><p class="tbl-list-bullet">INVALIDVENDR</p></li>
+                    </ul>
+                    <p class="tbl-text-noline">This parameter is also used by the DDS Claims
+                        API.</p></td>
+                <td width="195px" class="">
+                    <p class="tbl-list-hdr">Parameter 1:</p>
+                    <ul class="calibre2">
+
+                        <li class="kadov-p-cbulletlvl"><p class="tablebullet">Y - Claim
+                            is allowed to process with replacement value; DIAMOND puts the Claim Header
+                            on Hold with the Hold Reason Code from Parameter 2.</p></li>
+
+                        <li class="kadov-p-cbulletlvl"><p class="tablebullet">N - Claim
+                            is allowed to process with replacement value.</p></li>
+                    </ul>
+                    <p class="tbl-list-hdr-noline">Parameter 2:</p>
+                    <p class="tbl-text-noline">Valid Hold Reason Code to be applied to Claim
+                        Header. If this field is left blank, DIAMOND will process the claim as
+                        if Parameter 1 is set to N.</p>
+                    <p class="tbl-text-noline">This process occurs automatically for claims submitted
+                        via the DDS API. It may also be manually selected for online claims if
+                        the user selects the Invalid Data check box.</p></td>
+            </tr>
+
+            <tr valign="top" class="">
+                <td width="135px" class="">
+                    <p class="tbl-r-label">INVALIDMBRID</p></td>
+                <td width="195px" class="">
+                    <p class="tbl-text">Provides the ability to add
+                        an invalid Member ID into the DIAMOND claims modules; specifies a replacement
+                        code value.</p>
+                    <p class="tbl-text-noline">This parameter is also used by the DDS Claims
+                        API.</p></td>
+                <td width="195px" class="">
+                    <p class="tbl-list-hdr">Parameter 1:</p>
+                    <ul class="calibre2">
+
+                        <li class="kadov-p-cbulletlvl"><p class="tablebullet">Y - Invalid
+                            data is replaced with data from Parameter 2.</p></li>
+
+                        <li class="kadov-p-cbulletlvl"><p class="tablebullet">N - Invalid
+                            data is not replaced; claim is rejected with critical error.</p></li>
+                    </ul>
+                    <p class="tbl-list-hdr-noline">Parameter 2:</p>
+                    <p class="tbl-list">Replacement value.</p></td>
+            </tr>
+
+            <tr valign="top" class="">
+                <td width="135px" class="">
+                    <p class="tbl-r-label">INVALIDMODIF</p></td>
+                <td width="195px" class="">
+                    <p class="tbl-text">Provides the ability to add
+                        an invalid Modifier Code into the DIAMOND claims modules; specifies a
+                        replacement code value.</p>
+                    <p class="tbl-text-noline">This parameter is also used by the DDS Claims
+                        API.</p></td>
+                <td width="195px" class="">
+                    <p class="tbl-list-hdr">Parameter 1:</p>
+                    <ul class="calibre2">
+
+                        <li class="kadov-p-cbulletlvl"><p class="tablebullet">Y - Invalid
+                            data is replaced with data from Parameter 2.</p></li>
+
+                        <li class="kadov-p-cbulletlvl"><p class="tablebullet">N - Invalid
+                            data is not replaced; claim is rejected with critical error.</p></li>
+                    </ul>
+                    <p class="tbl-list-hdr-noline">Parameter 2:</p>
+                    <p class="tbl-list">Replacement value.</p></td>
+            </tr>
+
+            <tr valign="top" class="">
+                <td width="135px" class="">
+                    <p class="tbl-r-label">INVALIDOCCCD</p></td>
+                <td width="195px" class="">
+                    <p class="tbl-text">Provides the ability to add
+                        an invalid submitted occurrence code into the DIAMOND claims modules.</p>
+                    <p class="tbl-text-noline">This parameter is also used by the DDS Claims
+                        API.</p></td>
+                <td width="195px" class="">
+                    <p class="tbl-list-hdr">Parameter 1:</p>
+                    <ul class="calibre2">
+
+                        <li class="kadov-p-cbulletlvl"><p class="tablebullet">Y - Invalid
+                            data is replaced with null value.</p></li>
+
+                        <li class="kadov-p-cbulletlvl"><p class="tablebullet">N - Invalid
+                            data is not replaced; claim is rejected with critical error.</p></li>
+                    </ul>
+                </td>
+            </tr>
+
+            <tr valign="top" class="">
+                <td width="135px" class="">
+                    <p class="tbl-r-label">INVALIDPATST</p></td>
+                <td width="195px" class="">
+                    <p class="tbl-text">Provides the ability to add
+                        an invalid patient status into the DIAMOND claims modules.</p>
+                    <p class="tbl-text-noline">This parameter is also used by the DDS Claims
+                        API.</p></td>
+                <td width="195px" class="">
+                    <p class="tbl-list-hdr">Parameter 1:</p>
+                    <ul class="calibre2">
+
+                        <li class="kadov-p-cbulletlvl"><p class="tablebullet">Y - Invalid
+                            data is replaced with "XX".</p></li>
+
+                        <li class="kadov-p-cbulletlvl"><p class="tablebullet">N - Invalid
+                            data is not replaced; claim is rejected with critical error.</p></li>
+                    </ul>
+                    <p class="tbl-list-hdr-noline">Parameter 2:</p>
+                    <p class="tbl-list">"XX" value. This value is system-assigned;
+                        do not edit this parameter.</p></td>
+            </tr>
+
+            <tr valign="top" class="">
+                <td width="135px" class="">
+                    <p class="tbl-r-label">INVALIDPOS</p></td>
+                <td width="195px" class="">
+                    <p class="tbl-text">Provides the ability to add
+                        an invalid Place Of Service into the DIAMOND claims modules; specifies
+                        a replacement code value.</p>
+                    <p class="tbl-text-noline">This parameter is also used by the DDS Claims
+                        API.</p></td>
+                <td width="195px" class="">
+                    <p class="tbl-list-hdr">Parameter 1:</p>
+                    <ul class="calibre2">
+
+                        <li class="kadov-p-cbulletlvl"><p class="tablebullet">Y - Invalid
+                            data is replaced with data from Parameter 2.</p></li>
+
+                        <li class="kadov-p-cbulletlvl"><p class="tablebullet">N - Invalid
+                            data is not replaced; claim is rejected with critical error.</p></li>
+                    </ul>
+                    <p class="tbl-list-hdr-noline">Parameter 2:</p>
+                    <p class="tbl-list">Replacement value.</p></td>
+            </tr>
+
+            <tr valign="top" class="">
+                <td width="135px" class="">
+                    <p class="tbl-r-label">INVALIDPROC</p></td>
+                <td width="195px" class="">
+                    <p class="tbl-text">Provides the ability to add
+                        an invalid Procedure Code into the DIAMOND claims modules; specifies a
+                        replacement code value.</p>
+                    <p class="tbl-text-noline">This parameter is also used by the DDS Claims
+                        API.</p></td>
+                <td width="195px" class="">
+                    <p class="tbl-list-hdr">Parameter 1:</p>
+                    <ul class="calibre2">
+
+                        <li class="kadov-p-cbulletlvl"><p class="tablebullet">Y - Invalid
+                            data is replaced with data from Parameter 2.</p></li>
+
+                        <li class="kadov-p-cbulletlvl"><p class="tablebullet">N - Invalid
+                            data is not replaced; claim is rejected with critical error.</p></li>
+                    </ul>
+                    <p class="tbl-list-hdr-noline">Parameter 2:</p>
+                    <p class="tbl-list">Replacement value.</p></td>
+            </tr>
+
+            <tr valign="top" class="">
+                <td width="135px" class="">
+                    <p class="tbl-r-label">INVALIDPRVID</p></td>
+                <td width="195px" class="">
+                    <p class="tbl-text">Provides the ability to add
+                        an invalid rendering Provider ID into the DIAMOND claims modules; specifies
+                        a replacement code value.</p>
+                    <p class="tbl-text-noline">This parameter is also used by the DDS Claims
+                        API.</p></td>
+                <td width="195px" class="">
+                    <p class="tbl-list-hdr">Parameter 1:</p>
+                    <ul class="calibre2">
+
+                        <li class="kadov-p-cbulletlvl"><p class="tablebullet">Y - Invalid
+                            data is replaced with data from Parameter 2.</p></li>
+
+                        <li class="kadov-p-cbulletlvl"><p class="tablebullet">N - Invalid
+                            data is not replaced; claim is rejected with critical error.</p></li>
+                    </ul>
+                    <p class="tbl-list-hdr-noline">Parameter 2:</p>
+                    <p class="tbl-list">Replacement value.</p></td>
+            </tr>
+
+            <tr valign="top" class="">
+                <td width="135px" class="">
+                    <p class="tbl-r-label">INVALIDREFPV</p></td>
+                <td width="195px" class="">
+                    <p class="tbl-text">Provides the ability to add
+                        an invalid referring provider ID into the DIAMOND claims modules; specifies
+                        a replacement code value.</p>
+                    <p class="tbl-text-noline">This parameter is also used by the DDS Claims
+                        API.</p></td>
+                <td width="195px" class="">
+                    <p class="tbl-list-hdr">Parameter 1:</p>
+                    <ul class="calibre2">
+
+                        <li class="kadov-p-cbulletlvl"><p class="tablebullet">Y - Invalid
+                            data is replaced with data from Parameter 2.</p></li>
+
+                        <li class="kadov-p-cbulletlvl"><p class="tablebullet">N - Invalid
+                            data is not replaced; claim is rejected with critical error.</p></li>
+                    </ul>
+                    <p class="tbl-list-hdr-noline">Parameter 2:</p>
+                    <p class="tbl-list">Replacement value.</p></td>
+            </tr>
+
+            <tr valign="top" class="">
+                <td width="135px" class="">
+                    <p class="tbl-r-label">INVALIDVENDR</p></td>
+                <td width="195px" class="">
+                    <p class="tbl-text">Provides the ability to add
+                        an invalid Vendor ID into the DIAMOND claims modules; specifies a replacement
+                        code value.</p>
+                    <ul class="calibre2">
+
+                        <li class="kadov-p-cstep-comment-bullet-noline"><p class="bullet-list-h3">This
+                            parameter is also used by the DDS Claims API.</p></li>
+                    </ul>
+                </td>
+                <td width="195px" class="">
+                    <p class="tabletext">Parameter 1:</p>
+                    <ul class="calibre2">
+
+                        <li class="kadov-p-cbulletlvl"><p class="tablebullet">Y - Invalid
+                            data is replaced with data from Parameter 2.</p></li>
+
+                        <li class="kadov-p-cbulletlvl"><p class="tablebullet">N - Invalid
+                            data is not replaced; claim is rejected with critical error.</p></li>
+                    </ul>
+                    <p class="tabletext">Parameter 2:</p>
+                    <p class="tabletext">Replacement value.</p></td>
+            </tr>
+
+            <tr valign="top" class="">
+                <td width="135px" class="">
+                    <p class="tbl-r-label">PRICEMOD12</p></td>
+                <td width="195px" class="">
+                    <p class="tbl-text">Prices or denies a claim
+                        line item when Price Rule Detail can be found for the Modifier code in
+                        the first <span class="calibre5">Mods</span> box, but Price
+                        Rule Detail cannot be found for the Modifier code in the second <span
+                                class="calibre5">Mods</span> box.</p></td>
+                <td width="195px" class="">
+                    <p class="tbl-list-hdr">Parameter 1:</p>
+                    <ul class="calibre2">
+
+                        <li class="kadov-p-cbulletlvl"><p class="tablebullet">Y - The claim
+                            line item will be denied.</p></li>
+
+                        <li class="kadov-p-cbulletlvl"><p class="tablebullet">N - The claim
+                            line item will be priced.</p></li>
+                    </ul>
+                    <p class="tbl-list-hdr-noline">Parameter 2:</p>
+                    <p class="tbl-text-noline">Available if in Parameter 1, you typed <span class="calibre5">Y</span>.
+                        Type the Allowed Reason code you want to use if a claim line item is denied
+                        by this parameter setting. </p>
+                    <p class="tbl-text-noline">Allowed Reason codes are maintained in keyword
+                        REASN with the <span class="calibre5">Reason Code Type</span>
+                        list set to <span class="calibre5">AL – Allowed</span>.</p></td>
+            </tr>
+
+            <tr valign="top" class="">
+                <td width="135px" class="">
+                    <p class="tbl-r-label">PSCLMLENSRX</p></td>
+                <td width="195px" class="">
+                    <p class="tbl-text">Controls the availability
+                        of the Lens Prescription window from the PSCLM window’s Topic menu.</p></td>
+                <td width="195px" class="">
+                    <p class="tbl-text"> </p></td>
+            </tr>
+
+            <tr valign="top" class="">
+                <td width="135px" class="">
+                    <p class="tbl-r-label">TESTSVCAREA</p></td>
+                <td width="195px" class="">
+                    <p class="tbl-text">Determines whether the provider’s
+                        postal code on a claim or authorization will be validated against the
+                        member’s IPA service area. The Service Area Indicator will display yes,
+                        no or blank.</p></td>
+                <td width="195px" class="">
+                    <p class="tbl-list-hdr">Param 2 = Professional/Dental
+                        Claims</p>
+                    <ul class="calibre2">
+
+                        <li class="kadov-p-cbulletlvl"><p class="tablebullet">Y - Validation
+                            activated</p></li>
+
+                        <li class="kadov-p-cbulletlvl"><p class="tablebullet">N - No validation</p></li>
+                    </ul>
+                </td>
+            </tr>
+
+            <tr valign="top" class="">
+                <td width="135px" class="">
+                    <p class="tbl-r-label">TPLCODEACT</p></td>
+                <td width="195px" class="">
+                    <p class="tbl-text">When an authorization is
+                        matched to a claim during claims processing, determines whether the claim
+                        will be held or denied based on the AUTHS&gt; Member ID/Eligibility&gt;TPL
+                        (Third Party Liability) Code check box.</p></td>
+                <td width="195px" class="">
+                    <p class="tbl-list-hdr">Parameters 1, 2, and 3:</p>
+                    <ul class="calibre2">
+
+                        <li class="kadov-p-cbulletlvl"><p class="tablebullet"><span class="calibre5">H</span>old
+                            or <span class="calibre5">D</span>eny;&lt;ReasonCode&gt;</p></li>
+
+                        <li class="kadov-p-cbulletlvl"><p class="tablebullet">or Blank</p></li>
+
+                        <li class="kadov-p-cbulletlvl"><p class="tablebullet">Example 1 = H;HRESN</p></li>
+
+                        <li class="kadov-p-cbulletlvl"><p class="tablebullet">Example 2 = D;DRESN</p></li>
+                    </ul>
+                </td>
+            </tr>
+
+            <tr valign="top" class="">
+                <td width="135px" class="">
+                    <p class="tbl-r-label">USEAUTHDATA</p></td>
+                <td width="195px" class="">
+                    <p class="tbl-text">Specifies the action taken
+                        when DIAMOND finds a match between a claim and an authorization.</p></td>
+                <td width="195px" class="">
+                    <p class="tbl-text">If Parameter 1 is Yes, DIAMOND
+                        will automatically populate various institutional claim (INCLM), dental
+                        services claim (DNCLM) and professional service claim (PSCLM) header fields
+                        with associated authorization data. If No, it will not.</p></td>
+            </tr>
+
+            <tr valign="top" class="">
+                <td width="135px" class="">
+                    <p class="tbl-r-label">VENDORFIRST</p></td>
+                <td width="195px" class="">
+                    <p class="tbl-text">Determines the order in which
+                        the cursor moves between the vendor and provider fields for newly entered
+                        claims.</p></td>
+                <td width="195px" class="">
+                    <p class="tbl-text">Parameter 1:</p>
+                    <ul class="calibre2">
+
+                        <li class="kadov-p-cbulletlvl"><p class="tablebullet">Y - Cursor goes
+                            to Vendor ID/Address first.</p></li>
+
+                        <li class="kadov-p-cbulletlvl"><p class="tablebullet">Blank - Cursor
+                            goes to Provider ID/Address first</p></li>
+                    </ul>
+                    <p class="tbl-text-noline">Parameter 2: (Available if Parameter 1 = Y)</p>
+                    <ul class="calibre2">
+
+                        <li class="kadov-p-cbulletlvl"><p class="tablebullet">Y - Displays a
+                            list of providers that match the vendor ID and Vendor Address criteria
+                            before performing the contract search.</p></li>
+
+                        <li class="kadov-p-cbulletlvl"><p class="tablebullet">Blank - The system
+                            performs the contract search using the information provided in Vendor
+                            ID and Address, then displays valid provider contracts for selection.</p></li>
+                    </ul>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+
+    </div>
+
+
+    <div class="calibreEbNav">
+
+        <a href="PSCLM_Functions_on_Menu_Bar.htm" class="calibreAPrev">previous page
+        </a>
+
+
+        <a href="../bj5if-qozss.html" class="calibreAHome">start
+        </a>
+
+
+        <a href="PSCLM_COB_Information_Menu_Function.htm" class="calibreANext">next page
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+</html>

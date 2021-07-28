@@ -1,0 +1,162 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+    <title>Voiding and Reversing a Posted Check</title>
+    <!--(Meta)==========================================================-->
+    <meta name="copyright" value="© Copyright 2002 Health Systems Design Corp., a wholly owned subsidiary of Perot Systems Corporation. All rights reserved"/>
+    <meta content="RoboHELP by eHelp Corporation - www.ehelp.com" name="generator"/>
+    <meta content="0.1" name="generator-major-version"/>
+    <meta content="1" name="generator-minor-version"/>
+    <meta content="kadov" name="filetype"/>
+    <meta content="1" name="filetype-version"/>
+    <meta content="1" name="page-count"/>
+    <meta content="568" name="layout-height"/>
+    <meta content="678" name="layout-width"/>
+    <!--(Links)=========================================================-->
+    <!--(Scripts)=======================================================-->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+   <link href="assets/help/stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="assets/help/page_styles.css" rel="stylesheet" type="text/css"/>
+
+  
+
+
+<link href="assets/help/calibreHtmlOutBasicCss.css" type="text/css" rel="stylesheet" />
+
+</head>
+<body>
+
+<div class="calibreMeta">
+  <div class="calibreMetaTitle">
+  
+  
+    
+    <h1>
+      <a href="../4xeqt-va1vo.html">DIAMOND 950 Help
+</a>
+    </h1>
+    
+    
+  
+  </div>
+  <div class="calibreMetaAuthor">
+    Unknown
+
+  </div>
+</div>
+
+<div class="calibreMain">
+
+  <div class="calibreEbookContent">
+    
+      <div class="calibreEbNavTop">
+        
+          <a href="Voiding_and_Reissuing_a_Posted_Check.htm" class="calibreAPrev">previous page
+</a>
+        
+
+        
+          <a href="EOBs_and_RAs_-_Overview.htm" class="calibreANext">next page
+</a>
+        
+      </div>
+    
+
+    
+
+<h1 class="calibre3">Void and Reverse a Posted Check</h1>
+
+<p class="text">Use the following procedure to void and reverse a posted 
+ check. This procedure assumes that the claims paid by the check were processed 
+ in error and new claims will be entered and paid.</p>
+
+<p class="text"><span class="calibre9">Important Note</span> <!--kadov_tag{{<spaces>}}--> <!--kadov_tag{{</spaces>}}-->In 
+ keyword CHECK (Check Register), the check status must be "Posted." 
+ </p>
+
+<h3 class="calibre7">To void and reverse a posted check</h3>
+
+<ol class="calibre8">
+	
+	<li class="kadov-p-cstep"><p class="step">Press F3, type <span class="calibre9">CHECK</span>, 
+ and then press ENTER.</p></li>
+	
+	<li class="kadov-p-cstep"><p class="step">Select the check or EFT transaction.</p></li>
+	
+	<li class="kadov-p-cstep"><p class="step">On the <span class="calibre9">Special</span> 
+ menu, click <span class="calibre9">Stop/Void</span>.</p></li>
+	
+	<li class="kadov-p-cstep"><p class="step">On the <span class="calibre9">Action</span> 
+ list, click <span class="calibre9">Void//Reverse</span>.</p></li>
+	
+	<li class="kadov-p-cstep"><p class="step">In the <span class="calibre9">Reason</span> 
+ list, click a reason.</p></li>
+	
+	<li class="kadov-p-cstep"><p class="step">Click <span class="calibre9">OK</span>. 
+ The check's status changes to "In Process."</p></li>
+	
+	<li class="kadov-p-cstep"><p class="step">On the <span class="calibre9">File</span> 
+ menu, click <span class="calibre9">Save</span>.</p></li>
+	
+	<li class="kadov-p-cstep"><p class="step">In keyword CVSUP, run the clear/void/stop 
+ job to verify its accuracy, and then post it.<br class="calibre1"/>
+	When you post a clear/void/stop job, the following occurs:</p></li>
+	
+	<li class="kadov-p-cstepbullet"><p class="stepbullet">In keyword CHECK, 
+ the <span class="calibre9">Check Status</span> field is set 
+ to <span class="calibre9">Reversed</span>.</p></li>
+	
+	<li class="kadov-p-cstepbullet"><p class="stepbullet">In the claim detail 
+ window for each affected claim detail line, the <span class="calibre9">Proc 
+ Stat</span> list is set to <span class="calibre9">F – Final 
+ (posted)</span>. </p></li>
+	
+	<li class="kadov-p-cstepbullet"><p class="stepbullet">In keyword ACPAY, 
+ the original claim’s A/P transaction record has the <span class="calibre9">Processing 
+ Status</span> box set to <span class="calibre9">F – Final (posted)</span>, 
+ the <span class="calibre9">Select For</span> <span class="calibre9">Payment</span> 
+ list set to <span class="calibre9">Selected</span>, and the 
+ <span class="calibre9">Check Number</span> and <span class="calibre9">Check/EFT 
+ Dt</span> fields are cleared.</p></li>
+	
+	<li class="kadov-p-cstepbullet"><p class="stepbullet">In the claim detail 
+ window for each affected claim detail line, a new claim line is added 
+ with negative dollar amounts equal to the original claim detail line. 
+ The <span class="calibre9">Claim Status</span> list is set to 
+ <span class="calibre9">A – Adjustment</span> and the <span class="calibre9">Proc 
+ Stat</span> list is set to <span class="calibre9">U – Unposted 
+ (open)</span>. If a claim line has a prior reversal, then any applicable 
+ patient liabilities or accumulators are not reversed again. When you run 
+ an A/P update job in keyword APUPD, an A/P transaction record is created 
+ for the offset amount in keyword ACPAY.</p></li>
+</ol>
+
+
+
+
+
+
+  </div>
+
+
+
+  <div class="calibreEbNav">
+    
+      <a href="Voiding_and_Reissuing_a_Posted_Check.htm" class="calibreAPrev">previous page
+</a>
+    
+
+    <a href="../4xeqt-va1vo.html" class="calibreAHome">start
+</a>
+
+    
+      <a href="EOBs_and_RAs_-_Overview.htm" class="calibreANext">next page
+</a>
+    
+  </div>
+
+</div>
+
+</body>
+</html>

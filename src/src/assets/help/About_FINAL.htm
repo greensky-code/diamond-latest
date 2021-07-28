@@ -1,0 +1,143 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+    <title>About FINAL</title>
+    <!--(Meta)==========================================================-->
+    <meta name="copyright"
+          value="© Copyright 2002 Health Systems Design Corp., a wholly owned subsidiary of Perot Systems Corporation. All rights reserved"/>
+    <meta content="RoboHELP by eHelp Corporation - www.ehelp.com" name="generator"/>
+    <meta content="0.1" name="generator-major-version"/>
+    <meta content="1" name="generator-minor-version"/>
+    <meta content="kadov" name="filetype"/>
+    <meta content="1" name="filetype-version"/>
+    <meta content="1" name="page-count"/>
+    <meta content="530" name="layout-height"/>
+    <meta content="678" name="layout-width"/>
+    <!--(Links)=========================================================-->
+    <!--(Scripts)=======================================================-->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+</head>
+<body>
+
+<div class="calibreMeta">
+    <div class="calibreMetaTitle">
+
+
+        <h1>
+            <a href="../4xeqt-va1vo.html">DIAMOND 950 Help
+            </a>
+        </h1>
+
+
+    </div>
+    <div class="calibreMetaAuthor">
+        Unknown
+
+    </div>
+</div>
+
+<div class="calibreMain">
+
+    <div class="calibreEbookContent">
+
+        <div class="calibreEbNavTop">
+
+            <a href="FINAL_Finalize_Non_AP_Transactions.htm" class="calibreAPrev">previous page
+            </a>
+
+
+            <a href="FINAL_Field_Map.htm" class="calibreANext">next page
+            </a>
+
+        </div>
+
+
+        <h1 class="calibre1">About FINAL</h1>
+
+        <p class="text">Use keyword FINAL (Final Non-Ap Setup) to run a finalize
+            job and finalize non-payable claim detail lines. </p>
+
+        <p class="text">Non-payable claim detail lines are characterized by the <span
+                class="calibre9">Claim Status</span> list set to one of the
+            following values in the claim detail window:</p>
+
+        <ul class="calibre6">
+
+            <li class="kadov-p-cbullet"><p class="bullet"><span class="calibre9">C
+ – Capitated</span></p></li>
+
+            <li class="kadov-p-cbullet"><p class="bullet"><span class="calibre9">S
+ – Staff</span></p></li>
+
+            <li class="kadov-p-cbullet"><p class="bullet"><span class="calibre9">I
+ – Informational</span></p></li>
+        </ul>
+
+        <p class="text">When you run a finalize job, the <span class="calibre9">Proc
+ Status</span> list is changed to <span class="calibre9">F –
+ Final (posted)</span> in the claim detail window for each finalized claim
+            detail line. In addition, the <span class="calibre9">Post Date</span>
+            box is set to the date the finalize job ran. The finalized detail lines
+            are then available for inclusion in capitation deduction and capitation
+            stoploss calculations.</p>
+
+        <h2 class="calibre10">About claims with informational detail lines</h2>
+
+        <p class="text">A finalize job skips the informational detail lines on a
+            claim if one of the following is true:</p>
+
+        <ul class="calibre6">
+
+            <li class="kadov-p-cbullet"><p class="bullet">The claim does not have a
+                system-generated detail line</p></li>
+        </ul>
+
+        <p class="bulletcont">- or -</p>
+
+        <ul class="calibre6">
+
+            <li class="kadov-p-cbullet"><p class="bullet">The claim has a system-generated
+                detail line that is unposted (the <span class="calibre9">Proc
+ Status</span> list is set to <span class="calibre9">U - Unposted</span>).
+                Generally, you can run an A/P update job in keyword APUPD (Accounts Payable
+                Update) to finalize system-generated claim lines.</p></li>
+        </ul>
+
+        <p class="bulletcont">- or -</p>
+
+        <ul class="calibre6">
+
+            <li class="kadov-p-cbullet"><p class="bullet">The claim has a system-generated
+                detail line that is held (the <span class="calibre9">Proc Status</span>
+                list is set to <span class="calibre9">H - Held</span>)</p></li>
+        </ul>
+
+        <p class="text">By skipping a detail line, the <span class="calibre9">Proc
+ Status</span> list remains set to <span class="calibre9">U -
+ Unposted (open)</span>.</p>
+
+
+    </div>
+
+
+    <div class="calibreEbNav">
+
+        <a href="FINAL_Finalize_Non_AP_Transactions.htm" class="calibreAPrev">previous page
+        </a>
+
+
+        <a href="../4xeqt-va1vo.html" class="calibreAHome">start
+        </a>
+
+
+        <a href="FINAL_Field_Map.htm" class="calibreANext">next page
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+</html>

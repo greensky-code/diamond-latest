@@ -1,0 +1,593 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+    <title>GPBIL Field Definitions</title>
+    <!--(Meta)==========================================================-->
+    <meta name="copyright"
+          value="© Copyright 2002 Health Systems Design Corp., a wholly owned subsidiary of Perot Systems Corporation. All rights reserved"/>
+    <meta content="RoboHELP by eHelp Corporation - www.ehelp.com" name="generator"/>
+    <meta content="0.1" name="generator-major-version"/>
+    <meta content="1" name="generator-minor-version"/>
+    <meta content="kadov" name="filetype"/>
+    <meta content="1" name="filetype-version"/>
+    <meta content="1" name="page-count"/>
+    <meta content="1318" name="layout-height"/>
+    <meta content="656" name="layout-width"/>
+    <!--(Links)=========================================================-->
+    <!--(Scripts)=======================================================-->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+</head>
+<body>
+
+<div class="calibreMeta">
+    <div class="calibreMetaTitle">
+
+
+        <h1>
+            <a href="../l0urk-a4ma7.html">DIAMOND 950 Help
+            </a>
+        </h1>
+
+
+    </div>
+    <div class="calibreMetaAuthor">
+        Unknown
+
+    </div>
+</div>
+
+<div class="calibreMain">
+
+    <div class="calibreEbookContent">
+
+        <div class="calibreEbNavTop">
+
+            <a href="GPBIL_Field_Map.htm" class="calibreAPrev">previous page
+            </a>
+
+
+            <a href="GPBIL_Functions_on_Menu_Bar.htm" class="calibreANext">next page
+            </a>
+
+        </div>
+
+
+        <!--(Table)=========================================================-->
+        <table cellspacing="0" width="500" x-use-null-cells="" class="calibre109">
+            <colgroup class="calibre19">
+                <col class="calibre110"/>
+                <col class="calibre111"/>
+
+            </colgroup>
+            <tbody class="calibre10">
+            <tr valign="top" class="calibre11">
+                <td width="70%" class="calibre112">
+                    <h4 class="calibre62">GPBIL Field Definitions</h4></td>
+                <td width="30%" class="calibre113">
+                    <p class="body-text1"><img border="0" height="53" src="assets/help/Field_definitions_Req_legend.gif" width="97"
+                                               x-maintain-ratio="TRUE" class="calibre114"/></p></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <!--(Table)=========================================================-->
+        <table cellspacing="0" width="500" x-use-null-cells="" class="calibre115">
+            <colgroup class="calibre19">
+                <col class="calibre116"/>
+                <col class="calibre117"/>
+                <col class="calibre118"/>
+                <col class="calibre119"/>
+                <col class="calibre118"/>
+
+            </colgroup>
+            <tbody class="calibre10">
+            <tr valign="top" class="calibre11">
+                <td width="110px" class="calibre120">
+                    <p class="tableheading">Field Name</p></td>
+                <td width="15px" class="calibre121">
+                    <p class="tableheading1">Req</p></td>
+                <td width="140px" class="calibre122">
+                    <p class="tableheading">Description</p></td>
+                <td width="95px" class="calibre123">
+                    <p class="tableheading">Source</p></td>
+                <td width="140px" class="calibre122">
+                    <p class="tableheading">Comments</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre11">
+                <td width="98px" class="calibre124">
+                    <p class="tbl-r-label"><a name="GPBIL_Action_FIELD"></a>Action</p></td>
+                <td width="14px" class="calibre125">
+                    <p class="tbl-text">R</p></td>
+                <td width="105px" class="calibre126">
+                    <p class="tbl-text">Reason or result desired
+                        from this billing run.</p></td>
+                <td width="105px" class="calibre126">
+                    <p class="tbl-text">Selected from predefined
+                        list</p></td>
+                <td width="206px" class="calibre126">
+                    <p class="tbl-list-hdr">Hard coded values are:</p>
+                    <p class="tbl-list">Calculate: DIAMOND ensures there are no other calculate
+                        runs for the same Billing Cycle, Bill Job Type, and Bill Through Request
+                        Date, and that there are no outstanding billing runs for the same Billing
+                        Cycle.</p>
+                    <p class="tbl-list">Post: posts revenue to the GL</p>
+                    <p class="tbl-list">Cancel: cancels the billing run; it must be resubmitted.
+                    </p></td>
+            </tr>
+
+            <tr valign="top" class="calibre11">
+                <td width="98px" class="calibre124">
+                    <p class="tbl-r-label"><a name="GPBIL_Bill_Job_Type_FIELD"></a>Bill
+                        Job Type</p></td>
+                <td width="14px" class="calibre125">
+                    <p class="tbl-text">R</p></td>
+                <td width="105px" class="calibre126">
+                    <p class="tbl-text">Indicator of whether this
+                        is a routine monthly bill, or a bill showing changes in eligibility only
+                        (for groups billed less frequently than every month)</p></td>
+                <td width="105px" class="calibre126">
+                    <p class="tbl-text">Selected from predefined
+                        list</p></td>
+                <td width="206px" class="calibre126">
+                    <p class="tbl-list-hdr">Valid values are:</p>
+                    <p class="tbl-list">Regular</p>
+                    <p class="tbl-list">Supplemental</p>
+                    <p class="tbl-text-noline">Groups that are billed quarterly, semi-annually,
+                        or annually require only supplemental bills. </p></td>
+            </tr>
+
+            <tr valign="top" class="calibre11">
+                <td width="98px" class="calibre124">
+                    <p class="tbl-r-label"><a name="GPBIL_Bill_Thru_Req._Dt_FIELD"></a>Bill
+                        Thru Req. Dt</p></td>
+                <td width="14px" class="calibre125">
+                    <p class="tbl-text">R</p></td>
+                <td width="105px" class="calibre126">
+                    <p class="tbl-text">Premium bill records are
+                        created for each customer in the cycle for the number of frequency periods
+                        that are completed by this date</p></td>
+                <td width="105px" class="calibre126">
+                    <p class="tbl-text">Manually entered</p></td>
+                <td width="206px" class="calibre126">
+                    <p class="tbl-text">When the (GPBIL) Billing
+                        Type = Group and the group is being billed at the Super Group or Administrator
+                        level (GRUPB Bill To), only one billing period is calculated, for each
+                        GPBIL run, regardless of the Bill Thru Req Dt.</p>
+                    <p class="tbl-text-noline">When the (GPBIL) Billing Type = Group and the
+                        group is being billed at the Group level (GRUPB Bill To), multiple billing
+                        periods are calculated for each GPBIL run, based on the Bill Thru Req
+                        Dt.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre11">
+                <td width="98px" class="calibre124">
+                    <p class="tbl-r-label"><a name="GPBIL_Billing_Cycle_FIELD"></a>Billing
+                        Cycle</p></td>
+                <td width="14px" class="calibre125">
+                    <p class="tbl-text">R</p></td>
+                <td width="105px" class="calibre126">
+                    <p class="tbl-text">Set of groups with the same
+                        Type and Frequency; the cycle is defined in GRUPB.</p></td>
+                <td width="105px" class="calibre126">
+                    <p class="tbl-text">Manually entered</p></td>
+                <td width="206px" class="calibre126">
+                    <p class="tbl-text"> </p></td>
+            </tr>
+
+            <tr valign="top" class="calibre11">
+                <td width="98px" class="calibre124">
+                    <p class="tbl-r-label"><a name="GPBIL_Billing_Type_FIELD"></a>Billing
+                        Type</p></td>
+                <td width="14px" class="calibre125">
+                    <p class="tbl-text">R</p></td>
+                <td width="105px" class="calibre126">
+                    <p class="tbl-text">Variable that defines whether
+                        a set of individuals is being billed to a group, such as an employer,
+                        or are being billed individually.</p></td>
+                <td width="105px" class="calibre126">
+                    <p class="tbl-text">Selected from predefined
+                        list</p></td>
+                <td width="206px" class="calibre126">
+                    <p class="tbl-list-hdr">Valid values are:</p>
+                    <p class="tbl-list">Annual</p>
+                    <p class="tbl-list">Group</p>
+                    <p class="tbl-list">Individual</p>
+                    <p class="tbl-list">Combined</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre11">
+                <td width="98px" class="calibre124">
+                    <p class="tbl-r-label"><a name="GPBIL_Comments_FIELD"></a>Comments</p></td>
+                <td width="14px" class="calibre125">
+                    <p class="tbl-text"> </p></td>
+                <td width="105px" class="calibre126">
+                    <p class="tbl-text">Narrative information about
+                        the run.</p></td>
+                <td width="105px" class="calibre126">
+                    <p class="tbl-text">Manually entered</p></td>
+                <td width="206px" class="calibre126">
+                    <p class="tbl-text"> </p></td>
+            </tr>
+
+            <tr valign="top" class="calibre11">
+                <td width="98px" class="calibre124">
+                    <p class="tbl-r-label"><a name="GPBIL_Date_FIELD"></a>Date</p></td>
+                <td width="14px" class="calibre125">
+                    <p class="tbl-text">D</p></td>
+                <td width="105px" class="calibre126">
+                    <p class="tbl-text">Date of original submission
+                        of billing run. </p></td>
+                <td width="105px" class="calibre126">
+                    <p class="tbl-text">System generated</p></td>
+                <td width="206px" class="calibre126">
+                    <p class="tbl-text"> </p></td>
+            </tr>
+
+            <tr valign="top" class="calibre11">
+                <td width="98px" class="calibre124">
+                    <p class="tbl-r-label"><a name="GPBIL_Job_ID_FIELD"></a>Job
+                        ID</p></td>
+                <td width="14px" class="calibre125">
+                    <p class="tbl-text">R</p></td>
+                <td width="105px" class="calibre126">
+                    <p class="tbl-text">Unique identifier of billing
+                        run.</p></td>
+                <td width="105px" class="calibre126">
+                    <p class="tbl-text">System generated </p></td>
+                <td width="206px" class="calibre126">
+                    <p class="tbl-text">Previously submitted Job
+                        IDs are displayed in addition to current ID.</p>
+                    <p class="tbl-text-noline">The entry in this field may be manually overridden
+                        by entering an ID not previously used.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre11">
+                <td width="98px" class="calibre124">
+                    <p class="tbl-r-label"><a name="GPBIL_Post_Month_FIELD"></a>Post
+                        Month</p></td>
+                <td width="14px" class="calibre125">
+                    <p class="tbl-text">R</p></td>
+                <td width="105px" class="calibre126">
+                    <p class="tbl-text">Month and year to which revenue
+                        will be posted from this billing run.</p></td>
+                <td width="105px" class="calibre126">
+                    <p class="tbl-text">Manually entered</p></td>
+                <td width="206px" class="calibre126">
+                    <p class="tbl-text"> </p></td>
+            </tr>
+
+            <tr valign="top" class="calibre11">
+                <td width="98px" class="calibre124">
+                    <p class="tbl-r-label"><a name="GPBIL_Request_Type_FIELD"></a>Request
+                        Type</p></td>
+                <td width="14px" class="calibre125">
+                    <p class="tbl-text"> </p></td>
+                <td width="105px" class="calibre126">
+                    <p class="tbl-text"><span class="calibre19">Future
+ use.</span></p></td>
+                <td width="105px" class="calibre126">
+                    <p class="tbl-text">Selected from predefined
+                        list</p></td>
+                <td width="206px" class="calibre126">
+                    <p class="tbl-list-hdr">Valid values:</p>
+                    <p class="tbl-list">Immediate: Default</p>
+                    <p class="tbl-list">Deferred: Future use</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre11">
+                <td width="98px" class="calibre124">
+                    <p class="tbl-r-label"><a name="GPBIL_Request_User_FIELD"></a>Request
+                        User</p></td>
+                <td width="14px" class="calibre125">
+                    <p class="tbl-text">D</p></td>
+                <td width="105px" class="calibre126">
+                    <p class="tbl-text">ID of the user who originally
+                        entered the billing run.</p></td>
+                <td width="105px" class="calibre126">
+                    <p class="tbl-text">System generated</p></td>
+                <td width="206px" class="calibre126">
+                    <p class="tbl-text"> </p></td>
+            </tr>
+
+            <tr valign="top" class="calibre11">
+                <td width="98px" class="calibre124">
+                    <p class="tbl-r-label"><a name="GPBIL_Status_FIELD"></a>Status</p></td>
+                <td width="14px" class="calibre125">
+                    <p class="tbl-text">D</p></td>
+                <td width="105px" class="calibre126">
+                    <p class="tbl-text">Status of the billing run.</p></td>
+                <td width="105px" class="calibre126">
+                    <p class="tbl-text">System generated. </p></td>
+                <td width="206px" class="calibre126">
+                    <p class="tbl-list-hdr">Values are:</p>
+                    <p class="tbl-list">New: Run has been setup but not calculated</p>
+                    <p class="tbl-list">Calculated: Run has been calculated but not posted.</p>
+                    <p class="tbl-list">Posted</p>
+                    <p class="tbl-list">Cancelled</p>
+                    <p class="tbl-list">Error: An error was detected during either calculation
+                        or posting.</p>
+                    <p class="body-text1"> </p></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <p class="body-text"> </p>
+
+
+    </div>
+
+
+    <div class="calibreToc">
+        <h2><a href="../l0urk-a4ma7.html">Table of contents
+        </a></h2>
+        <div>
+            <ul>
+                <li>
+                    <a href=".">Premium</a>
+                    <ul>
+                        <li>
+                            <a href=".">Tasks</a>
+                            <ul>
+                                <li>
+                                    <a href="Looking_up_Billing_History.htm">Looking up Billing History</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href=".">How DIAMOND Thinks</a>
+                            <ul>
+                                <li>
+                                    <a href="Premium_Billing_How_DIAMOND_Thinks.htm">Premium Billing, How DIAMOND
+                                        Thinks</a>
+                                </li>
+                                <li>
+                                    <a href="Rate_Matrix_Examples.htm">Rate Matrix Examples</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href=".">Keyword Reference</a>
+                            <ul>
+                                <li>
+                                    <a href=".">ARADJ</a>
+                                    <ul>
+                                        <li>
+                                            <a href="ARADJ_Accounts_Receivable_Adjustments.htm">ARADJ, A/R
+                                                Adjustments</a>
+                                        </li>
+                                        <li>
+                                            <a href="About_ARADJ.htm">About ARADJ</a>
+                                        </li>
+                                        <li>
+                                            <a href="ARADJ_Field_Map.htm">ARADJ Field Map</a>
+                                        </li>
+                                        <li>
+                                            <a href="ARADJ_Field_Information.htm">ARADJ Field Definitions</a>
+                                        </li>
+                                        <li>
+                                            <a href="ARADJ_Functions_on_Menu_Bar.htm">ARADJ Commands on the Menu Bar</a>
+                                        </li>
+                                        <li>
+                                            <a href="ARADJ_Parameters_Prerequisites.htm">ARADJ Parameters &amp;
+                                                Prerequisites</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href=".">ARCSH</a>
+                                    <ul>
+                                        <li>
+                                            <a href="ARCSH_Cash_Receipts_Entry.htm">ARCSH, A/R Cash Receipts</a>
+                                        </li>
+                                        <li>
+                                            <a href="About_ARCSH.htm">About ARCSH</a>
+                                        </li>
+                                        <li>
+                                            <a href="ARCSH_Field_Map.htm">ARCSH Field Map</a>
+                                        </li>
+                                        <li>
+                                            <a href="ARCSH_Field_Definitions.htm">ARCSH Field Definitions</a>
+                                        </li>
+                                        <li>
+                                            <a href="ARCSH_Functions_on_the_Menu_Bar.htm">ARCSH Commands on the Menu
+                                                Bar</a>
+                                        </li>
+                                        <li>
+                                            <a href="ARCSH_Parameters_Prerequisites.htm">ARCSH Parameters &amp;
+                                                Prerequisites</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href=".">ARCUS</a>
+                                    <ul>
+                                        <li>
+                                            <a href="ARCUS_Accounts_Receivable_Customer_Maintenance.htm">ARCUS, Customer
+                                                Maintenance</a>
+                                        </li>
+                                        <li>
+                                            <a href="About_ARCUS.htm">About ARCUS</a>
+                                        </li>
+                                        <li>
+                                            <a href="ARCUS_Field_Map.htm">ARCUS Field Map</a>
+                                        </li>
+                                        <li>
+                                            <a href="ARCUS_Field_Definitions.htm">ARCUS Field Definitions</a>
+                                        </li>
+                                        <li>
+                                            <a href="ARCUS_Functions_on_the_Menu_Bar.htm">ARCUS Commands on the Menu
+                                                Bar</a>
+                                        </li>
+                                        <li>
+                                            <a href="ARCUS_Parameters_Prerequisites.htm">ARCUS Parameters &amp;
+                                                Prerequisites</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href=".">BLHST</a>
+                                    <ul>
+                                        <li>
+                                            <a href="BLHST_Premium_Billing_History.htm">BLHST, Display Premium Billing
+                                                History</a>
+                                        </li>
+                                        <li>
+                                            <a href="About_BLHST.htm">About BLHST</a>
+                                        </li>
+                                        <li>
+                                            <a href="BLHST_Field_Map.htm">BLHST Field Map</a>
+                                        </li>
+                                        <li>
+                                            <a href="BLHST_Field_Definitions.htm">BLHST Field Definitions</a>
+                                        </li>
+                                        <li>
+                                            <a href="BLHST_Functions_on_Menu_Bar.htm">BLHST Commands on the Menu Bar</a>
+                                        </li>
+                                        <li>
+                                            <a href="BLHST_Parameters_Prerequisites.htm">BLHST Parameters &amp;
+                                                Prerequisites</a>
+                                        </li>
+                                        <li>
+                                            <a href="BLHST_View_Adjustments_Menu_Function.htm">BLHST View Adjustments
+                                                Menu Command</a>
+                                        </li>
+                                        <li>
+                                            <a href="BLHST_View_Group_Summary_Menu_Function.htm">BLHST View Group
+                                                Summary Menu Command</a>
+                                        </li>
+                                        <li>
+                                            <a href="BLHST_View_Invoice_Details_Menu_Function.htm">BLHST View Invoice
+                                                Details Menu Command</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href=".">GPBIL</a>
+                                    <ul>
+                                        <li>
+                                            <a href="GPBIL_Premium_Billing.htm">GPBIL, Premium Billing Setup</a>
+                                        </li>
+                                        <li>
+                                            <a href="About_GPBIL.htm">About GPBIL</a>
+                                        </li>
+                                        <li>
+                                            <a href="GPBIL_Field_Map.htm">GPBIL Field Map</a>
+                                        </li>
+                                        <li>
+                                            <a href="GPBIL_Field_Definitions.htm">GPBIL Field Definitions</a>
+                                        </li>
+                                        <li>
+                                            <a href="GPBIL_Functions_on_Menu_Bar.htm">GPBIL Commands on the Menu Bar</a>
+                                        </li>
+                                        <li>
+                                            <a href="GPBIL_Parameters_Prerequisites.htm">GPBIL Parameters &amp;
+                                                Prerequisites</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href=".">MATRX</a>
+                                    <ul>
+                                        <li>
+                                            <a href="MATRX_Matrix_Determinant.htm">MATRX, A/R Matrix Determinants</a>
+                                        </li>
+                                        <li>
+                                            <a href="About_MATRX.htm">About MATRX</a>
+                                        </li>
+                                        <li>
+                                            <a href="MATRX_Field_Map.htm">MATRX Field Map</a>
+                                        </li>
+                                        <li>
+                                            <a href="MATRX_Field_Definitions.htm">MATRX Field Definitions</a>
+                                        </li>
+                                        <li>
+                                            <a href="MATRX_Functions_on_Menu_Bar.htm">MATRX Commands on the Menu Bar</a>
+                                        </li>
+                                        <li>
+                                            <a href="MATRX_Parameters_Prerequisites.htm">MATRX Parameters &amp;
+                                                Prerequisites</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href=".">PREMM</a>
+                                    <ul>
+                                        <li>
+                                            <a href="PREMM_Matrix_Premium_Rate_Entry.htm">PREMM, A/R Matrix Premium Rate
+                                                Entry</a>
+                                        </li>
+                                        <li>
+                                            <a href="About_PREMM.htm">About PREMM</a>
+                                        </li>
+                                        <li>
+                                            <a href="PREMM_Field_Map.htm">PREMM Field Map</a>
+                                        </li>
+                                        <li>
+                                            <a href="PREMM_Field_Definitions.htm">PREMM Field Definitions</a>
+                                        </li>
+                                        <li>
+                                            <a href="PREMM_Functions_on_Menu_Bar.htm">PREMM Commands on the Menu Bar</a>
+                                        </li>
+                                        <li>
+                                            <a href="PREMM_Parameters_Prerequisites.htm">PREMM Parameters &amp;
+                                                Prerequisites</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href=".">SUBSC</a>
+                                    <ul>
+                                        <li>
+                                            <a href="SUBSC_Subscriber_Update.htm">SUBSC, Subscriber Update</a>
+                                        </li>
+                                        <li>
+                                            <a href="About_SUBSC.htm">About SUBSC</a>
+                                        </li>
+                                        <li>
+                                            <a href="SUBSC_Field_Map.htm">SUBSC Field Map</a>
+                                        </li>
+                                        <li>
+                                            <a href="SUBSC_Field_Definitions.htm">SUBSC Field Definitions</a>
+                                        </li>
+                                        <li>
+                                            <a href="SUBSC_Functions_on_Menu_Bar.htm">SUBSC Commands on the Menu Bar</a>
+                                        </li>
+                                        <li>
+                                            <a href="SUBSC_Parameters_Prerequisites.htm">SUBSC Parameters &amp;
+                                                Prerequisites</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+
+    </div>
+
+
+    <div class="calibreEbNav">
+
+        <a href="GPBIL_Field_Map.htm" class="calibreAPrev">previous page
+        </a>
+
+
+        <a href="../l0urk-a4ma7.html" class="calibreAHome">start
+        </a>
+
+
+        <a href="GPBIL_Functions_on_Menu_Bar.htm" class="calibreANext">next page
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,5 @@
+<div class="alert alert-dismissible fade show" role="alert" [class]="alertMessage?.alertClass" *ngIf="alertMessage?.show">
+    <button type="button" class="close" (click)="closeMessage()" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button> {{ alertMessage.message }}
+</div>

@@ -1,0 +1,196 @@
+<!-- Copyright (c) 2021 . All Rights Reserved. -->
+<div class="container-fluid">
+    <div class="card-block">
+        <h2 class="form-title card-label-admin">Auth Waive Rules</h2>
+        <button type="button" *ngIf="showIcon" class="close" aria-label="Close"
+                (click)="modalClose()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+
+        <ng-template #loaderTemplate let-loaderValue="value">
+            <div class="row justify-content-center mt-4" *ngIf="loaderValue">
+                <div class="spinner-border text-success" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>
+            </div>
+        </ng-template>
+
+
+        <ng-container *ngTemplateOutlet="loaderTemplate;context:{value: secProgress }"></ng-container>
+        <ng-container *appWinSelect="{secWin: secWin, userTemplateId: userTemplateId, secModuleId: moduleId}">
+
+        </ng-container>
+        <div class="row mt-3">
+            <menu-bar [menus]="menu" (onMenuClick)="onMenuItemClick($event)"></menu-bar>
+        </div>
+
+        <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+        <app-pop-up-message #popUpMesssage (buttonclickEvent)="popUpButtonHandler($event)"
+                            [(popupMessage)]="popUpMessage"></app-pop-up-message>
+
+        <form [formGroup]="authWaiveRulesForm" *ngIf="!isProgress" class="page-panel">
+
+            <div class="form-group row">
+            </div>
+
+            <!-- DataGrid with Name of DataGrid001 -->
+            <!--<button (click)="dataGrid001GridOptionsExportCsv()">Export</button>-->
+            <div (click)="gridSelection(true)">
+                <ag-grid-angular #agGrid class="ag-theme-fresh" [gridOptions]="dataGrid001GridOptions"
+                                 style="width: 100%; height: 300px;"
+                                 [enableSorting]="true"
+                                 [enableFilter]="false"
+                                 [floatingFilter]="false"
+                                 [pagination]="true"
+                                 (selectionChanged)="Grid1SelectionChange()"
+                                 [showToolPanel]="true">
+                </ag-grid-angular>
+            </div>
+
+            <div class="form-group row">
+            </div>
+
+            <div class="form-group row">
+                <!-- Textbox with label of Claim Type -->
+                <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('claimType') }">
+                    <label class="col-form-label clr-blue" for="claimType" i18n>Claim Type</label>
+                    <select type="text" id="claimType" class="form-control" formControlName="claimType">
+                        <option [value]="type.systemCode" *ngFor="let type of claimTypes">{{type.systemCode}} {{type.systemCodeDesc2}}</option>
+                    </select>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('claimType')">
+                        {{ formValidation.errorMessage('claimType') }}
+                    </small>
+                </div>
+
+                <!-- Textbox with label of From Date -->
+                <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('fromDate') }">
+                    <app-datepicker [isRequired]="true" [formGroup]="authWaiveRulesForm" [formValidation]="formValidation" [field]="'fromDate'" [labelText]="'From Date'"
+                                    (onDateChanged)="validateFromDate($event)"></app-datepicker>
+                </div>
+
+            </div>
+
+            <div class="form-group row">
+                <!-- Textbox with label of Order -->
+                <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('order') }">
+                    <label class="col-form-label  clr-blue" for="order" i18n>Order</label>
+                    <input type="text" id="order" [fieldLevelSec]="''" [params]="" class="form-control"
+                           formControlName="order"/>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('order')">
+                        {{ formValidation.errorMessage('order') }}
+                    </small>
+                </div>
+
+                <!-- Textbox with label of Thru Date -->
+                <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('thruDate') }">
+                    <app-datepicker [formGroup]="authWaiveRulesForm" [formValidation]="formValidation" [field]="'thruDate'" [labelText]="'Thru Date'"
+                                    (onDateChanged)="validateThruDate($event)"></app-datepicker>
+                </div>
+
+            </div>
+
+            <div class="form-group row">
+                <!-- Textbox with label of Description -->
+                <div class="col-md-12" [ngClass]="{'has-danger': formValidation.isValidField('description001') }">
+                    <label class="col-form-label" for="description001" i18n>Description</label>
+                    <input type="text" id="description001" [fieldLevelSec]="''" [params]="" class="form-control"
+                           formControlName="description001"/>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('description001')">
+                        {{ formValidation.errorMessage('description001') }}
+                    </small>
+                </div>
+
+            </div>
+
+            <div class="form-group row" *ngIf="authWaiveRule">
+            </div>
+
+            <!-- DataGrid with Name of DataGrid002 -->
+            <!--<button (click)="dataGrid002GridOptionsExportCsv()">Export</button>-->
+            <div (click)="gridSelection(false)">
+                <ag-grid-angular #agGrid class="ag-theme-fresh" [gridOptions]="dataGrid002GridOptions"
+                                 *ngIf="authWaiveRule"
+                                 style="width: 100%; height: 300px;"
+                                 [enableSorting]="true"
+                                 [enableFilter]="false"
+                                 [floatingFilter]="false"
+                                 [pagination]="true"
+                                 (selectionChanged)="Grid2SelectionChange()"
+                                 [showToolPanel]="true">
+                </ag-grid-angular>
+            </div>
+
+            <div class="form-group row" *ngIf="authWaiveRule">
+            </div>
+
+            <div class="form-group row" *ngIf="authWaiveRule">
+            </div>
+
+            <div class="form-group row" *ngIf="authWaiveRule">
+                <!-- DynamicText with label of Search Sequence -->
+                <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('searchSequence') }">
+                    <label class="col-form-label clr-blue" for="searchSequence" i18n>Search Sequence</label>
+                    <input type="text" [fieldLevelSec]="''" [params]="" readonly id="searchSequence"
+                           formControlName="searchSequence" class="form-control"/>
+                </div>
+
+                <!-- DynamicText with label of Determinant -->
+                <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('determinant') }">
+                    <label class="col-form-label clr-blue" for="determinant" i18n>Determinant</label>
+                    <input type="text" [fieldLevelSec]="''" [params]="" id="determinant"
+                           [readOnly]="authWaiveRule && authWaiveDeterminant"
+                           (keydown)="onLookupFieldDeterminant($event)"
+                           (change)="onChangeDeterminant($event)"
+                           formControlName="determinant" class="form-control"/>
+                </div>
+
+                <!-- Textbox with label of Operator -->
+                <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('operator') }">
+                    <label class="col-form-label clr-blue" for="operator" i18n>Operator</label>
+                    <select type="text" id="operator" class="form-control" formControlName="operator">
+                        <option [value]="o.value" *ngFor="let o of operators">{{o.key}}</option>
+                    </select>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('operator')">
+                        {{ formValidation.errorMessage('operator') }}
+                    </small>
+                </div>
+
+            </div>
+
+            <div class="form-group row" *ngIf="authWaiveRule">
+                <!-- Textbox with label of Description -->
+                <div class="col-md-12" [ngClass]="{'has-danger': formValidation.isValidField('description002') }">
+                    <label class="col-form-label" for="description002" i18n>Description</label>
+                    <input type="text" id="description002" [fieldLevelSec]="''" [params]="" class="form-control"
+                           formControlName="description002"/>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('description002')">
+                        {{ formValidation.errorMessage('description002') }}
+                    </small>
+                </div>
+
+            </div>
+
+            <div class="form-group row" *ngIf="authWaiveRule">
+            </div>
+
+            <div class="form-group row" *ngIf="authWaiveRule">
+            </div>
+
+            <!-- DataGrid with Name of DataGrid003 -->
+            <!--<button (click)="dataGrid003GridOptionsExportCsv()">Export</button>-->
+            <div class="col-md-10 mt-3 p-0 ml-lg-4 mb-4" *ngIf="authWaiveDeterminant && authWaiveDeterminant.authWaiveDeterminantsPrimaryKey &&
+                authWaiveDeterminant.authWaiveDeterminantsPrimaryKey.searchSequence">
+                <dynamic-form [prevState]="authWaiveDeterValueSelectState" [displayCheckBox]="false" [isSaveForm]="isSaveForm" [title]="''"
+                              [config]="authWaiveDeterValueSelectionFormConfig" (formSubmitted)="saveAuthWaiveDeterValues($event)"
+                              [showSubmitButton]="'true'"
+                              (onFieldFocusOut)="onFieldChange($event)"
+                ></dynamic-form>
+            </div>
+
+            <div class="form-group row">
+            </div>
+        </form>
+    </div>
+</div>
+<ng-keyboard-shortcuts [shortcuts]="shortcuts"></ng-keyboard-shortcuts>
+<ng-keyboard-shortcuts-help [key]="'f1'" [closeKey]="'escape'" [title]="'Hotkeys Help'"></ng-keyboard-shortcuts-help>

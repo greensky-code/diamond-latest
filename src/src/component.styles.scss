@@ -1,0 +1,250 @@
+@import "styles";
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin: 0 0 100px;
+}
+
+.footer {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  overflow: hidden;
+}
+
+.content {
+  padding-bottom: 3rem;
+}
+
+.pt-2rem {
+  padding-top: 2rem;
+}
+
+app-member-master {
+  .dropdown-menu.show {
+    display: block;
+    margin-top: 6px;
+    max-height: 376px;
+    overflow: auto;
+  }
+}
+
+#authMasterCompgrid002  div:nth-child(1) > div.ag-cell-label-container.ag-header-cell-sorted-none span.ag-header-cell-text,
+#authMasterCompgrid002  div:nth-child(2) > div.ag-cell-label-container.ag-header-cell-sorted-none span.ag-header-cell-text,
+#authMasterCompgrid002  div:nth-child(7) > div.ag-cell-label-container.ag-header-cell-sorted-none span.ag-header-cell-text{
+  color: blue;
+}
+
+.clr-blue {
+  color: $color-primary;
+}
+
+hr.dashed-line {
+  border-top: dashed #209cf1 1px;
+  margin-top: 0;
+}
+
+idcardprint {
+  .checkbox {
+    padding: 0;
+    margin-left: .34rem;
+  }
+
+}
+
+dynamic-form, dmnd-dynamic-config-grid {
+  .page-scroll {
+    max-height: 10rem;
+    overflow-y: scroll;
+  }
+
+  .row-button {
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+
+    .cancel-button {
+      color: red;
+    }
+    .save-button{
+      color: green;
+    }
+  }
+  .fa-rotate-level-down {
+    svg {
+      -webkit-transform: rotate(90deg);
+      -moz-transform: rotate(90deg);
+      -ms-transform: rotate(90deg);
+      -o-transform: rotate(90deg);
+      transform: rotate(90deg) !important;
+    }
+  }
+
+  .border-bottom {
+    border-bottom: 1px solid lightgray;
+  }
+
+
+  select, input {
+    border-radius: 0 !important;
+  }
+
+
+  .close-button {
+    fa-icon {
+      justify-content: center;
+      align-items: center;
+      margin-top: 35px;
+      margin-right: 4px;
+      font-size: 21px;
+      color: red;
+    }
+  }
+}
+
+notes {
+  .type-001 {
+    select {
+      height: 32px;
+      display: inline-block;
+      max-height: 100px;
+    }
+  }
+}
+
+.myCustomModalClass .modal-dialog {
+  max-width: 1500px;
+  min-width: 1024px;
+}
+
+
+.paySubscriberModel .modal-dialog {
+  max-width: 600px !important;
+  min-width: 600px !important;
+}
+
+.custom-error .modal-dialog {
+  max-width: 300px;
+}
+
+
+.max-dropdown-height {
+  max-height: 150px;
+  overflow-x: scroll;
+  overflow-y: scroll;
+  width: 100%;
+}
+
+.dropdown-item {
+  width: 100%;
+}
+
+
+.page-panel {
+
+  background-color: white;
+
+  padding: 5px;
+}
+
+.readonly-label {
+  border: 3px solid red;
+  max-width: 110px;
+  padding: 2px 2px;
+  display: flex;
+  justify-content: center;
+  margin-top: 4px;
+  color: red;
+}
+
+
+
+
+addon-controller, cigna-links-group-address,member-addon-controller, app-addon-member-master-controller,
+app-addon-member-master-address {
+
+
+  .nav-tabs .nav-link { // apply styles only for non-active tabs
+    background-color: #6fbfa2;
+    margin-bottom: .4rem;
+    margin-right: .5rem;
+    font-weight: bold;
+    color: black;
+  }
+
+  .nav-tabs .nav-link.active { // apply styles only for active tab
+    background-color: #B0C4DE;
+    color: black;
+
+  }
+
+}
+
+cignalinks-contacts {
+
+  .nav-tabs .nav-link {               // apply styles only for non-active tabs
+    background-color: #6fbfa2;
+    margin-bottom: .4rem;
+    margin-right: .5rem;
+    font-weight: bold;
+    color: black;
+  }
+
+  .nav-tabs .nav-link.active {           // apply styles only for active tab
+    background-color: #B0C4DE;
+    color: black;
+
+  }
+
+}
+
+.dashboard-modal .modal-dialog {
+  min-width: 84rem !important;
+  max-width: 84rem !important;
+@media only screen and (min-width: 768px) {
+
+  .dashboard-modal > .modal-dialog {
+    max-width: 1490px !important;
+    min-width: 971px !important;
+    width: 95% !important;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .dashboard-modal > .modal-dialog {
+    width: 100% !important;
+    max-width: 1490px !important;
+    min-width: 971px !important;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .dashboard-modal > .modal-dialog {
+    width: 100% !important;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .dashboard-modal > .modal-dialog {
+    min-width: 400px !important;
+    width: 95% !important;
+  }
+}
+
+@media only screen and (min-width: 600px) {
+  .dashboard-modal > .modal-dialog {
+    width: 95% !important;
+    min-width: 400px !important;
+  }
+}
+
+
+.color-red {
+  color: red !important;
+}
+}

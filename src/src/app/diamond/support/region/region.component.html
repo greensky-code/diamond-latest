@@ -1,0 +1,138 @@
+<!-- Copyright (c) 2021 . All Rights Reserved. -->
+<div class="container-fluid">
+    <div class="card-block">
+        <form [formGroup]="regionForm" novalidate>
+
+            <div class="row form-title">
+                <h2 class="col-md-4  card-label-admin"> Region  </h2>
+                <div class="col-md"><b class="readonly-label">View Only</b></div>
+            </div>
+            <button type="button" *ngIf="showIcon" class="modal-close close" aria-label="Close"
+                (click)="modalClose()">
+            <span aria-hidden="true">&times;</span>
+            </button>
+            <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+            <app-pop-up-message #popUpMesssage (buttonclickEvent)="popUpButtonHandler($event)"  [(popupMessage)] = "popUpMessage"></app-pop-up-message>
+            <div class="row mt-3">
+                <menu-bar [menus]="menu" (onMenuClick)="onMenuItemClick($event)"></menu-bar>
+            </div>
+            <div class="form-group row">
+                <!-- Textbox with label of Region Type -->
+                <div class="col-lg-12" style="margin-top: 20px;">
+                    <div class="row" [ngClass]="{'has-danger': formValidation.isValidField('regionType001') }">
+                       <div class="col-sm-4" *ngIf="regionTypeStatus" >
+                           <label class="col-form-label" for="regionType001" i18n>
+                               <strong>Region Type</strong></label>
+                                <select class="form-control" id="regionType001" name="regionType001"
+                                        (change)="selectOption($event)"
+                                        (blur)="changedRegionType($event)"
+                                        formControlName="regionType001"
+                                        disabled >
+                                    <option [value]="regionType.value" *ngFor="let regionType of regionTypes">
+                                        {{regionType.key}}
+                                    </option>
+                                </select>
+                            <small class="text-danger" *ngIf="formValidation.isValidField('regionType001')">
+                                {{ formValidation.errorMessage('regionType001') }}
+                            </small>
+                       </div>
+                        <div class="col-sm-4" *ngIf="!regionTypeStatus" >
+                            <label class="col-form-label" for="regionType001" i18n>
+                                <strong>Region Type</strong></label>
+                            <select class="form-control" id="regionType001" name="regionType001"
+                                    (change)="selectOption($event)"
+                                    (blur)="changedRegionType($event)"
+                                    formControlName="regionType001"
+                                    >
+                                <option [value]="regionType.value" *ngFor="let regionType of regionTypes">
+                                    {{regionType.key}}
+                                </option>
+                            </select>
+                            <small class="text-danger" *ngIf="formValidation.isValidField('regionType001')">
+                                {{ formValidation.errorMessage('regionType001') }}
+                            </small>
+                        </div>
+                        <div class="col-sm-4">
+                            <label class="col-form-label" for="regionCode001" i18n>
+                                <strong>Region Code</strong>
+                            </label>
+                            <input type="text" id="regionCode001" (keydown)="onLookupFieldChange($event)" [fieldLevelSec]="'Region Code'" params="Region Master"
+                                   class="form-control" formControlName="regionCode001" />
+                            <small class="text-danger" *ngIf="formValidation.isValidField('regionCode001')">
+                            {{ formValidation.errorMessage('regionCode001') }}
+                            </small>
+                       </div>
+                    </div>
+                </div>
+
+                <!-- Textbox with label of Region Code -->
+                 <!--<div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('regionCode001') }">
+
+
+                 </div>-->
+
+            </div>
+
+            <div class="col-lg-12 shadow p-3 mb-5 bg-white rounded" *ngIf="regionInfo">
+                    <div class="form-group row"></div>
+
+                    <div class="form-group row">
+                        <div class="col-lg-12">
+                            <div class="row" [ngClass]="{'has-danger': formValidation.isValidField('regionType002') }">
+                                <div class="col-sm-4">
+                                    <label class="col-form-label required-field-label" for="regionType002" i18n>
+                                        <strong>Region Type :</strong>
+                                    </label>
+                                    <input type="text" id="regionType002"  [fieldLevelSec]="''" params=""   class="form-control" formControlName="regionType002"/>
+                                    <small class="text-danger" *ngIf="formValidation.isValidField('regionType002')">
+                                        {{ formValidation.errorMessage('regionType002') }}
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <!-- Textbox with label of Region Code -->
+                        <div class="col-lg-12">
+                            <div class="row" [ngClass]="{'has-danger': formValidation.isValidField('regionCode002') }">
+                                <div class="col-sm-4">
+                                    <label class="col-form-label required-field-label" for="regionCode002" i18n>
+                                        <strong>Region Code :</strong>
+                                    </label>
+                                    <input type="text" id="regionCode002"  [fieldLevelSec]="'Security Code'" params="Region Master"   class="form-control" formControlName="regionCode002"/>
+                                    <small class="text-danger" *ngIf="formValidation.isValidField('regionCode002')">
+                                    {{ formValidation.errorMessage('regionCode002') }}
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="form-group row">
+                        <!-- Textbox with label of Description -->
+                        <div class="col-lg-12">
+                            <div class="row" [ngClass]="{'has-danger': formValidation.isValidField('description') }">
+                                <div class="col-sm-12">
+                                    <label class="col-form-label" for="description" i18n>
+                                        <strong>Description :</strong>
+                                    </label>
+                                    <input type="text" id="description"  [fieldLevelSec]="'Description'" params="Region Master"   class="form-control" formControlName="description"/>
+                                    <small class="text-danger" *ngIf="formValidation.isValidField('description')">
+                                    {{ formValidation.errorMessage('description') }}
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                    </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<ng-keyboard-shortcuts [shortcuts]="shortcuts"></ng-keyboard-shortcuts>
+<ng-keyboard-shortcuts-help [key]="'f2'" [closeKey]="'escape'" [title]="'Hotkeys Help'"></ng-keyboard-shortcuts-help>

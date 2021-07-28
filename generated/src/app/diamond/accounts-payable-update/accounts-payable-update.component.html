@@ -1,0 +1,406 @@
+<!-- Copyright (c) 2021 . All Rights Reserved. -->
+<div class="container-fluid">
+    <div class="card-block">
+        <form [formGroup]="accountsPayableUpdateForm" novalidate>
+            <h2 class="form-title card-label-admin">Accounts Payable Update</h2>
+            <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+            <app-pop-up-message #popUpMesssage (buttonclickEvent)="popUpButtonHandler($event)"  [(popupMessage)] = "popUpMessage"></app-pop-up-message>
+                        
+            <div class="form-group row">
+            </div>
+            
+                        <!-- DataGrid with Name of DataGrid -->
+                    <button (click)="dataGridGridOptionsExportCsv()">Export</button>
+                    <ag-grid-angular #agGrid class="ag-theme-fresh" [gridOptions]="dataGridGridOptions"
+                    style="width: 100%; height: 300px;"
+                    [enableSorting]="true"
+                    [enableFilter]="true"
+                    [floatingFilter]="true"
+                    [pagination]="true"
+                    [showToolPanel]="true">
+                    </ag-grid-angular>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+                <div class="col-md-2 form-control-static mb-0" i18n>
+                    Job Setup
+                </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of Job Id -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('jobId') }">
+                     <label class="col-form-label" for="jobId" i18n>Job Id</label>
+                     <input type="text" id="jobId"  [fieldLevelSec]="''" params]=""   class="form-control" formControlName="jobId"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('jobId')">
+                      {{ formValidation.errorMessage('jobId') }}
+                     </small>
+                 </div>
+            
+                <!-- Textbox with label of Request User -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('requestUser') }">
+                     <label class="col-form-label" for="requestUser" i18n>Request User</label>
+                     <input type="text" id="requestUser"  [fieldLevelSec]="'Request User'" params]="Acct Pay Update Setup"   class="form-control" formControlName="requestUser"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('requestUser')">
+                      {{ formValidation.errorMessage('requestUser') }}
+                     </small>
+                 </div>
+            
+                <!-- Textbox with label of Date -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('date') }">
+                     <label class="col-form-label" for="date" i18n>Date</label>
+                     <input type="text" id="date"  [fieldLevelSec]="'Update User'" params]="Acct Pay Update Setup"   class="form-control" formControlName="date"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('date')">
+                      {{ formValidation.errorMessage('date') }}
+                     </small>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of Post Month -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('postMonth') }">
+                     <label class="col-form-label" for="postMonth" i18n>Post Month</label>
+                     <input type="text" id="postMonth"  [fieldLevelSec]="'Post Month'" params]="Acct Pay Update Setup"   class="form-control" formControlName="postMonth"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('postMonth')">
+                      {{ formValidation.errorMessage('postMonth') }}
+                     </small>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+                <div class="col-md-2 form-control-static mb-0" i18n>
+                    Selection Criteria
+                </div>
+            
+            </div>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of Payable Type -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('payableType') }">
+                     <label class="col-form-label" for="payableType" i18n>Payable Type</label>
+                     <input type="text" id="payableType"  [fieldLevelSec]="''" params]=""   class="form-control" formControlName="payableType"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('payableType')">
+                      {{ formValidation.errorMessage('payableType') }}
+                     </small>
+                 </div>
+            
+                <!-- Textbox with label of Company Code -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('companyCode') }">
+                     <label class="col-form-label" for="companyCode" i18n>Company Code</label>
+                     <input type="text" id="companyCode"  [fieldLevelSec]="'Company Code'" params]="Acct Pay Update Setup"   class="form-control" formControlName="companyCode"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('companyCode')">
+                      {{ formValidation.errorMessage('companyCode') }}
+                     </small>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of Vendor ID -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('vendorId') }">
+                     <label class="col-form-label" for="vendorId" i18n>Vendor ID</label>
+                     <input type="text" id="vendorId"  [fieldLevelSec]="'Seq Vend Id'" params]="Acct Pay Update Setup"   class="form-control" formControlName="vendorId"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('vendorId')">
+                      {{ formValidation.errorMessage('vendorId') }}
+                     </small>
+                 </div>
+            
+                <!-- Textbox with label of Up To Amount -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('upToAmount') }">
+                     <label class="col-form-label" for="upToAmount" i18n>Up To Amount</label>
+                     <input type="text" id="upToAmount"  [fieldLevelSec]="'Up To Amt'" params]="Acct Pay Update Setup"   class="form-control" formControlName="upToAmount"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('upToAmount')">
+                      {{ formValidation.errorMessage('upToAmount') }}
+                     </small>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of From Entered Date -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('fromEnteredDate') }">
+                     <label class="col-form-label" for="fromEnteredDate" i18n>From Entered Date</label>
+                     <div class="input-group">
+                    <input id="fromEnteredDate"  [fieldLevelSec]="'From Entered Date'" params]="Acct Pay Update Setup"  class="form-control" angular-mydatepicker name="fromEnteredDate" (click)="fromEnteredDateId.toggleCalendar()"
+                    formControlName="fromEnteredDate"[options]="datePickerConfig" #fromEnteredDateId="angular-mydatepicker"/>
+                    <div class="input-group-append">
+                        <button type="button" class="btn btn-secondary" (click)="fromEnteredDateId.clearDate()">
+                          <i class="fa fa-close"></i>
+                        </button>
+                      </div>
+                      <div class="input-group-append">
+                        <button type="button" class="btn btn-secondary" (click)="fromEnteredDateId.toggleCalendar()">
+                          <i class="fa fa-calendar-o"></i>
+                        </button>
+                      </div>
+                    </div>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('fromEnteredDate')">
+                      {{ formValidation.errorMessage('fromEnteredDate') }}
+                     </small>
+                 </div>
+            
+                <!-- Textbox with label of Thru Entered Date -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('thruEnteredDate') }">
+                     <label class="col-form-label" for="thruEnteredDate" i18n>Thru Entered Date</label>
+                     <div class="input-group">
+                    <input id="thruEnteredDate"  [fieldLevelSec]="'Thru Entered Date'" params]="Acct Pay Update Setup"  class="form-control" angular-mydatepicker name="thruEnteredDate" (click)="thruEnteredDateId.toggleCalendar()"
+                    formControlName="thruEnteredDate"[options]="datePickerConfig" #thruEnteredDateId="angular-mydatepicker"/>
+                    <div class="input-group-append">
+                        <button type="button" class="btn btn-secondary" (click)="thruEnteredDateId.clearDate()">
+                          <i class="fa fa-close"></i>
+                        </button>
+                      </div>
+                      <div class="input-group-append">
+                        <button type="button" class="btn btn-secondary" (click)="thruEnteredDateId.toggleCalendar()">
+                          <i class="fa fa-calendar-o"></i>
+                        </button>
+                      </div>
+                    </div>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('thruEnteredDate')">
+                      {{ formValidation.errorMessage('thruEnteredDate') }}
+                     </small>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of From Due Date -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('fromDueDate') }">
+                     <label class="col-form-label" for="fromDueDate" i18n>From Due Date</label>
+                     <div class="input-group">
+                    <input id="fromDueDate"  [fieldLevelSec]="'From Due Date'" params]="Acct Pay Update Setup"  class="form-control" angular-mydatepicker name="fromDueDate" (click)="fromDueDateId.toggleCalendar()"
+                    formControlName="fromDueDate"[options]="datePickerConfig" #fromDueDateId="angular-mydatepicker"/>
+                    <div class="input-group-append">
+                        <button type="button" class="btn btn-secondary" (click)="fromDueDateId.clearDate()">
+                          <i class="fa fa-close"></i>
+                        </button>
+                      </div>
+                      <div class="input-group-append">
+                        <button type="button" class="btn btn-secondary" (click)="fromDueDateId.toggleCalendar()">
+                          <i class="fa fa-calendar-o"></i>
+                        </button>
+                      </div>
+                    </div>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('fromDueDate')">
+                      {{ formValidation.errorMessage('fromDueDate') }}
+                     </small>
+                 </div>
+            
+                <!-- Textbox with label of Thru Due Date -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('thruDueDate') }">
+                     <label class="col-form-label" for="thruDueDate" i18n>Thru Due Date</label>
+                     <div class="input-group">
+                    <input id="thruDueDate"  [fieldLevelSec]="'Thru Due Date'" params]="Acct Pay Update Setup"  class="form-control" angular-mydatepicker name="thruDueDate" (click)="thruDueDateId.toggleCalendar()"
+                    formControlName="thruDueDate"[options]="datePickerConfig" #thruDueDateId="angular-mydatepicker"/>
+                    <div class="input-group-append">
+                        <button type="button" class="btn btn-secondary" (click)="thruDueDateId.clearDate()">
+                          <i class="fa fa-close"></i>
+                        </button>
+                      </div>
+                      <div class="input-group-append">
+                        <button type="button" class="btn btn-secondary" (click)="thruDueDateId.toggleCalendar()">
+                          <i class="fa fa-calendar-o"></i>
+                        </button>
+                      </div>
+                    </div>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('thruDueDate')">
+                      {{ formValidation.errorMessage('thruDueDate') }}
+                     </small>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of From Received Date -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('fromReceivedDate001') }">
+                     <label class="col-form-label" for="fromReceivedDate001" i18n>From Received Date</label>
+                     <div class="input-group">
+                    <input id="fromReceivedDate001"  [fieldLevelSec]="'From Received Date'" params]="Acct Pay Update Setup"  class="form-control" angular-mydatepicker name="fromReceivedDate001" (click)="fromReceivedDate001Id.toggleCalendar()"
+                    formControlName="fromReceivedDate001"[options]="datePickerConfig" #fromReceivedDate001Id="angular-mydatepicker"/>
+                    <div class="input-group-append">
+                        <button type="button" class="btn btn-secondary" (click)="fromReceivedDate001Id.clearDate()">
+                          <i class="fa fa-close"></i>
+                        </button>
+                      </div>
+                      <div class="input-group-append">
+                        <button type="button" class="btn btn-secondary" (click)="fromReceivedDate001Id.toggleCalendar()">
+                          <i class="fa fa-calendar-o"></i>
+                        </button>
+                      </div>
+                    </div>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('fromReceivedDate001')">
+                      {{ formValidation.errorMessage('fromReceivedDate001') }}
+                     </small>
+                 </div>
+            
+                <!-- Textbox with label of Thru Received Date -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('thruReceivedDate001') }">
+                     <label class="col-form-label" for="thruReceivedDate001" i18n>Thru Received Date</label>
+                     <div class="input-group">
+                    <input id="thruReceivedDate001"  [fieldLevelSec]="'Thru Received Date'" params]="Acct Pay Update Setup"  class="form-control" angular-mydatepicker name="thruReceivedDate001" (click)="thruReceivedDate001Id.toggleCalendar()"
+                    formControlName="thruReceivedDate001"[options]="datePickerConfig" #thruReceivedDate001Id="angular-mydatepicker"/>
+                    <div class="input-group-append">
+                        <button type="button" class="btn btn-secondary" (click)="thruReceivedDate001Id.clearDate()">
+                          <i class="fa fa-close"></i>
+                        </button>
+                      </div>
+                      <div class="input-group-append">
+                        <button type="button" class="btn btn-secondary" (click)="thruReceivedDate001Id.toggleCalendar()">
+                          <i class="fa fa-calendar-o"></i>
+                        </button>
+                      </div>
+                    </div>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('thruReceivedDate001')">
+                      {{ formValidation.errorMessage('thruReceivedDate001') }}
+                     </small>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of From Received Date -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('fromReceivedDate002') }">
+                     <label class="col-form-label" for="fromReceivedDate002" i18n>From Received Date</label>
+                     <div class="input-group">
+                    <input id="fromReceivedDate002"  [fieldLevelSec]="''" params]=""  class="form-control" angular-mydatepicker name="fromReceivedDate002" (click)="fromReceivedDate002Id.toggleCalendar()"
+                    formControlName="fromReceivedDate002"[options]="datePickerConfig" #fromReceivedDate002Id="angular-mydatepicker"/>
+                    <div class="input-group-append">
+                        <button type="button" class="btn btn-secondary" (click)="fromReceivedDate002Id.clearDate()">
+                          <i class="fa fa-close"></i>
+                        </button>
+                      </div>
+                      <div class="input-group-append">
+                        <button type="button" class="btn btn-secondary" (click)="fromReceivedDate002Id.toggleCalendar()">
+                          <i class="fa fa-calendar-o"></i>
+                        </button>
+                      </div>
+                    </div>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('fromReceivedDate002')">
+                      {{ formValidation.errorMessage('fromReceivedDate002') }}
+                     </small>
+                 </div>
+            
+                <!-- Textbox with label of Thru Received Date -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('thruReceivedDate002') }">
+                     <label class="col-form-label" for="thruReceivedDate002" i18n>Thru Received Date</label>
+                     <div class="input-group">
+                    <input id="thruReceivedDate002"  [fieldLevelSec]="''" params]=""  class="form-control" angular-mydatepicker name="thruReceivedDate002" (click)="thruReceivedDate002Id.toggleCalendar()"
+                    formControlName="thruReceivedDate002"[options]="datePickerConfig" #thruReceivedDate002Id="angular-mydatepicker"/>
+                    <div class="input-group-append">
+                        <button type="button" class="btn btn-secondary" (click)="thruReceivedDate002Id.clearDate()">
+                          <i class="fa fa-close"></i>
+                        </button>
+                      </div>
+                      <div class="input-group-append">
+                        <button type="button" class="btn btn-secondary" (click)="thruReceivedDate002Id.toggleCalendar()">
+                          <i class="fa fa-calendar-o"></i>
+                        </button>
+                      </div>
+                    </div>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('thruReceivedDate002')">
+                      {{ formValidation.errorMessage('thruReceivedDate002') }}
+                     </small>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Checkbox with label of Include FINAL ^CBAdmin Fee -->
+                <div class="" [ngClass]="{'has-error': displayMessage.includeFinalCb }">
+                    <div class="checkbox col-md-12">
+                      <input id="includeFinalCb"  [fieldLevelSec]="'Include Final'" params]="Acct Pay Update Setup"  value="includeFinalCb" formControlName="includeFinalCb" type="checkbox">
+                        <label class="checkbox">
+                            Include FINAL ^CBAdmin Fee
+                         </label>
+                    </div>
+                    <span class="help-block" *ngIf="displayMessage.includeFinalCb">
+                        {{ displayMessage.includeFinalCb  }}
+                     </span>
+                </div>
+            
+            </div>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+                <div class="col-md-2 form-control-static mb-0" i18n>
+                    Next Action
+                </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of Action -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('action') }">
+                     <label class="col-form-label" for="action" i18n>Action</label>
+                     <input type="text" id="action"  [fieldLevelSec]="'Action'" params]="Acct Pay Update Setup"   class="form-control" formControlName="action"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('action')">
+                      {{ formValidation.errorMessage('action') }}
+                     </small>
+                 </div>
+            
+                <!-- Textbox with label of Status -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('status') }">
+                     <label class="col-form-label" for="status" i18n>Status</label>
+                     <input type="text" id="status"  [fieldLevelSec]="''" params]=""   class="form-control" formControlName="status"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('status')">
+                      {{ formValidation.errorMessage('status') }}
+                     </small>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+                <div class="col-md-2 form-control-static mb-0" i18n>
+                    Run Options
+                </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- RadioButtonGroup with label of Request Type -->
+                <div class="form-inline">
+                    <!--  with label of Immediate -->
+                <div class="" [ngClass]="{'has-error': displayMessage.immediate001 }">
+                    <label class="col-form-label" for="immediate001" i18n>Immediate</label>
+                    <input type="radio" value="Immediate"  [fieldLevelSec]="" params]=""  formControlName="radiobuttongroup3273" />
+                </div>
+                </div>
+            
+                <!-- RadioButton with label of Deferred -->
+                <div class="col-md-2" [ngClass]="{'has-error': displayMessage.deferred }">
+                    <label class="col-form-label" for="deferred" i18n>Deferred</label>
+                    <input type="radio"  formControlName="deferred"  [fieldLevelSec]="''" params]=""  value="Deferred"/>
+                </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of Comments -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('comments') }">
+                     <label class="col-form-label" for="comments" i18n>Comments</label>
+                     <input type="text" id="comments"  [fieldLevelSec]="'Comments'" params]="Acct Pay Update Setup"   class="form-control" formControlName="comments"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('comments')">
+                      {{ formValidation.errorMessage('comments') }}
+                     </small>
+                 </div>
+            
+            </div>
+        </form>
+    </div>
+</div>

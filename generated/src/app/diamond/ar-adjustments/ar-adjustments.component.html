@@ -1,0 +1,183 @@
+<!-- Copyright (c) 2021 . All Rights Reserved. -->
+<div class="container-fluid">
+    <div class="card-block">
+        <form [formGroup]="arAdjustmentsForm" novalidate>
+            <h2 class="form-title card-label-admin">Ar Adjustments</h2>
+            <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+            <app-pop-up-message #popUpMesssage (buttonclickEvent)="popUpButtonHandler($event)"  [(popupMessage)] = "popUpMessage"></app-pop-up-message>
+                        
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+                <!-- DynamicText with label of AR Adjustment ID -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('arAdjustmentId') }">
+                     <label class="col-form-label" for="arAdjustmentId" i18n>AR Adjustment ID</label>
+                     <input type="text"  [fieldLevelSec]="'Customer Id'" params]="Ar Adjustment"  readonly id="arAdjustmentId" formControlName="arAdjustmentId" class="form-control"/>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+                <div class="col-md-2 form-control-static mb-0" i18n>
+                    Adjustment Identification
+                </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- DynamicText with label of Customer Type -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('customerType') }">
+                     <label class="col-form-label" for="customerType" i18n>Customer Type</label>
+                     <input type="text"  [fieldLevelSec]="'Customer Type'" params]="Ar Adjustment"  readonly id="customerType" formControlName="customerType" class="form-control"/>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- DynamicText with label of Customer ID -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('customerId') }">
+                     <label class="col-form-label" for="customerId" i18n>Customer ID</label>
+                     <input type="text"  [fieldLevelSec]="'Seq Aradj Id'" params]="Ar Adjustment"  readonly id="customerId" formControlName="customerId" class="form-control"/>
+                 </div>
+            
+                <!-- DynamicText with Name of DynamicText -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('dynamicText') }">
+                     <label class="col-form-label" for="dynamicText" i18n>&nbsp;</label>
+                     <input type="text"  [fieldLevelSec]="''" params]=""  readonly id="dynamicText" formControlName="dynamicText" class="form-control"/>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- DynamicText with label of Transaction Date -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('transactionDate') }">
+                     <label class="col-form-label" for="transactionDate" i18n>Transaction Date</label>
+                     <input type="text"  [fieldLevelSec]="'Trans Date'" params]="Ar Adjustment"  readonly id="transactionDate" formControlName="transactionDate" class="form-control"/>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+                <div class="col-md-2 form-control-static mb-0" i18n>
+                    Adjustment Information
+                </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- DynamicText with label of Transaction Amt -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('transactionAmt') }">
+                     <label class="col-form-label" for="transactionAmt" i18n>Transaction Amt</label>
+                     <input type="text"  [fieldLevelSec]="'Trans Amt'" params]="Ar Adjustment"  readonly id="transactionAmt" formControlName="transactionAmt" class="form-control"/>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- DynamicText with label of Reason Code -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('reasonCode') }">
+                     <label class="col-form-label" for="reasonCode" i18n>Reason Code</label>
+                     <input type="text"  [fieldLevelSec]="'Gl Ref Code'" params]="Ar Adjustment"  readonly id="reasonCode" formControlName="reasonCode" class="form-control"/>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+                <div class="col-md-2 form-control-static mb-0" i18n>
+                    Adjustment Status
+                </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- DynamicText with label of Statement Status -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('statementStatus') }">
+                     <label class="col-form-label" for="statementStatus" i18n>Statement Status</label>
+                     <input type="text"  [fieldLevelSec]="'Statement Status'" params]="Ar Adjustment"  readonly id="statementStatus" formControlName="statementStatus" class="form-control"/>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- DynamicText with label of Invoice Number -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('invoiceNumber') }">
+                     <label class="col-form-label" for="invoiceNumber" i18n>Invoice Number</label>
+                     <input type="text"  [fieldLevelSec]="'Invoice No'" params]="Ar Adjustment"  readonly id="invoiceNumber" formControlName="invoiceNumber" class="form-control"/>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+                <div class="col-md-2 form-control-static mb-0" i18n>
+                    GL Distribution Information
+                </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of Post Date -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('postDate') }">
+                     <label class="col-form-label" for="postDate" i18n>Post Date</label>
+                     <div class="input-group">
+                    <input id="postDate"  [fieldLevelSec]="'Post Date'" params]="Ar Adjustment"  class="form-control" angular-mydatepicker name="postDate" (click)="postDateId.toggleCalendar()"
+                    formControlName="postDate"[options]="datePickerConfig" #postDateId="angular-mydatepicker"/>
+                    <div class="input-group-append">
+                        <button type="button" class="btn btn-secondary" (click)="postDateId.clearDate()">
+                          <i class="fa fa-close"></i>
+                        </button>
+                      </div>
+                      <div class="input-group-append">
+                        <button type="button" class="btn btn-secondary" (click)="postDateId.toggleCalendar()">
+                          <i class="fa fa-calendar-o"></i>
+                        </button>
+                      </div>
+                    </div>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('postDate')">
+                      {{ formValidation.errorMessage('postDate') }}
+                     </small>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- DynamicText with label of Company Code -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('companyCode') }">
+                     <label class="col-form-label" for="companyCode" i18n>Company Code</label>
+                     <input type="text"  [fieldLevelSec]="'Company Code'" params]="Ar Adjustment"  readonly id="companyCode" formControlName="companyCode" class="form-control"/>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- DynamicText with label of GL Ref Code -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('glRefCode') }">
+                     <label class="col-form-label" for="glRefCode" i18n>GL Ref Code</label>
+                     <input type="text"  [fieldLevelSec]="''" params]=""  readonly id="glRefCode" formControlName="glRefCode" class="form-control"/>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- DynamicText with label of Comments -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('comments') }">
+                     <label class="col-form-label" for="comments" i18n>Comments</label>
+                     <input type="text"  [fieldLevelSec]="''" params]=""  readonly id="comments" formControlName="comments" class="form-control"/>
+                 </div>
+            
+            </div>
+        </form>
+    </div>
+</div>

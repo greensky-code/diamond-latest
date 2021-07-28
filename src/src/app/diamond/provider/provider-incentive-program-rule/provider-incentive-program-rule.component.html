@@ -1,0 +1,411 @@
+<!-- Copyright (c) 2020 . All Rights Reserved. -->
+<div class="container-fluid">
+    <div class="card-block">
+
+        <h2 class="form-title card-label-admin">Provider Incentive Program Rule</h2>
+        <button type="button" *ngIf="showIcon" class="modal-close close" aria-label="Close"
+                (click)="modalClose()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+        <app-pop-up-message #popUpMesssage (buttonclickEvent)="popUpButtonHandler($event)"
+                            [popupMessage]="popUpMessage"></app-pop-up-message>
+
+        <ng-template #loaderTemplate let-loaderValue="value">
+            <div class="row justify-content-center mt-4" *ngIf="loaderValue">
+                <div class="spinner-border text-success" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>
+            </div>
+        </ng-template>
+
+        <ng-container *ngTemplateOutlet="loaderTemplate;context:{value: secProgress }"></ng-container>
+
+        <ng-container
+                *appWinSelect="{secWin: secWin, userTemplateId: userTemplateId, secModuleId: memberModuleId}">
+
+            <div class="row mt-3">
+                <menu-bar [menus]="menu" (onMenuClick)="onMenuItemClick($event)"></menu-bar>
+            </div>
+
+            <form [formGroup]="providerIncentiveProgramRuleForm" novalidate>
+
+                <div class="form-group row">
+                    <!-- Textbox with label of ID -->
+                    <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('id') }">
+                        <label class="col-form-label clr-blue" for="id" i18n>ID</label>
+                        <input type="text" id="id" class="form-control" #ruleIds formControlName="id"
+                               (keydown)="onLookupFieldChange($event, ruleIds.value)"/>
+                        <small class="text-danger" *ngIf="formValidation.isValidField('id')">
+                            {{ formValidation.errorMessage('id') }}
+                        </small>
+                    </div>
+
+                    <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('name') }">
+                        <label class="col-form-label" for="name" i18n>&nbsp;</label>
+                        <input type="text" id="name" readOnly class="form-control" formControlName="name"/>
+                        <small class="text-danger" *ngIf="formValidation.isValidField('name')">
+                            {{ formValidation.errorMessage('name') }}
+                        </small>
+                    </div>
+                </div>
+
+                <ng-container *ngIf="showIncentiveProgramRuleFields">
+
+                    <div class="form-group row">
+                    </div>
+
+                    <div class="form-group row">
+                        <!-- Textbox with label of Description -->
+                        <div class="col-md-12" [ngClass]="{'has-danger': formValidation.isValidField('description') }">
+                            <label class="col-form-label" for="description" i18n>Description</label>
+                            <input type="text" id="description" class="form-control"
+                                   formControlName="description"/>
+                            <small class="text-danger" *ngIf="formValidation.isValidField('description')">
+                                {{ formValidation.errorMessage('description') }}
+                            </small>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <!-- Textbox with label of Line Of Bus -->
+                        <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('lineOfBus') }">
+                            <label class="col-form-label clr-blue" for="lineOfBus" i18n>Line Of Bus</label>
+                            <input type="text" [readOnly]="isRuleSelected" id="lineOfBus" class="form-control"
+                                   formControlName="lineOfBus" (keydown)="lookupLOB($event)"/>
+                            <small class="text-danger" *ngIf="formValidation.isValidField('lineOfBus')">
+                                {{ formValidation.errorMessage('lineOfBus') }}
+                            </small>
+                        </div>
+
+                        <!-- DynamicText with label of IPA -->
+                        <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('ipa') }">
+                            <label class="col-form-label" for="ipa" i18n>IPA</label>
+                            <input type="text" [readOnly]="isRuleSelected" id="ipa" formControlName="ipa"
+                                   class="form-control" (keydown)="lookupIPA($event)"/>
+                            <small class="text-danger" *ngIf="formValidation.isValidField('ipa')">
+                                {{ formValidation.errorMessage('ipa') }}
+                            </small>
+                        </div>
+
+                        <!-- DynamicText with label of Panel -->
+                        <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('panel') }">
+                            <label class="col-form-label" for="panel" i18n>Panel</label>
+                            <input type="text" [readOnly]="isRuleSelected" id="panel" formControlName="panel"
+                                   class="form-control" (keydown)="lookupPanel($event)"/>
+                            <small class="text-danger" *ngIf="formValidation.isValidField('panel')">
+                                {{ formValidation.errorMessage('panel') }}
+                            </small>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <!-- Textbox with label of Effective Date -->
+                        <div class="col-md-4">
+                            <app-datepicker [isRequired]="true" [formGroup]="providerIncentiveProgramRuleForm"
+                                            [formValidation]="formValidation"
+                                            [field]="'effectiveDate'" [labelText]="'Effective Date'"></app-datepicker>
+                        </div>
+
+                        <!-- Textbox with label of Term Date -->
+
+                        <div class="col-md-4">
+                            <app-datepicker [formGroup]="providerIncentiveProgramRuleForm"
+                                            [formValidation]="formValidation"
+                                            (onDateChanged)="isTermReasonStatusChange()"
+                                            [field]="'termDate'" [labelText]="'Term Date'"></app-datepicker>
+                        </div>
+
+                        <!-- DynamicText with label of Term Reason -->
+                        <div *ngIf="termReasonStatus" class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('termReason') }">
+                            <label class="col-form-label" for="termReason" i18n>Term Reason</label>
+                            <select id="termReason" class="form-control" formControlName="termReason">
+                                <option value="null"> -Select-</option>
+                                <option *ngFor="let code of reasonCodes" [value]="code.reasonCode">
+                                    {{code.reasonCode}} {{code.description}}
+                                </option>
+                            </select>
+                            <small class="text-danger" *ngIf="formValidation.isValidField('termReason')">
+                                {{ formValidation.errorMessage('termReason') }}
+                            </small>
+                        </div>
+
+                        <div *ngIf="!termReasonStatus" class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('termReason') }">
+                            <label class="col-form-label" for="termReason" i18n>Term Reason</label>
+                            <select id="termReason" class="form-control" formControlName="termReason" disabled>
+                                <option value="null"> -Select-</option>
+                                <option *ngFor="let code of reasonCodes" [value]="code.reasonCode">
+                                    {{code.reasonCode}} {{code.description}}
+                                </option>
+                            </select>
+                            <small class="text-danger" *ngIf="formValidation.isValidField('termReason')">
+                                {{ formValidation.errorMessage('termReason') }}
+                            </small>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-md-4 form-control-static mb-0" i18n>
+                            <h4 class="clr-blue"><u> Access Program Information </u></h4>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <!-- Checkbox with label of Access Program -->
+                        <div class="" [ngClass]="{'has-error': displayMessage.accessProgram }">
+                            <div class="checkbox col-md-12">
+                                <input id="accessProgram" value="accessProgram"
+                                       formControlName="accessProgram" type="checkbox"
+                                       (change)="onChangeAccessProgram($event)">
+                                <label class="checkbox">
+                                    Access Program
+                                </label>
+                            </div>
+                            <span class="help-block" *ngIf="displayMessage.accessProgram">
+                        {{ displayMessage.accessProgram  }}
+                            </span>
+                        </div>
+
+                        <!-- Checkbox with label of Minimum members -->
+                        <div class="" [ngClass]="{'has-error': displayMessage.minimumMembers }">
+                            <div class="checkbox col-md-12">
+                                <input id="minimumMembers" value="minimumMembers" (click)="isShowMinimumNumber($event)"
+                                       formControlName="minimumMembers" type="checkbox" [attr.disabled]="checkedStatus ? true : null">
+                                <label class="checkbox">
+                                    Minimum members
+                                </label>
+                            </div>
+                            <span class="help-block" *ngIf="displayMessage.minimumMembers">
+                        {{ displayMessage.minimumMembers  }}
+                            </span>
+                        </div>
+
+                        <!-- Checkbox with label of Total enroll within limits -->
+                        <div class="" [ngClass]="{'has-error': displayMessage.totalEnrollWithinLimits }">
+                            <div class="checkbox col-md-12">
+                                <input id="totalEnrollWithinLimits" value="totalEnrollWithinLimits"
+                                       formControlName="totalEnrollWithinLimits" type="checkbox"
+                                       [attr.disabled]="checkedStatus ? true : null">
+                                <label class="checkbox">
+                                    Total enroll within limits
+                                </label>
+                            </div>
+                            <span class="help-block" *ngIf="displayMessage.totalEnrollWithinLimits">
+                        {{ displayMessage.totalEnrollWithinLimits  }}
+                            </span>
+                        </div>
+
+                        <!-- Checkbox with label of LOB Enroll with limits -->
+                        <div class="" [ngClass]="{'has-error': displayMessage.lobEnrollWithLimits }">
+                            <div class="checkbox col-md-12">
+                                <input id="lobEnrollWithLimits" value="lobEnrollWithLimits"
+                                       formControlName="lobEnrollWithLimits" type="checkbox"
+                                       [attr.disabled]="checkedStatus ? true : null">
+                                <label class="checkbox">
+                                    LOB Enroll with limits
+                                </label>
+                            </div>
+                            <span class="help-block" *ngIf="displayMessage.lobEnrollWithLimits">
+                        {{ displayMessage.lobEnrollWithLimits  }}
+                            </span>
+                        </div>
+
+                        <!-- Checkbox with label of LOB accepts new members -->
+                        <div class="" [ngClass]="{'has-error': displayMessage.lobAcceptsNewMembers }">
+                            <div class="checkbox col-md-12">
+                                <input id="lobAcceptsNewMembers" value="lobAcceptsNewMembers"
+                                       formControlName="lobAcceptsNewMembers" type="checkbox"
+                                       [attr.disabled]="checkedStatus ? true : null">
+                                <label class="checkbox">
+                                    LOB accepts new members
+                                </label>
+                            </div>
+                            <span class="help-block" *ngIf="displayMessage.lobAcceptsNewMembers">
+                        {{ displayMessage.lobAcceptsNewMembers  }}
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+
+                        <!-- DynamicText with label of Amt -->
+                        <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('amt') }">
+                            <label class="col-form-label" for="amt" i18n>Amt</label>
+                            <input type="text" id="amt" formControlName="amt" [readOnly]="isRuleSelected"
+                                   class="form-control"/>
+                        </div>
+
+                        <!-- DynamicText with label of Apply Amt to -->
+                        <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('applyAmtTo') }">
+                            <label class="col-form-label" for="applyAmtTo" i18n>Apply Amt to</label>
+                            <select class="form-control" id="applyAmtTo" name="applyAmtTo"
+                                    formControlName="applyAmtTo" [disabled]="isRuleSelected">
+                                <option [value]="amountsToValue.dddwDtlPrimaryKey.dataVal"
+                                        *ngFor="let amountsToValue of amountsToValues">
+                                    {{amountsToValue.dddwDtlPrimaryKey.displayVal}}
+                                </option>
+                            </select>
+                            <small class="text-danger" *ngIf="formValidation.isValidField('applyAmtTo')">
+                                {{ formValidation.errorMessage('applyAmtTo') }}
+                            </small>
+                        </div>
+
+                        <!-- DynamicText with label of Pct -->
+                        <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('pct') }">
+                            <label class="col-form-label" for="pct" i18n>Pct</label>
+                            <input type="text" id="pct" formControlName="pct" [readOnly]="isRuleSelected"
+                                   class="form-control"/>
+                            <small class="text-danger" *ngIf="formValidation.isValidField('pct')">
+                                {{ formValidation.errorMessage('pct') }}
+                            </small>
+                        </div>
+
+                        <!-- DynamicText with label of Minimum Number -->
+                        <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('minimumNumber') }">
+                            <label class="col-form-label" for="minimumNumber" i18n>Minimum Number</label>
+                            <input type="number" id="minimumNumber" formControlName="minimumNumber" [readonly]="isMinimumNumberStatus"
+                                   class="form-control"/>
+                            <small class="text-danger" *ngIf="formValidation.isValidField('minimumNumber')">
+                                {{ formValidation.errorMessage('minimumNumber') }}
+                            </small>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                    </div>
+
+                    <div class="form-group row">
+
+                        <div class="col-md-4 form-control-static mb-0" i18n>
+                            <h4 class="clr-blue"><u> Other </u></h4>
+                        </div>
+
+                    </div>
+
+                    <div class="form-group row">
+                        <!-- Textbox with label of User Defined 1 -->
+                        <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('userDefined1') }">
+                            <label class="col-form-label" for="userDefined1" i18n>User Defined 1</label>
+                            <input type="text" id="userDefined1" class="form-control"
+                                   formControlName="userDefined1"/>
+                            <small class="text-danger" *ngIf="formValidation.isValidField('userDefined1')">
+                                {{ formValidation.errorMessage('userDefined1') }}
+                            </small>
+                        </div>
+
+                        <!-- Textbox with label of User Date 1 -->
+                        <div class="col-md-3">
+                            <app-datepicker [formGroup]="providerIncentiveProgramRuleForm"
+                                            [formValidation]="formValidation"
+                                            [field]="'userDate1'" [labelText]="'User Date 1'"></app-datepicker>
+                        </div>
+
+                        <!-- Textbox with label of User Defined 2 -->
+                        <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('userDefined2') }">
+                            <label class="col-form-label" for="userDefined2" i18n>User Defined 2</label>
+                            <input type="text" id="userDefined2" class="form-control"
+                                   formControlName="userDefined2"/>
+                            <small class="text-danger" *ngIf="formValidation.isValidField('userDefined2')">
+                                {{ formValidation.errorMessage('userDefined2') }}
+                            </small>
+                        </div>
+
+                        <div class="col-md-3">
+                            <app-datepicker [formGroup]="providerIncentiveProgramRuleForm"
+                                            [formValidation]="formValidation"
+                                            [field]="'userDate2'" [labelText]="'User Date 2'"></app-datepicker>
+                        </div>
+
+                    </div>
+                    <div class="form-group row">
+                    </div>
+
+                    <div class="form-group row">
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-md-12 form-control-static mb-0" i18n>
+                            <h4 class="clr-blue"><u> Quality Program Information </u></h4>
+                        </div>
+                    </div>
+
+                    <ng-container >
+
+                        <div class="form-group row">
+                        </div>
+
+                        <!-- DataGrid with Name of DataGrid001 -->
+                        <ag-grid-angular #agGrid class="ag-theme-fresh" [gridOptions]="dataGrid001GridOptions"
+                                         style="width: 100%; height: 300px;"
+                                         [enableSorting]="true"
+                                         [enableFilter]="false"
+                                         [floatingFilter]="false"
+                                         [pagination]="true"
+                                         [showToolPanel]="true">
+                        </ag-grid-angular>
+
+                        <div class="form-group row">
+                            <div class="col-md-3"
+                                 [ngClass]="{'has-danger': formValidation.isValidField('qualityProgram') }">
+                                <label class="col-form-label clr-blue" for="qualityProgram" i18n>Quality Program</label>
+                                <select id="qualityProgram" class="form-control"
+                                        formControlName="qualityProgram">
+                                    <option value="null"> -Select-</option>
+                                    <option *ngFor="let code of qualityPrograms" [value]="code.systemCode">
+                                        {{code.systemCode}} {{code.systemCodeDesc1}} {{code.systemCodeDesc2}}
+                                    </option>
+                                </select>
+
+                                <small class="text-danger" *ngIf="formValidation.isValidField('qualityProgram')">
+                                    {{ formValidation.errorMessage('qualityProgram') }}
+                                </small>
+                            </div>
+
+                            <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('amount') }">
+                                <label class="col-form-label" for="amount" i18n>Amount</label>
+                                <input type="text" id="amount" formControlName="amount"
+                                       class="form-control"/>
+                                <small class="text-danger" *ngIf="formValidation.isValidField('amount')">
+                                    {{ formValidation.errorMessage('amount') }}
+                                </small>
+                            </div>
+
+                            <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('aplyAmtTo') }">
+                                <label class="col-form-label" for="aplyAmtTo" i18n>Apply Amount To</label>
+                                <select class="form-control" id="aplyAmtTo" name="aplyAmtTo"
+                                        formControlName="aplyAmtTo">
+                                    <option [value]="amountsToValue.dddwDtlPrimaryKey.dataVal"
+                                            *ngFor="let amountsToValue of amountsToValues">
+                                        {{amountsToValue.dddwDtlPrimaryKey.displayVal}}
+                                    </option>
+                                </select>
+                                <small class="text-danger" *ngIf="formValidation.isValidField('aplyAmtTo')">
+                                    {{ formValidation.errorMessage('aplyAmtTo') }}
+                                </small>
+                            </div>
+
+                            <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('percent') }">
+                                <label class="col-form-label" for="percent" i18n>Percent</label>
+                                <input type="text" id="percent" formControlName="percent"
+                                       class="form-control"/>
+                                <small class="text-danger" *ngIf="formValidation.isValidField('percent')">
+                                    {{ formValidation.errorMessage('percent') }}
+                                </small>
+                            </div>
+                        </div>
+                    </ng-container>
+
+                </ng-container>
+
+            </form>
+        </ng-container>
+
+
+    </div>
+</div>
+
+<ng-keyboard-shortcuts [shortcuts]="shortcuts"></ng-keyboard-shortcuts>
+<ng-keyboard-shortcuts-help [key]="'f12'" [closeKey]="'escape'" [title]="'Hotkeys Help'"></ng-keyboard-shortcuts-help>

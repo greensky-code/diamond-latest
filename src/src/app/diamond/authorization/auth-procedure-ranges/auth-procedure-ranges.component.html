@@ -1,0 +1,98 @@
+<!-- Copyright (c) 2021 . All Rights Reserved. -->
+<div class="container-fluid">
+    <div class="card-block">
+        <h2 class="form-title card-label-admin">Auth Procedure Ranges</h2>
+        <button type="button" *ngIf="showIcon" class="close" aria-label="Close"
+                (click)="modalClose()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+
+        <ng-template #loaderTemplate let-loaderValue="value">
+            <div class="row justify-content-center mt-4" *ngIf="loaderValue">
+                <div class="spinner-border text-success" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>
+            </div>
+        </ng-template>
+
+
+        <ng-container *ngTemplateOutlet="loaderTemplate;context:{value: secProgress }"></ng-container>
+        <ng-container *appWinSelect="{secWin: secWin, userTemplateId: userTemplateId, secModuleId: moduleId}">
+
+        </ng-container>
+        <div class="row mt-3">
+            <menu-bar [menus]="menu" (onMenuClick)="onMenuItemClick($event)"></menu-bar>
+        </div>
+
+        <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+        <app-pop-up-message #popUpMesssage (buttonclickEvent)="popUpButtonHandler($event)"
+                            [(popupMessage)]="popUpMessage"></app-pop-up-message>
+
+        <form [formGroup]="authProcedureRangesForm" *ngIf="!secProgress" class="page-panel">
+            <div class="form-group row">
+            </div>
+
+            <div class="form-group row">
+                <div class="col-md-12 form-control-static mb-0" i18n>
+                    <h3>Identifier</h3>
+                </div>
+
+            </div>
+
+            <div class="form-group row">
+                <!-- Textbox with label of Auth Proc Range ID -->
+                 <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('authProcRangeId') }">
+                     <label class="col-form-label" for="authProcRangeId" i18n>Auth Proc Range ID</label>
+                     <input type="text" id="authProcRangeId"  [fieldLevelSec]="'Auth Proc Range Id'" [params]="'Auth Procedure Range'"
+                            style="text-transform:uppercase"
+                            class="form-control" formControlName="authProcRangeId"
+                            [attr.disabled]="isRecordExists ? 'disabled' : null"
+                            (keydown)="onLookupFieldAuthProcRangeId($event)"
+                            />
+                      <small class="text-danger" *ngIf="formValidation.isValidField('authProcRangeId')">
+                      {{ formValidation.errorMessage('authProcRangeId') }}
+                     </small>
+                 </div>
+
+            </div>
+
+            <div class="form-group row" *ngIf="isRecordExists">
+                <!-- Textbox with label of Description -->
+                 <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('description') }">
+                     <label class="col-form-label" for="description" i18n>Description</label>
+                     <input type="text" id="description"  [fieldLevelSec]="'Description'" [params]="'Auth Procedure Range'"   class="form-control" formControlName="description"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('description')">
+                      {{ formValidation.errorMessage('description') }}
+                     </small>
+                 </div>
+
+            </div>
+
+
+            <div class="form-group row">
+            </div>
+
+                        <!-- DataGrid with Name of DataGrid -->
+                    <!--<button (click)="dataGridGridOptionsExportCsv()">Export</button>-->
+                    <!--<ag-grid-angular #agGrid class="ag-theme-fresh" [gridOptions]="dataGridGridOptions"
+                    style="width: 100%; height: 300px;"
+                    [enableSorting]="true"
+                    [enableFilter]="false"
+                    [floatingFilter]="false"
+                    [pagination]="true"
+                    [showToolPanel]="true">
+                    </ag-grid-angular>-->
+
+            <div class="col-sm-12 form-group row" *ngIf="authProcedureRange">
+                <dynamic-form [prevState]="authProcedureRangesDataState" [isSaveForm]="isSaveForm" [title]="'Procedure Ranges'" [showSubmitButton]="'true'"
+                              [config]="authProcedureRangesConfig" (formSubmitted)="saveAuthProcedureRangesDetails($event)"
+                                (formValueChanged)="valueChanged()"
+                ></dynamic-form>
+            </div>
+        </form>
+    </div>
+</div>
+
+<ng-keyboard-shortcuts [shortcuts]="shortcuts"></ng-keyboard-shortcuts>
+<ng-keyboard-shortcuts-help [key]="'f1'" [closeKey]="'escape'" [title]="'Hotkeys Help'"></ng-keyboard-shortcuts-help>
+

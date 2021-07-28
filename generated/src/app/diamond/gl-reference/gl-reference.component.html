@@ -1,0 +1,352 @@
+<!-- Copyright (c) 2021 . All Rights Reserved. -->
+<div class="container-fluid">
+    <div class="card-block">
+        <form [formGroup]="glReferenceForm" novalidate>
+            <h2 class="form-title card-label-admin">Gl Reference</h2>
+            <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+            <app-pop-up-message #popUpMesssage (buttonclickEvent)="popUpButtonHandler($event)"  [(popupMessage)] = "popUpMessage"></app-pop-up-message>
+                        
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of Company Code -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('companyCode') }">
+                     <label class="col-form-label" for="companyCode" i18n>Company Code</label>
+                     <input type="text" id="companyCode"  [fieldLevelSec]="'Company Code'" params]="General Ledger Reference"   class="form-control" formControlName="companyCode"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('companyCode')">
+                      {{ formValidation.errorMessage('companyCode') }}
+                     </small>
+                 </div>
+            
+                <!-- Textbox with label of GL Reference Code -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('glReferenceCode') }">
+                     <label class="col-form-label" for="glReferenceCode" i18n>GL Reference Code</label>
+                     <input type="text" id="glReferenceCode"  [fieldLevelSec]="'Gl Ref Code'" params]="General Ledger Reference"   class="form-control" formControlName="glReferenceCode"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('glReferenceCode')">
+                      {{ formValidation.errorMessage('glReferenceCode') }}
+                     </small>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+                <div class="col-md-2 form-control-static mb-0" i18n>
+                    Description
+                </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- TextArea with Name of TextArea -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('textArea') }">
+                     <label class="col-form-label" for="textArea" i18n>&nbsp;</label>
+                     <textarea id="textArea" name="textArea" class="form-control" formControlName="textArea"></textarea>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <div class="col-md-2 form-control-static mb-0" i18n>
+                    Primary G/L Code
+                </div>
+            
+                <div class="col-md-2 form-control-static mb-0" i18n>
+                    Interest G/L Codes
+                </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of Debit Account -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('debitAccount001') }">
+                     <label class="col-form-label" for="debitAccount001" i18n>Debit Account</label>
+                     <input type="text" id="debitAccount001"  [fieldLevelSec]="''" params]=""   class="form-control" formControlName="debitAccount001"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('debitAccount001')">
+                      {{ formValidation.errorMessage('debitAccount001') }}
+                     </small>
+                 </div>
+            
+                <!-- Textbox with label of Debit Account -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('debitAccount002') }">
+                     <label class="col-form-label" for="debitAccount002" i18n>Debit Account</label>
+                     <input type="text" id="debitAccount002"  [fieldLevelSec]="''" params]=""   class="form-control" formControlName="debitAccount002"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('debitAccount002')">
+                      {{ formValidation.errorMessage('debitAccount002') }}
+                     </small>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of Credit Account -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('creditAccount001') }">
+                     <label class="col-form-label" for="creditAccount001" i18n>Credit Account</label>
+                     <input type="text" id="creditAccount001"  [fieldLevelSec]="'Credit Gl Number 1'" params]="General Ledger Reference"   class="form-control" formControlName="creditAccount001"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('creditAccount001')">
+                      {{ formValidation.errorMessage('creditAccount001') }}
+                     </small>
+                 </div>
+            
+                <!-- Textbox with label of Credit Account -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('creditAccount002') }">
+                     <label class="col-form-label" for="creditAccount002" i18n>Credit Account</label>
+                     <input type="text" id="creditAccount002"  [fieldLevelSec]="'Credit Gl Number 2'" params]="General Ledger Reference"   class="form-control" formControlName="creditAccount002"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('creditAccount002')">
+                      {{ formValidation.errorMessage('creditAccount002') }}
+                     </small>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+                <div class="col-md-2 form-control-static mb-0" i18n>
+                    Secondary G/L Codes
+                </div>
+            
+                <div class="col-md-2 form-control-static mb-0" i18n>
+                    Discount G/L Codes
+                </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of Expense Account -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('expenseAccount001') }">
+                     <label class="col-form-label" for="expenseAccount001" i18n>Expense Account</label>
+                     <input type="text" id="expenseAccount001"  [fieldLevelSec]="'Adm Fee Expense Acc'" params]="General Ledger Reference"   class="form-control" formControlName="expenseAccount001"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('expenseAccount001')">
+                      {{ formValidation.errorMessage('expenseAccount001') }}
+                     </small>
+                 </div>
+            
+                <!-- Textbox with label of Debit Account -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('debitAccount003') }">
+                     <label class="col-form-label" for="debitAccount003" i18n>Debit Account</label>
+                     <input type="text" id="debitAccount003"  [fieldLevelSec]="''" params]=""   class="form-control" formControlName="debitAccount003"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('debitAccount003')">
+                      {{ formValidation.errorMessage('debitAccount003') }}
+                     </small>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of Payable Account -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('payableAccount001') }">
+                     <label class="col-form-label" for="payableAccount001" i18n>Payable Account</label>
+                     <input type="text" id="payableAccount001"  [fieldLevelSec]="'Adm Fee Payable Acc'" params]="General Ledger Reference"   class="form-control" formControlName="payableAccount001"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('payableAccount001')">
+                      {{ formValidation.errorMessage('payableAccount001') }}
+                     </small>
+                 </div>
+            
+                <!-- Textbox with label of Credit Account -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('creditAccount003') }">
+                     <label class="col-form-label" for="creditAccount003" i18n>Credit Account</label>
+                     <input type="text" id="creditAccount003"  [fieldLevelSec]="''" params]=""   class="form-control" formControlName="creditAccount003"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('creditAccount003')">
+                      {{ formValidation.errorMessage('creditAccount003') }}
+                     </small>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+                <div class="col-md-2 form-control-static mb-0" i18n>
+                    Advance Payment
+                </div>
+            
+                <div class="col-md-2 form-control-static mb-0" i18n>
+                    enalty G/L Codes
+                </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of Prepaid Exp A/C -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('prepaidExpAc') }">
+                     <label class="col-form-label" for="prepaidExpAc" i18n>Prepaid Exp A/C</label>
+                     <input type="text" id="prepaidExpAc"  [fieldLevelSec]="'Adv Pay Prepaid Expense Acc'" params]="General Ledger Reference"   class="form-control" formControlName="prepaidExpAc"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('prepaidExpAc')">
+                      {{ formValidation.errorMessage('prepaidExpAc') }}
+                     </small>
+                 </div>
+            
+                <!-- Textbox with label of Expense Account -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('expenseAccount002') }">
+                     <label class="col-form-label" for="expenseAccount002" i18n>Expense Account</label>
+                     <input type="text" id="expenseAccount002"  [fieldLevelSec]="'Penalty Expense Acc'" params]="General Ledger Reference"   class="form-control" formControlName="expenseAccount002"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('expenseAccount002')">
+                      {{ formValidation.errorMessage('expenseAccount002') }}
+                     </small>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of Payable Account -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('payableAccount002') }">
+                     <label class="col-form-label" for="payableAccount002" i18n>Payable Account</label>
+                     <input type="text" id="payableAccount002"  [fieldLevelSec]="'Adv Pay Payable Acc'" params]="General Ledger Reference"   class="form-control" formControlName="payableAccount002"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('payableAccount002')">
+                      {{ formValidation.errorMessage('payableAccount002') }}
+                     </small>
+                 </div>
+            
+                <!-- Textbox with label of Payable Account -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('payableAccount003') }">
+                     <label class="col-form-label" for="payableAccount003" i18n>Payable Account</label>
+                     <input type="text" id="payableAccount003"  [fieldLevelSec]="'Penalty Payable Acc'" params]="General Ledger Reference"   class="form-control" formControlName="payableAccount003"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('payableAccount003')">
+                      {{ formValidation.errorMessage('payableAccount003') }}
+                     </small>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+                <div class="col-md-2 form-control-static mb-0" i18n>
+                    Administrative Fee
+                </div>
+            
+                <div class="col-md-2 form-control-static mb-0" i18n>
+                    Provider Incentive
+                </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of Expense Account -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('expenseAccount003') }">
+                     <label class="col-form-label" for="expenseAccount003" i18n>Expense Account</label>
+                     <input type="text" id="expenseAccount003"  [fieldLevelSec]="'Incentive Expense Acc'" params]="General Ledger Reference"   class="form-control" formControlName="expenseAccount003"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('expenseAccount003')">
+                      {{ formValidation.errorMessage('expenseAccount003') }}
+                     </small>
+                 </div>
+            
+                <!-- Textbox with label of Expense Account -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('expenseAccount004') }">
+                     <label class="col-form-label" for="expenseAccount004" i18n>Expense Account</label>
+                     <input type="text" id="expenseAccount004"  [fieldLevelSec]="''" params]=""   class="form-control" formControlName="expenseAccount004"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('expenseAccount004')">
+                      {{ formValidation.errorMessage('expenseAccount004') }}
+                     </small>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of Payable Account -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('payableAccount004') }">
+                     <label class="col-form-label" for="payableAccount004" i18n>Payable Account</label>
+                     <input type="text" id="payableAccount004"  [fieldLevelSec]="'Incentive Payable Acc'" params]="General Ledger Reference"   class="form-control" formControlName="payableAccount004"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('payableAccount004')">
+                      {{ formValidation.errorMessage('payableAccount004') }}
+                     </small>
+                 </div>
+            
+                <!-- Textbox with label of Payable Account -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('payableAccount005') }">
+                     <label class="col-form-label" for="payableAccount005" i18n>Payable Account</label>
+                     <input type="text" id="payableAccount005"  [fieldLevelSec]="''" params]=""   class="form-control" formControlName="payableAccount005"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('payableAccount005')">
+                      {{ formValidation.errorMessage('payableAccount005') }}
+                     </small>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+                <div class="col-md-2 form-control-static mb-0" i18n>
+                    Use Defined Information
+                </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of User Defined 1 -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('userDefined1') }">
+                     <label class="col-form-label" for="userDefined1" i18n>User Defined 1</label>
+                     <input type="text" id="userDefined1"  [fieldLevelSec]="'User Defined 1'" params]="General Ledger Reference"   class="form-control" formControlName="userDefined1"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('userDefined1')">
+                      {{ formValidation.errorMessage('userDefined1') }}
+                     </small>
+                 </div>
+            
+                <!-- Textbox with label of User Defined 2 -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('userDefined2') }">
+                     <label class="col-form-label" for="userDefined2" i18n>User Defined 2</label>
+                     <input type="text" id="userDefined2"  [fieldLevelSec]="'User Defined 2'" params]="General Ledger Reference"   class="form-control" formControlName="userDefined2"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('userDefined2')">
+                      {{ formValidation.errorMessage('userDefined2') }}
+                     </small>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of User Date 1 -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('userDate1') }">
+                     <label class="col-form-label" for="userDate1" i18n>User Date 1</label>
+                     <div class="input-group">
+                    <input id="userDate1"  [fieldLevelSec]="'User Date 1'" params]="General Ledger Reference"  class="form-control" angular-mydatepicker name="userDate1" (click)="userDate1Id.toggleCalendar()"
+                    formControlName="userDate1"[options]="datePickerConfig" #userDate1Id="angular-mydatepicker"/>
+                    <div class="input-group-append">
+                        <button type="button" class="btn btn-secondary" (click)="userDate1Id.clearDate()">
+                          <i class="fa fa-close"></i>
+                        </button>
+                      </div>
+                      <div class="input-group-append">
+                        <button type="button" class="btn btn-secondary" (click)="userDate1Id.toggleCalendar()">
+                          <i class="fa fa-calendar-o"></i>
+                        </button>
+                      </div>
+                    </div>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('userDate1')">
+                      {{ formValidation.errorMessage('userDate1') }}
+                     </small>
+                 </div>
+            
+                <!-- Textbox with label of User Date 2 -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('userDate2') }">
+                     <label class="col-form-label" for="userDate2" i18n>User Date 2</label>
+                     <div class="input-group">
+                    <input id="userDate2"  [fieldLevelSec]="'User Date 2'" params]="General Ledger Reference"  class="form-control" angular-mydatepicker name="userDate2" (click)="userDate2Id.toggleCalendar()"
+                    formControlName="userDate2"[options]="datePickerConfig" #userDate2Id="angular-mydatepicker"/>
+                    <div class="input-group-append">
+                        <button type="button" class="btn btn-secondary" (click)="userDate2Id.clearDate()">
+                          <i class="fa fa-close"></i>
+                        </button>
+                      </div>
+                      <div class="input-group-append">
+                        <button type="button" class="btn btn-secondary" (click)="userDate2Id.toggleCalendar()">
+                          <i class="fa fa-calendar-o"></i>
+                        </button>
+                      </div>
+                    </div>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('userDate2')">
+                      {{ formValidation.errorMessage('userDate2') }}
+                     </small>
+                 </div>
+            
+            </div>
+        </form>
+    </div>
+</div>

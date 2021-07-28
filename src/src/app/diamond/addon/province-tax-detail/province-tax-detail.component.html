@@ -1,0 +1,50 @@
+<!-- Copyright (c) 2021 . All Rights Reserved. -->
+<div class="container-fluid">
+    <div class="card-block">
+
+        <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+        <app-pop-up-message #popUpMesssage (buttonclickEvent)="popUpButtonHandler($event)"
+                            [(popupMessage)]="popUpMessage"></app-pop-up-message>
+
+        <div class="form-group row bg-dark text-white">
+            <div class="col-md-4 offset-2 form-control-static mb-0 font-weight-bold " i18n>
+                Group Number
+                <br>
+                <span class="col-md required-field-label justify-content-center pt-1">  {{groupNumber}}</span>
+            </div>
+            <div class="col-md-4 offset-2 form-control-static mb-0 font-weight-bold" i18n>
+                Group Name
+                <br>
+                <span class="col-md pt-1 required-field-label justify-content-center"> {{groupName}}</span>
+            </div>
+        </div>
+
+        <!-- DataGrid with Name of DataGrid -->
+
+        <div class="form-group row">
+            <div class="col-md-12 mt-3 mt-2 p-0">
+                <dmnd-dynamic-config-grid
+                        [prevState]="provinceTaxDetailsFormState" [isResetForm]="resetInlineGrid"
+                        [isSaveForm]="saveInlineGrid"
+                        [title]="''" [showRemoveButton]="false"
+                        [submitBtnText]="SubmitBtn"
+
+                        [config]="provinceTaxDetailsConfig" [displayCheckBox]="false"
+                        (formSubmitted)="saveForm($event)"
+                        (onNewRowAdded)="onRowAdded($event)"
+                        (onChangeFields)="formFieldValueChanged($event)"
+                >
+                </dmnd-dynamic-config-grid>
+                <div class="col-md-6">
+                    <button type="button" id="resetAll" (click)="reset()" name="resetAll"
+                            class="float-left btn btn-small btn-primary">Reset All
+                    </button>
+
+                </div>
+            </div>
+
+        </div>
+
+
+    </div>
+</div>

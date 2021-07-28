@@ -1,0 +1,194 @@
+<!-- Copyright (c) 2021 . All Rights Reserved. -->
+<div class="container-fluid">
+  <div class="card-block">
+    <form [formGroup]="accountInformationForm" novalidate>
+      <button type="button" *ngIf="showIcon" class="modal-close close" aria-label="Close"
+        (click)="activeModal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      <h2 class="form-title card-label-admin">Account Information</h2>
+      <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+      <app-pop-up-message #popUpMesssage (buttonclickEvent)="popUpButtonHandler($event)"
+        [(popupMessage)]="popUpMessage"></app-pop-up-message>
+
+      <div class="form-group row" style="margin: 10px 0px;">
+        <div class="col-md-2">
+          <span style="color:black; vertical-align: middle;">Customer</span>
+        </div>
+
+        <div class="col-md-2">
+          <span style="color:blue; vertical-align: middle;">{{groupMaster.shortName}}</span>
+        </div>
+
+        <div class="col-md-2">
+          <span style="color:blue; vertical-align: middle;">{{groupMaster.groupId}}</span>
+        </div>
+
+        <div class="col-md-2">
+          <span style="color:blue; vertical-align: middle;">{{groupMaster.groupType}}</span>
+        </div>
+      </div>
+      <!--.customer info-->
+
+      <div class="row">
+        <div class="col-md-10">
+          <!-- DataGrid with Name of DataGrid -->
+          <ag-grid-angular #agGrid class="ag-theme-fresh" [gridOptions]="dataGridGridOptions"
+            style="width: 100%; height: 300px;" [enableSorting]="true" [enableFilter]="true" [floatingFilter]="true"
+            [pagination]="true" [showToolPanel]="true" (rowSelected)="gridSelectionChange()">
+          </ag-grid-angular>
+        </div>
+        <div class="col-md-2">
+          <div class="col-md-6 form-control-static mb-0 text-right">
+            <button type="button" id="selectMbr" name="selectMbr" class="btn btn-primary" style="width: 78px;"
+              (click)="save()">OK</button>
+          </div>
+          <br>
+          <div class="col-md-6 form-control-static mb-0 text-right">
+            <button type="button" id="selectMbr" name="selectMbr" class="btn btn-primary" style="width: 78px;"
+              (click)="close()">Cancel</button>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="row">
+        <div class="col-md-10">
+          <div class="form-group row">
+  
+            <!-- Textbox with label of Account No. -->
+            <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('accountNo') }">
+              <label class="col-form-label  clr-blue" for="accountNo" i18n>Account No.</label>
+              <input type="text" id="accountNo" [attr.disabled]="editPmbCustFinAccts == true ? true : null" [fieldLevelSec]="'Acct No'" [params]="{secColDetails: secColDetails}"
+                class="form-control" formControlName="accountNo"  />
+              <small class="text-danger" *ngIf="formValidation.isValidField('accountNo')">
+                {{ formValidation.errorMessage('accountNo') }}
+              </small>
+            </div>
+  
+            <!-- Textbox with label of Eff. Date -->
+            <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('effDate') }">
+              <label class="col-form-label  clr-blue" for="effDate" i18n>Eff. Date</label>
+              <div class="input-group">
+                <input id="effDate" angular-mydatepicker [fieldLevelSec]="'Effective To Date'"
+                  [params]="{secColDetails: secColDetails}" class="form-control" name="effDate"
+                  (click)="effDateId.toggleCalendar()" formControlName="effDate" [options]="datePickerConfig"
+                  #effDateId="angular-mydatepicker" [attr.disabled]="editPmbCustFinAccts == true ? true : null"/>
+                <div class="input-group-append">
+                  <button type="button" class="btn btn-secondary" (click)="effDateId.clearDate()">
+                    <fa-icon [icon]="['far', 'window-close']"></fa-icon>
+                  </button>
+                </div>
+                <div class="input-group-append">
+                  <button type="button" class="btn btn-secondary" (click)="effDateId.toggleCalendar()">
+                    <fa-icon [icon]="['far', 'calendar']"></fa-icon>
+                  </button>
+                </div>
+              </div>
+              <small class="text-danger" *ngIf="formValidation.isValidField('effDate')">
+                {{ formValidation.errorMessage('effDate') }}
+              </small>
+            </div>
+  
+          </div>
+  
+          <div class="form-group row">
+            <!-- Textbox with label of Type -->
+            <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('type') }">
+              <label class="col-form-label" for="type" i18n>Type</label>
+                <select id="type" disabled="{{editPmbCustFinAccts}}" [attr.disabled]="editPmbCustFinAccts == true ? true : null" [fieldLevelSec]="''" [params]="{secColDetails: secColDetails}" class="form-control" formControlName="type">
+                  <option value="null">-Select-</option>
+                  <option *ngFor="let code of accountTypes" [value]="code.systemCode">
+                      {{code.systemCode}} {{code.systemCodeDesc1}} {{code.systemCodeDesc2}} {{code.sytemCodeUpd}}</option>
+              </select>
+              <small class="text-danger" *ngIf="formValidation.isValidField('type')">
+                {{ formValidation.errorMessage('type') }}
+              </small>
+            </div>
+  
+            <!-- Textbox with label of Exp. Date -->
+            <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('expDate') }">
+              <label class="col-form-label" for="expDate" i18n>Exp. Date</label>
+              <div class="input-group">
+                <input angular-mydatepicker id="expDate"  [attr.disabled]="editPmbCustFinAccts == true ? true : null" [fieldLevelSec]="'Cc Expire Date'"
+                  [params]="{secColDetails: secColDetails}" class="form-control" name="expDate"
+                  (click)="expDateId.toggleCalendar()" formControlName="expDate" [options]="datePickerConfig"
+                  #expDateId="angular-mydatepicker" />
+                <div class="input-group-append">
+                  <button type="button" class="btn btn-secondary" (click)="expDateId.clearDate()">
+                    <fa-icon [icon]="['far', 'window-close']"></fa-icon>
+                  </button>
+  
+                </div>
+                <div class="input-group-append">
+                  <button type="button" class="btn btn-secondary" (click)="expDateId.toggleCalendar()">
+                    <fa-icon [icon]="['far', 'calendar']"></fa-icon>
+                  </button>
+                </div>
+              </div>
+              <small class="text-danger" *ngIf="formValidation.isValidField('expDate')">
+                {{ formValidation.errorMessage('expDate') }}
+              </small>
+            </div>
+  
+          </div>
+  
+          <div class="form-group row">
+            <!-- Textbox with label of User -->
+            <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('use') }">
+              <label class="col-form-label  clr-blue" for="user" i18n>Use</label>
+              <select class="form-control" [attr.disabled]="editPmbCustFinAccts == true ? true : null" [fieldLevelSec]="'Customer Id'"  [params]="{secColDetails: secColDetails}" id="use" #groupType name="use" formControlName="use">
+                <option [value]="type.dddwDtlPrimaryKey.dataVal" *ngFor="let type of acctUses;">
+                  {{type.dddwDtlPrimaryKey.displayVal}}
+                </option>
+              </select>
+              <small class="text-danger" *ngIf="formValidation.isValidField('use')">
+                {{ formValidation.errorMessage('use') }}
+              </small>
+            </div>
+  
+            <!-- DropdownList with label of Status -->
+            <div class="selectContainer col-md-4 " [ngClass]="{'has-danger': formValidation.isValidField('status') }">
+              <label class="col-form-label" for="status" i18n>Status</label>
+              <select class="form-control" [fieldLevelSec]="" id="status" #groupType name="status" formControlName="status">
+                <option [value]="type.dddwDtlPrimaryKey.dataVal" *ngFor="let type of acctStatuses;">
+                  {{type.dddwDtlPrimaryKey.displayVal}}
+                </option>
+              </select>
+            </div>
+  
+          </div>
+  
+          <div class="form-group row">
+            <!-- Textbox with label of Routing Number -->
+            <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('routingNumber') }">
+              <label class="col-form-label" for="routingNumber" i18n>Routing Number</label>
+              <input type="text" id="routingNumber" [fieldLevelSec]="''" [params]="{secColDetails: secColDetails}"
+                class="form-control" formControlName="routingNumber"  [attr.disabled]="editPmbCustFinAccts == true ? true : null"/>
+              <small class="text-danger" *ngIf="formValidation.isValidField('routingNumber')">
+                {{ formValidation.errorMessage('routingNumber') }}
+              </small>
+            </div>
+  
+          </div>
+        </div> <!--./col-md-10-->
+
+        <div class="col-md-2">
+          <div class="col-md-6 form-control-static mb-0 text-right">
+            <button type="button" id="selectMbr" name="selectMbr" class="btn btn-primary" style="width: 78px;"
+              (click)="add()">Add</button>
+          </div>
+          <br>
+          <div class="col-md-6 form-control-static mb-0 text-right">
+            <button type="button" id="selectMbr" name="selectMbr" class="btn btn-primary" style="width: 78px;"
+              (click)="delete()">Delete</button>
+          </div>
+        </div> <!--./col-md-2-->
+      </div>
+
+      
+    
+
+    </form>
+  </div>
+</div>

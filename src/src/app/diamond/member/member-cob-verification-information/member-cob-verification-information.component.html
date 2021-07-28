@@ -1,0 +1,131 @@
+<!-- Copyright (c) 2020 . All Rights Reserved. -->
+<div class="container-fluid">
+    <div class="card-block">
+
+            <h2 class="form-title card-label-admin">Member Cob Verification Information</h2>
+            <button type="button" *ngIf="showIcon" class="modal-close close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+            <app-pop-up-message #popUpMesssage (buttonclickEvent)="popUpButtonHandler($event)"
+                [popupMessage]="popUpMessage"></app-pop-up-message>
+
+            <ng-template #loaderTemplate let-loaderValue = "value"  >
+                <div class="row justify-content-center mt-4" *ngIf="loaderValue">
+                    <div class="spinner-border text-success" role="status">
+                        <span class="sr-only">Loading...</span>
+                    </div>
+                </div>
+            </ng-template>
+
+        <ng-container *ngTemplateOutlet="loaderTemplate;context:{value: secProgress }"></ng-container>
+
+            <ng-container *appWinSelect="{secWin: secWin, userTemplateId: userTemplateId, secModuleId: memberModuleId}">
+
+
+                <form [formGroup]="memberCobVerificationInformationForm" novalidate *ngIf="!secProgress">
+
+            <div class="form-group row">
+                <div class="col-md-2">
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group row">
+                        <!-- Textbox with label of Verification Date -->
+                        <div [ngClass]="{'has-danger': formValidation.isValidField('verificationDate') }">
+                            <app-datepicker [formGroup]="memberCobVerificationInformationForm" [formValidation]="formValidation" [field]="'verificationDate'" [labelText]="'Verification Date'"
+                                            [fieldLevelSec]="'VERIF_OTH_COVER_DATE'" [params]="{secColDetails: secColDetails, isEditState: true}"></app-datepicker>
+                        </div>
+
+                    </div>
+
+                    <div class="form-group row">
+                        <!-- Textbox with label of Followup Date -->
+                        <div [ngClass]="{'has-danger': formValidation.isValidField('followupDate') }">
+                            <app-datepicker [formGroup]="memberCobVerificationInformationForm" [formValidation]="formValidation" [field]="'followupDate'" [labelText]="'Followup Date'"
+                                            [fieldLevelSec]="'VERIF_FOLLOW_UP_DATE'" [params]="{secColDetails: secColDetails, isEditState: true}"></app-datepicker>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <!-- Textbox with label of Status -->
+                        <div [ngClass]="{'has-danger': formValidation.isValidField('status') }">
+                            <label class="col-form-label" for="status" i18n>Status</label>
+                            <input type="text" id="status" class="form-control" formControlName="status"
+                                   [fieldLevelSec]="'DEP_VERIF_STATUS'" [params]="{secColDetails: secColDetails, isEditState: true}"/>
+                            <small class="text-danger" *ngIf="formValidation.isValidField('status')">
+                                {{ formValidation.errorMessage('status') }}
+                            </small>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <!-- Textbox with label of User Defined 1 -->
+                        <div [ngClass]="{'has-danger': formValidation.isValidField('userDefined1') }">
+                            <label class="col-form-label" for="userDefined1" i18n>User Defined 1</label>
+                            <input type="text" id="userDefined1" class="form-control" formControlName="userDefined1"
+                                   [fieldLevelSec]="'DEP_VERIF_USER_DEFINED_1'" [params]="{secColDetails: secColDetails, isEditState: true}"/>
+                            <small class="text-danger" *ngIf="formValidation.isValidField('userDefined1')">
+                                {{ formValidation.errorMessage('userDefined1') }}
+                            </small>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <!-- Textbox with label of User Date 1 -->
+                        <div [ngClass]="{'has-danger': formValidation.isValidField('userDate1') }">
+                            <app-datepicker [formGroup]="memberCobVerificationInformationForm" [formValidation]="formValidation" [field]="'userDate1'" [labelText]="'User Date 1'"
+                                            [fieldLevelSec]="'DEP_VERIF_USER_DATE_1'" [params]="{secColDetails: secColDetails, isEditState: true}"></app-datepicker>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <!-- Textbox with label of User Defined 2 -->
+                        <div [ngClass]="{'has-danger': formValidation.isValidField('userDefined2') }">
+                            <label class="col-form-label" for="userDefined2" i18n>User Defined 2</label>
+                            <input type="text" id="userDefined2" class="form-control" formControlName="userDefined2"
+                                   [fieldLevelSec]="'DEP_VERIF_USER_DEFINED_2'" [params]="{secColDetails: secColDetails, isEditState: true}"/>
+                            <small class="text-danger" *ngIf="formValidation.isValidField('userDefined2')">
+                                {{ formValidation.errorMessage('userDefined2') }}
+                            </small>
+                        </div>
+
+                    </div>
+
+                    <div class="form-group row">
+                        <!-- Textbox with label of User Date 2 -->
+                        <div [ngClass]="{'has-danger': formValidation.isValidField('userDate2') }">
+                            <app-datepicker [formGroup]="memberCobVerificationInformationForm" [formValidation]="formValidation" [field]="'userDate2'" [labelText]="'User Date 2'"
+                                            [fieldLevelSec]="'DEP_VERIF_USER_DATE_2'" [params]="{secColDetails: secColDetails, isEditState: true}"></app-datepicker>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group row">
+                    </div>
+                    <div class="form-group row">
+                    </div>
+                    <div class="form-group row">
+                        <button type="button" id="ok" name="ok" (click)="submitForm()"
+                            class="float-right button btn-sbmt">OK</button>
+                    </div>
+                    <div class="form-group row">
+                    </div>
+                    <div class="form-group row">
+                    </div>
+                    <div class="form-group row">
+                        <button type="button" id="cancel" name="cancel" (click)="cancel()"
+                            class="float-right button btn-sbmt">Cancel</button>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-md-2">
+            </div>
+
+        </form>
+            </ng-container>
+    </div>
+</div>
+<ng-keyboard-shortcuts [shortcuts]="shortcuts"></ng-keyboard-shortcuts>
+<ng-keyboard-shortcuts-help [key]="'f1'" [closeKey]="'escape'" [title]="'Hotkeys Help'"></ng-keyboard-shortcuts-help>

@@ -1,0 +1,249 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+    <!-- $MVD$:fontset("Courier New","Courier New") -->
+    <title>Running a Batch Claim Hold Release Job</title>
+    <meta content="RoboHelp by eHelp Corporation www.ehelp.com" name="generator"/>
+    <meta name="copyright"
+          value="© Copyright 2002 Health Systems Design Corp., a wholly owned subsidiary of Perot Systems Corporation. All rights reserved"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+</head>
+<body>
+
+<div class="calibreMeta">
+    <div class="calibreMetaTitle">
+
+
+        <h1>
+            <a href="../bj5if-qozss.html">DIAMOND 950 Help
+            </a>
+        </h1>
+
+
+    </div>
+    <div class="calibreMetaAuthor">
+        Unknown
+
+    </div>
+</div>
+
+<div class="calibreMain">
+
+    <div class="calibreEbookContent">
+
+        <div class="calibreEbNavTop">
+
+            <a href="Batch_Claim_Hold_Release_Overview.htm" class="calibreAPrev">previous page
+            </a>
+
+
+            <a href="Setting_Up_Claim_Hold_Release_Rules_and_Determinants.htm" class="calibreANext">next page
+            </a>
+
+        </div>
+
+
+        <h4 class="calibre1">Running a Batch Claim Hold Release Job</h4>
+        <table cellpadding="1" cellspacing="0" width="480" class="calibre172">
+            <tbody class="calibre8">
+            <tr valign="top" class="">
+                <td width="120" class="">
+                    <p class="map-links"><a
+                            href="Running_a_Batch_Claim_Hold_Release_Job.htm#Running_a_Batch_Claim_Hold_Release_Job_REST_TASK_MID"><img
+                            alt="image\assets/help/MidTopic_shg.gif" border="0" src="assets/help/MidTopic_shg.gif" usemap="#AreaMap0"
+                            class=""/>
+                    </a> Restrictions
+                    </p>
+                </td>
+                <td width="126" class="">
+                    <p class="map-links"><a
+                            href="Running_a_Batch_Claim_Hold_Release_Job.htm#Running_a_Batch_Claim_Hold_Release_Job_INST_TASK_MID"><img
+                            alt="image\assets/help/MidTopic_shg.gif" border="0" src="assets/help/MidTopic_shg.gif" usemap="#AreaMap1"
+                            class=""/>
+                    </a> Instructions
+                    </p>
+                </td>
+                <td width="234" class="">
+                    <p class="map-links"><a
+                            href="Running_a_Batch_Claim_Hold_Release_Job.htm#Running_a_Batch_Claim_Hold_Release_Job_FAQ_TASK_MID"><img
+                            alt="image\assets/help/MidTopic_shg.gif" border="0" src="assets/help/MidTopic_shg.gif" usemap="#AreaMap2"
+                            class=""/>
+                    </a> Frequently Asked Questions
+                    </p>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <p class="body-text">As part of the process of batch claim hold release, you run a batch job that applies the
+            release rule and determinants to select claim hold reason codes to release and retest, and performs certain
+            reprocessing of the associated claims. For more information on the processing included in this batch job,
+            see Batch Claim Hold Release – How DIAMOND Thinks.</p>
+        <p class="doc-level"><a name="Running_a_Batch_Claim_Hold_Release_Job_REST_TASK_MID"></a>Restrictions</p>
+        <p class="body-text">Claim hold release rules and determinants must be entered using RHRUL and RHDET before
+            running an RHJOB batch claim hold release job.</p>
+        <p class="body-text">The EPI Daemon must be running in order to run an RHJOB job.</p>
+        <p class="body-text">Since a claim hold release job uses the Claims Batch worktables when re-pricing and
+            re-adjudicating claim lines, DBAs must be notified not to truncate these worktables while a claim hold
+            release job is running.</p>
+        <p class="doc-level"><a name="Running_a_Batch_Claim_Hold_Release_Job_INST_TASK_MID"></a>Instructions</p>
+        <table cellpadding="1" cellspacing="0" width="526" class="calibre172">
+            <tbody class="calibre8">
+            <tr valign="top" class="">
+                <td width="250" class="">
+                    <p class="tbl-header">Step</p></td>
+                <td width="276" class="">
+                    <p class="tbl-header">Comment</p></td>
+            </tr>
+            <tr valign="top" class="">
+                <td width="250" class="">
+                    <p class="step2">1. Check that everything is ready to run the job:</p>
+                    <ul class="calibre2">
+                        <li class="">
+                            <p class="tbl-list-bullet">Required claim hold release rule and determinants have been
+                                entered.</p></li>
+                        <li class="">
+                            <p class="tbl-list-bullet">All claims have been entered for the desired date range.</p></li>
+                        <li class="">
+                            <p class="tbl-list-bullet">The EPI Daemon is running.</p></li>
+                    </ul>
+                </td>
+                <td width="276" class="">
+                    <p class="step-comment1"> </p></td>
+            </tr>
+            <tr valign="top" class="">
+                <td width="250" class="">
+                    <p class="step2">2. Determine whether to use the claim Received Date or Entered Date to select
+                        claims to be included in the batch job. Also determine the date range to be used to select
+                        claims to include in the batch job.</p></td>
+                <td width="276" class="">
+                    <p class="step-comment1">Certain claims are not included in claim hold release and retest
+                        processing:</p>
+                    <ul class="calibre2">
+                        <li class="">
+                            <p class="step-comment-bullet-noline">Claims that have been whole claim priced (claims with
+                                one or more informational lines)</p></li>
+                        <li class="">
+                            <p class="step-comment-bullet-noline">Claims that have been through Auto Audit, Code Review,
+                                or Claim Check (claim header Audit Status = C)</p></li>
+                        <li class="">
+                            <p class="step-comment-bullet-noline">Claims where COB processing is pending, as indicated
+                                by the claim header EOB Indicator = EOB or EOMB</p></li>
+                        <li class="">
+                            <p class="step-comment-bullet-noline">Claim detail lines that have been processed through
+                                COB calculations (Other Carrier Amount or Other Carrier Allowed Amount is not zero) </p>
+                        </li>
+                        <li class="">
+                            <p class="step-comment-bullet-noline">Claims where a user has manually changed a line’s
+                                Processing Status to Held but no corresponding active hold reason exists in the Hold
+                                Reasons table</p></li>
+                        <li class="">
+                            <p class="step-comment-bullet-noline">Claim lines that have been manually priced and/or
+                                adjudicated (Adjudication Method is not equal to "AA" for Automatic pricing and
+                                Automatic adjudication or "A__" for Automatic Pricing and no adjudication) </p></li>
+                        <li class="">
+                            <p class="step-comment-bullet-noline">Claim lines which have been finalized (Other
+                                non-finalized claim lines on the same claim as finalized lines may be processed if they
+                                do not fall into one of the other exclusion categories)</p></li>
+                    </ul>
+                </td>
+            </tr>
+            <tr valign="top" class="">
+                <td width="250" class="">
+                    <p class="step2">3. Initiate the job for a specified claim hold Release Rule using RHJOB in Run
+                        (post) mode. Key items to specify are the Release Rule, claim date range and whether to reapply
+                        header hold logic.</p>
+                    <p class="step-comment-noline1">If you receive an error message or cannot initiate the job, see
+                        "Frequently Asked Questions." </p></td>
+                <td width="276" class="">
+                    <p class="step-comment1">To limit run time for this complex process, regular RHJOB jobs should be
+                        run frequently, either weekly or more often depending on the number of related held claims
+                        generated in a typical workday. A fairly narrow window of From and Through dates helps limit run
+                        time.</p>
+                    <p class="body-text">To avoid concurrency issues and overwriting expected results, do not access the
+                        same claims online as are being processed by Batch Claim Hold Release while the job is
+                        running.</p>
+                    <p class="body-text">You cannot cancel an RHJOB job once it is started.</p></td>
+            </tr>
+            <tr valign="top" class="">
+                <td width="250" class="">
+                    <p class="step2">4. Display the results of the job using the RHJOB menu commands Hold Release
+                        Critical Error Report and Hold Release Detail Report. </p></td>
+                <td width="276" class="">
+                    <p class="step-comment1">Each time a Claim Hold Release job is initiated, DIAMOND generates a Hold
+                        Release Critical Error Report (if errors occurred) and Hold Release Detail Report. These reports
+                        can be viewed on-line and printed if desired. </p></td>
+            </tr>
+            <tr valign="top" class="">
+                <td width="250" class="">
+                    <p class="step2">5. Review the Hold Release Critical Error Report. If critical errors are noted,
+                        research and resolve them and run another RHJOB job as appropriate. </p></td>
+                <td width="276" class="">
+                    <p class="step-comment1">See RHJOB reference documentation for Hold Release Critical Error Report
+                        field information.</p>
+                    <p class="body-text">Batch Claim Hold Release processing does not update claim header hold records
+                        or claim detail lines that generate a critical error. Claim header holds and claim detail lines
+                        without critical errors are updated. If on a single claim some claim lines generated critical
+                        errors and some claim lines did not, those that did not are updated.</p></td>
+            </tr>
+            <tr valign="top" class="">
+                <td width="250" class="">
+                    <p class="step2">6. Review the Hold Release Detail Report to determine if the hold reasons released
+                        are reasonable according to the guidelines established by your health plan. </p>
+                    <ul class="calibre2">
+                        <li class="">
+                            <p class="tbl-list-bullet">If the results of the job are not satisfactory, research the
+                                problems and correct them, then run another RHJOB job as needed.</p></li>
+                        <li class="">
+                            <p class="tbl-list-bullet">If the results of the job are satisfactory, repeat these steps
+                                for any other batch claim hold release rules or period as needed.</p></li>
+                    </ul>
+                </td>
+                <td width="276" class="">
+                    <p class="step-comment1">See RHJOB reference documentation for Hold Release Detail Report field
+                        information.</p>
+                    <p class="body-text">Examples of questions to ask:</p>
+                    <ul class="calibre2">
+                        <li class="">
+                            <p class="step-comment-bullet-noline">Are all the hold reasons (released and still active)
+                                that you expected included on the report?</p></li>
+                        <li class="">
+                            <p class="step-comment-bullet-noline">Are the correct claims included in the job?</p></li>
+                    </ul>
+                    <p class="body-text1"> </p></td>
+            </tr>
+            </tbody>
+        </table>
+        <p class="body-text1"> </p>
+        <p class="doc-level"><a name="Running_a_Batch_Claim_Hold_Release_Job_FAQ_TASK_MID"></a>Frequently Asked
+            Questions</p>
+        <ul class="calibre2">
+            <li class="">
+                <p class="faq">My RHJOB batch claim hold release job didn’t run. Why not?</p></li>
+        </ul>
+        <p class="faq-ans">Check to make sure that the EPI Daemon is running. If not, launch the Daemon and re-run the
+            RHJOB job.</p>
+
+
+    </div>
+
+    <div class="calibreEbNav">
+
+        <a href="Batch_Claim_Hold_Release_Overview.htm" class="calibreAPrev">previous page
+        </a>
+
+
+        <a href="../bj5if-qozss.html" class="calibreAHome">start
+        </a>
+
+
+        <a href="Setting_Up_Claim_Hold_Release_Rules_and_Determinants.htm" class="calibreANext">next page
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+</html>

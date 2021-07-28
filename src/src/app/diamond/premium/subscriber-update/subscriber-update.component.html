@@ -1,0 +1,147 @@
+<!-- Copyright (c) 2021 . All Rights Reserved. -->
+<div class="container-fluid">
+  <div class="card-block">   
+      <form [formGroup]="subscriberUpdateForm" novalidate>
+          <div class="row form-title">
+              <h2 class="col-md-4  card-label-admin">  Subscriber Update </h2>
+              <div class="col-md"><b class="readonly-label">View Only</b></div>
+          </div>
+        <div class="modal-header">
+            <button type="button" *ngIf="showIcon" class="close" aria-label="Close"
+                    (click)="modalClose()">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+                              
+          <div class="row mb-4 mt-2">
+            <menu-bar [menus]="menu" (onMenuClick)="onMenuItemClick($event)"></menu-bar>
+
+        </div>
+          
+                      <!-- DataGrid with Name of DataGrid -->
+                  
+                  <ag-grid-angular #agGrid class="ag-theme-fresh" 
+                  [gridOptions]="dataGridGridOptions"
+                  style="width: 100%; height: 250px;"
+                  [enableSorting]="true"
+                  [enableFilter]="true"
+                  [floatingFilter]="true"
+                  [pagination]="true"
+                  [showToolPanel]="true"
+                  (rowClicked)="onRowSelected($event)"
+                  
+                  >
+                  </ag-grid-angular>
+                  <div class="form-group row">
+                </div>
+
+                
+                <div class="row mt-3">
+                    <div class="col">
+                        <span class="clr-blue">Job Setup</span>
+                        <hr class="dashed-line"/>
+    
+                    </div>
+    
+                </div>
+                
+                
+                <div class="form-group row">
+                    <!-- Textbox with label of Job ID -->
+                     <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('jobId') }">
+                         <label class="col-form-label" for="jobId" i18n>Job ID</label>
+                         <input type="text" id="jobId" class="form-control" formControlName="jobId"/>
+                          <small class="text-danger" *ngIf="formValidation.isValidField('jobId')">
+                          {{ formValidation.errorMessage('jobId') }}
+                         </small>
+                     </div>
+                
+                    <!-- DynamicText with label of Request User -->
+                     <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('requestUser') }">
+                         <label class="col-form-label" for="requestUser" i18n>Request User</label>
+                         <input type="text"  [fieldLevelSec]="'Request User'" [params]="'pmbSetup'"  
+                         readonly id="requestUser" formControlName="requestUser" class="form-control"/>
+                     </div>
+                
+                    <!-- Textbox with label of Date -->
+                    <div class="col-md-4">
+                        <app-datepicker [formGroup]="subscriberUpdateForm" [formValidation]="formValidation"
+                                        [field]="'requestDate'" [labelText]="'Date'"></app-datepicker>
+                    </div>
+                
+                </div>
+                <div class="row mt-3">
+                    <div class="col">
+                        <span class="clr-blue">Next Action</span>
+                        <hr class="dashed-line"/>
+                    </div>
+                </div>
+                
+                <div class="form-group row">
+                    <div class="col-md-2">
+                        Action:
+                    </div>
+                    <!-- RadioButtonGroup with label of Run -->
+                    <div class="col-md-2" [ngClass]="{'has-error': displayMessage.action }">
+                        <input id="run001" type="radio" value="R" name="action" formControlName="action"/>
+                        <label class="ml-1 col-form-label" for="run001" i18n>Run</label>
+    
+                    </div>
+    
+                    
+    
+                    <!-- RadioButton with label of Cancel -->
+                    <div class="col-md-2" [ngClass]="{'has-error': displayMessage.cancel }">
+                        <input id="cancel" type="radio" value="c" formControlName="action" name="action"/>
+                        <label class="ml-1 col-form-label" for="cancel" i18n>Cancel</label>
+                    </div>
+    
+                </div>
+                
+                <div class="row mt-3">
+                    <div class="col">
+                        <span class="clr-blue">Run option</span>
+                        <hr class="dashed-line"/>
+                    </div>
+                </div>
+                
+                <div class="form-group row">
+                    <div class="col-md-2">
+                        Request Type:
+                    </div>
+                    <!-- RadioButtonGroup with label of Action -->
+                    <div class="col-md-2" [ngClass]="{'has-error': displayMessage.requestType }">
+                        <input id="immediate001" type="radio" name="requestType"
+                               value="I" formControlName="requestType"/>
+                        <label class="col-form-label ml-1" for="immediate001" i18n>Immediate</label>
+                    </div>
+    
+                    <!-- RadioButton with label of Post -->
+                    <div class="col-md-2" [ngClass]="{'has-error': displayMessage.requestType }">
+                        <input id="deffered" type="radio" name="requestType" formControlName="requestType" value="D"/>
+                        <label class="col-form-label ml-1" for="deffered" i18n>Deffered</label>
+    
+                    </div>
+    
+                </div>
+                
+                <div class="form-group row">
+                    <!-- Textbox with label of Comments -->
+                     <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('comments') }">
+                         <label class="col-form-label" for="comments" i18n>Comments</label>
+                         <input type="text" id="comments"  [fieldLevelSec]="'Comments'" [params]="pmbSetup" class="form-control" formControlName="comments"/>
+                          <small class="text-danger" *ngIf="formValidation.isValidField('comments')">
+                          {{ formValidation.errorMessage('comments') }}
+                         </small>
+                     </div>
+                
+                </div>
+                <div class="form-group row">
+                </div>
+                
+                
+
+      </form>
+      
+  </div>
+</div>

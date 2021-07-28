@@ -1,0 +1,988 @@
+<!-- Copyright (c) 2021 . All Rights Reserved. -->
+<div class="container-fluid">
+    <div class="card-block">
+        <form [formGroup]="accountsPayableVendorDisplayForm" novalidate>
+            <h2 class="form-title card-label-admin">Accounts Payable Vendor Display</h2>
+            <button type="button" *ngIf="showIcon" class="modal-close close" aria-label="Close"
+                    (click)="activeModal.dismiss('Cross click')">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+            <app-pop-up-message #popUpMesssage (buttonclickEvent)="popUpButtonHandler($event)"
+                                [(popupMessage)]="popUpMessage"></app-pop-up-message>
+
+            <div class="row mt-3 mb-3">
+                <menu-bar [menus]="menu" (onMenuClick)="onMenuItemClick($event)"></menu-bar>
+            </div>
+
+            <div class="form-group row">
+            </div>
+
+            <div class="form-group row">
+                <!-- DynamicText with label of Vendor ID -->
+                <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('vendorId') }">
+                    <label class="col-form-label" for="vendorId" i18n>Vendor ID</label>
+                    <input type="text" [fieldLevelSec]="''" readonly id="vendorId" formControlName="vendorId"
+                           class="form-control"/>
+                </div>
+
+                <!-- Button with label of Choose Claim -->
+                <div class="col-md-6">
+                    <div class="mt-4 pt-3">
+                        <button type="button" id="chooseClaim" name="chooseClaim" class="btn btn-small btn-primary"
+                                (click)="openFilterPage()">Choose Claim
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </form>
+
+        <div *ngIf="screenID == 'vendorInfo'">
+            <form [formGroup]="accountsPayableVendorDisplayVendorInfoForm" novalidate>
+                <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('fullName') }">
+                    <label class="col-form-label" for="fullName" i18n>Full Name</label>
+                    <input type="text" [fieldLevelSec]="''" readonly id="fullName" formControlName="fullName"
+                           class="form-control"/>
+                </div>
+
+                <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('shortName') }">
+                    <label class="col-form-label" for="shortName" i18n>Short Name</label>
+                    <input type="text" [fieldLevelSec]="''" readonly id="shortName" formControlName="shortName"
+                           class="form-control"/>
+                </div>
+
+                <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('addressLine1') }">
+                    <label class="col-form-label" for="addressLine1" i18n>Address Line 1</label>
+                    <input type="text" [fieldLevelSec]="''" readonly id="addressLine1" formControlName="addressLine1"
+                           class="form-control"/>
+                </div>
+
+                <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('addressLine2') }">
+                    <label class="col-form-label" for="addressLine2" i18n>Address Line 2</label>
+                    <input type="text" [fieldLevelSec]="''" readonly id="addressLine2" formControlName="addressLine2"
+                           class="form-control"/>
+                </div>
+
+                <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('city') }">
+                    <label class="col-form-label" for="city" i18n>City</label>
+                    <input type="text" [fieldLevelSec]="''" readonly id="city" formControlName="city"
+                           class="form-control"/>
+                </div>
+
+                <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('state') }">
+                    <label class="col-form-label" for="state" i18n>State</label>
+                    <input type="text" [fieldLevelSec]="''" readonly id="state" formControlName="state"
+                           class="form-control"/>
+                </div>
+
+                <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('county') }">
+                    <label class="col-form-label" for="county" i18n>County</label>
+                    <input type="text" [fieldLevelSec]="''" readonly id="county" formControlName="county"
+                           class="form-control"/>
+                </div>
+
+                <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('zipCode') }">
+                    <label class="col-form-label" for="zipCode" i18n>ZIP Code</label>
+                    <input type="text" [fieldLevelSec]="''" readonly id="zipCode" formControlName="zipCode"
+                           class="form-control"/>
+                </div>
+
+                <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('country') }">
+                    <label class="col-form-label" for="country" i18n>Country</label>
+                    <input type="text" [fieldLevelSec]="''" readonly id="country" formControlName="country"
+                           class="form-control"/>
+                </div>
+
+                <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('vendorType') }">
+                    <label class="col-form-label" for="vendorType" i18n>Vendor Type</label>
+                    <input type="text" [fieldLevelSec]="''" readonly id="vendorType" formControlName="vendorType"
+                           class="form-control"/>
+                </div>
+
+                <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('irsTaxId') }">
+                    <label class="col-form-label" for="irsTaxId" i18n>IRS Tax ID</label>
+                    <input type="text" [fieldLevelSec]="''" readonly id="irsTaxId" formControlName="irsTaxId"
+                           class="form-control"/>
+                </div>
+
+                <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('userDefined') }">
+                    <label class="col-form-label" for="userDefined" i18n>User Defined</label>
+                    <input type="text" [fieldLevelSec]="''" readonly id="userDefined" formControlName="userDefined"
+                           class="form-control"/>
+                </div>
+
+                <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('holdPaymentFlag') }">
+                    <label class="col-form-label" for="holdPaymentFlag" i18n>Hold Payment Flag</label>
+                    <input type="text" [fieldLevelSec]="''" readonly id="holdPaymentFlag"
+                           formControlName="holdPaymentFlag"
+                           class="form-control"/>
+                </div>
+
+                <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('vendor1099Flag') }">
+                    <label class="col-form-label" for="vendor1099Flag" i18n>Vendor 1099 Flag</label>
+                    <input type="text" [fieldLevelSec]="''" readonly id="vendor1099Flag"
+                           formControlName="vendor1099Flag"
+                           class="form-control"/>
+                </div>
+
+                <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('paymentDelayDays') }">
+                    <label class="col-form-label" for="paymentDelayDays" i18n>Payment Delay Days</label>
+                    <input type="text" [fieldLevelSec]="''" readonly id="paymentDelayDays"
+                           formControlName="paymentDelayDays"
+                           class="form-control"/>
+                </div>
+
+            </form>
+        </div>
+
+        <div *ngIf="screenID == 'claimDetail'">
+            <form [formGroup]="accountsPayableVendorDisplayClaimForm" novalidate>
+                <div class="form-group row">
+                    <!-- DynamicText with label of Claim Number -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('claimNumber') }">
+                        <label class="col-form-label" for="claimNumber" i18n>Claim Number</label>
+                        <input type="text" [fieldLevelSec]="''" readonly id="claimNumber" formControlName="claimNumber"
+                               class="form-control"/>
+                    </div>
+
+                    <!-- DynamicText with label of Received -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('received') }">
+                        <label class="col-form-label" for="received" i18n>Received</label>
+                        <input type="text" [fieldLevelSec]="''" readonly id="received" formControlName="received"
+                               class="form-control"/>
+                    </div>
+
+                    <!-- DynamicText with label of Entered -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('entered') }">
+                        <label class="col-form-label" for="entered" i18n>Entered</label>
+                        <input type="text" [fieldLevelSec]="''" readonly id="entered" formControlName="entered"
+                               class="form-control"/>
+                    </div>
+
+                </div>
+
+                <div class="form-group row">
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-md-2 form-control-static mb-0" i18n>
+                        Claim Header
+                    </div>
+
+                </div>
+
+                <div class="form-group row">
+                    <!-- DynamicText with label of Daimond ID -->
+                    <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('daimondId') }">
+                        <label class="col-form-label" for="daimondId" i18n>Daimond ID</label>
+                        <input type="text" [fieldLevelSec]="''" readonly id="daimondId" formControlName="daimondId"
+                               class="form-control"/>
+                    </div>
+
+                </div>
+
+                <div class="form-group row">
+                    <!-- DynamicText with label of Member -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('member') }">
+                        <label class="col-form-label" for="member" i18n>Member</label>
+                        <input type="text" [fieldLevelSec]="''" readonly id="member" formControlName="member"
+                               class="form-control"/>
+                    </div>
+
+                    <!-- DynamicText with Name of DynamicText -->
+                    <div class="col-md-1" [ngClass]="{'has-danger': formValidation.isValidField('dynamicText') }">
+                        <label class="col-form-label" for="dynamicText" i18n>&nbsp;</label>
+                        <input type="text" [fieldLevelSec]="''" readonly id="dynamicText" formControlName="dynamicText"
+                               class="form-control"/>
+                    </div>
+
+                    <!-- DynamicText with label of Last Name -->
+                    <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('lastName') }">
+                        <label class="col-form-label" for="lastName" i18n>Last Name</label>
+                        <input type="text" [fieldLevelSec]="''" readonly id="lastName" formControlName="lastName"
+                               class="form-control"/>
+                    </div>
+
+                    <!-- DynamicText with label of First -->
+                    <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('first') }">
+                        <label class="col-form-label" for="first" i18n>First</label>
+                        <input type="text" [fieldLevelSec]="''" readonly id="first" formControlName="first"
+                               class="form-control"/>
+                    </div>
+
+                    <!-- DynamicText with label of Mi -->
+                    <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('mi') }">
+                        <label class="col-form-label" for="mi" i18n>Mi</label>
+                        <input type="text" [fieldLevelSec]="''" readonly id="mi" formControlName="mi"
+                               class="form-control"/>
+                    </div>
+
+                </div>
+
+                <div class="form-group row">
+                    <!-- DynamicText with label of Provider ID -->
+                    <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('providerId') }">
+                        <label class="col-form-label" for="providerId" i18n>Provider ID</label>
+                        <input type="text" [fieldLevelSec]="''" readonly id="providerId" formControlName="providerId"
+                               class="form-control"/>
+                    </div>
+
+                    <!-- DynamicText with label of Prov Name -->
+                    <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('provName') }">
+                        <label class="col-form-label" for="provName" i18n>Prov Name</label>
+                        <input type="text" [fieldLevelSec]="''" readonly id="provName" formControlName="provName"
+                               class="form-control"/>
+                    </div>
+
+                    <!-- DynamicText with label of Type -->
+                    <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('type') }">
+                        <label class="col-form-label" for="type" i18n>Type</label>
+                        <input type="text" [fieldLevelSec]="''" readonly id="type" formControlName="type"
+                               class="form-control"/>
+                    </div>
+
+                    <!-- DynamicText with label of Specialty -->
+                    <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('specialty') }">
+                        <label class="col-form-label" for="specialty" i18n>Specialty</label>
+                        <input type="text" [fieldLevelSec]="''" readonly id="specialty" formControlName="specialty"
+                               class="form-control"/>
+                    </div>
+
+                </div>
+
+                <div class="form-group row">
+                    <!-- DynamicText with label of PCP ID -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('pcpId') }">
+                        <label class="col-form-label" for="pcpId" i18n>PCP ID</label>
+                        <input type="text" [fieldLevelSec]="''" readonly id="pcpId" formControlName="pcpId"
+                               class="form-control"/>
+                    </div>
+
+                    <!-- Textbox with label of Primary Date -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('primaryDate') }">
+                        <label class="col-form-label" for="primaryDate" i18n>Primary Date</label>
+                        <div class="input-group">
+                            <input id="primaryDate" [fieldLevelSec]="''" class="form-control" angular-mydatepicker
+                                   name="primaryDate" (click)="primaryDateId.toggleCalendar()"
+                                   formControlName="primaryDate" [options]="datePickerConfig"
+                                   #primaryDateId="angular-mydatepicker"/>
+                            <div class="input-group-append">
+                                <button type="button" class="btn btn-secondary" (click)="primaryDateId.clearDate()">
+                                    <i class="fa fa-close"></i>
+                                </button>
+                            </div>
+                            <div class="input-group-append">
+                                <button type="button" class="btn btn-secondary"
+                                        (click)="primaryDateId.toggleCalendar()">
+                                    <i class="fa fa-calendar-o"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <small class="text-danger" *ngIf="formValidation.isValidField('primaryDate')">
+                            {{ formValidation.errorMessage('primaryDate') }}
+                        </small>
+                    </div>
+
+                    <!-- DynamicText with label of Service Reason -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('serviceReason') }">
+                        <label class="col-form-label" for="serviceReason" i18n>Service Reason</label>
+                        <input type="text" [fieldLevelSec]="''" readonly id="serviceReason"
+                               formControlName="serviceReason" class="form-control"/>
+                    </div>
+
+                </div>
+
+                <div class="form-group row">
+                    <!-- DynamicText with label of PCP Name -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('pcpName') }">
+                        <label class="col-form-label" for="pcpName" i18n>PCP Name</label>
+                        <input type="text" [fieldLevelSec]="''" readonly id="pcpName" formControlName="pcpName"
+                               class="form-control"/>
+                    </div>
+
+                    <!-- DynamicText with label of PLC Of Svc -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('plcOfSvc') }">
+                        <label class="col-form-label" for="plcOfSvc" i18n>PLC Of Svc</label>
+                        <input type="text" [fieldLevelSec]="''" readonly id="plcOfSvc" formControlName="plcOfSvc"
+                               class="form-control"/>
+                    </div>
+
+                    <!-- DynamicText with label of Diagnosis Code 1 -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('diagnosisCode1') }">
+                        <label class="col-form-label" for="diagnosisCode1" i18n>Diagnosis Code 1</label>
+                        <input type="text" [fieldLevelSec]="''" readonly id="diagnosisCode1"
+                               formControlName="diagnosisCode1" class="form-control"/>
+                    </div>
+
+                </div>
+
+                <div class="form-group row">
+                    <!-- DynamicText with label of Authorization -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('authorization') }">
+                        <label class="col-form-label" for="authorization" i18n>Authorization</label>
+                        <input type="text" [fieldLevelSec]="''" readonly id="authorization"
+                               formControlName="authorization" class="form-control"/>
+                    </div>
+
+                    <!-- DynamicText with label of Plan Code -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('planCode') }">
+                        <label class="col-form-label" for="planCode" i18n>Plan Code</label>
+                        <input type="text" [fieldLevelSec]="''" readonly id="planCode" formControlName="planCode"
+                               class="form-control"/>
+                    </div>
+
+                    <!-- DynamicText with label of Diagonsis Code 2 -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('diagonsisCode2') }">
+                        <label class="col-form-label" for="diagonsisCode2" i18n>Diagonsis Code 2</label>
+                        <input type="text" [fieldLevelSec]="''" readonly id="diagonsisCode2"
+                               formControlName="diagonsisCode2" class="form-control"/>
+                    </div>
+
+                </div>
+
+                <div class="form-group row">
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-md-2 form-control-static mb-0" i18n>
+                        Line Item Detail
+                    </div>
+
+                </div>
+
+                <div class="form-group row">
+                </div>
+
+                <div class="form-group row">
+                    <!-- DynamicText with label of Line Item -->
+                    <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('lineItem') }">
+                        <label class="col-form-label" for="lineItem" i18n>Line Item</label>
+                        <input type="text" [fieldLevelSec]="''" readonly id="lineItem" formControlName="lineItem"
+                               class="form-control"/>
+                    </div>
+
+                </div>
+
+                <div class="form-group row">
+                    <!-- DynamicText with label of OC Allowed -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('ocAllowed') }">
+                        <label class="col-form-label" for="ocAllowed" i18n>OC Allowed</label>
+                        <input type="text" [fieldLevelSec]="''" readonly id="ocAllowed" formControlName="ocAllowed"
+                               class="form-control"/>
+                    </div>
+
+                    <!-- DynamicText with label of Quantity -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('quantity') }">
+                        <label class="col-form-label" for="quantity" i18n>Quantity</label>
+                        <input type="text" [fieldLevelSec]="''" readonly id="quantity" formControlName="quantity"
+                               class="form-control"/>
+                    </div>
+
+                    <!-- DynamicText with label of Procedure Code -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('procedureCode') }">
+                        <label class="col-form-label" for="procedureCode" i18n>Procedure Code</label>
+                        <input type="text" [fieldLevelSec]="''" readonly id="procedureCode"
+                               formControlName="procedureCode" class="form-control"/>
+                    </div>
+
+                </div>
+
+                <div class="form-group row">
+                    <!-- DynamicText with label of OC Paid -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('ocPaid') }">
+                        <label class="col-form-label" for="ocPaid" i18n>OC Paid</label>
+                        <input type="text" [fieldLevelSec]="''" readonly id="ocPaid" formControlName="ocPaid"
+                               class="form-control"/>
+                    </div>
+
+                    <!-- DynamicText with label of OC Paid Reason -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('ocPaidReason') }">
+                        <label class="col-form-label" for="ocPaidReason" i18n>OC Paid Reason</label>
+                        <input type="text" [fieldLevelSec]="''" readonly id="ocPaidReason"
+                               formControlName="ocPaidReason" class="form-control"/>
+                    </div>
+
+                    <!-- DynamicText with label of Date of Service -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('dateOfService') }">
+                        <label class="col-form-label" for="dateOfService" i18n>Date of Service</label>
+                        <input type="text" [fieldLevelSec]="''" readonly id="dateOfService"
+                               formControlName="dateOfService" class="form-control"/>
+                    </div>
+
+                </div>
+
+                <div class="form-group row">
+                    <!-- DynamicText with label of Allowed Amt -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('allowedAmt') }">
+                        <label class="col-form-label" for="allowedAmt" i18n>Allowed Amt</label>
+                        <input type="text" [fieldLevelSec]="''" readonly id="allowedAmt" formControlName="allowedAmt"
+                               class="form-control"/>
+                    </div>
+
+                    <!-- DynamicText with label of Allowed Reason -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('allowedReason') }">
+                        <label class="col-form-label" for="allowedReason" i18n>Allowed Reason</label>
+                        <input type="text" [fieldLevelSec]="''" readonly id="allowedReason"
+                               formControlName="allowedReason" class="form-control"/>
+                    </div>
+
+                    <!-- DynamicText with label of Billed Amount -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('billedAmount') }">
+                        <label class="col-form-label" for="billedAmount" i18n>Billed Amount</label>
+                        <input type="text" [fieldLevelSec]="''" readonly id="billedAmount"
+                               formControlName="billedAmount" class="form-control"/>
+                    </div>
+
+                </div>
+
+                <div class="form-group row">
+                    <!-- DynamicText with label of Total Not Cov -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('totalNotCov') }">
+                        <label class="col-form-label" for="totalNotCov" i18n>Total Not Cov</label>
+                        <input type="text" [fieldLevelSec]="''" readonly id="totalNotCov" formControlName="totalNotCov"
+                               class="form-control"/>
+                    </div>
+
+                    <!-- DynamicText with label of Not Covered Reason -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('notCoveredReason') }">
+                        <label class="col-form-label" for="notCoveredReason" i18n>Not Covered Reason</label>
+                        <input type="text" [fieldLevelSec]="''" readonly id="notCoveredReason"
+                               formControlName="notCoveredReason" class="form-control"/>
+                    </div>
+
+                    <!-- DynamicText with label of Claim Status -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('claimStatus') }">
+                        <label class="col-form-label" for="claimStatus" i18n>Claim Status</label>
+                        <input type="text" [fieldLevelSec]="''" readonly id="claimStatus" formControlName="claimStatus"
+                               class="form-control"/>
+                    </div>
+
+                </div>
+
+                <div class="form-group row">
+                    <!-- DynamicText with label of Total Copay -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('totalCopay') }">
+                        <label class="col-form-label" for="totalCopay" i18n>Total Copay</label>
+                        <input type="text" [fieldLevelSec]="''" readonly id="totalCopay" formControlName="totalCopay"
+                               class="form-control"/>
+                    </div>
+
+                    <!-- DynamicText with label of Copay Reason -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('copayReason') }">
+                        <label class="col-form-label" for="copayReason" i18n>Copay Reason</label>
+                        <input type="text" [fieldLevelSec]="''" readonly id="copayReason" formControlName="copayReason"
+                               class="form-control"/>
+                    </div>
+
+                    <!-- DynamicText with label of Process Status -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('processStatus') }">
+                        <label class="col-form-label" for="processStatus" i18n>Process Status</label>
+                        <input type="text" [fieldLevelSec]="''" readonly id="processStatus"
+                               formControlName="processStatus" class="form-control"/>
+                    </div>
+
+                </div>
+
+                <div class="form-group row">
+                    <!-- DynamicText with label of Total Coins -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('totalCoins') }">
+                        <label class="col-form-label" for="totalCoins" i18n>Total Coins</label>
+                        <input type="text" [fieldLevelSec]="''" readonly id="totalCoins" formControlName="totalCoins"
+                               class="form-control"/>
+                    </div>
+
+                    <!-- DynamicText with label of Coinsurance Reason -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('coinsuranceReason') }">
+                        <label class="col-form-label" for="coinsuranceReason" i18n>Coinsurance Reason</label>
+                        <input type="text" [fieldLevelSec]="''" readonly id="coinsuranceReason"
+                               formControlName="coinsuranceReason" class="form-control"/>
+                    </div>
+
+                    <!-- DynamicText with label of Company Code -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('companyCode') }">
+                        <label class="col-form-label" for="companyCode" i18n>Company Code</label>
+                        <input type="text" [fieldLevelSec]="''" readonly id="companyCode" formControlName="companyCode"
+                               class="form-control"/>
+                    </div>
+
+                </div>
+
+                <div class="form-group row">
+                    <!-- DynamicText with label of Total Deduct -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('totalDeduct') }">
+                        <label class="col-form-label" for="totalDeduct" i18n>Total Deduct</label>
+                        <input type="text" [fieldLevelSec]="''" readonly id="totalDeduct" formControlName="totalDeduct"
+                               class="form-control"/>
+                    </div>
+
+                    <!-- DynamicText with label of Deduct Reason -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('deductReason') }">
+                        <label class="col-form-label" for="deductReason" i18n>Deduct Reason</label>
+                        <input type="text" [fieldLevelSec]="''" readonly id="deductReason"
+                               formControlName="deductReason" class="form-control"/>
+                    </div>
+
+                    <!-- DynamicText with label of G/L Reference -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('glReference') }">
+                        <label class="col-form-label" for="glReference" i18n>G/L Reference</label>
+                        <input type="text" [fieldLevelSec]="''" readonly id="glReference" formControlName="glReference"
+                               class="form-control"/>
+                    </div>
+
+                </div>
+
+                <div class="form-group row">
+                    <!-- DynamicText with label of Withhold Amt -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('withholdAmt') }">
+                        <label class="col-form-label" for="withholdAmt" i18n>Withhold Amt</label>
+                        <input type="text" [fieldLevelSec]="''" readonly id="withholdAmt" formControlName="withholdAmt"
+                               class="form-control"/>
+                    </div>
+
+                    <!-- DynamicText with label of Adjust Reason -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('adjustReason') }">
+                        <label class="col-form-label" for="adjustReason" i18n>Adjust Reason</label>
+                        <input type="text" [fieldLevelSec]="''" readonly id="adjustReason"
+                               formControlName="adjustReason" class="form-control"/>
+                    </div>
+
+                    <!-- DynamicText with label of Med Def Code -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('medDefCode') }">
+                        <label class="col-form-label" for="medDefCode" i18n>Med Def Code</label>
+                        <input type="text" [fieldLevelSec]="''" readonly id="medDefCode" formControlName="medDefCode"
+                               class="form-control"/>
+                    </div>
+
+                </div>
+
+                <div class="form-group row">
+                    <!-- DynamicText with label of COB Patlaib -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('cobPatlaib') }">
+                        <label class="col-form-label" for="cobPatlaib" i18n>COB Patlaib</label>
+                        <input type="text" [fieldLevelSec]="''" readonly id="cobPatlaib" formControlName="cobPatlaib"
+                               class="form-control"/>
+                    </div>
+
+                    <!-- DynamicText with label of Messages -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('messages') }">
+                        <label class="col-form-label" for="messages" i18n>Messages</label>
+                        <input type="text" [fieldLevelSec]="''" readonly id="messages" formControlName="messages"
+                               class="form-control"/>
+                    </div>
+
+                    <!-- DynamicText with label of Post Date -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('postDate') }">
+                        <label class="col-form-label" for="postDate" i18n>Post Date</label>
+                        <input type="text" [fieldLevelSec]="''" readonly id="postDate" formControlName="postDate"
+                               class="form-control"/>
+                    </div>
+
+                </div>
+
+                <div class="form-group row">
+                    <!-- DynamicText with label of Net Amount -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('netAmount') }">
+                        <label class="col-form-label" for="netAmount" i18n>Net Amount</label>
+                        <input type="text" [fieldLevelSec]="''" readonly id="netAmount" formControlName="netAmount"
+                               class="form-control"/>
+                    </div>
+
+                    <!-- DynamicText with label of Holds -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('holds') }">
+                        <label class="col-form-label" for="holds" i18n>Holds</label>
+                        <input type="text" [fieldLevelSec]="''" readonly id="holds" formControlName="holds"
+                               class="form-control"/>
+                    </div>
+
+                    <!-- DynamicText with label of Paid Net Amt -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('paidNetAmt') }">
+                        <label class="col-form-label" for="paidNetAmt" i18n>Paid Net Amt</label>
+                        <input type="text" [fieldLevelSec]="''" readonly id="paidNetAmt" formControlName="paidNetAmt"
+                               class="form-control"/>
+                    </div>
+
+                </div>
+
+                <div class="form-group row">
+                    <!-- DynamicText with label of Adjust Method -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('adjustMethod') }">
+                        <label class="col-form-label" for="adjustMethod" i18n>Adjust Method</label>
+                        <input type="text" [fieldLevelSec]="''" readonly id="adjustMethod"
+                               formControlName="adjustMethod" class="form-control"/>
+                    </div>
+
+                    <!-- Checkbox with label of Admin Fee -->
+                    <div class="" [ngClass]="{'has-error': displayMessage.adminFee }">
+                        <div class="checkbox col-md-12">
+                            <input id="adminFee" [fieldLevelSec]="''" value="adminFee" formControlName="adminFee"
+                                   type="checkbox">
+                            <label class="checkbox">
+                                Admin Fee
+                            </label>
+                        </div>
+                        <span class="help-block" *ngIf="displayMessage.adminFee">
+                        {{ displayMessage.adminFee  }}
+                     </span>
+                    </div>
+
+                </div>
+            </form>
+
+        </div>
+
+        <div class="form-group row">
+        </div>
+
+        <div *ngIf="screenID == 'apTransDetail'">
+            <form [formGroup]="accountsPayableApTransDetailForm" novalidate>
+                <div class="form-group row">
+                    <!-- DynamicText with label of Claim Number -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('transactionId') }">
+                        <label class="col-form-label" for="transactionId" i18n>Transaction ID</label>
+                        <input type="text" [fieldLevelSec]="''" readonly id="transactionId"
+                               formControlName="transactionId"
+                               class="form-control"/>
+                    </div>
+
+                    <!-- DynamicText with label of Received -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('fileType') }">
+                        <label class="col-form-label" for="fileType" i18n>File Type</label>
+                        <input type="text" [fieldLevelSec]="''" readonly id="fileType" formControlName="fileType"
+                               class="form-control"/>
+                    </div>
+
+                    <!-- DynamicText with label of Entered -->
+                    <div class="col-md-4"
+                         [ngClass]="{'has-danger': formValidation.isValidField('apType') }">
+                        <label class="col-form-label" for="apType" i18n>AP Type</label>
+                        <input type="text" [fieldLevelSec]="''" readonly id="apType"
+                               formControlName="apType"
+                               class="form-control"/>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-md-2 form-control-static mb-0" i18n>
+                        Status
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <!-- DynamicText with label of Claim Number -->
+                    <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('apStatus') }">
+                        <label class="col-form-label" for="apStatus" i18n>AP Status</label>
+                        <input type="text" [fieldLevelSec]="''" readonly id="apStatus"
+                               formControlName="apStatus"
+                               class="form-control"/>
+                    </div>
+
+                    <!-- DynamicText with label of Entered -->
+                    <div class="col-md-6"
+                         [ngClass]="{'has-danger': formValidation.isValidField('selectForPayment') }">
+                        <label class="col-form-label" for="selectForPayment" i18n>Select For Payment</label>
+                        <input type="text" [fieldLevelSec]="''" readonly id="selectForPayment"
+                               formControlName="selectForPayment"
+                               class="form-control"/>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <!-- DynamicText with label of Claim Number -->
+                    <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('raPrintFlag') }">
+                        <label class="col-form-label" for="raPrintFlag" i18n>RA/EOB Print Flag</label>
+                        <input type="text" [fieldLevelSec]="''" readonly id="raPrintFlag"
+                               formControlName="raPrintFlag"
+                               class="form-control"/>
+                    </div>
+
+                    <!-- DynamicText with label of Entered -->
+                    <div class="col-md-6"
+                         [ngClass]="{'has-danger': formValidation.isValidField('prePriceOnlyFlag') }">
+                        <label class="col-form-label" for="prePriceOnlyFlag" i18n>Pre Price Only Flag</label>
+                        <input type="text" [fieldLevelSec]="''" readonly id="prePriceOnlyFlag"
+                               formControlName="prePriceOnlyFlag"
+                               class="form-control"/>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-md-2 form-control-static mb-0" i18n>
+                        Amounts
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <!-- DynamicText with label of Claim Number -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('discountWithhold') }">
+                        <label class="col-form-label" for="discountWithhold" i18n>Discount Withhold</label>
+                        <input type="text" [fieldLevelSec]="''" readonly id="discountWithhold"
+                               formControlName="discountWithhold"
+                               class="form-control"/>
+                    </div>
+
+                    <!-- DynamicText with label of Claim Number -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('penltyAmt') }">
+                        <label class="col-form-label" for="penltyAmt" i18n>Penalty Amt</label>
+                        <input type="text" [fieldLevelSec]="''" readonly id="penltyAmt"
+                               formControlName="penltyAmt"
+                               class="form-control"/>
+                    </div>
+
+                    <!-- DynamicText with label of Entered -->
+                    <div class="col-md-4"
+                         [ngClass]="{'has-danger': formValidation.isValidField('netAmt') }">
+                        <label class="col-form-label" for="netAmt" i18n>Net Amt</label>
+                        <input type="text" [fieldLevelSec]="''" readonly id="netAmt"
+                               formControlName="netAmt"
+                               class="form-control"/>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <!-- DynamicText with label of Claim Number -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('interestAmt') }">
+                        <label class="col-form-label" for="interestAmt" i18n>Interest Amt</label>
+                        <input type="text" [fieldLevelSec]="''" readonly id="interestAmt"
+                               formControlName="interestAmt"
+                               class="form-control"/>
+                    </div>
+
+                    <!-- DynamicText with label of Claim Number -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('discountAmt') }">
+                        <label class="col-form-label" for="discountAmt" i18n>Discount Amt</label>
+                        <input type="text" [fieldLevelSec]="''" readonly id="discountAmt"
+                               formControlName="discountAmt"
+                               class="form-control"/>
+                    </div>
+
+                    <!-- DynamicText with label of Entered -->
+                    <div class="col-md-4"
+                         [ngClass]="{'has-danger': formValidation.isValidField('paidNetAmt_2') }">
+                        <label class="col-form-label" for="paidNetAmt_2" i18n>Paid Net Amt</label>
+                        <input type="text" [fieldLevelSec]="''" readonly id="paidNetAmt_2"
+                               formControlName="paidNetAmt_2"
+                               class="form-control"/>
+                    </div>
+                </div>
+
+
+                <div class="form-group row">
+                    <div class="col-md-2 form-control-static mb-0" i18n>
+                        Check Information
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <!-- DynamicText with label of Claim Number -->
+                    <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('shortName_2') }">
+                        <label class="col-form-label" for="shortName_2" i18n>Short Name</label>
+                        <input type="text" [fieldLevelSec]="''" readonly id="shortName_2"
+                               formControlName="shortName_2"
+                               class="form-control"/>
+                    </div>
+
+                    <!-- DynamicText with label of Entered -->
+                    <div class="col-md-6"
+                         [ngClass]="{'has-danger': formValidation.isValidField('checkDate') }">
+                        <label class="col-form-label" for="checkDate" i18n>Check Date</label>
+                        <input type="text" [fieldLevelSec]="''" readonly id="checkDate"
+                               formControlName="checkDate"
+                               class="form-control"/>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <!-- DynamicText with label of Claim Number -->
+                    <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('addressLine_1') }">
+                        <label class="col-form-label" for="addressLine_1" i18n>Address Line 1</label>
+                        <input type="text" [fieldLevelSec]="''" readonly id="addressLine_1"
+                               formControlName="addressLine_1"
+                               class="form-control"/>
+                    </div>
+
+                    <!-- DynamicText with label of Entered -->
+                    <div class="col-md-6"
+                         [ngClass]="{'has-danger': formValidation.isValidField('dueDate') }">
+                        <label class="col-form-label" for="dueDate" i18n>Due Date</label>
+                        <input type="text" [fieldLevelSec]="''" readonly id="dueDate"
+                               formControlName="dueDate"
+                               class="form-control"/>
+                    </div>
+                </div>
+
+
+                <div class="form-group row">
+                    <!-- DynamicText with label of Claim Number -->
+                    <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('bankAccountCode') }">
+                        <label class="col-form-label" for="bankAccountCode" i18n>Bank Account Code</label>
+                        <input type="text" [fieldLevelSec]="''" readonly id="bankAccountCode"
+                               formControlName="bankAccountCode"
+                               class="form-control"/>
+                    </div>
+
+                    <!-- DynamicText with label of Entered -->
+                    <div class="col-md-6"
+                         [ngClass]="{'has-danger': formValidation.isValidField('postedDate') }">
+                        <label class="col-form-label" for="postedDate" i18n>Posted Date</label>
+                        <input type="text" [fieldLevelSec]="''" readonly id="postedDate"
+                               formControlName="postedDate"
+                               class="form-control"/>
+                    </div>
+                </div>
+
+
+                <div class="form-group row">
+                    <!-- DynamicText with label of Claim Number -->
+                    <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('checkNumber') }">
+                        <label class="col-form-label" for="checkNumber" i18n>Check Number</label>
+                        <input type="text" [fieldLevelSec]="''" readonly id="checkNumber"
+                               formControlName="checkNumber"
+                               class="form-control"/>
+                    </div>
+
+                    <!-- DynamicText with label of Entered -->
+                    <div class="col-md-6"
+                         [ngClass]="{'has-danger': formValidation.isValidField('vendor1099Flag_2') }">
+                        <label class="col-form-label" for="vendor1099Flag_2" i18n>Vendor 1099 Flag</label>
+                        <input type="text" [fieldLevelSec]="''" readonly id="vendor1099Flag_2"
+                               formControlName="vendor1099Flag_2"
+                               class="form-control"/>
+                    </div>
+                </div>
+
+
+                <div class="form-group row">
+                    <!-- DynamicText with label of Claim Number -->
+                    <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('eftTransNumber') }">
+                        <label class="col-form-label" for="eftTransNumber" i18n>EFT Trans Number</label>
+                        <input type="text" [fieldLevelSec]="''" readonly id="eftTransNumber"
+                               formControlName="eftTransNumber"
+                               class="form-control"/>
+                    </div>
+
+                    <!-- DynamicText with label of Entered -->
+                    <div class="col-md-6"
+                         [ngClass]="{'has-danger': formValidation.isValidField('offset') }">
+                        <label class="col-form-label" for="offset" i18n>Offset</label>
+                        <input type="text" [fieldLevelSec]="''" readonly id="offset"
+                               formControlName="offset"
+                               class="form-control"/>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-md-2 form-control-static mb-0" i18n>
+                        General Ledger Information
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <!-- DynamicText with label of Claim Number -->
+                    <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('companyCode_2') }">
+                        <label class="col-form-label" for="companyCode_2" i18n>Company Code</label>
+                        <input type="text" [fieldLevelSec]="''" readonly id="companyCode_2"
+                               formControlName="companyCode_2"
+                               class="form-control"/>
+                    </div>
+
+                    <!-- DynamicText with label of Entered -->
+                    <div class="col-md-6"
+                         [ngClass]="{'has-danger': formValidation.isValidField('glMonth') }">
+                        <label class="col-form-label" for="glMonth" i18n>G/L Month</label>
+                        <input type="text" [fieldLevelSec]="''" readonly id="glMonth"
+                               formControlName="glMonth"
+                               class="form-control"/>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <!-- DynamicText with label of Claim Number -->
+                    <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('debitGlNo1') }">
+                        <label class="col-form-label" for="debitGlNo1" i18n>Debit G/L No. 1</label>
+                        <input type="text" [fieldLevelSec]="''" readonly id="debitGlNo1"
+                               formControlName="debitGlNo1"
+                               class="form-control"/>
+                    </div>
+
+                    <!-- DynamicText with label of Entered -->
+                    <div class="col-md-6"
+                         [ngClass]="{'has-danger': formValidation.isValidField('debitGlNo2') }">
+                        <label class="col-form-label" for="debitGlNo2" i18n>Debit G/L No. 2</label>
+                        <input type="text" [fieldLevelSec]="''" readonly id="debitGlNo2"
+                               formControlName="debitGlNo2"
+                               class="form-control"/>
+                    </div>
+                </div>
+
+
+                <div class="form-group row">
+                    <!-- DynamicText with label of Claim Number -->
+                    <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('creditGlNo1') }">
+                        <label class="col-form-label" for="creditGlNo1" i18n>Credit G/L No. 1</label>
+                        <input type="text" [fieldLevelSec]="''" readonly id="creditGlNo1"
+                               formControlName="creditGlNo1"
+                               class="form-control"/>
+                    </div>
+
+                    <!-- DynamicText with label of Entered -->
+                    <div class="col-md-6"
+                         [ngClass]="{'has-danger': formValidation.isValidField('creditGlNo2') }">
+                        <label class="col-form-label" for="creditGlNo2" i18n>Credit G/L No. 2</label>
+                        <input type="text" [fieldLevelSec]="''" readonly id="creditGlNo2"
+                               formControlName="creditGlNo2"
+                               class="form-control"/>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-md-2 form-control-static mb-0" i18n>
+                        Cap Fund Information
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <!-- DynamicText with label of Claim Number -->
+                    <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('capFundModelId') }">
+                        <label class="col-form-label" for="capFundModelId" i18n>Cap Fund Model ID</label>
+                        <input type="text" [fieldLevelSec]="''" readonly id="capFundModelId"
+                               formControlName="capFundModelId"
+                               class="form-control"/>
+                    </div>
+
+                    <!-- DynamicText with label of Entered -->
+                    <div class="col-md-6"
+                         [ngClass]="{'has-danger': formValidation.isValidField('capFundSubModelId') }">
+                        <label class="col-form-label" for="capFundSubModelId" i18n>Cap Fund Sub Model ID</label>
+                        <input type="text" [fieldLevelSec]="''" readonly id="capFundSubModelId"
+                               formControlName="capFundSubModelId"
+                               class="form-control"/>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <!-- DynamicText with label of Claim Number -->
+                    <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('withholdAmt_2') }">
+                        <label class="col-form-label" for="withholdAmt_2" i18n>Withhold Amt</label>
+                        <input type="text" [fieldLevelSec]="''" readonly id="withholdAmt_2"
+                               formControlName="withholdAmt_2"
+                               class="form-control"/>
+                    </div>
+
+                    <!-- DynamicText with label of Entered -->
+                    <div class="col-md-6"
+                         [ngClass]="{'has-danger': formValidation.isValidField('additionalInfoExists') }">
+                        <label class="col-form-label" for="additionalInfoExists" i18n>Additional Info Exists</label>
+                        <input type="text" [fieldLevelSec]="''" readonly id="additionalInfoExists"
+                               formControlName="additionalInfoExists"
+                               class="form-control"/>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+<ng-keyboard-shortcuts [shortcuts]="shortcuts"></ng-keyboard-shortcuts>
+<ng-keyboard-shortcuts-help [key]="'f2'" [closeKey]="'escape'" [title]="'Hotkeys Help'"></ng-keyboard-shortcuts-help>

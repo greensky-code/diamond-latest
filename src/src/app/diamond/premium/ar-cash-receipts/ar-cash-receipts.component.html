@@ -1,0 +1,321 @@
+<!-- Copyright (c) 2021 . All Rights Reserved. -->
+<div class="container-fluid">
+    <h2 class="form-title card-label-admin">A/R Cash Receipts</h2>
+    <button type="button" *ngIf="showIcon" class="close" aria-label="Close" (click)="modalClose()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    <ng-container *ngTemplateOutlet="loaderTemplate;context:{value: !isDataLoaded }"></ng-container>
+
+    <div *ngIf="isDataLoaded" class="card-block">
+
+        <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+        <app-pop-up-message #popUpMesssage (buttonclickEvent)="popUpButtonHandler($event)"
+                            [(popupMessage)]="popUpMessage">
+        </app-pop-up-message>
+        <ng-container *appWinSelect="{secWin: secWin, userTemplateId: userTemplateId, secModuleId: secModuleId}">
+            <div class="row">
+                <menu-bar [menus]="menu" (onMenuClick)="onMenuItemClick($event)"></menu-bar>
+            </div>
+            <form [formGroup]="arCashReceiptsForm" novalidate>
+                <div class="form-group row">
+                </div>
+
+                <div class="form-group row">
+                    <!-- DynamicText with label of Batch ID -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('batchId') }">
+                        <label class="col-form-label" for="batchId" i18n>Batch ID</label>
+                        <input type="text" #batchId [fieldLevelSec]="'Seq Cash Batch Id'"
+                               (keydown)="onLookupFieldBatchId($event)"
+                               id="batchId"
+                               [maxlength]="10"
+                               formControlName="batchId" class="form-control"/>
+                    </div>
+
+                </div>
+                <ng-container>
+                    <div *ngIf="showBatchFields">
+                        <div class="panels" (click)="onClickDiv('BATCH')" [ngClass]="{'highlight': selectedDiv == 'BATCH'}">
+
+                            <div class="form-group row">
+                                <!-- Textbox with label of Item Count -->
+                                <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('itemCount') }">
+                                    <label class="col-form-label clr-blue" for="itemCount" i18n>Item Count</label>
+                                    <input type="text" id="itemCount" [fieldLevelSec]="'Item Count'"
+                                           (keydown)="itemCountValue($event)"
+                                           [params]="{secColDetails: batchSecColDetails, isEditState: editArCashBatchControl}"
+                                           class="form-control" formControlName="itemCount"/>
+                                    <small class="text-danger" *ngIf="formValidation.isValidField('itemCount')">
+                                        {{ formValidation.errorMessage('itemCount') }}
+                                    </small>
+                                </div>
+
+                                <!-- DynamicText with label of Batch Total -->
+                                <div class="col-md-4"
+                                     [ngClass]="{'has-danger': formValidation.isValidField('batchTotal') }">
+                                    <label class="col-form-label clr-blue" for="batchTotal" i18n>Batch Total</label>
+                                    <input type="number" [fieldLevelSec]="'Batch Total'"
+                                           [params]="{secColDetails: batchSecColDetails, isEditState: editArCashBatchControl}"
+                                           id="batchTotal"
+                                           (keyup.control)="batchTotalValue($event)"
+                                           formControlName="batchTotal" class="form-control"/>
+                                </div>
+
+                                <!-- DynamicDropdown with label of Batch Status -->
+                                <div class="selectContainer col-md-4">
+                                    <label class="col-form-label" for="batchStatus" i18n>Batch Status</label>
+                                    <div class="selectContainer"
+                                         [ngClass]="{'has-danger': formValidation.isValidField('batchStatus') }">
+                                        <select class="form-control text-primary" id="batchStatus" name="batchStatus"
+                                                [attr.disabled]="batchStatusShow ? 'disabled' : null"
+                                                formControlName="batchStatus" [fieldLevelSec]="'Batch Status'"
+                                                [params]="{secColDetails: batchSecColDetails, isEditState: editArCashReceipt}">
+                                            <option *ngFor="let bs of batchStatuses; let i = index"
+                                                    [value]="bs.dddwDtlPrimaryKey.dataVal">
+                                                {{bs.dddwDtlPrimaryKey.displayVal}}
+                                            </option>
+                                        </select>
+                                        <small class="text-danger" *ngIf="formValidation.isValidField('batchStatus')">
+                                            {{ formValidation.errorMessage('batchStatus') }}
+                                        </small>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="form-group row">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                        </div>
+                        <ag-grid-angular #agGrid class="ag-theme-fresh" [gridOptions]="dataGridGridOptions"
+                                         style="width: 100%; height: 300px;" [enableSorting]="true"
+                                         [enableFilter]="false" [floatingFilter]="false"
+                                         [pagination]="true" [showToolPanel]="true"
+                                         (click)="onClickDiv('RECEIPT')"
+                                         (selectionChanged)="onSelectRow($event)">
+                        </ag-grid-angular>
+                        <div class="form-group row">
+                        </div>
+                    </div>
+                    <div *ngIf="showReceiptFields">
+                        <div class="panels" (click)="onClickDiv('RECEIPT')"
+                             [ngClass]="{'highlight': selectedDiv == 'RECEIPT'}">
+
+                            <!-- DataGrid with Name of DataGrid -->
+
+                            <div class="form-group row">
+                            </div>
+
+                            <div class="form-group row" #receiptDiv>
+                                <!-- Dropdown with label of Customer Type -->
+                                <div class="selectContainer col-md-4">
+                                    <label class="col-form-label clr-blue" for="customerType" i18n>Customer Type</label>
+                                    <div class="selectContainer "
+                                         [ngClass]="{'has-danger': formValidation.isValidField('customerType') }">
+                                        <select class="form-control" id="customerType" name="customerType"
+                                                #customerType
+                                                formControlName="customerType"
+                                                (keydown) = "receiptKeyEvents($event, 'customer_type', 'customerId')"
+                                                [fieldLevelSec]="'Customer Type'"
+                                                [params]="{secColDetails: receiptSecColDetails, isEditState: editArCashReceipt}">
+                                            <option *ngFor="let ct of customerTypes; let i = index"
+                                                    [value]="ct.dddwDtlPrimaryKey.dataVal"
+                                                    [selected]="customerType ? ct.dddwDtlPrimaryKey.dataVal == customerType: false">
+                                                {{ct.dddwDtlPrimaryKey.displayVal}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <!-- Textbox with label of Customer ID -->
+                                <div class="col-md-4"
+                                     [ngClass]="{'has-danger': formValidation.isValidField('customerId') }">
+                                    <label class="col-form-label clr-blue" for="customerId" i18n>Customer ID</label>
+                                    <input (keydown)="userLookupOpen($event)" type="text" id="customerId"
+                                           [fieldLevelSec]="'Customer Id'"
+                                           [params]="{secColDetails: receiptSecColDetails, isEditState: editArCashReceipt}"
+                                           class="form-control"
+                                           formControlName="customerId"/>
+                                </div>
+
+                            </div>
+
+                            <div class="form-group row">
+                                <!-- Textbox with label of Transaction Date -->
+                                <div class="col-md-4"
+                                     [ngClass]="{'has-danger': formValidation.isValidField('transactionDate') }">
+                                    <app-datepicker #transactionDate
+                                                    [isRequired]="true" [formGroup]="arCashReceiptsForm"
+                                                    [formValidation]="formValidation"
+                                                    [field]="'transactionDate'" [fieldLevelSec]="'Insert Datetime'"
+                                                    [params]="{secColDetails: receiptSecColDetails, isEditState: editArCashBatchControl}"
+                                                    [labelText]="'Transaction Date'"
+                                                    (onDateChanged)="transactionDateChange($event)"
+                                    >
+                                    </app-datepicker>
+                                </div>
+
+                                <!-- Textbox with label of Transaction No -->
+                                <div class="col-md-8"
+                                     [ngClass]="{'has-danger': formValidation.isValidField('transactionNo') }">
+                                    <label class="col-form-label clr-blue" for="transactionNo" i18n>Transaction No</label>
+                                    <input type="text" id="transactionNo" [fieldLevelSec]="'Trans No'"
+                                           [params]="{secColDetails: receiptSecColDetails, isEditState: editArCashReceipt}"
+                                           class="form-control"
+                                           (keydown)="receiptKeyEvents($event, 'trans_no', 'receiveDate')"
+                                           formControlName="transactionNo"/>
+                                </div>
+
+                            </div>
+
+                            <div class="form-group row">
+                                <!-- Textbox with label of Receive Date -->
+                                <div class="col-md-4"
+                                     [ngClass]="{'has-danger': formValidation.isValidField('receiveDate') }">
+                                    <app-datepicker [isRequired]="true" [formGroup]="arCashReceiptsForm"
+                                                    [formValidation]="formValidation"
+                                                    [field]="'receiveDate'" [fieldLevelSec]="'Trans Receipt Date'"
+                                                    [params]="{secColDetails: receiptSecColDetails, isEditState: editArCashReceipt}"
+                                                    [labelText]="'Receive Date'">
+                                    </app-datepicker>
+                                </div>
+
+                                <!-- Textbox with label of Amount -->
+                                <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('amount') }">
+                                    <label class="col-form-label clr-blue" for="amount" i18n>Amount</label>
+                                    <input type="text" id="amount" [fieldLevelSec]="''" [params]="" class="form-control"
+                                           formControlName="amount"/>
+                                </div>
+
+                                <!-- Dropdown with label of Transaction Type -->
+                                <div class="selectContainer col-md-4">
+                                    <label class="col-form-label clr-blue" for="transactionType" i18n>Transaction Type</label>
+                                    <div class="selectContainer "
+                                         [ngClass]="{'has-danger': formValidation.isValidField('transactionType') }">
+                                        <select class="form-control clr-blue" id="transactionType" name="transactionType"
+                                                formControlName="transactionType" [fieldLevelSec]="'Trans Type'"
+                                                (keydown)="receiptKeyEvents($event, 'transaction_type', 'companyCode')"
+                                                [params]="{secColDetails: receiptSecColDetails, isEditState: editArCashReceipt}">
+                                            <option *ngFor="let tt of transactionTypes; let i = index"
+                                                    [value]="tt.systemCode"
+                                                    [selected]="transactionType ? tt.systemCode == transactionType: false">
+                                                {{tt.systemCodeDesc1}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="form-group row">
+                                <!-- DropDown with label of Company Code -->
+                                <div class="selectContainer col-md-4">
+                                    <label class="col-form-label clr-blue" for="companyCode" i18n>Company Code</label>
+                                    <div class="selectContainer "
+                                         [ngClass]="{'has-danger': formValidation.isValidField('companyCode') }">
+                                        <select class="form-control" id="companyCode" name="companyCode"
+                                                formControlName="companyCode"
+                                                #companyCodeRef
+                                                (keydown)="receiptKeyEvents($event,  'company_code', 'glRefCode')"
+                                                [fieldLevelSec]="'Company Code'"
+                                                [params]="{secColDetails: receiptSecColDetails, isEditState: editArCashReceipt}">
+                                            <option *ngFor="let cc of companyCodes; let i = index" [value]="cc.companyCode"
+                                                    [selected]="companyCode ? cc.companyCode == companyCode: false">
+                                                {{cc.companyCode}} {{cc.description}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+
+
+                                <!-- DropDown with label of GL Ref Code -->
+                                <div class="selectContainer col-md-4">
+                                    <label class="col-form-label clr-blue" for="glRefCode" i18n>GL Ref Code</label>
+                                    <div class="selectContainer "
+                                         [ngClass]="{'has-danger': formValidation.isValidField('glRefCode') }">
+                                        <select class="form-control" id="glRefCode" name="glRefCode"
+                                                formControlName="glRefCode"
+                                                #glRefCodeRef
+                                                [fieldLevelSec]="'Gl Ref Code'"
+                                                (keydown)="receiptKeyEvents($event,  'gl_ref_code', 'description')"
+                                                [params]="{secColDetails: receiptSecColDetails, isEditState: editArCashReceipt}">
+                                            <option *ngFor="let gl of glRefCodes; let i = index"
+                                                    [value]="gl.generalLedgerReferencePrimaryKey.glRefCode"
+                                                    [selected]="glRefCode ? gl.generalLedgerReferencePrimaryKey.glRefCode == glRefCode: false">
+                                                {{gl.generalLedgerReferencePrimaryKey.glRefCode}} {{gl.description}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="form-group row">
+                                <!-- Textbox with label of Description -->
+                                <div class="col-md-12"
+                                     [ngClass]="{'has-danger': formValidation.isValidField('description') }">
+                                    <label class="col-form-label" for="description" i18n>Description</label>
+                                    <input type="text" id="description" [fieldLevelSec]="'Description'"
+                                           [params]="{secColDetails: receiptSecColDetails, isEditState: editArCashReceipt}"
+                                           class="form-control"
+                                           formControlName="description"/>
+                                </div>
+
+                            </div>
+
+                            <div class="form-group row">
+                                <!-- DynamicDropdown with label of Statement Status -->
+                                <div class="selectContainer col-md-4">
+                                    <label class="col-form-label" for="statementStatus" i18n>Statement Status</label>
+                                    <div class="selectContainer "
+                                         [ngClass]="{'has-danger': formValidation.isValidField('statementStatus') }">
+                                        <select readonly class="form-control text-primary" id="statementStatus" name="statementStatus"
+                                                formControlName="statementStatus" [fieldLevelSec]="''" [params]="">
+                                            <option *ngFor="let ss of statementStatuses; let i = index"
+                                                    [value]="ss.dddwDtlPrimaryKey.dataVal"
+                                                    [selected]="statementStatus ? ss.dddwDtlPrimaryKey.dataVal == statementStatus: false">
+                                                {{ss.dddwDtlPrimaryKey.displayVal}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <!-- DynamicText with label of Invoice No -->
+                                <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('invoiceNo') }">
+                                    <label class="col-form-label" for="invoiceNo" i18n>Invoice No</label>
+                                    <input type="text" [fieldLevelSec]="'Invoice No'"
+                                           [params]="{secColDetails: receiptSecColDetails, isEditState: editArCashReceipt}"
+                                           readonly
+                                           id="invoiceNo" formControlName="invoiceNo" class="form-control"/>
+                                </div>
+
+                                <!-- DynamicText with label of Post Date -->
+                                <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('postDate') }">
+                                    <app-datepicker [isRequired]="false" [formGroup]="arCashReceiptsForm"
+                                                    [formValidation]="formValidation"
+                                                    [disabled]="true"
+                                                    [field]="'postDate'" [fieldLevelSec]="'Update Datetime'"
+                                                    [params]="{secColDetails: receiptSecColDetails, isEditState: editArCashBatchControl}"
+                                                    [labelText]="'Post Date'">
+                                    </app-datepicker>
+                                </div>
+                                `
+                            </div>
+                        </div>
+                    </div>
+                </ng-container>
+            </form>
+        </ng-container>
+
+    </div>
+</div>
+
+<ng-template #loaderTemplate let-loaderValue="value">
+    <div class="row justify-content-center mt-4" *ngIf="loaderValue">
+        <div class="spinner-border text-success" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+</ng-template>
+<ng-keyboard-shortcuts [shortcuts]="shortcuts"></ng-keyboard-shortcuts>
+<ng-keyboard-shortcuts-help [key]="'f2'" [closeKey]="'escape'" [title]="'Hotkeys Help'"></ng-keyboard-shortcuts-help>

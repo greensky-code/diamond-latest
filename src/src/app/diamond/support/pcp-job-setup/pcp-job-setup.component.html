@@ -1,0 +1,181 @@
+<!-- Copyright (c) 2021 . All Rights Reserved. -->
+<div class="container-fluid">
+    <div class="card-block">
+
+
+        <div class="row form-title">
+            <h2 class="col-md-4  card-label-admin">  PCP Job Setup </h2>
+            <div class="col-md"><b class="readonly-label">View Only</b></div>
+        </div>
+        <button type="button" *ngIf="showIcon" class="modal-close close" aria-label="Close"
+                (click)="modalClose()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+        <app-pop-up-message #popUpMesssage (buttonclickEvent)="popUpButtonHandler($event)"
+                            [(popupMessage)]="popUpMessage"></app-pop-up-message>
+
+        <ng-template #loaderTemplate let-loaderValue="value">
+            <div class="row justify-content-center mt-4" *ngIf="loaderValue">
+                <div class="spinner-border text-success" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>
+            </div>
+        </ng-template>
+
+        <ng-container *ngTemplateOutlet="loaderTemplate;context:{value: secProgress }"></ng-container>
+        <ng-container *appWinSelect="{secWin: secWin, userTemplateId: userTemplateId, secModuleId: memberModuleId}">
+            <div class="row mt-3">
+                                <menu-bar [menus]="menu" (onMenuClick)="onMenuItemClick($event)"></menu-bar>
+            </div>
+            <form [formGroup]="pcpJobSetupForm" novalidate>
+
+                <div class="form-group row"></div>
+                <!-- DataGrid with Name of DataGrid -->
+                <ag-grid-angular #agGrid class="ag-theme-fresh" [gridOptions]="dataGridGridOptions"
+                                 style="width: 100%; height: 300px;"
+                                 (rowSelected)="onRowSelectedGrid($event)"
+                                 [enableSorting]="true"
+                                 [enableFilter]="true"
+                                 [floatingFilter]="true"
+                                 [pagination]="true"
+                                 [showToolPanel]="true">
+                </ag-grid-angular>
+
+                <div class="form-group row"></div>
+
+                <div class="form-group row">
+                    <div class="col-md-12 form-control-static mb-0" i18n>
+                        <h4 class="required-field-label"><u> <i>Job Setup</i> </u></h4>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <!-- Textbox with label of Job ID -->
+                    <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('jobId') }">
+                        <label class="col-form-label required-field-label" for="jobId" i18n>Job ID</label>
+                        <input type="text" [readonly]="editPcpaaJobRequest" id="jobId" class="form-control" formControlName="jobId"/>
+                        <small class="text-danger" *ngIf="formValidation.isValidField('jobId')">
+                            {{ formValidation.errorMessage('jobId') }}
+                        </small>
+                    </div>
+                    <!-- DynamicText with label of Request User -->
+                    <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('requestUser') }">
+                        <label class="col-form-label required-field-label" for="requestUser" i18n>Request User</label>
+                        <input type="text" [readonly]="editPcpaaJobRequest" id="requestUser" formControlName="requestUser"
+                               class="form-control"/>
+                    </div>
+                    <!-- DynamicText with label of Request Date -->
+                    <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('requestDate') }">
+                        <label class="col-form-label required-field-label" for="requestDate" i18n>Request Date</label>
+                        <input type="text" [readonly]="editPcpaaJobRequest" id="requestDate" formControlName="requestDate"
+                               class="form-control"/>
+                    </div>
+                    <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('lineOfBusiness') }">
+                        <label class="col-form-label required-field-label" for="lineOfBusiness" i18n>Line of Business</label>
+                        <input type="text" [readonly]="editPcpaaJobRequest" id="lineOfBusiness" class="form-control text-primary" formControlName="lineOfBusiness"/>
+                        <small class="text-danger" *ngIf="formValidation.isValidField('lineOfBusiness')">
+                            {{ formValidation.errorMessage('lineOfBusiness') }}
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-md-12 form-control-static mb-0" i18n>
+                        <h4 class="required-field-label"><u> <i>Member Selection Criteria</i> </u></h4>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('insertProcess') }">
+                        <label class="col-form-label required-field-label" for="insertProcess" i18n>Insert Process</label>
+                        <input type="text" [readonly]="editPcpaaJobRequest" id="insertProcess" class="form-control" formControlName="insertProcess"/>
+                        <small class="text-danger" *ngIf="formValidation.isValidField('insertProcess')">
+                            {{ formValidation.errorMessage('insertProcess') }}
+                        </small>
+                    </div>
+                    <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('insertDateFrom') }">
+                        <label class="col-form-label required-field-label" for="insertDateFrom" i18n>Insert Date From</label>
+                        <input type="text" [readonly]="editPcpaaJobRequest" id="insertDateFrom" class="form-control" formControlName="insertDateFrom"/>
+                        <small class="text-danger" *ngIf="formValidation.isValidField('insertDateFrom')">
+                            {{ formValidation.errorMessage('insertDateFrom') }}
+                        </small>
+                    </div>
+                    <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('insertDateThru') }">
+                        <label class="col-form-label" for="insertDateThru" i18n>Insert Date Thru</label>
+                        <input type="text" [readonly]="editPcpaaJobRequest" id="insertDateThru" class="form-control" formControlName="insertDateThru"/>
+                        <small class="text-danger" *ngIf="formValidation.isValidField('insertDateThru')">
+                            {{ formValidation.errorMessage('insertDateThru') }}
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-md-12 form-control-static mb-0" i18n>
+                        <h4 class="required-field-label"><u> <i>Next Action</i> </u></h4>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-md-12 form-control-static mb-0" i18n>
+                        <h5 class="required-field-label"> Action </h5>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="" [ngClass]="{'has-danger': formValidation.isValidField('run') }">
+                        <div class="checkbox col-md-12">
+                            <input id="run" type="radio" value="0" formControlName="action" name="action"/>
+                            <label class="ml-1 col-form-label" for="run" i18n>Run</label>
+                        </div>
+                    </div>
+                    <div class="" [ngClass]="{'has-danger': formValidation.isValidField('cancel') }">
+                        <div class="checkbox col-md-12">
+                            <input id="cancel" type="radio" value="1" formControlName="action" name="action"/>
+                    <label class="ml-1 col-form-label" for="cancel" i18n>Cancel</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <!-- DynamicText with label of Status -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('status') }">
+                        <label class="col-form-label required-field-label" for="status" i18n>Status</label>
+                        <input type="text" [readonly]="editPcpaaJobRequest" id="status" formControlName="status" class="form-control text-primary"/>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-md-12 form-control-static mb-0" i18n>
+                        <h4 class="required-field-label"><u> <i>Run Options</i> </u></h4>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-md-12 form-control-static mb-0" i18n>
+                        <h5 class="required-field-label"> Request Type </h5>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="" [ngClass]="{'has-danger': formValidation.isValidField('requestType') }">
+                        <div class="checkbox col-md-12">
+                            <input id="immediate" type="radio" name="requestType" value="I" formControlName="requestType"/>
+                            <label class="col-form-label ml-1" for="immediate" i18n>Immediate</label>
+                        </div>
+                    </div>
+                    <div class="" [ngClass]="{'has-danger': formValidation.isValidField('deferred') }">
+                        <div class="checkbox col-md-12">
+                            <input id="deffered" type="radio" name="requestType" formControlName="requestType" value="D"/>
+                            <label class="col-form-label ml-1" for="deffered" i18n>Deffered</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <!-- DynamicText with label of Comments -->
+                    <div class="col-md-5" [ngClass]="{'has-danger': formValidation.isValidField('comments') }">
+                        <label class="col-form-label" for="comments" i18n>Comments</label>
+                        <input type="text" id="comments" formControlName="comments" class="form-control"/>
+                    </div>
+                </div>
+            </form>
+        </ng-container>
+    </div>
+</div>
+
+<ng-keyboard-shortcuts [shortcuts]="shortcuts"></ng-keyboard-shortcuts>
+<ng-keyboard-shortcuts-help [key]="'f2'" [closeKey]="'escape'" [title]="'Hotkeys Help'"></ng-keyboard-shortcuts-help>

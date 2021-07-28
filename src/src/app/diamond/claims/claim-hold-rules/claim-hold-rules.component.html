@@ -1,0 +1,139 @@
+<!-- Copyright (c) 2021 . All Rights Reserved. -->
+<div class="container-fluid">
+    <div class="card-block">
+        <div class="row form-title">
+            <h2 class="col-md-6 card-label-admin">Claim Hold Rules</h2>
+        </div>
+        <button type="button" *ngIf="showIcon" class="modal-close close" aria-label="Close" (click)="modalClose()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+        <app-pop-up-message #popUpMesssage (buttonclickEvent)="popUpButtonHandler($event)"
+            [(popupMessage)]="popUpMessage"></app-pop-up-message>
+
+        <div class="row mt-3 mb-3">
+            <menu-bar [menus]="menu" (onMenuClick)="onMenuItemClick($event)"></menu-bar>
+        </div>
+
+        <form [formGroup]="claimHoldRulesForm" novalidate>
+            <!-- DataGrid with Name of DataGrid001 -->
+        <div (focusin)="focus('grid1')"  class="manual-card-border" [class.manual-card-border-shadow]="focusDivName === 'grid1'" (click)="setActionStatus(1)">
+            <div (click)="setActionStatus(1)">
+                <ag-grid-angular #agGrid class="ag-theme-fresh" [gridOptions]="dataGrid001GridOptions" rowSelection="single"
+                    style="width: 100%; height: 300px;" [enableSorting]="true" [enableFilter]="true" [floatingFilter]="true"
+                    [pagination]="true" [showToolPanel]="true" (selectionChanged)="grid1SelectionChange()" (click)="setActionStatus(1)">
+                </ag-grid-angular>
+            </div>
+            <div class="form-group row"></div>
+            <div class="form-group row">
+                <!-- DynamicText with label of Claim Type -->
+                <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('claimType') }">
+                    <label class="col-form-label required-field-label" for="claimType" i18n>Claim Type</label>
+                    <input type="text" [fieldLevelSec]="''" [readonly]="isReadOnly" id="claimType"
+                        formControlName="claimType" class="form-control" *ngIf="isReadOnly" autocomplete="off"/>
+
+                    <select id="claimType1" name="claimType1" class="form-control" (blur)="name2ToTable($event)"
+                        formControlName="claimType1" *ngIf="!isReadOnly" autocomplete="off">
+                        <option *ngFor="let systemCodes of systemCodes" [value]="systemCodes.systemCode">
+                            {{systemCodes.systemCode}}
+                            &nbsp;{{systemCodes.systemCodeDesc1}}
+                        </option>
+                    </select>
+
+
+                </div>
+
+                <!-- DynamicText with label of Reason Code -->
+                <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('reasonCode') }">
+                    <label class="col-form-label required-field-label" for="reasonCode" i18n>Reason Code</label>
+                    <input type="text" [fieldLevelSec]="''" name="reasonCode" [readonly]="isReadOnly" id="reasonCode"
+                        formControlName="reasonCode" class="form-control" *ngIf="isReadOnly" autocomplete="off"/>
+
+                    <select class="form-control" id="reasonCode" name="reasonCode" formControlName="reasonCode"
+                        (blur)="name2ToTable($event)" *ngIf="!isReadOnly" autocomplete="off">
+                        <option value="">Please Select</option>
+                        <option *ngFor="let reasonCodeMaster of reasonCodeMasters"
+                            [value]="reasonCodeMaster.reasonCode">{{ reasonCodeMaster.reasonCode}}
+                            {{reasonCodeMaster.description}}</option>
+                    </select>
+
+                </div>
+
+            </div>
+
+            <div class="form-group row">
+                <!-- DynamicText with label of Hold Rule -->
+                <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('holdRule') }">
+                    <label class="col-form-label required-field-label" for="holdRule" i18n>Hold Rule</label>
+                    <input type="text" [fieldLevelSec]="''" (blur)="name2ToTable($event)" [readonly]="isReadOnly"
+                        id="holdRule" formControlName="holdRule" maxlength="15" class="form-control" autocomplete="off"/>
+                </div>
+
+                <!-- Textbox with label of Description -->
+                <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('description') }">
+                    <label class="col-form-label" for="description" i18n>Description</label>
+                    <input type="text" [fieldLevelSec]="''" id="description" (blur)="name2ToTable($event)"
+                        name="description" formControlName="description" class="form-control" autocomplete="off"/>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('description')">
+                        {{ formValidation.errorMessage('description') }}
+                    </small>
+                </div>
+
+            </div>
+
+            </div>
+            <div class="form-group row">
+            </div>
+
+            <!-- DataGrid with Name of DataGrid002 -->
+            <div (focusin)="focus('grid2')"  class="manual-card-border" [class.manual-card-border-shadow]="focusDivName === 'grid2'" (click)="setActionStatus(2)">
+                <div (click)="setActionStatus(2)"  >
+                    <ag-grid-angular #agGrid class="ag-theme-fresh" [gridOptions]="dataGrid002GridOptions"
+                        style="width: 100%; height: 300px;" [enableSorting]="true" [enableFilter]="true"
+                        [floatingFilter]="true" [pagination]="true" [showToolPanel]="true" rowSelection="single"
+                        (selectionChanged)="grid2SelectionChange()" (click)="setActionStatus(2)">
+                    </ag-grid-angular>
+                </div>
+                <div class="form-group row"></div>
+                <div class="form-group row">
+                    <!-- DynamicText with label of Determinant -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('determinant') }">
+                        <label class="col-form-label required-field-label" for="determinant" i18n>Determinant</label>
+                        <input type="text" name="determinant" id="determinant" [readonly]="isReadOnlyForm2"
+                            (blur)="name3ToTable($event)" formControlName="determinant" class="form-control"
+                            (keydown)="onLookupFieldDeterminant($event)" autocomplete="off"/>
+                    </div>
+
+                    <!-- Textbox with label of Operator -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('operator') }">
+                        <label class="col-form-label required-field-label" for="operator" i18n>Operator</label>
+                        <select class="form-control" id="operator" name="operator" formControlName="operator" autocomplete="off">
+                            <option value="">-Select-</option>
+                            <option *ngFor="let dddwDtl of dddwDtls" [value]="dddwDtl.dddwDtlPrimaryKey.dataVal">
+                                {{dddwDtl.dddwDtlPrimaryKey.displayVal}}</option>
+                        </select>
+                        <small class="text-danger" *ngIf="formValidation.isValidField('operator')">
+                            {{ formValidation.errorMessage('operator') }}
+                        </small>
+                    </div>
+
+                </div>
+            </div>
+            <div class="form-group row">
+            </div>
+
+            <!-- DataGrid with Name of DataGrid003 -->
+            <div class="form-group row" (click)="setActionStatus(3)" (focusin)="focus('grid3')"  class="manual-card-border" [class.manual-card-border-shadow]="focusDivName === 'grid3'" >
+                <div class="col-md-11 mt-3 p-0 ml-lg-4 mb-4" (click)="setActionStatus(3)">
+                    <dynamic-form #holdRuleDynamicForm [prevState]="claimHoldRuleSelectState" [displayCheckBox]="false"
+                        [showRemoveButton]="false" [isFormEditable]="true" [isResetForm]="isResetForm"
+                        [isSaveForm]="isSaveForm" [title]="''" [config]="claimHoldRuleSelectionFormConfig"
+                        [showSubmitButton]="true" (formSubmitted)="saveClaimRuleSelect($event)" (onRowClick)="onRowClickEvent($event)"
+                        (selectStatus)="onFieldFocusOut($event)"></dynamic-form>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<ng-keyboard-shortcuts [shortcuts]="shortcuts"></ng-keyboard-shortcuts>
+<ng-keyboard-shortcuts-help [key]="'f2'" [closeKey]="'escape'" [title]="'Hotkeys Help'"></ng-keyboard-shortcuts-help>

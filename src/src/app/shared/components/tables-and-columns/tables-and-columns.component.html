@@ -1,0 +1,51 @@
+<!-- Copyright (c) 2020 . All Rights Reserved. -->
+<div class="container-fluid">
+    <div class="card-block">
+        <form [formGroup]="tablesAndColumnsForm" novalidate>
+            <h2 class="form-title card-label-admin">Tables And Columns</h2>
+            <button type="button" *ngIf="showIcon" class="close" aria-label="Close"
+                    (click)="activeModal.dismiss('Cross click')">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+
+            <div class="form-group row">
+                <div class="col-md-6">
+                    <ag-grid-angular #agGrid class="ag-theme-fresh" [gridOptions]="dataGrid001GridOptions"
+                         style="width: 100%; height: 345px;"
+                         [enableSorting]="true"
+                         [enableFilter]="true"
+                         [floatingFilter]="true"
+                         [pagination]="true"
+                         [showToolPanel]="true"
+                         (selectionChanged)="grid1SelectionChange()">
+                    </ag-grid-angular>
+                </div>
+                <div class="col-md-6">
+                    <ag-grid-angular #agGrid class="ag-theme-fresh" [gridOptions]="dataGrid002GridOptions"
+                         style="width: 100%; height: 345px;"
+                         [enableSorting]="true"
+                         [enableFilter]="true"
+                         [floatingFilter]="true"
+                         [pagination]="true"
+                         [showToolPanel]="true"
+                         (selectionChanged)="grid2SelectionChange()">
+                    </ag-grid-angular>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-md-6 form-control-static d-flex justify-content-center" i18n>
+                    <button type="button" id="ok" name="ok" class="btn btn-small btn-primary" (click)="submit()"
+                        [disabled]="!tablesAndColumnsForm.valid">OK</button>
+                </div>
+            
+                <div class="col-md-6 form-control-static d-flex justify-content-center" i18n>
+                    <button type="button" id="cancel" name="cancel" class="btn btn-small btn-primary"
+                            (click)="cancel()">Cancel</button>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>

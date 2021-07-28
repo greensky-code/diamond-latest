@@ -1,0 +1,204 @@
+<!-- Copyright (c) 2021 . All Rights Reserved. -->
+<div class="container-fluid">
+    <div class="card-block">
+        <form [formGroup]="pcpAutoAssignForm" novalidate>
+            <h2 class="form-title card-label-admin">Pcp Auto Assign</h2>
+            <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+            <app-pop-up-message #popUpMesssage (buttonclickEvent)="popUpButtonHandler($event)"  [(popupMessage)] = "popUpMessage"></app-pop-up-message>
+                        
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+                <!-- DynamicText with label of Line Of Business -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('lineOfBusiness') }">
+                     <label class="col-form-label" for="lineOfBusiness" i18n>Line Of Business</label>
+                     <input type="text"  [fieldLevelSec]="'Line Of Business'" params]="Pcp Auto Assign Hdr"  readonly id="lineOfBusiness" formControlName="lineOfBusiness" class="form-control"/>
+                 </div>
+            
+                <!-- DynamicText with Name of DynamicText -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('dynamicText') }">
+                     <label class="col-form-label" for="dynamicText" i18n>&nbsp;</label>
+                     <input type="text"  [fieldLevelSec]="''" params]=""  readonly id="dynamicText" formControlName="dynamicText" class="form-control"/>
+                 </div>
+            
+                <!-- DynamicText with label of Event -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('event') }">
+                     <label class="col-form-label" for="event" i18n>Event</label>
+                     <input type="text"  [fieldLevelSec]="'Event Type'" params]="Pcp Auto Assign Hdr"  readonly id="event" formControlName="event" class="form-control"/>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+                <div class="col-md-2 form-control-static mb-0" i18n>
+                    Override Enrollment Threshold Capacity Levels
+                </div>
+            
+                <div class="col-md-2 form-control-static mb-0" i18n>
+                    Evaluate Possible Selections
+                </div>
+            
+            </div>
+            
+                        <!-- DataGrid with Name of DataGrid001 -->
+                    <button (click)="dataGrid001GridOptionsExportCsv()">Export</button>
+                    <ag-grid-angular #agGrid class="ag-theme-fresh" [gridOptions]="dataGrid001GridOptions"
+                    style="width: 100%; height: 300px;"
+                    [enableSorting]="true"
+                    [enableFilter]="true"
+                    [floatingFilter]="true"
+                    [pagination]="true"
+                    [showToolPanel]="true">
+                    </ag-grid-angular>
+            
+            <div class="form-group row">
+                <!-- Checkbox with label of Requested PCP -->
+                <div class="" [ngClass]="{'has-error': displayMessage.requestedPcp001 }">
+                    <div class="checkbox col-md-12">
+                      <input id="requestedPcp001"  [fieldLevelSec]="''" params]=""  value="requestedPcp001" formControlName="requestedPcp001" type="checkbox">
+                        <label class="checkbox">
+                            Requested PCP
+                         </label>
+                    </div>
+                    <span class="help-block" *ngIf="displayMessage.requestedPcp001">
+                        {{ displayMessage.requestedPcp001  }}
+                     </span>
+                </div>
+            
+                <div class="col-md-2 form-control-static mb-0" i18n>
+                    Requested PCP
+                </div>
+            
+                <!-- Checkbox with Name of Checkbox001 -->
+                <div class="" [ngClass]="{'has-error': displayMessage.checkbox001 }">
+                    <div class="checkbox col-md-12">
+                      <input id="checkbox001"  [fieldLevelSec]="''" params]=""  value="checkbox001" formControlName="checkbox001" type="checkbox">
+                        <label class="checkbox">
+                            
+                         </label>
+                    </div>
+                    <span class="help-block" *ngIf="displayMessage.checkbox001">
+                        {{ displayMessage.checkbox001  }}
+                     </span>
+                </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Checkbox with label of Member Reinstated -->
+                <div class="" [ngClass]="{'has-error': displayMessage.memberReinstated001 }">
+                    <div class="checkbox col-md-12">
+                      <input id="memberReinstated001"  [fieldLevelSec]="'Memb Reinst Threshold'" params]="Pcp Auto Assign Hdr"  value="memberReinstated001" formControlName="memberReinstated001" type="checkbox">
+                        <label class="checkbox">
+                            Member Reinstated
+                         </label>
+                    </div>
+                    <span class="help-block" *ngIf="displayMessage.memberReinstated001">
+                        {{ displayMessage.memberReinstated001  }}
+                     </span>
+                </div>
+            
+                <div class="col-md-2 form-control-static mb-0" i18n>
+                    Member Reinstated
+                </div>
+            
+                <!-- Checkbox with Name of Checkbox002 -->
+                <div class="" [ngClass]="{'has-error': displayMessage.checkbox002 }">
+                    <div class="checkbox col-md-12">
+                      <input id="checkbox002"  [fieldLevelSec]="''" params]=""  value="checkbox002" formControlName="checkbox002" type="checkbox">
+                        <label class="checkbox">
+                            
+                         </label>
+                    </div>
+                    <span class="help-block" *ngIf="displayMessage.checkbox002">
+                        {{ displayMessage.checkbox002  }}
+                     </span>
+                </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Checkbox with label of DIAMOND ID -->
+                <div class="" [ngClass]="{'has-error': displayMessage.diamondId001 }">
+                    <div class="checkbox col-md-12">
+                      <input id="diamondId001"  [fieldLevelSec]="'Diamond Id Days'" params]="Pcp Auto Assign Hdr"  value="diamondId001" formControlName="diamondId001" type="checkbox">
+                        <label class="checkbox">
+                            DIAMOND ID
+                         </label>
+                    </div>
+                    <span class="help-block" *ngIf="displayMessage.diamondId001">
+                        {{ displayMessage.diamondId001  }}
+                     </span>
+                </div>
+            
+                <div class="col-md-2 form-control-static mb-0" i18n>
+                    DIAMOND ID
+                </div>
+            
+                <!-- Checkbox with Name of Checkbox003 -->
+                <div class="" [ngClass]="{'has-error': displayMessage.checkbox003 }">
+                    <div class="checkbox col-md-12">
+                      <input id="checkbox003"  [fieldLevelSec]="''" params]=""  value="checkbox003" formControlName="checkbox003" type="checkbox">
+                        <label class="checkbox">
+                            
+                         </label>
+                    </div>
+                    <span class="help-block" *ngIf="displayMessage.checkbox003">
+                        {{ displayMessage.checkbox003  }}
+                     </span>
+                </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Checkbox with label of Family Affiliation -->
+                <div class="" [ngClass]="{'has-error': displayMessage.familyAffiliation001 }">
+                    <div class="checkbox col-md-12">
+                      <input id="familyAffiliation001"  [fieldLevelSec]="'Family Affl Flag'" params]="Pcp Auto Assign Hdr"  value="familyAffiliation001" formControlName="familyAffiliation001" type="checkbox">
+                        <label class="checkbox">
+                            Family Affiliation
+                         </label>
+                    </div>
+                    <span class="help-block" *ngIf="displayMessage.familyAffiliation001">
+                        {{ displayMessage.familyAffiliation001  }}
+                     </span>
+                </div>
+            
+                <!-- Checkbox with label of Family Affiliation -->
+                <div class="" [ngClass]="{'has-error': displayMessage.familyAffiliation002 }">
+                    <div class="checkbox col-md-12">
+                      <input id="familyAffiliation002"  [fieldLevelSec]="'Family Affl Order'" params]="Pcp Auto Assign Hdr"  value="familyAffiliation002" formControlName="familyAffiliation002" type="checkbox">
+                        <label class="checkbox">
+                            Family Affiliation
+                         </label>
+                    </div>
+                    <span class="help-block" *ngIf="displayMessage.familyAffiliation002">
+                        {{ displayMessage.familyAffiliation002  }}
+                     </span>
+                </div>
+            
+            </div>
+            
+            <div class="form-group row">
+            </div>
+            
+                        <!-- DataGrid with Name of DataGrid002 -->
+                    <button (click)="dataGrid002GridOptionsExportCsv()">Export</button>
+                    <ag-grid-angular #agGrid class="ag-theme-fresh" [gridOptions]="dataGrid002GridOptions"
+                    style="width: 100%; height: 300px;"
+                    [enableSorting]="true"
+                    [enableFilter]="true"
+                    [floatingFilter]="true"
+                    [pagination]="true"
+                    [showToolPanel]="true">
+                    </ag-grid-angular>
+            
+            <div class="form-group row">
+            </div>
+        </form>
+    </div>
+</div>

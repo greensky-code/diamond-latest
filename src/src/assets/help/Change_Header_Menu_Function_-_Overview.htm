@@ -1,0 +1,323 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+    <title>Change Header Menu Function - Overview</title>
+    <!--(Meta)==========================================================-->
+    <meta content="About.htt" name="template"/>
+    <meta content="RoboHELP by eHelp Corporation - www.ehelp.com" name="generator"/>
+    <meta content="0.1" name="generator-major-version"/>
+    <meta content="1" name="generator-minor-version"/>
+    <meta content="kadov" name="filetype"/>
+    <meta content="1" name="filetype-version"/>
+    <meta content="1" name="page-count"/>
+    <meta content="2808" name="layout-height"/>
+    <meta content="889" name="layout-width"/>
+    <!--(Links)=========================================================-->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+</head>
+<body>
+
+<div class="calibreMeta">
+  <div class="calibreMetaTitle">
+
+
+
+    <h1>
+      <a href="../bj5if-qozss.html">DIAMOND 950 Help
+</a>
+    </h1>
+
+
+
+  </div>
+  <div class="calibreMetaAuthor">
+    Unknown
+
+  </div>
+</div>
+
+<div class="calibreMain">
+
+  <div class="calibreEbookContent">
+
+      <div class="calibreEbNavTop">
+
+          <a href="DNCLM_Making_a_Tooth_Rule_Inactive.htm" class="calibreAPrev">previous page
+</a>
+
+
+
+          <a href="Dental_Services_Claims_Processing_How_DIAMOND_Thinks.htm" class="calibreANext">next page
+</a>
+
+      </div>
+
+
+
+
+<h1 class="calibre1"><!--kadov_tag{{<variable name=title
+						x-format=default
+						x-value="Change Header Menu Function - Overview">}}-->Change
+ Header Menu Function - Overview<!--kadov_tag{{</variable>}}--> </h1>
+
+<p class="text"><a href="Change_Header_Menu_Function_-_Overview.htm">Overview</a></p>
+
+<p class="text"><a href="#Changes_to_Provider_and_Vendor_Information">Changes
+ to Provider and Vendor Information</a></p>
+
+<p class="text"><a href="#Provider_and_Vendor_Validation">Provider and Vendor
+ Validation</a></p>
+
+<p class="text"><a href="#Affects_on_Pay_to_Subscriber_or_Pay_to_Dependent_Flag">Affects
+ on Pay to Subscriber or Pay to Dependent Flag</a></p>
+
+<p class="text"><a href="#Affects_on_EOB_Indicator_and_Other_Carrier_Information">Affects
+ on EOB Indicator and Other Carrier Information</a></p>
+
+<p class="text"><a href="#Affects_on_the_Print_Flag">Affects on the Print
+ Flag</a></p>
+
+<p class="text"><a href="#VENDORFIRST_Parameter">VENDORFIRST Parameter</a></p>
+
+<h2 class="calibre3"><a name="Overview"></a>Overview</h2>
+
+<p class="text">Use the Change Header special function to change any of these
+ claim header data elements:</p>
+
+<ul class="calibre2">
+
+	<li class="kadov-p-cbullet"><p class="bullet">Service Date</p></li>
+
+	<li class="kadov-p-cbullet"><p class="bullet">Thru Date</p></li>
+
+	<li class="kadov-p-cbullet"><p class="bullet">Member ID/Person Number</p></li>
+
+	<li class="kadov-p-cbullet"><p class="bullet">Provider ID</p></li>
+
+	<li class="kadov-p-cbullet"><p class="bullet">Provider Address</p></li>
+
+	<li class="kadov-p-cbullet"><p class="bullet">Provider Zip</p></li>
+
+	<li class="kadov-p-cbullet"><p class="bullet">Vendor ID</p></li>
+
+	<li class="kadov-p-cbullet"><p class="bullet">Vendor Address</p></li>
+</ul>
+
+<p class="text">When you use the Change Header screen, the system reinvokes
+ all claims processing for member eligibility, provider/vendor relationship
+ validation, contract search, pricing, and adjudication. You can access
+ this screen only from the claim header and only if the claim is not finalized.
+ You cannot use Change Header if the claim header Audit Status is C, Complete.</p>
+
+<p class="text">Changes you make in the Change Header screen are tracked
+ by Audit Trail. </p>
+
+<p class="text"><a href="Change_Header_Menu_Function_-_Overview.htm">Top</a></p>
+
+<h2 class="calibre3"><a name="Changes_to_Provider_and_Vendor_Information"></a>Changes to Provider
+ and Vendor Information</h2>
+
+<p class="text">You can change the provider or vendor fields or delete the
+ value so a field is blank. However, you cannot make both provider and
+ vendor fields blank, you must specify at least one. <!--kadov_tag{{<spaces>}}--> <!--kadov_tag{{</spaces>}}--></p>
+
+<p class="text"> </p>
+
+<p class="tbl-text-noline">If you change the provider or vendor information,
+ the system performs contract match validation logic:</p>
+
+<ul class="calibre2">
+
+	<li class="kadov-p-cbullet"><p class="bullet">If the system cannot locate
+ a matching contract, it displays a warning message: "No Contract
+ found for Provider and Vendor Indicated. Press Yes to continue to apply
+ Claims Pricing Logic or press Cancel to return to Change Header screen
+ to make additional changes." </p></li>
+
+	<li class="kadov-p-cbulletlvl"><p class="bulletlvl">If you click Yes
+ to apply Claims Pricing logic, the system checks to determine if Covering
+ Provider logic applies. If this logic is applied, the claim is priced.</p></li>
+
+	<li class="kadov-p-cbulletlvl"><p class="bulletlvl">If Covering provider
+ logic is not applied, the system generates an error message: "Unable
+ to Find Provider Contract. Press Yes to continue, claim detail lines will
+ be denied. Or Cancel to return to the Change Header screen to make additional
+ changes. </p></li>
+</ul>
+
+<p class="tbl-text-noline">If you blank out the provider, the system uses
+ Vendor ID/Vendor Address to search for a contract. </p>
+
+<ul class="calibre2">
+
+	<li class="kadov-p-cbullet"><p class="bullet">If the system locates a single
+ match, it populates the provider information and re-prices and re-adjudicates
+ the associated claim detail lines.</p></li>
+
+	<li class="kadov-p-cbullet"><p class="bullet">If the system locates multiple
+ matching contracts, it generates a provider pick list from which you can
+ make a selection. </p></li>
+
+	<li class="kadov-p-cbullet"><p class="bullet">If the system doesn't locate
+ a matching contract, it displays an error message "Unable to determine
+ provider from vendor information, need to specify provider." and
+ you are automatically returned to the Change Header screen. </p></li>
+</ul>
+
+<p class="tbl-text-noline">If you blank out the vendor, the system uses Provider
+ ID/Provider Address to search for a contract. </p>
+
+<ul class="calibre2">
+
+	<li class="kadov-p-cbullet"><p class="bullet">If the system locates a single
+ match, it populates the provider information and re-prices and re-adjudicates
+ the associated claim detail lines.</p></li>
+
+	<li class="kadov-p-cbullet"><p class="bullet">If the system locates multiple
+ matching contracts, it generates a vendor pick list from which you can
+ make a selection. </p></li>
+
+	<li class="kadov-p-cbullet"><p class="bullet">If the system doesn't locate
+ a matching contract, it displays an error message "Vendor ID is Required"
+ and you are automatically returned to the Change Header screen. </p></li>
+</ul>
+
+<p class="text"><a href="Change_Header_Menu_Function_-_Overview.htm">Top</a></p>
+
+<h2 class="calibre3"><a name="Provider_and_Vendor_Validation"></a>Provider and Vendor Validation</h2>
+
+<p class="text"/>
+
+<p class="text"> </p>
+
+<p class="text"><a href="Change_Header_Menu_Function_-_Overview.htm">Top</a></p>
+
+<h2 class="calibre3"><a name="Affects_on_Pay_to_Subscriber_or_Pay_to_Dependent_Flag"></a>Affects
+ on Pay to Subscriber or Pay to Dependent Flag</h2>
+
+<p class="text">When you use the Change Header screen to change claim information,
+ the Pay to Subscriber and Pay to Dependent flags are automatically reset
+ to No. Once you press OK after changing data on the Change Header screen,
+ the system checks these flags and if set to yes, resets them to No. If
+ either flag was set to yes prior to using the Change Header function,
+ the system provides a message: "Pay to Subscriber Flag Reset from
+ Y to N." or "Pay to Dependent Flag reset from Y to N."
+ You must manually reset the flag. </p>
+
+<p class="text"><a href="Change_Header_Menu_Function_-_Overview.htm">Top</a></p>
+
+<h2 class="calibre3"><a name="Affects_on_EOB_Indicator_and_Other_Carrier_Information"></a>Affects
+ on EOB Indicator and Other Carrier Information</h2>
+
+<p class="tbl-text-noline">If you change the Subscriber ID or Person Number,
+ the system resets the EOB Indicator and Other Carrier Code to blank/None.
+ Also, when you re-price and re-adjudicate the claim detail line, the system
+ sets the OC Allowed and OC Paid Amt fields to zero.</p>
+
+<p class="tbl-text-noline"><a href="Change_Header_Menu_Function_-_Overview.htm">Top</a></p>
+
+<h2 class="calibre3"><a name="Affects_on_the_Print_Flag"></a>Affects on the Print Flag</h2>
+
+<p class="tbl-text-noline">If the print flag was manually changed and the
+ status is M, the print flag will not be recalculated. </p>
+
+<p class="tbl-text-noline"><a href="Change_Header_Menu_Function_-_Overview.htm">Top</a></p>
+
+<h2 class="calibre3"><a name="VENDORFIRST_Parameter"></a>VENDORFIRST Parameter</h2>
+
+<p class="tbl-text-noline">The VENDORFIRST parameter does not work with the
+ Change Header screen. This means that your cursor will not automatically
+ move to the vendor or provider field on the Change Header screen based
+ on the VENDORFIRST parameter setting. For specific information about how
+ provider contract search works with either provider or vendor information,
+ see the <a href="#Changes_to_Provider_and_Vendor_Information">Changes
+ to Provider and Vendor Information</a> section of this topic.</p>
+
+<p class="tbl-text-noline"><a href="Change_Header_Menu_Function_-_Overview.htm">Top</a></p>
+
+<p class="tbl-text-noline"> </p>
+
+<p class="tbl-text-noline"> </p>
+
+<p class="tbl-text-noline"> </p>
+
+<p class="tbl-text-noline"> </p>
+
+<p class="tbl-text-noline"> </p>
+
+<p class="tbl-text-noline"> </p>
+
+<p class="tbl-text-noline"> </p>
+
+<p class="tbl-text-noline"> </p>
+
+<p class="tbl-text-noline"> </p>
+
+<p class="tbl-text-noline"> </p>
+
+<p class="tbl-text-noline"> </p>
+
+<p class="tbl-text-noline"> </p>
+
+<p class="tbl-text-noline"> </p>
+
+<p class="tbl-text-noline"> </p>
+
+<p class="tbl-text-noline"> </p>
+
+<p class="tbl-text-noline"> </p>
+
+<p class="tbl-text-noline"> </p>
+
+<p class="tbl-text-noline"> </p>
+
+<p class="tbl-text-noline"> </p>
+
+<p class="tbl-text-noline"> </p>
+
+<p class="tbl-text-noline"> </p>
+
+<p class="tbl-text-noline"> </p>
+
+<p class="tbl-text-noline"> </p>
+
+<p class="tbl-text-noline"> </p>
+
+<p class="tbl-text-noline"> </p>
+
+<p class="tbl-text-noline"> </p>
+
+<p class="tbl-text-noline"> </p>
+
+
+
+
+
+
+  </div>
+
+
+
+
+
+  <div class="calibreEbNav">
+
+      <a href="DNCLM_Making_a_Tooth_Rule_Inactive.htm" class="calibreAPrev">previous page
+</a>
+
+
+    <a href="../bj5if-qozss.html" class="calibreAHome">start
+</a>
+
+
+      <a href="Dental_Services_Claims_Processing_How_DIAMOND_Thinks.htm" class="calibreANext">next page
+</a>
+
+  </div>
+
+</div>
+
+</body>
+</html>

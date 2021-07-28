@@ -1,0 +1,50 @@
+/* Copyright (c) 2020 . All Rights Reserved. */
+
+export class CheckPrintSetup {
+  seqCkprtId: number;
+  jobId: string;
+  requestUser: string;
+  requestDate: Date;
+  requestType: string;
+  autoManualFlag: string;
+  action: string;
+  postMonth: Date;
+  payableType: string;
+  companyCode: string;
+  bankAccountCode: string;
+  checkNumber: string;
+  checkDate: Date;
+  checkAmt: number;
+  seqVendId: number;
+  seqVendAddress: number;
+  fromPostDate: Date;
+  thruPostDate: Date;
+  fromDueDate: Date;
+  thruDueDate: Date;
+  selectForPayment: string;
+  seqMembId: number;
+  seqProvId: number;
+  printChoice: string;
+  checkNotes: string;
+  autoVoidChecks: string;
+  status: string;
+  comments: string;
+  securityCode: string;
+  insertDatetime: Date;
+  insertUser: string;
+  insertProcess: string;
+  updateDatetime: Date;
+  updateUser: string;
+  updateProcess: string;
+  template: string;
+  unixSpoolerName: string;
+  numAlignChecksPrinted: number;
+  daemonRequest: string;
+  inProcess: string;
+  seqClaimId: number;
+  capModelId: string;
+  capEntityCode: string;
+  seqCapPoolId: number;
+  minCheckOverride: string;
+  adminFeeInd: string;
+}

@@ -1,0 +1,174 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+    <!-- $MVD$:fontset("Courier New","Courier New") -->
+    <title>Setting Up Claim Hold Release Rules and Determinants</title>
+    <meta content="RoboHelp by eHelp Corporation www.ehelp.com" name="generator"/>
+    <meta name="copyright"
+          value="© Copyright 2002 Health Systems Design Corp., a wholly owned subsidiary of Perot Systems Corporation. All rights reserved"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+</head>
+<body>
+
+<div class="calibreMeta">
+    <div class="calibreMetaTitle">
+
+
+        <h1>
+            <a href="../bj5if-qozss.html">DIAMOND 950 Help
+            </a>
+        </h1>
+
+
+    </div>
+    <div class="calibreMetaAuthor">
+        Unknown
+
+    </div>
+</div>
+
+<div class="calibreMain">
+
+    <div class="calibreEbookContent">
+
+        <div class="calibreEbNavTop">
+
+            <a href="Running_a_Batch_Claim_Hold_Release_Job.htm" class="calibreAPrev">previous page
+            </a>
+
+
+            <a href="Batch_Claim_Hold_Release_How_DIAMOND_Thinks.htm" class="calibreANext">next page
+            </a>
+
+        </div>
+
+
+        <h4 class="calibre1">Setting Up Claim Hold Release Rules and Determinants</h4>
+        <table cellpadding="1" cellspacing="0" width="480" class="calibre172">
+            <tbody class="calibre8">
+            <tr valign="top" class="">
+                <td width="120" class="">
+                    <p class="map-links"><a
+                            href="Setting_Up_Claim_Hold_Release_Rules_and_Determinants.htm#Setting_Up_Claim_Hold_Release_Rules_RESTR_TASK_MID"><img
+                            alt="image\assets/help/MidTopic_shg.gif" border="0" src="assets/help/MidTopic_shg.gif" usemap="#AreaMap0"
+                            class=""/>
+                    </a> Restrictions
+                    </p>
+                </td>
+                <td width="126" class="">
+                    <p class="map-links"><a
+                            href="Setting_Up_Claim_Hold_Release_Rules_and_Determinants.htm#Setting_Up_Claim_Hold_Release_Rules_INST_TASK_MID"><img
+                            alt="image\assets/help/MidTopic_shg.gif" border="0" src="assets/help/MidTopic_shg.gif" usemap="#AreaMap1"
+                            class=""/>
+                    </a> Instructions
+                    </p>
+                </td>
+                <td width="234" class="">
+                    <p class="map-links"><a
+                            href="Setting_Up_Claim_Hold_Release_Rules_and_Determinants.htm#Setting_Up_Claim_Hold_Release_Rules_FAQ_TASK_MID"><img
+                            alt="image\assets/help/MidTopic_shg.gif" border="0" src="assets/help/MidTopic_shg.gif" usemap="#AreaMap2"
+                            class=""/>
+                    </a> Frequently Asked Questions
+                    </p>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <p class="body-text">In order to release and retest multiple hold conditions in a batch process, called Batch
+            Claim Hold Release, you must set up claim hold release rules with specific determinants. Key particulars
+            used by claim hold release rules are claim type, whether to apply the rule to header and detail holds or
+            just header holds, the reason codes included in the processing, and the determinants and determinant value
+            ranges themselves. You must specify a value for all of these key elements on each rule.</p>
+        <p class="body-text">For more information about how to determine the key values for your models, see Batch Claim
+            Hold Release, How DIAMOND Thinks.</p>
+        <p class="doc-level"><a name="Setting_Up_Claim_Hold_Release_Rules_RESTR_TASK_MID"></a>Restrictions</p>
+        <p class="body-text">None.</p>
+        <p class="doc-level"><a name="Setting_Up_Claim_Hold_Release_Rules_INST_TASK_MID"></a>Instructions</p>
+        <table cellpadding="1" cellspacing="0" width="526" class="calibre172">
+            <tbody class="calibre8">
+            <tr valign="top" class="">
+                <td width="250" class="">
+                    <p class="tbl-header">Step</p></td>
+                <td width="276" class="">
+                    <p class="tbl-header">Comment</p></td>
+            </tr>
+            <tr valign="top" class="">
+                <td width="250" class="">
+                    <p class="step2">1. In keyword RHRUL, create batch claim hold Release Rules. Specify important
+                        criteria including: </p>
+                    <ul class="calibre2">
+                        <li class="">
+                            <p class="step--bullet">What specific hold reason codes the rule includes</p></li>
+                        <li class="">
+                            <p class="step--bullet">Whether each rule applies to Institutional or Professional
+                                claims</p></li>
+                        <li class="">
+                            <p class="step--bullet">Whether the rule applies to both claim header and detail holds or
+                                header holds only</p></li>
+                    </ul>
+                </td>
+                <td width="276" class="">
+                    <p class="step-comment1">A claim hold release rule reflects the business needs of the health
+                        plan. </p>
+                    <p class="body-text">Rule names and claim types may not be changed once the rule is saved. Reason
+                        codes may be changed.</p></td>
+            </tr>
+            <tr valign="top" class="">
+                <td width="250" class="">
+                    <p class="step2">2. In keyword RHDET, select the determinants and define the determinant values for
+                        the claim hold Release Rules.</p></td>
+                <td width="276" class="">
+                    <p class="step-comment1">Determinants are available from the following tables:</p>
+                    <ul class="calibre2">
+                        <li class="">
+                            <p class="step-comment-bullet-noline">Group Master</p></li>
+                        <li class="">
+                            <p class="step-comment-bullet-noline">Professional and Institutional Claim Headers (except
+                                dates)</p></li>
+                        <li class="">
+                            <p class="step-comment-bullet-noline">Professional and Institutional Claim Detail (except
+                                dates)</p></li>
+                    </ul>
+                    <p class="body-text">Determinant values entered in RHDET are not validated so exercise caution.</p>
+                    <p class="body-text">Determinants and Determinant values may be changed.</p>
+                    <p class="body-text">Sequence IDs for vendors, groups and providers are available as determinants in
+                        lieu of Vendor IDs, Group IDs and Provider IDs. Value ranges should not be used with these
+                        determinants since a range of Sequence IDs is not normally meaningful. </p></td>
+            </tr>
+            </tbody>
+        </table>
+        <p class="doc-level"><a name="Setting_Up_Claim_Hold_Release_Rules_FAQ_TASK_MID"></a>Frequently Asked Questions
+        </p>
+        <ul class="calibre2">
+            <li class="">
+                <p class="faq">How do I apply a claim hold release rule to both Institutional and Professional
+                    claims?</p></li>
+        </ul>
+        <p class="faq-ans">Claim hold Release Rules may only apply to either Institutional or Professional claims, not
+            both. Instead, create two Release Rules, one for claim type Institutional and one for claim type
+            Professional.</p>
+
+
+    </div>
+
+    <div class="calibreEbNav">
+
+        <a href="Running_a_Batch_Claim_Hold_Release_Job.htm" class="calibreAPrev">previous page
+        </a>
+
+
+        <a href="../bj5if-qozss.html" class="calibreAHome">start
+        </a>
+
+
+        <a href="Batch_Claim_Hold_Release_How_DIAMOND_Thinks.htm" class="calibreANext">next page
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+</html>

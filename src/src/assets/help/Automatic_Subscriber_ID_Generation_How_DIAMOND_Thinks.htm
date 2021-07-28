@@ -1,0 +1,182 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+    <title>Automatic Subscriber ID Generation, How DIAMOND Thinks</title>
+    <!--(Meta)==========================================================-->
+    <meta name="copyright"
+          value="© Copyright 2002 Health Systems Design Corp., a wholly owned subsidiary of Perot Systems Corporation. All rights reserved"/>
+    <meta content="RoboHELP by eHelp Corporation - www.ehelp.com" name="generator"/>
+    <meta content="0.1" name="generator-major-version"/>
+    <meta content="1" name="generator-minor-version"/>
+    <meta content="kadov" name="filetype"/>
+    <meta content="1" name="filetype-version"/>
+    <meta content="0" name="page-count"/>
+    <meta content="0" name="layout-height"/>
+    <meta content="0" name="layout-width"/>
+    <!--(Links)=========================================================-->
+    <!--(Scripts)=======================================================-->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+</head>
+<body>
+
+<div class="calibreMeta">
+    <div class="calibreMetaTitle">
+
+
+        <h1>
+            <a href="../ib0gc-jzzjl.html">DIAMOND 950 Help
+            </a>
+        </h1>
+
+
+    </div>
+    <div class="calibreMetaAuthor">
+        Unknown
+
+    </div>
+</div>
+
+<div class="calibreMain">
+
+    <div class="calibreEbookContent">
+
+        <div class="calibreEbNavTop">
+
+            <a href="Enabling_Automatic_Subscriber_ID_Generation.htm" class="calibreAPrev">previous page
+            </a>
+
+
+            <a href="Display_Member_Benefits_How_DIAMOND_Thinks.htm" class="calibreANext">next page
+            </a>
+
+        </div>
+
+
+        <h4 class="calibre1">Automatic Subscriber ID Generation, How DIAMOND Thinks</h4>
+
+        <!--(Table)=========================================================-->
+        <table cellspacing="0" width="540" x-use-null-cells="" class="calibre172">
+
+            <tbody class="calibre3">
+            <tr valign="top" class="">
+                <td width="540px" class="">
+                    <p class="map-links"><a
+                            href="Automatic_Subscriber_ID_Generation_How_DIAMOND_Thinks.htm#AutoSubIDGenHDT_Characteristics_of_Automatically_Generated_Subscriber_IDs_MID"><img
+                            alt="image\assets/help/MidTopic_shg.gif" border="0" height="10"
+                            src="assets/help/MidTopic_shg.gif" width="18" class=""/></a>
+                        Characteristics of Automatically Generated Subscriber
+                        IDs</p></td>
+            </tr>
+
+            <tr valign="top" class="">
+                <td width="540px" class="">
+                    <p class="map-links"><a
+                            href="Automatic_Subscriber_ID_Generation_How_DIAMOND_Thinks.htm#AutoSubIDGen_HDT_Online_Automatic_Subscriber_ID_Generation_MID"><img
+                            alt="image\assets/help/MidTopic_shg.gif" border="0" height="10"
+                            src="assets/help/MidTopic_shg.gif" width="18" class=""/></a>
+                        Online Automatic Subscriber ID Generation</p></td>
+            </tr>
+
+            <tr valign="top" class="">
+                <td width="540px" class="">
+                    <p class="map-links"><a
+                            href="Automatic_Subscriber_ID_Generation_How_DIAMOND_Thinks.htm#AutoSubIDGen_HDT_API_Automatic_Subscriber_ID_Generation_MID"><img
+                            alt="image\assets/help/MidTopic_shg.gif" border="0" height="10"
+                            src="assets/help/MidTopic_shg.gif" width="18" class=""/></a> API
+                        Automatic Subscriber ID Generation</p></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <p class="body-text">You can have DIAMOND automatically generate a Subscriber
+            ID when you add a new subscriber. You can specify that this occur:</p>
+
+        <ul class="calibre15">
+
+            <li class="kadov-p-cbullet-list-h"><p class="bullet-list-h">When you
+                are adding a subscriber online (at your option)</p></li>
+
+            <li class="kadov-p-cbullet-list-h"><p class="bullet-list-h">When you
+                are adding a subscriber via API using the ANSI 834 Benefits and Member
+                Maintenance Transaction</p></li>
+
+            <li class="kadov-p-cbullet-list-h"><p class="bullet-list-h">Both online
+                and API</p></li>
+        </ul>
+
+        <p class="body-text">You enable Automatic Subscriber ID Generation using
+            the system parameter MEMBSUBAUTGEN. See <a href="Enabling_Automatic_Subscriber_ID_Generation.htm">Enabling
+                Automatic Subscriber ID Generation</a> for more information.</p>
+
+        <p class="doc-level"><a
+                name="AutoSubIDGenHDT_Characteristics_of_Automatically_Generated_Subscriber_IDs_MID"></a>Characteristics
+            of Automatically Generated Subscriber IDs</p>
+
+        <p class="body-text">Subscriber IDs automatically generated by DIAMOND have
+            the following characteristics:</p>
+
+        <ul class="calibre15">
+
+            <li class="kadov-p-cbullet-list-h"><p class="bullet-list-h">Sequentially
+                generated, incrementing by one</p></li>
+
+            <li class="kadov-p-cbullet-list-h"><p class="bullet-list-h">Not a duplicate
+                of an existing Subscriber ID</p></li>
+
+            <li class="kadov-p-cbullet-list-h"><p class="bullet-list-h">Numeric</p></li>
+
+            <li class="kadov-p-cbullet-list-h"><p class="bullet-list-h">Left justified
+                with no leading zeroes</p></li>
+
+            <li class="kadov-p-cbullet-list-h"><p class="bullet-list-h">Maximum length
+                of 12</p></li>
+        </ul>
+
+        <p class="doc-level"><a name="AutoSubIDGen_HDT_Online_Automatic_Subscriber_ID_Generation_MID"></a>Online
+            Automatic Subscriber ID Generation</p>
+
+        <p class="body-text">If you have enabled online Automatic Subscriber ID Generation
+            in MEMBSUBAUTGEN, DIAMOND performs as follows.</p>
+
+        <p class="body-text">When you tab out of the Subscriber ID field in the keyword
+            MEMBR without entering a Subscriber ID, DIAMOND prompts you to automatically
+            generate the Subscriber ID. If you click Yes, DIAMOND generates the next
+            ID in the sequential series. If you click No, you remain in the Subscriber
+            ID field.</p>
+
+        <p class="doc-level"><a name="AutoSubIDGen_HDT_API_Automatic_Subscriber_ID_Generation_MID"></a>API
+            Automatic Subscriber ID Generation</p>
+
+        <p class="body-text">If you have enabled API Automatic Subscriber ID Generation
+            in MEMBSUBAUTGEN, DIAMOND will perform Automatic Subscriber ID Generation
+            during API processing of ANSI 834 Benefits and Member Maintenance transactions.
+            See the ANSI 834 Benefits and Member Maintenance Transaction API Guide
+            for more information.</p>
+
+
+    </div>
+
+
+
+
+    <div class="calibreEbNav">
+
+        <a href="Enabling_Automatic_Subscriber_ID_Generation.htm" class="calibreAPrev">previous page
+        </a>
+
+
+        <a href="../ib0gc-jzzjl.html" class="calibreAHome">start
+        </a>
+
+
+        <a href="Display_Member_Benefits_How_DIAMOND_Thinks.htm" class="calibreANext">next page
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+</html>

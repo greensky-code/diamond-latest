@@ -1,0 +1,77 @@
+<!-- Copyright (c) 2021 . All Rights Reserved. -->
+<div class="container-fluid">
+    <div class="card-block">
+        <form [formGroup]="messageMaintenanceForm" novalidate>
+            <h2 class="form-title card-label-admin">Message Maintenance</h2>
+            <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+            <app-pop-up-message #popUpMesssage (buttonclickEvent)="popUpButtonHandler($event)"  [(popupMessage)] = "popUpMessage"></app-pop-up-message>
+                        
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+                <!-- DynamicText with label of Message ID -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('messageId') }">
+                     <label class="col-form-label" for="messageId" i18n>Message ID</label>
+                     <input type="text"  [fieldLevelSec]="'Message Id'" params]="Message Master Hdr"  readonly id="messageId" formControlName="messageId" class="form-control"/>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+            </div>
+            
+                        <!-- DataGrid with Name of DataGrid -->
+                    <button (click)="dataGridGridOptionsExportCsv()">Export</button>
+                    <ag-grid-angular #agGrid class="ag-theme-fresh" [gridOptions]="dataGridGridOptions"
+                    style="width: 100%; height: 300px;"
+                    [enableSorting]="true"
+                    [enableFilter]="true"
+                    [floatingFilter]="true"
+                    [pagination]="true"
+                    [showToolPanel]="true">
+                    </ag-grid-angular>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+                <!-- Checkbox with label of Unclean Indicator -->
+                <div class="" [ngClass]="{'has-error': displayMessage.uncleanIndicator }">
+                    <div class="checkbox col-md-12">
+                      <input id="uncleanIndicator"  [fieldLevelSec]="'Unclean Flag'" params]="Message Master Hdr"  value="uncleanIndicator" formControlName="uncleanIndicator" type="checkbox">
+                        <label class="checkbox">
+                            Unclean Indicator
+                         </label>
+                    </div>
+                    <span class="help-block" *ngIf="displayMessage.uncleanIndicator">
+                        {{ displayMessage.uncleanIndicator  }}
+                     </span>
+                </div>
+            
+            </div>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+                <div class="col-md-2 form-control-static mb-0" i18n>
+                    Message ID Text
+                </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- DynamicText with label of ^LB -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('lb') }">
+                     <label class="col-form-label" for="lb" i18n>^LB</label>
+                     <input type="text"  [fieldLevelSec]="''" params]=""  readonly id="lb" formControlName="lb" class="form-control"/>
+                 </div>
+            
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,113 @@
+<!-- Copyright (c) 2021 . All Rights Reserved. -->
+<div class="container-fluid">
+    <div class="card-block">
+        <form [formGroup]="memberUtilizationDisplayForm" novalidate>
+
+            <div class="row form-title">
+                <h2 class="col-md-4  card-label-admin"> Member Utilization Display</h2>
+                <div class="col-md"><b class="readonly-label">View Only</b></div>
+            </div>
+            <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+            <app-pop-up-message #popUpMesssage (buttonclickEvent)="popUpButtonHandler($event)"
+                [(popupMessage)]="popUpMessage"></app-pop-up-message>
+
+            <div class="form-group row text-center">
+                <ng-template #loaderTemplate let-loaderValue="value">
+                    <div class="row justify-content-center mt-4" *ngIf="loaderValue">
+                        <div class="spinner-border text-success" role="status">
+                            <span class="sr-only">Loading...</span>
+                        </div>
+                    </div>
+                </ng-template>
+
+                <ng-container *ngTemplateOutlet="loaderTemplate;context:{value: loaderValue }"></ng-container>
+
+            </div>
+
+            <div class="col-md-12 row">
+                <div class="col-md-8">
+                    <div class="form-group">
+                        <!-- DynamicText with label of Member Name -->
+                        <div class="col-md-12" [ngClass]="{'has-danger': formValidation.isValidField('memberName') }">
+                            <label class="col-form-label" for="memberName" i18n>Member Name</label>
+                            <input type="text" readonly id="memberName" formControlName="memberName"
+                                class="form-control" />
+                        </div>
+
+                        <!-- DynamicText with label of Diamond ID -->
+                        <div class="col-md-12" [ngClass]="{'has-danger': formValidation.isValidField('diamondId') }">
+                            <label class="col-form-label" for="diamondId" i18n>Diamond ID</label>
+                            <input type="text" readonly id="diamondId" formControlName="diamondId"
+                                class="form-control" />
+                        </div>
+                    </div>
+
+                    <div class="form-group ">
+                        <!-- Textbox with label of Subscriber ID -->
+                        <div class="col-md-12" [ngClass]="{'has-danger': formValidation.isValidField('subscriberId') }">
+                            <label class="col-form-label clr-blue" for="subscriberId" i18n>Subscriber ID</label>
+                            <input type="text" id="subscriberId" #memberIds (keydown)="onLookupFieldChangeSub($event)"
+                                   (blur)="onSubscriberIdBlue($event)"
+                                class="form-control" formControlName="subscriberId" />
+                            <small class="text-danger" *ngIf="formValidation.isValidField('subscriberId')">
+                                {{ formValidation.errorMessage('subscriberId') }}
+                            </small>
+                        </div>
+
+                        <!-- Textbox with label of Person Number -->
+                        <div class="col-md-12" [ngClass]="{'has-danger': formValidation.isValidField('personNumber') }">
+                            <label class="col-form-label clr-blue" for="personNumber" i18n>Person Number</label>
+                            <input type="text" id="personNumber"
+                                (keydown)="onLookupFieldChange($event, memberIds.value)" class="form-control"
+                                formControlName="personNumber" />
+                            <small class="text-danger" *ngIf="formValidation.isValidField('personNumber')">
+                                {{ formValidation.errorMessage('personNumber') }}
+                            </small>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <!-- Textbox with label of Claim Type -->
+                        <div class="col-md-12" *ngIf="displayClaimTypeDDl"
+                            [ngClass]="{'has-danger': formValidation.isValidField('claimType') }">
+                            <label class="col-form-label clr-blue" for="claimType" i18n>Claim Type</label>
+                            <select class="form-control" id="claimType" #gender name="claimType"
+                                formControlName="claimType">
+                                <option [ngValue]="claim.dddwDtlPrimaryKey" *ngFor="let claim of claims">
+                                    {{claim.dddwDtlPrimaryKey.displayVal}}</option>
+                            </select>
+                            <small class="text-danger" *ngIf="formValidation.isValidField('claimType')">
+                                {{ formValidation.errorMessage('claimType') }}
+                            </small>
+                        </div>
+
+                        <!-- Textbox with label of From Date Of Svc -->
+                        <div class="col-md-12" [ngClass]="{'has-danger': formValidation.isValidField('fromDateOfSvc') }">
+                            <app-datepicker [formGroup]="memberUtilizationDisplayForm" [formValidation]="formValidation"
+                                [field]="'fromDateOfSvc'" [labelText]="dateOfSvcLabl"></app-datepicker>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <!-- Button with label of OK -->
+                        <div class="col-md-12">
+                            <button type="button" id="ok" name="ok" class="btn btn-small btn-primary" style="width: 100%;margin-bottom: 15%;"
+                                (click)="onSubmitForm()">OK</button>
+                        </div>
+
+                        <div class="col-md-12">
+                            <button type="button" id="cancel" name="cancel" class="btn btn-small btn-primary" style="width: 100%;"
+                                (click)="backToScreen()">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group row">
+            </div>
+        </form>
+    </div>
+</div>
+<ng-keyboard-shortcuts [shortcuts]="shortcuts" [disabled]="isChildModalOpen"></ng-keyboard-shortcuts>
+<ng-keyboard-shortcuts-help [key]="'f1'" [closeKey]="'escape'" [title]="'Hotkeys Help'"></ng-keyboard-shortcuts-help>

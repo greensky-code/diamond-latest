@@ -1,0 +1,638 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+    <!-- $MVD$:fontset("Courier New","Courier New") -->
+    <title>Claim Holds: Sources and Effects</title>
+    <meta content="RoboHelp by eHelp Corporation www.ehelp.com" name="generator"/>
+    <meta name="copyright"
+          value="© Copyright 2002 Health Systems Design Corp., a wholly owned subsidiary of Perot Systems Corporation. All rights reserved"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+</head>
+<body>
+
+<div class="calibreMeta">
+    <div class="calibreMetaTitle">
+
+
+        <h1>
+            <a href="../bj5if-qozss.html">DIAMOND 950 Help
+            </a>
+        </h1>
+
+
+    </div>
+    <div class="calibreMetaAuthor">
+        Unknown
+
+    </div>
+</div>
+
+<div class="calibreMain">
+
+    <div class="calibreEbookContent">
+
+        <div class="calibreEbNavTop">
+
+            <a href="Claim_Holds_An_Introduction_PROC_OVW.htm" class="calibreAPrev">previous page
+            </a>
+
+
+            <a href="Holding_Claims_Overview.htm" class="calibreANext">next page
+            </a>
+
+        </div>
+
+
+        <h4 class="calibre1">Claim Holds: Sources and Effects</h4>
+        <p class="body-text">You can hold claims in several ways:</p>
+        <ul class="calibre2">
+            <li class="calibre168">
+                <p class="bullet-list-h1">You can define table driven header hold rules to hold entire claims </p></li>
+            <li class="calibre168">
+                <p class="bullet-list-h1">You can use predefined DIAMOND hold rules to hold entire claims under certain
+                    conditions (for example, you can hold all claims for a specific member)</p></li>
+            <li class="calibre168">
+                <p class="bullet-list-h1">You can use predefined DIAMOND hold rules to hold individual claim detail
+                    lines under certain conditions (for example, you can use a Message and Pend benefit rule to hold
+                    individual claim lines for which the benefit rule applies)</p></li>
+            <li class="calibre168">
+                <p class="bullet-list-h1">You can manually hold an entire claim</p></li>
+            <li class="calibre168">
+                <p class="bullet-list-h1">You can manually hold an individual claim detail line</p></li>
+            <li class="calibre168">
+                <p class="bullet-list-h1">You can activate holds generation from third party interfaces</p></li>
+        </ul>
+        <p class="body-text">The following table summarizes the specific sources and effects of holds in DIAMOND.</p>
+        <p class="body-text1"> </p>
+        <table cellpadding="1" cellspacing="0" width="522" class="calibre172">
+            <tbody class="">
+            <tr valign="top" class="">
+                <td width="66" class="">
+                    <p class="tbl-header">Source</p></td>
+                <td width="72" class="">
+                    <p class="tbl-header">Type</p></td>
+                <td width="96" class="">
+                    <p class="tbl-header">Hold What</p></td>
+                <td width="114" class="">
+                    <p class="tbl-header">How to Use</p></td>
+                <td width="102" class="">
+                    <p class="tbl-header">Comments</p></td>
+                <td width="72" class="">
+                    <p class="tbl-header">More Info</p></td>
+            </tr>
+            <tr valign="top" class="">
+                <td width="66" class="">
+                    <p class="tbl-text1">ARULE </p></td>
+                <td width="72" class="">
+                    <p class="tbl-text1">Auth/claim link rule</p></td>
+                <td width="96" class="">
+                    <p class="tbl-text1">Hold entire claim – all detail lines</p>
+                    <p class="tbl-text-noline">OR</p>
+                    <p class="tbl-text-noline">Hold selected detail lines</p></td>
+                <td width="114" class="">
+                    <p class="tbl-text1">Use ARULE to enter authorization claim link rules to hold entire claims based
+                        on certain header field values or to hold individual claim detail lines based on certain detail
+                        line field values. Specify an Action of Hold on the rules.</p></td>
+                <td width="102" class="">
+                    <p class="tbl-text1"> </p></td>
+                <td width="72" class="">
+                    <p class="tbl-text1">ARULE </p></td>
+            </tr>
+            <tr valign="top" class="">
+                <td width="66" class="">
+                    <p class="tbl-text1">AUTHS</p></td>
+                <td width="72" class="">
+                    <p class="tbl-text1">Third party liability (TPL) hold</p></td>
+                <td width="96" class="">
+                    <p class="tbl-text1">Hold entire claim - all detail lines</p></td>
+                <td width="114" class="">
+                    <p class="tbl-text1">Use AUTHS - TPL Code to indicate the authorization’s third party liability type
+                        and use the PARAM - TPLCODEACT parameter to specify matching claim disposition (Hold/Deny) and
+                        disposition reason.</p></td>
+                <td width="102" class="">
+                    <p class="tbl-text1"> </p></td>
+                <td width="72" class="">
+                    <p class="tbl-text1">AUTHS &amp; PARAM </p></td>
+            </tr>
+            <tr valign="top" class="">
+                <td width="66" class="">
+                    <p class="tbl-text1">Auto Audit</p></td>
+                <td width="72" class="">
+                    <p class="tbl-text1">Claim audit</p></td>
+                <td width="96" class="">
+                    <p class="tbl-text1">Hold selected detail lines</p></td>
+                <td width="114" class="">
+                    <p class="tbl-text1">See AARUL User Documentation</p></td>
+                <td width="102" class="">
+                    <p class="tbl-text1"> </p></td>
+                <td width="72" class="">
+                    <p class="tbl-text1">AARUL </p></td>
+            </tr>
+            <tr valign="top" class="">
+                <td width="66" class="">
+                    <p class="tbl-text1">BRULE</p></td>
+                <td width="72" class="">
+                    <p class="tbl-text1">Benefit rule types: Copay, Limit, Full Coverage</p></td>
+                <td width="96" class="">
+                    <p class="tbl-text1">Hold selected detail lines</p></td>
+                <td width="114" class="">
+                    <p class="tbl-text1">Use BRULE to enter Copay, Limit and Full Coverage type benefit rules. DIAMOND
+                        automatically applies corresponding hold logic during claims adjudication.</p></td>
+                <td width="102" class="">
+                    <p class="tbl-text1">When DIAMOND sums up accumulated benefit quantities, if the quantity on the
+                        current claim line "straddles" the minimums, maximums or limits, DIAMOND displays a "manual
+                        adjudication required" message and the claim is held.</p></td>
+                <td width="72" class="">
+                    <p class="tbl-text1">BRULE </p></td>
+            </tr>
+            <tr valign="top" class="">
+                <td width="66" class="">
+                    <p class="tbl-text1">BRULE </p></td>
+                <td width="72" class="">
+                    <p class="tbl-text1">Message &amp; Pend type Benefit rule</p></td>
+                <td width="96" class="">
+                    <p class="tbl-text1">Hold selected detail lines</p></td>
+                <td width="114" class="">
+                    <p class="tbl-text1">Use BRULE to enter message and pend type benefit rules with a hold reason code.
+                        You can include a message to operator.</p></td>
+                <td width="102" class="">
+                    <p class="tbl-text1"> </p></td>
+                <td width="72" class="">
+                    <p class="tbl-text1">BRULE </p></td>
+            </tr>
+            <tr valign="top" class="">
+                <td width="66" class="">
+                    <p class="tbl-text1">CARUL – Claim Audit Results</p></td>
+                <td width="72" class="">
+                    <p class="tbl-text1">Claim audit</p></td>
+                <td width="96" class="">
+                    <p class="tbl-text1">Hold selected detail lines</p></td>
+                <td width="114" class="">
+                    <p class="tbl-text1">See CARUL User Documentation</p></td>
+                <td width="102" class="">
+                    <p class="tbl-text1"> </p></td>
+                <td width="72" class="">
+                    <p class="tbl-text1">CARUL </p></td>
+            </tr>
+            <tr valign="top" class="">
+                <td width="66" class="">
+                    <p class="tbl-text1">Claims Batch</p></td>
+                <td width="72" class="">
+                    <p class="tbl-text1">Multiple auth/claim matches</p></td>
+                <td width="96" class="">
+                    <p class="tbl-text1">Hold entire claim – all detail lines</p></td>
+                <td width="114" class="">
+                    <p class="tbl-text1">Automatic - Batch claims that match on multiple potential authorizations using
+                        table driven auth/claim match rules hold with reason code MLATH.</p></td>
+                <td width="102" class="">
+                    <p class="tbl-text1"> </p></td>
+                <td width="72" class="">
+                    <p class="tbl-text1"> </p></td>
+            </tr>
+            <tr valign="top" class="">
+                <td width="66" class="">
+                    <p class="tbl-text1">CLHLD</p></td>
+                <td width="72" class="">
+                    <p class="tbl-text1">User-defined Claim Header Hold rules</p></td>
+                <td width="96" class="">
+                    <p class="tbl-text1">Hold entire claim at header level only</p></td>
+                <td width="114" class="">
+                    <p class="tbl-text1">Use CLHLD to enter Claim Header Hold rules. You can use any claim header column
+                        (except date columns) as a determinant and specify multiple determinant values.</p></td>
+                <td width="102" class="">
+                    <p class="tbl-text1">DIAMOND automatically applies claim header hold rules when you initially move
+                        from header to detail. You can also manually apply rules by using INCLM/PSCLM/DNCLM Special menu
+                        command Re-apply Claim Holds.</p></td>
+                <td width="72" class="">
+                    <p class="tbl-text1">CLHLD </p></td>
+            </tr>
+            <tr valign="top" class="">
+                <td width="66" class="">
+                    <p class="tbl-text1">COBHD</p></td>
+                <td width="72" class="">
+                    <p class="tbl-text1">User-defined COB claim hold and deny rules. </p></td>
+                <td width="96" class="">
+                    <p class="tbl-text1">Hold entire claim – all detail lines</p></td>
+                <td width="114" class="">
+                    <p class="tbl-text1">Use COBHD to enter COB claim hold and deny rules. You can select rule
+                        determinants from several tables: COB History, Group Detail, Member Master, Professional
+                        Services claim header, Institutional claim header, and Dental claim header.</p></td>
+                <td width="102" class="">
+                    <p class="tbl-text1">COBHD rules supersede COB hold and deny conditions dictated by settings in the
+                        parameter COBCLAIMACTN.</p></td>
+                <td width="72" class="">
+                    <p class="tbl-text1">COBHD, Coordination of Benefits – How DIAMOND Thinks</p></td>
+            </tr>
+            <tr valign="top" class="">
+                <td width="66" class="">
+                    <p class="tbl-text1">CRRUL – CodeReview</p></td>
+                <td width="72" class="">
+                    <p class="tbl-text1">Claim proc codes review</p></td>
+                <td width="96" class="">
+                    <p class="tbl-text1">Hold selected detail lines</p></td>
+                <td width="114" class="">
+                    <p class="tbl-text1">See CRRUL User Documentation</p></td>
+                <td width="102" class="">
+                    <p class="tbl-text1"> </p></td>
+                <td width="72" class="">
+                    <p class="tbl-text1">CRRUL </p></td>
+            </tr>
+            <tr valign="top" class="">
+                <td width="66" class="">
+                    <p class="tbl-text1">DUPRL</p></td>
+                <td width="72" class="">
+                    <p class="tbl-text1">Duplicate claim rules</p></td>
+                <td width="96" class="">
+                    <p class="tbl-text1">Hold entire claim at the header level, or all detail lines</p>
+                    <p class="tbl-text-noline">Or</p>
+                    <p class="tbl-text-noline">Hold selected detail lines</p></td>
+                <td width="114" class="">
+                    <p class="tbl-text1">Use DUPRL to enter rules to hold entire claims based on certain claim header
+                        field values or to hold individual claim detail lines based on certain detail line field values.
+                        Specify an Action of Hold on the rules.</p></td>
+                <td width="102" class="">
+                    <p class="tbl-text1"> </p></td>
+                <td width="72" class="">
+                    <p class="tbl-text1">DUPRL </p></td>
+            </tr>
+            <tr valign="top" class="">
+                <td width="66" class="">
+                    <p class="tbl-text1">GROUP - Payment Threshold (Paid Through Threshold Percent)</p></td>
+                <td width="72" class="">
+                    <p class="tbl-text1">Group claims hold based on group premiums paid threshold percent</p></td>
+                <td width="96" class="">
+                    <p class="tbl-text1">Hold entire claim – all detail lines</p></td>
+                <td width="114" class="">
+                    <p class="tbl-text1">Use GROUP to enter a PTD Threshold Percent and select a Claim Hold Reason
+                        Code.</p></td>
+                <td width="102" class="">
+                    <p class="tbl-text1">When a non-payment of premium condition applies, assigns the Claim Hold Reason
+                        Code to all associated claims dated after updated GRUPB — Paid Through date.</p></td>
+                <td width="72" class="">
+                    <p class="tbl-text1">GROUP </p></td>
+            </tr>
+            <tr valign="top" class="">
+                <td width="66" class="">
+                    <p class="tbl-text1">GROUP - Hold Rsn/Date </p></td>
+                <td width="72" class="">
+                    <p class="tbl-text1">Group claims hold</p></td>
+                <td width="96" class="">
+                    <p class="tbl-text1">Hold entire claim – all detail lines</p></td>
+                <td width="114" class="">
+                    <p class="tbl-text1">Use GROUP to select a Hold Rsn and enter an effective Date for the hold.</p>
+                </td>
+                <td width="102" class="">
+                    <p class="tbl-text1">Holds all subsequently processed claims (for members associated with the group)
+                        with a primary date of service <span class="calibre157">on</span> or <span class="calibre157">after</span>
+                        the Group Hold Date. Assigns the Hold Rsn specified as the Hold Reason Code to all claim detail
+                        lines on the claim.</p></td>
+                <td width="72" class="">
+                    <p class="tbl-text1">GROUP </p></td>
+            </tr>
+            <tr valign="top" class="">
+                <td width="66" class="">
+                    <p class="tbl-text1">GRUPD - Pre-Existing Conditions</p></td>
+                <td width="72" class="">
+                    <p class="tbl-text1">Pre-existing conditions</p></td>
+                <td width="96" class="">
+                    <p class="tbl-text1">Hold selected detail lines</p></td>
+                <td width="114" class="">
+                    <p class="tbl-text1">On the Group Detail record (GRUPD) enter Exclusion Type (Days or Months),
+                        Exclusion Period, Apply PCP and select the desired Hold Reason code. </p>
+                    <p class="tbl-text1">(Note: DIAMOND does not apply pre-existing conditions logic if the MELIG PEC
+                        Waived check box is selected.)</p></td>
+                <td width="102" class="">
+                    <p class="tbl-text1">For example, assume an Exclusion Type of Days and an Exclusion Period of 90.
+                        DIAMOND uses these and the member’s effective date to determine the dates of the exclusion
+                        period. DIAMOND then compares that period against the claim detail line dates of service to
+                        determine if the claim is to be held due to a pre-existing condition.</p>
+                    <p class="tbl-text-noline">If you select the Apply PCP check box, pre-existing conditions logic
+                        applies even if the provider is the member’s PCP. If the box is clear, the logic does not apply
+                        to the member’s PCP.</p></td>
+                <td width="72" class="">
+                    <p class="tbl-text1">GRUPD </p></td>
+            </tr>
+            <tr valign="top" class="">
+                <td width="66" class="">
+                    <p class="tbl-text1">INCLM &amp; PSCLM – Cap Fund Status</p></td>
+                <td width="72" class="">
+                    <p class="tbl-text1">Capitation / Special Fund Distribution processing</p></td>
+                <td width="96" class="">
+                    <p class="tbl-text1">Hold selected detail lines</p>
+                    <p class="tbl-text-noline">(Not actually a hold condition but does prevent a claim detail line from
+                        being finalized and selected for payment – see Comments.)</p></td>
+                <td width="114" class="">
+                    <p class="tbl-text1">Set up a Cap Fund Model using CFMOD and run a Capitation Fund Distribution
+                        batch job using CFDST. DIAMOND automatically applies corresponding logic during claims
+                        adjudication.</p></td>
+                <td width="102" class="">
+                    <p class="tbl-text1">Not actually a hold condition in that DIAMOND does <span
+                            class="calibre157">not</span> create a hold reason record for the claim detail line nor
+                        change the Processing Status on the lines based on Cap Fund Status. </p>
+                    <p class="tbl-text-noline">However, DIAMOND prevents any claim detail line with a Cap Fund Status of
+                        1 or 2 from being finalized and selected for payment by Accounts Payable. </p></td>
+                <td width="72" class="">
+                    <p class="tbl-text1">CFDST</p></td>
+            </tr>
+            <tr valign="top" class="">
+                <td width="66" class="">
+                    <p class="tbl-text1">Manual - Hold Reason records</p></td>
+                <td width="72" class="">
+                    <p class="tbl-text1">Manual hold entry</p></td>
+                <td width="96" class="">
+                    <p class="tbl-text1">Hold entire claim at header level only </p>
+                    <p class="tbl-text-noline">or</p>
+                    <p class="tbl-text-noline">Hold selected detail lines</p></td>
+                <td width="114" class="">
+                    <p class="tbl-text1">Use the INCLM/PSCLM/DNCLM Topic Hold Reasons. To hold an entire claim, enter a
+                        hold reason record for Line #000. To hold an individual claim detail line, highlight the line
+                        and enter a hold reason record for that specific line and sub-line. </p></td>
+                <td width="102" class="">
+                    <p class="tbl-text1"> </p></td>
+                <td width="72" class="">
+                    <p class="tbl-text1">INCLM, PSCLM, &amp; DNCLM</p></td>
+            </tr>
+            <tr valign="top" class="">
+                <td width="66" class="">
+                    <p class="tbl-text1">Manual – Processing Status</p></td>
+                <td width="72" class="">
+                    <p class="tbl-text1">Manual hold entry</p></td>
+                <td width="96" class="">
+                    <p class="tbl-text1">Hold selected detail lines</p></td>
+                <td width="114" class="">
+                    <p class="tbl-text1">To hold an individual claim detail line, highlight the line and change the
+                        Processing Status to H - Held. </p></td>
+                <td width="102" class="">
+                    <p class="tbl-text1">Alternatively, enter a hold reason code for the claim detail line and DIAMOND
+                        automatically changes the Processing Status to H - Held.</p></td>
+                <td width="72" class="">
+                    <p class="tbl-text1">INCLM, PSCLM, &amp; DNCLM</p></td>
+            </tr>
+            <tr valign="top" class="">
+                <td width="66" class="">
+                    <p class="tbl-text1">MCHRL</p></td>
+                <td width="72" class="">
+                    <p class="tbl-text1">Authorization-claim match rules</p></td>
+                <td width="96" class="">
+                    <p class="tbl-text1">Hold entire claim – all detail lines</p></td>
+                <td width="114" class="">
+                    <p class="tbl-text1">Enter an auth/claim match rule with Action = Hold.</p></td>
+                <td width="102" class="">
+                    <p class="tbl-text1">DIAMOND holds all claim detail lines for claims that satisfy the MCHRL
+                        rule.</p></td>
+                <td width="72" class="">
+                    <p class="tbl-text1">MCHRL</p></td>
+            </tr>
+            <tr valign="top" class="">
+                <td width="66" class="">
+                    <p class="tbl-text1">MELIG – Pre-existing conditions</p></td>
+                <td width="72" class="">
+                    <p class="tbl-text1">Pre-existing conditions</p></td>
+                <td width="96" class="">
+                    <p class="tbl-text1">Hold selected detail lines</p></td>
+                <td width="114" class="">
+                    <p class="tbl-text1">On the MELIG record corresponding to the desired member and eligibility period,
+                        enter a PEC End Date. </p>
+                    <p class="tbl-text1">(Note: DIAMOND does not apply pre-existing conditions logic if the MELIG PEC
+                        Waived check box is selected.)</p></td>
+                <td width="102" class="">
+                    <p class="tbl-text1">DIAMOND holds all claim detail lines for the member where the date of service
+                        is before or equal to the PEC End Date.</p></td>
+                <td width="72" class="">
+                    <p class="tbl-text1"> </p></td>
+            </tr>
+            <tr valign="top" class="">
+                <td width="66" class="">
+                    <p class="tbl-text1">MEMBR</p></td>
+                <td width="72" class="">
+                    <p class="tbl-text1">Member Master</p></td>
+                <td width="96" class="">
+                    <p class="tbl-text1">Hold selected detail lines</p></td>
+                <td width="114" class="">
+                    <p class="tbl-text1">For the desired member, select Special menu command Claim Hold Codes. Enter a
+                        Claim Hold Code and a Claim Hold Date. </p></td>
+                <td width="102" class="">
+                    <p class="tbl-text1">DIAMOND holds all claim detail lines for the selected member where the claim
+                        detail line (From) Date is on or after the Claim Hold Date. </p></td>
+                <td width="72" class="">
+                    <p class="tbl-text1">MEMBR </p></td>
+            </tr>
+            <tr valign="top" class="">
+                <td width="66" class="">
+                    <p class="tbl-text1">PROCD - Hold Reason/Date</p></td>
+                <td width="72" class="">
+                    <p class="tbl-text1">Pricing</p></td>
+                <td width="96" class="">
+                    <p class="tbl-text1">Hold selected detail lines</p></td>
+                <td width="114" class="">
+                    <p class="tbl-text1">Specify a Hold Reason and Hold Date on the Procedure Code (PROCD) record.</p>
+                </td>
+                <td width="102" class="">
+                    <p class="tbl-text1"> </p></td>
+                <td width="72" class="">
+                    <p class="tbl-text1">PROCD </p></td>
+            </tr>
+            <tr valign="top" class="">
+                <td width="66" class="">
+                    <p class="tbl-text1">PROCP - Proc Hold/ Date</p></td>
+                <td width="72" class="">
+                    <p class="tbl-text1">Pricing</p></td>
+                <td width="96" class="">
+                    <p class="tbl-text1">Hold selected detail lines</p></td>
+                <td width="114" class="">
+                    <p class="tbl-text1">Select a Procedure Hold reason on the Procedure Price (PROCP) record.</p></td>
+                <td width="102" class="">
+                    <p class="tbl-text1"> </p></td>
+                <td width="72" class="">
+                    <p class="tbl-text1">PROCP </p></td>
+            </tr>
+            <tr valign="top" class="">
+                <td width="66" class="">
+                    <p class="tbl-text1">PROVC - Special = Claim Hold Codes</p></td>
+                <td width="72" class="">
+                    <p class="tbl-text1">Pre-Pricing</p></td>
+                <td width="96" class="">
+                    <p class="tbl-text1">Hold selected detail lines</p></td>
+                <td width="114" class="">
+                    <p class="tbl-text1">Select PROVC Special menu command Claim Hold Codes, then select a Claim Hold
+                        Code and enter a Claim Hold Date.</p></td>
+                <td width="102" class="">
+                    <p class="tbl-text1"> </p></td>
+                <td width="72" class="">
+                    <p class="tbl-text1">PROVC </p></td>
+            </tr>
+            <tr valign="top" class="">
+                <td width="66" class="">
+                    <p class="tbl-text1">PRULD - Hold Reason</p></td>
+                <td width="72" class="">
+                    <p class="tbl-text1">Pricing</p></td>
+                <td width="96" class="">
+                    <p class="tbl-text1">Hold selected detail lines</p></td>
+                <td width="114" class="">
+                    <p class="tbl-text1">Specify a Hold Reason on the PRULD record. You can include a message to
+                        operator.</p></td>
+                <td width="102" class="">
+                    <p class="tbl-text1"> </p></td>
+                <td width="72" class="">
+                    <p class="tbl-text1">PRULD </p></td>
+            </tr>
+            <tr valign="top" class="">
+                <td width="66" class="">
+                    <p class="tbl-text1">PRULW - Hold Reason</p></td>
+                <td width="72" class="">
+                    <p class="tbl-text1">Whole claim Pricing</p></td>
+                <td width="96" class="">
+                    <p class="tbl-text1">Hold selected detail lines</p></td>
+                <td width="114" class="">
+                    <p class="tbl-text1">Specify a Hold Reason on the PRULW record. You can include a message to
+                        operator.</p></td>
+                <td width="102" class="">
+                    <p class="tbl-text1">  </p></td>
+                <td width="72" class="">
+                    <p class="tbl-text1">PRULW </p></td>
+            </tr>
+            <tr valign="top" class="">
+                <td width="66" class="">
+                    <p class="tbl-text1">VENDR – Hold Payment Flag</p></td>
+                <td width="72" class="">
+                    <p class="tbl-text1">Accounts Payable</p></td>
+                <td width="96" class="">
+                    <p class="tbl-text1"><span class="calibre5">Not</span><span class="calibre157"> </span><span
+                            class="calibre5">actually a hold condition</span> but prevents accounts payable records for
+                        this vendor from being included when the vendor check is generated – see Comments.</p></td>
+                <td width="114" class="">
+                    <p class="tbl-text1">Select the VENDR Hold Payment Flag check box.</p></td>
+                <td width="102" class="">
+                    <p class="tbl-text1">If you select the VENDR Hold Payment flag, the only action DIAMOND takes is to
+                        prevent accounts payable records for this vendor from being included in a check.</p>
+                    <p class="tbl-text-noline">Selecting the Hold Payment Flag does not cause DIAMOND to create hold
+                        reason records or change the Processing Status to Held on the claim detail lines, nor is this
+                        condition explicitly reflected on the corresponding accounts payable records.</p></td>
+                <td width="72" class="">
+                    <p class="tbl-text1"> </p></td>
+            </tr>
+            <tr valign="top" class="">
+                <td width="66" class="">
+                    <p class="tbl-text1">SUSER</p></td>
+                <td width="72" class="">
+                    <p class="tbl-text1">Security - Claim type, claim limit or determinant by User ID (online)</p></td>
+                <td width="96" class="">
+                    <p class="tbl-text1">Hold entire claim – all detail lines</p></td>
+                <td width="114" class="">
+                    <p class="tbl-text1">Specify in Users (SUSER) the User ID, claim type, claim limit or determinant
+                        for which to hold all claims entered by a specific user (User ID), and assign a selected hold
+                        reason code.</p></td>
+                <td width="102" class="">
+                    <p class="tbl-text1"> </p></td>
+                <td width="72" class="">
+                    <p class="tbl-text1">SUSER </p></td>
+            </tr>
+            <tr valign="top" class="">
+                <td width="66" class="">
+                    <p class="tbl-text1">SUSER</p></td>
+                <td width="72" class="">
+                    <p class="tbl-text1">Security - Claim type, claim limit or determinant by User ID (Claims Batch)</p>
+                </td>
+                <td width="96" class="">
+                    <p class="tbl-text1">Hold entire claim – all detail lines</p></td>
+                <td width="114" class="">
+                    <p class="tbl-text1">Online, access a claim submitted via Claims Batch. DIAMOND re-applies SUSER
+                        hold logic for your user ID. (See SUSER, Security - Claim type, claim limit or determinant by
+                        User ID (online) above)</p></td>
+                <td width="102" class="">
+                    <p class="tbl-text1">When a claim comes in through Claims Batch, DIAMOND cannot apply the normal
+                        SUSER hold logic (claim type, claim limit or determinant). This is because this logic is
+                        specific to an SUSER User ID and there is no corresponding User ID for Claims Batch.</p>
+                    <p class="tbl-text-noline">When you subsequently access the claim online, DIAMOND can re-apply the
+                        SUSER hold logic based on the User ID for the session.</p></td>
+                <td width="72" class="">
+                    <p class="tbl-text1">SUSER </p></td>
+            </tr>
+            <tr valign="top" class="">
+                <td width="66" class="">
+                    <p class="tbl-text1">System Parameter </p>
+                    <p class="tbl-text-noline">COBCLAIMACTN</p></td>
+                <td width="72" class="">
+                    <p class="tbl-text1">Coordination of Benefits</p></td>
+                <td width="96" class="">
+                    <p class="tbl-text1">Hold selected detail lines</p></td>
+                <td width="114" class="">
+                    <p class="tbl-text1">In system parameter COBCLAIMACTN, enter H (Hold) in Param 1 and the desired
+                        hold reason code in Param 2.</p></td>
+                <td width="102" class="">
+                    <p class="tbl-text1">During on-line claims entry, if the member has a primary insurance coverage
+                        (COBHS — COB Code — P Primary) other than that on the claim, DIAMOND holds the claim and assigns
+                        the hold reason code specified in COBCLAIMACTN Parameter 2 to the claim detail line.</p>
+                    <p class="tbl-text1">COBHD rules supersede COB hold (and deny) conditions dictated by
+                        COBCLAIMACTN.</p></td>
+                <td width="72" class="">
+                    <p class="tbl-text1">PARAM </p></td>
+            </tr>
+            <tr valign="top" class="">
+                <td width="66" class="">
+                    <p class="tbl-text1">System Parameter PARTIALPAY</p></td>
+                <td width="72" class="">
+                    <p class="tbl-text1">Requires finalizing and selecting for payment of entire claim (all detail
+                        lines) at once</p></td>
+                <td width="96" class="">
+                    <p class="tbl-text1">Hold entire claim – all detail lines </p>
+                    <p class="tbl-text-noline">(Not actually a hold condition but does prevent all claim detail lines
+                        from being finalized and selected for payment – see Comments.)</p></td>
+                <td width="114" class="">
+                    <p class="tbl-text1">In system parameter PARTIALPAY, enter Y(es) in Param1</p></td>
+                <td width="102" class="">
+                    <p class="tbl-text1">Not actually a hold condition in that DIAMOND does <span
+                            class="calibre157">not</span> create a hold reason record for each claim detail line nor
+                        change the Processing Status on the lines based on PARTIALPAY. </p>
+                    <p class="tbl-text-noline">However, when activated, if any claim detail line on the claim has a
+                        Processing Status of Held, DIAMOND prevents any claim detail line on the same claim from being
+                        finalized and selected for payment by Accounts Payable. </p></td>
+                <td width="72" class="">
+                    <p class="tbl-text1">PARAM </p></td>
+            </tr>
+            <tr valign="top" class="">
+                <td width="66" class="">
+                    <p class="tbl-text1">System Parameter TPLCODEACT</p></td>
+                <td width="72" class="">
+                    <p class="tbl-text1">Third party liability (TPL) hold</p></td>
+                <td width="96" class="">
+                    <p class="tbl-text1">Hold entire claim - all detail lines</p></td>
+                <td width="114" class="">
+                    <p class="tbl-text1">Used in conjunction with a claim’s matched authorization wherein an AUTHS - TPL
+                        Code has been entered.</p></td>
+                <td width="102" class="">
+                    <p class="tbl-text1">This parameter specifies matching claim disposition (Hold/Deny) and disposition
+                        reason.</p></td>
+                <td width="72" class="">
+                    <p class="tbl-text1">AUTHS &amp; PARAM </p></td>
+            </tr>
+            </tbody>
+        </table>
+        <p class="body-text1"> </p>
+        <p class="body-text">For more information, see Claim Hold Rules (CLHLD) User Documentation.</p>
+
+
+    </div>
+
+
+    <div class="calibreEbNav">
+
+        <a href="Claim_Holds_An_Introduction_PROC_OVW.htm" class="calibreAPrev">previous page
+        </a>
+
+
+        <a href="../bj5if-qozss.html" class="calibreAHome">start
+        </a>
+
+
+        <a href="Holding_Claims_Overview.htm" class="calibreANext">next page
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!-- Copyright (c) 2020 . All Rights Reserved. -->
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top"
+     style=" background-color: #eff5ff; color: black">
+  <div class="container" style="font-weight: 600;
+    font-size: 16px;">
+    <a class="navbar-brand" routerLink="/diamond/functional-groups" href="">Diamond</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+            aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+    
+        <!--<li class="nav-item" *ngIf="isAuthenticated()">-->
+          <!--<a class="nav-link" href="#" >Dashboard</a>-->
+        <!--</li>-->
+
+
+
+        <li class="nav-item">
+          <div class="menu">
+            <div ngbDropdown>
+              <a id="fileDropdown" class="username" style="cursor: pointer" ngbDropdownToggle>
+                <fa-icon style="font-size: 1.7em" [icon]="faUserCircle"></fa-icon>
+               <span> {{activeUser}} </span>
+              </a>
+
+              <div ngbDropdownMenu aria-labelledby="fileDropdown" class="mt-2">
+              <a ngbDropdownItem class="pt-2 pb-2" *ngIf="!isAuthenticated()" routerLink="diamond/user/login">
+                  <fa-icon class="mr-2" [icon]="faSignIn"></fa-icon>
+                  <span>Login</span></a>
+                <a ngbDropdownItem class="pt-2 pb-2" (click)="logout()" *ngIf="isAuthenticated()" [routerLink]="['/diamond/user/login']">
+                  <fa-icon class="mr-2" [icon]="faSignOut"></fa-icon>
+                  Logout </a>
+              </div>
+
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<ngb-toast-container style="margin-top: 3.7rem; z-index: 999999"></ngb-toast-container>
+
+<div class="container content">
+  <div class="place-holder">
+    <router-outlet></router-outlet>
+  </div>
+</div>
+
+
+<!--<div class="form-group row">
+  <div class="col-md-12">&nbsp;</div>
+</div>
+<div class="form-group row">
+  <div class="col-md-12">&nbsp;</div>
+</div>-->
+<!-- Footer -->
+<footer class="py-5 bg-dark footer">
+  <div class="container">
+    <p class="m-0 text-center text-white">Diamond Version V1.6.1224 {{date}} Database Server: {{ipAddress}}</p>
+  </div>
+  <!-- /.container -->
+</footer>
+
+<ng-keyboard-shortcuts [shortcuts]="shortcuts" ></ng-keyboard-shortcuts>

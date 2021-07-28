@@ -1,0 +1,201 @@
+<!-- Copyright (c) 2021 . All Rights Reserved. -->
+<div class="container-fluid">
+    <div class="card-block">
+        <form [formGroup]="priceRuleDetailSelectionForm" novalidate>
+            <h2 class="form-title card-label-admin">Price Rule Detail Selection</h2>
+            <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+            <app-pop-up-message #popUpMesssage (buttonclickEvent)="popUpButtonHandler($event)"  [(popupMessage)] = "popUpMessage"></app-pop-up-message>
+            <button type="button" *ngIf="showIcon" class="modal-close close" aria-label="Close" (click)="modalClose()">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <div class="row">
+                <menu-bar [menus]="menu" (onMenuClick)="onMenuItemClick($event)"></menu-bar>
+            </div>
+            <div class="form-group row">
+                <!-- Textbox with label of Price Rule -->
+                 <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('priceRule') }">
+                     <label class="col-form-label" for="priceRule" i18n>Price Rule</label>
+                     <input (change)="onChangePriceRule($event)"  type="text" id="priceRule" (keydown)="onPriceRuleLookup($event)"  #priceRule  class="form-control" formControlName="priceRule"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('priceRule')">
+                      {{ formValidation.errorMessage('priceRule') }}
+                     </small>
+                 </div>
+
+                <!-- DynamicText with Name of DynamicText -->
+                 <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('dynamicText') }">
+                     <label class="col-form-label" for="dynamicText" i18n>&nbsp;</label>
+                     <input type="text" readonly id="dynamicText" formControlName="dynamicText" class="form-control text-primary"/>
+                 </div>
+
+            </div>
+
+                        <!-- DataGrid with Name of DataGrid001 -->
+                    <ag-grid-angular #agGrid class="ag-theme-fresh" [gridOptions]="dataGrid001GridOptions"
+                    style="width: 100%; height: 300px;"
+                    [enableSorting]="true"
+                    [enableFilter]="true"
+                    [floatingFilter]="true"
+                    [pagination]="true"
+                    [showToolPanel]="true"
+                                        (selectionChanged)="OnChangeGrid()">
+
+                    </ag-grid-angular>
+
+            <div class="form-group row">
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                <!-- DataGrid with Name of DataGrid002 -->
+                <ag-grid-angular #agGrid class="ag-theme-fresh"   (selectionChanged)="onSecondGridChange()" [gridOptions]="dataGrid002GridOptions" style="width: 100%; height: 300px;" [enableSorting]="true" [enableFilter]="true" [floatingFilter]="true" [pagination]="true" [showToolPanel]="true">
+                </ag-grid-angular>
+                </div>
+                <div class="col-md-8">
+                    <div class="form-group row">
+                        <!-- Textbox with label of Rule Order -->
+                        <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('ruleOrder') }">
+                            <label class="col-form-label required-field-label" for="ruleOrder" i18n>Rule Order</label>
+                            <input type="text" id="ruleOrder" class="form-control" formControlName="ruleOrder" />
+                            <small class="text-danger" *ngIf="formValidation.isValidField('ruleOrder')">
+                                {{ formValidation.errorMessage('ruleOrder') }}
+                            </small>
+                        </div>
+
+                        <!-- Textbox with label of Operation -->
+                        <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('operation') }">
+                            <label class="col-form-label required-field-label" for="operation" i18n>Operator</label>
+                            <select type="text" id="operation" class="form-control" formControlName="operation">
+                                <option *ngFor="let dddwDtl of operator" [value]="dddwDtl.dddwDtlPrimaryKey.dataVal">{{dddwDtl.dddwDtlPrimaryKey.displayVal}}</option>
+                            </select>
+                            <small class="text-danger" *ngIf="formValidation.isValidField('operation')">
+                                {{ formValidation.errorMessage('operation') }}
+                            </small>
+                        </div>
+                        <table style="width:100%">
+                            <thead>
+                                <tr style="text-align:center">
+                                    <th>#</th>
+                                    <th>Proc Code From</th>
+                                    <th>Proc Code Thru</th>
+                                </tr>
+
+                            </thead>
+                            <tbody>
+                                 <tr>
+                                     <th class="required-field-label">1</th>
+                                 <td>
+                                    <div class="col-md-12" [ngClass]="{'has-danger': formValidation.isValidField('from1') }">
+                                        <input type="text" id="from1" class="form-control" formControlName="from1" (keyup)="setFieldValue($event, 'from1')" />
+                                        <small class="text-danger" *ngIf="formValidation.isValidField('from1')">
+                                            {{ formValidation.errorMessage('from1') }}
+                                        </small>
+                                    </div>
+                                 </td>
+                                 <td>
+                                    <div class="col-md-12" [ngClass]="{'has-danger': formValidation.isValidField('thru1') }">
+                                        <input type="text" id="thru1" class="form-control" formControlName="thru1" (keyup)="setFieldValue($event, 'thru1')" />
+                                        <small class="text-danger" *ngIf="formValidation.isValidField('thru1')">
+                                            {{ formValidation.errorMessage('thru1') }}
+                                        </small>
+                                    </div>
+                                 </td>
+
+                                 </tr>
+                                <tr>
+                                     <th>2</th>
+
+                                    <td>
+                                        <div class="col-md-12" [ngClass]="{'has-danger': formValidation.isValidField('from2') }">
+                                            <input type="text" id="from2" class="form-control" formControlName="from2" (keyup)="setFieldValue($event, 'from2')"/>
+                                            <small class="text-danger" *ngIf="formValidation.isValidField('from2')">
+                                                {{ formValidation.errorMessage('from2') }}
+                                            </small>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="col-md-12" [ngClass]="{'has-danger': formValidation.isValidField('thru2') }">
+                                            <input type="text" id="thru2" class="form-control" formControlName="thru2"  (keyup)="setFieldValue($event, 'thru2')"/>
+                                            <small class="text-danger" *ngIf="formValidation.isValidField('thru2')">
+                                                {{ formValidation.errorMessage('thru2') }}
+                                            </small>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>3</th>
+                                    <td>
+                                        <div class="col-md-12" [ngClass]="{'has-danger': formValidation.isValidField('from3') }">
+                                            <input type="text" id="from3" class="form-control" formControlName="from3" (keyup)="setFieldValue($event, 'from3')"/>
+                                            <small class="text-danger" *ngIf="formValidation.isValidField('from3')">
+                                                {{ formValidation.errorMessage('from3') }}
+                                            </small>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="col-md-12" [ngClass]="{'has-danger': formValidation.isValidField('thru3') }">
+                                            <input type="text" id="thru3" class="form-control" formControlName="thru3" (keyup)="setFieldValue($event, 'thru3')" />
+                                            <small class="text-danger" *ngIf="formValidation.isValidField('thru3')">
+                                                {{ formValidation.errorMessage('thru3') }}
+                                            </small>
+                                        </div>
+                                    </td>
+
+                                </tr>
+
+                                <tr>
+
+                                    <th>4</th>
+
+                                    <td>
+                                        <div class="col-md-12" [ngClass]="{'has-danger': formValidation.isValidField('from4') }">
+                                            <input type="text" id="from4" class="form-control" formControlName="from4" (keyup)="setFieldValue($event, 'from4')" />
+                                            <small class="text-danger" *ngIf="formValidation.isValidField('from4')">
+                                                {{ formValidation.errorMessage('from4') }}
+                                            </small>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="col-md-12" [ngClass]="{'has-danger': formValidation.isValidField('thru4') }">
+                                            <input type="text" id="thru4" class="form-control" formControlName="thru4" (keyup)="setFieldValue($event, 'thru4')" />
+                                            <small class="text-danger" *ngIf="formValidation.isValidField('thru4')">
+                                                {{ formValidation.errorMessage('thru4') }}
+                                            </small>
+                                        </div>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                                                        <th >5</th>
+
+                                    <td>
+                                        <div class="col-md-12" [ngClass]="{'has-danger': formValidation.isValidField('from5') }">
+                                            <input type="text" id="from5" class="form-control" formControlName="from5" (keyup)="setFieldValue($event, 'from5')" />
+                                            <small class="text-danger" *ngIf="formValidation.isValidField('from5')">
+                                                {{ formValidation.errorMessage('from5') }}
+                                            </small>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="col-md-12" [ngClass]="{'has-danger': formValidation.isValidField('thru5') }">
+                                            <input type="text" id="thru5" class="form-control" formControlName="thru5" (keyup)="setFieldValue($event, 'thru5')" />
+                                            <small class="text-danger" *ngIf="formValidation.isValidField('thru5')">
+                                                {{ formValidation.errorMessage('thru5') }}
+                                            </small>
+                                        </div>
+                                    </td>
+
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+
+
+
+        </form>
+    </div>
+</div>
+
+<ng-keyboard-shortcuts [shortcuts]="shortcuts"></ng-keyboard-shortcuts>
+<ng-keyboard-shortcuts-help [key]="'f2'" [closeKey]="'escape'" [title]="'Hotkeys Help'"></ng-keyboard-shortcuts-help>

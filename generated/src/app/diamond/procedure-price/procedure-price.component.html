@@ -1,0 +1,254 @@
+<!-- Copyright (c) 2021 . All Rights Reserved. -->
+<div class="container-fluid">
+    <div class="card-block">
+        <form [formGroup]="procedurePriceForm" novalidate>
+            <h2 class="form-title card-label-admin">Procedure Price</h2>
+            <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+            <app-pop-up-message #popUpMesssage (buttonclickEvent)="popUpButtonHandler($event)"  [(popupMessage)] = "popUpMessage"></app-pop-up-message>
+                        
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+                <!-- DynamicText with label of Procedure Code -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('procedureCode') }">
+                     <label class="col-form-label" for="procedureCode" i18n>Procedure Code</label>
+                     <input type="text"  [fieldLevelSec]="'Procedure Code'" params]="Procedure Price"  readonly id="procedureCode" formControlName="procedureCode" class="form-control"/>
+                 </div>
+            
+                <!-- DynamicText with Name of DynamicText -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('dynamicText') }">
+                     <label class="col-form-label" for="dynamicText" i18n>&nbsp;</label>
+                     <input type="text"  [fieldLevelSec]="''" params]=""  readonly id="dynamicText" formControlName="dynamicText" class="form-control"/>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+            </div>
+            
+                        <!-- DataGrid with Name of DataGrid -->
+                    <button (click)="dataGridGridOptionsExportCsv()">Export</button>
+                    <ag-grid-angular #agGrid class="ag-theme-fresh" [gridOptions]="dataGridGridOptions"
+                    style="width: 100%; height: 300px;"
+                    [enableSorting]="true"
+                    [enableFilter]="true"
+                    [floatingFilter]="true"
+                    [pagination]="true"
+                    [showToolPanel]="true">
+                    </ag-grid-angular>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+                <div class="col-md-2 form-control-static mb-0" i18n>
+                    Idenfification
+                </div>
+            
+            </div>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+                <!-- DropdownList with label of Price Schedule -->
+                <div class="selectContainer col-md-2 " [ngClass]="{'has-danger': formValidation.isValidField('priceSchedule') }">
+                    <label class="col-form-label" for="priceSchedule" i18n>Price Schedule</label>
+                    <select class="form-control" id="price_schedule"  [fieldLevelSec]="''" params]=""  name="Price Schedule" formControlName="priceSchedule">
+                        <option value="">Please Select</option>
+                    </select>
+                </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of Region Type -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('regionType') }">
+                     <label class="col-form-label" for="regionType" i18n>Region Type</label>
+                     <input type="text" id="regionType"  [fieldLevelSec]="''" params]=""   class="form-control" formControlName="regionType"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('regionType')">
+                      {{ formValidation.errorMessage('regionType') }}
+                     </small>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of Region -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('region') }">
+                     <label class="col-form-label" for="region" i18n>Region</label>
+                     <input type="text" id="region"  [fieldLevelSec]="''" params]=""   class="form-control" formControlName="region"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('region')">
+                      {{ formValidation.errorMessage('region') }}
+                     </small>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of Modifier Code -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('modifierCode') }">
+                     <label class="col-form-label" for="modifierCode" i18n>Modifier Code</label>
+                     <input type="text" id="modifierCode"  [fieldLevelSec]="''" params]=""   class="form-control" formControlName="modifierCode"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('modifierCode')">
+                      {{ formValidation.errorMessage('modifierCode') }}
+                     </small>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <div class="col-md-2 form-control-static mb-0" i18n>
+                    Effective Date
+                </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <div class="col-md-2 form-control-static mb-0" i18n>
+                    Pricing Specifications and Idenfification
+                </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of Term Date -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('termDate') }">
+                     <label class="col-form-label" for="termDate" i18n>Term Date</label>
+                     <input type="text" id="termDate"  [fieldLevelSec]="'Term Date'" params]="Procedure Price"   class="form-control" formControlName="termDate"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('termDate')">
+                      {{ formValidation.errorMessage('termDate') }}
+                     </small>
+                 </div>
+            
+                <!-- Textbox with label of per Diem Flat -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('perDiemFlat') }">
+                     <label class="col-form-label" for="perDiemFlat" i18n>per Diem Flat</label>
+                     <input type="text" id="perDiemFlat"  [fieldLevelSec]="'Per Diem Flag'" params]="Procedure Price"   class="form-control" formControlName="perDiemFlat"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('perDiemFlat')">
+                      {{ formValidation.errorMessage('perDiemFlat') }}
+                     </small>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of ALlowed Amt -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('allowedAmt') }">
+                     <label class="col-form-label" for="allowedAmt" i18n>ALlowed Amt</label>
+                     <input type="text" id="allowedAmt"  [fieldLevelSec]="'Allowed Amt'" params]="Procedure Price"   class="form-control" formControlName="allowedAmt"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('allowedAmt')">
+                      {{ formValidation.errorMessage('allowedAmt') }}
+                     </small>
+                 </div>
+            
+                <!-- Textbox with label of User Defined 1 -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('userDefined1') }">
+                     <label class="col-form-label" for="userDefined1" i18n>User Defined 1</label>
+                     <input type="text" id="userDefined1"  [fieldLevelSec]="'User Defined 1'" params]="Procedure Price"   class="form-control" formControlName="userDefined1"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('userDefined1')">
+                      {{ formValidation.errorMessage('userDefined1') }}
+                     </small>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of Pct of Billed -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('pctOfBilled') }">
+                     <label class="col-form-label" for="pctOfBilled" i18n>Pct of Billed</label>
+                     <input type="text" id="pctOfBilled"  [fieldLevelSec]="'Pct Of Billed'" params]="Procedure Price"   class="form-control" formControlName="pctOfBilled"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('pctOfBilled')">
+                      {{ formValidation.errorMessage('pctOfBilled') }}
+                     </small>
+                 </div>
+            
+                <!-- Textbox with label of User Define 2 -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('userDefine2') }">
+                     <label class="col-form-label" for="userDefine2" i18n>User Define 2</label>
+                     <input type="text" id="userDefine2"  [fieldLevelSec]="'User Defined 2'" params]="Procedure Price"   class="form-control" formControlName="userDefine2"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('userDefine2')">
+                      {{ formValidation.errorMessage('userDefine2') }}
+                     </small>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of Withhold Pct -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('withholdPct') }">
+                     <label class="col-form-label" for="withholdPct" i18n>Withhold Pct</label>
+                     <input type="text" id="withholdPct"  [fieldLevelSec]="'Withhold Pct'" params]="Procedure Price"   class="form-control" formControlName="withholdPct"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('withholdPct')">
+                      {{ formValidation.errorMessage('withholdPct') }}
+                     </small>
+                 </div>
+            
+                <!-- Textbox with label of User Define 3 -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('userDefine3') }">
+                     <label class="col-form-label" for="userDefine3" i18n>User Define 3</label>
+                     <input type="text" id="userDefine3"  [fieldLevelSec]="'User Defined 3'" params]="Procedure Price"   class="form-control" formControlName="userDefine3"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('userDefine3')">
+                      {{ formValidation.errorMessage('userDefine3') }}
+                     </small>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of Contract Override -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('contractOverride') }">
+                     <label class="col-form-label" for="contractOverride" i18n>Contract Override</label>
+                     <input type="text" id="contractOverride"  [fieldLevelSec]="'Contract Override'" params]="Procedure Price"   class="form-control" formControlName="contractOverride"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('contractOverride')">
+                      {{ formValidation.errorMessage('contractOverride') }}
+                     </small>
+                 </div>
+            
+                <!-- Textbox with label of User Denine 4 -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('userDenine4') }">
+                     <label class="col-form-label" for="userDenine4" i18n>User Denine 4</label>
+                     <input type="text" id="userDenine4"  [fieldLevelSec]="'User Defined 4'" params]="Procedure Price"   class="form-control" formControlName="userDenine4"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('userDenine4')">
+                      {{ formValidation.errorMessage('userDenine4') }}
+                     </small>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of Procedure Hold -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('procedureHold') }">
+                     <label class="col-form-label" for="procedureHold" i18n>Procedure Hold</label>
+                     <input type="text" id="procedureHold"  [fieldLevelSec]="'Procedure Hold'" params]="Procedure Price"   class="form-control" formControlName="procedureHold"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('procedureHold')">
+                      {{ formValidation.errorMessage('procedureHold') }}
+                     </small>
+                 </div>
+            
+                <!-- Textbox with label of User Defined 5 -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('userDefined5') }">
+                     <label class="col-form-label" for="userDefined5" i18n>User Defined 5</label>
+                     <input type="text" id="userDefined5"  [fieldLevelSec]="'User Defined 5'" params]="Procedure Price"   class="form-control" formControlName="userDefined5"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('userDefined5')">
+                      {{ formValidation.errorMessage('userDefined5') }}
+                     </small>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- DynamicText with label of Hold Date -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('holdDate') }">
+                     <label class="col-form-label" for="holdDate" i18n>Hold Date</label>
+                     <input type="text"  [fieldLevelSec]="'Hold Date'" params]="Procedure Price"  readonly id="holdDate" formControlName="holdDate" class="form-control"/>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+            </div>
+        </form>
+    </div>
+</div>

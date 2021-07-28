@@ -1,0 +1,155 @@
+<!-- Copyright (c) 2021 . All Rights Reserved. -->
+<div class="container-fluid">
+    <div class="card-block">
+        <form [formGroup]="claimCurrencyPaymentForm" novalidate>
+            <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+            <app-pop-up-message #popUpMesssage (buttonclickEvent)="popUpButtonHandler($event)"  [(popupMessage)] = "popUpMessage"></app-pop-up-message>
+            <div class="form-group row"></div>
+            <div class="row">
+                <!-- Textbox with label of Home Currency U -->
+                 <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('homeCurrency') }">
+                     <label class="col-form-label" for="homeCurrency" i18n>Home Currency</label>
+                     <input type="text" readonly id="homeCurrency"  class="form-control" formControlName="homeCurrency"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('homeCurrency')">
+                      {{ formValidation.errorMessage('homeCurrency') }}
+                     </small>
+                 </div>
+            
+                <!-- DynamicText with label of Home Payment Amount -->
+                 <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('homePaymentAmount') }">
+                     <label class="col-form-label" for="homePaymentAmount" i18n>Home Payment Amount</label>
+                     <input type="text" readonly id="homePaymentAmount" formControlName="homePaymentAmount" class="form-control"/>
+                 </div>
+            
+                <!-- DynamicText with label of Average Local Claim Rate -->
+                 <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('averageLocalClaimRate') }">
+                     <label class="col-form-label" for="averageLocalClaimRate" i18n>Average Local Claim Rate</label>
+                     <input type="text" readonly id="averageLocalClaimRate" formControlName="averageLocalClaimRate" class="form-control"/>
+                 </div>
+            
+            </div>
+            
+            <div class="row">
+                <!-- DropdownList with label of Local Currency -->
+                <div class="col-md-4 " [ngClass]="{'has-danger': formValidation.isValidField('localCurrency1') }">
+                    <label class="col-form-label" for="localCurrency1" i18n>Local Currency</label>
+                    <select class="form-control" id="local_currency1" name="localCurrency1" formControlName="localCurrency1">
+                        <option *ngFor="let currencies of currencies" [value]="currencies.currencyCode">{{currencies.currencyCodeDesc}}</option>
+                    </select>
+                </div>
+            
+                <!-- DropdownList with label of USD -->
+                <div class="col-md-4 " [ngClass]="{'has-danger': formValidation.isValidField('usd1') }">
+                    <label class="col-form-label" for="usd1" i18n>USD</label>
+                    <select class="form-control" id="usd1" name="usd1" formControlName="usd1">
+                        <option *ngFor="let currencies of currencies" [value]="currencies.currencyCode">{{currencies.currencyCode}}</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="row">
+                <!-- DropdownList with label of Local Currency -->
+                <div class="col-md-4 " [ngClass]="{'has-danger': formValidation.isValidField('localCurrency2') }">
+                    <label class="col-form-label" for="localCurrency2" i18n>Euro Clearing House Country</label>
+                    <select class="form-control" id="local_currency2" name="localCurrency2" formControlName="localCurrency2">
+                        <option *ngFor="let otherCountries of otherCountries" [value]="otherCountries.countryCode">{{otherCountries.euroClearingHouseAbbr}}</option>
+                    </select>
+                </div>
+            
+                <!-- DropdownList with label of USD -->
+                <div class="col-md-4 " [ngClass]="{'has-danger': formValidation.isValidField('usd2') }">
+                    <label class="col-form-label" for="usd2" i18n>USD</label>
+                    <select class="form-control" id="usd2" name="usd2" formControlName="usd2">
+                        <option *ngFor="let otherCountries of otherCountries" [value]="otherCountries.countryCode">{{otherCountries.countryCode}}</option>
+                    </select>
+                </div>
+
+                <div class="col-md-4" style="color: red">
+                    <label class="col-form-label" for="usd" i18n>Payment Type : </label>
+                    <label class="col-form-label" for="usd" i18n>Check</label>
+                </div>
+            </div>
+            <hr>
+            <div class="container-fluid my-3 border">
+                <div class="row">
+                    <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('transactionType') }">
+                        <label class="col-form-label" for="transactionType" i18n>Transaction Type</label>
+                        <select class="form-control" id="transactionType" name="transactionType" formControlName="transactionType">
+                            <option *ngFor="let transPayment of transPayments" [value]="transPayment.transPaymentCode">{{transPayment.transPaymentDesc}}</option>
+                        </select>
+                    </div>
+                
+                    <div class="col-md-5" [ngClass]="{'has-danger': formValidation.isValidField('localCurrency3') }">
+                        <label class="col-form-label" for="localCurrency3" i18n>Local Currency</label>
+                        <div class="row">
+                            <select class="form-control w-50" id="localCurrency3" name="localCurrency3" formControlName="localCurrency3">
+                                <option *ngFor="let country of countries" [value]="country.countryCode">{{country.countryDesc}}</option>
+                            </select>
+                            <select class="form-control w-25" id="usd3" name="usd3" formControlName="usd3">
+                                <option *ngFor="let country of countries" [value]="country.countryCode">{{country.countryCode}}</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-md-2">
+                        <label class="col-form-label" for="local_Payment_Amount" i18n>Local Payment Amount</label><br>
+                        <label class="col-form-label" for="local_Payment_Amount" i18n>0</label>
+                    </div>
+
+                    <div class="col-md-3">
+                        <label class="col-form-label" for="local_Payment_Amount" i18n>Payee Name / Address</label><br>
+                        <label class="col-form-label" for="local_Payment_Amount" i18n>(C) John</label>
+                        <label class="col-form-label" for="local_Payment_Amount" i18n>PO Box 205</label>
+                        <label class="col-form-label" for="local_Payment_Amount" i18n>CHARLESTON WV, 25321, USA </label>
+                    </div>
+                
+                </div>
+            
+                <div class="row d-flex justify-content-center"> The following lines are included in the transaction: </div>
+                <div class="row">
+                    <table width="100%" cellspacing="0" cellpadding="2" *ngIf='currencyLocalPaymentViewBean && currencyLocalPaymentViewBean.claimDetailElements'>
+                        <tr bgcolor="#000000">
+                            <td valign="top" align="center" color="#FFFFFF"><FONT face="verdana,arial,helvetica" size="1" color="#FFFFFF"><STRONG>Line</STRONG></FONT></td>
+                            <td valign="top" align="center" color="#FFFFFF"><FONT face="verdana,arial,helvetica" size="1" color="#FFFFFF"><STRONG>Service Date</STRONG></FONT></td>
+                            <td valign="top" align="center" color="#FFFFFF"><FONT face="verdana,arial,helvetica" size="1" color="#FFFFFF"><STRONG>Net Amt</STRONG></FONT></td>
+                        </tr>
+                        <tr *ngFor="let claimDetailElement of currencyLocalPaymentViewBean.claimDetailElements">
+                            <td align="CENTER" valign="TOP" nowrap><FONT face="verdana,arial,helvetica" size="1">{{claimDetailElement.lineNumber}}{{claimDetailElement.subLineCode}}</FONT></td>
+                            <td align="CENTER" valign="TOP" nowrap><FONT face="verdana,arial,helvetica" size="1" >{{claimDetailElement.serviceDate}}</FONT></td>
+                            <td align="CENTER" valign="TOP" nowrap><FONT face="verdana,arial,helvetica" size="1">{{claimDetailElement.netAmt}}</FONT></td>
+                        </tr>
+                  </table>
+                </div>
+                <div class="row d-flex justify-content-center">
+                    <button type="button"  class="button ml-1" (click)="viewHistory($event)"> {{viewHistoryBtnText}} History</button>
+                    <button type="button"  class="button" (click)="onSubmit($event)"> Save Changes</button>
+                </div>
+                <div class="row d-flex justify-content-center">
+                    <button class="button" (click)="onCancel($event)"> Cancel</button>
+                </div>
+            </div>
+            <div class="row" *ngIf="viewHistoryShow">
+                <table width="100%" cellspacing="0" cellpadding="5" bgcolor="#BOC4DE">
+                    <tr bgcolor="#000000" color="ffffff">
+                        <td valign="top" align="center" nowrap><font face="verdana,arial,helvetica" size="1" color="#ffffff"><strong>Transaction Date</strong></font></td>
+                        <td valign="top" align="center" nowrap><font face="verdana,arial,helvetica" size="1" color="#ffffff"><strong>Home Payment Amount</strong></font></td>
+                        <td valign="top" align="center" nowrap><font face="verdana,arial,helvetica" size="1" color="ffffff"><strong>Local Payment Amount</strong></font></td>             				
+                        <td valign="top" align="center" nowrap><font face="verdana,arial,helvetica" size="1" color="ffffff"><strong>Transaction Type</strong></font></td>
+                    </tr>
+                    <tr *ngFor="let currencyPaymentTransaction of currencyPaymentTransactions">
+                        <td align="center"><font face="verdana,arial,helvetica" size="1">{{currencyPaymentTransaction.transactionDate}}</font></td>
+                        <td align="center"><font face="verdana,arial,helvetica" size="1">{{currencyPaymentTransaction.totalNetAmt}}</font></td>
+                        <td align="center"><font face="verdana,arial,helvetica" size="1">{{currencyPaymentTransaction.totalLocalPaymentAmt}}</font></td>
+                        <td align="center"><font face="verdana,arial,helvetica" size="1">{{currencyPaymentTransaction.transPaymentDesc}}</font></td>
+                    </tr>
+                    <tr *ngIf="currencyPaymentTransactions.length == 0">
+                        <td colspan="4" align="CENTER"><FONT face="verdana,arial,helvetica" size="1"><strong>There Are No Previous Transactions For This Claim</strong></FONT></td>
+                    </tr>
+                </table>
+            </div>
+            <div class="row d-flex justify-content-center" style="color: red;" i18n>
+                Addon System Test Environment
+            </div>
+        </form>
+    </div>
+</div>

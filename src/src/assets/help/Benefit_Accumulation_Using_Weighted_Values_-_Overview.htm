@@ -1,0 +1,252 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+    <title>Benefit Accumulation Using Weighted Values - Overview</title>
+    <!--(Meta)==========================================================-->
+    <meta content="Overview.htt" name="template"/>
+    <meta content="RoboHELP by eHelp Corporation - www.ehelp.com" name="generator"/>
+    <meta content="0.1" name="generator-major-version"/>
+    <meta content="1" name="generator-minor-version"/>
+    <meta content="kadov" name="filetype"/>
+    <meta content="1" name="filetype-version"/>
+    <meta content="1" name="page-count"/>
+    <meta content="1217" name="layout-height"/>
+    <meta content="893" name="layout-width"/>
+    <!--(Links)=========================================================-->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+</head>
+<body>
+
+<div class="calibreMeta">
+    <div class="calibreMetaTitle">
+
+
+        <h1>
+            <a href="../26by7-w03j3.html">DIAMOND 950C/S Help
+            </a>
+        </h1>
+
+
+    </div>
+    <div class="calibreMetaAuthor">
+        Unknown
+
+    </div>
+</div>
+
+<div class="calibreMain">
+
+    <div class="calibreEbookContent">
+
+        <div class="calibreEbNavTop">
+
+            <a href="PLSVC_Parameters_Prerequisites.htm" class="calibreAPrev">previous page
+            </a>
+
+
+        </div>
+
+
+        <h1 class="calibre1"><!--kadov_tag{{<variable name=title
+						x-format=default
+						x-value="Benefit Accumulation Using Weighted Values - Overview">}}-->Benefit
+            Accumulation Using Weighted Values - Overview<!--kadov_tag{{</variable>}}--></h1>
+
+        <p class="text">Accumulating benefits using weighted values is an option
+            that enables you to accumulate a member's benefits at a reduced or an
+            increased amount. For example, you might want to accumulate benefits at
+            50% of the standard rate or at 150% of the standard rate. (The standard
+            accumulation rate is one accumulation point for every unit.) </p>
+
+        <p class="text">You can set weighted value benefit accumulations at the Benefit
+            Rule or the Procedure Code level. A member's weighted accumulated benefits
+            are appropriately adjusted when a claim line is adjusted or reversed.</p>
+
+        <p class="text">Create Benefit Weighted Accumulator records in BENWT (Benefit
+            Weighted Accumulators). Here, you define one or more detail lines for
+            each record. Each detail line includes procedures - you can define a single
+            procedure code, a range of procedure codes, a single primary procedure
+            group, or a single secondary procedure group. For each detail line, you
+            also define an effective date range and a weighted accumulator percentage.
+        </p>
+
+        <p class="text">The Benefit Weighted Accumulator ID field on the BENEF screen
+            links Benefit Weighted Accumulator records to Benefit Rules within a Benefit
+            Package. <!--kadov_tag{{<spaces>}}--> <!--kadov_tag{{</spaces>}}--> If
+            you have not defined an accumulator, the system searches PROCD to find
+            a weighted value greater than 00.00 and if not found, applies standard
+            one-to-one accumulation. </p>
+
+        <p class="text">On BENEF detail, if Benefit Weighted Accumulator ID is selected,
+            the system compares the claim's procedure code and date of service against
+            the Benefit Weighted Accumulator records. To be considered a match, the
+            claim's procedure code must match either the procedure code, procedure
+            code range, primary procedure grouping, or secondary procedure grouping
+            and the claim's date of service must fall within the record's effective
+            date period. </p>
+
+        <p class="text">The following table shows possible setup combinations and
+            their associated calculations.</p>
+
+        <p class="text"> </p>
+
+        <!--(Table)=========================================================-->
+        <table cellspacing="0" width="594" x-use-null-cells="" class="calibre172">
+            <colgroup class="calibre19">
+                <col class="calibre173"/>
+                <col class="calibre174"/>
+                <col class="calibre175"/>
+                <col class="calibre176"/>
+                <col class="calibre177"/>
+                <col class="calibre178"/>
+
+            </colgroup>
+            <tbody class="calibre10">
+            <tr valign="top" class="calibre11">
+                <td colspan="1" rowspan="1" width="21.314%" class="calibre179">
+                    <p class="tableheading">Type of Accumulation</p></td>
+                <td width="12.626%" class="calibre180">
+                    <p class="tableheading">BRULE Rule Type</p></td>
+                <td width="14.225%" class="calibre181">
+                    <p class="tableheading">BRULE Limit Type</p></td>
+                <td width="13.706%" class="calibre182">
+                    <p class="tableheading">BRULE Multiply by Quantity Indicator</p></td>
+                <td colspan="1" rowspan="1" width="18.6%" class="calibre183">
+                    <p class="tableheading">Description</p></td>
+                <td width="19.528%" class="calibre184">
+                    <p class="tableheading">Usage Accumulation Calculation</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre11">
+                <td colspan="1" rowspan="1" width="21.314%" class="calibre185">
+                    <p class="tabletext">Quantity * Weighted Accumulator %</p></td>
+                <td width="12.626%" class="calibre186">
+                    <p class="tabletext">20 (Limits) </p>
+                    <p class="tabletext"> </p>
+                    <p class="tabletext">or</p>
+                    <p class="tabletext"> </p>
+                    <p class="tabletext">80 (Full Coverage)</p></td>
+                <td width="14.225%" class="calibre187">
+                    <p class="tabletext">Quantity</p></td>
+                <td width="13.706%" class="calibre188">
+                    <p class="tabletext">Not selected</p></td>
+                <td colspan="1" rowspan="1" width="18.6%" class="calibre189">
+                    <p class="tabletext">The system multiplies the claim quantity by the weighted
+                        Accumulator % <!--kadov_tag{{<spaces>}}--> <!--kadov_tag{{</spaces>}}--> and
+                        adds the result to the benefit usage accumulator.</p></td>
+                <td width="19.528%" class="calibre190">
+                    <p class="tabletext">(Claim Quantity) x (Weighted Accumulator %) = (Result)
+                        + (Current Benefit Usage Accumulator) = New Usage Accumulator</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre11">
+                <td colspan="1" rowspan="1" width="21.314%" class="calibre185">
+                    <p class="tabletext">Quantity * Weighted Value</p></td>
+                <td width="12.626%" class="calibre186">
+                    <p class="tabletext">20 (Limits)</p></td>
+                <td width="14.225%" class="calibre187">
+                    <p class="tabletext">Weighted Value</p></td>
+                <td width="13.706%" class="calibre188">
+                    <p class="tabletext">Selected</p></td>
+                <td colspan="1" rowspan="1" width="18.6%" class="calibre189">
+                    <p class="tabletext">The system multiplies the claim quantity by the weighted
+                        value and adds the result to the benefit usage accumulator.</p></td>
+                <td width="19.528%" class="calibre190">
+                    <p class="tabletext">(Claim Quantity) x (Weighted Value) = (Result) + (Current
+                        Benefit Usage Accumulator) = New Usage Accumulator</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre11">
+                <td colspan="1" rowspan="1" width="21.314%" class="calibre185">
+                    <p class="tabletext">Weighted Value</p></td>
+                <td width="12.626%" class="calibre186">
+                    <p class="tabletext">20 (Limits)</p></td>
+                <td width="14.225%" class="calibre187">
+                    <p class="tabletext">Weighted Value</p></td>
+                <td width="13.706%" class="calibre188">
+                    <p class="tabletext">Not selected</p></td>
+                <td colspan="1" rowspan="1" width="18.6%" class="calibre189">
+                    <p class="tabletext">The system adds the weighted value to the benefit usage
+                        accumulator.</p></td>
+                <td width="19.528%" class="calibre190">
+                    <p class="tabletext">(Weighted Value) + (Current Benefit Usage Accumulator)
+                        = New Usage Accumulator</p></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <p class="text"> </p>
+
+        <h2 class="calibre5">Screens Used to Set Up Weighted Value Benefits:</h2>
+
+        <h3 class="calibre2">BRULE (Benefit Rules)</h3>
+
+        <p class="text">Use BRULE to set up benefit rules - see requirements in table
+            above</p>
+
+        <p class="text"> </p>
+
+        <h3 class="calibre2">BENWT (Benefit Weighted Accumulators)</h3>
+
+        <p class="text">Use BENWT to define Benefit Weighted Accumulators, which
+            include procedure codes, effective date ranges, and weighted accumulator
+            %.</p>
+
+        <p class="text"> </p>
+
+        <h3 class="calibre2">BENEF (Benefit Packages)</h3>
+
+        <p class="text">Use BENEF to link Benefit Weighted Accumulators to benefit
+            packages</p>
+
+        <p class="text"> </p>
+
+        <h3 class="calibre2">PROCD (Procedure Codes)</h3>
+
+        <p class="text">Use PROCD to specify weighted values for procedure codes.</p>
+
+        <p class="text"> </p>
+
+        <p class="text"> </p>
+
+        <p class="text"> </p>
+
+        <p class="text"> </p>
+
+        <p class="text"> </p>
+
+        <p class="text"> </p>
+
+        <p class="text"> </p>
+
+        <p class="text"><!--kadov_tag{{<spaces>}}--> <!--kadov_tag{{</spaces>}}--></p>
+
+        <p class="text"> </p>
+
+        <p class="text"> </p>
+
+        <p class="text"> </p>
+
+
+    </div>
+
+
+
+    <div class="calibreEbNav">
+
+        <a href="PLSVC_Parameters_Prerequisites.htm" class="calibreAPrev">previous page
+        </a>
+
+
+        <a href="../26by7-w03j3.html" class="calibreAHome">start
+        </a>
+
+
+    </div>
+
+</div>
+
+</body>
+</html>

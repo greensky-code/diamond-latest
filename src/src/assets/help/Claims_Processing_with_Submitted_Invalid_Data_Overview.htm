@@ -1,0 +1,170 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+    <!-- $MVD$:fontset("Courier New","Courier New") -->
+    <title>Claims Processing with Submitted Invalid Data Overview</title>
+    <meta content="RoboHelp by eHelp Corporation www.ehelp.com" name="generator"/>
+    <meta name="copyright" value="© Copyright 2002 Health Systems Design Corp., a wholly owned subsidiary of Perot Systems Corporation. All rights reserved"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+ <link href="assets/help/stylesheet.css" rel="stylesheet" type="text/css"/>     <link href="assets/help/page_styles.css" rel="stylesheet" type="text/css"/>       <link href="assets/help/calibreHtmlOutBasicCss.css" type="text/css" rel="stylesheet"/>
+
+</head>
+<body>
+
+<div class="calibreMeta">
+  <div class="calibreMetaTitle">
+
+
+
+    <h1>
+      <a href="../bj5if-qozss.html">DIAMOND 950 Help
+</a>
+    </h1>
+
+
+
+  </div>
+  <div class="calibreMetaAuthor">
+    Unknown
+
+  </div>
+</div>
+
+<div class="calibreMain">
+
+  <div class="calibreEbookContent">
+
+      <div class="calibreEbNavTop">
+
+          <a href="Interest_Calculation_Examples.htm" class="calibreAPrev">previous page
+</a>
+
+
+
+          <a href="Adding_a_Tooth_Rule.htm" class="calibreANext">next page
+</a>
+
+      </div>
+
+
+
+ <h4 class="calibre6">Claims Processing with Submitted Invalid Data Overview</h4>
+ <p class="doc-level">Submitting Invalid Data to DIAMOND</p>
+ <p class="body-text">DIAMOND performs edits on all incoming claims; certain fields in each claim must be valid for DIAMOND to correctly process the claim. If any of these fields contain invalid data (such as a non-existent Member ID), the claim generates a critical error and is not inserted into DIAMOND. By substituting a placeholder for an invalid code, DIAMOND enables you to enter a submitted claim that has invalid codes. DIAMOND stores the original invalid code(s) separately.</p>
+ <p class="body-text">Once a claim has been inserted into DIAMOND, you can view the claim information, including the invalid code(s), and replace the placeholder(s) with valid value(s).</p>
+ <p class="doc-level1">Invalid Field Substitution</p>
+ <p class="body-text">DIAMOND provides parameters to store the placeholder values that will substitute for a field containing invalid data. For each placeholder value, you must configure its associated parameter. For some parameters, you must provide a placeholder value in Parameter 2. For other parameters, DIAMOND inserts a null or other value if Parameter 1 is set to Y. </p>
+ <p class="body-text">When creating placeholder values, you should use a value that does not resemble real data. For example: for invalid member IDs, you could create a member ID record named "INVLMB01", or a similar value. The value should not resemble a real value.</p>
+ <p class="body-text">The following parameters require a placeholder value:</p>
+ <ul class="calibre2">
+  <li class="calibre168">
+  <p class="bullet-list-h3">Admitting Provider ID: INVALIDADMPV</p></li>
+  <li class="calibre168">
+  <p class="bullet-list-h3">Attending Provider ID: INVALIDATTPV</p></li>
+  <li class="calibre168">
+  <p class="bullet-list-h3">Bill Type: INVALIDBILTY</p></li>
+  <li class="calibre168">
+  <p class="bullet-list-h3">Diagnosis Code: INVALIDDIAG</p></li>
+  <li class="calibre168">
+  <p class="bullet-list-h3">DRG Code: INVALIDDRGCD</p></li>
+  <li class="calibre168">
+  <p class="bullet-list-h3">Facility ID: INVALIDFACID</p></li>
+  <li class="calibre168">
+  <p class="bullet-list-h3">Member/Person Number: INVALIDMBRID</p></li>
+  <li class="calibre168">
+  <p class="bullet-list-h3">Modifier Code: INVALIDMODIF</p></li>
+  <li class="calibre168">
+  <p class="bullet-list-h3">Place of Service: INVALIDPOS</p></li>
+  <li class="calibre168">
+  <p class="bullet-list-h3">Procedure Code: INVALIDPROC</p></li>
+  <li class="calibre168">
+  <p class="bullet-list-h3">Provider ID: INVALIDPRVID</p></li>
+  <li class="calibre168">
+  <p class="bullet-list-h3">Referring Provider ID: INVALIDREFPV</p></li>
+  <li class="calibre168">
+  <p class="bullet-list-h3">Vendor ID: INVALIDVENDR</p></li>
+ </ul>
+ <p class="body-text">The following parameters insert a null (or blank) or other system-generated value:</p>
+ <ul class="calibre2">
+  <li class="calibre168">
+  <p class="bullet-list-h3">Admit Hour: INVALIDADMHR (inserts a null value)</p></li>
+  <li class="calibre168">
+  <p class="bullet-list-h3">Admit Source: INVALIDADMSO (inserts a null value)</p></li>
+  <li class="calibre168">
+  <p class="bullet-list-h3">Admit Type: INVALIDADMTY (inserts a null value)</p></li>
+  <li class="calibre168">
+  <p class="bullet-list-h3">Discharge Hour: INVALIDDISHR (inserts a null value)</p></li>
+  <li class="calibre168">
+  <p class="bullet-list-h3">Occurrence Code: INVALIDOCCCD (inserts a null value)</p></li>
+  <li class="calibre168">
+  <p class="bullet-list-h3">Patient Status: INVALIDPATST (inserts "XX") The "XX" value is pre-defined in DIAMOND as "Invalid Patient Status."</p></li>
+ </ul>
+ <p class="body-text">For information on each parameter, see PARAM user documentation. </p>
+ <p class="body-text">Note: If a replacement value has not been set up in DIAMOND (not just in the parameter), the replacement will not occur.</p>
+ <p class="doc-level1">Hold Status for Claims with Invalid Fields</p>
+ <p class="body-text">DIAMOND can place a Hold on a claim header that was submitted with invalid data. To enable DIAMOND to do this, set the parameter INVALIDHOLD. For information on this parameter, see PARAM user documentation. </p>
+ <p class="body-text">If the parameter INVALIDHOLD is set, Holds are placed as follows</p>
+ <ul class="calibre2">
+  <li class="calibre168">
+  <p class="bullet-list-h3">If the claim was submitted via the DDS API, DIAMOND holds the claim automatically.</p></li>
+  <li class="calibre168">
+  <p class="bullet-list-h3">If the claim is submitted online, and you cannot resolve the invalid data, you select the Invalid Data check box in the appropriate claims header (keyword PSCLM, INCLM, or DNCLM). DIAMOND then places a hold on the claim. You can then capture the submitted invalid data using the available commands on the menu bar.</p></li>
+ </ul>
+ <p class="body-text">After you have corrected the invalid codes in the claim, you can deselect Invalid Data in the claims header to indicate that the claim no longer contains invalid data.</p>
+ <p class="doc-level1">Resolving Invalid Data in DIAMOND</p>
+ <p class="body-text">DIAMOND provides the following commands on the Special menu to store data for claims that were submitted with invalid data:</p>
+ <p class="doc-level2">INCLM, Institutional Claims</p>
+ <ul class="calibre2">
+  <li class="calibre168">
+  <p class="bullet-list-h3">Submitted Claims Header/UB92 Data</p></li>
+  <li class="calibre168">
+  <p class="bullet-list-h3">Submitted Claims Provider/Vendor</p></li>
+  <li class="calibre168">
+  <p class="bullet-list-h3">Submitted Claims Detail Data</p></li>
+ </ul>
+ <p class="doc-level2">PSCLM, Professional Claims</p>
+ <ul class="calibre2">
+  <li class="calibre168">
+  <p class="bullet-list-h3">Submitted Claims Header Data</p></li>
+  <li class="calibre168">
+  <p class="bullet-list-h3">Submitted Claims Provider/Vendor</p></li>
+  <li class="calibre168">
+  <p class="bullet-list-h3">Submitted Claims Detail Data</p></li>
+ </ul>
+ <p class="doc-level2">DNCLM, Dental Claims</p>
+ <ul class="calibre2">
+  <li class="calibre168">
+  <p class="bullet-list-h3">Submitted Claims Header/Other Claim Info Data</p></li>
+  <li class="calibre168">
+  <p class="bullet-list-h3">Submitted Claims Detail Data</p></li>
+ </ul>
+ <p class="body-text">For information on each command, see the keyword reference documentation for each claim type.</p>
+
+
+
+  </div>
+
+
+
+
+
+  <div class="calibreEbNav">
+
+      <a href="Interest_Calculation_Examples.htm" class="calibreAPrev">previous page
+</a>
+
+
+    <a href="../bj5if-qozss.html" class="calibreAHome">start
+</a>
+
+
+      <a href="Adding_a_Tooth_Rule.htm" class="calibreANext">next page
+</a>
+
+  </div>
+
+</div>
+
+</body>
+</html>

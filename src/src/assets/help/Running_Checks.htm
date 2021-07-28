@@ -1,0 +1,349 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+    <title>Running Checks</title>
+    <!--(Meta)==========================================================-->
+    <meta name="copyright" value="© Copyright 2002 Health Systems Design Corp., a wholly owned subsidiary of Perot Systems Corporation. All rights reserved"/>
+    <meta content="Task - Procedure Level.htt" name="template"/>
+    <meta content="RoboHELP by eHelp Corporation - www.ehelp.com" name="generator"/>
+    <meta content="0.1" name="generator-major-version"/>
+    <meta content="1" name="generator-minor-version"/>
+    <meta content="kadov" name="filetype"/>
+    <meta content="1" name="filetype-version"/>
+    <meta content="1" name="page-count"/>
+    <meta content="2059" name="layout-height"/>
+    <meta content="675" name="layout-width"/>
+    <!--(Links)=========================================================-->
+    <!--(Scripts)=======================================================-->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+   <link href="assets/help/stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="assets/help/page_styles.css" rel="stylesheet" type="text/css"/>
+
+  
+
+
+<link href="assets/help/calibreHtmlOutBasicCss.css" type="text/css" rel="stylesheet" />
+
+</head>
+<body>
+
+<div class="calibreMeta">
+  <div class="calibreMetaTitle">
+  
+  
+    
+    <h1>
+      <a href="../4xeqt-va1vo.html">DIAMOND 950 Help
+</a>
+    </h1>
+    
+    
+  
+  </div>
+  <div class="calibreMetaAuthor">
+    Unknown
+
+  </div>
+</div>
+
+<div class="calibreMain">
+
+  <div class="calibreEbookContent">
+    
+      <div class="calibreEbNavTop">
+        
+          <a href="Entering_a_Manual_Check.htm" class="calibreAPrev">previous page
+</a>
+        
+
+        
+          <a href="Calculating_a_Check_Print_Job.htm" class="calibreANext">next page
+</a>
+        
+      </div>
+    
+
+    
+
+<h4 class="calibre13">Running Checks</h4>
+
+<p class="text">Checks may be created for claims and/or for capitation payments, 
+ run separately. DIAMOND processing creates both check and electronic fund 
+ transfer (EFT) transactions.</p>
+
+<h3 class="calibre7">EFT transactions</h3>
+
+<p class="text">Running a job in Keyword CKPRT (Check Print Setup) creates 
+ both actual check transactions and EFT transactions. The EFT transaction 
+ work file records are available to allow you to develop your own customized 
+ EFT interface, which should provide for:</p>
+
+<ul class="calibre6">
+	
+	<li class="kadov-p-cbullet"><p class="bullet">Creating standard EFT interface 
+ records using DIAMOND’s EFT transaction work file records</p></li>
+	
+	<li class="kadov-p-cbullet"><p class="bullet">Flagging valid EFT transaction 
+ work file records with a "P" (pulled) </p></li>
+	
+	<li class="kadov-p-cbullet"><p class="bullet">Deleting all EFT transaction 
+ work file records associated with a batch run after successfully creating 
+ EFT transactions.</p></li>
+</ul>
+
+<p class="text">When you post a check print job in keyword CKPST, check data 
+ records are retrieved from the check print work file and flagged "P" 
+ records from the EFT transaction work file. During the post process, all 
+ processed records from both the check print work file and the EFT transaction 
+ work file are deleted. A warning message displays if un-flagged EFT transactions 
+ are in the work file when you use CKPST. There is no way to go back and 
+ post EFT transactions, so be sure to post the EFTs before running a job 
+ in keyword CKPST.</p>
+
+<p class="text">In keyword CKPRT, you must type the check number, even if 
+ the batch run is for EFT transactions only. </p>
+
+<h3 class="calibre7">Restrictions</h3>
+
+<p class="text">If you have more than one batch check run to process for 
+ the same company and bank account code, you must process the first job 
+ in both keywords CKPRT and CKPST before running the second job in keyword 
+ CKPRT. </p>
+
+<p class="text">If you make an error and process two such batch check runs 
+ in keyword CKPRT before successfully posting the first in keyword CKPST, 
+ DIAMOND uses the same starting check number for both CKPRT runs. This 
+ is because DIAMOND updates the starting check number for a company only 
+ upon successful post of a batch check run in CKPST. When two CKPRT batch 
+ runs contain duplicate check numbers, you can post the first in keyword 
+ CKPST but not post the second. Instead, you receive an error message that 
+ a CKPRT run with one or more duplicate check numbers has been run and 
+ posted. Should this happen, in order to have DIAMOND assign non-duplicate 
+ check numbers and allow you to post the second batch run, you will need 
+ to do the following:</p>
+
+<ol class="calibre8">
+	
+	<li class="kadov-p-cstep"><p class="step">Cancel the second check print 
+ job in keyword CKPRT</p></li>
+	
+	<li class="kadov-p-cstep"><p class="step">Re-run the cancelled check print 
+ job in keyword CKPRT</p></li>
+	
+	<li class="kadov-p-cstep"><p class="step">Post the re-run check print job 
+ in keyword CKPST</p></li>
+</ol>
+
+<h3 class="calibre7">To run checks</h3>
+
+<ol class="calibre8">
+	
+	<li class="kadov-p-cstep"><p class="step">Create check and remittance advice 
+ templates using Intelligent Query<span class="calibre14">ä</span> (IQ). DIAMOND 
+ is delivered with one generic template, CHECKS, to print checks only on 
+ pre- or unnumbered check stock. This template does not allow for printing 
+ remittance advices.</p></li>
+	
+	<li class="kadov-p-cstep"><p class="step">In keyword BANKA, attach your 
+ check print templates to each bank account from which you will be paying 
+ claims and/or capitation.</p></li>
+	
+	<li class="kadov-p-cstep"><p class="step">Post payable transactions so 
+ they are available to accounts payable for payment. For capitation payments, 
+ see <a href="Capitation.chm::/Posting_a_Capitation_Calculation_Job.htm">Post 
+ a Capitation Calculation Job</a>. For claim payments, see <a href="Running_an_A_P_Update_Job.htm">Run 
+ an A/P Update Job</a>. </p></li>
+</ol>
+
+<p class="stepcont">To maximize performance, use minimal selection criteria 
+ for APUPD; additional filtering can be applied in CKPRT. APUPD looks at 
+ a variety of conditions to make sure the claim transactions being posted 
+ are available for payment. If any of the following conditions apply, claim 
+ detail lines will not be posted to accounts payable:</p>
+
+<ul class="calibre6">
+	
+	<li class="kadov-p-cstepbullet"><p class="stepbullet">Claims on header 
+ hold </p></li>
+	
+	<li class="kadov-p-cstepbullet"><p class="stepbullet">In keyword VENDR, 
+ the <span class="calibre9">Hold</span> <span class="calibre9">Payment</span> 
+ <span class="calibre9">Flag</span> check box is selected for 
+ the vendor</p></li>
+	
+	<li class="kadov-p-cstepbullet"><p class="stepbullet">Unless partial payment 
+ is allowed (parameter PARTIALPAY set to Y), claim detail lines on claims 
+ with a mix of available and held lines</p></li>
+	
+	<li class="kadov-p-cstepbullet"><p class="stepbullet">If a third-party 
+ auditing tool is enabled, claims which have not yet completed the third-party 
+ process</p></li>
+	
+	<li class="kadov-p-cstepbullet"><p class="stepbullet">Claim detail lines 
+ with status "F" unless the Cap/Special Fund status is "3"</p></li>
+</ul>
+
+<ol start="4" class="calibre8">
+	
+	<li class="kadov-p-cstep"><p class="step">In keyword APSEL, de-select or 
+ re-select A/P transactions for payment. When a transaction is de-selected 
+ for payment it will not be available to CKPRT; it must be re-selected 
+ to re-enter the process. Transactions can be de-selected for payment based 
+ on:</p></li>
+	
+	<li class="kadov-p-cstepbullet"><p class="stepbullet">Company code</p></li>
+	
+	<li class="kadov-p-cstepbullet"><p class="stepbullet">Vendor</p></li>
+	
+	<li class="kadov-p-cstepbullet"><p class="stepbullet">Due Date</p></li>
+	
+	<li class="kadov-p-cstepbullet"><p class="stepbullet">Entered Dates</p></li>
+</ol>
+
+<ol start="5" class="calibre8">
+	
+	<li class="kadov-p-cstep"><p class="step">In keyword CKPRT, create a (or 
+ select a previously defined) job ID. Calculate check and electronic funds 
+ transfer (EFT) transactions for that Job ID using CKPRT&gt; Action&gt; 
+ Calc. The CKPRT Job ID you create (or select from previously created IDs) 
+ has a variety of filters and criteria associated with it that define which 
+ transactions are calculated (and later printed and posted).</p></li>
+	
+	<li class="kadov-p-cstep"><p class="step">For printed checks, print alignment 
+ checks by selecting CKPRT&gt; Action&gt; Print for the appropriate Job 
+ ID. A dialog box will be displayed from which you can click <span class="calibre9">Print</span> 
+ <span class="calibre9">Alignment Check</span>. For alignment, 
+ use a direct, non-spooled printer. You may print as many alignment checks 
+ as necessary. The IQ software icon displays while alignment checks are 
+ being printed. The next available check number is displayed in Start Check 
+ No (specific to the Bank Account selected). The first valid check printed 
+ will be numbered with the sum of the Start Check No. + the number of alignment 
+ checks printed in this step.</p></li>
+	
+	<li class="kadov-p-cstep"><p class="step">When you are satisfied with alignment 
+ of the check stock, print all checks using CKPRT&gt; Action&gt; Print 
+ (click <span class="calibre9">Print</span> <span class="calibre9">All</span> 
+ <span class="calibre9">Checks</span>). The IQ software icon 
+ displays while checks are being printed.</p></li>
+	
+	<li class="kadov-p-cstep"><p class="step">If you need to reprint the check 
+ run, then do the following:</p></li>
+</ol>
+
+<ol class="calibre15">
+	
+	<li class="kadov-p-cstepcont"><p class="stepcont1">Select Action&gt; Cancel</p></li>
+	
+	<li class="kadov-p-cstepcont"><p class="stepcont1">Select Action&gt; Calc</p></li>
+	
+	<li class="kadov-p-cstepcont"><p class="stepcont1">Select Action&gt; Print</p></li>
+</ol>
+
+<ol start="9" class="calibre15">
+	
+	<li class="kadov-p-cstep"><p class="step">In keyword CKPST, view the check 
+ transaction records created by the print function. All the transactions 
+ will be displayed with a default status of "Posted." You may 
+ change any or all of these records to either cancel or invalidate by selecting 
+ the record(s) and changing the status online. EFT transactions are not 
+ displayed. Invalidated check numbers cannot be re-used. This status is 
+ typically applied to ‘bad’ checks printed on pre-printed check numbered 
+ stock. Cancelled check numbers can be reused. This status is typically 
+ applied to ‘bad’ checks printed on unnumbered check stock. Cancelled checks 
+ can be invalidated; invalidated checks can be cancelled; either can be 
+ changed back to the default status of Posted. Keyword CKPST is not used 
+ in any way for manual checks. For more information, see <a href="Entering_a_Manual_Check.htm">Entering 
+ a manual check</a>.</p></li>
+	
+	<li class="kadov-p-cstep"><p class="step">Once you are satisfied with the 
+ statuses of all check transaction records as displayed in CKPST, on the 
+ <span class="calibre9">File</span> menu, click <span class="calibre9">Run</span> 
+ <span class="calibre9">Job</span>. Once Run Job has been selected, 
+ the status of checks can no longer be changed as in Step 9; they will 
+ no longer appear in keyword CKPST. If checks have been invalidated or 
+ canceled within a job, they will continue to be displayed on the CKPST 
+ window and the check print batch job ID will continue to have a status 
+ of Printed. If unflagged (with a "P") EFT transactions remain 
+ in the workfile when you post a Job, DIAMOND will display a warning message. 
+ This must be corrected using your custom EFT interface program. For non-cancelled, 
+ non-invalidated transactions, as a result of CKPST, Run Job:</p></li>
+	
+	<li class="kadov-p-cstepbullet"><p class="stepbullet">Accounts payable 
+ records ACPAY Processing Status is "Paid."</p></li>
+	
+	<li class="kadov-p-cstepbullet"><p class="stepbullet">Associated claim 
+ detail line Proc Status is "Paid"</p></li>
+	
+	<li class="kadov-p-cstepbullet"><p class="stepbullet">Posted checks are 
+ available for lookup and reconciling in keyword CHECK (Check Register).</p></li>
+</ol>
+
+<h2 class="calibre10">Frequently Asked Questions</h2>
+
+<h3 class="calibre7">Can I have multiple check runs in various stages of processing at the 
+ same time?</h3>
+
+<p class="text">Yes, for different bank accounts.</p>
+
+<h3 class="calibre7">Why would I ever override the next available check number which is 
+ automatically displayed?</h3>
+
+<p class="text">Here is an example:</p>
+
+<ol class="calibre8">
+	
+	<li class="kadov-p-ctext"><p class="text2">You are using check stock with 
+ pre-printed check numbers and you are about to print five checks.</p></li>
+	
+	<li class="kadov-p-ctext"><p class="text2">The highest check number in the 
+ Check Register is 1500.</p></li>
+	
+	<li class="kadov-p-ctext"><p class="text2">The DIAMOND displayed Start Check 
+ No. is 1501.</p></li>
+	
+	<li class="kadov-p-ctext"><p class="text2">You begin printing checks, the 
+ printer jams, and the five checks are mutilated or print alignment is 
+ off (pre-printed check numbers 1501-1505). You must reprint the five checks.</p></li>
+	
+	<li class="kadov-p-ctext"><p class="text2">DIAMOND still considers the Start 
+ Check No. to be 1501, as you have not posted the first (five check) check 
+ run.</p></li>
+	
+	<li class="kadov-p-ctext"><p class="text2">You override the displayed Start 
+ Check No. and enter the next available check 1506 and reprint the check 
+ run (check numbers 1506-1510).</p></li>
+	
+	<li class="kadov-p-ctext"><p class="text2">You post the checks in keyword 
+ CKPST.</p></li>
+</ol>
+
+
+
+
+
+
+  </div>
+
+  
+ 
+
+  <div class="calibreEbNav">
+    
+      <a href="Entering_a_Manual_Check.htm" class="calibreAPrev">previous page
+</a>
+    
+
+    <a href="../4xeqt-va1vo.html" class="calibreAHome">start
+</a>
+
+    
+      <a href="Calculating_a_Check_Print_Job.htm" class="calibreANext">next page
+</a>
+    
+  </div>
+
+</div>
+
+</body>
+</html>

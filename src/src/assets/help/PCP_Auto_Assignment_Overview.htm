@@ -1,0 +1,581 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+    <title>PCP Auto Assignment - Overview</title>
+    <!--(Meta)==========================================================-->
+    <meta name="copyright"
+          value="© Copyright 2002 Health Systems Design Corp., a wholly owned subsidiary of Perot Systems Corporation. All rights reserved"/>
+    <meta content="RoboHELP by eHelp Corporation - www.ehelp.com" name="generator"/>
+    <meta content="0.1" name="generator-major-version"/>
+    <meta content="1" name="generator-minor-version"/>
+    <meta content="kadov" name="filetype"/>
+    <meta content="1" name="filetype-version"/>
+    <meta content="1" name="page-count"/>
+    <meta content="3600" name="layout-height"/>
+    <meta content="644" name="layout-width"/>
+    <!--(Links)=========================================================-->
+    <!--(Scripts)=======================================================-->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+</head>
+<body>
+
+<div class="calibreMeta">
+    <div class="calibreMetaTitle">
+
+
+        <h1>
+            <a href="../2nlvj-mfnql.html">DIAMOND 950 Help
+            </a>
+        </h1>
+
+
+    </div>
+    <div class="calibreMetaAuthor">
+        Unknown
+
+    </div>
+</div>
+
+<div class="calibreMain">
+
+    <div class="calibreEbookContent">
+
+        <div class="calibreEbNavTop">
+
+            <a href="Notes_Frequently_Asked_Questions_HOT.htm" class="calibreAPrev">previous page
+            </a>
+
+
+            <a href="Setting_Up_PCP_Auto_Assignment.htm" class="calibreANext">next page
+            </a>
+
+        </div>
+
+
+        <h1 class="calibre1">PCP Auto Assignment - Overview</h1>
+
+        <p class="step-comment-noline">PCP Auto Assignment is a batch process by which you
+            can:</p>
+
+        <ul class="calibre17">
+
+            <li class="kadov-p-cbullet-list-h"><p class="bullet-list-h">Validate/Replace
+                a submitted PCP assignment</p></li>
+
+            <li class="kadov-p-cbullet-list-h"><p class="bullet-list-h">Automatically
+                assign a suitable PCP to a current member eligibility record</p></li>
+        </ul>
+
+        <p class="step-comment-noline">PCP Auto Assignment validates and makes PCP assignments
+            according to sets of rules you define. You define individual PCPAA rules
+            once and then combine them into sets with appropriate values for the applicable
+            lines of business. PCPAA is a supplement to the existing Provider Enrollment
+            Rules (PROVE) functionality.</p>
+
+        <p class="step-comment-noline">To use PCP Auto Assignment, you first identify the lines
+            of business and PCPs for which you want to use PCP Auto Assignment functionality.
+            Then for each line of business and PCP you determine and enter appropriate
+            values, based on your business requirements, for the key data used exclusively
+            by PCP Auto Assignment. (Additional existing member and provider data
+            is of course used as well.) Lastly, you run a PCP Auto Assignment batch
+            job to assign a PCP or validate a submitted PCP for selected member eligibility
+            records.</p>
+
+        <p class="doc-level1">PCP Auto Assignment Setup - Overview</p>
+
+        <p class="step-comment-noline">At a high level, the main steps for setup of key data
+            required for PCP Auto Assignment includes the following:</p>
+
+        <p class="step-comment-noline">1. Determine and enter appropriate values for the system
+            parameters:</p>
+
+        <ul class="calibre17">
+
+            <li class="kadov-p-cstep-comment-bullet-noline"><p class="bullet-list-h3">ENROLLLIMITS
+                (PARAM) - Use to specify what enrollment limits (PROVE, PROVF, LINBS)
+                to evaluate and in what order. Default is PROVE only.</p></li>
+
+            <li class="kadov-p-cstep-comment-bullet-noline"><p class="bullet-list-h3">PCPAAFAMUSRD
+                (PARAM) - Use to enable use of MEMBR user-defined fields to identify family
+                affiliations.</p></li>
+        </ul>
+
+        <p class="step-comment-noline">2. Determine and enter for use across included lines
+            of business:</p>
+
+        <ul class="calibre17">
+
+            <li class="kadov-p-cstep-comment-bullet-noline"><p class="bullet-list-h3">Rules
+                for PCP Auto Assignment to validate or replace a submitted PCP (PCPRL)</p></li>
+
+            <li class="kadov-p-cstep-comment-bullet-noline"><p class="bullet-list-h3">Rules
+                for PCP Auto Assignment to automatically assign a PCP (PCPRL)</p></li>
+        </ul>
+
+        <p class="step-comment-noline">3. Determine and enter for each individual included
+            line of business:</p>
+
+        <ul class="calibre17">
+
+            <li class="kadov-p-cstep-comment-bullet-noline"><p class="bullet-list-h3">A set
+                of rules for PCP Auto Assignment to validate or replace a submitted PCP
+                (PCPAA)</p></li>
+
+            <li class="kadov-p-cstep-comment-bullet-noline"><p class="bullet-list-h3">A set
+                of rules for PCP Auto Assignment to automatically assign a PCP (PCPAA)</p></li>
+
+            <li class="kadov-p-cstep-comment-bullet-noline"><p class="bullet-list-h3">A PCP
+                maximum enrollment limit and threshold applicable to each individual PCP
+                for the line of business (LINBS)</p></li>
+
+            <li class="kadov-p-cstep-comment-bullet-noline"><p class="bullet-list-h3">Default
+                PCP, No Auto PCP Found, ID Card Reinst Days, and Family Affiliation specifications
+                (LINBS)</p></li>
+
+            <li class="kadov-p-cstep-comment-bullet-noline"><p class="bullet-list-h3">Overrides
+                to enrollment thresholds (PCPAA)</p></li>
+
+            <li class="kadov-p-cstep-comment-bullet-noline"><p class="bullet-list-h3">Priority
+                PCP assignment selections (PCPAA)</p></li>
+
+            <li class="kadov-p-cstep-comment-bullet-noline"><p class="bullet-list-h3">Pediatric,
+                OB/GYN, and other Specialty restrictions by age and gender (PCPSI)</p></li>
+        </ul>
+
+        <p class="step-comment-noline">4. Determine and set up for each included provider:</p>
+
+        <ul class="calibre17">
+
+            <li class="kadov-p-cstep-comment-bullet-noline"><p class="bullet-list-h3">PROVE
+                <span class="calibre4">Available for Auto Assign</span> checkbox
+                (PROVE) </p></li>
+        </ul>
+
+        <p class="tip-note-warning">Note: </p>
+
+        <p class="body-text">The default is for the check box to be
+            selected, indicating that the provider is available for PCP auto assignment.
+            You must manually clear the check box for providers you want to exclude
+            from auto assignment. </p>
+
+        <ul class="calibre17">
+
+            <li class="kadov-p-cstep-comment-bullet-noline"><p class="bullet-list-h3">Provider
+                PCP enrollment limits at the provider enrollment and provider master levels
+                (PROVE, PROVF)</p></li>
+        </ul>
+
+        <p class="step-comment-noline">The specific DIAMOND keywords involved in setting up
+            and running PCP Auto Assignment include:</p>
+
+        <ul class="calibre17">
+
+            <li class="kadov-p-cbullet-list-h"><p class="bullet-list-h">LINBS (Line
+                of business)</p></li>
+
+            <li class="kadov-p-cbullet-list-h"><p class="bullet-list-h">PARAM (System
+                Parameters)</p></li>
+
+            <li class="kadov-p-cbullet-list-h"><p class="bullet-list-h">PCPSI (PCP
+                Auto Assign Support Information Details)</p></li>
+
+            <li class="kadov-p-cbullet-list-h"><p class="bullet-list-h">PCPRL (PCP
+                Auto Assign Rules)</p></li>
+
+            <li class="kadov-p-cbullet-list-h"><p class="bullet-list-h">PCPAA (PCP
+                Auto Assign)</p></li>
+
+            <li class="kadov-p-cbullet-list-h"><p class="bullet-list-h">PCPJB (PCP
+                Auto Assign Job Request)</p></li>
+
+            <li class="kadov-p-cbullet-list-h"><p class="bullet-list-h">PROVE (Provider
+                Enrollment Rules)</p></li>
+
+            <li class="kadov-p-cbullet-list-h"><p class="bullet-list-h">PROVF (Provider
+                Master)</p></li>
+
+            <li class="kadov-p-cbullet-list-h"><p class="bullet-list-h">ZIPRF (Zip
+                Code reference)</p></li>
+        </ul>
+
+        <p class="step-comment-noline">The following table summarizes PCP Auto Assignment-specific
+            data by keyword.</p>
+
+        <!--(Table)=========================================================-->
+        <table cellspacing="0" width="534" x-use-null-cells="" class="calibre90">
+
+            <tbody class="calibre6">
+            <tr valign="top" class="calibre7">
+                <td width="144px" class="calibre91">
+                    <p class="tbl-header">Keyword</p></td>
+                <td width="216px" class="calibre92">
+                    <p class="tbl-header">PCP Auto Assignment Data for Each Included Line of
+                        Business or Provider</p></td>
+                <td width="174px" class="calibre93">
+                    <p class="tbl-header">For More Information</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre7">
+                <td width="144px" class="calibre51">
+                    <p class="tbl-text1">PARAM (System Parameters)</p></td>
+                <td width="216px" class="calibre94">
+                    <p class="tbl-list-hdr">System parameters (used for
+                        all included lines of business and providers):</p>
+                    <ul class="calibre17">
+
+                        <li class="kadov-p-ctbl-list-bullet"><p class="tbl-list-bullet">PCPAAFAMUSRD</p></li>
+
+                        <li class="kadov-p-ctbl-list-bullet"><p class="tbl-list-bullet">ENROLLLIMITS</p></li>
+                    </ul>
+                </td>
+                <td width="174px" class="calibre95">
+                    <p class="tbl-text1"><a href="System.chm::/PARAM_ENROLLLIMITS_FIELD.htm">ENROLLLIMITS</a>
+                    </p>
+                    <p class="tbl-text-noline"><a href="System.chm::/PARAM_PCPAAFAMUSRD_FIELD.htm">PCPAAFAMUSRD</a>
+                    </p></td>
+            </tr>
+
+            <tr valign="top" class="calibre7">
+                <td width="144px" class="calibre51">
+                    <p class="tbl-text1">LINBS (Line of Business)</p></td>
+                <td width="216px" class="calibre94">
+                    <p class="tbl-list-hdr">In the <span class="calibre4">PCP
+ Auto Assign Info</span> section box, the fields:</p>
+                    <ul class="calibre17">
+
+                        <li class="kadov-p-ctbl-list-bullet"><p class="tbl-list-bullet"><span class="calibre4">Ind
+ PCP/LINBS MxEnrollLmt</span></p></li>
+
+                        <li class="kadov-p-ctbl-list-bullet"><p class="tbl-list-bullet"><span class="calibre4">Ind
+ PCP/LINBS Threshold</span></p></li>
+
+                        <li class="kadov-p-ctbl-list-bullet"><p class="tbl-list-bullet"><span class="calibre4">Default
+ PCP</span></p></li>
+
+                        <li class="kadov-p-ctbl-list-bullet"><p class="tbl-list-bullet"><span class="calibre4">No
+ Auto PCP Found</span></p></li>
+
+                        <li class="kadov-p-ctbl-list-bullet"><p class="tbl-list-bullet"><span class="calibre4">ID
+ Card Reinst Days</span></p></li>
+
+                        <li class="kadov-p-ctbl-list-bullet"><p class="tbl-list-bullet"><span class="calibre4">Family
+ Affiliation</span></p></li>
+                    </ul>
+                </td>
+                <td width="174px" class="calibre95">
+                    <p class="tbl-text1"><a href="LINBS_Field_Map.htm">LINBS
+                        Field Map</a> - <span class="calibre4">PCP Auto Assign Info
+ </span>section box</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre7">
+                <td width="144px" class="calibre51">
+                    <p class="tbl-text1">PCPSI (PCP Auto Assign Support
+                        Information Details)</p></td>
+                <td width="216px" class="calibre94">
+                    <p class="tbl-list-hdr">All fields as needed in all
+                        the following section boxes:</p>
+                    <ul class="calibre17">
+
+                        <li class="kadov-p-ctbl-list-bullet"><p class="tbl-list-bullet"><span class="calibre4">Pediatric
+ Indicator</span></p></li>
+
+                        <li class="kadov-p-ctbl-list-bullet"><p class="tbl-list-bullet"><span class="calibre4">OB/GYN
+ Indicator</span></p></li>
+
+                        <li class="kadov-p-ctbl-list-bullet"><p class="tbl-list-bullet"><span class="calibre4">Specialty
+ Restrictions by Gender</span></p></li>
+
+                        <li class="kadov-p-ctbl-list-bullet"><p class="tbl-list-bullet"><span class="calibre4">Specialty
+ Restrictions by Age</span></p></li>
+                    </ul>
+                </td>
+                <td width="174px" class="calibre95">
+                    <p class="tbl-text1"><a href="PCPSI_PCPAA_Support_Info_Details.htm">PCPSI,
+                        PCP Auto Assign Support Information Details</a></p></td>
+            </tr>
+
+            <tr valign="top" class="calibre7">
+                <td width="144px" class="calibre51">
+                    <p class="tbl-text1">PCPRL (PCP Auto Assign Rules)</p></td>
+                <td width="216px" class="calibre94">
+                    <p class="tbl-text1">PCP Auto Assignment rules
+                        in accord with your business needs. Rules can be entered once and used
+                        for multiple lines of business.</p></td>
+                <td width="174px" class="calibre95">
+                    <p class="tbl-text1"><a href="PCPRL_PCP_Auto_Assign_Rules.htm">PCPRL,
+                        PCP Auto Assign Rules</a></p></td>
+            </tr>
+
+            <tr valign="top" class="calibre7">
+                <td width="144px" class="calibre51">
+                    <p class="tbl-text1">PCPAA (PCP Auto Assign)</p></td>
+                <td width="216px" class="calibre94">
+                    <p class="tbl-text1">All PCP Auto Assignment rules
+                        needed along with their processing sequence (within Rule Type) to build
+                        a package of rules for each line of business and Event Type.</p>
+                    <p class="tbl-list-hdr-noline">Also, all fields as needed in the following
+                        section boxes:</p>
+                    <ul class="calibre17">
+
+                        <li class="kadov-p-ctbl-list-bullet"><p class="tbl-list-bullet"><span class="calibre4">Override
+ Enrollment Threshold Capacity Levels</span></p></li>
+
+                        <li class="kadov-p-ctbl-list-bullet"><p class="tbl-list-bullet"><span class="calibre4">Evaluate
+ Possible Selections</span></p></li>
+                    </ul>
+                </td>
+                <td width="174px" class="calibre95">
+                    <p class="tbl-text1"><a href="PCPAA_PCP_Auto_Assign.htm">PCPAA,
+                        PCP Auto Assign</a></p></td>
+            </tr>
+
+            <tr valign="top" class="calibre7">
+                <td width="144px" class="calibre51">
+                    <p class="tbl-text1">PCPJB (PCP Auto Assign Job
+                        Request)</p></td>
+                <td width="216px" class="calibre94">
+                    <p class="tbl-text1">All fields, including specifying
+                        the lines of business, member insert dates, and insert processes to include
+                        in the job.</p></td>
+                <td width="174px" class="calibre95">
+                    <p class="tbl-text1"><a href="PCPJB_PCP_Job_Setup.htm">PCPJB,
+                        PCP Auto Assign Job Request</a></p></td>
+            </tr>
+
+            <tr valign="top" class="calibre7">
+                <td width="144px" class="calibre51">
+                    <p class="tbl-text1">PROVE (Provider Enrollment
+                        Rules)</p></td>
+                <td width="216px" class="calibre94">
+                    <p class="tbl-list-hdr">In the <span class="calibre4">PCP
+ Auto Assign Info</span> section box, the following fields for each included
+                        provider:</p>
+                    <ul class="calibre17">
+
+                        <li class="kadov-p-ctbl-list-bullet"><p class="tbl-list-bullet"><span class="calibre4">Available
+ for Auto Assign </span>(defaults to selected)</p></li>
+
+                        <li class="kadov-p-ctbl-list-bullet"><p class="tbl-list-bullet"><span class="calibre4">User
+ Defined 1</span></p></li>
+
+                        <li class="kadov-p-ctbl-list-bullet"><p class="tbl-list-bullet"><span class="calibre4">User
+ Defined 2</span></p></li>
+                    </ul>
+                </td>
+                <td width="174px" class="calibre95">
+                    <p class="tbl-text1"><a href="Provider.chm::/PROVE_Field_Map_REF.htm">PROVE
+                        Field Map</a> - <span class="calibre4">PCP Auto Assign Info</span>
+                        section box</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre7">
+                <td width="144px" class="calibre51">
+                    <p class="tbl-text1">PROVF (Provider Master)</p></td>
+                <td width="216px" class="calibre94">
+                    <p class="tbl-list-hdr">In the <span class="calibre4">Provider
+ Information</span> section box, the following field for each included
+                        provider:</p>
+                    <ul class="calibre17">
+
+                        <li class="kadov-p-ctbl-list-bullet"><p class="tbl-list-bullet"><span class="calibre4">Max
+ Enroll Lmt</span></p></li>
+                    </ul>
+                </td>
+                <td width="174px" class="calibre95">
+                    <p class="tbl-text1"><a href="Provider.chm::/PROVF_Field_Definitions.htm">PROVF
+                        Field Definitions</a></p></td>
+            </tr>
+
+            <tr valign="top" class="calibre7">
+                <td width="144px" class="calibre51">
+                    <p class="tbl-text1">ZIPRF (Zip Code reference)</p></td>
+                <td width="216px" class="calibre94">
+                    <p class="tbl-text1">The field <span class="calibre4">Zip
+ Code Qualifier</span> for each ZIP Code you want to include in PCP Auto
+                        Assignment. (PCP Auto Assignment processing assumes blank means Urban,
+                        so only Rural ZIP Codes need be specifically entered.)</p></td>
+                <td width="174px" class="calibre95">
+                    <p class="tbl-text1"><a href="ZIPRF_Field_Definitions.htm">ZIPRF
+                        Field Definitions</a></p></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <p class="calibre38"> </p>
+
+        <p class="doc-level1">PCP Auto Assignment Processing Logic - Overview</p>
+
+        <p class="step-comment-noline">When you run a PCP Auto Assignment batch job using PCPJB,
+            DIAMOND performs the following steps.</p>
+
+        <p class="numbered-list">1. Select member eligibility records for PCP Auto
+            assignment per PCPJB criteria</p>
+
+        <p class="numbered-list">2. Process each selected member eligibility record
+            in turn as follows</p>
+
+        <p class="numbered-list">3. If the member eligibility record includes a PCP
+            (who is not the LINBS Default PCP), go to Event 1 - Validate/Replace Submitted
+            PCP.</p>
+
+        <p class="numbered-list">4. If the member eligibility record does not include
+            a PCP (or includes the LINBS Default PCP), go to Event 2 - Replace a Default
+            PCP or No PCP Selection.</p>
+
+        <p class="doc-level2">Event 1 - Validate/Replace Submitted PCP:</p>
+
+        <p class="step-comment-noline">Validate the Submitted PCP. If not valid, search for
+            a valid PCP to replace the Submitted PCP.</p>
+
+        <p class="step-comment-noline">1. Evaluate the submitted PCP against key fixed criteria,
+            PCPAA Basic Rules for the member’s line of business, and PROVE, PROVF,
+            and LINBS enrollment limits as specified in system parameter ENROLLLIMITS.
+            (Threshold capacities are automatically overridden for the Submitted PCP.)</p>
+
+        <p class="body-text-block">If satisfy all criteria, the submitted PCP assignment
+            is valid. Set internal flags to reflect that PCP Auto Assignment has been
+            performed for this member eligibility record and the date it was performed.</p>
+
+        <p class="body-text-block">If don’t satisfy all criteria, search for another
+            PCP as follows.</p>
+
+        <p class="step-comment-noline">(Search for PCP to Replace Submitted PCP)</p>
+
+        <p class="step-comment-noline">2. Evaluate priority selections in the PCPAA <span class="calibre4">Evaluate
+ Possible Selections</span> section box of the PCPAA record for the member’s
+            line of business. (For example, you can specify a priority selection of
+            Member Reinstated to assign the same PCP as the reinstated member had
+            for a prior eligibility record.)</p>
+
+        <p class="body-text-block">If one or more records qualify as a possible priority
+            assignment, continue and validate the qualifying records for potential
+            assignment.</p>
+
+        <p class="body-text-block">If no records qualify as a possible priority assignment,
+            search for a PCP. See Search for PCP to Replace Submitted PCP below.</p>
+
+        <p class="step-comment-noline">3. Validate the priority selection records against the
+            PCPAA Basic Rules for the member’s line of business, the PROVE/PROVF/LINBS
+            enrollment limits and threshold capacities, and the Override Threshold
+            Capacity Levels selections. (For example, you can specify to override
+            the enrollment level threshold capacities if the selected PCP was the
+            Member’s previous PCP on a prior eligibility record.)</p>
+
+        <p class="body-text-block">If only one record satisfies all criteria, assign
+            the PCP on the record to the current member eligibility record. Update
+            the PCP’s PROVE enrollment count and set an internal flag that PCP Auto
+            Assignment has been performed for this member eligibility record.</p>
+
+        <p class="body-text-block">If more than one record satisfies all criteria,
+            apply the Tiebreaker Rules for the member’s line of business to the PCPs
+            on the qualifying records. If a single PCP is selected using the tiebreakers,
+            assign the PCP to the member’s eligibility record. If a single PCP is
+            not selected by the Tiebreaker Rules, use a random process to pick a single
+            PCP and then make the assignment. Also update the submitted and assigned
+            PCPs PROVE enrollment counts and set internal flags to reflect that PCP
+            Auto Assignment has been performed for this member eligibility record
+            and the date it was performed. </p>
+
+        <p class="body-text-block">If no records satisfy all criteria, proceed to
+            Event 2 - Replace a Default PCP or No PCP Selection below.</p>
+
+        <p class="doc-level2">Event 2 - Replace a Default PCP or No PCP Selection</p>
+
+        <p class="step-comment-noline">Search for an appropriate PCP to replace the Default
+            PCP or if no satisfactory PCP is submitted.</p>
+
+        <p class="step-comment-noline">1. Evaluate potential PCPs against key fixed criteria.</p>
+
+        <p class="body-text-block">If one or more PCPs satisfy all criteria, continue.</p>
+
+        <p class="body-text-block">If no PCPs satisfy all criteria, assign the <span class="calibre4">No Auto PCP Found ID</span>
+            from the member’s
+            line of business record to the member’s eligibility record and set an
+            internal flag indicating that PCP Auto Assignment has been performed for
+            this record.</p>
+
+        <p class="step-comment-noline">2. Evaluate potential PCPs against the PROVE/PROVF/LINBS
+            enrollment limits and threshold capacities, and the Override Threshold
+            Capacity Levels selections.</p>
+
+        <p class="body-text-block">If one or more PCPs satisfy all criteria, continue.</p>
+
+        <p class="body-text-block">If no PCPs satisfy all criteria, assign the <span class="calibre4">No Auto PCP Found ID</span>
+            from the member’s
+            line of business record to the member’s eligibility record and set an
+            internal flag indicating that PCP Auto Assignment has been performed for
+            this record.</p>
+
+        <p class="step-comment-noline">3. Evaluate potential PCPs against the Preference Rules
+            (in order), for the member’s line of business.</p>
+
+        <p class="body-text-block">If one or more PCPs satisfy a Preference Rule,
+            proceed to evaluate these PCPs against the Auto Assign Rules. Do not evaluate
+            any further Preference Rules.</p>
+
+        <p class="body-text-block">If no PCPs satisfy any Preference Rules, evaluate
+            all potential PCPs against the Auto Assign Rules.</p>
+
+        <p class="step-comment-noline">4. Evaluate potential PCPs against the Auto Assign Rules.</p>
+
+        <p class="body-text-block">If only one PCP satisfies all Auto Assign Rules,
+            assign the PCP on the record to the current member eligibility record.
+            Also update the PCP’s PROVE enrollment count and set internal flags to
+            reflect that PCP Auto Assignment has been performed for this member eligibility
+            record and the date it was performed.</p>
+
+        <p class="body-text-block">If more than one PCP satisfies all Auto Assign
+            Rules, apply the Tiebreaker Rules for the member’s line of business to
+            the PCPs on the qualifying records. If a single PCP is selected using
+            the tiebreakers, assign the PCP to the member’s eligibility record. If
+            a single PCP is not selected by the Tiebreaker Rules, use a random process
+            to pick a single PCP and then make the assignment. Also update the submitted
+            and assigned PCPs PROVE enrollment counts and set internal flags to reflect
+            that PCP Auto Assignment has been performed for this member eligibility
+            record and the date it was performed. </p>
+
+        <p class="body-text-block">If no PCPs satisfy all Auto Assign Rules, assign
+            the <span class="calibre4">No Auto PCP Found ID</span> from
+            the member’s line of business record to the member’s eligibility record.
+            Also set internal flags to reflect that PCP Auto Assignment has been performed
+            for this member eligibility record and the date it was performed</p>
+
+        <p class="doc-level1">More information</p>
+
+        <p class="step-comment-noline">For more information on PCP Auto Assignment, see the
+            following:</p>
+
+        <p class="step-comment-noline"><a href="Setting_Up_PCP_Auto_Assignment.htm">Setting
+            Up PCP Auto Assignment</a></p>
+
+        <p class="step-comment-noline"><a href="Running_PCP_Auto_Assignment.htm">Running PCP
+            Auto Assignment</a></p>
+
+        <p class="step-comment-noline"><a href="PCP_Auto_Assignment_How_DIAMOND_Thinks.htm">PCP
+            Auto Assignment, How DIAMOND Thinks</a></p>
+
+
+    </div>
+
+    <div class="calibreEbNav">
+
+        <a href="Notes_Frequently_Asked_Questions_HOT.htm" class="calibreAPrev">previous page
+        </a>
+
+
+        <a href="../2nlvj-mfnql.html" class="calibreAHome">start
+        </a>
+
+
+        <a href="Setting_Up_PCP_Auto_Assignment.htm" class="calibreANext">next page
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+</html>

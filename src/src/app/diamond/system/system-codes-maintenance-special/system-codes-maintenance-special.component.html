@@ -1,0 +1,35 @@
+<!-- Copyright (c) 2021 . All Rights Reserved. -->
+<div class="container-fluid">
+    <div class="card-block">
+        <button type="button" *ngIf="showIcon" class="modal-close close" aria-label="Close"
+            (click)="activeModal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <form novalidate>
+            <h2 class="form-title card-label-admin">Language Selection</h2>
+            <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+            <app-pop-up-message #popUpMesssage (buttonclickEvent)="popUpButtonHandler($event)"
+                [(popupMessage)]="popUpMessage"></app-pop-up-message>
+
+            <div class="form-group row">
+            </div>
+
+            <div class="row">
+                <div class="col-md-8">
+                    <label class="required-field-label" for="languages" i18n>Language Code:</label>
+                    <div class="selectContainer">
+                        <select class="form-control" id="languages" #level name="languages">
+                            <option *ngFor="let lang of languages" [value]="lang.languageCode">
+                                {{lang.description}}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="col-md-2"><button (click)="OnSubmit()" class="button"> Ok </button></div>
+                    <div class="col-md-2"><button (click)="activeModal.dismiss('Cross click')" class="button"> Cancel </button></div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

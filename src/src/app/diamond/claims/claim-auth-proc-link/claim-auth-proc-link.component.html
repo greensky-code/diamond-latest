@@ -1,0 +1,198 @@
+<!-- Copyright (c) 2021 . All Rights Reserved. -->
+<div class="container-fluid">
+    <div class="card-block">
+        <div class="row form-title">
+            <h2 class="col-md-6 card-label-admin">Claim Auth Proc Link</h2>
+        </div>
+        <button type="button" *ngIf="showIcon" class="close" aria-label="Close" (click)="modalClose()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+        <app-pop-up-message #popUpMesssage (buttonclickEvent)="popUpButtonHandler($event)"  [(popupMessage)] = "popUpMessage"></app-pop-up-message>
+
+        <div class="row mt-3 mb-3">
+            <menu-bar [menus]="menu" (onMenuClick)="onMenuItemClick($event)"></menu-bar>
+        </div>
+
+        <form [formGroup]="claimAuthProcLinkForm" novalidate>
+            <div class="form-group row">
+                <!-- DynamicText with label of LOB -->
+                 <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('lob') }">
+                     <label class="col-form-label" for="lob" i18n>LOB</label>
+                     <input type="text"  [fieldLevelSec]="''" [params]="" (keydown)="LookupLOB($event)" (change)="onChangeLob($event)"   id="lob" formControlName="lob" class="form-control"/>
+                 </div>
+
+                <!-- DynamicText with label of Auth Type -->
+                 <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('authType') }">
+                     <label class="col-form-label" for="authType" i18n>Auth Type</label>
+                     <input type="text"  [fieldLevelSec]="'Auth Type'" (keydown)="LookupAuthType($event)" (change)="onChangeAuthType($event)" [params]=""   id="authType" formControlName="authType" class="form-control"/>
+                 </div>
+
+                <!-- Button with label of Show Records -->
+                <div class="col-md-4">
+                    <br>
+                    <button type="button" id="showRecords" (click)="ShowRecords()" name="showRecords" class="btn btn-small btn-primary mt-3">Show Records</button>
+                </div>
+            </div>
+
+            <div class="form-group row">
+            </div>
+
+            <div class="form-group row">
+                <!-- Textbox with label of Effective Date -->
+                 <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('effectiveDate') }">
+                   <app-datepicker [isRequired]="true" [formGroup]="claimAuthProcLinkForm" [formValidation]="formValidation"  [field]="'effectiveDate'" [labelText]="'Effective Date'"></app-datepicker>
+
+                 </div>
+
+                <!-- Textbox with label of Term Date -->
+                 <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('termDate') }">
+                     <app-datepicker [formGroup]="claimAuthProcLinkForm" [formValidation]="formValidation" [field]="'termDate'" [labelText]="'Term Date'"></app-datepicker>
+                 </div>
+
+            </div>
+
+            <div class="form-group row">
+                <!-- Textbox with label of Description -->
+                 <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('description') }">
+                     <label class="col-form-label" for="description" i18n>Description</label>
+                     <input type="text" id="description"  [fieldLevelSec]="'Description'" [params]=""   class="form-control" formControlName="description"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('description')">
+                      {{ formValidation.errorMessage('description') }}
+                     </small>
+                 </div>
+
+            </div>
+
+            <div class="form-group row">
+                <div class="col-md-6 form-control-static mb-0" i18n>
+                    <h4><u> Rule Critera</u></h4>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <!-- Textbox with label of Tie-Breaker on Auth Price -->
+                 <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('tieBreakerOnAuthPrice') }">
+                     <label class="col-form-label" for="tieBreakerOnAuthPrice" i18n>Tie-Breaker on Auth Price</label>
+                    <select class="form-control" id="tieBreakerOnAuthPrice" name="tieBreakerOnAuthPrice" formControlName="tieBreakerOnAuthPrice">
+                        <option *ngFor="let systemCode of AuthPrice" [value]="systemCode.systemCode">{{systemCode.systemCode}} &nbsp; {{systemCode.systemCodeDesc1}}</option>
+                    </select>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('tieBreakerOnAuthPrice')">
+                      {{ formValidation.errorMessage('tieBreakerOnAuthPrice') }}
+                     </small>
+                 </div>
+
+                <!-- Textbox with label of Tie-Breaker on Auth Proc -->
+                 <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('tieBreakerOnAuthProc') }">
+                     <label class="col-form-label" for="tieBreakerOnAuthProc" i18n>Tie-Breaker on Auth Proc</label>
+                    <select class="form-control" id="tieBreakerOnAuthProc" name="tieBreakerOnAuthProc" formControlName="tieBreakerOnAuthProc">
+                        <option *ngFor="let systemCode of AuthProc" [value]="systemCode.systemCode">{{systemCode.systemCode}} &nbsp; {{systemCode.systemCodeDesc1}}</option>
+                    </select>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('tieBreakerOnAuthProc')">
+                      {{ formValidation.errorMessage('tieBreakerOnAuthProc') }}
+                     </small>
+                 </div>
+            </div>
+
+            <div class="form-group row">
+                <!-- Checkbox with label of Match on Details for Inpatient Stay ? -->
+                <div class="" [ngClass]="{'has-error': displayMessage.matchOnDetailsForInpatient }">
+                    <div class="checkbox col-md-12">
+                      <input id="matchOnDetailsForInpatient"  [fieldLevelSec]="'Mtch On Dtl For Inp'" [params]=""  value="matchOnDetailsForInpatient" formControlName="matchOnDetailsForInpatient" type="checkbox">
+                        <label class="checkbox">
+                            Match on Details for Inpatient Stay ?
+                         </label>
+                    </div>
+                    <span class="help-block" *ngIf="displayMessage.matchOnDetailsForInpatient">
+                        {{ displayMessage.matchOnDetailsForInpatient  }}
+                     </span>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-md-6 form-control-static mb-0" i18n>
+                    <h4><u> Exceed Auth Detail Days/ Visit</u></h4>
+                </div>
+            </div>
+            <div class="form-group row">
+                <!-- Textbox with label of Action -->
+                 <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('action001') }">
+                     <label class="col-form-label" for="action001" i18n>Action</label>
+
+                    <select type="text" id="action001"  [fieldLevelSec]="''" [params]=""   class="form-control" formControlName="action001">
+                        <option *ngFor="let systemCode of action" [value]="systemCode.systemCode">{{systemCode.systemCode}} &nbsp; {{systemCode.systemCodeDesc1}}</option>
+                    </select>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('action001')">
+                      {{ formValidation.errorMessage('action001') }}
+                     </small>
+                 </div>
+
+                <!-- DynamicText with label of Reason -->
+                 <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('reason001') }">
+                     <label class="col-form-label" for="reason001" i18n>Reason</label>
+                     <input type="text" (change)="validateReason($event)"  id="reason001"  (keydown)="LookupReason($event,'reason001','action001')" formControlName="reason001" class="form-control" />
+                 </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-md-12 form-control-static mb-0" i18n>
+                    <h4><u>Exceed Auth Detail Amount</u></h4>
+                </div>
+            </div>
+            <div class="form-group row">
+
+                <!-- DynamicText with label of Action ^TB Reason -->
+                 <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('actionTbReason') }">
+                     <label class="col-form-label" for="actionTbReason" i18n>Action</label>
+                    <select id="reason" class="form-control"  name="actionTbReason" formControlName="actionTbReason">
+                        <option *ngFor="let systemCode of action" [value]="systemCode.systemCode">{{systemCode.systemCode}} &nbsp; {{systemCode.systemCodeDesc1}}</option>
+                    </select>
+                 </div>
+                <!-- DynamicText with label of Reason -->
+                <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('reason0022') }">
+                    <label class="col-form-label" for="reason001" i18n>Reason</label>
+                    <input type="text"  (change)="validateReason($event)"  id="reason0022" formControlName="reason0022" (keydown)="LookupReason($event,'reason0022','actionTbReason')" class="form-control" />
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-md-9 form-control-static mb-0" i18n>
+                <h4><u>   Auth Price used with Submit Modifier</u></h4>
+                </div>
+            </div>
+           <div class="form-group row">
+                <!-- Textbox with label of Action -->
+                 <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('action002') }">
+                     <label class="col-form-label" for="action002" i18n>Action</label>
+                    <select type="text" id="action002"  [fieldLevelSec]="''" [params]=""   class="form-control" formControlName="action002">
+                        <option *ngFor="let systemCode of action" [value]="systemCode.systemCode">{{systemCode.systemCode}} &nbsp; {{systemCode.systemCodeDesc1}}</option>
+                    </select>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('action002')">
+                      {{ formValidation.errorMessage('action002') }}
+                     </small>
+                 </div>
+                <!-- DynamicText with label of Reason -->
+                 <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('reason002') }">
+                     <label class="col-form-label" for="reason002" i18n>Reason</label>
+                     <input type="text" (change)="validateReason($event)"  id="reason002" formControlName="reason002" (keydown)="LookupReason($event,'reason002','action002')" class="form-control" />
+                 </div>
+            </div>
+
+            <div class="form-group row">
+            </div>
+
+            <div class="form-group row">
+                <div class="col-md-6 form-control-static mb-0" i18n>
+                <h4><u>Processing Rules</u></h4>
+                </div>
+            </div>
+                   <!-- DataGrid with Name of DataGrid -->
+            <dynamic-form   (onChangeFields)="dynamicformChange($event)" [isSaveForm]="saveForm" [isAddNewRow]="isAddNewRow" [prevState]="claimAuthProcDtlState" [title]="''" [config]="claimAuthProcDtlConfig" (formSubmitted)="saveClaimAuthProc($event)"></dynamic-form>
+            <div class="form-group row">
+            </div>
+        </form>
+    </div>
+</div>
+
+<ng-keyboard-shortcuts [shortcuts]="shortcuts"></ng-keyboard-shortcuts>
+<ng-keyboard-shortcuts-help [key]="'f2'" [closeKey]="'escape'" [title]="'Hotkeys Help'"></ng-keyboard-shortcuts-help>

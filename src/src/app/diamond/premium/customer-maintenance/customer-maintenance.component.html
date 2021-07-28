@@ -1,0 +1,168 @@
+<!-- Copyright (c) 2021 . All Rights Reserved. -->
+<div class="container-fluid">
+    <div class="card-block">
+        <h2 class="form-title card-label-admin font-weight-bold" >Customer Maintenance</h2>
+            <button type="button" *ngIf="showIcon" class="close" aria-label="Close" (click)="modalClose()">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+            <app-pop-up-message #popUpMesssage (buttonclickEvent)="popUpButtonHandler($event)"  [(popupMessage)] = "popUpMessage"></app-pop-up-message>
+            <div class="row mb-4 mt-2">
+
+                <menu-bar [menus]="menu" (onMenuClick)="onMenuItemClick($event)"></menu-bar>
+            </div>
+
+        <form [formGroup]="customerMaintenanceForm" novalidate>
+            <div class="form-group row">
+
+                 <!-- Textbox with label of Customer ID -->
+                 <div class="col-md-5" [ngClass]="{'has-danger': formValidation.isValidField('customerId') }">
+                    <label class="col-form-label required-field-label" for="customerId" i18n>Customer ID</label>
+
+                    <input  type="text" id="customerId" #customerId
+                           class="form-control " formControlName="customerId"
+                           (keydown)="onLookupFieldChange($event)"
+                           />
+                </div>
+
+                <!-- textbox with label of Type -->
+
+                    <div class="col-md-2" >
+                        <label class="col-form-label required-field-label" for="type" i18n>Type</label>
+                     <div [ngClass]="{'has-danger': formValidation.isValidField('type') }">
+                        <div class="input-group mb-3">
+                        <input  #type type="text" id="type"
+                               class="form-control" formControlName="type"
+                               (keydown)="onLookupFieldChange2($event,type.value)"
+                               />
+                         <div class="input-group-append">
+                             <div class="input-group-append">
+                               <button  [disabled]="buttonClicked" class="input-group-text" (click)="findByType(type.value)">
+                                <fa-icon [icon]="faSearch"></fa-icon>
+                              </button>
+                              </div>
+                         </div>
+                         </div>
+                    </div>
+
+                    </div>
+
+            </div>
+
+            <div class="form-group row">
+            </div>
+
+            <div  *ngIf="showData">
+                <div class="form-group row">
+                    <!-- Textbox with label of Short Name -->
+                    <div class="col-md-12 d-md-flex" [ngClass]="{'has-danger': formValidation.isValidField('shortName') }">
+                        <label class="col-form-label col-md-3 text-md-right font-weight-bold" for="shortName" i18n>Short Name:</label>
+                        <input type="text" id="shortName"  [fieldLevelSec]="'Short Name'" params="Pmb Ar Customer Master"   class="form-control col-md-4" formControlName="shortName"/>
+                        <small class="text-danger" *ngIf="formValidation.isValidField('shortName')">
+                            {{ formValidation.errorMessage('shortName') }}
+                        </small>
+                    </div>
+
+                </div>
+
+                <div class="form-group row">
+                    <!-- Textbox with label of Customer Name 1 -->
+                    <div class="col-md-12 d-md-flex" [ngClass]="{'has-danger': formValidation.isValidField('customerName1') }">
+                        <label class="col-form-label col-md-3 text-md-right font-weight-bold" for="customerName1" i18n>Customer Name 1:</label>
+                        <input type="text" id="customerName1"  [fieldLevelSec]="'Customer Name 1'" params="Pmb Ar Customer Master"   class="form-control col-md-8" formControlName="customerName1"/>
+                        <small class="text-danger" *ngIf="formValidation.isValidField('customerName1')">
+                            {{ formValidation.errorMessage('customerName1') }}
+                        </small>
+                    </div>
+
+                </div>
+
+                <div class="form-group row">
+                    <!-- Textbox with label of Customer Name 2 -->
+                    <div class="col-md-12 d-md-flex" [ngClass]="{'has-danger': formValidation.isValidField('customerName2') }">
+                        <label class="col-form-label col-md-3 text-md-right font-weight-bold" for="customerName2" i18n>Customer Name 2:</label>
+                        <input type="text" id="customerName2"  [fieldLevelSec]="'Customer Name 2'" params="Pmb Ar Customer Master"   class="form-control col-md-8" formControlName="customerName2"/>
+                        <small class="text-danger" *ngIf="formValidation.isValidField('customerName2')">
+                            {{ formValidation.errorMessage('customerName2') }}
+                        </small>
+                    </div>
+
+                </div>
+
+                <div class="form-group row">
+                    <!-- Textbox with label of Address 1 -->
+                    <div class="col-md-12 d-md-flex" [ngClass]="{'has-danger': formValidation.isValidField('address1') }">
+                        <label class="col-form-label col-md-3 text-md-right font-weight-bold" for="address1" i18n>Address 1:</label>
+                        <input type="text" id="address1"  [fieldLevelSec]="''" params=""   class="form-control col-md-8" formControlName="address1"/>
+                        <small class="text-danger" *ngIf="formValidation.isValidField('address1')">
+                            {{ formValidation.errorMessage('address1') }}
+                        </small>
+                    </div>
+
+                </div>
+
+                <div class="form-group row">
+                    <!-- Textbox with label of Address 2 -->
+                    <div class="col-md-12 d-md-flex" [ngClass]="{'has-danger': formValidation.isValidField('address2') }">
+                        <label class="col-form-label col-md-3 text-md-right font-weight-bold" for="address2" i18n>Address 2:</label>
+                        <input type="text" id="address2"  [fieldLevelSec]="''" params=""   class="form-control col-md-8" formControlName="address2"/>
+                        <small class="text-danger" *ngIf="formValidation.isValidField('address2')">
+                            {{ formValidation.errorMessage('address2') }}
+                        </small>
+                    </div>
+
+                </div>
+
+                <div class="form-group row">
+                    <!-- Textbox with label of City -->
+                    <div class="col-md-12 d-md-flex" [ngClass]="{'has-danger': formValidation.isValidField('city') }">
+                        <label class="col-form-label col-md-3 text-md-right font-weight-bold" for="city" i18n>City:</label>
+                        <input type="text" id="city"  [fieldLevelSec]="'Customer City'" params="Pmb Ar Customer Master"   class="form-control col-md-8" formControlName="city"/>
+                        <small class="text-danger" *ngIf="formValidation.isValidField('city')">
+                            {{ formValidation.errorMessage('city') }}
+                        </small>
+                    </div>
+
+                </div>
+
+                <div class="form-group row">
+                    <!-- Textbox with label of State/Prov -->
+                    <div class="col-md-5 d-md-flex" [ngClass]="{'has-danger': formValidation.isValidField('stateprov') }">
+                        <label class="col-form-label col-md-7 text-md-right font-weight-bold" for="stateprov" i18n>State/Prov:</label>
+                        <input type="text" id="stateprov"  [fieldLevelSec]="''" params=""   class="form-control col-md-4 ml-md-2" formControlName="stateprov"/>
+                        <small class="text-danger" *ngIf="formValidation.isValidField('stateprov')">
+                            {{ formValidation.errorMessage('stateprov') }}
+                        </small>
+                    </div>
+
+                    <!-- Textbox with label of ZIP/Post -->
+                    <div class="col-md-5 d-md-flex" [ngClass]="{'has-danger': formValidation.isValidField('zippost') }">
+                        <label class="col-form-label col-md-4 text-md-right font-weight-bold" for="zippost" i18n>ZIP/Post:</label>
+                        <input type="text" id="zippost"  [fieldLevelSec]="''" params=""   class="form-control col-md-6" formControlName="zippost"/>
+                        <small class="text-danger" *ngIf="formValidation.isValidField('zippost')">
+                            {{ formValidation.errorMessage('zippost') }}
+                        </small>
+                    </div>
+
+                </div>
+                <div class="form-group row">
+                    <label class="label-broken col-md-4 text-primary text-right">
+                        <span>
+                            <b>User Defined</b>
+                        </span>
+                    </label>
+                    <label class="col-md-8 label-broken"><span></span></label>
+                </div>
+                <div class="form-group row">
+                    <div class="col-md-12">
+                        <app-dynamic-user-defined-fields [winID]="winID" [dataWindowId]="dataWindowId" [billTypeEnable]="billTypeEnable" [premResetValue]="premResetValue" [billTypeResetValue]="billTypeResetValue"></app-dynamic-user-defined-fields>
+                    </div>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+<ng-keyboard-shortcuts [shortcuts]="shortcuts"></ng-keyboard-shortcuts>
+<ng-keyboard-shortcuts-help [key]="'f2'" [closeKey]="'escape'" [title]="'Hotkeys Help'"></ng-keyboard-shortcuts-help>

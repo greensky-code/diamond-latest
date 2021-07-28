@@ -1,0 +1,343 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+    <title>Setting Up PCP Auto Assignment</title>
+    <!--(Meta)==========================================================-->
+    <meta name="copyright"
+          value="© Copyright 2002 Health Systems Design Corp., a wholly owned subsidiary of Perot Systems Corporation. All rights reserved"/>
+    <meta content="RoboHELP by eHelp Corporation - www.ehelp.com" name="generator"/>
+    <meta content="0.1" name="generator-major-version"/>
+    <meta content="1" name="generator-minor-version"/>
+    <meta content="kadov" name="filetype"/>
+    <meta content="1" name="filetype-version"/>
+    <meta content="1" name="page-count"/>
+    <meta content="1825" name="layout-height"/>
+    <meta content="642" name="layout-width"/>
+    <!--(Links)=========================================================-->
+    <!--(Scripts)=======================================================-->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+</head>
+<body>
+
+<div class="calibreMeta">
+    <div class="calibreMetaTitle">
+
+
+        <h1>
+            <a href="../2nlvj-mfnql.html">DIAMOND 950 Help
+            </a>
+        </h1>
+
+
+    </div>
+    <div class="calibreMetaAuthor">
+        Unknown
+
+    </div>
+</div>
+
+<div class="calibreMain">
+
+    <div class="calibreEbookContent">
+
+        <div class="calibreEbNavTop">
+
+            <a href="PCP_Auto_Assignment_Overview.htm" class="calibreAPrev">previous page
+            </a>
+
+
+            <a href="Running_PCP_Auto_Assignment.htm" class="calibreANext">next page
+            </a>
+
+        </div>
+
+
+        <h1 class="calibre1">Setting Up PCP Auto Assignment</h1>
+
+        <!--(Table)=========================================================-->
+        <table cellspacing="0" width="480" x-use-null-cells="" class="calibre172">
+
+            <tbody class="calibre6">
+            <tr valign="top" class="calibre7">
+                <td width="120px" class="">
+                    <p class="map-links"><a
+                            href="Setting_Up_PCP_Auto_Assignment.htm#Setting_Up_PCP_Auto_Assign_Rules_Restrictions_TASK_MID"><img
+                            alt="image\assets/help/MidTopic_shg.gif" border="0" height="10" src="assets/help/MidTopic_shg.gif" width="18"
+                            class=""/></a> Restrictions</p></td>
+                <td width="126px" class="">
+                    <p class="map-links"><a
+                            href="Setting_Up_PCP_Auto_Assignment.htm#Setting_Up_PCP_Auto_Assign_Rules_Instructions_TASK_MID"><img
+                            alt="image\assets/help/MidTopic_shg.gif" border="0" height="10" src="assets/help/MidTopic_shg.gif" width="18"
+                            class=""/></a> Instructions</p></td>
+                <td width="234px" class="">
+                    <p class="map-links"><a
+                            href="Setting_Up_PCP_Auto_Assignment.htm#Setting_Up_PCP_Auto_Assign_Rules_Frequently_Asked_Questions_TASK_MID"><img
+                            alt="image\assets/help/MidTopic_shg.gif" border="0" height="10" src="assets/help/MidTopic_shg.gif" width="18"
+                            class=""/></a> Frequently Asked Questions</p></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <p class="step-comment-noline">In order to use the PCP Auto Assignment batch process
+            to automatically assign a PCP or validate a submitted PCP, you first identify
+            the lines of business and providers for which you want to use PCP Auto
+            Assignment functionality. Then for each line of business and provider
+            included, you determine and enter appropriate values, based on your business
+            requirements, for the key data used exclusively by PCP Auto Assignment.
+        </p>
+
+        <p class="step-comment-noline">For more information about how the key values you specify
+            are used in PCP Auto Assignment, see <a href="PCP_Auto_Assignment_How_DIAMOND_Thinks.htm">PCP
+                Auto Assignment, How DIAMOND Thinks</a>.</p>
+
+        <p class="doc-level"><a name="Setting_Up_PCP_Auto_Assign_Rules_Restrictions_TASK_MID"></a>Restrictions</p>
+
+        <p class="step-comment-noline">None.</p>
+
+        <p class="doc-level"><a name="Setting_Up_PCP_Auto_Assign_Rules_Instructions_TASK_MID"></a>Instructions</p>
+
+        <!--(Table)=========================================================-->
+        <table cellspacing="0" width="526" x-use-null-cells="" class="calibre172">
+
+            <tbody class="calibre6">
+            <tr valign="top" class="calibre7">
+                <td width="250px" class="">
+                    <p class="tbl-header">Step</p></td>
+                <td width="276px" class="">
+                    <p class="tbl-header">Comment</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre7">
+                <td width="250px" class="">
+                    <p class="step1">1. Determine and enter appropriate
+                        values for the system parameters:</p>
+                    <ul class="calibre17">
+
+                        <li class="kadov-p-ctbl-list-bullet"><p class="step--bullet">ENROLLLIMITS</p></li>
+
+                        <li class="kadov-p-ctbl-list-bullet"><p class="step--bullet">PCPAAFAMUSRD</p></li>
+                    </ul>
+                </td>
+                <td width="276px" class="">
+                    <p class="step-comment">System parameters apply to
+                        all included lines of business and providers.</p>
+                    <p class="step-comment-noline">For more information, see <a
+                            href="PARAM_Record_Definitions.htm">PARAM
+                        Record Definitions</a>.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre7">
+                <td width="250px" class="calibre15">
+                    <p class="step1">2. Identify all PCPs
+                        who should be available for PCP auto assignment, and for what date ranges.
+                    </p></td>
+                <td width="276px" class="calibre16">
+                    <p class="step-comment"> </p></td>
+            </tr>
+
+            <tr valign="top" class="calibre7">
+                <td width="250px" class="calibre15">
+                    <p class="step1">3. On each included
+                        PCP’s PROVE (Provider Enrollment) record, complete fields <span class="calibre4">User
+ Defined 1</span> and <span class="calibre4">User Defined 2</span>
+                        as appropriate if you intend to use them in PCP Auto Assignment. Save
+                        each record.</p></td>
+                <td width="276px" class="calibre16">
+                    <p class="step-comment">See <a href="PCP_Auto_Assignment_How_DIAMOND_Thinks.htm">PCP
+                        Auto Assignment, How DIAMOND Thinks</a> for more information.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre7">
+                <td width="250px" class="calibre15">
+                    <p class="step1">4. On each excluded
+                        provider’s PROVE (Provider Enrollment) record, in the <span class="calibre4">PCP
+ Auto Assign Info</span> section box, clear the <span class="calibre4">Avail
+ for Auto Assign</span> check box.</p></td>
+                <td width="276px" class="calibre16">
+                    <p class="step-comment">The default for the <span class="calibre4">Avail for Auto Assign</span>
+                        check box default
+                        is selected. So you do not need to select this check box for included
+                        PCP’s. You only need to clear this check box for excluded PCPs.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre7">
+                <td width="250px" class="calibre15">
+                    <p class="step1">5.  For each included
+                        PCP, use PROVF to enter the <span class="calibre4">MAX Enroll
+ Lmt </span>and save the record.</p></td>
+                <td width="276px" class="calibre16">
+                    <p class="step-comment"><span class="calibre4">MAX
+ Enroll Lmt </span>defaults to 99,999. </p></td>
+            </tr>
+
+            <tr valign="top" class="calibre7">
+                <td width="250px" class="calibre15">
+                    <p class="step1">6. Identify the lines
+                        of business for which you want to perform PCP Auto Assignment and determine
+                        key PCP Auto Assignment particulars for each.</p></td>
+                <td width="276px" class="calibre16">
+                    <p class="step-comment"> </p></td>
+            </tr>
+
+            <tr valign="top" class="calibre7">
+                <td width="250px" class="calibre15">
+                    <p class="step1">7.  For each included
+                        line of business, complete the fields in the LINBS <span class="calibre4">PCP
+ Auto Assign Info</span> section box and save the record.</p></td>
+                <td width="276px" class="calibre16">
+                    <p class="step-comment">LINBS <span class="calibre4">PCP
+ Auto Assign Info</span> fields include:</p>
+                    <ul class="calibre17">
+
+                        <li class="kadov-p-cstep-comment-bullet-noline"><p class="step-comment-bullet-noline">Ind
+                            PCP/LINBS MaxEnrollLmt</p></li>
+
+                        <li class="kadov-p-cstep-comment-bullet-noline"><p class="step-comment-bullet-noline">Ind
+                            PCP/LINBS Threshold</p></li>
+
+                        <li class="kadov-p-cstep-comment-bullet-noline"><p class="step-comment-bullet-noline">Default
+                            PCP</p></li>
+
+                        <li class="kadov-p-cstep-comment-bullet-noline"><p class="step-comment-bullet-noline">No
+                            Auto PCP Found</p></li>
+
+                        <li class="kadov-p-cstep-comment-bullet-noline"><p class="step-comment-bullet-noline">ID
+                            Card Reinst Days</p></li>
+
+                        <li class="kadov-p-cstep-comment-bullet-noline"><p class="step-comment-bullet-noline">Family
+                            Affiliation</p></li>
+                    </ul>
+                    <p class="step-comment-noline">The Default PCP ID is designed to enable you
+                        to add a member eligibility record to DIAMOND when no PCP assignment exists
+                        and the member’s line of business requires a PCP. You can then run PCP
+                        Auto Assignment to replace the Default PCP. For each line of business
+                        for which you want to do this, you must set up a valid provider contract
+                        for the Default PCP ID.</p>
+                    <p class="step-comment-noline">For more information, see <a href="LINBS_Field_Definitions.htm">LINBS
+                        Field Definitions</a> and <a href="PCP_Auto_Assignment_How_DIAMOND_Thinks.htm">PCP
+                        Auto Assignment, How DIAMOND Thinks</a>.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre7">
+                <td width="250px" class="calibre15">
+                    <p class="step1">8.  For each included
+                        line of business, use keyword PCPSI to enter the PCPAA Support Info Details.</p></td>
+                <td width="276px" class="calibre16">
+                    <p class="step-comment">PCPSI includes four section
+                        boxes:</p>
+                    <ul class="calibre17">
+
+                        <li class="kadov-p-cstep-comment-bullet-noline"><p class="step-comment-bullet-noline"><span
+                                class="calibre4">Pediatric Indicator</span> - Use to specify
+                            an age range that qualifies a member as a child for possible assignment
+                            of a PCP whose primary specialty is pediatrics</p></li>
+
+                        <li class="kadov-p-cstep-comment-bullet-noline"><p class="step-comment-bullet-noline"><span
+                                class="calibre4">OB/GYN Indicator</span> - Use to specify a
+                            gender and age range that qualifies a member for possible assignment of
+                            a PCP whose primary specialty is OB/GYN </p></li>
+
+                        <li class="kadov-p-cstep-comment-bullet-noline"><p class="step-comment-bullet-noline"><span
+                                class="calibre4">Specialty Restrictions by Gender</span> - Use
+                            to specify a gender(s) that excludes a member from assignment of a PCP
+                            with a selected primary specialty</p></li>
+
+                        <li class="kadov-p-cstep-comment-bullet-noline"><p class="step-comment-bullet-noline"><span
+                                class="calibre4">Specialty Restrictions by Age</span> - Use
+                            to specify an age range that excludes a member from assignment of a PCP
+                            with a selected primary specialty</p></li>
+                    </ul>
+                </td>
+            </tr>
+
+            <tr valign="top" class="calibre7">
+                <td width="250px" class="calibre15">
+                    <p class="step1">9.  Use keyword PCPRL
+                        to enter PCP Auto Assignment rules available for all included lines of
+                        business by Event Type. </p></td>
+                <td width="276px" class="calibre16">
+                    <p class="step-comment">These rules can be used as
+                        needed across all included lines of business.</p>
+                    <p class="tbl-list-hdr-noline">PCP Auto Assignment includes two Event Types:</p>
+                    <ul class="calibre17">
+
+                        <li class="kadov-p-ctbl-list-bullet"><p class="tbl-list-bullet">Event 1
+                            - Validate/Replace Submitted PCP</p></li>
+
+                        <li class="kadov-p-ctbl-list-bullet"><p class="tbl-list-bullet">Event 2
+                            - Replace a Default PCP or No PCP Selection</p></li>
+                    </ul>
+                    <p class="step-comment-noline">For more information on PCP Auto Assignment
+                        rules and how they are applied, see <a
+                                href="PCP_Auto_Assignment_How_DIAMOND_Thinks.htm#PCP_Auto_Assignment_HDT_PCP_Auto_Assignment_Rules_MID">PCP
+                            Auto Assignment Rules</a>.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre7">
+                <td width="250px" class="calibre15">
+                    <p class="step1">10.  For each included
+                        line of business, use keyword PCPAA to:</p>
+                    <ul class="calibre17">
+
+                        <li class="kadov-p-ctbl-list-bullet"><p class="step--bullet">Build a rules
+                            package for PCP Auto Assignment</p></li>
+
+                        <li class="kadov-p-ctbl-list-bullet"><p class="step--bullet">Select special
+                            conditions when you can override enrollment threshold capacity levels
+                            (section box <span class="calibre4">Override Enrollment Threshold
+ Capacity Levels</span>)</p></li>
+
+                        <li class="kadov-p-ctbl-list-bullet"><p class="step--bullet">Select priority
+                            assignment evaluations to perform in order when a submitted PCP does not
+                            pass validation (section box <span class="calibre4">Evaluate
+ Possible Selections</span>)</p></li>
+                    </ul>
+                </td>
+                <td width="276px" class="calibre16">
+                    <p class="step-comment"> </p></td>
+            </tr>
+
+            <tr valign="top" class="calibre7">
+                <td width="250px" class="calibre15">
+                    <p class="step1">11.  Use keyword ZIPRF
+                        to complete the field <span class="calibre4">Zip Code Qualifier</span>
+                        for each ZIP Code for you want to include in PCP Auto Assignment. </p></td>
+                <td width="276px" class="calibre16">
+                    <p class="step-comment">PCP Auto Assignment processing
+                        assumes a <span class="calibre4">Zip Code Qualifier</span> of
+                        blank means Urban, so only Rural ZIP Codes need be specifically entered.</p></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <p class="calibre38"> </p>
+
+        <p class="doc-level"><a name="Setting_Up_PCP_Auto_Assign_Rules_Frequently_Asked_Questions_TASK_MID"></a>Frequently
+            Asked Questions</p>
+
+        <p class="step-comment-noline">None. </p>
+
+
+    </div>
+
+    <div class="calibreEbNav">
+
+        <a href="PCP_Auto_Assignment_Overview.htm" class="calibreAPrev">previous page
+        </a>
+
+
+        <a href="../2nlvj-mfnql.html" class="calibreAHome">start
+        </a>
+
+
+        <a href="Running_PCP_Auto_Assignment.htm" class="calibreANext">next page
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+</html>

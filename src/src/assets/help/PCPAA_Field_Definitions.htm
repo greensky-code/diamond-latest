@@ -1,0 +1,508 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+    <title>PCPAA Field Definitions</title>
+    <!--(Meta)==========================================================-->
+    <meta name="copyright"
+          value="© Copyright 2002 Health Systems Design Corp., a wholly owned subsidiary of Perot Systems Corporation. All rights reserved"/>
+    <meta content="RoboHELP by eHelp Corporation - www.ehelp.com" name="generator"/>
+    <meta content="0.1" name="generator-major-version"/>
+    <meta content="1" name="generator-minor-version"/>
+    <meta content="kadov" name="filetype"/>
+    <meta content="1" name="filetype-version"/>
+    <meta content="1" name="page-count"/>
+    <meta content="2248" name="layout-height"/>
+    <meta content="644" name="layout-width"/>
+    <!--(Links)=========================================================-->
+    <!--(Scripts)=======================================================-->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+</head>
+<body>
+
+<div class="calibreMeta">
+    <div class="calibreMetaTitle">
+
+
+        <h1>
+            <a href="../2nlvj-mfnql.html">DIAMOND 950 Help
+            </a>
+        </h1>
+
+
+    </div>
+    <div class="calibreMetaAuthor">
+        Unknown
+
+    </div>
+</div>
+
+<div class="calibreMain">
+
+    <div class="calibreEbookContent">
+
+        <div class="calibreEbNavTop">
+
+            <a href="PCPAA_Field_Map.htm" class="calibreAPrev">previous page
+            </a>
+
+
+            <a href="PCPAA_Functions_on_Menu_Bar.htm" class="calibreANext">next page
+            </a>
+
+        </div>
+
+
+        <!--(Table)=========================================================-->
+        <table cellspacing="0" width="500" x-use-null-cells="" class="calibre109">
+            <colgroup class="calibre19">
+                <col class="calibre110"/>
+                <col class="calibre111"/>
+
+            </colgroup>
+            <tbody class="calibre10">
+            <tr valign="top" class="calibre11">
+                <td width="70%" class="calibre112">
+                    <h4 class="calibre62">PCPAA Field Definitions</h4></td>
+                <td width="30%" class="calibre113">
+                    <p class="body-text1"><img border="0" height="53" src="assets/help/Field_definitions_Req_legend.gif" width="97"
+                                               x-maintain-ratio="TRUE" class="calibre114"/></p></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <!--(Table)=========================================================-->
+        <table cellspacing="0" width="500" x-use-null-cells="" class="calibre220">
+
+            <tbody class="calibre10">
+            <tr valign="top" class="calibre11">
+                <td width="110px" class="calibre120">
+                    <p class="tableheading">Field Name</p></td>
+                <td width="15px" class="calibre121">
+                    <p class="tableheading1">Req</p></td>
+                <td width="140px" class="calibre122">
+                    <p class="tableheading">Description</p></td>
+                <td width="95px" class="calibre123">
+                    <p class="tableheading">Source</p></td>
+                <td width="140px" class="calibre122">
+                    <p class="tableheading">Comments</p></td>
+            </tr>
+            <tr valign="top" class="calibre7">
+                <td width="98px" class="calibre227">
+                    <p class="tbl-r-label"><a name="PCPAA_Days_(Member_Reinstated)_FIELD"></a>Days</p>
+                    <p class="tbl-r-label-note">(Member Reinstated)</p></td>
+                <td width="14px" class="calibre228">
+                    <p class="tbl-text1">C</p></td>
+                <td width="105px" class="calibre229">
+                    <p class="tbl-text1">Maximum number of days prior
+                        to the member reinstate effective date that the prior eligibility period
+                        can terminate in order for its PCP to be evaluated for priority assignment</p></td>
+                <td width="105px" class="calibre229">
+                    <p class="tbl-text1">Manually entered</p></td>
+                <td width="206px" class="calibre230">
+                    <p class="tbl-text1">Available only if Event =
+                        1 - Validate/Replace Submitted PCP. </p>
+                    <p class="tbl-text-noline">If blank, DIAMOND searches for the most recent
+                        member eligibility record for the member and evaluates the corresponding
+                        PCP for priority assignment. </p>
+                    <p class="tbl-text-noline">If the most recent member eligibility record located
+                        using the DIAMOND ID has an open termination date, DIAMOND treats this
+                        as 1 elapsed day.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre7">
+                <td width="98px" class="calibre227">
+                    <p class="tbl-r-label"><a name="PCPAA_Days_(DIAMOND_ID)_FIELD"></a>Days</p>
+                    <p class="tbl-r-label-note">(DIAMOND ID)</p></td>
+                <td width="14px" class="calibre228">
+                    <p class="tbl-text1">C</p></td>
+                <td width="105px" class="calibre229">
+                    <p class="tbl-text1">Maximum number of days prior
+                        to the current member eligibility effective date that another eligibility
+                        period for the same DIAMOND ID can terminate in order for its PCP to be
+                        evaluated for priority assignment</p></td>
+                <td width="105px" class="calibre229">
+                    <p class="tbl-text1">Manually entered</p></td>
+                <td width="206px" class="calibre230">
+                    <p class="tbl-text1">Available only if Event =
+                        1 - Validate/Replace Submitted PCP. </p>
+                    <p class="tbl-text-noline">If blank, DIAMOND searches for the most recent
+                        eligibility record for the member’s DIAMOND ID and evaluates the corresponding
+                        PCP for priority assignment.</p>
+                    <p class="tbl-text-noline">If the most recent Member record located using
+                        the DID has an open termination date, DIAMOND treats this as 1 elapsed
+                        day.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre7">
+                <td width="98px" class="calibre227">
+                    <p class="tbl-r-label"><a
+                            name="PCPAA_DIAMOND_ID_(Override_Enrollment_Threshold_Capacity_Levels_section)_FIELD"></a>DIAMOND
+                        ID</p>
+                    <p class="tbl-r-label-note">(Override Enrollment Threshold Capacity
+                        Levels section)</p></td>
+                <td width="14px" class="calibre228">
+                    <p class="tbl-text1">O</p></td>
+                <td width="105px" class="calibre229">
+                    <p class="tbl-text1">Allows provider's enrollment
+                        limit capacity to be exceeded for PCP Auto Assignment if the provider
+                        is the member’s PCP for another member record (with the same DIAMOND ID)</p></td>
+                <td width="105px" class="calibre229">
+                    <p class="tbl-text1">Selected with check box</p></td>
+                <td width="206px" class="calibre230">
+                    <p class="tbl-text1">Provider’s enrollment limit
+                        can only be exceeded up to the provider’s applicable PROVE <span class="calibre4">Enrollment
+ Limit</span>/LINBS Ind PCP/LINBS <span class="calibre4">MaxEnrolLmt</span>/PROVF
+                        <span class="calibre4">Max. Enroll Lmt</span>.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre7">
+                <td width="98px" class="calibre227">
+                    <p class="tbl-r-label"><a name="PCPAA_DIAMOND_ID_(Evaluate_Possible_Selections_section)_FIELD"></a>DIAMOND
+                        ID</p>
+                    <p class="tbl-r-label-note">(Evaluate Possible Selections section)</p></td>
+                <td width="14px" class="calibre228">
+                    <p class="tbl-text1">O</p></td>
+                <td width="105px" class="calibre229">
+                    <p class="tbl-text1">If selected, PCP Auto Assignment
+                        evaluates the PCP from the most recent eligibility record the current
+                        member’s DIAMOND ID for priority assignment</p></td>
+                <td width="105px" class="calibre229">
+                    <p class="tbl-text1">Selected with check box</p></td>
+                <td width="206px" class="calibre230">
+                    <p class="tbl-text1">Available only if Event =
+                        1 - Validate/Replace Submitted PCP. Used if submitted PCP does not pass
+                        validation.</p>
+                    <p class="tbl-text-noline">Order of evaluation among selections chosen in
+                        Evaluate Possible Selections depends on the corresponding <span class="calibre4">Order</span>
+                        entered. </p>
+                    <p class="tbl-text-noline">Must satisfy the corresponding <span class="calibre4">Days</span>
+                        criterion.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre7">
+                <td width="98px" class="calibre227">
+                    <p class="tbl-r-label"><a name="PCPAA_Event_FIELD"></a>Event</p></td>
+                <td width="14px" class="calibre228">
+                    <p class="tbl-text1">R</p></td>
+                <td width="105px" class="calibre229">
+                    <p class="tbl-text1">Type of the event that may
+                        be evaluated when making a PCP Auto Assignment.</p></td>
+                <td width="105px" class="calibre229">
+                    <p class="tbl-text1">Selected from a predefined
+                        list</p></td>
+                <td width="206px" class="calibre230">
+                    <p class="tbl-text1">Valid values are:</p>
+                    <p class="tbl-list">1 - Validate/Replace Submitted PCP</p>
+                    <p class="tbl-list">2 - Replace Default/No PCP</p>
+                    <p class="tbl-text-noline">F5 lookup is available.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre7">
+                <td width="98px" class="calibre227">
+                    <p class="tbl-r-label"><a
+                            name="PCPAA_Family_Affiliation_(Override_Enrollment_Threshold_Capacity_Levels_section)_FIELD"></a>Family
+                        Affiliation</p>
+                    <p class="tbl-r-label-note">(Override Enrollment Threshold Capacity
+                        Levels section)</p></td>
+                <td width="14px" class="calibre228">
+                    <p class="tbl-text1">O</p></td>
+                <td width="105px" class="calibre229">
+                    <p class="tbl-text1">Allows provider's enrollment
+                        limit capacity to be exceeded for PCP Auto Assignment if the provider
+                        is the PCP for another family member</p></td>
+                <td width="105px" class="calibre229">
+                    <p class="tbl-text1">Selected with check box</p></td>
+                <td width="206px" class="calibre230">
+                    <p class="tbl-text1">Provider’s enrollment limit
+                        can only be exceeded up to the provider’s applicable PROVE <span class="calibre4">Enrollment
+ Limit</span>/LINBS Ind PCP/LINBS <span class="calibre4">MaxEnrolLmt</span>/PROVF
+                        <span class="calibre4">Max. Enroll Lmt</span>.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre7">
+                <td width="98px" class="calibre227">
+                    <p class="tbl-r-label"><a
+                            name="PCPAA_Family_Affiliation_(Evaluate_Possible_Selections_section)_FIELD"></a>Family
+                        Affiliation</p>
+                    <p class="tbl-r-label-note">(Evaluate Possible Selections section)</p></td>
+                <td width="14px" class="calibre228">
+                    <p class="tbl-text1">O</p></td>
+                <td width="105px" class="calibre229">
+                    <p class="tbl-text1">If selected, PCP Auto Assignment
+                        evaluates PCPs from family members’ most recent eligibility records for
+                        priority assignment</p></td>
+                <td width="105px" class="calibre229">
+                    <p class="tbl-text1">Selected with check box</p></td>
+                <td width="206px" class="calibre230">
+                    <p class="tbl-text1">Available only if Event =
+                        1 - Validate/Replace Submitted PCP. Used if submitted PCP does not pass
+                        validation.</p>
+                    <p class="tbl-text-noline">Order of evaluation among selections chosen in
+                        Evaluate Possible Selections depends on the corresponding <span class="calibre4">Order</span>
+                        entered. </p>
+                    <p class="tbl-text-noline">DIAMOND searches for other family member records
+                        using the search criteria defined on the member’s LINBS record. </p></td>
+            </tr>
+
+            <tr valign="top" class="calibre7">
+                <td width="98px" class="calibre227">
+                    <p class="tbl-r-label"><a name="PCPAA_Line_of_Business_FIELD"></a>Line
+                        of Business</p></td>
+                <td width="14px" class="calibre228">
+                    <p class="tbl-text1">R</p></td>
+                <td width="105px" class="calibre229">
+                    <p class="tbl-text1">Unique identifier of a line
+                        of business</p></td>
+                <td width="105px" class="calibre229">
+                    <p class="tbl-text1">Selected from a predefined
+                        list</p></td>
+                <td width="206px" class="calibre230">
+                    <p class="tbl-text1">F5 lookup available.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre7">
+                <td width="98px" class="calibre227">
+                    <p class="tbl-r-label"><a
+                            name="PCPAA_Member_Reinstated_(Override_Enrollment_Threshold_Capacity_Levels_section)_FIELD"></a>Member
+                        Reinstated</p>
+                    <p class="tbl-r-label-note">(Override Enrollment Threshold Capacity
+                        Levels section)</p></td>
+                <td width="14px" class="calibre228">
+                    <p class="tbl-text1">O</p></td>
+                <td width="105px" class="calibre229">
+                    <p class="tbl-text1">Allows provider's enrollment
+                        limit capacity to be exceeded for PCP Auto Assignment if the member is
+                        being reinstated to a PCP they had previously</p></td>
+                <td width="105px" class="calibre229">
+                    <p class="tbl-text1">Selected with check box</p></td>
+                <td width="206px" class="calibre230">
+                    <p class="tbl-text1">Provider’s enrollment limit
+                        can only be exceeded up to the provider’s applicable PROVE <span class="calibre4">Enrollment
+ Limit</span>/LINBS Ind PCP/LINBS <span class="calibre4">MaxEnrolLmt</span>/PROVF
+                        <span class="calibre4">Max. Enroll Lmt</span>.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre7">
+                <td width="98px" class="calibre227">
+                    <p class="tbl-r-label"><a
+                            name="PCPAA_Member_Reinstated_(Evaluate_Possible_Selections_section)_FIELD"></a>Member
+                        Reinstated</p>
+                    <p class="tbl-r-label-note">(Evaluate Possible Selections section)</p></td>
+                <td width="14px" class="calibre228">
+                    <p class="tbl-text1">O</p></td>
+                <td width="105px" class="calibre229">
+                    <p class="tbl-text1">If selected and the member
+                        is being reinstated, PCP Auto Assignment evaluates the PCP from the most
+                        recent prior eligibility period for priority assignment</p></td>
+                <td width="105px" class="calibre229">
+                    <p class="tbl-text1">Selected with check box</p></td>
+                <td width="206px" class="calibre230">
+                    <p class="tbl-text1">Available only if Event =
+                        1 - Validate/Replace Submitted PCP. Used if submitted PCP does not pass
+                        validation.</p>
+                    <p class="tbl-text-noline">Order of evaluation among selections chosen in
+                        Evaluate Possible Selections depends on the corresponding <span class="calibre4">Order</span>
+                        entered.</p>
+                    <p class="tbl-text-noline">Must satisfy the corresponding <span class="calibre4">Days</span>
+                        criterion.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre7">
+                <td width="98px" class="calibre227">
+                    <p class="tbl-r-label"><a name="PCPAA_Order_(Requested_PCP)_FIELD"></a>Order</p>
+                    <p class="tbl-r-label-note">(Requested PCP)</p></td>
+                <td width="14px" class="calibre228">
+                    <p class="tbl-text1">C</p></td>
+                <td width="105px" class="calibre229">
+                    <p class="tbl-text1">Order of evaluation of the
+                        Requested PCP selection for priority assignment</p></td>
+                <td width="105px" class="calibre229">
+                    <p class="tbl-text1">Selected from predefined
+                        list</p></td>
+                <td width="206px" class="calibre230">
+                    <p class="tbl-text1">Defaults to 1 if Event =
+                        1 - Validate/Replace Submitted PCP. Cannot be changed.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre7">
+                <td width="98px" class="calibre227">
+                    <p class="tbl-r-label"><a name="PCPAA_Order_(Member_Reinstated)_FIELD"></a>Order</p>
+                    <p class="tbl-r-label-note">(Member Reinstated)</p></td>
+                <td width="14px" class="calibre228">
+                    <p class="tbl-text1">C</p></td>
+                <td width="105px" class="calibre229">
+                    <p class="tbl-text1">Order of evaluation of the
+                        Member Reinstated selection for priority assignment</p></td>
+                <td width="105px" class="calibre229">
+                    <p class="tbl-text1">Manually entered</p></td>
+                <td width="206px" class="calibre230">
+                    <p class="tbl-text1">Available only if Event =
+                        1 - Validate/Replace Submitted PCP. </p>
+                    <p class="tbl-text-noline">Valid values are 2, 3, and 4.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre7">
+                <td width="98px" class="calibre227">
+                    <p class="tbl-r-label"><a name="PCPAA_Order_(DIAMOND_ID)_FIELD"></a>Order</p>
+                    <p class="tbl-r-label-note">(DIAMOND ID)</p></td>
+                <td width="14px" class="calibre228">
+                    <p class="tbl-text1">C</p></td>
+                <td width="105px" class="calibre229">
+                    <p class="tbl-text1">Order of evaluation of the
+                        DIAMOND ID selection for priority assignment</p></td>
+                <td width="105px" class="calibre229">
+                    <p class="tbl-text1">Manually entered</p></td>
+                <td width="206px" class="calibre230">
+                    <p class="tbl-text1">Available only if Event =
+                        1 - Validate/Replace Submitted PCP.</p>
+                    <p class="tbl-text-noline">Valid values are 2, 3, and 4.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre7">
+                <td width="98px" class="calibre227">
+                    <p class="tbl-r-label"><a name="PCPAA_Order_(Family_Affiliation)_FIELD"></a>Order</p>
+                    <p class="tbl-r-label-note">(Family Affiliation)</p></td>
+                <td width="14px" class="calibre228">
+                    <p class="tbl-text1">C</p></td>
+                <td width="105px" class="calibre229">
+                    <p class="tbl-text1">Order of evaluation of the
+                        Family Affiliation selection for priority assignment</p></td>
+                <td width="105px" class="calibre229">
+                    <p class="tbl-text1">Manually entered</p></td>
+                <td width="206px" class="calibre230">
+                    <p class="tbl-text1">Available only if Event =
+                        1 - Validate/Replace Submitted PCP.</p>
+                    <p class="tbl-text-noline">Valid values are 2, 3, and 4.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre7">
+                <td width="98px" class="calibre227">
+                    <p class="tbl-r-label"><a name="PCPAA_Proc_Sequence_FIELD"></a>Proc
+                        Sequence</p></td>
+                <td width="14px" class="calibre228">
+                    <p class="tbl-text1">R</p></td>
+                <td width="105px" class="calibre229">
+                    <p class="tbl-text1">Sequence for evaluation of
+                        this rule within the Rule Type </p></td>
+                <td width="105px" class="calibre229">
+                    <p class="tbl-text1">Manually entered</p></td>
+                <td width="206px" class="calibre230">
+                    <p class="tbl-text1">Valid values are 001 - 999.</p>
+                    <p class="tbl-text-noline">Each processing sequence is an AND condition except
+                        for rules of <span class="calibre4">Rule Type</span> Preference
+                        Rule.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre7">
+                <td width="98px" class="calibre227">
+                    <p class="tbl-r-label"><a
+                            name="PCPAA_Requested_PCP_(Override_Enrollment_Threshold_Capacity_Levels_section)_FIELD"></a>Requested
+                        PCP</p>
+                    <p class="tbl-r-label-note">(Override Enrollment Threshold Capacity
+                        Levels section)</p></td>
+                <td width="14px" class="calibre228">
+                    <p class="tbl-text1">O</p></td>
+                <td width="105px" class="calibre229">
+                    <p class="tbl-text1">Allows provider's enrollment
+                        limit capacity to be exceeded for PCP Auto Assignment if the PCP assignment
+                        was requested by the member </p></td>
+                <td width="105px" class="calibre229">
+                    <p class="tbl-text1">Selected with check box</p></td>
+                <td width="206px" class="calibre230">
+                    <p class="tbl-text1">Available if Event = 1 -
+                        Validate/Replace Submitted PCP. </p>
+                    <p class="tbl-text-noline">Provider’s enrollment limit can only be exceeded
+                        up to the provider’s applicable PROVE <span class="calibre4">Enrollment
+ Limit</span>/LINBS Ind PCP/LINBS <span class="calibre4">MaxEnrolLmt</span>/PROVF
+                        <span class="calibre4">Max. Enroll Lmt</span>.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre7">
+                <td width="98px" class="calibre227">
+                    <p class="tbl-r-label"><a
+                            name="PCPAA_Requested_PCP_(Evaluate_Possible_Selections_section)_FIELD"></a>Requested
+                        PCP</p>
+                    <p class="tbl-r-label-note">(Evaluate Possible Selections section)</p></td>
+                <td width="14px" class="calibre228">
+                    <p class="tbl-text1">O</p></td>
+                <td width="105px" class="calibre229">
+                    <p class="tbl-text1">If selected, PCP Auto Assignment
+                        first evaluates the Member’s requested (submitted) PCP for priority assignment</p></td>
+                <td width="105px" class="calibre229">
+                    <p class="tbl-text1">Selected with check box</p></td>
+                <td width="206px" class="calibre230">
+                    <p class="tbl-text1">Only available and automatically
+                        selected if Event = 1 - Validate/Replace Submitted PCP. Cannot be changed.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre7">
+                <td width="98px" class="calibre227">
+                    <p class="tbl-r-label"><a name="PCPAA_Rule_Descr_FIELD"></a>Rule
+                        Descr</p></td>
+                <td width="14px" class="calibre228">
+                    <p class="tbl-text1">D</p></td>
+                <td width="105px" class="calibre229">
+                    <p class="tbl-text1">Description of rule</p></td>
+                <td width="105px" class="calibre229">
+                    <p class="tbl-text1">Displayed</p></td>
+                <td width="206px" class="calibre230">
+                    <p class="tbl-text1"> </p></td>
+            </tr>
+
+            <tr valign="top" class="calibre7">
+                <td width="98px" class="calibre227">
+                    <p class="tbl-r-label"><a name="PCPAA_Rule_ID_FIELD"></a>Rule
+                        ID</p></td>
+                <td width="14px" class="calibre228">
+                    <p class="tbl-text1">R</p></td>
+                <td width="105px" class="calibre229">
+                    <p class="tbl-text1">Rule identifier</p></td>
+                <td width="105px" class="calibre229">
+                    <p class="tbl-text1">Selected from predefined
+                        list</p></td>
+                <td width="206px" class="calibre230">
+                    <p class="tbl-text1">F5 lookup is available.</p>
+                    <p class="tbl-text-noline">Rule IDs are entered in PCPRL.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre7">
+                <td width="98px" class="calibre227">
+                    <p class="tbl-r-label"><a name="PCPAA_Rule_Type_FIELD"></a>Rule
+                        Type</p></td>
+                <td width="14px" class="calibre228">
+                    <p class="tbl-text1">D</p></td>
+                <td width="105px" class="calibre229">
+                    <p class="tbl-text1">Type of rule</p></td>
+                <td width="105px" class="calibre229">
+                    <p class="tbl-text1">Displayed</p></td>
+                <td width="206px" class="calibre230">
+                    <p class="tbl-text1"> </p></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <p class="step-comment-noline"> </p>
+
+
+    </div>
+
+    <div class="calibreEbNav">
+
+        <a href="PCPAA_Field_Map.htm" class="calibreAPrev">previous page
+        </a>
+
+
+        <a href="../2nlvj-mfnql.html" class="calibreAHome">start
+        </a>
+
+
+        <a href="PCPAA_Functions_on_Menu_Bar.htm" class="calibreANext">next page
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,185 @@
+<!-- Copyright (c) 2020 . All Rights Reserved. -->
+<div class="container-fluid">
+    <div class="card-block">
+            <h2 class="form-title card-label-admin">Medical Definitions</h2>
+            <button type="button" *ngIf="showIcon" class="modal-close close" aria-label="Close" (click)="modalClose()">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+            <app-pop-up-message #popUpMesssage (buttonclickEvent)="popUpButtonHandler($event)" [(popupMessage)]="popUpMessage"></app-pop-up-message>
+            <ng-template #loaderTemplate let-loaderValue = "value"  >
+                <div class="row justify-content-center mt-4" *ngIf="loaderValue">
+                    <div class="spinner-border text-success" role="status">
+                        <span class="sr-only">Loading...</span>
+                    </div>
+                </div>
+            </ng-template>
+
+        <ng-container *ngTemplateOutlet="loaderTemplate;context:{value: secProgress }"></ng-container>
+
+        <ng-container *appWinSelect="{secWin: secWin, userTemplateId: userTemplateId, secModuleId: medicalDefModuleId}">
+
+            <div class="row mt-1 mb-3">
+                <menu-bar [menus]="menu" (onMenuClick)="onMenuItemClick($event)"></menu-bar>
+            </div>
+
+            <form [formGroup]="medicalDefinitionsForm" novalidate *ngIf="!secProgress">
+                <div (click)="setActionStatus(1)">
+                    <ag-grid-angular #agGrid class="ag-theme-fresh" [gridOptions]="dataGridGridOptions" style="width: 100%; height: 300px;"
+                                    [defaultColDef]="defaultColDef"
+                                    rowSelection="single"
+                                    [enableSorting]="true" [enableFilter]="isFilter" [floatingFilter]="isFilter" [pagination]="true" [showToolPanel]="true" (selectionChanged)="GridSelection()">
+                    </ag-grid-angular>
+                </div>
+            <div class="form-group row">
+            </div>
+
+            <div class="form-group row">
+                <div class="col-md-2 form-control-static mb-0 text-primary" i18n>
+                    <b><u>Identifier</u></b>
+                </div>
+
+            </div>
+
+            <div class="form-group row">
+                <!-- Textbox with label of Claim Type -->
+                <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('claimType') }">
+                    <label class="col-form-label required-field-label" for="claimType" i18n>Claim Type</label>
+                    <select type="text" id="claimType" disabled class="form-control" formControlName="claimType">
+                        <option [value]="type.systemCode" *ngFor="let type of claimTypes;">{{type.systemCode}} {{type.systemCodeDesc1}}</option>
+                    </select>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('claimType')">
+                        {{ formValidation.errorMessage('claimType') }}
+                    </small>
+                </div>
+
+            </div>
+
+            <div class="form-group row">
+                <!-- Textbox with label of Med Def Code ^TB Non Medical F -->
+                <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('medDefCode') }">
+                    <label class="col-form-label required-field-label" for="medDefCode" i18n>Med Def Code</label>
+                    <select id="medDefCode" disabled (change)="onChangeMedCode($event)" class="form-control" formControlName="medDefCode"
+                            [fieldLevelSec]="'CLAIM_TYPE'" [params]="{secColDetails: secColDetails, isEditState: editMedDef}">
+                        <option [value]="code.medDefCode" *ngFor="let code of medDefCode;">{{code.medDefCode}} {{code.description}}</option>
+                    </select>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('medDefCode')">
+                        {{ formValidation.errorMessage('medDefCode') }}
+                    </small>
+
+                </div>
+                <div class="col-md-4">
+                    <label class="label-control-color">{{selectedMedCode}}</label></div>
+                </div>
+
+            <div class="form-group row">
+                <!-- Textbox with label of Order -->
+                <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('order') }">
+                    <label class="col-form-label required-field-label" for="order" i18n>Order</label>
+                    <input type="text" id="order" (keydown)="orderKeyPress($event)" disabled class="form-control" formControlName="order" />
+                    <small class="text-danger" *ngIf="formValidation.isValidField('order')">
+                        {{ formValidation.errorMessage('order') }}
+                    </small>
+                </div>
+
+                <!-- Textbox with label of Search Sequence -->
+                <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('searchSequence') }">
+                    <label class="col-form-label required-field-label" for="searchSequence" i18n>Search Sequence</label>
+                    <input type="text" id="searchSequence" disabled class="form-control" (focus)="searchSequenceFocus($event)" formControlName="searchSequence"/>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('searchSequence')">
+                        {{ formValidation.errorMessage('searchSequence') }}
+                    </small>
+                </div>
+
+            </div>
+
+            <div class="form-group row">
+                <div class="col-md-4 form-control-static mb-0 text-primary" i18n>
+                    <b><u>Determinant</u></b>
+                </div>
+
+            </div>
+
+            <div class="form-group row">
+                <!-- Textbox with label of Determ Table -->
+                <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('determTable') }">
+                    <label class="col-form-label required-field-label" for="determTable" i18n>Determ Table</label>
+                    <input type="text" (keydown)="onLookupFieldDeterminant($event);" id="determTable" disabled class="form-control" formControlName="determTable" />
+                    <small class="text-danger" *ngIf="formValidation.isValidField('determTable')">
+                        {{ formValidation.errorMessage('determTable') }}
+                    </small>
+                </div>
+
+                <!-- Textbox with label of Determinant -->
+                <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('determinant002') }">
+                    <label class="col-form-label required-field-label" for="determinant002" i18n>Determinant</label>
+                    <input type="text" id="determinant002" disabled class="form-control" formControlName="determinant002" />
+                    <small class="text-danger" *ngIf="formValidation.isValidField('determinant002')">
+                        {{ formValidation.errorMessage('determinant002') }}
+                    </small>
+                </div>
+
+            </div>
+
+            <div class="form-group row">
+                <!-- Textbox with label of Description -->
+                <div class="col-md-8" [ngClass]="{'has-danger': formValidation.isValidField('description') }">
+                    <label class="col-form-label" for="description" i18n>Description</label>
+                    <input type="text" id="description" class="form-control" formControlName="description" />
+                    <small class="text-danger" *ngIf="formValidation.isValidField('description')">
+                        {{ formValidation.errorMessage('description') }}
+                    </small>
+                </div>
+
+            </div>
+
+            <div class="form-group row">
+                <!-- Textbox with label of Operator -->
+                <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('operator_op') }">
+                    <label class="col-form-label required-field-label" for="operator_op" i18n>Operator</label>
+
+                    <select id="operator_op" class="form-control" formControlName="operator_op">
+                        <option [value]="op.dddwDtlPrimaryKey.dataVal" *ngFor="let op of operator;">{{op.dddwDtlPrimaryKey.dataVal}} </option>
+                    </select>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('operator_op')">
+                        {{ formValidation.errorMessage('operator_op') }}
+                    </small>
+                </div>
+                <!-- Checkbox with label of Include In Global Search -->
+                <div class="" [ngClass]="{'has-error': displayMessage.includeInGlobalSearch }">
+                    <div class="checkbox col-md-12  label-control">
+                        <input id="includeInGlobalSearch" value="includeInGlobalSearch" formControlName="includeInGlobalSearch" type="checkbox">
+                        <label class="checkbox">
+                            Include In Global Search
+                        </label>
+                    </div>
+                    <span class="help-block" *ngIf="displayMessage.includeInGlobalSearch">
+                        {{ displayMessage.includeInGlobalSearch  }}
+                    </span>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-md-1"></div>
+                <div class="col-md-10 mt-3 p-0" (click)="setActionStatus(2)">
+                    <dmnd-dynamic-config-grid
+                            [prevState]="medDefDetailsFormState" [isResetForm]="resetInlineGrid"
+                            [showRemoveButton]="false"
+                            [showSubmitButton]="(submitButtonStatus && editMedDef)"
+                            [isSaveForm]="saveForm"
+                            [isAllowAddNewRow]="isAllowAddNewRow"
+                            (formSubmitted)="saveFormDy($event)"
+                            [config]="medDefDetailsFormConfig"
+                            (onNewRowAdded)=onMedDefDetailsNewRowAdded($event)
+                            (onRowClick)="onRowClickEvent($event)"
+                            (onHeaderClick)="sortRowsByFromValues($event)"
+                    ></dmnd-dynamic-config-grid>
+                </div>
+            </div>
+        </form>
+        </ng-container>
+    </div>
+</div>
+
+<ng-keyboard-shortcuts [shortcuts]="shortcuts"></ng-keyboard-shortcuts>
+<ng-keyboard-shortcuts-help [key]="'f2'" [closeKey]="'escape'" [title]="'Hotkeys Help'"></ng-keyboard-shortcuts-help>

@@ -1,0 +1,65 @@
+<!-- Copyright (c) 2020 . All Rights Reserved. -->
+
+<div class="container-fluid">
+    <div class="card-block">
+            <h2 class="form-title card-label-admin">Member Claim Hold Codes</h2>
+            <button type="button" *ngIf="showIcon" class="modal-close close" aria-label="Close"
+                    (click)="activeModal.dismiss('Cross click')">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+            <app-pop-up-message #popUpMesssage (buttonclickEvent)="popUpButtonHandler($event)"
+                                [popupMessage]="popUpMessage"></app-pop-up-message>
+        <ng-template #loaderTemplate let-loaderValue="value">
+            <div class="row justify-content-center mt-4" *ngIf="loaderValue">
+                <div class="spinner-border text-success" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>
+            </div>
+        </ng-template>
+
+        <ng-container *ngTemplateOutlet="loaderTemplate;context:{value: secProgress }"></ng-container>
+
+        <ng-container
+            *appWinSelect="{secWin: secWin, userTemplateId: userTemplateId, secModuleId: memberModuleId}">
+
+
+            <form [formGroup]="memberClaimHoldCodesForm"  novalidate *ngIf="!secProgress">
+            <div class="form-group row">
+                <!-- Textbox with label of Claim Hold Code -->
+                <div class="col-md-5" [ngClass]="{'has-danger': formValidation.isValidField('claimHoldCode') }">
+                    <label class="col-form-label" for="claimHoldCode" i18n>Claim Hold Code</label>
+                    <input type="text" id="claimHoldCode" class="form-control" formControlName="claimHoldCode"/>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('claimHoldCode')">
+                        {{ formValidation.errorMessage('claimHoldCode') }}
+                    </small>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <!-- Textbox with label of Claim Hold Date -->
+                <div class="col-md-5" [ngClass]="{'has-danger': formValidation.isValidField('claimHoldDate') }">
+                    <app-datepicker [formGroup]="memberClaimHoldCodesForm" [formValidation]="formValidation"
+                                    [field]="'claimHoldDate'" [labelText]="'Claim Hold Date'"></app-datepicker>
+                </div>
+
+            </div>
+
+            <div class="form-group row">
+                <!-- Button with label of OK -->
+                <div class="col-md-5">
+                    <button type="button" id="cancel" name="cancel" class="float-right ml-2 btn btn-small btn-primary">
+                        Cancel
+                    </button>
+
+                    <button type="button" id="ok" name="ok" (click)="updateMemberMaster()"
+                            class=" float-right btn btn-small btn-primary">OK
+                    </button>
+
+                </div>
+
+            </div>
+        </form>
+        </ng-container>
+    </div>
+</div>

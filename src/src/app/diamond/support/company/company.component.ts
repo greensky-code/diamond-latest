@@ -1,0 +1,1466 @@
+/* Copyright (c) 2021 . All Rights Reserved. */
+
+import {
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
+  Input,
+  OnInit, QueryList,
+  Renderer2,
+  ViewChild,
+  ViewChildren
+} from '@angular/core';
+import { FormBuilder, FormGroup, FormArray, Validators, AbstractControl } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router'; import 'rxjs/add/operator/debounceTime';
+import 'rxjs/add/observable/fromEvent';
+import 'rxjs/add/observable/merge';
+import { Observable } from 'rxjs/Observable';
+import { Subscription } from 'rxjs/Subscription';
+import { GridOptions } from "ag-grid-community";
+import { NumberValidators } from '../../../shared/validators/number.validator';
+import { CustomValidators } from '../../../shared/validators/custom-validator';
+import { Mask } from '../../../shared/pipes/text-format.pipe'
+import { FormValidation } from '../../../shared/validators/form-validation.pipe'
+import { DateFormatPipe } from '../../../shared/pipes/date-format.pipe'
+import { DatePipe, DecimalPipe } from '@angular/common';
+import {
+  MessageType,
+  PopUpMessage,
+  PopUpMessageButton
+} from '../../../shared/components/pop-up-message/pop-up.message.model';
+import { PopUpMessageComponent } from '../../../shared/components/pop-up-message/pop-up-message/pop-up-message.component';
+import { DatePickerConfig, DatePickerModel } from '../../../shared/config';
+import { Form } from '../../../shared/helpers/form.helper';
+import { AllowIn, KeyboardShortcutsComponent, ShortcutEventOutput, ShortcutInput } from 'ng-keyboard-shortcuts';
+import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { BankAccount, CompanyMaster, Country, MessageMasterDtl, SecWin } from "../../../api-models/index"
+import { CompanyMasterService } from "../../../api-services/company-master.service"
+import { AlertMessage, AlertMessageService } from '../../../shared/components/alert-message/index'
+import { SecWinService } from '../../../api-services/security/sec-win.service';
+import { SecWinViewModel } from '../../../view-model/security/sec-win-view-model';
+import { SecurityService } from '../../../shared/services/security.service';
+import { SecColDetail } from '../../../api-models/security/sec-col-detail.model';
+import { SecColDetailService } from '../../../api-services/security/sec-col-detail.service';
+import { SecUserService } from '../../../api-services/security/sec-user.service';
+import { SecUser } from '../../../api-models/security/sec-user.model';
+import { FunctionalGroupShortCutComponent } from '../../main-menu/functional-group-shortcut/functional-group-shortcut.component';
+import { ToastService } from '../../../shared/services/toast.service';
+import { NgbToastType } from 'ngb-toast';
+import { CONSTANTS, getCompanyMasterShortcutKeys, SharedService } from '../../../shared/services/shared.service';
+import { Menu, OPERATIONS } from '../../../shared/models/models';
+import { Shortcut } from 'ng-keyboard-shortcuts/lib/ng-keyboard-shortcuts.interfaces';
+import { CountryService } from '../../../api-services/country.service';
+import { BankAccountService, MessageMasterDtlService, TaxReportingEntityService } from '../../../api-services';
+import { FunctionalLevelSecurityService } from '../../../api-services/security/functional-level-security.service';
+import { AuditDisplayComponent } from '../../../shared/components/audit-display/audit-display.component';
+import { SupportHelpComponent } from "../support-help/support-help.component";
+import { COMPANY_MODULE_ID } from '../../../shared/app-constants';
+import { TimestampComponent } from '../../../shared/components/timestamp/timestamp.component';
+import { AuditService } from '../../../shared/services/audit.service';
+import { MenuResponse } from '../../../api-models/menu-response';
+import { MenuService } from '../../../shared/services/menu.service';
+import {MenuBarComponent} from "../../../shared/components/menu-bar/menu-bar.component";
+
+// Use the Component directive to define the CompanyComponent as an Angular component
+//
+// The moduleId property specifies the module id of the module that contains this component
+// and is used to resolve relative paths for component specific stylesheets and HTML view templates.
+// See also: https://angular.io/docs/ts/latest/cookbook/component-relative-paths.html
+//
+// The selector property defines the HTML selector that can be used in HTML to link or navigate to this UI component.
+//
+// The templateUrl specifies a url to a file an HTML file that is rendered by this component.
+
+@Component({
+  selector: "company",
+  templateUrl: "./company.component.html",
+  providers: [
+    MessageMasterDtlService,
+    CompanyMasterService,
+    CountryService,
+    DecimalPipe,
+    BankAccountService,
+  ],
+})
+export class CompanyComponent implements OnInit {
+  // The form model used by the view per Angular Reactive Forms
+  // See: https://angular.io/docs/ts/latest/guide/reactive-forms.html#!#intro
+  companyForm: FormGroup;
+  formValidation: FormValidation;
+  public alertMessage: AlertMessage;
+  public displayMessage: any;
+  public popUpMessage: PopUpMessage;
+  public datePickerConfig = DatePickerConfig;
+  public datePickerModel = DatePickerModel;
+  public secWin: SecWinViewModel;
+  private windowId: string = COMPANY_MODULE_ID;
+  public isSuperUser = false;
+  public secProgress = true;
+  secColDetails = new Array<SecColDetail>();
+  public menu: Menu[] = [];
+  public shortcuts: ShortcutInput[] = [];
+
+  @ViewChild("popUpMesssage", { static: true }) child: PopUpMessageComponent;
+  userTemplateId: string;
+  CompanySelected: any;
+  searchStatus: boolean;
+  keyValues: string;
+  countries: any[] = [];
+  taxReportingEntities: any[] = [];
+  bankAccts: BankAccount[];
+  errorIrsTax: boolean;
+  subMinError: boolean;
+  @Input() showIcon: boolean = false;
+  winID: any;
+  keyNames: any;
+  screenCloseRequest: Boolean = false;
+  isFormDataChangeStatus: Boolean = false;
+  isReadOnly: Boolean = true;
+  companyCode: any;
+  @ViewChild("taxRepEntity") taxRepEntityElf: ElementRef;
+
+  menuOpened= ""
+  @ViewChildren(MenuBarComponent) menuBarComponent: QueryList<MenuBarComponent>;
+  showPopUp(message: string, title: string) {
+    if (!message) {
+      return;
+    }
+    let popUpMessage = new PopUpMessage(
+      "poUpMessageName",
+      title,
+      message,
+      "icon"
+    );
+    popUpMessage.buttons = [
+      new PopUpMessageButton("Ok", "Ok", "btn btn-primary"),
+    ];
+    let ref = this.modalService.open(PopUpMessageComponent);
+    ref.componentInstance.popupMessage = popUpMessage;
+  }
+
+  popupMessageHandler(button: PopUpMessageButton) {
+    if (button.name == "yes") {
+      console.log("button yes has been click!");
+    }
+    if (button.name == "no") {
+      console.log("button No has been click!");
+    }
+  }
+
+  popUpButtonHandler(button: PopUpMessageButton) {
+    if (button.popupMessage.name == "poUpMessageName") {
+      this.popupMessageHandler(button);
+    }
+  }
+
+  editCompanyMaster: boolean;
+  companyMaster: CompanyMaster;
+  companyMasters: CompanyMaster[];
+  createCompanyMaster() {
+    this.formValidation.validateForm();
+    if (this.companyForm.valid) {
+      let companyMaster = new CompanyMaster();
+      companyMaster.description = Form.getValue(
+        this.companyForm,
+        "description"
+      );
+      companyMaster.companyCode = Form.getValue(
+        this.companyForm,
+        "companyCode"
+      );
+      companyMaster.name = Form.getValue(this.companyForm, "name");
+      companyMaster.addressLine1 = Form.getValue(this.companyForm, "address1");
+      companyMaster.addressLine2 = Form.getValue(this.companyForm, "address2");
+      companyMaster.city = Form.getValue(this.companyForm, "city");
+      companyMaster.state = Form.getValue(this.companyForm, "state");
+      companyMaster.phoneNumber = Form.getValue(this.companyForm, "phone");
+      companyMaster.country = Form.getValue(this.companyForm, "country");
+      companyMaster.zipCode = Form.getValue(this.companyForm, "zip");
+      companyMaster.faxNumber = Form.getValue(this.companyForm, "fax")
+      companyMaster.irsTaxId = Form.getValue(this.companyForm, "taxRepEntity")
+      companyMaster.medicalPayAcct = Form.getValue(
+        this.companyForm,
+        "medicalPayable"
+      );
+      companyMaster.manMedPayAcct = Form.getValue(
+        this.companyForm,
+        "manualMedPayAcct"
+      );
+      companyMaster.vendorMinCheck = Form.getValue(
+        this.companyForm,
+        "vendMinCheck"
+      );
+      companyMaster.capPayAcct = Form.getValue(
+        this.companyForm,
+        "capitaledPayable"
+      );
+      companyMaster.manCapPayAcct = Form.getValue(
+        this.companyForm,
+        "manualCapPayAcct"
+      );
+      companyMaster.subscriberMinCheck = Form.getValue(
+        this.companyForm,
+        "subdepMinCheck"
+      );
+      companyMaster.userDefined1 = Form.getValue(
+        this.companyForm,
+        "achEftAcct"
+      );
+      companyMaster.agentCommissionPayAcct = Form.getValue(
+        this.companyForm,
+        "agentCommisAcct"
+      );
+      this.auditService.setAuditFields(
+        companyMaster,
+        sessionStorage.getItem("user"),
+        this.windowId,
+        OPERATIONS.ADD
+      );
+
+      this.companyMasterService.createCompanyMaster(companyMaster).subscribe(
+        (response) => {
+          this.toastService.showToast(
+            "Record successfully created.",
+            NgbToastType.Success
+          );
+          if (this.screenCloseRequest === true) {
+            setTimeout(() => {
+              this.activeModal.close();
+            }, 2000);
+          }
+          else{
+            setTimeout(() => {
+              this.getCompanyMasters();
+            });
+          }
+          this.isFormDataChangeStatus = false;
+          this.editCompanyMaster = false;
+        },
+        (error) => {
+          this.toastService.showToast(
+            "Some required information is missing or incomplete. " +
+            "Please correct your entries and try again.",
+            NgbToastType.Danger
+          );
+        }
+      );
+    }
+  }
+
+  ngAfterViewInit(): void {
+    this.shortcuts.push(...getCompanyMasterShortcutKeys(this));
+    this.cdr.detectChanges();
+  }
+
+  updateCompanyMaster(companyCode: string) {
+    this.formValidation.validateForm();
+    if (this.companyForm.valid) {
+      let companyMaster = new CompanyMaster();
+      companyMaster.companyCode = this.CompanySelected.companyCode;
+      companyMaster.description = Form.getValue(
+        this.companyForm,
+        "description"
+      );
+      companyMaster.name = Form.getValue(this.companyForm, "name");
+      companyMaster.addressLine1 = Form.getValue(this.companyForm, "address1");
+      companyMaster.addressLine2 = Form.getValue(this.companyForm, "address2");
+      companyMaster.city = Form.getValue(this.companyForm, "city");
+      companyMaster.state = Form.getValue(this.companyForm, "state");
+      companyMaster.phoneNumber = Form.getValue(this.companyForm, "phone");
+      companyMaster.country = Form.getValue(this.companyForm, "country");
+      companyMaster.zipCode = Form.getValue(this.companyForm, "zip");
+      companyMaster.faxNumber = Form.getValue(this.companyForm, "fax")
+      companyMaster.irsTaxId = Form.getValue(this.companyForm, "taxRepEntity")
+
+      companyMaster.medicalPayAcct = Form.getValue(
+        this.companyForm,
+        "medicalPayable"
+      );
+      companyMaster.manMedPayAcct = Form.getValue(
+        this.companyForm,
+        "manualMedPayAcct"
+      );
+      companyMaster.vendorMinCheck = Form.getValue(
+        this.companyForm,
+        "vendMinCheck"
+      );
+      companyMaster.capPayAcct = Form.getValue(
+        this.companyForm,
+        "capitaledPayable"
+      );
+      companyMaster.manCapPayAcct = Form.getValue(
+        this.companyForm,
+        "manualCapPayAcct"
+      );
+      companyMaster.subscriberMinCheck = Form.getValue(
+        this.companyForm,
+        "subdepMinCheck"
+      );
+      companyMaster.userDefined1 = Form.getValue(
+        this.companyForm,
+        "achEftAcct"
+      );
+      companyMaster.agentCommissionPayAcct = Form.getValue(
+        this.companyForm,
+        "agentCommisAcct"
+      );
+      this.auditService.setAuditFields(
+        companyMaster,
+        sessionStorage.getItem("user"),
+        this.windowId,
+        OPERATIONS.UPDATE
+      );
+      this.companyMasterService
+        .updateCompanyMaster(companyMaster, companyCode)
+        .subscribe(
+          (response) => {
+            this.toastService.showToast(
+              "Record successfully updated.",
+              NgbToastType.Success
+            );
+            if (this.screenCloseRequest === true) {
+              setTimeout(() => {
+                this.activeModal.close();
+              }, 2000);
+            }
+            else{
+               setTimeout(() => {
+                 this.getCompanyMasters();
+               });
+            }
+            this.isFormDataChangeStatus = false;
+          },
+          (error) => {
+            this.toastService.showToast(
+              "An Error occurred while creating new record. Please check your entry.",
+              NgbToastType.Danger
+            );
+          }
+        );
+    } else {
+      this.toastService.showToast(
+        "Some required information is missing or incomplete. " +
+        "Please correct your entries and try again.",
+        NgbToastType.Danger
+      );
+    }
+  }
+  saveCompanyMaster() {
+    if (this.editCompanyMaster) {
+      if (this.isSuperUser) {
+        this.updateCompanyMaster(this.CompanySelected.companyCode);
+      } else {
+        if (this.secWin.hasUpdatePermission()) {
+          this.updateCompanyMaster(this.CompanySelected.companyCode);
+        } else {
+          this.messageService.findByMessageId(29057).subscribe((message: MessageMasterDtl[]) => {
+            this.formPopupAlert('29057: ' + message[0].messageText.replace('@1', sessionStorage.getItem("user")).replace("@2", "SUBMIT"), 'Benefit Package')
+          });
+        }
+      }
+    } else {
+      if (this.isSuperUser) {
+        this.createCompanyMaster();
+      } else {
+        if (this.secWin.hasInsertPermission()) {
+          this.createCompanyMaster();
+        } else {
+          this.messageService.findByMessageId(21005).subscribe((message: MessageMasterDtl[]) => {
+            this.formPopupAlert('21005: ' + message[0].messageText.replace('@1', sessionStorage.getItem("user")), 'Benefit Package')
+          });
+        }
+      }
+    }
+  }
+  deleteCompanyMaster(companyCode: string) {
+    if (!(this.secWin && this.secWin.hasDeletePermission())) {
+      this.showPopUp("Not permitted to delete", "Group Master Security");
+    } else {
+      this.companyMasterService.deleteCompanyMaster(companyCode).subscribe(
+        (response) => {
+          this.alertMessage = this.alertMessageService.info(
+            "Record successfully deleted."
+          );
+        },
+        (error) => {
+          this.alertMessage = this.alertMessageService.error(
+            "An Error occurred while deleting record."
+          );
+        }
+      );
+    }
+  }
+  getCompanyMaster(companyCode: string) {
+    this.companyMasterService.getCompanyMaster(companyCode).subscribe(
+      (companyMaster) => {
+        this.companyMaster = companyMaster;
+        this.companyForm.patchValue(
+          {
+            name: this.companyMaster.name,
+            address1: this.companyMaster.addressLine1,
+            address2: this.companyMaster.addressLine2,
+            city: this.companyMaster.city,
+            state: this.companyMaster.state,
+            phone: this.companyMaster.phoneNumber,
+            country: this.companyMaster.country,
+            zip: this.companyMaster.zipCode,
+            taxRepEntity: this.companyMaster.irsTaxId,
+            medicalPayable: this.companyMaster.medicalPayAcct,
+            manualMedPayAcct: this.companyMaster.manMedPayAcct,
+            vendMinCheck: this.companyMaster.vendorMinCheck,
+            capitaledPayable: this.companyMaster.capPayAcct,
+            manualCapPayAcct: this.companyMaster.manCapPayAcct,
+            subdepMinCheck: this.companyMaster.subscriberMinCheck,
+            achEftAcct: this.companyMaster.userDefined1,
+            agentCommisAcct: this.companyMaster.agentCommissionPayAcct,
+          },
+          { emitEvent: false }
+        );
+      },
+      (error) => {
+        this.alertMessage = this.alertMessageService.error(
+          "An Error occurred while retrieving record."
+        );
+      }
+    );
+  }
+  getCompanyMasters() {
+    this.companyMasterService.getCompanyMasters().subscribe(
+      (companyMasters) => {
+        companyMasters.sort((a, b) => {
+          return a["companyCode"] > b["companyCode"] ? 1 : -1;
+        });
+        this.companyMasters = companyMasters;
+        setTimeout(() => {
+          this.dataGridGridOptions.api.setRowData(this.companyMasters);
+          let rowIndex = 0;
+          if (this.CompanySelected?.companyCode) {
+            rowIndex = companyMasters.findIndex(rowItems => rowItems.companyCode === this.CompanySelected.companyCode);
+          }
+          this.dataGridGridOptions.api.selectIndex(rowIndex ? rowIndex : 0, false, false);
+        }, 500);
+      },
+      (error) => {
+        this.alertMessage = this.alertMessageService.error(
+          "An Error occurred while retrieving records."
+        );
+      }
+    );
+  }
+
+  public dataGridGridOptions: GridOptions;
+  private dataGridgridApi: any;
+  private dataGridgridColumnApi: any;
+
+  dataGridGridOptionsExportCsv() {
+    var params = {};
+    this.dataGridgridApi.exportDataAsCsv(params);
+  }
+
+  createDataGrid(): void {
+    this.dataGridGridOptions = {
+      paginationPageSize: 50,
+    };
+    this.dataGridGridOptions.editType = "fullRow";
+    this.dataGridGridOptions.columnDefs = [
+      {
+        headerName: "Company Code",
+        field: "companyCode",
+        width: 200,
+        headerCheckboxSelection: true,
+        headerCheckboxSelectionFilteredOnly: true,
+        checkboxSelection: true,
+      },
+      {
+        headerName: "Description",
+        field: "description",
+        width: 200,
+      },
+    ];
+  }
+
+  // Use constructor injection to inject an instance of a FormBuilder
+  constructor(
+    private functionalLevelSecurityService: FunctionalLevelSecurityService,
+    private auditService: AuditService,
+    private cdr: ChangeDetectorRef,
+    private countryService: CountryService,
+    private BankAccountService: BankAccountService,
+    private messageService: MessageMasterDtlService,
+    private _decimalPipe: DecimalPipe,
+    private sharedService: SharedService,
+    private secUserService: SecUserService,
+    private formBuilder: FormBuilder,
+    private activeModal: NgbActiveModal,
+    private toastService: ToastService,
+    private router: Router,
+    private mask: Mask,
+    private secColDetailService: SecColDetailService,
+    private customValidators: CustomValidators,
+    private alertMessageService: AlertMessageService,
+    private dateFormatPipe: DateFormatPipe,
+    private secWinService: SecWinService,
+    private modalService: NgbModal,
+    private securityService: SecurityService,
+    private companyMasterService: CompanyMasterService,
+    private renderer: Renderer2,
+    private taxReportingEntityService: TaxReportingEntityService,
+    private toastr: ToastService,
+    private menuSerrvice: MenuService
+  ) { }
+
+  // Most initial setup should be done in the ngOnInit() life-cycle hook function
+  // rather than in the constructor for this class in order to ensure that the
+  // resources are fully loaded before performing the initial setup processing.
+  ngOnInit(): void {
+    this.initializePermission();
+  }
+  private initializePermission(): void {
+    this.isSuperUser = JSON.parse(sessionStorage.getItem("isSuperUser"));
+    if (this.isSuperUser) {
+      this.secProgress = false;
+      this.initializeComponentState();
+      return;
+    }
+
+    let userId = null;
+
+    const parsedToken = this.securityService.getCurrentUserToken();
+    if (parsedToken) {
+      userId = parsedToken.sub;
+    }
+    this.secUserService.getSecUser(userId).subscribe((user: SecUser) => {
+      this.getSecColDetails(user);
+      this.userTemplateId = user.dfltTemplate;
+
+      this.getSecWin(user.dfltTemplate);
+    });
+  }
+
+  private initializeComponentState(): void {
+    this.createForm();
+    this.displayMessage = {};
+    this.formValidation = new FormValidation(this.companyForm);
+    this.createDataGrid();
+    this.menuInit();
+    this.getCompanyMasters();
+    this.getBankAccount();
+    this.getCountries();
+    this.getTaxReporting();
+    this.companyForm.valueChanges.subscribe((res) => {
+      this.isFormDataChangeStatus = true;
+    });
+  }
+  /**
+   * Get Security Column Details
+   */
+  getSecColDetails(secUser: SecUser) {
+    if (!secUser.sfldlId) {
+      this.secProgress = false;
+      return;
+    }
+    this.secColDetailService
+      .findByTableNameAndUserId("VENDOR_CREDIT", secUser.userId)
+      .subscribe((resp: SecColDetail[]) => {
+        this.secColDetails = resp;
+        this.secProgress = false;
+        this.secColDetails = JSON.parse(JSON.stringify(resp)); // make copy of array for changes detection in directive
+      });
+  }
+
+  /**
+   * Get Permissions
+   * @param secUserId
+   */
+  getSecWin(secUserId: string) {
+    this.secWinService
+      .getSecWin(this.windowId, secUserId)
+      .subscribe((secWin: SecWin) => {
+        this.secWin = new SecWinViewModel(secWin);
+        if (this.secWin.hasSelectPermission()) {
+          this.initializeComponentState();
+          //Check Menus Privilege Start
+          let menuResponse = new MenuResponse();
+          menuResponse = this.menuSerrvice.getMenuList([...this.menu], this.secWin);
+          if (menuResponse.status) {
+            this.menu = [];
+            this.menu = [...menuResponse.menus];
+          }
+          //Check Menus Privilege End
+        } else {
+          this.showPopUp(
+            "You are not Permitted to view MEMBER Master",
+            "Vendor Credit Permission"
+          );
+        }
+      });
+  }
+  disableMenu() {
+    if (this.userTemplateId == "UT_VIEW") {
+      this.menu[0]["dropdownItems"][0].disabled = true;
+      this.menu[0]["dropdownItems"][2].disabled = true;
+      this.menu[0]["dropdownItems"][3].disabled = true;
+    }
+  }
+  // Use a FormBuilder to create a FormGroup to define the Form Model for the view
+  // See: https://angular.io/docs/ts/latest/guide/reactive-forms.html#!#intro
+  createForm() {
+    // FormBuilder.group is a factory method that creates a FormGroup
+    // FormBuilder.group takes an object whose keys and values are FormControl names and their definitions.
+    this.companyForm = this.formBuilder.group(
+      {
+        companyCode: [
+          "",
+          { updateOn: "blur", validators: [Validators.required] },
+        ],
+        description: [
+          "",
+          { updateOn: "blur", validators: [Validators.required] },
+        ],
+        taxRepEntity: ["", { updateOn: "blur", validators: [] }],
+        name: ["", { updateOn: "blur", validators: [] }],
+        address1: ["", { updateOn: "blur", validators: [] }],
+        address2: ["", { updateOn: "blur", validators: [] }],
+        city: ["", { updateOn: "blur", validators: [] }],
+        state: ["", { updateOn: "blur", validators: [] }],
+        phone: [
+          "",
+          {
+            updateOn: "blur",
+            validators: [this.PhoneValidator(), Validators.pattern("^[0-9]*$")],
+          },
+        ],
+        country: ["", { updateOn: "blur", validators: [] }],
+        fax: [
+          "",
+          {
+            updateOn: "blur",
+            validators: [
+              this.FaxNumValidator(),
+              Validators.pattern("^[0-9]*$"),
+            ],
+          },
+        ],
+        zip: [
+          "",
+          {
+            updateOn: "blur",
+            validators: [this.ZipValidator(), Validators.pattern("^[0-9]*$")],
+          },
+        ],
+        medicalPayable: ["", { updateOn: "blur", validators: [] }],
+        manualMedPayAcct: ["", { updateOn: "blur", validators: [] }],
+        vendMinCheck: ["", { updateOn: "blur", validators: [] }],
+        capitaledPayable: ["", { updateOn: "blur", validators: [] }],
+        manualCapPayAcct: ["", { updateOn: "blur", validators: [] }],
+        subdepMinCheck: ["", { updateOn: "blur", validators: [] }],
+        achEftAcct: ["", { updateOn: "blur", validators: [] }],
+        agentCommisAcct: ["", { updateOn: "blur", validators: [] }],
+      },
+      { updateOn: "submit" }
+    );
+  }
+
+  resolved(captchaResponse: string) {
+    console.log(`Resolved captcha with response: ${captchaResponse}`);
+  }
+
+  onChangeGrid() {
+    var selectedRows = this.dataGridGridOptions.api.getSelectedRows();
+    if (selectedRows[0]) {
+      this.CompanySelected = selectedRows[0];
+      //getting index of row
+      this.searchStatus = true;
+      this.keyValues = "";
+      this.editCompanyMaster = true;
+      this.isReadOnly = true;
+      this.populateForm(selectedRows[0]);
+    } else {
+      this.keyValues = "";
+      this.searchStatus = false;
+    }
+  }
+
+  populateForm(data: CompanyMaster) {
+    //this.enableOrDisable(data);
+    this.companyCode = data.companyCode;
+    this.companyForm.patchValue(
+      {
+        companyCode: data.companyCode,
+        description: data.description,
+        taxRepEntity: data.irsTaxId,
+        name: data.name,
+        address1: data.addressLine1,
+        address2: data.addressLine2,
+        city: data.city,
+        state: data.state,
+        phone: data.phoneNumber,
+        country: data.country,
+        fax: data.faxNumber,
+        zip: data.zipCode,
+        medicalPayable: data.medicalPayAcct,
+        manualMedPayAcct: data.manMedPayAcct,
+        vendMinCheck: data.vendorMinCheck,
+        capitaledPayable: data.capPayAcct,
+        manualCapPayAcct: data.manCapPayAcct,
+        subdepMinCheck: data.subscriberMinCheck,
+        achEftAcct: data.userDefined1,
+        agentCommisAcct: data.agentCommissionPayAcct,
+      },
+      { emitEvent: false }
+    );
+  }
+  private menuInit() {
+    this.menu = [
+      {
+        menuItem: "File",
+        dropdownItems: [
+          { name: "New", shortcutKey: "Ctrl+M" },
+          { name: "Open", shortcutKey: "Ctrl+O" },
+          { name: "Delete", shortcutKey: "Ctrl+D" },
+          { name: "Save", shortcutKey: "Ctrl+S" },
+          { name: "Close", shortcutKey: "Ctrl+F4" },
+          { isHorizontal: true },
+          { name: "Main Menu...", shortcutKey: "F2" },
+          { name: "Shortcut Menu...", shortcutKey: "F3" },
+          { isHorizontal: true },
+          { name: "Print", disabled: true },
+          { isHorizontal: true },
+          { name: "Exit", shortcutKey: "Alt+F4" },
+        ],
+      },
+      {
+        menuItem: "Edit",
+        dropdownItems: [
+          { name: "Undo", disabled: true, shortcutKey: "Ctrl+Z" },
+          { isHorizontal: true },
+          { name: "Cut", disabled: true, shortcutKey: "Ctrl+X" },
+          { name: "Copy", disabled: true, shortcutKey: "Ctrl+C" },
+          { name: "Paste", disabled: true, shortcutKey: "Ctrl+V" },
+          { isHorizontal: true },
+          { name: "Next", shortcutKey: "F8" },
+          { name: "Previous", shortcutKey: "F7" },
+          { isHorizontal: true },
+          { name: "Lookup", shortcutKey: "F5" },
+        ],
+      },
+      {
+        menuItem: "Notes",
+        dropdownItems: [{ name: "Notes", shortcutKey: "F4", disabled: true }],
+      },
+      {
+        menuItem: "Window",
+        dropdownItems: [
+          { name: "Show Timestamp", shortcutKey: "Shift+Alt+S" },
+          { name: "Audit Display", shortcutKey: "Shift+Alt+A" },
+          { isHorizontal: true },
+          { name: "1 Main Menu" },
+          { name: "2 Benefit Accumulate Base Values" },
+          { name: "3 Bank Account" },
+          { name: "4 Company" },
+        ],
+      },
+      {
+        menuItem: "Help",
+        dropdownItems: [
+          { name: "Contents" },
+          { name: "Search for Help on..." },
+          { name: "This Window", shortcutKey: "F1" },
+          { isHorizontal: true },
+          { name: "Glossary" },
+          { name: "Getting Started" },
+          { name: "How to use Help" },
+          { isHorizontal: true },
+          { name: "About Diamond Client/Server" },
+        ],
+      },
+    ];
+  }
+
+  public onMenuItemClick(event: any) {
+    if (event.menu.menuItem === "File") {
+      // handle File actions
+      switch (event.action) {
+        case "New": {
+          this.createNewCompany();
+          break;
+        }
+        case "Open": {
+          this.resetAll();
+          break;
+        }
+        case "Delete": {
+          this.deleteRequestAlert();
+          break;
+        }
+        case "Save": {
+          this.saveCompanyMaster();
+          break;
+        }
+        case "Close": {
+          this.modalClose();
+          break;
+        }
+        case "Exit": {
+          this.exitScreen();
+          break;
+        }
+        case "Shortcut Menu": {
+          const ref = this.modalService.open(FunctionalGroupShortCutComponent);
+          ref.componentInstance.showIcon = true;
+          break;
+        }
+        default: {
+          this.toastService.showToast(
+            "Action is not valid",
+            NgbToastType.Danger
+          );
+          break;
+        }
+      }
+    } else if (event.menu.menuItem === "Edit") {
+      // handle Edit-Menu Actions
+      // this.handleEditMenu(event.action);
+    } else if (event.menu.menuItem === "Window") {
+      switch (event.action) {
+        case "1 Main Menu": {
+          this.router.navigate(["diamond/functional-groups"]);
+          break;
+        }
+        case "Audit Display": {
+          if (this.searchStatus) {
+            let status = this.functionalLevelSecurityService.isFunctionIdExist(
+              CONSTANTS.F_AUDIT,
+              this.winID
+            );
+            if (status) {
+              let ref = this.modalService.open(AuditDisplayComponent, {
+                size: "lg",
+              });
+              ref.componentInstance.keyNames = this.keyNames;
+              ref.componentInstance.keyValues = this.keyValues;
+              ref.componentInstance.winID = this.winID;
+              ref.componentInstance.showIcon = true;
+            } else {
+              this.messageService
+                .findByMessageId(11073)
+                .subscribe((message: MessageMasterDtl[]) => {
+                  this.showPopUp(
+                    "11073: " + message[0].messageText,
+                    "Company Master"
+                  );
+                });
+            }
+          } else {
+            this.messageService
+              .findByMessageId(30164)
+              .subscribe((message: MessageMasterDtl[]) => {
+                this.showPopUp(
+                  "30164: " + message[0].messageText,
+                  "Company Master"
+                );
+              });
+          }
+
+          break;
+        }
+        case "Show Timestamp": {
+          this.showTimeStamp();
+          break;
+        }
+      }
+    } else if (event.menu.menuItem == "Help") {
+      /**
+       * Open help modal
+       */
+      this.helpScreen();
+    }
+  }
+  createNewCompany() {
+    if (this.isSuperUser) {
+      this.createNCompany();
+    } else {
+      if (this.secWin.hasInsertPermission()) {
+        this.createNCompany();
+      } else {
+        this.messageService.findByMessageId(21005).subscribe((message: MessageMasterDtl[]) => {
+          this.formPopupAlert('21005: ' + message[0].messageText.replace('@1', sessionStorage.getItem("user")), 'Benefit Package')
+        });
+      }
+    }
+  }
+
+  createNCompany() {
+    this.companyForm.controls["companyCode"].setValue("", { emitEvent: false });
+    this.companyForm.controls["description"].setValue("", { emitEvent: false });
+    this.companyForm.controls["taxRepEntity"].setValue("", {
+      emitEvent: false,
+    });
+    this.companyForm.controls["name"].setValue("", { emitEvent: false });
+    this.companyForm.controls["address1"].setValue("", { emitEvent: false });
+    this.companyForm.controls["address2"].setValue("", { emitEvent: false });
+    this.companyForm.controls["city"].setValue("", { emitEvent: false });
+    this.companyForm.controls["state"].setValue("", { emitEvent: false });
+    this.companyForm.controls["phone"].setValue("", { emitEvent: false });
+    this.companyForm.controls["country"].setValue("", { emitEvent: false });
+    this.companyForm.controls["zip"].setValue("", { emitEvent: false });
+    this.companyForm.controls["medicalPayable"].setValue("", {
+      emitEvent: false,
+    });
+    this.companyForm.controls["capitaledPayable"].setValue("", {
+      emitEvent: false,
+    });
+    this.companyForm.controls["manualCapPayAcct"].setValue("", {
+      emitEvent: false,
+    });
+    this.companyForm.controls["manualMedPayAcct"].setValue("", {
+      emitEvent: false,
+    });
+    this.companyForm.controls["vendMinCheck"].setValue("", {
+      emitEvent: false,
+    });
+    this.companyForm.controls["subdepMinCheck"].setValue("", {
+      emitEvent: false,
+    });
+    this.companyForm.controls["achEftAcct"].setValue("", { emitEvent: false });
+    this.companyForm.controls["agentCommisAcct"].setValue("", {
+      emitEvent: false,
+    });
+    this.companyForm.controls["fax"].setValue("", { emitEvent: false });
+
+    this.editCompanyMaster = false;
+    this.isReadOnly = false;
+    this.dataGridGridOptions.api.deselectAll();
+  }
+
+  resetAll() {
+    this.companyForm.reset({ emitEvent: false });
+  }
+
+  //DripDowns
+  getCountries() {
+    this.countryService.getCountrysDropdowns().subscribe((countries) => {
+      this.countries = countries;
+      this.countries.sort((a, b) => {
+        if (a.key < b.key) {
+          return -1;
+        }
+        if (a.key > b.key) {
+          return 1;
+        }
+        return 0;
+      });
+    });
+  }
+
+  getTaxReporting() {
+    this.taxReportingEntityService
+      .getTaxReportingEntityDropdowns()
+      .subscribe((taxReportingEntities) => {
+        taxReportingEntities.sort((a, b) => {
+          if (a.key < b.key) {
+            return -1;
+          }
+          if (a.key > b.key) {
+            return 1;
+          }
+          return 0;
+        });
+        this.taxReportingEntities = taxReportingEntities;
+      });
+  }
+
+  getBankAccount() {
+    this.BankAccountService.getBankAccounts().subscribe((data) => {
+      this.bankAccts = data;
+    });
+  }
+
+  companyCodeKeyDown(event: any) {
+    if (event.key == "Tab") {
+      event.preventDefault();
+      if (event.target.value) {
+        const element = this.renderer.selectRootElement("#description");
+        element.focus();
+      } else {
+        const element = this.renderer.selectRootElement("#companyCode");
+        element.focus();
+      }
+    }
+  }
+
+  validateVendorMin(event: any) {
+    var ls_column_text = event.target.value;
+    if (event.target.value == 0) {
+      this.companyForm.patchValue({
+        vendMinCheck: "",
+      });
+    }
+    if (ls_column_text.trim() == "" || ls_column_text == null) {
+    } else if (parseFloat(ls_column_text) < parseFloat("0.01")) {
+      this.subMinError = true;
+      this.ShowError(27183, false);
+    }
+  }
+  validateSubMin(event: any) {
+    var ls_column_text = event.target.value;
+    if (event.target.value == 0) {
+      this.companyForm.patchValue({
+        vendMinCheck: "",
+      });
+    }
+
+    if (ls_column_text.trim() == "" || ls_column_text == null) {
+    } else if (parseFloat(ls_column_text) < parseFloat("0.01")) {
+      this.subMinError = true;
+      this.ShowError(27183, false);
+    }
+  }
+  validateIRSTaxId(event: any) {
+    var ls_column_text = event.target.value;
+    if (
+      Number(ls_column_text) == NaN &&
+      ls_column_text != "" &&
+      ls_column_text != null
+    ) {
+      this.errorIrsTax = true;
+      this.ShowError(27120, false);
+    } else {
+      this.errorIrsTax = false;
+    }
+  }
+
+  ShowError(number: any, check: any, value = "1") {
+    if (check) {
+      this.messageService
+        .findByMessageId(number)
+        .subscribe((message: MessageMasterDtl[]) => {
+          this.showPopUp(
+            number + ":" + message[0].messageText.replace("1@", value),
+            "Company Master"
+          );
+        });
+    } else {
+      this.messageService
+        .findByMessageId(number)
+        .subscribe((message: MessageMasterDtl[]) => {
+          this.showPopUp(
+            number + ":" + message[0].messageText,
+            "Company Master"
+          );
+        });
+    }
+  }
+  PhoneValidator() {
+    return (control: AbstractControl): { [key: string]: boolean } | null => {
+      if (control.value == null) {
+        return null;
+      }
+      if (
+        control.value.toString().length == 7 ||
+        control.value.toString().length == 10 ||
+        control.value.toString().length == 0
+      ) {
+        return null;
+      }
+      return { phoneValidator: true };
+    };
+  }
+  ZipValidator() {
+    return (control: AbstractControl): { [key: string]: boolean } | null => {
+      if (control.value == null) {
+        return null;
+      }
+      if (
+        control.value.toString().length == 0 ||
+        control.value.toString().length == 5 ||
+        control.value.toString().length == 9
+      ) {
+        return null;
+      }
+      return { ZipValidator: true };
+    };
+  }
+
+  FaxNumValidator() {
+    return (control: AbstractControl): { [key: string]: boolean } | null => {
+      if (control.value == null) {
+        return null;
+      }
+      if (
+        control.value.toString().length == 0 ||
+        control.value.toString().length == 7 ||
+        control.value.toString().length == 10
+      ) {
+        return null;
+      }
+      return { FaxValidator: true };
+    };
+  }
+
+  modalClose() {
+    this.screenCloseRequest = true;
+    if (this.isFormDataChangeStatus === true) {
+      this.messageService
+        .findByMessageId(29065)
+        .subscribe((message: MessageMasterDtl[]) => {
+          this.popupAlert(message[0].messageText, "Company");
+        });
+    } else {
+      this.activeModal.close();
+    }
+  }
+
+  popupAlert = (message: string, title: string) => {
+    try {
+      if (!message) {
+        return;
+      }
+      let popUpMessage = new PopUpMessage(
+        "popUpMessageName",
+        title,
+        message,
+        "icon"
+      );
+      popUpMessage.buttons.push(new PopUpMessageButton("Yes", "Yes", ""));
+      popUpMessage.buttons.push(new PopUpMessageButton("No", "No", ""));
+      popUpMessage.buttons.push(new PopUpMessageButton("Cancel", "Cancel", ""));
+      let ref = this.modalService.open(PopUpMessageComponent);
+      ref.componentInstance.showIcon = true;
+      ref.componentInstance.popupMessage = popUpMessage;
+      ref.componentInstance.buttonclickEvent.subscribe((resp: any) => {
+        if (resp.name === "Yes") {
+          this.saveCompanyMaster();
+        } else if (resp.name === "No") {
+          this.router.navigateByUrl("/");
+          if (this.screenCloseRequest === true) {
+            this.activeModal.close();
+          }
+        }
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  helpScreen = () => {
+    const viewModal = this.modalService.open(SupportHelpComponent, {
+      windowClass: "myCustomModalClass",
+    });
+    viewModal.componentInstance.showIcon = true;
+    viewModal.componentInstance.defaultFile = "/COMPF_Company_Codes.htm";
+  };
+
+  descriptionKeyDown = (event:any) => {
+    if (event.key === "Tab") {
+      event.preventDefault();
+      if (event.target.value) {
+        this.taxRepEntityElf.nativeElement.focus();
+      } else {
+        const element = this.renderer.selectRootElement("#description");
+        element.focus();
+      }
+    }
+  };
+
+  deleteRequestAlert = () => {
+    if (this.isSuperUser) {
+      this.deletePopup();
+    } else {
+      if (this.secWin.hasDeletePermission()) {
+        this.deletePopup();
+      } else {
+        this.messageService.findByMessageId(29069).subscribe((message: MessageMasterDtl[]) => {
+          this.formPopupAlert('29069: ' + message[0].messageText.replace('@1', sessionStorage.getItem("user")), 'Benefit Package')
+        });
+      }
+    }
+
+  };
+
+  deletePopup() {
+    let popUpMessage = new PopUpMessage(
+      "Company",
+      "Company",
+      "29070: Press OK to delete this record",
+      "info",
+      [],
+      MessageType.WARNING
+    );
+    popUpMessage.buttons.push(new PopUpMessageButton("OK", "OK", ""));
+    popUpMessage.buttons.push(new PopUpMessageButton("Cancel", "Cancel", ""));
+    let ref = this.modalService.open(PopUpMessageComponent);
+    ref.componentInstance.popupMessage = popUpMessage;
+    ref.componentInstance.showIcon = true;
+    ref.componentInstance.buttonclickEvent.subscribe((resp: any) => {
+      if (resp.name === "OK") {
+        this.deleteCompanyRow();
+      }
+    });
+  }
+
+  deleteCompanyRow() {
+    if (this.secWin && !this.secWin.hasDeletePermission() && !this.isSuperUser   ) {
+      return;
+    }
+    const companyCode = this.companyForm.value.companyCode
+      ? this.companyForm.value.companyCode
+      : this.companyCode;
+    if (companyCode) {
+      this.companyMasterService
+        .deleteCompanyMaster(companyCode)
+        .subscribe(() => {
+          for (let i = 0; i < this.companyMasters.length; i++) {
+            if (this.companyMasters[i].companyCode == companyCode) {
+              this.companyMasters.splice(i, 1);
+              break;
+            }
+          }
+          this.dataGridGridOptions.api.setRowData(this.companyMasters);
+          if (this.companyMasters && this.companyMasters.length > 0) {
+            this.dataGridGridOptions.api.selectIndex(0, false, false);
+            this.companyCode = this.companyMasters[0].companyCode;
+          } else {
+            this.companyCode = "";
+            this.dataGridGridOptions.api.setRowData([]);
+          }
+
+          this.toastr.showToast(
+            "Record successfully deleted",
+            NgbToastType.Success
+          );
+        });
+    }
+  }
+
+  private showTimeStamp = () => {
+    let ref = this.modalService.open(TimestampComponent);
+    ref.componentInstance.title = "Company Master";
+    ref.componentInstance.insertDateTime = this.CompanySelected.insertDatetime
+      ? this.CompanySelected.insertDatetimeDisplay
+      : "";
+    ref.componentInstance.insertProcess = this.CompanySelected.insertProcess;
+    ref.componentInstance.insertUser = this.CompanySelected.insertUser;
+    ref.componentInstance.updateUser = this.CompanySelected.updateUser;
+    ref.componentInstance.updateDateTime =
+      this.CompanySelected.updateDatetimeDisplay;
+    ref.componentInstance.updateProcess = this.CompanySelected.updateProcess;
+  };
+
+
+  formPopupAlert = (message: string, title: string) => {
+    try {
+      if (!message) {
+        return;
+      }
+      let popUpMessage = new PopUpMessage('popUpMessageName', title, message, 'icon');
+      popUpMessage.buttons.push(new PopUpMessageButton('Ok', 'Ok', ''));
+      let ref = this.modalService.open(PopUpMessageComponent);
+      ref.componentInstance.showIcon = true;
+      ref.componentInstance.popupMessage = popUpMessage;
+      ref.componentInstance.buttonclickEvent.subscribe((resp: any) => {
+        if (resp.name === 'Ok') {
+          this.activeModal.close();
+        }
+      })
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  exitScreen = () => {
+    this.messageService.findByMessageId(29062).subscribe(res => {
+      let popMsg = new PopUpMessage(
+          'poUpMessageName',
+          'DIAMOND @ Client/Server System',
+          res[0].messageText.replace('@1', 'DIAMOND @ Client/Server System'),
+          'icon');
+      popMsg.buttons = [
+        new PopUpMessageButton('Yes', 'Okay', 'btn btn-primary'),
+        new PopUpMessageButton('No', 'Cancel', 'btn btn-primary')
+      ];
+      let ref = this.modalService.open(PopUpMessageComponent, {size: 'lg'});
+      ref.componentInstance.showIcon = true;
+      ref.componentInstance.popupMessage = popMsg;
+      ref.componentInstance.buttonclickEvent.subscribe((resp: any) => {
+        if (resp.name === 'Yes') {
+          localStorage.removeItem('oldPassword');
+          sessionStorage.removeItem("selectedGroup");
+          localStorage.clear();
+          setTimeout(() => {
+            this.router.navigateByUrl('diamond/user/login', {skipLocationChange: true});
+            this.activeModal.close()
+          }, 500);
+        } else if (resp.name === 'No') {
+
+        }
+      });
+    })
+  };
+
+  openFileMenu() {
+    document.getElementById("fileDropdownFile").dispatchEvent(new MouseEvent('click'));
+    this.menuOpened = "fileDropdownFile"
+  }
+  openHelpMenu() {
+    document.getElementById("fileDropdownHelp").dispatchEvent(new MouseEvent('click'));
+    this.menuOpened = "fileDropdownHelp"
+  }
+  openWindowMenu() {
+    document.getElementById("fileDropdownWindow").dispatchEvent(new MouseEvent('click'));
+    this.menuOpened = "fileDropdownWindow"
+  }
+
+  triggerMenus(value) {
+    let obj = {}
+    if (this.menuBarComponent.first.menuOpen) {
+      if (this.menuOpened == "fileDropdownFile") {
+        switch (value) {
+          case 'm':
+            obj = {
+              menu: {
+                menuItem: 'File'
+              },
+              action: 'New'
+            }
+            this.onMenuItemClick(obj)
+            break;
+          case 'o':
+            obj = {
+              menu: {
+                menuItem: 'File'
+              },
+              action: 'Open'
+            }
+            this.onMenuItemClick(obj)
+            break;
+          case 'd':
+            obj = {
+              menu: {
+                menuItem: 'File'
+              },
+              action: 'Delete'
+            }
+            this.onMenuItemClick(obj)
+            break;
+          case 's':
+            obj = {
+              menu: {
+                menuItem: 'File'
+              },
+              action: 'Save'
+            }
+            this.onMenuItemClick(obj)
+            break;
+          case 'c':
+            obj = {
+              menu: {
+                menuItem: 'File'
+              },
+              action: 'Close'
+            }
+            this.onMenuItemClick(obj)
+            break;
+          case 'e':
+            obj = {
+              menu: {
+                menuItem: 'File'
+              },
+              action: 'Exit'
+            }
+            this.onMenuItemClick(obj)
+            break;
+        }
+      } else  if (this.menuOpened == "fileDropdownWindow") {
+        switch (value) {
+          case 's':
+            obj = {
+              menu: {
+                menuItem: 'Window'
+              },
+              action: 'Show Timestamp'
+            }
+            this.onMenuItemClick(obj)
+            break;
+          case 'a':
+            obj = {
+              menu: {
+                menuItem: 'Window'
+              },
+              action: 'Audit Display'
+            }
+            this.onMenuItemClick(obj)
+            break;
+          default:
+            break;
+        }
+      } else if (this.menuOpened == 'fileDropdownHelp') {
+        switch (value) {
+          case 'c':
+            obj = {
+              menu: {
+                menuItem: 'Help'
+              },
+              action: 'Contents'
+            }
+            this.onMenuItemClick(obj);
+            break;
+          case 's':
+            obj = {
+              menu: {
+                menuItem: 'Help'
+              },
+              action: 'Search for Help on...'
+            }
+            this.onMenuItemClick(obj);
+            break;
+          case 't':
+            obj = {
+              menu: {
+                menuItem: 'Help'
+              },
+              action: 'This Window'
+            }
+            this.onMenuItemClick(obj);
+            break;
+          case 'g':
+            obj = {
+              menu: {
+                menuItem: 'Help'
+              },
+              action: 'Glossary'
+            }
+            this.onMenuItemClick(obj);
+            break;
+          case 'd':
+            obj = {
+              menu: {
+                menuItem: 'Help'
+              },
+              action: 'Getting Started'
+            }
+            this.onMenuItemClick(obj);
+            break;
+          case 'h':
+            obj = {
+              menu: {
+                menuItem: 'Help'
+              },
+              action: 'How to use Help'
+            }
+            this.onMenuItemClick(obj);
+            break;
+          case 'a':
+            obj = {
+              menu: {
+                menuItem: 'Help'
+              },
+              action: 'About Diamond Client/Server'
+            }
+            this.onMenuItemClick(obj);
+            break;
+        }
+      }
+    }
+  };
+}

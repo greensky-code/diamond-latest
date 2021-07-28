@@ -1,0 +1,916 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+    <title>Provider Contracts, How DIAMOND Thinks</title>
+    <!--(Meta)==========================================================-->
+    <meta name="copyright"
+          value="© Copyright 2002 Health Systems Design Corp., a wholly owned subsidiary of Perot Systems Corporation. All rights reserved"/>
+    <meta content="RoboHELP by eHelp Corporation - www.ehelp.com" name="generator"/>
+    <meta content="0.1" name="generator-major-version"/>
+    <meta content="1" name="generator-minor-version"/>
+    <meta content="kadov" name="filetype"/>
+    <meta content="1" name="filetype-version"/>
+    <meta content="1" name="page-count"/>
+    <meta content="4389" name="layout-height"/>
+    <meta content="644" name="layout-width"/>
+    <!--(Links)=========================================================-->
+    <!--(Scripts)=======================================================-->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+</head>
+<body>
+
+<div class="calibreMeta">
+    <div class="calibreMetaTitle">
+
+
+        <h1>
+            <a href="../bai44-9x3eu.html">DIAMOND 950C/S Help
+            </a>
+        </h1>
+
+
+    </div>
+    <div class="calibreMetaAuthor">
+        Unknown
+
+    </div>
+</div>
+
+<div class="calibreMain">
+
+    <div class="calibreEbookContent">
+
+        <div class="calibreEbNavTop">
+
+            <a href="Provider_Member_Enrollment_How_DIAMOND_Thinks.htm" class="calibreAPrev">previous page
+            </a>
+
+
+            <a href="Adding_an_Incentive_Rule.htm" class="calibreANext">next page
+            </a>
+
+        </div>
+
+
+        <h4 class="calibre1">Provider Contracts, How DIAMOND Thinks</h4>
+
+        <!--(Table)=========================================================-->
+        <table cellspacing="0" width="624" x-use-null-cells="" class="calibre172">
+
+            <tbody class="calibre11">
+            <tr valign="top" class="">
+                <td width="270px" class="">
+                    <p class="map-links"><a
+                            href="Provider_Contracts_How_DIAMOND_Thinks.htm#ProviderContract_HDT_Conditional_contract_status_MID"><img
+                            alt="image\assets/help/MidTopic_shg.gif" border="0" height="10" src="assets/help/MidTopic_shg.gif" width="18"
+                            class=""/></a> Conditional Contract Status</p></td>
+                <td width="354px" class="">
+                    <p class="map-links"><a
+                            href="Provider_Contracts_How_DIAMOND_Thinks.htm#ProviderContracts_HDT_Authorization_costing_and_provider_contracts_MID"><img
+                            alt="image\assets/help/MidTopic_shg.gif" border="0" height="10" src="assets/help/MidTopic_shg.gif" width="18"
+                            class=""/></a> Auth costing and provider contracts</p></td>
+            </tr>
+
+            <tr valign="top" class="">
+                <td width="270px" class="">
+                    <p class="map-links"><a
+                            href="Provider_Contracts_How_DIAMOND_Thinks.htm#ProviderContracts_HDT_How_DIAMOND_selects_a_contract_when_pricing_a_claim_MID"><img
+                            alt="image\assets/help/MidTopic_shg.gif" border="0" height="10" src="assets/help/MidTopic_shg.gif" width="18"
+                            class=""/></a> How DIAMOND Selects Contract when Pricing</p></td>
+                <td width="354px" class="">
+                    <p class="map-links"><a
+                            href="Provider_Contracts_How_DIAMOND_Thinks.htm#ProviderContracts_HDT_Provider_Contract_Search_Examples_MID"><img
+                            alt="image\assets/help/MidTopic_shg.gif" border="0" height="10" src="assets/help/MidTopic_shg.gif" width="18"
+                            class=""/></a> Provider Contract Search Examples</p></td>
+            </tr>
+
+            <tr valign="top" class="">
+                <td width="270px" class="">
+                    <p class="map-links"><a
+                            href="Provider_Contracts_How_DIAMOND_Thinks.htm#ProviderContracts_HDT_Retaining_obsolete_contract_records_MID"><img
+                            alt="image\assets/help/MidTopic_shg.gif" border="0" height="10" src="assets/help/MidTopic_shg.gif" width="18"
+                            class=""/></a> Retaining obsolete contract records</p></td>
+                <td width="354px" class="">
+                    <p class="map-links"><a
+                            href="Provider_Contracts_How_DIAMOND_Thinks.htm#ProviderContract_HDT_Target_(alternate)_Revenue_and_CPT4_HCPCS_Codes_MID"><img
+                            alt="image\assets/help/MidTopic_shg.gif" border="0" height="10" src="assets/help/MidTopic_shg.gif" width="18"
+                            class=""/></a> Target Revenue and CPT4/HCPCS Codes</p></td>
+            </tr>
+
+            <tr valign="top" class="">
+                <td width="269px" class="">
+                    <p class="map-links"><a
+                            href="Provider_Contracts_How_DIAMOND_Thinks.htm#ProviderContracts_HDT_Default_Provider_Contracts_and_Default_Provider_Logic_MID"><img
+                            alt="image\assets/help/MidTopic_shg.gif" border="0" height="10" src="assets/help/MidTopic_shg.gif" width="18"
+                            class=""/></a> Default Provider Contracts &amp; Default Provider Logic</p></td>
+                <td width="354px" class="">
+                    <p class="map-links"> </p></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <p class="doc-level"><a name="ProviderContract_HDT_Conditional_contract_status_MID"></a>Conditional
+            Contract Status</p>
+
+        <p class="doc-level1">How DIAMOND handles partial capitation, cap/special
+            fund situations, and other mixed contract situations</p>
+
+        <p class="body-text">The PROVC record contains several contract status fields.
+            In addition, procedure code pricing records also include a contract status
+            override. Here’s how they all fit together and how they can be used to
+            maximum flexibility. While the contract type on the provider contract
+            record suggests an ‘all or nothing’ status with regard to capitation or
+            fee-for-service ("payable"), DIAMOND easily accommodates partially
+            capitated arrangements.</p>
+
+        <p class="doc-level1">Partial Capitation</p>
+
+        <p class="body-text">Capitated providers may be reimbursed on a fee-for-service
+            basis for certain claims. For example, a primary care physician is capitated
+            for primary care encounters, but is paid on a fee-for-service basis for
+            outpatient surgeries.</p>
+
+        <ul class="calibre9">
+
+            <li class="kadov-p-cbullet-list-h1"><p class="bullet-list-h3">You can
+                use the Default Contract Type in the provider’s provider contract record
+                (PROVC&gt;Def Contr Type) to specify the providers who are included in
+                a Capitation Model/Entity. This may be used during capitation calculation
+                to select providers.</p></li>
+
+            <li class="kadov-p-cbullet-list-h1"><p class="bullet-list-h3">You can
+                select a provider Contract Type on the capitation entity record (CPENT&gt;Contract
+                Type) to specify the providers who should be included in the capitation
+                calculation only if the associated capitation model’s (CPMOD) Use Prov
+                Contract check box has been selected.</p></li>
+
+            <li class="kadov-p-cbullet-list-h1"><p class="bullet-list-h3">DIAMOND
+                uses the provider’s PROVC&gt;Special&gt;Contract Pricing Details&gt;Contract
+                Type and PROCP&gt;Contract Override during claims processing. Typically,
+                Contract Pricing Details specify how a provider’s associated claims are
+                categorized (capitated or fee-for-service) and exceptions are specified
+                in the Procedure Price (PROCP) record.</p></li>
+        </ul>
+
+        <p class="body-text-block">For example, Dr. Jones is capitated for all but
+            a few special surgeries that are paid fee-for-service. Dr. Jones’ PROVC&gt;Special&gt;Contract
+            Pricing Details&gt;Contract Type = C (Capitated). Those few surgeries
+            are specified in the appropriate PROCP&gt;Contract Override = P (Payable).</p>
+
+        <p class="body-text-block">In another example, Dr. Smith is capitated for
+            only 40 primary care procedure codes. Dr. Smith’s PROVC&gt;Special&gt;Contract
+            Pricing Details&gt;Contract Type = P (Payable). The 40 primary care procedure
+            codes are specified in the appropriate PROCP&gt;Contract Override = C
+            (Capitated).</p>
+
+        <ul class="calibre9">
+
+            <li class="kadov-p-cbullet-list-h1"><p class="bullet-list-h3">PROCP
+                is the final word on Contract Type for capitation and payables (fee-for-service);
+                however, you cannot specify a contract type = Cap/Special Fund Distribution
+                on a PROCP record. For more information, see <a
+                        href="Claims.chm::/Capitation_Special_Fund_Distribution_How_DIAMOND_Thinks.htm">Capitation/Special
+                    Fund Distribution, How DIAMOND Thinks</a>.</p></li>
+
+            <li class="kadov-p-cbullet-list-h1"><p class="bullet-list-h3">In all
+                cases, the Contract Type used will drive certain results in the claim
+                detail line Claim Status field. Unless the claim is denied, an adjustment,
+                or a no check/adjustment, Contract Type P results in Claim Status P; Contract
+                Type C results in Claim Status C; and Contract Type F (on PROVC only,
+                not used in PROCP) results in Claim Status F. For more information, see
+                <a href="Claims.chm::/Capitation_Special_Fund_Distribution_How_DIAMOND_Thinks.htm">Capitation/Special
+                    Fund Distribution, How DIAMOND Thinks</a>.</p></li>
+        </ul>
+
+        <p class="doc-level"><a name="ProviderContracts_HDT_Retaining_obsolete_contract_records_MID"></a>Retaining
+            obsolete contract records</p>
+
+        <p class="body-text">For audit trail purposes, PROVC vendor records should
+            not be deleted after claims have been paid. If the vendor and contract
+            detail information is no longer valid, the current contract should be
+            terminated and a new contract created with newly effective data.</p>
+
+        <p class="doc-level"><a name="ProviderContracts_HDT_Authorization_costing_and_provider_contracts_MID"></a>Authorization
+            costing and provider contracts</p>
+
+        <p class="body-text">DIAMOND calculates estimated costs for authorized services
+            using the same contract search and other logic as claims, with one exception:
+            only the provider’s primary fee schedule is used to calculate estimated
+            costs; the alternative fee schedules are not used in authorizations.</p>
+
+        <p class="doc-level"><a
+                name="ProviderContracts_HDT_How_DIAMOND_selects_a_contract_when_pricing_a_claim_MID"></a>How
+            DIAMOND selects a contract when pricing a claim</p>
+
+        <p class="body-text">When DIAMOND prices a claim, the claim’s associated
+            line of business record (LINBS) specifies where to look for pricing data
+            (the <span class="calibre8">Primary Price Search</span> list
+            in keyword LINBS):</p>
+
+        <ul class="calibre9">
+
+            <li class="kadov-p-cbullet-text-block"><p class="bullet-text-block"><span class="calibre8">GROUP</span> -
+                DIAMOND looks for claims pricing
+                data on the associated Group Detail (GRUPD) record first. Then, DIAMOND
+                looks for claims pricing data on the associated Provider Contract (PROVC)
+                record. If DIAMOND finds pricing data on the provider contract record,
+                then it overrides any pricing data found on the associated group detail
+                record.</p></li>
+
+            <li class="kadov-p-cbullet-text-block"><p class="bullet-text-block"><span class="calibre8">PROVIDER </span>-
+                DIAMOND looks for claims
+                pricing data on the associated Provider Contract (PROVC) record first.
+                Then, DIAMOND looks for claims pricing data on the associated Group Detail
+                (GRUPD) record. If DIAMOND finds pricing data on the group detail record,
+                it overrides any pricing data found on the associated provider contract
+                record.</p></li>
+        </ul>
+
+        <p class="body-text">This is useful if you are administering PPO pre-pricing
+            programs (pricing but not adjudicating claims). For these kinds of programs,
+            it is common for the claims pricing agreements to be defined by employer
+            groups rather than by individual provider contracts. In this case, in
+            keyword LINBS, the <span class="calibre8">Primary Price Search</span>
+            list would be set to <span class="calibre8">Group</span>.</p>
+
+        <p class="body-text">In most managed care programs, pricing is governed by
+            individual provider contracts. In this case, in keyword LINBS, the <span class="calibre8">Primary Price Search</span>
+            list would be set
+            to <span class="calibre8">Provider</span>.</p>
+
+        <p class="body-text">The associated LINBS - Primary Price Search field determines
+            the order in which DIAMOND looks for pricing rules, not the only place
+            DIAMOND looks. Therefore, DIAMOND applies the last pricing information
+            found. If ‘Group’ is the first place DIAMOND looks, PROVC is the second
+            place searched and data found in PROVC will be applied. If ‘Provider’
+            is the first place DIAMOND looks, GRUPD is the second place searched and
+            data found in GRUPD will be applied.</p>
+
+        <p class="body-text">When DIAMOND searches for a provider pricing contract
+            (PROVC), the claim’s associated line of business record (LINBS) also specifies
+            the provider contract search criteria (LINBS - Contract Search Type) and
+            the order in which this criteria is applied (LINBS - Order).</p>
+
+        <p class="body-text">Combinations of the following can be specified as contract
+            search criteria sets:</p>
+
+        <ul class="calibre9">
+
+            <li class="kadov-p-cbullet-text-block"><p class="bullet-text-block">Provider,
+                Line of Business, Panel, IPA, and Contract Effective Date (always implied)</p></li>
+
+            <li class="kadov-p-cbullet-text-block"><p class="bullet-text-block">Default
+                Provider, Line of Business, Panel, IPA, and Contract Effective Date (always
+                implied)</p></li>
+        </ul>
+
+        <p class="body-text2">The valid combinations of
+            contract search criteria sets include (Date always implied): </p>
+
+        <!--(Table)=========================================================-->
+        <table cellspacing="0" width="336" x-use-null-cells="" class="calibre93">
+
+            <tbody class="calibre11">
+            <tr valign="top" class="calibre12">
+                <td width="156px" class="calibre94">
+                    <p class="step--noline">1 Prov+LOB+Panel+IPA</p></td>
+                <td width="180px" class="calibre52">
+                    <p class="step--noline">9 Dflt Prov+LOB+Panel+IPA</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="156px" class="calibre94">
+                    <p class="step--noline">2 Prov+LOB+Panel</p></td>
+                <td width="180px" class="calibre52">
+                    <p class="step--noline">10 Dflt Prov+LOB+Panel</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="156px" class="calibre94">
+                    <p class="step--noline">3 Prov+LOB+IPA</p></td>
+                <td width="180px" class="calibre52">
+                    <p class="step--noline">11 Dflt Prov+LOB+IPA</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="156px" class="calibre94">
+                    <p class="step--noline">4 Prov+Panel+IPA</p></td>
+                <td width="180px" class="calibre52">
+                    <p class="step--noline">12 Dflt Prov+Panel+IPA</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="156px" class="calibre94">
+                    <p class="step--noline">5 Prov+LOB</p></td>
+                <td width="180px" class="calibre52">
+                    <p class="step--noline">13 Dflt Prov+LOB</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="156px" class="calibre94">
+                    <p class="step--noline">6 Prov+Panel</p></td>
+                <td width="180px" class="calibre52">
+                    <p class="step--noline">14 Dflt Prov+Panel</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="156px" class="calibre94">
+                    <p class="step--noline">7 Prov+IPA</p></td>
+                <td width="180px" class="calibre52">
+                    <p class="step--noline">15 Dflt Prov+IPA</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="156px" class="calibre94">
+                    <p class="step--noline">8 Prov+Date Only</p></td>
+                <td width="180px" class="calibre52">
+                    <p class="step--noline">16 Dflt Prov+Date Only</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="156px" class="calibre94">
+                    <p class="step--noline1"> </p></td>
+                <td width="180px" class="calibre52">
+                    <p class="step--noline1"> </p></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <p class="body-text"><span class="calibre63">Diamond</span>’s
+            provider contract search processing rules include:</p>
+
+        <ul class="calibre9">
+
+            <li class="kadov-p-cbullet-list-h2"><p class="bullet-list-h2">Search for
+                a match on provider, either search for a contract for the provider of
+                service on the claim or search for a default provider contract.</p></li>
+
+            <li class="kadov-p-cbullet-list-h2"><p class="bullet-list-h2">Search for
+                a match on <span class="calibre64">all</span> search criteria
+                between the claim and the pricing contract. That is, if the search criteria
+                includes Prov (#123) + LOB (H01) + Panel (TPA) + IPA (#456) elements,
+                there must be a contract record that contains all of these elements and
+                the claim must contain and match all of these elements. For example, if
+                there is only one contract record that contains Prov (#345) + LOB (X01)
+                + Panel (blank) + IPA (#789) elements, a claim with:</p></li>
+        </ul>
+
+        <p class="body-text-block">Prov (#345) + LOB (X01) + Panel (blank) + <span class="calibre8">IPA (blank)</span>
+            does not match the contract
+            record.</p>
+
+        <p class="body-text-block">Prov (#345) + LOB (X01) + <span class="calibre8">Panel
+ (XYZ)</span> + <span class="calibre8">IPA (blank)</span> does
+            not match the contract record.</p>
+
+        <p class="body-text-block">Prov (#345) + <span class="calibre8">LOB
+ (B99)</span> + Panel (blank) + IPA (#789) does not match the contract
+            record.</p>
+
+        <p class="body-text-block">Prov (#345) +<span class="calibre8">
+ LOB (blank)</span> + Panel (blank) + <span class="calibre8">IPA
+ (blank)</span> does not match the contract record.</p>
+
+        <p class="body-text-block"><span class="calibre8">Prov (#987)</span>
+            + LOB (X01) + <span class="calibre8">Panel (XYZ)</span> + <span class="calibre8">IPA (#456)</span> does not
+            match the contract
+            record.</p>
+
+        <p class="body-text-block">Prov (#345) + LOB (X01) + Panel (blank) + IPA
+            (#789) matches the contract record.</p>
+
+        <ul class="calibre9">
+
+            <li class="kadov-p-cbullet-list-h2"><p class="bullet-list-h2">The primary
+                date of service on the claim is always verified against the effective
+                date on the pricing contract. The primary date of service on the claim
+                must be on or after the contract effective date and, if applicable, before
+                the contract termination date.</p></li>
+
+            <li class="kadov-p-cbullet-list-h2"><p class="bullet-list-h2">When search
+                criteria sets include LOB, <span class="calibre63">Diamond</span>
+                retrieves the LOB from the member's eligibility record.</p></li>
+
+            <li class="kadov-p-cbullet-list-h2"><p class="bullet-list-h2">When search
+                criteria sets include Panel, <span class="calibre63">Diamond</span>
+                retrieves the panel from the member's eligibility record.</p></li>
+
+            <li class="kadov-p-cbullet-list-h2"><p class="bullet-list-h2">If the member’s
+                eligibility record includes a panel, <span class="calibre63">Diamond
+ </span>searches for a provider contract using the member’s panel. If there
+                is no match using the member’s panel, <span class="calibre63">Diamond</span>
+                continues to search using the next LINBS contract search criteria set.</p></li>
+
+            <li class="kadov-p-cbullet-list-h2"><p class="bullet-list-h2">If the member’s
+                eligibility record does not include a panel, <span class="calibre63">Diamond</span>
+                retrieves the panel from the member’s associated Group Panel (GRUPP) record.</p></li>
+
+            <li class="kadov-p-cbullet-list-h2"><p class="bullet-list-h2">If more than
+                one panel exists on GRUPP, DIAMOND selects the panel based on sequence
+                number order (the order in which the panel records were originally entered
+                on the GRUPP window, which may differ from the order in which the panel
+                records are displayed on the GRUPP window). If there is no match using
+                the first GRUPP panel record, <span class="calibre63">Diamond</span>
+                retrieves the next <span class="calibre64">sequential</span>
+                panel record and continues the search. If there is no match or if there
+                are no GRUPP panel records, <span class="calibre63">Diamond</span>
+                continues to search using the next LINBS contract search criteria set.</p></li>
+        </ul>
+
+        <p class="doc-level"><a name="ProviderContracts_HDT_Provider_Contract_Search_Examples_MID"></a>Provider
+            Contract Search Examples</p>
+
+        <p class="example-hdr-hdt">Example 1: LINBS Contract Search Criteria = Prov+LOB+Panel+(Date)</p>
+
+        <!--(Table)=========================================================-->
+        <table cellspacing="0" width="528" x-use-null-cells="" class="calibre95">
+
+            <tbody class="calibre11">
+            <tr valign="top" class="calibre12">
+                <td width="108px" class="calibre96">
+                    <p class="tbl-header">Contracts<br class="calibre1"/>
+                        Data</p></td>
+                <td width="108px" class="calibre96">
+                    <p class="tbl-header">Provider Contract #1</p></td>
+                <td width="108px" class="calibre96">
+                    <p class="tbl-header">Provider Contract #2</p></td>
+                <td width="102px" class="calibre97">
+                    <p class="tbl-header">Provider Contract #3</p></td>
+                <td width="102px" class="calibre97">
+                    <p class="tbl-header">Provider Contract #4</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="108px" class="calibre96">
+                    <p class="tbl-r-label"><span class="calibre98">Provider:</span></p></td>
+                <td width="108px" class="calibre96">
+                    <p class="tbl-text">Smith #89</p></td>
+                <td width="108px" class="calibre96">
+                    <p class="tbl-text"><span class="calibre8">Smith
+ #89</span></p></td>
+                <td width="102px" class="calibre97">
+                    <p class="tbl-text">Dflt Prov #99</p></td>
+                <td width="102px" class="calibre97">
+                    <p class="tbl-text">Jones #36</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="108px" class="calibre96">
+                    <p class="tbl-r-label"><span class="calibre98">LOB:</span></p></td>
+                <td width="108px" class="calibre96">
+                    <p class="tbl-text">H01</p></td>
+                <td width="108px" class="calibre96">
+                    <p class="tbl-text"><span class="calibre8">H01</span></p></td>
+                <td width="102px" class="calibre97">
+                    <p class="tbl-text">H01</p></td>
+                <td width="102px" class="calibre97">
+                    <p class="tbl-text">P01</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="108px" class="calibre96">
+                    <p class="tbl-r-label"><span class="calibre98">Panel:</span></p></td>
+                <td width="108px" class="calibre96">
+                    <p class="tbl-text">TPA</p></td>
+                <td width="108px" class="calibre96">
+                    <p class="tbl-text"><span class="calibre8">JMC</span></p></td>
+                <td width="102px" class="calibre97">
+                    <p class="tbl-text"> </p></td>
+                <td width="102px" class="calibre97">
+                    <p class="tbl-text"> </p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="108px" class="calibre96">
+                    <p class="tbl-r-label"><span class="calibre98">Effective
+ Date:</span></p></td>
+                <td width="108px" class="calibre96">
+                    <p class="tbl-text">3/1/95</p></td>
+                <td width="108px" class="calibre96">
+                    <p class="tbl-text"><span class="calibre8">3/15/95</span></p></td>
+                <td width="102px" class="calibre97">
+                    <p class="tbl-text">2/1/95</p></td>
+                <td width="102px" class="calibre97">
+                    <p class="tbl-text">1/1/95</p></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <p class="body-text2"> </p>
+
+        <!--(Table)=========================================================-->
+        <table cellspacing="0" width="288" x-use-null-cells="" class="calibre99">
+
+            <tbody class="calibre11">
+            <tr valign="top" class="calibre12">
+                <td width="135px" class="calibre100">
+                    <p class="tbl-header">Claims Data</p></td>
+                <td width="74px" class="calibre101">
+                    <p class="tbl-header">Claim #1</p></td>
+                <td width="78px" class="calibre102">
+                    <p class="tbl-header">Claim #2</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="135px" class="calibre100">
+                    <p class="tbl-r-label"><span class="calibre98">Provider:</span></p></td>
+                <td width="74px" class="calibre101">
+                    <p class="tbl-text">#89</p></td>
+                <td width="78px" class="calibre102">
+                    <p class="tbl-text"><span class="calibre8">#89</span></p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="135px" class="calibre100">
+                    <p class="tbl-r-label"><span class="calibre98">LOB:</span></p></td>
+                <td width="74px" class="calibre101">
+                    <p class="tbl-text">H01</p></td>
+                <td width="78px" class="calibre102">
+                    <p class="tbl-text"><span class="calibre8">H01</span></p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="135px" class="calibre100">
+                    <p class="tbl-r-label"><span class="calibre98">Panel:</span></p></td>
+                <td width="74px" class="calibre101">
+                    <p class="tbl-text">TPA</p></td>
+                <td width="78px" class="calibre102">
+                    <p class="tbl-text"><span class="calibre8">JMC</span></p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="135px" class="calibre100">
+                    <p class="tbl-r-label"><span class="calibre98">Pri.
+ Dte. of Serv.</span></p></td>
+                <td width="74px" class="calibre101">
+                    <p class="tbl-text">2/15/95</p></td>
+                <td width="78px" class="calibre102">
+                    <p class="tbl-text"><span class="calibre8">4/1/95</span></p></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <p class="body-text">Claims Processing Results:</p>
+
+        <ul class="calibre9">
+
+            <li class="kadov-p-cbullet-text-block"><p class="bullet-text-block"><span class="calibre63">Diamond</span>
+                matches claim #2 to provider
+                contract #2. There is a match on Provider+LOB+Panel and the claim primary
+                date of service (4/1/95) is after the effective date of the provider contract
+                (3/15/95).</p></li>
+
+            <li class="kadov-p-cbullet-text-block"><p class="bullet-text-block"><span class="calibre63">Diamond</span>
+                does not find a provider
+                contract for claim #1. There is a match between claim #1 and provider
+                contract #1 for Provider+LOB+Panel; however, the claim primary date of
+                service (2/15/95) is before the effective date of the provider contract
+                (3/1/95).</p></li>
+        </ul>
+
+        <p class="body-text">Additionally, you can specify more than one search criteria
+            set and the order in which <span class="calibre63">Diamond</span>
+            will apply the sets. Each search criteria set is defined with an order
+            number. The order number tells <span class="calibre63">Diamond</span>
+            which search criteria set to attempt to match first. For example:</p>
+
+        <!--(Table)=========================================================-->
+        <table cellspacing="0" width="282" x-use-null-cells="" class="calibre103">
+
+            <tbody class="calibre11">
+            <tr valign="top" class="calibre12">
+                <td width="120px" class="calibre13">
+                    <p class="tbl-header-data">Order</p></td>
+                <td width="162px" class="calibre104">
+                    <p class="tbl-header-data">Contract Search Type</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="120px" class="calibre13">
+                    <p class="tbl-text">10</p></td>
+                <td width="162px" class="calibre104">
+                    <p class="tbl-text">Prov+LOB+Panel+(Date)</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="120px" class="calibre13">
+                    <p class="tbl-text">20</p></td>
+                <td width="162px" class="calibre104">
+                    <p class="tbl-text">Prov+LOB+(Date)</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="120px" class="calibre13">
+                    <p class="tbl-text">30</p></td>
+                <td width="162px" class="calibre104">
+                    <p class="tbl-text">Dflt Prov+LOB+(Date)</p></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <p class="body-text">If <span class="calibre63">Diamond</span>
+            does not find a match using the first search criteria set (order #10),
+            <span class="calibre63">Diamond</span> uses the second
+            search criteria set (order #20), etc. If <span class="calibre63">Diamond</span>
+            does not find a match after using all search criteria sets, <span class="calibre63">Diamond</span>
+            displays a warning message that a pricing contract could not be found.</p>
+
+        <p class="body-text">To ensure a successful contract search you must order
+            the most <span class="calibre64">specific</span> search criteria
+            set first, followed by increasingly more general criteria sets. In the
+            example above, if you reverse the orders #10 and #20, <span class="calibre63">Diamond</span>
+            will never evaluate for the Panel in Prov+LOB+<span class="calibre64">Panel</span>+Date
+            (now order #20) because the contract will be found using the less specific
+            criteria set Prov+LOB+Date (now order #10).</p>
+
+        <p class="example-hdr-hdt">Example 2: LINBS Contract Search Criteria = #10
+            Prov+LOB+(Date), #20 Dflt Prov+LOB+(Date)</p>
+
+        <!--(Table)=========================================================-->
+        <table cellspacing="0" width="448" x-use-null-cells="" class="calibre105">
+
+            <tbody class="calibre11">
+            <tr valign="top" class="calibre12">
+                <td width="135px" class="calibre100">
+                    <p class="tbl-header">Contracts<br class="calibre1"/>
+                        Data</p></td>
+                <td width="104px" class="calibre106">
+                    <p class="tbl-header">Provider Contract #1</p></td>
+                <td width="104px" class="calibre106">
+                    <p class="tbl-header">Provider Contract #2</p></td>
+                <td width="104px" class="calibre106">
+                    <p class="tbl-header">Provider Contract #3</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="135px" class="calibre100">
+                    <p class="tbl-r-label"><span class="calibre98">Provider:</span></p></td>
+                <td width="104px" class="calibre106">
+                    <p class="tbl-text"><span class="calibre8">Dflt
+ Prov #99</span></p></td>
+                <td width="104px" class="calibre106">
+                    <p class="tbl-text">Smith #89</p></td>
+                <td width="104px" class="calibre106">
+                    <p class="tbl-text">Smith #89</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="135px" class="calibre100">
+                    <p class="tbl-r-label"><span class="calibre98">LOB:</span></p></td>
+                <td width="104px" class="calibre106">
+                    <p class="tbl-text"><span class="calibre8">H01</span></p></td>
+                <td width="104px" class="calibre106">
+                    <p class="tbl-text">H01</p></td>
+                <td width="104px" class="calibre106">
+                    <p class="tbl-text">H01</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="135px" class="calibre100">
+                    <p class="tbl-r-label"><span class="calibre98">Panel:</span></p></td>
+                <td width="104px" class="calibre106">
+                    <p class="tbl-text"> </p></td>
+                <td width="104px" class="calibre106">
+                    <p class="tbl-text"> </p></td>
+                <td width="104px" class="calibre106">
+                    <p class="tbl-text">JMC</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="135px" class="calibre100">
+                    <p class="tbl-r-label"><span class="calibre98">Effective
+ Date:</span></p></td>
+                <td width="104px" class="calibre106">
+                    <p class="tbl-text"><span class="calibre8">2/1/95</span></p></td>
+                <td width="104px" class="calibre106">
+                    <p class="tbl-text">3/1/95</p></td>
+                <td width="104px" class="calibre106">
+                    <p class="tbl-text">3/15/95</p></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <p class="body-text2"> </p>
+
+        <!--(Table)=========================================================-->
+        <table cellspacing="0" width="240" x-use-null-cells="" class="calibre107">
+
+            <tbody class="calibre11">
+            <tr valign="top" class="calibre12">
+                <td width="135px" class="calibre100">
+                    <p class="tbl-header">Claims Data</p></td>
+                <td width="104px" class="calibre106">
+                    <p class="tbl-header">Claim#1</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="135px" class="calibre100">
+                    <p class="tbl-r-label"><span class="calibre98">Provider:</span></p></td>
+                <td width="104px" class="calibre106">
+                    <p class="tbl-text"><span class="calibre8">#89</span></p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="135px" class="calibre100">
+                    <p class="tbl-r-label"><span class="calibre98">LOB:</span></p></td>
+                <td width="104px" class="calibre106">
+                    <p class="tbl-text"><span class="calibre8">H01</span></p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="135px" class="calibre100">
+                    <p class="tbl-r-label"><span class="calibre98">Panel:</span></p></td>
+                <td width="104px" class="calibre106">
+                    <p class="tbl-text"> </p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="135px" class="calibre100">
+                    <p class="tbl-r-label"><span class="calibre98">Pri.
+ Dte. of Serv.</span></p></td>
+                <td width="104px" class="calibre106">
+                    <p class="tbl-text"><span class="calibre8">2/15/95</span></p></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <p class="body-text">Claims Processing Results:</p>
+
+        <ul class="calibre9">
+
+            <li class="kadov-p-cbullet-text-block"><p class="bullet-text-block">For
+                #10 Prov+LOB+(Date) criteria, claim #1 matches on contracts #2 and #3
+                for Prov+LOB; however, the claim primary date of service (2/15/95) is
+                before the effective dates of the contracts 3/1/95, 3/15/95).</p></li>
+
+            <li class="kadov-p-cbullet-text-block"><p class="bullet-text-block">For
+                #20 Dflt Prov+LOB+(Date) criteria, claim #1 matches on Prov (by default)+LOB
+                and the primary date of service (2/15/95) is after the effective date
+                of the default provider contract (2/1/95).</p></li>
+        </ul>
+
+        <p class="doc-level"><a
+                name="ProviderContracts_HDT_Default_Provider_Contracts_and_Default_Provider_Logic_MID"></a>Default
+            Provider Contracts and Default Provider Logic</p>
+
+        <p class="doc-level1">Background</p>
+
+        <p class="body-text">Use keyword PROVC (Provider Contracts) to add and maintain
+            the data that defines the contractual relationship between the healthcare
+            organization and the healthcare provider. This data can have an impact
+            on the following <span class="calibre63">DIAMOND</span>
+            processes:</p>
+
+        <ul class="calibre9">
+
+            <li class="kadov-p-cbullet-text-block"><p class="bullet-text-block">Membership
+                (relating to PCP Assignment)</p></li>
+
+            <li class="kadov-p-cbullet-text-block"><p class="bullet-text-block">Capitation</p></li>
+
+            <li class="kadov-p-cbullet-text-block"><p class="bullet-text-block">Claims</p></li>
+        </ul>
+
+        <p class="body-text">During claims processing, <span class="calibre63">DIAMOND</span>
+            must determine a relationship between the rendering provider and the member
+            (claimant). To do this, <span class="calibre63">DIAMOND</span>
+            uses provider contract search logic and the associated LINBS contract
+            search criteria sets to "match" a provider’s contract to the
+            member. See the sections entitled How DIAMOND Selects a Contract when
+            Pricing a Claim and Provider Contract Search Examples for more information.</p>
+
+        <p class="body-text">It may not be practical to create and manage a unique
+            contract record for each provider, line of business, IPA, and panel. It
+            may be more efficient to create and manage only the very specific relationships
+            of a provider to line(s) of business, IPA(s), and panel(s) and then use
+            a more general contract(s) that can be shared by many providers who have
+            the same relationship with the healthcare organization.</p>
+
+        <p class="body-text"><span class="calibre108">You can create</span>
+            a "default provider" and associated "default provider contract(s)"
+            to handle this many provider, same relationship situation. You also use
+            the DFTCNTRCTPRV parameter record to identify the default provider ID.
+            <span class="calibre63">DIAMOND</span> applies a default
+            provider contract (if the default determinants match) when a provider
+            specific contract is not found during the provider contract search; that
+            is, <span class="calibre63">DIAMOND</span> searched through
+            all of the LINBS contract search criteria sets and did not find a matching
+            specific contract. A default contract(s) is not physically associated
+            with the "many" providers; however, <span class="calibre63">DIAMOND</span>
+            can apply a default contract as a result of the default provider logic.</p>
+
+        <p class="body-text">The number of provider contract records that you must
+            create and maintain can be reduced significantly when you use <span class="calibre63">DIAMOND</span>’s
+            default provider/contract(s) option. In addition, you can use this option
+            to apply default contracts to claims received from providers who are not
+            maintained on <span class="calibre63">DIAMOND</span>;
+            for example, out-of-area providers, non-specific providers.</p>
+
+        <p class="doc-level1">Default Provider Logic</p>
+
+        <p class="body-text"><span class="calibre63">DIAMOND</span><span class="calibre63"> </span>uses default provider
+            logic
+            during claims processing only. <span class="calibre63">DIAMOND</span>
+            does not use default provider logic during membership (enrollment) or
+            capitation processing.</p>
+
+        <p class="body-text">To use <span class="calibre63">DIAMOND</span>’s
+            default provider logic:</p>
+
+        <ul class="calibre9">
+
+            <li class="kadov-p-cbullet-text-block"><p class="bullet-text-block">Create
+                a default vendor and default vendor address using keywords VENDA (Vendor
+                Master) and VENDA (Vendor Address).</p></li>
+
+            <li class="kadov-p-cbullet-text-block"><p class="bullet-text-block">Create
+                a default provider using keyword PROVD (Provider Master). The default
+                provider ID you create is not directly associated with a claim during
+                claim processing. This ID acts as a "pointer" to the default
+                provider contract record(s) that <span class="calibre63">DIAMOND</span><span class="calibre63"> </span>will
+                search for when it uses
+                default provider logic.</p></li>
+
+            <li class="kadov-p-cbullet-text-block"><p class="bullet-text-block">Enter
+                the default contract(s) associated with the default provider using keyword
+                PROVC (Provider Contract).<span class="calibre63"> DIAMOND</span>’s
+                provider contract pricing details (PROVC, Special menu &gt; Contract Pricing
+                Details) are referenced based on the Vendor/Vendor Address associated
+                with each provider (including the default provider). You must enter a
+                PROVF &gt; Default Vendor ID and a PROVF &gt; Default Vendor Addr for
+                each provider (including the default provider). During claims processing
+                <span class="calibre63">DIAMOND</span><span class="calibre63">
+ </span>will not use the default vendor/vendor address on the default provider
+                record as the payee for the claim; however, <span class="calibre63">DIAMOND</span><span
+                        class="calibre63"> </span>will use this default vendor/vendor
+                address to locate the appropriate default provider contract pricing details.</p></li>
+
+            <li class="kadov-p-cbullet-text-block"><p class="bullet-text-block">If
+                required, create a non-specific provider using PROVF (Provider Master).
+                You can use this provider when you pay out-of-area, non-par, or one-time
+                provider claims.</p></li>
+
+            <li class="kadov-p-cbullet-text-block"><p class="bullet-text-block">Activate
+                the DFTCNTRPRV parameter and enter the default provider ID in the parameter
+                record (see PARAM User Documentation).</p></li>
+
+            <li class="kadov-p-cbullet-text-block"><p class="bullet-text-block">Set
+                up the appropriate default contract search criteria set(s), in the proper
+                order, on the associated LINBS record.</p></li>
+        </ul>
+
+        <p class="body-text">For more information, see <a href="Default_Provider_Vendor_Set_Up_Sequence.htm">Default
+            Provider/Vendor Set Up Sequence</a>.</p>
+
+        <p class="doc-level"><a name="ProviderContract_HDT_Target_(alternate)_Revenue_and_CPT4_HCPCS_Codes_MID"></a>Target
+            (alternate) Revenue and CPT4/HCPCS Codes</p>
+
+        <p class="body-text">There are instances in institutional claims where a
+            revenue code is associated with a CPT code and both must be entered on
+            a claim detail line if the line is to be priced accurately. In the detail
+            procedure code record, PROCD, the <span class="calibre8">Price
+ Indicator</span> check box tells claims that an alternate procedure code
+            instead of the revenue code drives the pricing of the claim line. The
+            <span class="calibre8">Procedure</span> <span class="calibre8">Determinant</span>
+            command on the <span class="calibre8">Special</span> menu in
+            PROCD stores CPT4/HCPCS codes that are valid alternates for each revenue
+            code.</p>
+
+        <p class="body-text">If you want INCLM to edit the entry of alternate codes
+            to make sure they are valid for the entered revenue code, you must turn
+            this feature ‘on’ in the institutional provider’s PROVC record by selecting
+            the PROVC&gt;Special menu&gt;Contract Pricing Details - Target Rev Code
+            Edit check box and entering an action and reason code. If the CPT4/HCPCS
+            code is not valid for the revenue code entered on the claim, DIAMOND performs
+            the action and assigns the reason code to the claim detail line. </p>
+
+        <p class="body-text">See <a
+                href="Pricing.chm::/Procedures_and_Pricing_How_DIAMOND_Thinks.htm#Procedures_and_Pricing_Target_Revenue_Codes_MID.htm">Procedures
+            and Pricing - Target Revenue Codes</a> for more information on Target
+            Revenue Codes.</p>
+
+
+    </div>
+
+
+    <div class="calibreEbNav">
+
+        <a href="Provider_Member_Enrollment_How_DIAMOND_Thinks.htm" class="calibreAPrev">previous page
+        </a>
+
+
+        <a href="../bai44-9x3eu.html" class="calibreAHome">start
+        </a>
+
+
+        <a href="Adding_an_Incentive_Rule.htm" class="calibreANext">next page
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+</html>

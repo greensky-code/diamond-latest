@@ -1,0 +1,262 @@
+<!-- Copyright (c) 2021 . All Rights Reserved. -->
+<div class="container-fluid">
+    <div class="card-block">
+        <form [formGroup]="aoadbasBankIForm" novalidate>
+            <h2 class="form-title card-label-admin">Aoadbas  Bank I</h2>
+            <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+            <app-pop-up-message #popUpMesssage (buttonclickEvent)="popUpButtonHandler($event)"  [(popupMessage)] = "popUpMessage"></app-pop-up-message>
+                        
+            <div class="form-group row">
+                <div class="col-md-2 form-control-static mb-0" i18n>
+                    ^Bank Info
+                </div>
+            
+                <!-- Button with label of Bank Search -->
+                <div class="col-md-2">
+                    <button type="button" id="bankSearch" name="bankSearch" class="btn btn-small btn-primary">Bank Search</button>
+                
+                
+                </div>
+            
+            </div>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+                <!-- DropdownList with label of Bank Name -->
+                <div class="selectContainer col-md-2 " [ngClass]="{'has-danger': formValidation.isValidField('bankName') }">
+                    <label class="col-form-label" for="bankName" i18n>Bank Name</label>
+                    <select class="form-control" id="bank_name"  [fieldLevelSec]="''" params]=""  name="Bank Name" formControlName="bankName">
+                        <option value="">Please Select</option>
+                    </select>
+                </div>
+            
+                <!-- DynamicText with label of Payment Type -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('paymentType') }">
+                     <label class="col-form-label" for="paymentType" i18n>Payment Type</label>
+                     <input type="text"  [fieldLevelSec]="''" params]=""  readonly id="paymentType" formControlName="paymentType" class="form-control"/>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- DynamicText with label of Bank Address -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('bankAddress') }">
+                     <label class="col-form-label" for="bankAddress" i18n>Bank Address</label>
+                     <input type="text"  [fieldLevelSec]="''" params]=""  readonly id="bankAddress" formControlName="bankAddress" class="form-control"/>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- DynamicText with label of Routing Code -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('routingCode') }">
+                     <label class="col-form-label" for="routingCode" i18n>Routing Code</label>
+                     <input type="text"  [fieldLevelSec]="''" params]=""  readonly id="routingCode" formControlName="routingCode" class="form-control"/>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+                <!-- DynamicText with label of Eff Date -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('effDate') }">
+                     <label class="col-form-label" for="effDate" i18n>Eff Date</label>
+                     <input type="text"  [fieldLevelSec]="''" params]=""  readonly id="effDate" formControlName="effDate" class="form-control"/>
+                 </div>
+            
+                <!-- Textbox with label of Term Date -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('termDate') }">
+                     <label class="col-form-label" for="termDate" i18n>Term Date</label>
+                     <div class="input-group">
+                    <input id="termDate"  [fieldLevelSec]="''" params]=""  class="form-control" angular-mydatepicker name="termDate" (click)="termDateId.toggleCalendar()"
+                    formControlName="termDate"[options]="datePickerConfig" #termDateId="angular-mydatepicker"/>
+                    <div class="input-group-append">
+                        <button type="button" class="btn btn-secondary" (click)="termDateId.clearDate()">
+                          <i class="fa fa-close"></i>
+                        </button>
+                      </div>
+                      <div class="input-group-append">
+                        <button type="button" class="btn btn-secondary" (click)="termDateId.toggleCalendar()">
+                          <i class="fa fa-calendar-o"></i>
+                        </button>
+                      </div>
+                    </div>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('termDate')">
+                      {{ formValidation.errorMessage('termDate') }}
+                     </small>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- DropdownList with label of Term Reasons -->
+                <div class="selectContainer col-md-2 " [ngClass]="{'has-danger': formValidation.isValidField('termReasons') }">
+                    <label class="col-form-label" for="termReasons" i18n>Term Reasons</label>
+                    <select class="form-control" id="term_reasons"  [fieldLevelSec]="''" params]=""  name="Term Reasons" formControlName="termReasons">
+                        <option value="">Please Select</option>
+                    </select>
+                </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of IBAN/ Bank Account # -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('ibanBankAccount') }">
+                     <label class="col-form-label" for="ibanBankAccount" i18n>IBAN/ Bank Account #</label>
+                     <input type="text" id="ibanBankAccount"  [fieldLevelSec]="''" params]=""   class="form-control" formControlName="ibanBankAccount"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('ibanBankAccount')">
+                      {{ formValidation.errorMessage('ibanBankAccount') }}
+                     </small>
+                 </div>
+            
+                <!-- Textbox with label of Name on Accounts -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('nameOnAccounts') }">
+                     <label class="col-form-label" for="nameOnAccounts" i18n>Name on Accounts</label>
+                     <input type="text" id="nameOnAccounts"  [fieldLevelSec]="''" params]=""   class="form-control" formControlName="nameOnAccounts"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('nameOnAccounts')">
+                      {{ formValidation.errorMessage('nameOnAccounts') }}
+                     </small>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of Bank Acct Type -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('bankAcctType') }">
+                     <label class="col-form-label" for="bankAcctType" i18n>Bank Acct Type</label>
+                     <div class="input-group">
+                    <input id="bankAcctType"  [fieldLevelSec]="''" params]=""  class="form-control" angular-mydatepicker name="bankAcctType" (click)="bankAcctTypeId.toggleCalendar()"
+                    formControlName="bankAcctType"[options]="datePickerConfig" #bankAcctTypeId="angular-mydatepicker"/>
+                    <div class="input-group-append">
+                        <button type="button" class="btn btn-secondary" (click)="bankAcctTypeId.clearDate()">
+                          <i class="fa fa-close"></i>
+                        </button>
+                      </div>
+                      <div class="input-group-append">
+                        <button type="button" class="btn btn-secondary" (click)="bankAcctTypeId.toggleCalendar()">
+                          <i class="fa fa-calendar-o"></i>
+                        </button>
+                      </div>
+                    </div>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('bankAcctType')">
+                      {{ formValidation.errorMessage('bankAcctType') }}
+                     </small>
+                 </div>
+            
+                <!-- Textbox with label of Document Ref Number -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('documentRefNumber') }">
+                     <label class="col-form-label" for="documentRefNumber" i18n>Document Ref Number</label>
+                     <input type="text" id="documentRefNumber"  [fieldLevelSec]="''" params]=""   class="form-control" formControlName="documentRefNumber"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('documentRefNumber')">
+                      {{ formValidation.errorMessage('documentRefNumber') }}
+                     </small>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of Payment Advice -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('paymentAdvice') }">
+                     <label class="col-form-label" for="paymentAdvice" i18n>Payment Advice</label>
+                     <div class="input-group">
+                    <input id="paymentAdvice"  [fieldLevelSec]="''" params]=""  class="form-control" angular-mydatepicker name="paymentAdvice" (click)="paymentAdviceId.toggleCalendar()"
+                    formControlName="paymentAdvice"[options]="datePickerConfig" #paymentAdviceId="angular-mydatepicker"/>
+                    <div class="input-group-append">
+                        <button type="button" class="btn btn-secondary" (click)="paymentAdviceId.clearDate()">
+                          <i class="fa fa-close"></i>
+                        </button>
+                      </div>
+                      <div class="input-group-append">
+                        <button type="button" class="btn btn-secondary" (click)="paymentAdviceId.toggleCalendar()">
+                          <i class="fa fa-calendar-o"></i>
+                        </button>
+                      </div>
+                    </div>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('paymentAdvice')">
+                      {{ formValidation.errorMessage('paymentAdvice') }}
+                     </small>
+                 </div>
+            
+                <!-- Textbox with label of EFT Status -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('eftStatus') }">
+                     <label class="col-form-label" for="eftStatus" i18n>EFT Status</label>
+                     <div class="input-group">
+                    <input id="eftStatus"  [fieldLevelSec]="''" params]=""  class="form-control" angular-mydatepicker name="eftStatus" (click)="eftStatusId.toggleCalendar()"
+                    formControlName="eftStatus"[options]="datePickerConfig" #eftStatusId="angular-mydatepicker"/>
+                    <div class="input-group-append">
+                        <button type="button" class="btn btn-secondary" (click)="eftStatusId.clearDate()">
+                          <i class="fa fa-close"></i>
+                        </button>
+                      </div>
+                      <div class="input-group-append">
+                        <button type="button" class="btn btn-secondary" (click)="eftStatusId.toggleCalendar()">
+                          <i class="fa fa-calendar-o"></i>
+                        </button>
+                      </div>
+                    </div>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('eftStatus')">
+                      {{ formValidation.errorMessage('eftStatus') }}
+                     </small>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+                <!-- Button with label of Reset All -->
+                <div class="col-md-2">
+                    <button type="button" id="resetAll" name="resetAll" class="btn btn-small btn-primary">Reset All</button>
+                
+                
+                </div>
+            
+                <!-- Button with label of Save Changes -->
+                <div class="col-md-2">
+                    <button type="button" id="saveChanges" name="saveChanges" class="btn btn-small btn-primary">Save Changes</button>
+                
+                
+                </div>
+            
+                <!-- Button with label of Exit -->
+                <div class="col-md-2">
+                    <button type="button" id="exit" name="exit" class="btn btn-small btn-primary">Exit</button>
+                
+                
+                </div>
+            
+                <!-- Button with label of View History -->
+                <div class="col-md-2">
+                    <button type="button" id="viewHistory" name="viewHistory" class="btn btn-small btn-primary">View History</button>
+                
+                
+                </div>
+            
+            </div>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+                <!-- Button with label of Closes -->
+                <div class="col-md-2">
+                    <button type="button" id="closes" name="closes" class="btn btn-small btn-primary">Closes</button>
+                
+                
+                </div>
+            
+            </div>
+        </form>
+    </div>
+</div>

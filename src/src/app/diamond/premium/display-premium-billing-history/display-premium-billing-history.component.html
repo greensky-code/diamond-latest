@@ -1,0 +1,283 @@
+<!-- Copyright (c) 2021 . All Rights Reserved. -->
+<div class="container-fluid">
+    <div class="card-block">
+
+        <div class="row form-title">
+            <h2 class="col-md-7  card-label-admin">  Display Premium Billing History </h2>
+            <div class="col-md"><b class="readonly-label">View Only</b></div>
+        </div>
+        <button type="button" *ngIf="showIcon" class="modal-close close" aria-label="Close"
+                (click)="modalClose()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+
+        <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+        <app-pop-up-message #popUpMesssage (buttonclickEvent)="popUpButtonHandler($event)"
+                            [(popupMessage)]="popUpMessage"></app-pop-up-message>
+
+        <ng-template #loaderTemplate let-loaderValue="value">
+            <div class="row justify-content-center mt-4" *ngIf="loaderValue">
+                <div class="spinner-border text-success" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>
+            </div>
+        </ng-template>
+
+        <ng-container *ngTemplateOutlet="loaderTemplate;context:{value: secProgress }"></ng-container>
+
+        <ng-container *appWinSelect="{secWin: secWin, userTemplateId: userTemplateId, secModuleId: memberModuleId}">
+
+            <div class="row mt-3">
+                <menu-bar [menus]="menu" (onMenuClick)="onMenuItemClick($event)"></menu-bar>
+            </div>
+
+            <div class="form-group row">
+            </div>
+
+            <form [formGroup]="displayPremiumBillingHistoryForm" novalidate>
+
+                <!--                <ng-container *ngIf="isFormCreated">-->
+                <div class="form-group row">
+                    <!-- DynamicText with label of Customer ID -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('customerId') }">
+                        <label class="col-form-label text-right" for="customerId" i18n>Customer ID:</label>
+                        <input type="text" readonly id="customerId" formControlName="customerId"
+                               class="form-control"/>
+                    </div>
+
+                    <!-- DynamicText with label of Customer Type -->
+                    <div class="col-md-4"  [ngClass]="{'has-danger': formValidation.isValidField('customerType') }">
+                        <label class="col-form-label text-right" for="customerType" i18n>Customer Type:</label>
+                        <input type="text" readonly id="customerType" formControlName="customerType"
+                               class="form-control"/>
+                    </div>
+
+                    <!-- DynamicText with label of Name -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('name') }">
+                        <label class="col-form-label text-right" for="name" i18n>Name:</label>
+                        <input type="text" readonly id="name" formControlName="name" class="form-control"/>
+                    </div>
+                </div>
+
+                <hr>
+
+                <ag-grid-angular #agGrid class="ag-theme-fresh" [gridOptions]="dataGrid001GridOptions"
+                                 style="width: 100%; height: 300px;"
+                                 [enableSorting]="true"
+                                 [enableFilter]="true"
+                                 (rowSelected)="onRowSelectedGrid001($event)"
+                                 [floatingFilter]="true"
+                                 [pagination]="true"
+                                 [showToolPanel]="true">
+                </ag-grid-angular>
+
+                <ng-container *ngIf="showBillingInformation">
+                    <div class="form-group row">
+                        <div class="col-md-4 form-control-static mb-0" i18n>
+                            <h4><u> Detail Billing Information </u></h4>
+                        </div>
+                        <hr>
+                    </div>
+                    <div class="form-group row">
+                        <!-- DynamicText with label of Balance Forward -->
+                        <label class="col-form-label col-sm-2 text-right" for="balanceForward" i18n>Balance
+                            Forward:</label>
+                        <div class="col-sm-3"
+                             [ngClass]="{'has-danger': formValidation.isValidField('balanceForward') }">
+                            <input type="text" #balanceForward readonly id="balanceForward" (change)="formatCurrencyChange($event)"
+                            (ngModelChange)="formatCurrency($event,balanceForward)" formControlName="balanceForward"
+                                   
+                            class="form-control"/>
+                        </div>
+
+                        <!-- DynamicText with label of Outstanding Balance -->
+                        <label class="col-form-label col-sm-3 text-right" for="outstandingBalance" i18n>Outstanding
+                            Balance:</label>
+                        <div class="col-sm-3"
+                             [ngClass]="{'has-danger': formValidation.isValidField('outstandingBalance') }">
+                            <input type="text" #outstandingBalance readonly id="outstandingBalance" formControlName="outstandingBalance"
+                            (ngModelChange)="formatCurrency($event, outstandingBalance)"   class="form-control"/>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <!-- DynamicText with label of Payment Amount -->
+                        <label class="col-form-label col-sm-2 text-right" for="paymentAmount" i18n>Payment
+                            Amount:</label>
+                        <div class="col-sm-3" [ngClass]="{'has-danger': formValidation.isValidField('paymentAmount') }">
+                            <input type="text" #paymentAmount readonly id="paymentAmount" formControlName="paymentAmount"
+                            (ngModelChange)="formatCurrency($event, paymentAmount)" class="form-control"/>
+                        </div>
+
+                        <!-- DynamicText with label of Billed Through Date -->
+                        <label class="col-form-label col-sm-3 text-right" for="billedThroughDate" i18n>Billed Through
+                            Date:</label>
+                        <div class="col-sm-3"
+                             [ngClass]="{'has-danger': formValidation.isValidField('billedThroughDate') }">
+                            <input type="text" readonly id="billedThroughDate" formControlName="billedThroughDate"
+                                   class="form-control"/>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <!-- DynamicText with label of Adjustment Amount -->
+                        <label class="col-form-label col-sm-2 text-right" for="adjustmentAmount" i18n>Adjustment
+                            Amount:</label>
+                        <div class="col-sm-3"
+                             [ngClass]="{'has-danger': formValidation.isValidField('adjustmentAmount') }">
+                            <input type="text" #adjustmentAmount readonly id="adjustmentAmount" formControlName="adjustmentAmount"
+                            (ngModelChange)="formatCurrency($event, adjustmentAmount)"   class="form-control"/>
+                        </div>
+
+                        <!-- DynamicText with label of Payment Due Date -->
+                        <label class="col-form-label col-sm-3 text-right" for="paymentDueDate" i18n>Payment Due
+                            Date:</label>
+                        <div class="col-sm-3"
+                             [ngClass]="{'has-danger': formValidation.isValidField('paymentDueDate') }">
+                            <input type="text" readonly id="paymentDueDate" formControlName="paymentDueDate"
+                                   class="form-control"/>
+                        </div>
+
+                    </div>
+
+                    <div class="form-group row">
+                        <!-- DynamicText with label of Current Billed Amount -->
+                        <label class="col-form-label col-sm-2 text-right" for="currentBilledAmount" i18n>Current Billed
+                            Amount:</label>
+                        <div class="col-sm-3"
+                             [ngClass]="{'has-danger': formValidation.isValidField('currentBilledAmount') }">
+                            <input type="text" #currentBilledAmount readonly id="currentBilledAmount" formControlName="currentBilledAmount"
+                            (ngModelChange)="formatCurrency($event, currentBilledAmount)"   class="form-control"/>
+                        </div>
+
+                        <!-- DynamicText with label of Annual Premium Income -->
+                        <label class="col-form-label col-sm-3 text-right" for="annualPremiumIncome" i18n>Annual Premium
+                            Income:</label>
+                        <div class="col-sm-3"
+                             [ngClass]="{'has-danger': formValidation.isValidField('annualPremiumIncome') }">
+                            <input type="text" #annualPremiumIncome readonly id="annualPremiumIncome" formControlName="annualPremiumIncome"
+                            (ngModelChange)="formatCurrency($event,annualPremiumIncome)"   class="form-control"/>
+                        </div>
+
+                    </div>
+                </ng-container>
+
+                <div class="form-group row">
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-md-12 form-control-static mb-0" i18n>
+                        <h4><u> A/R Cash Receipt </u></h4>
+                    </div>
+                </div>
+
+                <!-- DataGrid with Name of DataGrid002 -->
+                <!--                <button (click)="dataGrid002GridOptionsExportCsv()">Export</button>-->
+                <ag-grid-angular #agGrid class="ag-theme-fresh" [gridOptions]="dataGrid002GridOptions"
+                                 style="width: 100%; height: 300px;"
+                                 [enableSorting]="true"
+                                 [enableFilter]="true"
+                                 (rowSelected)="onRowSelectedGrid002($event)"
+                                 [floatingFilter]="true"
+                                 [pagination]="true"
+                                 [showToolPanel]="true">
+                </ag-grid-angular>
+
+
+                <div class="form-group row">
+                    <div class="col-md-12 form-control-static mb-0" i18n>
+                        <h4><u> A/R Cash Receipt Details </u></h4>
+                    </div>
+                    <hr>
+                </div>
+
+                <ng-container *ngIf="showCashReceptDetails">
+                    <div class="form-group row">
+                        <!-- DynamicText with label of Balance Forward -->
+                        <label class="col-form-label col-sm-3 text-right" for="transNo" i18n>Transaction Number:</label>
+                        <div class="col-sm-3" [ngClass]="{'has-danger': formValidation.isValidField('transNo') }">
+                            <input type="text" readonly id="transNo" formControlName="transNo"
+                                   class="form-control"/>
+                        </div>
+
+                        <!-- DynamicText with label of Outstanding Balance -->
+                        <label class="col-form-label col-sm-2 text-right" for="postDate" i18n>Post Date:</label>
+                        <div class="col-sm-3"
+                             [ngClass]="{'has-danger': formValidation.isValidField('postDate') }">
+                            <input type="text" readonly id="postDate" formControlName="postDate"
+                                   class="form-control"/>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <!-- DynamicText with label of Balance Forward -->
+                        <label class="col-form-label col-sm-3 text-right" for="transactionType" i18n>Transaction
+                            Type:</label>
+                        <div class="col-sm-3"
+                             [ngClass]="{'has-danger': formValidation.isValidField('transactionType') }">
+                            <input type="text" readonly id="transactionType" formControlName="transactionType"
+                                   class="form-control"/>
+                        </div>
+
+                        <!-- DynamicText with label of Outstanding Balance -->
+                        <label class="col-form-label col-sm-2 text-right" for="companyCode" i18n>Company:</label>
+                        <div class="col-sm-3"
+                             [ngClass]="{'has-danger': formValidation.isValidField('companyCode') }">
+                            <input type="text" readonly id="companyCode" formControlName="companyCode"
+                                   class="form-control"/>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <!-- DynamicText with label of Balance Forward -->
+                        <label class="col-form-label col-sm-3 text-right" for="transAmt" i18n>Transaction
+                            Amount:</label>
+                        <div class="col-sm-3" [ngClass]="{'has-danger': formValidation.isValidField('transAmt') }">
+                            <input type="text" #transAmt (ngModelChange)="formatCurrency($event,transAmt)" readonly id="transAmt" formControlName="transAmt"
+                                   class="form-control"/>
+                        </div>
+
+                        <!-- DynamicText with label of Outstanding Balance -->
+                        <label class="col-form-label col-sm-2 text-right" for="glRefCode" i18n>G/L Ref:</label>
+                        <div class="col-sm-3"
+                             [ngClass]="{'has-danger': formValidation.isValidField('glRefCode') }">
+                            <input type="text" readonly id="glRefCode" formControlName="glRefCode"
+                                   class="form-control"/>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <!-- DynamicText with label of Balance Forward -->
+                        <label class="col-form-label col-sm-3 text-right" for="transReceip" i18n>Transaction Receive
+                            Date:</label>
+                        <div class="col-sm-3" [ngClass]="{'has-danger': formValidation.isValidField('transReceip') }">
+                            <input type="text" readonly id="transReceip" formControlName="transReceip"
+                                   class="form-control"/>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <!-- DynamicText with label of Balance Forward -->
+                        <label class="col-form-label col-sm-3 text-right" for="statementStatus" i18n>Statement
+                            Status:</label>
+                        <div class="col-sm-3"
+                             [ngClass]="{'has-danger': formValidation.isValidField('statementStatus') }">
+                            <input type="text" readonly id="statementStatus" formControlName="statementStatus" class="form-control"/>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <!-- DynamicText with label of Balance Forward -->
+                        <label class="col-form-label col-sm-3 text-right" for="description" i18n>Description:</label>
+                        <div class="col-sm-3" [ngClass]="{'has-danger': formValidation.isValidField('description') }">
+                            <input type="text" readonly id="description" formControlName="description"
+                                   class="form-control"/>
+                        </div>
+                    </div>
+                </ng-container>
+
+            </form>
+        </ng-container>
+    </div>
+
+</div>

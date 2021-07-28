@@ -1,0 +1,378 @@
+<!-- Copyright (c) 2021 . All Rights Reserved. -->
+<div class="container-fluid">
+    <div class="card-block">
+        <form [formGroup]="authClaimMatchRulesForm" novalidate>
+            <h2 class="form-title card-label-admin">Auth Claim Match Rules</h2>
+            <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+            <app-pop-up-message #popUpMesssage (buttonclickEvent)="popUpButtonHandler($event)"  [(popupMessage)] = "popUpMessage"></app-pop-up-message>
+                        
+            <div class="form-group row">
+            </div>
+            
+                        <!-- DataGrid with Name of DataGrid -->
+                    <button (click)="dataGridGridOptionsExportCsv()">Export</button>
+                    <ag-grid-angular #agGrid class="ag-theme-fresh" [gridOptions]="dataGridGridOptions"
+                    style="width: 100%; height: 300px;"
+                    [enableSorting]="true"
+                    [enableFilter]="true"
+                    [floatingFilter]="true"
+                    [pagination]="true"
+                    [showToolPanel]="true">
+                    </ag-grid-angular>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+                <div class="col-md-2 form-control-static mb-0" i18n>
+                    Match Rule
+                </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- DynamicText with label of Line Of Business -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('lineOfBusiness') }">
+                     <label class="col-form-label" for="lineOfBusiness" i18n>Line Of Business</label>
+                     <input type="text"  [fieldLevelSec]="''" params]=""  readonly id="lineOfBusiness" formControlName="lineOfBusiness" class="form-control"/>
+                 </div>
+            
+                <!-- Checkbox with label of Auth Place Of Svc -->
+                <div class="" [ngClass]="{'has-error': displayMessage.authPlaceOfSvc }">
+                    <div class="checkbox col-md-12">
+                      <input id="authPlaceOfSvc"  [fieldLevelSec]="'Auth Place Service Used'" params]="Auth Claim Match Rules"  value="authPlaceOfSvc" formControlName="authPlaceOfSvc" type="checkbox">
+                        <label class="checkbox">
+                            Auth Place Of Svc
+                         </label>
+                    </div>
+                    <span class="help-block" *ngIf="displayMessage.authPlaceOfSvc">
+                        {{ displayMessage.authPlaceOfSvc  }}
+                     </span>
+                </div>
+            
+                <!-- DynamicText with Name of DynamicText001 -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('dynamicText001') }">
+                     <label class="col-form-label" for="dynamicText001" i18n>&nbsp;</label>
+                     <input type="text"  [fieldLevelSec]="''" params]=""  readonly id="dynamicText001" formControlName="dynamicText001" class="form-control"/>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- DynamicText with label of Claim Type -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('claimType') }">
+                     <label class="col-form-label" for="claimType" i18n>Claim Type</label>
+                     <input type="text"  [fieldLevelSec]="''" params]=""  readonly id="claimType" formControlName="claimType" class="form-control"/>
+                 </div>
+            
+                <!-- Textbox with label of Auth Status -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('authStatus') }">
+                     <label class="col-form-label" for="authStatus" i18n>Auth Status</label>
+                     <input type="text" id="authStatus"  [fieldLevelSec]="'Auth Status'" params]="Auth Claim Match Rules"   class="form-control" formControlName="authStatus"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('authStatus')">
+                      {{ formValidation.errorMessage('authStatus') }}
+                     </small>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- DynamicText with label of Match Order -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('matchOrder') }">
+                     <label class="col-form-label" for="matchOrder" i18n>Match Order</label>
+                     <input type="text"  [fieldLevelSec]="''" params]=""  readonly id="matchOrder" formControlName="matchOrder" class="form-control"/>
+                 </div>
+            
+                <!-- Textbox with label of Auth Level -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('authLevel') }">
+                     <label class="col-form-label" for="authLevel" i18n>Auth Level</label>
+                     <input type="text" id="authLevel"  [fieldLevelSec]="'Auth Level'" params]="Auth Claim Match Rules"   class="form-control" formControlName="authLevel"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('authLevel')">
+                      {{ formValidation.errorMessage('authLevel') }}
+                     </small>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of Description -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('description') }">
+                     <label class="col-form-label" for="description" i18n>Description</label>
+                     <input type="text" id="description"  [fieldLevelSec]="''" params]=""   class="form-control" formControlName="description"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('description')">
+                      {{ formValidation.errorMessage('description') }}
+                     </small>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+                <div class="col-md-2 form-control-static mb-0" i18n>
+                    Match Criteria
+                </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Checkbox with label of DIAMOND ID -->
+                <div class="" [ngClass]="{'has-error': displayMessage.diamondId }">
+                    <div class="checkbox col-md-12">
+                      <input id="diamondId"  [fieldLevelSec]="'Diamond Id Used'" params]="Auth Claim Match Rules"  value="diamondId" formControlName="diamondId" type="checkbox">
+                        <label class="checkbox">
+                            DIAMOND ID
+                         </label>
+                    </div>
+                    <span class="help-block" *ngIf="displayMessage.diamondId">
+                        {{ displayMessage.diamondId  }}
+                     </span>
+                </div>
+            
+                <!-- Checkbox with label of Diagnosis -->
+                <div class="" [ngClass]="{'has-error': displayMessage.diagnosis }">
+                    <div class="checkbox col-md-12">
+                      <input id="diagnosis"  [fieldLevelSec]="'Diagnosis Used'" params]="Auth Claim Match Rules"  value="diagnosis" formControlName="diagnosis" type="checkbox">
+                        <label class="checkbox">
+                            Diagnosis
+                         </label>
+                    </div>
+                    <span class="help-block" *ngIf="displayMessage.diagnosis">
+                        {{ displayMessage.diagnosis  }}
+                     </span>
+                </div>
+            
+                <!-- DynamicText with label of Match First -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('matchFirst') }">
+                     <label class="col-form-label" for="matchFirst" i18n>Match First</label>
+                     <input type="text"  [fieldLevelSec]="'Match First Digits'" params]="Auth Claim Match Rules"  readonly id="matchFirst" formControlName="matchFirst" class="form-control"/>
+                 </div>
+            
+                <div class="col-md-2 form-control-static mb-0" i18n>
+                    Characters
+                </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Checkbox with label of Auth No. Match -->
+                <div class="" [ngClass]="{'has-error': displayMessage.authNoMatch }">
+                    <div class="checkbox col-md-12">
+                      <input id="authNoMatch"  [fieldLevelSec]="'Auth Number Match'" params]="Auth Claim Match Rules"  value="authNoMatch" formControlName="authNoMatch" type="checkbox">
+                        <label class="checkbox">
+                            Auth No. Match
+                         </label>
+                    </div>
+                    <span class="help-block" *ngIf="displayMessage.authNoMatch">
+                        {{ displayMessage.authNoMatch  }}
+                     </span>
+                </div>
+            
+                <!-- Checkbox with label of Claim Place of Svc -->
+                <div class="" [ngClass]="{'has-error': displayMessage.claimPlaceOfSvc }">
+                    <div class="checkbox col-md-12">
+                      <input id="claimPlaceOfSvc"  [fieldLevelSec]="'Claim Place Service Used'" params]="Auth Claim Match Rules"  value="claimPlaceOfSvc" formControlName="claimPlaceOfSvc" type="checkbox">
+                        <label class="checkbox">
+                            Claim Place of Svc
+                         </label>
+                    </div>
+                    <span class="help-block" *ngIf="displayMessage.claimPlaceOfSvc">
+                        {{ displayMessage.claimPlaceOfSvc  }}
+                     </span>
+                </div>
+            
+                <!-- DynamicText with Name of DynamicText002 -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('dynamicText002') }">
+                     <label class="col-form-label" for="dynamicText002" i18n>&nbsp;</label>
+                     <input type="text"  [fieldLevelSec]="''" params]=""  readonly id="dynamicText002" formControlName="dynamicText002" class="form-control"/>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Checkbox with label of Provider -->
+                <div class="" [ngClass]="{'has-error': displayMessage.provider }">
+                    <div class="checkbox col-md-12">
+                      <input id="provider"  [fieldLevelSec]="'Provider Used'" params]="Auth Claim Match Rules"  value="provider" formControlName="provider" type="checkbox">
+                        <label class="checkbox">
+                            Provider
+                         </label>
+                    </div>
+                    <span class="help-block" *ngIf="displayMessage.provider">
+                        {{ displayMessage.provider  }}
+                     </span>
+                </div>
+            
+                <!-- Checkbox with label of Auth/Claim Exact Place of Svc -->
+                <div class="" [ngClass]="{'has-error': displayMessage.authclaimExactPlaceOfSvc }">
+                    <div class="checkbox col-md-12">
+                      <input id="authclaimExactPlaceOfSvc"  [fieldLevelSec]="'Exact Place Service Used'" params]="Auth Claim Match Rules"  value="authclaimExactPlaceOfSvc" formControlName="authclaimExactPlaceOfSvc" type="checkbox">
+                        <label class="checkbox">
+                            Auth/Claim Exact Place of Svc
+                         </label>
+                    </div>
+                    <span class="help-block" *ngIf="displayMessage.authclaimExactPlaceOfSvc">
+                        {{ displayMessage.authclaimExactPlaceOfSvc  }}
+                     </span>
+                </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Checkbox with label of Primary Specialty -->
+                <div class="" [ngClass]="{'has-error': displayMessage.primarySpecialty }">
+                    <div class="checkbox col-md-12">
+                      <input id="primarySpecialty"  [fieldLevelSec]="'Primary Specialty Used'" params]="Auth Claim Match Rules"  value="primarySpecialty" formControlName="primarySpecialty" type="checkbox">
+                        <label class="checkbox">
+                            Primary Specialty
+                         </label>
+                    </div>
+                    <span class="help-block" *ngIf="displayMessage.primarySpecialty">
+                        {{ displayMessage.primarySpecialty  }}
+                     </span>
+                </div>
+            
+                <!-- Checkbox with label of Surgical Proc -->
+                <div class="" [ngClass]="{'has-error': displayMessage.surgicalProc }">
+                    <div class="checkbox col-md-12">
+                      <input id="surgicalProc"  [fieldLevelSec]="'Surgery Proc Used'" params]="Auth Claim Match Rules"  value="surgicalProc" formControlName="surgicalProc" type="checkbox">
+                        <label class="checkbox">
+                            Surgical Proc
+                         </label>
+                    </div>
+                    <span class="help-block" *ngIf="displayMessage.surgicalProc">
+                        {{ displayMessage.surgicalProc  }}
+                     </span>
+                </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Checkbox with label of Vendor ID -->
+                <div class="" [ngClass]="{'has-error': displayMessage.vendorId }">
+                    <div class="checkbox col-md-12">
+                      <input id="vendorId"  [fieldLevelSec]="'Vendor Id Used'" params]="Auth Claim Match Rules"  value="vendorId" formControlName="vendorId" type="checkbox">
+                        <label class="checkbox">
+                            Vendor ID
+                         </label>
+                    </div>
+                    <span class="help-block" *ngIf="displayMessage.vendorId">
+                        {{ displayMessage.vendorId  }}
+                     </span>
+                </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Checkbox with label of Faculty ID -->
+                <div class="" [ngClass]="{'has-error': displayMessage.facultyId }">
+                    <div class="checkbox col-md-12">
+                      <input id="facultyId"  [fieldLevelSec]="'Facility Id Used'" params]="Auth Claim Match Rules"  value="facultyId" formControlName="facultyId" type="checkbox">
+                        <label class="checkbox">
+                            Faculty ID
+                         </label>
+                    </div>
+                    <span class="help-block" *ngIf="displayMessage.facultyId">
+                        {{ displayMessage.facultyId  }}
+                     </span>
+                </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Checkbox with label of Primary DOS -->
+                <div class="" [ngClass]="{'has-error': displayMessage.primaryDos }">
+                    <div class="checkbox col-md-12">
+                      <input id="primaryDos"  [fieldLevelSec]="'Primary Dos Used'" params]="Auth Claim Match Rules"  value="primaryDos" formControlName="primaryDos" type="checkbox">
+                        <label class="checkbox">
+                            Primary DOS
+                         </label>
+                    </div>
+                    <span class="help-block" *ngIf="displayMessage.primaryDos">
+                        {{ displayMessage.primaryDos  }}
+                     </span>
+                </div>
+            
+                <!-- Textbox with label of Auth Begin Days Before -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('authBeginDaysBefore') }">
+                     <label class="col-form-label" for="authBeginDaysBefore" i18n>Auth Begin Days Before</label>
+                     <input type="text" id="authBeginDaysBefore"  [fieldLevelSec]="'Auth Begin Days Before'" params]="Auth Claim Match Rules"   class="form-control" formControlName="authBeginDaysBefore"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('authBeginDaysBefore')">
+                      {{ formValidation.errorMessage('authBeginDaysBefore') }}
+                     </small>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Checkbox with label of Thru DOS -->
+                <div class="" [ngClass]="{'has-error': displayMessage.thruDos }">
+                    <div class="checkbox col-md-12">
+                      <input id="thruDos"  [fieldLevelSec]="'Thru Dos Used'" params]="Auth Claim Match Rules"  value="thruDos" formControlName="thruDos" type="checkbox">
+                        <label class="checkbox">
+                            Thru DOS
+                         </label>
+                    </div>
+                    <span class="help-block" *ngIf="displayMessage.thruDos">
+                        {{ displayMessage.thruDos  }}
+                     </span>
+                </div>
+            
+                <!-- Textbox with label of Auth End Days After -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('authEndDaysAfter') }">
+                     <label class="col-form-label" for="authEndDaysAfter" i18n>Auth End Days After</label>
+                     <input type="text" id="authEndDaysAfter"  [fieldLevelSec]="'Auth End Days After'" params]="Auth Claim Match Rules"   class="form-control" formControlName="authEndDaysAfter"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('authEndDaysAfter')">
+                      {{ formValidation.errorMessage('authEndDaysAfter') }}
+                     </small>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+                <div class="col-md-2 form-control-static mb-0" i18n>
+                    Claim Action
+                </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of Action -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('action') }">
+                     <label class="col-form-label" for="action" i18n>Action</label>
+                     <input type="text" id="action"  [fieldLevelSec]="'Action'" params]="Auth Claim Match Rules"   class="form-control" formControlName="action"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('action')">
+                      {{ formValidation.errorMessage('action') }}
+                     </small>
+                 </div>
+            
+                <!-- Textbox with label of Reason Code -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('reasonCode') }">
+                     <label class="col-form-label" for="reasonCode" i18n>Reason Code</label>
+                     <input type="text" id="reasonCode"  [fieldLevelSec]="'Reason Code'" params]="Auth Claim Match Rules"   class="form-control" formControlName="reasonCode"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('reasonCode')">
+                      {{ formValidation.errorMessage('reasonCode') }}
+                     </small>
+                 </div>
+            
+                <!-- Checkbox with label of Apply Auth To Claim -->
+                <div class="" [ngClass]="{'has-error': displayMessage.applyAuthToClaim }">
+                    <div class="checkbox col-md-12">
+                      <input id="applyAuthToClaim"  [fieldLevelSec]="'Apply Auth To Claim'" params]="Auth Claim Match Rules"  value="applyAuthToClaim" formControlName="applyAuthToClaim" type="checkbox">
+                        <label class="checkbox">
+                            Apply Auth To Claim
+                         </label>
+                    </div>
+                    <span class="help-block" *ngIf="displayMessage.applyAuthToClaim">
+                        {{ displayMessage.applyAuthToClaim  }}
+                     </span>
+                </div>
+            
+            </div>
+        </form>
+    </div>
+</div>

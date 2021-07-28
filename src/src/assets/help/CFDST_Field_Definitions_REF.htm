@@ -1,0 +1,324 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+    <title>CFDST Field Definitions</title>
+    <!--(Meta)==========================================================-->
+    <meta name="copyright"
+          value="© Copyright 2002 Health Systems Design Corp., a wholly owned subsidiary of Perot Systems Corporation. All rights reserved"/>
+    <meta content="RoboHELP by eHelp Corporation - www.ehelp.com" name="generator"/>
+    <meta content="0.1" name="generator-major-version"/>
+    <meta content="1" name="generator-minor-version"/>
+    <meta content="kadov" name="filetype"/>
+    <meta content="1" name="filetype-version"/>
+    <meta content="1" name="page-count"/>
+    <meta content="1364" name="layout-height"/>
+    <meta content="642" name="layout-width"/>
+    <!--(Links)=========================================================-->
+    <!--(Scripts)=======================================================-->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+</head>
+<body>
+
+<div class="calibreMeta">
+    <div class="calibreMetaTitle">
+
+
+        <h1>
+            <a href="../bj5if-qozss.html">DIAMOND 950 Help
+            </a>
+        </h1>
+
+
+    </div>
+    <div class="calibreMetaAuthor">
+        Unknown
+
+    </div>
+</div>
+
+<div class="calibreMain">
+
+    <div class="calibreEbookContent">
+
+        <div class="calibreEbNavTop">
+
+            <a href="CFDST_Field_Map_REF.htm" class="calibreAPrev">previous page
+            </a>
+
+
+            <a href="CFDST_Functions_on_Menu_Bar_REF.htm" class="calibreANext">next page
+            </a>
+
+        </div>
+
+
+        <!--(Table)=========================================================-->
+        <table cellspacing="0" width="500" x-use-null-cells="" class="calibre109">
+            <colgroup class="calibre19">
+                <col class="calibre110"/>
+                <col class="calibre111"/>
+
+            </colgroup>
+            <tbody class="calibre10">
+            <tr valign="top" class="calibre11">
+                <td width="70%" class="calibre112">
+                    <h4 class="calibre62">CFDST Field Definitions</h4></td>
+                <td width="30%" class="calibre113">
+                    <p class="body-text1"><img border="0" height="53" src="assets/help/Field_definitions_Req_legend.gif" width="97"
+                                               x-maintain-ratio="TRUE" class="calibre114"/></p></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <!--(Table)=========================================================-->
+        <table cellspacing="0" width="500" x-use-null-cells="" class="calibre115">
+            <colgroup class="calibre19">
+                <col class="calibre116"/>
+                <col class="calibre117"/>
+                <col class="calibre118"/>
+                <col class="calibre119"/>
+                <col class="calibre118"/>
+
+            </colgroup>
+            <tbody class="calibre10">
+            <tr valign="top" class="calibre11">
+                <td width="110px" class="calibre120">
+                    <p class="tableheading">Field Name</p></td>
+                <td width="15px" class="calibre121">
+                    <p class="tableheading1">Req</p></td>
+                <td width="140px" class="calibre122">
+                    <p class="tableheading">Description</p></td>
+                <td width="95px" class="calibre123">
+                    <p class="tableheading">Source</p></td>
+                <td width="140px" class="calibre122">
+                    <p class="tableheading">Comments</p></td>
+            </tr>
+            <tr valign="top" class="calibre11">
+                <td width="98px" class="calibre124">
+                    <p class="tbl-r-label"><a name="CFDST_Action_FIELD"></a>Action</p></td>
+                <td width="14px" class="calibre125">
+                    <p class="tbl-text">R</p></td>
+                <td width="105px" class="calibre126">
+                    <p class="tbl-text">The mode in which the job
+                        is to be run.</p></td>
+                <td width="105px" class="calibre126">
+                    <p class="tbl-text">Selected from a predefined
+                        list. </p></td>
+                <td width="198px" class="calibre126">
+                    <p class="tbl-list-hdr">Values:</p>
+                    <p class="tbl-list-txt">Run</p>
+                    <p class="tbl-list-txt">Post</p>
+                    <p class="tbl-list-txt">Cancel</p>
+                    <p class="tbl-text-noline">Run: An "edit" mode whereby DIAMOND
+                        performs all the CFDST calculation logic and lets you review the results
+                        of that logic WITHOUT actually updating the associated claim detail lines
+                        with new Net Amount and Cap Fund Withhold Amount values.</p>
+                    <p class="tbl-text-noline">Post: Posts the results of the Run/edit mode job.
+                        Updates all included claim detail lines with the new Net Amount and Cap
+                        Fund Withhold Amount values. Puts the claim lines in a "posted"
+                        status for the Accounts Payable Update (APUPD) process. </p>
+                    <p class="tbl-text-noline">Cancel: Completely undoes all Run mode actions
+                        and returns all work files to the status they had before the run started.
+                        You may cancel a CFDST Run job any time prior to starting the job in Post
+                        mode. Posted jobs cannot be cancelled.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre11">
+                <td width="98px" class="calibre124">
+                    <p class="tbl-r-label"><a name="CFDST_Allocation_FIELD"></a>Allocation</p></td>
+                <td width="14px" class="calibre125">
+                    <p class="tbl-text">R</p></td>
+                <td width="105px" class="calibre126">
+                    <p class="tbl-text">The Capitation/Special Fund
+                        amount available for allocation for the Capitation Fund and Month specified.
+                    </p></td>
+                <td width="105px" class="calibre126">
+                    <p class="tbl-text">Manually entered</p></td>
+                <td width="198px" class="calibre126">
+                    <p class="tbl-text">You can type up to 16 digits
+                        before the decimal and 2 digits after the decimal. Do not type commas.
+                        The allocation amount cannot be a negative amount.</p>
+                    <p class="tbl-text-noline">If zero (default value), DIAMOND will use the
+                        Min Allocation for this model to calculate the net amounts </p></td>
+            </tr>
+
+            <tr valign="top" class="calibre11">
+                <td width="98px" class="calibre124">
+                    <p class="tbl-r-label"><a name="CFDST_Cap_Month_FIELD"></a>Cap
+                        Month </p></td>
+                <td width="14px" class="calibre125">
+                    <p class="tbl-text">R</p></td>
+                <td width="105px" class="calibre126">
+                    <p class="tbl-text">The month for which you are
+                        running Cap/Special Fund Distribution</p></td>
+                <td width="105px" class="calibre126">
+                    <p class="tbl-text">Manually entered</p></td>
+                <td width="198px" class="calibre126">
+                    <p class="tbl-text">Format: MM/YYYY.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre11">
+                <td width="98px" class="calibre124">
+                    <p class="tbl-r-label"><a name="CFDST_Comments_FIELD"></a>Comments</p></td>
+                <td width="14px" class="calibre125">
+                    <p class="tbl-text">O</p></td>
+                <td width="105px" class="calibre126">
+                    <p class="tbl-text">Free form comments about
+                        the CFDST batch job</p></td>
+                <td width="105px" class="calibre126">
+                    <p class="tbl-text">Manually entered</p></td>
+                <td width="198px" class="calibre126">
+                    <p class="tbl-text"> </p></td>
+            </tr>
+
+            <tr valign="top" class="calibre11">
+                <td width="98px" class="calibre124">
+                    <p class="tbl-r-label"><a name="CFDST_From_Date_FIELD"></a>From
+                        Date</p></td>
+                <td width="14px" class="calibre125">
+                    <p class="tbl-text">O</p></td>
+                <td width="105px" class="calibre126">
+                    <p class="tbl-text">The earliest date of service
+                        allowable on claim detail lines selected for this batch job</p></td>
+                <td width="105px" class="calibre126">
+                    <p class="tbl-text">Manually entered</p></td>
+                <td width="198px" class="calibre126">
+                    <p class="tbl-text">Must be before or equal to
+                        the first day of the Cap Month for the job. </p>
+                    <p class="tbl-text-noline">If no date entered, DIAMOND uses the first day
+                        of the CFDST Cap Month when selecting claim detail lines for the batch
+                        job. </p></td>
+            </tr>
+
+            <tr valign="top" class="calibre11">
+                <td width="98px" class="calibre124">
+                    <p class="tbl-r-label"><a name="CFDST_Job_ID_FIELD"></a>Job
+                        ID</p></td>
+                <td width="14px" class="calibre125">
+                    <p class="tbl-text">R</p></td>
+                <td width="105px" class="calibre126">
+                    <p class="tbl-text">Unique identifier for this
+                        batch job</p></td>
+                <td width="105px" class="calibre126">
+                    <p class="tbl-text">System generated or manually
+                        entered</p></td>
+                <td width="198px" class="calibre126">
+                    <p class="tbl-text"> </p></td>
+            </tr>
+
+            <tr valign="top" class="calibre11">
+                <td width="98px" class="calibre124">
+                    <p class="tbl-r-label"><a name="CFDST_Model_ID_FIELD"></a>Model
+                        ID</p></td>
+                <td width="14px" class="calibre125">
+                    <p class="tbl-text">R</p></td>
+                <td width="105px" class="calibre126">
+                    <p class="tbl-text">Unique identifier of the
+                        Cap Fund model to be used during processing</p></td>
+                <td width="105px" class="calibre126">
+                    <p class="tbl-text">Selected from an implementation
+                        specific list</p></td>
+                <td width="198px" class="calibre126">
+                    <p class="tbl-text">This is the model set up
+                        in CFMOD for the providers included in this Cap/Special Fund arrangement.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre11">
+                <td width="98px" class="calibre124">
+                    <p class="tbl-r-label"><a name="CFDST_Request_Date_FIELD"></a>Request
+                        Date</p></td>
+                <td width="14px" class="calibre125">
+                    <p class="tbl-text">R</p></td>
+                <td width="105px" class="calibre126">
+                    <p class="tbl-text">Current date</p></td>
+                <td width="105px" class="calibre126">
+                    <p class="tbl-text">System generated</p></td>
+                <td width="198px" class="calibre126">
+                    <p class="tbl-text"> </p></td>
+            </tr>
+
+            <tr valign="top" class="calibre11">
+                <td width="98px" class="calibre124">
+                    <p class="tbl-r-label"><a name="CFDST_Request_Type_FIELD"></a>Request
+                        Type</p></td>
+                <td width="14px" class="calibre125">
+                    <p class="tbl-text">R</p></td>
+                <td width="105px" class="calibre126">
+                    <p class="tbl-text">Processing request type.</p></td>
+                <td width="105px" class="calibre126">
+                    <p class="tbl-text">Selected from predefined
+                        list</p></td>
+                <td width="198px" class="calibre126">
+                    <p class="tbl-list-hdr">Valid values are:</p>
+                    <p class="tbl-list-txt">Immediate</p>
+                    <p class="tbl-list-txt">Deferred</p>
+                    <p class="tbl-text-noline">Accept Immediate as default. Deferred is not supported
+                        at this time. Error will occur.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre11">
+                <td width="98px" class="calibre124">
+                    <p class="tbl-r-label"><a name="CFDST_Request_User_FIELD"></a>Request
+                        User</p></td>
+                <td width="14px" class="calibre125">
+                    <p class="tbl-text">R</p></td>
+                <td width="105px" class="calibre126">
+                    <p class="tbl-text">User ID of the current user</p></td>
+                <td width="105px" class="calibre126">
+                    <p class="tbl-text">System generated</p></td>
+                <td width="198px" class="calibre126">
+                    <p class="tbl-text"> </p></td>
+            </tr>
+
+            <tr valign="top" class="calibre11">
+                <td width="98px" class="calibre124">
+                    <p class="tbl-r-label"><a name="CFDST_Status_FIELD"></a>Status</p></td>
+                <td width="14px" class="calibre125">
+                    <p class="tbl-text">R</p></td>
+                <td width="105px" class="calibre126">
+                    <p class="tbl-text">Status of the CFDST job.</p></td>
+                <td width="105px" class="calibre126">
+                    <p class="tbl-text">System generated</p></td>
+                <td width="198px" class="calibre126">
+                    <p class="tbl-list-hdr">Valid Values:</p>
+                    <p class="tbl-list">New: You created a new CFDST job record by selecting
+                        <span class="calibre5">New</span> from the <span class="calibre5">File</span>
+                        menu, New (or New From Template), entering data, and saving the job.</p>
+                    <p class="tbl-list">Successful Run: You selected Action &gt; Run, followed
+                        by File menu &gt; Run Job. DIAMOND ran the job in edit mode in accord
+                        with your specifications and the job completed successfully.</p>
+                    <p class="tbl-list">Cancelled: You selected Action &gt; Cancel for a job
+                        which has not been posted, followed by File menu &gt; Run Job. The job
+                        completed successfully and the job was cancelled.</p>
+                    <p class="tbl-list">Posted: You selected Action &gt; Post for the job, followed
+                        by File menu &gt; Run Job. The job completed successfully.</p></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <p class="body-text"> </p>
+
+
+    </div>
+
+
+    <div class="calibreEbNav">
+
+        <a href="CFDST_Field_Map_REF.htm" class="calibreAPrev">previous page
+        </a>
+
+
+        <a href="../bj5if-qozss.html" class="calibreAHome">start
+        </a>
+
+
+        <a href="CFDST_Functions_on_Menu_Bar_REF.htm" class="calibreANext">next page
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+</html>

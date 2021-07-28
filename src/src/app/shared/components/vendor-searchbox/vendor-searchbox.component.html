@@ -1,0 +1,75 @@
+<div class="container">
+    <h4 class="mt-3">Search Menu</h4>
+    <button type="button" class="close mt-m-40" *ngIf="showIcon" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    <div class="row ml-1 searchbox-buttons">
+        <div class="col-sm-12">
+    <div class="row ml-2 searchbox-buttons">
+        <div class="mr-1">
+            <button class="button" [disabled]="rowSelected == null || !isSearch" (click)="submit()">Ok</button>
+        </div>
+
+        <div class=" mr-1">
+            <button (click)="searchData()" *ngIf="!isSearch" class="button">Search</button>
+            <button (click)="resetData()" *ngIf="isSearch" class="button">Query</button>
+        </div>
+        <div class=" mr-1">
+            <button class="button" (click)="resetData()" [disabled]="isSearch">Reset</button>
+        </div>
+        <div class=" mr-1">
+            <button class="button" (click)="hideModal()">Cancel</button>
+        </div>
+
+
+        <div class=" mr-1">
+            <button class="button" (click)="defaultGrid()" [disabled]="isSearch">Default</button>
+        </div>
+
+        <div class=" mr-1">
+            <button (click)="customizeGrid()" [disabled]="!this.selectedItems || (this.selectedItems && this.selectedItems.length == 0) || isSearch" class="button">Custom</button>
+        </div>
+
+        <div class="mr-1 width-17">
+            <!--<select class="dropdown-toggle col-sm-12" [(ngModel)]="column" (change)="changeColumn()" [disabled]="isSearch">
+                <option value="">Columns</option>
+                <option *ngFor="let field of searchModel.columnDefs" [value]="field.field">{{field.headerName}}</option>
+            </select>-->
+            <ng-multiselect-dropdown
+                    [placeholder]="'columns'"
+                    [settings]="dropdownSettings"
+                    [data]="searchModel.columnDefs"
+                    [(ngModel)]="selectedItems"
+            >
+            </ng-multiselect-dropdown>
+        </div>
+    </div>
+
+    <div class="row ml-2">
+        <div class="form-group d-flex align-items-center d-inline-block">
+            <!-- checkbox with label of Match All Cases -->
+            <div class="selectContainer ">
+                <input style="height: 20px; width: 20px" type="checkbox" id="change-password" (change)="isMatchAllChecked($event)">
+            </div>
+            <label class=" pr-0 pl-2 col-form-label" for="change-password" i18n>
+                <b>Match All Cases</b>
+            </label>
+        </div>
+    </div>
+
+    <div class="row ml-0 mr-0 mb-3">
+        <!-- DataGrid with Name of DataGrid -->
+        <ag-grid-angular #agGrid class="ag-theme-fresh" [gridOptions]="dataGridGridOptions"
+                         style="width: 100%; height: 300px;"
+                         [enableSorting]="true"
+                         [enableFilter]="false"
+                         [floatingFilter]="false"
+                         [pagination]="false"
+                         [rowSelection]="rowSelection"
+                         (selectionChanged)="selectionChanged()"
+                         [showToolPanel]="false">
+        </ag-grid-angular>
+    </div>
+</div>
+    </div>
+</div>

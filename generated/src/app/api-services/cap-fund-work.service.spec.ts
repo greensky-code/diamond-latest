@@ -1,0 +1,98 @@
+/* Copyright (c) 2020 . All Rights Reserved. */
+
+import { Injectable } from '@angular/core';
+import { By } from '@angular/platform-browser';
+import { DebugElement } from '@angular/core';
+import { AlertMessageService, AlertMessage } from "../shared/alert-message/index";
+import { Router } from '@angular/router'
+import { Subject } from 'rxjs/Rx';
+import 'rxjs/add/operator/toPromise';
+import { async, ComponentFixture, TestBed, inject, getTestBed } from '@angular/core/testing';
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { environment } from '../../environments/environment'
+import { RouterTestingModule } from '@angular/router/testing';
+
+import { CapFundWorkService } from './cap-fund-work.service';
+import { CapFundWork } from '../api-models/cap-fund-work.model'
+import { CapFundWorks } from "../api-models/testing/fake-cap-fund-work.model"
+
+describe('CapFundWorkService', () => {
+  let injector: TestBed;
+  let service: CapFundWorkService;
+  let httpMock: HttpTestingController;
+
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      imports: [HttpClientTestingModule],
+      providers: [CapFundWorkService]
+    });
+    injector = getTestBed();
+    service = injector.get(CapFundWorkService);
+    httpMock = injector.get(HttpTestingController);
+  });
+
+  afterEach(() => {
+      httpMock.verify();
+  });
+  describe('#getCapFundWorks', () => {
+    it('should return an Promise<CapFundWork[]>', () => {
+      const capFundWork = [
+       {seqCfdstId:1234, capFundModelId:'sample data', capFundSubModelId:'sample data', capFundRunFromDate:'2018-01-01', capFundRunMonth:'2018-01-01', seqClaimId:1234, lineNumber:1234, subLineCode:'sample data', detailSvcFromDate:'2018-01-01', detailSvcToDate:'2018-01-01', seqProvId:1234, seqMembId:1234, billedAmt:1234, allowedAmt:1234, notCoveredAmt:1234, copayment1Amt:1234, copayment2Amt:1234, deductibleAmt:1234, otherCarrierAmt:1234, withholdAmt:1234, capFundWithholdAmt:1234, netAmt:1234, procedureCode:'sample data', procedureModifier:'sample data', totalUnits:1234, claimNumber:'sample data', claimStatus:'sample data', processingStatus:'sample data', capFundStatus:1234, securityCode:'sample data', insertUser:'sample data', insertProcess:'sample data', insertDatetime:'2018-01-01', updateUser:'sample data', updateProcess:'sample data', updateDatetime:'2018-01-01'},
+       {seqCfdstId:1234, capFundModelId:'sample data', capFundSubModelId:'sample data', capFundRunFromDate:'2018-01-01', capFundRunMonth:'2018-01-01', seqClaimId:1234, lineNumber:1234, subLineCode:'sample data', detailSvcFromDate:'2018-01-01', detailSvcToDate:'2018-01-01', seqProvId:1234, seqMembId:1234, billedAmt:1234, allowedAmt:1234, notCoveredAmt:1234, copayment1Amt:1234, copayment2Amt:1234, deductibleAmt:1234, otherCarrierAmt:1234, withholdAmt:1234, capFundWithholdAmt:1234, netAmt:1234, procedureCode:'sample data', procedureModifier:'sample data', totalUnits:1234, claimNumber:'sample data', claimStatus:'sample data', processingStatus:'sample data', capFundStatus:1234, securityCode:'sample data', insertUser:'sample data', insertProcess:'sample data', insertDatetime:'2018-01-01', updateUser:'sample data', updateProcess:'sample data', updateDatetime:'2018-01-01'},
+       {seqCfdstId:1234, capFundModelId:'sample data', capFundSubModelId:'sample data', capFundRunFromDate:'2018-01-01', capFundRunMonth:'2018-01-01', seqClaimId:1234, lineNumber:1234, subLineCode:'sample data', detailSvcFromDate:'2018-01-01', detailSvcToDate:'2018-01-01', seqProvId:1234, seqMembId:1234, billedAmt:1234, allowedAmt:1234, notCoveredAmt:1234, copayment1Amt:1234, copayment2Amt:1234, deductibleAmt:1234, otherCarrierAmt:1234, withholdAmt:1234, capFundWithholdAmt:1234, netAmt:1234, procedureCode:'sample data', procedureModifier:'sample data', totalUnits:1234, claimNumber:'sample data', claimStatus:'sample data', processingStatus:'sample data', capFundStatus:1234, securityCode:'sample data', insertUser:'sample data', insertProcess:'sample data', insertDatetime:'2018-01-01', updateUser:'sample data', updateProcess:'sample data', updateDatetime:'2018-01-01'}
+
+      ];
+      service.getCapFundWorks().subscribe(users => {
+        expect(users.length).toBe(3);
+      });
+
+      const req = httpMock.expectOne(`${environment.apiUrl}/capfundworks/?use-pagination=false&page=0&size=0`);
+      expect(req.request.method).toBe("GET");
+      req.flush(capFundWork);
+    });
+  });
+
+
+  describe('#createCapFundWork', () => {
+    var id = 1;
+    it('should return an Promise<CapFundWork>', () => {
+      const capFundWork: CapFundWork = {seqCfdstId:1234, capFundModelId:'sample data', capFundSubModelId:'sample data', capFundRunFromDate:'2018-01-01', capFundRunMonth:'2018-01-01', seqClaimId:1234, lineNumber:1234, subLineCode:'sample data', detailSvcFromDate:'2018-01-01', detailSvcToDate:'2018-01-01', seqProvId:1234, seqMembId:1234, billedAmt:1234, allowedAmt:1234, notCoveredAmt:1234, copayment1Amt:1234, copayment2Amt:1234, deductibleAmt:1234, otherCarrierAmt:1234, withholdAmt:1234, capFundWithholdAmt:1234, netAmt:1234, procedureCode:'sample data', procedureModifier:'sample data', totalUnits:1234, claimNumber:'sample data', claimStatus:'sample data', processingStatus:'sample data', capFundStatus:1234, securityCode:'sample data', insertUser:'sample data', insertProcess:'sample data', insertDatetime:'2018-01-01', updateUser:'sample data', updateProcess:'sample data', updateDatetime:'2018-01-01'};
+      service.createCapFundWork(capFundWork).subscribe(response => {
+         expect(response).toEqual(null);
+      });
+      const req = httpMock.expectOne(`${environment.apiUrl}/capfundworks`);
+      expect(req.request.method).toBe("POST");
+      req.flush(null, { status: 200, statusText: 'Ok' });
+
+    });
+  });
+
+
+  describe('#updateCapFundWork', () => {
+    var id = 1;
+    it('should return an Promise<CapFundWork>', () => {
+      const capFundWork: CapFundWork = {seqCfdstId:1234, capFundModelId:'sample data', capFundSubModelId:'sample data', capFundRunFromDate:'2018-01-01', capFundRunMonth:'2018-01-01', seqClaimId:1234, lineNumber:1234, subLineCode:'sample data', detailSvcFromDate:'2018-01-01', detailSvcToDate:'2018-01-01', seqProvId:1234, seqMembId:1234, billedAmt:1234, allowedAmt:1234, notCoveredAmt:1234, copayment1Amt:1234, copayment2Amt:1234, deductibleAmt:1234, otherCarrierAmt:1234, withholdAmt:1234, capFundWithholdAmt:1234, netAmt:1234, procedureCode:'sample data', procedureModifier:'sample data', totalUnits:1234, claimNumber:'sample data', claimStatus:'sample data', processingStatus:'sample data', capFundStatus:1234, securityCode:'sample data', insertUser:'sample data', insertProcess:'sample data', insertDatetime:'2018-01-01', updateUser:'sample data', updateProcess:'sample data', updateDatetime:'2018-01-01'};
+      service.updateCapFundWork(capFundWork, id).subscribe(response => {
+         expect(response).toEqual(null);
+      });
+      const req = httpMock.expectOne(`${environment.apiUrl}/capfundworks/${id}`);
+      expect(req.request.method).toBe("PUT");
+      req.flush(null, { status: 200, statusText: 'Ok' });
+    });
+  });
+
+
+  describe('#deleteCapFundWork', () => {
+    var id = 1;
+    it('should call delete method with correct parameter', () => {
+      service.deleteCapFundWork(id).subscribe(response => {
+         expect(response).toEqual(null);
+      });
+      const req = httpMock.expectOne(`${environment.apiUrl}/capfundworks/${id}`);
+      expect(req.request.method).toBe("DELETE");
+      req.flush(null, { status: 400, statusText: 'Ok' });
+    });
+  });
+
+
+});

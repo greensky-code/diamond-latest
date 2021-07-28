@@ -1,0 +1,744 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+    <title>Pre-Existing Conditions, How DIAMOND Thinks</title>
+    <!--(Meta)==========================================================-->
+    <meta name="copyright"
+          value="© Copyright 2002 Health Systems Design Corp., a wholly owned subsidiary of Perot Systems Corporation. All rights reserved"/>
+    <meta content="RoboHELP by eHelp Corporation - www.ehelp.com" name="generator"/>
+    <meta content="0.1" name="generator-major-version"/>
+    <meta content="1" name="generator-minor-version"/>
+    <meta content="kadov" name="filetype"/>
+    <meta content="1" name="filetype-version"/>
+    <meta content="1" name="page-count"/>
+    <meta content="4903" name="layout-height"/>
+    <meta content="567" name="layout-width"/>
+    <meta content="Thru;c;d;e;Proc;Dx;Ptr" name="x-ignored-words"/>
+    <!--(Links)=========================================================-->
+    <!--(Scripts)=======================================================-->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link href="stylesheet.css" rel="stylesheet" type="text/css"/>
+    <link href="page_styles.css" rel="stylesheet" type="text/css"/>
+
+
+    <link href="calibreHtmlOutBasicCss.css" type="text/css" rel="stylesheet"/>
+
+</head>
+<body>
+
+<div class="calibreMeta">
+    <div class="calibreMetaTitle">
+
+
+        <h1>
+            <a href="../ib0gc-jzzjl.html">DIAMOND 950 Help
+            </a>
+        </h1>
+
+
+    </div>
+    <div class="calibreMetaAuthor">
+        Unknown
+
+    </div>
+</div>
+
+<div class="calibreMain">
+
+    <div class="calibreEbookContent">
+
+        <div class="calibreEbNavTop">
+
+            <a href="Delete_a_member_pre-existing_condition.htm" class="calibreAPrev">previous page
+            </a>
+
+
+            <a href="Add_member_working_aged_survey_information.htm" class="calibreANext">next page
+            </a>
+
+        </div>
+
+
+        <h4 class="calibre1">Pre-Existing Conditions, How DIAMOND Thinks</h4>
+
+        <!--(Table)=========================================================-->
+        <table cellspacing="0" width="516" x-use-null-cells="" class="calibre172">
+
+            <tbody class="calibre3">
+            <tr valign="top" class="">
+                <td width="252px" class="">
+                    <p class="map-links"><a
+                            href="Pre_Existing_Conditions_How_DIAMOND_Thinks.htm#Pre-Existing_Conditions_How_DIAMOND_Thinks_What_is_a_Pre-Existing_Condition_MID"><img
+                            alt="image\assets/help/MidTopic_shg.gif" border="0" height="10" src="assets/help/MidTopic_shg.gif" width="18"
+                            class=""/></a> What is a Pre-Existing Condition?</p></td>
+                <td width="264px" class="">
+                    <p class="map-links"><a
+                            href="Pre_Existing_Conditions_How_DIAMOND_Thinks.htm#Pre-Existing_Conditions_How_DIAMOND_Thinks_How_Pre-Existing_Conditions_Logic_Works_MID"><img
+                            alt="image\assets/help/MidTopic_shg.gif" border="0" height="10"
+                            src="assets/help/MidTopic_shg.gif" width="18" class=""/></a> How Pre-Existing Conditions Logic
+                        Works</p></td>
+            </tr>
+
+            <tr valign="top" class="">
+                <td width="384px" class="">
+                    <p class="map-links"><a
+                            href="Pre_Existing_Conditions_How_DIAMOND_Thinks.htm#Pre-Existing_Conditions_How_DIAMOND_Thinks_About_Eligibility_Records_and_Pre-Existing_Conditions_MID"><img
+                            alt="image\assets/help/MidTopic_shg.gif" border="0" height="10" src="assets/help/MidTopic_shg.gif" width="18"
+                            class=""/></a> About Eligibility Records and Pre-Existing Conditions</p></td>
+                <td width="132px" class="">
+                    <p class="map-links"> </p></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <p class="doc-level"><a
+                name="Pre-Existing_Conditions_How_DIAMOND_Thinks_What_is_a_Pre-Existing_Condition_MID"></a>What
+            is a Pre-Existing Condition?</p>
+
+        <p class="body-text">A pre-existing condition is a condition for which a
+            member has received treatment during a specified period of time before
+            becoming covered under a health plan. You can set up DIAMOND to use Pre-Existing
+            Conditions logic, which manages members with pre-existing conditions.</p>
+
+        <p class="body-text">There are two types of pre-existing conditions:</p>
+
+        <ul class="calibre15">
+
+            <li class="kadov-p-cbullet1"><p class="bullet1">Member pre-existing conditions</p></li>
+
+            <li class="kadov-p-cbullet1"><p class="bullet1">Default line of business
+                pre-existing conditions</p></li>
+        </ul>
+
+        <p class="body-text">You can enter member pre-existing conditions using keyword
+            MCOND (Member Conditions). For more information, see <a href="MCOND_Member_Conditions.htm">MCOND,
+                Member Conditions</a>.</p>
+
+        <p class="body-text">You can enter default line of business pre-existing
+            conditions using keywords PXRUL (Pre-Existing Condition Rule) and LBPEC
+            (Line of Business Pre-Existing Conditions).</p>
+
+        <p class="body-text">Pre-Existing Conditions processing logic includes both
+            types of pre-existing conditions. Pre-Existing Conditions processing logic
+            is managed in the following general order:</p>
+
+        <ol class="calibre29">
+
+            <li class="kadov-p-cnumbered-list"><p class="numbered-list1">In keyword
+                MELIG (Member Eligibility History), DIAMOND examines the <span class="calibre41">PEC
+ Waived</span> check box.</p></li>
+
+            <li class="kadov-p-cnumbered-list"><p class="numbered-list1">In keyword
+                GRUPD (Group Detail), DIAMOND examines the <span class="calibre41">Exclude
+ Capitated Claim Lines</span> field.</p></li>
+
+            <li class="kadov-p-cnumbered-list"><p class="numbered-list1">In keyword
+                MCOND (Member Conditions), DIAMOND evaluates the pre-existing conditions
+                criteria defined at the member level when the field <span class="calibre41">Condition
+ Type</span> equals Pre-existing, Rated-up, or Ridered-out.</p></li>
+
+            <li class="kadov-p-cnumbered-list"><p class="numbered-list1">In keyword
+                LBPEC (Line of Business Pre-Existing Conditions), DIAMOND evaluates the
+                default pre-existing conditions criteria defined at the line of business
+                and group level.</p></li>
+
+            <li class="kadov-p-cnumbered-list"><p class="numbered-list1">In keyword
+                GRUPD (Group Detail), DIAMOND examines the <span class="calibre41">Apply
+ PEC to PCP</span> check box.</p></li>
+
+            <li class="kadov-p-cnumbered-list"><p class="numbered-list1">In keyword
+                MEMBR (Member Master), DIAMOND evaluates the <span class="calibre41">PEC
+ Waived</span> check box and <span class="calibre41">PEC End Date</span>
+                box.</p></li>
+
+            <li class="kadov-p-cnumbered-list"><p class="numbered-list1">In keyword
+                GRUPD (Group Detail), DIAMOND evaluates the <span class="calibre41">Exclusion
+ Type</span> and <span class="calibre41">Exclusion Period</span>
+                boxes.</p></li>
+        </ol>
+
+        <p class="doc-level"><a
+                name="Pre-Existing_Conditions_How_DIAMOND_Thinks_How_Pre-Existing_Conditions_Logic_Works_MID"></a>How
+            Pre-Existing Conditions Logic Works</p>
+
+        <p class="body-text">After completing pricing, medical definitions, and adjudication
+            of a claim (Institutional, Professional Services, or Dental), DIAMOND
+            logic examines keywords MELIG, GRUPD, MCOND, AND LBPEC for pre-existing
+            condition data. DIAMOND logic does not examine Pre-Existing Conditions
+            logic for denied claim detail lines.</p>
+
+        <h3 class="calibre98">Institutional Claim Pre-Existing Conditions logic</h3>
+
+        <p class="body-text">DIAMOND pre-existing conditions logic for Institutional
+            claims proceeds as follows:</p>
+
+        <p class="numbered-list">1. Evaluate the keyword MELIG <span class="calibre41">PEC</span>
+            <span class="calibre41">Waived</span> check box on the member
+            eligibility period corresponding to the claim. </p>
+
+        <p class="numbered-list-indent2">If selected, do not perform Pre-existing
+            Conditions logic <!--kadov_tag{{<spaces>}}--> <!--kadov_tag{{</spaces>}}--></p>
+
+        <p class="numbered-list-indent2">If cleared, perform Pre-Existing Conditions
+            logic</p>
+
+        <p class="numbered-list">2. Evaluate keyword GRUPD <span class="calibre41">Exclude
+ Capitated Claim Lines</span> field for the member's group. </p>
+
+        <p class="numbered-list-indent3">Exclude capitated claims from further Institutional
+            Claim Pre-Existing Conditions logic if <span class="calibre41">Exclude
+ Capitated Claim Lines</span> equals Institutional or Both. (Possible values
+            for <span class="calibre41">Exclude Capitated Claim Lines</span>
+            include claim types Institutional, Professional, Both (Institutional and
+            Professional), or None.)</p>
+
+        <p class="numbered-list">3. Use the <span class="calibre41">Member
+ ID</span> on the claim header to locate the member's keyword MCOND member
+            condition records and determine which are pre-existing conditions records.</p>
+
+        <p class="numbered-list-indent2">If the MCOND member condition record field
+            <span class="calibre41">Condition Type</span> is Pre-existing,
+            Rated-up, or Ridered-out, the record is a pre-existing condition record.
+            Continue with Pre-Existing Conditions logic for each such record.</p>
+
+        <p class="numbered-list-indent2">If the MCOND member condition record field
+            <span class="calibre41">Condition Type</span> is not Pre-existing,
+            Rated-up, or Ridered-out, the record is not a pre-existing condition record.
+            Do not include each such record in further Pre-Existing Conditions logic.</p>
+
+        <p class="numbered-list">4. Evaluate the claim against each of the member's
+            MCOND pre-existing condition records. For Institutional claims, use the
+            claim header primary diagnosis code <span class="calibre41">Dx1</span>
+            and <span class="calibre41">Admit</span> date as the diagnosis
+            code and date of service for evaluation purposes. </p>
+
+        <p class="numbered-list-indent">Once one matching MCOND pre-existing condition
+            record is found and an MCOND <span class="calibre41">Claim Action</span>
+            applied, do not evaluate the claim any further.</p>
+
+        <p class="numbered-list-indent">a. Compare the claim header primary diagnosis
+            code <span class="calibre41">Dx1</span> to the MCOND record diagnosis
+            <span class="calibre41">From Value</span> through <span class="calibre41">Thru
+ Value</span> diagnosis range.</p>
+
+        <p class="numbered-list-indent2">If the claim header primary diagnosis code
+            <span class="calibre41">Dx1</span> is within the MCOND record
+            diagnosis <span class="calibre41">From Value</span> through <span class="calibre41">Thru Value</span>
+            diagnosis range, continue
+            to step 4b and evaluate the date of service. </p>
+
+        <p class="numbered-list-indent2">If not, go to the next MCOND record for
+            the member and evaluate the diagnosis code. If no more MCOND records exist
+            for the member, go to step 5.</p>
+
+        <p class="numbered-list-indent3">b. Compare the claim header <span class="calibre41">Admit</span>
+            date to the MCOND effective period. The MCOND effective period is the
+            MCOND <span class="calibre41">Effective Date</span> through <span class="calibre41">Term Date</span>, unless
+            no <span class="calibre41">Term
+ Date</span> is specified. If no MCOND <span class="calibre41">Term
+ Date</span> is specified, use the MELIG <span class="calibre41">PEC
+ End Date</span> from the member eligibility record corresponding to the
+            claim. </p>
+
+        <p class="numbered-list-indent2">If the claim header <span class="calibre41">Admit</span>
+            date is within the MCOND record effective period, apply the MCOND record
+            <span class="calibre41">Claim Action</span> (Pay, Hold, or Deny)
+            and <span class="calibre41">Reason</span>, and stop. <!--kadov_tag{{<spaces>}}--> 
+            <!--kadov_tag{{</spaces>}}--></p>
+
+        <p class="numbered-list-indent2">If the claim header <span class="calibre41">Admit</span>
+            date is not within the MCOND effective period, go to STEP 4A and evaluate
+            the next MCOND record for the member. If no more MCOND records exist for
+            the member, go to step 5. </p>
+
+        <p class="numbered-list">5. Identify each LBPEC record that matches the line
+            of business and group of the member on the claim. </p>
+
+        <p class="numbered-list">6. For each matching LBPEC record, use the effective
+            <span class="calibre41">PEC Rule ID</span>s to identify the corresponding
+            PXRUL default pre-existing condition rules. Then evaluate the claim against
+            the PXRUL rules identified.</p>
+
+        <p class="numbered-list-indent">a. Compare the claim header <span class="calibre41">Admit</span>
+            date to the effective period of the <span class="calibre41">PEC
+ Rule ID</span> on the LBPEC record. The <span class="calibre41">PEC
+ Rule ID</span> effective period is the LBPEC <span class="calibre41">Effective
+ Date</span> through <span class="calibre41">Term Date </span>for
+            that<span class="calibre41"> PEC Rule ID, </span>unless no Term
+            Date is specified. If no LBPEC <span class="calibre41">Term Date</span>
+            is specified, use the MELIG <span class="calibre41">PEC End Date</span>
+            from the member eligibility record corresponding to the claim as the term
+            date.</p>
+
+        <p class="numbered-list-indent2">If the claim header <span class="calibre41">Admit</span>
+            date falls within the <span class="calibre41">PEC Rule ID</span>
+            effective period, continue the evaluation for that <span class="calibre41">PEC
+ Rule ID</span>. </p>
+
+        <p class="numbered-list-indent2">If not, go to the next <span class="calibre41">PEC
+ Rule ID </span>on the LBPEC record and evaluate it in the same manner.
+            If no more <span class="calibre41">PEC Rule ID</span>s exist
+            on the current LBPEC record, go to step 6 and evaluate the next matching
+            LBPEC record. If no more matching LBPEC records exist, go to step 7.</p>
+
+        <p class="numbered-list-indent">b. Use the <span class="calibre41">PEC
+ Rule ID</span> to locate the corresponding PXRUL rule. </p>
+
+        <p class="numbered-list-indent3">c. Compare the claim header primary diagnosis
+            code <span class="calibre41">Dx1</span> to the PXRUL rule diagnosis
+            code ranges. The PXRUL rule diagnosis code ranges are defined in each
+            row in the PXRUL section box Diagnosis Data as the <span class="calibre41">From
+ Value</span> through <span class="calibre41">Thru Value</span>.</p>
+
+        <p class="numbered-list-indent2">If the claim header primary diagnosis code
+            <span class="calibre41">Dx1</span> is within one or more PXRUL
+            rule diagnosis code ranges, go to step 6d and evaluate the date of service.
+        </p>
+
+        <p class="numbered-list-indent2">If not, go to step 6a and evaluate the next
+            <span class="calibre41">PEC Rule ID</span> on the matching LBPEC
+            record. If no more <span class="calibre41">PEC Rule ID</span>s
+            remain to be evaluated on the current LBPEC record, go to step 6 and evaluate
+            the next matching LBPEC record. If no more matching LBPEC records exist,
+            go to step 7.</p>
+
+        <p class="numbered-list-indent">d. Compare the claim header <span class="calibre41">Admit</span>
+            date to the PXRUL effective period. The PXRUL effective period is the
+            PXRUL <span class="calibre41">Effective Date</span> through <span class="calibre41">Term Date</span>. If no
+            <span class="calibre41">Term
+ Date</span> is specified, the effective period is open ended.</p>
+
+        <p class="numbered-list-indent2">If the claim header <span class="calibre41">Admit</span>
+            date is within the PXRUL effective period, go to step 6e. </p>
+
+        <p class="numbered-list-indent2">If not, go to step 6a and evaluate the next
+            <span class="calibre41">PEC Rule ID</span> on the matching LBPEC
+            record. If no more PEC Rule IDs remain to be evaluated on the current
+            LBPEC record, go to step 6 and evaluate the next matching LBPEC record.
+            If no more matching LBPEC records exist, go to step 7.</p>
+
+        <p class="numbered-list-indent">e. For each matching diagnosis code, compare
+            the claim header <span class="calibre41">Admit</span> date to
+            the diagnosis code's keyword DIAGN (Diagnosis) record effective period.
+            The DIAGN record effective period is the DIAGN <span class="calibre41">Effective
+ Date</span> through <span class="calibre41">Term Date</span>,
+            unless no <span class="calibre41">Term Date</span> is specified.
+            If no <span class="calibre41">Term Date</span> is specified,
+            use the keyword MELIG <span class="calibre41">PEC End Date</span>
+            instead. </p>
+
+        <p class="numbered-list-indent2">If the claim header <span class="calibre41">Admit</span>
+            date falls within the DIAGN record effective period, place the claim on
+            hold and stop.<span class="calibre108"> </span></p>
+
+        <p class="numbered-list-indent2">If the claim header <span class="calibre41">Admit</span>
+            date does not fall within the DIAGN effective period, evaluate the next
+            matching diagnosis code. </p>
+
+        <p class="numbered-list-indent4">If no further matching diagnosis codes
+            exist, go to go to step 6a and evaluate the next <span class="calibre41">PEC
+ Rule ID</span> on the matching LBPEC record. </p>
+
+        <p class="numbered-list-indent5">If no more <span class="calibre41">PEC
+ Rule ID</span>s remain to be evaluated on the current LBPEC record, go
+            to step 6 and evaluate the next matching LBPEC record. </p>
+
+        <p class="numbered-list-indent6">If no more matching LBPEC records exist,
+            go to step 7.</p>
+
+        <p class="numbered-list">7. Evaluate the date in the keyword MEMBR <span class="calibre41">PEC End Date</span>
+            box. </p>
+
+        <p class="numbered-list-indent">If the <span class="calibre41">PEC
+ End Date </span>box is blank, skip to step 10 and evaluate the keyword
+            GRUPD <span class="calibre41">Exclusion Type</span> and <span class="calibre41">Exclusion Period</span>.</p>
+
+        <p class="numbered-list-indent">If the <span class="calibre41">PEC
+ End Date</span> box contains a date, continue to step 8 and evaluate the
+            keyword GRUPD <span class="calibre41">Apply PEC to</span> <span class="calibre41">PCP</span> check box. </p>
+
+        <p class="numbered-list">8. Evaluate the GRUPD <span class="calibre41">Apply
+ PEC to</span> <span class="calibre41">PCP</span> check box.</p>
+
+        <p class="numbered-list-indent">If the check box is selected or the service
+            is not provided by the member's PCP, continue to step 9. </p>
+
+        <p class="numbered-list-indent">If the check box is cleared and the member's
+            PCP or a covering provider is performing the service, then stop Pre-Existing
+            Conditions logic. </p>
+
+        <p class="numbered-list">9. Compare the claim header <span class="calibre41">Admit</span>
+            date to the date in the <span class="calibre41">PEC End Date</span>
+            box in keyword MELIG. </p>
+
+        <p class="numbered-list-indent">If the claim header <span class="calibre41">Admit</span>
+            date is before or equal to the <span class="calibre41">PEC End
+ Date</span>, then hold the claim line (set <span class="calibre41">Proc
+ Status</span> to H-Held) with the reason code from the <span class="calibre41">Reason</span>
+            box in keyword MELIG.<span class="calibre108"> </span></p>
+
+        <p class="numbered-list-indent">If the claim header <span class="calibre41">Admit</span>
+            date is past the <span class="calibre41">PEC End Date</span>,
+            continue to step 10.</p>
+
+        <p class="numbered-list">10. Evaluate keyword GRUPD <span class="calibre41">Exclusion
+ Type</span> and <span class="calibre41">Exclusion Period</span>
+            boxes. </p>
+
+        <p class="numbered-list-indent">If they are blank, stop pre-existing conditions
+            logic for this claim. <!--kadov_tag{{<spaces>}}--> <!--kadov_tag{{</spaces>}}--></p>
+
+        <p class="numbered-list-indent">If they have values entered, calculate the
+            exclusion period end date as the member's earliest keyword MELIG effective
+            date for that group or plan plus the number of days or months specified
+            by keyword GRUPD fields <span class="calibre41">Exclusion Type</span>
+            (days or months) and <span class="calibre41">Exclusion Period</span>
+            (number of days or months).</p>
+
+        <p class="body-text">11. Compare the claim header <span class="calibre41">Admit</span>
+            date to the calculated exclusion period end date. </p>
+
+        <p class="body-text-block">If the claim header <span class="calibre41">Admit</span>
+            date is before or equal to the end date, hold the claim line (change <span
+                    class="calibre41">Proc Status</span> to H - Held) with the reason
+            code from the keyword GRUPD <span class="calibre41">Reason</span>
+            box.</p>
+
+        <p class="body-text-block">If the claim header <span class="calibre41">Admit</span>
+            date is past the end date, then stop.</p>
+
+        <p class="body-text">In all cases where a claim line is held, the message
+            "Possible pre-existing condition, line pended" displays.</p>
+
+        <p class="body-text">If pricing only is set up, Pre-Existing Conditions logic
+            is still invoked after pricing.</p>
+
+        <p class="body-text">For institutional claims, if an informational line is
+            assigned a hold code prior to the Pre-Existing Conditions logic check,
+            pricing and pre-existing checks do not occur.</p>
+
+        <h3 class="calibre98">Professional Services and Dental Claim Pre-Existing
+            Conditions logic</h3>
+
+        <p class="body-text">DIAMOND pre-existing conditions logic for Professional
+            Services and Dental claims proceeds as follows:</p>
+
+        <p class="numbered-list">1. Evaluate the keyword MELIG <span class="calibre41">PEC</span>
+            <span class="calibre41">Waived</span> check box on the member
+            eligibility period corresponding to the claim. </p>
+
+        <p class="numbered-list-indent2">If selected, do not perform Pre-Existing
+            Conditions logic</p>
+
+        <p class="numbered-list-indent2">If cleared, perform Pre-existing Conditions
+            logic</p>
+
+        <p class="numbered-list">2. Evaluate keyword GRUPD <span class="calibre41">Exclude
+ Capitated Claim Lines</span> field for the member's group. </p>
+
+        <p class="numbered-list-indent2">Exclude capitated claims from further Professional
+            Services claims Pre-Existing Conditions logic if <span class="calibre41">Exclude
+ Capitated Claim Lines</span> equals Professional or Both. (Possible values
+            for <span class="calibre41">Exclude Capitated Claim Lines</span>
+            include claim types Institutional, Professional, Both (Institutional and
+            Professional), or None.) Dental claims are not addressed since Dental
+            claims processing does not include capitation.</p>
+
+        <p class="numbered-list">3. Use the <span class="calibre41">Member
+ ID</span> on the claim header to locate the member's keyword MCOND member
+            condition records and determine which are pre-existing conditions records.</p>
+
+        <p class="numbered-list-indent2">If the MCOND member condition record <span
+                class="calibre41">Condition Type</span> box is Pre-existing,
+            Rated-up, or Ridered-out, the record is a pre-existing condition record.
+            Continue with Pre-Existing Conditions logic for each such record.</p>
+
+        <p class="numbered-list-indent2">If the MCOND member condition record <span
+                class="calibre41">Condition Type</span> box is not Pre-existing,
+            Rated-up, or Ridered-out, the record is not a pre-existing condition record.
+            Do not include each such record in further Pre-Existing Conditions logic.</p>
+
+        <p class="numbered-list">4. Evaluate each claim detail line on the claim
+            against each of the member's MCOND pre-existing condition records. Use
+            the claim line from <span class="calibre41">Date</span> as the
+            date of service for evaluation purposes. Also, use the claim line <span class="calibre41">Dx Ptr</span>
+            boxes to locate the corresponding<span class="calibre41"> </span>diagnosis codes on the claim header
+            or Other Claim Info window and use them for match purposes.</p>
+
+        <p class="numbered-list-indent3">Once one matching MCOND pre-existing condition
+            record is found and an MCOND <span class="calibre41">Claim Action</span>
+            applied, do not evaluate the claim any further.</p>
+
+        <p class="numbered-list-indent3">a. Compare the claim line from <span class="calibre41">Date
+ </span>to the MCOND effective period. The MCOND effective period is the
+            MCOND <span class="calibre41">Effective Date</span> through <span class="calibre41">Term Date</span>, unless
+            no <span class="calibre41">Term
+ Date</span> is specified. If no MCOND <span class="calibre41">Term
+ Date</span> is specified, use the MELIG <span class="calibre41">PEC
+ End Date</span> from the member eligibility record corresponding to the
+            claim. </p>
+
+        <p class="numbered-list-indent2">If the claim line from <span class="calibre41">Date
+ </span>is within the MCOND record effective period, continue to step 4b
+            and evaluate the diagnoses. </p>
+
+        <p class="numbered-list-indent2">If the claim line from <span class="calibre41">Date</span>
+            is not within the MCOND effective period, <!--kadov_tag{{<spaces>}}--> <!--kadov_tag{{</spaces>}}-->
+            evaluate
+            the next MCOND record for the member. If no more MCOND records exist for
+            the member, evaluate the next claim line in the same manner. If no more
+            claim lines exist, go to step 5.</p>
+
+        <p class="numbered-list-indent">b. Compare each claim line diagnosis code
+            to the MCOND record diagnosis <span class="calibre41">From Value</span>
+            through <span class="calibre41">Thru Value</span> diagnosis range.</p>
+
+        <p class="numbered-list-indent2">If the claim line diagnosis code is within
+            the MCOND record diagnosis <span class="calibre41">From Value</span>
+            through <span class="calibre41">Thru Value</span> diagnosis range,
+            apply the MCOND record <span class="calibre41">Claim Action</span>
+            (Pay, Hold, or Deny) and <span class="calibre41">Reason </span>to
+            the line. Do not include this claim line in further evaluations. Go to
+            step 4a and evaluate the next claim line. If no more claim lines exist,
+            go to step 5.</p>
+
+        <p class="numbered-list-indent2">If not, evaluate the next diagnosis code
+            on the claim line. If no more diagnosis codes exist on the claim line,
+            go to step 4a and evaluate the next MCOND record for the member. If no
+            more MCOND records exist for the member, go to step 4a and evaluate the
+            next claim line. If no more claim lines exist, go to step 5.</p>
+
+        <p class="numbered-list">5. Identify each LBPEC record that matches the line
+            of business and group of the member on the claim.</p>
+
+        <p class="numbered-list">6. For each matching LBPEC record, use the effective
+            <span class="calibre41">PEC Rule ID</span>s to identify the corresponding
+            PXRUL default pre-existing condition rules. Then evaluate each claim line
+            against the PXRUL rules identified. Use the claim line from <span class="calibre41">Date</span>
+            as the date of service for evaluation purposes. Also use the claim line
+            <span class="calibre41">Dx Ptr</span> boxes to locate the corresponding<span class="calibre41"> </span>diagnosis
+            codes on the claim header
+            or Other Claim Info window and use them for evaluation purposes.</p>
+
+        <p class="numbered-list-indent">a. Compare the claim line from <span class="calibre41">Date
+ </span>to the effective period of the <span class="calibre41">PEC
+ Rule ID</span> on the LBPEC record. The <span class="calibre41">PEC
+ Rule ID</span> effective period is the LBPEC <span class="calibre41">Effective
+ Date</span> through <span class="calibre41">Term Date </span>for
+            that<span class="calibre41"> PEC Rule ID, </span>unless no Term
+            Date is specified. If no LBPEC <span class="calibre41">Term Date</span>
+            is specified, use the MELIG <span class="calibre41">PEC End Date</span>
+            from the member eligibility record corresponding to the claim as the term
+            date.</p>
+
+        <p class="numbered-list-indent2">If the claim line from <span class="calibre41">Date
+ </span>falls within the <span class="calibre41">PEC Rule ID</span>
+            effective period, go to step 6b and continue the evaluation for that <span
+                    class="calibre41">PEC Rule ID</span>. </p>
+
+        <p class="numbered-list-indent2">If not, go to the next <span class="calibre41">PEC
+ Rule ID </span>on the LBPEC record and evaluate it in the same manner.
+            If no more <span class="calibre41">PEC Rule ID</span>s exist
+            on the current LBPEC record, go to step 6 and evaluate the next matching
+            LBPEC record. If no more matching LBPEC records exist, go to step 6a and
+            evaluate the next claim line. If no more claim lines exist, go to step
+            7.</p>
+
+        <p class="numbered-list-indent">b. Use the <span class="calibre41">PEC
+ Rule ID</span> to locate the corresponding PXRUL rule. </p>
+
+        <p class="numbered-list-indent">c. Compare the claim line from <span class="calibre41">Date
+ </span>to the PXRUL effective period. The PXRUL effective period is the
+            PXRUL <span class="calibre41">Effective Date</span> through <span class="calibre41">Term Date</span>. </p>
+
+        <p class="numbered-list-indent2">If the claim line from <span class="calibre41">Date
+ </span>is within the PXRUL effective period, go to step 6d. </p>
+
+        <p class="numbered-list-indent2">If not, go to step 6a and evaluate the next
+            <span class="calibre41">PEC Rule ID</span> on the matching LBPEC
+            record. If no more <span class="calibre41">PEC Rule ID</span>s
+            remain to be evaluated on the current LBPEC record, go to step 6 and evaluate
+            the next matching LBPEC record. If no more matching LBPEC records exist,
+            go to step 6a and evaluate the next claim line. If no more claim lines
+            exist, go to step 7.</p>
+
+        <p class="numbered-list-indent3">d. Compare the claim line diagnosis codes
+            to the PXRUL rule diagnosis code ranges. The PXRUL rule diagnosis code
+            ranges are defined in each row in the PXRUL section box Diagnosis Data
+            as the <span class="calibre41">From Value</span> through <span class="calibre41">Thru Value</span>.</p>
+
+        <p class="numbered-list-indent2">If a claim line diagnosis code is within
+            one or more PXRUL rule diagnosis code ranges, go to step 6e. </p>
+
+        <p class="numbered-list-indent2">If not, go to step 6a and evaluate the next
+            <span class="calibre41">PEC Rule ID</span> on the matching LBPEC
+            record. If no more <span class="calibre41">PEC Rule ID</span>s
+            remain to be evaluated on the current LBPEC record, go to step 6 and evaluate
+            the next matching LBPEC record. If no more matching LBPEC records exist,
+            go to step 6a and evaluate the next claim line. If no more claim lines
+            exist, go to step 7.</p>
+
+        <p class="numbered-list-indent">e. For each matching diagnosis code, compare
+            the claim line from <span class="calibre41">Date</span> to the
+            diagnosis code's keyword DIAGN (Diagnosis) record effective period. The
+            DIAGN record effective period is the DIAGN <span class="calibre41">Effective
+ Date</span> through <span class="calibre41">Term Date</span>,
+            unless no <span class="calibre41">Term Date</span> is specified.
+            If no <span class="calibre41">Term Date</span> is specified,
+            use the keyword MELIG <span class="calibre41">PEC End Date</span>
+            instead. </p>
+
+        <p class="numbered-list-indent2">If the claim line from <span class="calibre41">Date</span>
+            falls within the DIAGN record effective period, place the claim line on
+            hold (set the <span class="calibre41">Proc Status</span> to H
+            - Held). Do not include this claim line in further evaluations. Go to
+            step 6 and evaluate the next claim detail line. If no further claim lines
+            exist, go to step 7.</p>
+
+        <p class="numbered-list-indent2">If the claim line from <span class="calibre41">Date</span>
+            does not fall within the DIAGN effective period, evaluate the next matching
+            diagnosis code. </p>
+
+        <p class="numbered-list-indent4">If no further matching diagnosis codes
+            exist, go to go to step 6a and evaluate the next <span class="calibre41">PEC
+ Rule ID</span> on the matching LBPEC record. </p>
+
+        <p class="numbered-list-indent5">If no more <span class="calibre41">PEC
+ Rule ID</span>s remain to be evaluated on the current LBPEC record, go
+            to step 6 and evaluate the next matching LBPEC record. </p>
+
+        <p class="numbered-list-indent6">If no more matching LBPEC records exist,
+            go to step 6a and evaluate the next claim line. If no more claim lines
+            exist, go to step 7.</p>
+
+        <p class="numbered-list">7. Evaluate the date in the keyword MEMBR <span class="calibre41">PEC End Date</span>
+            box. </p>
+
+        <p class="numbered-list-indent">If the <span class="calibre41">PEC
+ End Date </span>box is blank, skip to step 10 and evaluate the keyword
+            GRUPD <span class="calibre41">Exclusion Type</span> and <span class="calibre41">Exclusion Period</span>.</p>
+
+        <p class="numbered-list-indent">If the <span class="calibre41">PEC
+ End Date</span> box contains a date, continue to step 8 and evaluate the
+            keyword GRUPD <span class="calibre41">Apply</span> <span class="calibre41">PEC
+ to</span> <span class="calibre41">PCP</span> check box.</p>
+
+        <p class="numbered-list">8. Evaluate the GRUPD <span class="calibre41">Apply
+ PEC to</span> <span class="calibre41">PCP</span> check box.</p>
+
+        <p class="numbered-list-indent">If the check box is selected or the service
+            is not provided by the member's PCP, continue to step 9 and evaluate the
+            first claim line. </p>
+
+        <p class="numbered-list-indent">If the check box is cleared and the member's
+            PCP or a covering provider is performing the service, then go to step
+            10 and evaluate the keyword GRUPD <span class="calibre41">Exclusion
+ Type</span> and <span class="calibre41">Exclusion Period</span>.</p>
+
+        <p class="numbered-list">9. Compare the claim line from <span class="calibre41">Date</span>
+            to the date in the <span class="calibre41">PEC End Date</span>
+            box in keyword MELIG. </p>
+
+        <p class="numbered-list-indent">If the claim line from <span class="calibre41">Date</span>
+            is before or equal to the <span class="calibre41">PEC End Date</span>,
+            then hold the claim line (set the <span class="calibre41">Proc
+ Status</span> to H - Held) with the reason code from the <span class="calibre41">Reason</span>
+            box in keyword MELIG. Do not include this claim line in further evaluations.
+            Then evaluate the next claim line in the same fashion. If no more claim
+            lines exist, go to step 10.</p>
+
+        <p class="numbered-list-indent">If the claim line from <span class="calibre41">Date</span>
+            is past the <span class="calibre41">PEC End Date</span>, continue
+            to step 10.</p>
+
+        <p class="numbered-list">10. Evaluate keyword GRUPD <span class="calibre41">Exclusion
+ Type</span> and <span class="calibre41">Exclusion Period</span>
+            boxes. </p>
+
+        <p class="numbered-list-indent">If they are blank, stop pre-existing conditions
+            logic for this claim.</p>
+
+        <p class="numbered-list-indent">If they have values entered, calculate the
+            exclusion period end date. The exclusion period end date is calculated
+            as the member's earliest keyword MELIG effective date for that group or
+            plan plus the number of days or months specified by keyword GRUPD fields
+            <span class="calibre41">Exclusion Type</span> (days or months)
+            and <span class="calibre41">Exclusion Period</span> (number of
+            days or months). Then continue to step 11 and evaluate the first claim
+            line.</p>
+
+        <p class="body-text">11. Compare the claim line from <span class="calibre41">Date</span>
+            to the calculated exclusion period end date. </p>
+
+        <p class="body-text-block">If the claim line from <span class="calibre41">Date</span>
+            is before or equal to the end date, hold the claim line (set the <span class="calibre41">Proc Status</span>
+            to H - Held) with the reason
+            code from the keyword GRUPD <span class="calibre41">Reason</span>
+            box. Evaluate the next claim line in the same manner. If no more claim
+            lines exist, stop.</p>
+
+        <p class="body-text-block">If the claim line from <span class="calibre41">Date</span>
+            is past the end date, evaluate the next claim line in the same manner.
+            If no more claim lines exist, stop.</p>
+
+        <p class="body-text">In all cases where a claim line is held, the message
+            "Possible pre-existing condition, line pended" displays.</p>
+
+        <p class="body-text">If pricing only is set up, Pre-Existing Conditions logic
+            is still invoked after pricing.</p>
+
+        <p class="doc-level"><a
+                name="Pre-Existing_Conditions_How_DIAMOND_Thinks_About_Eligibility_Records_and_Pre-Existing_Conditions_MID"></a>About
+            Eligibility Records and Pre-Existing Conditions</p>
+
+        <p class="body-text">When a new Member Eligibility History record is entered
+            in keyword MELIG, you can enter member level pre-existing condition overrides.
+            If keyword MELIG data is entered or filled by creating a new record and
+            no pre-existing data in keyword GRUPD exists, then a message "No
+            PEC exists at group level" will display to remind the operator that
+            GRUPD rules must be set up or the MELIG pre-existing data must be removed.
+        </p>
+
+        <p class="body-text">In keyword MEMBR, when you select certain commands on
+            the <span class="calibre41">Special</span> menu, DIAMOND automatically
+            creates a new Member Eligibility record in keyword MELIG. If there is
+            no break in service, then the <span class="calibre41">PEC</span>
+            <span class="calibre41">Waived</span> check box, <span class="calibre41">PEC</span>
+            <span class="calibre41">End</span> <span class="calibre41">Date</span>
+            box, and <span class="calibre41">Reason</span> box will be filled
+            with what was on the previous record. If there is a lapse of coverage,
+            the fields will not be filled on the new record. In either situation,
+            if the new record is generated by a change in group, plan or rider, a
+            message "Verify accuracy of PEC data" will display for the operator.
+        </p>
+
+        <p class="body-text">During claim processing, the exclusion period will be
+            calculated from the effective date of the earliest Member Eligibility
+            record in keyword MELIG for that group or plan combination.</p>
+
+
+    </div>
+
+
+
+
+    <div class="calibreEbNav">
+
+        <a href="Delete_a_member_pre-existing_condition.htm" class="calibreAPrev">previous page
+        </a>
+
+
+        <a href="../ib0gc-jzzjl.html" class="calibreAHome">start
+        </a>
+
+
+        <a href="Add_member_working_aged_survey_information.htm" class="calibreANext">next page
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+</html>

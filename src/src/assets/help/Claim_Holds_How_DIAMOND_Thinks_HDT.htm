@@ -1,0 +1,342 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+    <!-- $MVD$:fontset("Courier New","Courier New") -->
+    <title>Claim Holds How DIAMOND Thinks</title>
+    <meta content="RoboHelp by eHelp Corporation www.ehelp.com" name="generator"/>
+    <meta name="copyright"
+          value="© Copyright 2002 Health Systems Design Corp., a wholly owned subsidiary of Perot Systems Corporation. All rights reserved"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+</head>
+<body>
+
+<div class="calibreMeta">
+    <div class="calibreMetaTitle">
+
+
+        <h1>
+            <a href="../bj5if-qozss.html">DIAMOND 950 Help
+            </a>
+        </h1>
+
+
+    </div>
+    <div class="calibreMetaAuthor">
+        Unknown
+
+    </div>
+</div>
+
+<div class="calibreMain">
+
+    <div class="calibreEbookContent">
+
+        <div class="calibreEbNavTop">
+
+            <a href="View_a_held_claim.htm" class="calibreAPrev">previous page
+            </a>
+
+
+            <a href="Adjust_a_claim_detail_line_item.htm" class="calibreANext">next page
+            </a>
+
+        </div>
+
+
+        <h4 class="calibre1">Claim Holds, How DIAMOND Thinks</h4>
+        <table cellpadding="1" cellspacing="0" width="534" class="calibre172">
+            <tbody class="">
+            <tr valign="top" class="">
+                <td width="534" class="">
+                    <p class="map-links"><a
+                            href="Claim_Holds_How_DIAMOND_Thinks_HDT.htm#ClHldsHDT_Applying_User-Defined_Claim_Header_Hold_Rules_(CLHLD)_HDT_MID"><img
+                            alt="image\assets/help/MidTopic_shg.gif" border="0" src="assets/help/MidTopic_shg.gif"
+                            usemap="#AreaMap0" class=""/>
+                    </a> Applying User-Defined Claim Header Hold Rules (CLHLD)
+                    </p>
+                </td>
+            </tr>
+            <tr valign="top" class="">
+                <td width="534" class="">
+                    <p class="map-links"><a
+                            href="Claim_Holds_How_DIAMOND_Thinks_HDT.htm#ClmHldsHDT_Applying_Predefined_Header_Hold_Rules_HDT_MID"><img
+                            alt="image\assets/help/MidTopic_shg.gif" border="0" src="assets/help/MidTopic_shg.gif"
+                            usemap="#AreaMap1" class=""/>
+                    </a> Applying Predefined Header Hold Rules
+                    </p>
+                </td>
+            </tr>
+            <tr valign="top" class="">
+                <td width="534" class="">
+                    <p class="map-links"><a
+                            href="Claim_Holds_How_DIAMOND_Thinks_HDT.htm#Claim_Holds_How_DIAMOND_Thinks_Holding_Claims_and_Accounts_Payable_Processing_MID"><img
+                            alt="image\assets/help/MidTopic_shg.gif" border="0" src="assets/help/MidTopic_shg.gif"
+                            usemap="#AreaMap2" class=""/>
+                    </a> Holding Claims and Accounts Payable Processing
+                    </p>
+                </td>
+            </tr>
+            <tr valign="top" class="">
+                <td width="534" class="">
+                    <p class="map-links"><a
+                            href="Claim_Holds_How_DIAMOND_Thinks_HDT.htm#ClaimHlds_Holds_Matched_Claim_Auth_HDT_MID"><img
+                            alt="image\assets/help/MidTopic_shg.gif" border="0" src="assets/help/MidTopic_shg.gif"
+                            usemap="#AreaMap3" class=""/>
+                    </a><span class="66"> </span>Holds and Matched Claim/Authorization Processing
+                    </p>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <p class="doc-level"><a name="ClHldsHDT_Applying_User-Defined_Claim_Header_Hold_Rules_(CLHLD)_HDT_MID"></a>Applying
+            User-Defined Claim Header Hold Rules (CLHLD)</p>
+        <p class="body-text">Use keyword CLHLD (Claim Hold Rules) to define Hold rules for holding claims at the header
+            level. Claim header Hold rules hold the entire claim, preventing all claim detail line items from being
+            finalized and selected for payment by the Accounts Payable module. (You can also hold entire claims using
+            predefined header Hold rules. For more information, see <a
+                    href="Claim_Holds_How_DIAMOND_Thinks_HDT.htm#ClmHldsHDT_Applying_Predefined_Header_Hold_Rules_HDT_MID">Applying
+                Predefined Header Hold Rules</a>.)</p>
+        <p class="body-text">You can select any claim header field (except date fields) as a determinant for CLHLD
+            header Hold rules. For example, you can hold all claims for a particular Vendor ID.</p>
+        <p class="body-text">User-defined claim header Hold rules can be applied either automatically or manually:</p>
+        <ul class="">
+            <li class="">
+                <p class="bullet-list-h3">Online, DIAMOND automatically applies user-defined header Hold rules the first
+                    time you move from the Claim header window to the Claim detail window, after performing all other
+                    header logic and saving the header. </p></li>
+            <li class="">
+                <p class="bullet-list-h3">Claims Batch logic automatically applies these rules upon post of the
+                    batch.</p></li>
+            <li class="">
+                <p class="bullet-list-h3">Online, you can also manually apply user-defined header Hold rules using <span
+                        class="calibre5">Re-apply Claim Holds</span> command on the <span
+                        class="calibre5">Special</span> menu in keywords INCLM, PSCLM, and DNCLM. </p></li>
+        </ul>
+        <p class="body-text">DIAMOND applies CLHLD user-defined claim header hold rules as follows.</p>
+        <p class="numbered-list">1. If you are using the INCLM/PSCLM/DNCLM Special menu command Re-apply Claim Holds,
+            DIAMOND first marks all existing CLHLD header hold reason records as historical.</p>
+        <p class="numbered-list">2. DIAMOND then evaluates the claim header data against each rule. </p>
+        <p class="numbered-list">3. If the claim header data does not satisfy the rule criteria, DIAMOND proceeds to the
+            next rule. </p>
+        <p class="numbered-list">4. If the claim header data does satisfy the rule criteria, DIAMOND does the
+            following:</p>
+        <ul class="">
+            <li class="">
+                <p class="bullet-list-h5">Adds a claim header hold record for Line #000, using the Reason Code you
+                    specified on the CLHLD rule and other identifying information such as Source ID, the hold rule name
+                    specified for that rule prefixed with 'CLHLD'.</p></li>
+            <li class="">
+                <p class="bullet-list-h5">Selects the <span class="calibre5">Holds</span> check box on the claim header.
+                </p></li>
+        </ul>
+        <p class="numbered-list">5. DIAMOND continues until all rules have been applied.</p>
+        <p class="body-text">Note that all CLHLD rules are always evaluated, and each rule that is satisfied creates a
+            separate hold record on the claim. </p>
+        <p class="body-text">You can view and modify hold records using the <span class="calibre5">Hold Reasons</span>
+            command on the <span class="calibre5">Topic</span> menu in keywords INCLM, PSCLM, and DNCLM. You can also
+            view hold records using the <span class="calibre5">Hold Reason Display </span>command on the <span
+                    class="calibre5">Window</span> menu in keywords INCLM, PSCLM, DNCLM, and CLDSP.</p>
+        <p class="body-text">Important considerations:</p>
+        <ul class="">
+            <li class="">
+                <p class="bullet-list-h1">User-defined CLHLD header holds do not modify the Processing Status and Hold
+                    Reason codes on the claim detail line items. (Note that predefined header holds, for example, member
+                    holds or group holds, do change the Processing Status to H – Held for all detail lines on the
+                    claim.)</p></li>
+            <li class="">
+                <p class="bullet-list-h1">CLHLD header holds do not prevent you from pricing and adjudicating claim
+                    detail line items.</p></li>
+            <li class="">
+                <p class="bullet-list-h1">CLHLD header holds do not prevent claim detail line holds and denials from
+                    being applied.</p></li>
+            <li class="">
+                <p class="bullet-list-h1">If a CLHLD automatic header hold rule is added or changed, DIAMOND
+                    automatically applies the new rule to subsequently entered claims. However, existing claims are not
+                    subject to new or revised rules unless you manually invoke the INCLM/PSCLM/DNCLM Special menu
+                    command Re-apply Claim Holds.</p></li>
+            <li class="">
+                <p class="bullet-list-h1">Header holds must be manually removed. For more information, see <a
+                        href="Release_a_held_claim.htm">Release a held claim</a>.</p></li>
+            <li class="">
+                <p class="bullet-list-h1">When you manually apply a user-defined header hold rule using the
+                    INCLM/PSCLM/DNCLM Special menu command Re-apply Claim Holds, finalized claim line items are
+                    unaffected.</p></li>
+            <li class="">
+                <p class="bullet-list-h1">You cannot have more than one <span class="calibre5">active</span> header hold
+                    reason code record with the same Source ID and Hold Reason Code. You can have additional header hold
+                    reason records with the same Source and Hold Reason Code as an active record only when all other
+                    records are marked historical.</p></li>
+            <li class="">
+                <p class="bullet-list-h1">Automatic header holds apply to claims entered online in keywords INCLM,
+                    PSCLM, and DNCLM, or entered using Claims Batch or Claims API.</p></li>
+            <li class="">
+                <p class="bullet-list-h1">A claim may have multiple different hold reason codes applied to a single
+                    detail line or to a header. A claim may also have different hold reason codes assigned to a detail
+                    line than to the header.</p></li>
+        </ul>
+        <p class="doc-level"><a name="ClmHldsHDT_Applying_Predefined_Header_Hold_Rules_HDT_MID"></a>Applying Predefined
+            Header Hold Rules</p>
+        <p class="body-text">Several predefined header Hold rules are available for your use in DIAMOND. For example,
+            you can use predefined header Hold rules to hold claims for a member or a group. </p>
+        <p class="body-text">Predefined header holds are applied differently than CLHLD user-defined header holds. While
+            CLHLD header holds create a single hold reason record for Line #000, pre-defined header holds instead create
+            a separate hold reason record for each detail line on the claim. However, both are based on claim header
+            field values and both in effect hold an entire claim. For a listing of hold sources, including all
+            predefined header Hold rules, and references to user documentation describing the criteria and logic for
+            each, see <a href="Claim_Holds_Sources_and_Effects_PROC_OVW.htm">Claim Holds: Sources and Effects.</a></p>
+        <p class="body-text">DIAMOND applies predefined claim header hold rules as follows (this does not include CLHLD
+            user-defined hold rules).</p>
+        <p class="numbered-list">1. DIAMOND evaluates the claim header data against the rule. </p>
+        <p class="numbered-list">2. If the claim header data does not satisfy the rule criteria, then DIAMOND continues
+            claim processing. </p>
+        <p class="numbered-list">3. If the claim header data does satisfy the rule criteria, then DIAMOND does the
+            following:</p>
+        <ul class="">
+            <li class="">
+                <p class="bullet-list-h5">Sets the <span class="calibre5">Proc Status</span> list on each claim detail
+                    line on the claim to <span class="calibre5">H - Held</span>.</p></li>
+            <li class="">
+                <p class="bullet-list-h5">Selects the <span class="calibre5">Holds</span> check box on each detail line
+                    item.</p></li>
+            <li class="">
+                <p class="bullet-list-h5">Adds a hold reason record for each claim detail line item on the claim, using
+                    the Reason code you specified on the CLHLD rule and including other identifying information such as
+                    Source ID. (The Source ID assigned varies by rule.). (DIAMOND does not write a header hold reason
+                    record for Line #000 for predefined header holds.)</p></li>
+            <li class="">
+                <p class="bullet-list-h5">You can view and modify hold records using the <span class="calibre5">Hold Reasons</span>
+                    command on the <span class="calibre5">Topic</span> menu in keywords INCLM, PSCLM, and DNCLM. You can
+                    also view hold records using the <span class="calibre5">Hold Reason Display</span> command on the
+                    <span class="calibre5">Window</span> menu in INCLM, PSCLM, DNCLM, and CLDSP.</p></li>
+        </ul>
+        <p class="numbered-list">4. Selects the <span class="calibre5">Holds</span> check box on the claim header
+            window.</p>
+        <p class="numbered-list">5. DIAMOND continues until all rules have been applied.</p>
+        <p class="doc-level"><a
+                name="Claim_Holds_How_DIAMOND_Thinks_Holding_Claims_and_Accounts_Payable_Processing_MID"></a>Holding
+            Claims and Accounts Payable Processing</p>
+        <p class="body-text">Claim holds prevent Accounts Payable from finalizing and selecting claims for payment. This
+            impacts either entire claims or individual claim detail lines depending upon the specific hold. This works
+            as follows:</p>
+        <ul class="">
+            <li class="">
+                <p class="bullet-list-h3">When a CLHLD user-defined header hold is applied, DIAMOND creates a single
+                    hold reason record for Line #000. While this hold is active, all claim detail lines on the claim are
+                    prevented from being finalized and selected for payment by Accounts Payable.</p></li>
+            <li class="">
+                <p class="bullet-list-h3">You can also manually enter a header hold reason record for Line #000 on a
+                    claim using the INCLM/PSCLM/DNCLM Topic Hold Reasons. While this hold is active, all claim detail
+                    line items on the claim are prevented from being finalized and selected for payment by Accounts
+                    Payable.</p></li>
+            <li class="">
+                <p class="bullet-list-h3">When one of the predefined header holds is applied, DIAMOND creates a separate
+                    hold reason record for each claim detail line on the claim and changes the Processing Status to H -
+                    Held. While these holds are active, the claim detail line items are prevented from being finalized
+                    and selected for payment by Accounts Payable.</p></li>
+            <li class="">
+                <p class="bullet-list-h3">When a detail line hold is applied, DIAMOND creates a hold reason record for
+                    the current detail line and sets the <span class="calibre5">Proc</span> <span class="calibre5">Status</span>
+                    list to <span class="calibre5">H - Held</span>. While the hold is active, the detail line cannot be
+                    finalized and selected for payment by Accounts Payable. In addition, if the system parameter
+                    PARTIALPAY is set to "do not allow partial payment", all other detail line items on the same claim
+                    are also prevented from being finalized and selected for payment by Accounts Payable.</p></li>
+        </ul>
+        <p class="doc-level"><a name="ClaimHlds_Holds_Matched_Claim_Auth_HDT_MID"></a>Holds and Matched
+            Claim/Authorization Processing</p>
+        <p class="body-text">You can hold or deny an institutional, professional services, or dental claim when it is
+            matched to an authorization and a third party liability value (WC, TP, AA) is selected in the <span
+                    class="calibre5">TPL Code</span> list in keyword AUTHS (Authorization Master). During claims
+            processing (online, batch, and API) DIAMOND uses the authorization’s TPL Code in conjunction with the PARAM
+            - TPLCODEACT parameter (1 and/or 2 and/or 3) and:</p>
+        <table cellpadding="1" cellspacing="0" width="498" class="calibre172">
+            <tbody class="">
+            <tr valign="top" class="">
+                <td width="258" class="">
+                    <p class="tbl-header">IF</p></td>
+                <td width="240" class="">
+                    <p class="tbl-header">Then</p></td>
+            </tr>
+            <tr valign="top" class="">
+                <td width="258" class="">
+                    <p class="tbl-text1">TPLCODEACT = Action code entered and reason code entered.</p></td>
+                <td width="240" class="">
+                    <p class="tbl-text1">As specified in the parameter, DIAMOND takes the hold or deny action and
+                        assigns the reason code to all claim detail lines.</p></td>
+            </tr>
+            <tr valign="top" class="">
+                <td width="258" class="">
+                    <p class="tbl-text1">TPLCODEACT = No action code entered and no reason code entered,</p>
+                    <p class="tbl-text-noline">or</p>
+                    <p class="tbl-text-noline">TPLCODEACT = Action code entered and no reason code entered or reason
+                        code fails validation during claims processing,</p>
+                    <p class="tbl-text-noline">or</p>
+                    <p class="tbl-text-noline">TPLCODEACT = No action code entered and reason code entered.</p></td>
+                <td width="240" class="">
+                    <p class="tbl-text1">Processing continues. DIAMOND takes no hold or deny action based on the
+                        TPLCODEACT parameter.</p>
+                    <p class="tbl-text-noline">Online = DIAMOND issues appropriate processing messages during claims
+                        processing.</p>
+                    <p class="tbl-text-noline">Batch/API = DIAMOND issues a critical error during claims processing.</p>
+                </td>
+            </tr>
+            <tr valign="top" class="">
+                <td width="258" class="">
+                    <p class="tbl-text1">More than one authorization matches the claim.</p></td>
+                <td width="240" class="">
+                    <p class="tbl-text1">Online = DIAMOND prompts operator to select one authorization.</p>
+                    <p class="tbl-text-noline">Batch/API = DIAMOND does not read the TPLCODEACT parameter (takes no hold
+                        or deny action) however; the claim is held as a result of the Auth/Claim Match process.</p></td>
+            </tr>
+            </tbody>
+        </table>
+        <p class="body-text">In addition:</p>
+        <ul class="">
+            <li class="">
+                <p class="bullet-list-h1">There is only one reason code displayed for a held claim detail line. If
+                    DIAMOND has denied a claim detail line prior the AUTHS - TPL Code processing logic, DIAMOND displays
+                    the previously assigned deny reason.</p></li>
+            <li class="">
+                <p class="bullet-list-h1">DIAMOND invokes the AUTHS - TPL Code processing logic after the assignment of
+                    medical definitions (MEDEF) and before adjudication processing.</p></li>
+            <li class="">
+                <p class="bullet-list-h1">When a claim is denied as a result of the AUTHS - TPL Code processing logic,
+                    DIAMOND makes the non-covered amount equal to the allowed amount. As this occurs prior to
+                    adjudication, no adjustment to patient liabilities is necessary.</p></li>
+        </ul>
+        <p class="body-text">DIAMOND does not include the following claim types/statuses in the AUTHS - TPL Code
+            processing logic:</p>
+        <ul class="">
+            <li class="">
+                <p class="bullet-list-h1">Prepaid claims</p></li>
+            <li class="">
+                <p class="bullet-list-h1">Claims with a claim status of I (Informational) or N (No Check)</p></li>
+            <li class="">
+                <p class="bullet-list-h1">Claims with a processing status of F (Final), P (Paid), C (Check Issued), or N
+                    (Paid-No Check)</p></li>
+        </ul>
+
+
+    </div>
+
+
+    <div class="calibreEbNav">
+
+        <a href="View_a_held_claim.htm" class="calibreAPrev">previous page
+        </a>
+
+
+        <a href="../bj5if-qozss.html" class="calibreAHome">start
+        </a>
+
+
+        <a href="Adjust_a_claim_detail_line_item.htm" class="calibreANext">next page
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+</html>

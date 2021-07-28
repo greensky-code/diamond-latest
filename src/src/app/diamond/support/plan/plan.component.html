@@ -1,0 +1,69 @@
+<!-- Copyright (c) 2021 . All Rights Reserved. -->
+<div class="container-fluid">
+    <div class="card-block">
+        <form [formGroup]="planForm" novalidate>
+            <h2 class="form-title card-label-admin">Plan</h2>
+                <button type="button" *ngIf="showIcon" class="modal-close close" aria-label="Close" (click)="modalClose()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <div class="row">
+                    <menu-bar [menus]="menu" (onMenuClick)="onMenuItemClick($event)"></menu-bar>
+                </div>
+            <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+            <app-pop-up-message #popUpMesssage (buttonclickEvent)="popUpButtonHandler($event)"  [(popupMessage)] = "popUpMessage"></app-pop-up-message>
+                        <br>
+                        <!-- DataGrid with Name of DataGrid -->
+                    <ag-grid-angular #agGrid class="ag-theme-fresh" [gridOptions]="dataGridGridOptions"
+                    style="width: 100%; height: 300px;"
+                    [enableSorting]="true"
+                    [enableFilter]="true"
+                    [floatingFilter]="true"
+                    [pagination]="true"
+                    [showToolPanel]="true"
+                    (selectionChanged)="OnChangeGrid()">
+                    </ag-grid-angular>
+
+            <div class="form-group row">
+            </div>
+
+            <div class="form-group row">
+                <!-- Textbox with label of Plan Code -->
+                 <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('planCode') }">
+                     <label class="col-form-label text-primary" for="planCode" i18n>Plan Code</label>
+                     <input (change)="onChangePlanCode($event)" type="text" id="planCode"     class="form-control" formControlName="planCode"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('planCode')">
+                      {{ formValidation.errorMessage('planCode') }}
+                     </small>
+                 </div>
+
+            </div>
+
+            <div class="form-group row">
+                <!-- TextArea with label of Description -->
+                 <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('description') }">
+                     <label class="col-form-label text-primary" for="description" i18n>Description</label>
+                     <textarea id="description" name="description" class="form-control" formControlName="description"></textarea>
+                 </div>
+
+            </div>
+
+            <div class="form-group row">
+                <!-- Textbox with label of Auto Audit -->
+                 <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('autoAudit') }">
+                     <label class="col-form-label" for="autoAudit" i18n>Auto Audit</label>
+                     <input type="text" id="autoAudit"    class="form-control" formControlName="autoAudit"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('autoAudit')">
+                      {{ formValidation.errorMessage('autoAudit') }}
+                     </small>
+                 </div>
+
+            </div>
+
+            <div class="form-group row">
+            </div>
+        </form>
+    </div>
+</div>
+
+<ng-keyboard-shortcuts [shortcuts]="shortcuts"></ng-keyboard-shortcuts>
+<ng-keyboard-shortcuts-help [key]="'f2'" [closeKey]="'escape'" [title]="'Hotkeys Help'"></ng-keyboard-shortcuts-help>

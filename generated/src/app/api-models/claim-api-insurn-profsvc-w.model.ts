@@ -1,0 +1,53 @@
+/* Copyright (c) 2020 . All Rights Reserved. */
+
+export class ClaimApiInsurnProfsvcW {
+  claimIdNo: string;
+  sequenceNo: string;
+  claimFilingInd: string;
+  sourceOfPay: string;
+  insuranceTypeCode: string;
+  payorOrganizationId: string;
+  payorClaimOfficeNo: string;
+  payorName: string;
+  groupNo: string;
+  groupName: string;
+  ppoHmoInd: string;
+  ppoInd: string;
+  priorAuthNo: string;
+  assignOfBenefits: string;
+  patSignatureSource: string;
+  patRelToInsured: string;
+  insuredIdNo: string;
+  insuredLastName: string;
+  insuredFirstName: string;
+  insuredMi: string;
+  insuredGeneration: string;
+  insuredSex: string;
+  insuredDateOfBirth: string;
+  insuredEmplStatus: string;
+  supplementalInsInd: string;
+  insuranceLocationId: string;
+  payorAddr1: string;
+  payorAddr2: string;
+  payorCity: string;
+  payorState: string;
+  payorZip: string;
+  disallowedCostCont: string;
+  disallowedOther: string;
+  allowedAmount: string;
+  deductibleAmount: string;
+  coinsuranceAmount: string;
+  payorAmountPaid: string;
+  zeroPaidInd: string;
+  adjudicationInd1: string;
+  adjudicationInd2: string;
+  adjudicationInd3: string;
+  champusSpnsrBranch: string;
+  champusSpnsrGrade: string;
+  champusSpnsrStatus: string;
+  insCardEffectDate: string;
+  insCardTermDate: string;
+  balanceDue: string;
+  status: string;
+  payorCountry: string;
+}

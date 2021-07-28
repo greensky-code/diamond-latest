@@ -1,0 +1,239 @@
+<!-- Copyright (c) 2020 . All Rights Reserved. -->
+<div class="container-fluid">
+    <div class="card-block">
+        <div class="row form-title">
+            <h2 class="col-md-6 card-label-admin">Vendor Master</h2>
+        </div>
+        <button type="button" *ngIf="showIcon" class="modal-close close" aria-label="Close" (click)="modalClose()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+        <app-pop-up-message #popUpMesssage (buttonclickEvent)="popUpButtonHandler($event)"  [(popupMessage)] = "popUpMessage"></app-pop-up-message>
+        <div class="row mt-3 mb-3">
+            <menu-bar [menus]="menu" (onMenuClick)="onMenuItemClick($event)"></menu-bar>
+        </div>
+        <ng-template #loaderTemplate let-loaderValue="value">
+            <div class="row justify-content-center mt-4" style="display: flex;margin-left: auto;margin-right: auto;" *ngIf="loaderValue">
+                <div class="spinner-border text-success" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>
+            </div>
+        </ng-template>
+        <ng-container *ngTemplateOutlet="loaderTemplate;context:{value: secProgress }"></ng-container>
+        <form [formGroup]="vendorMasterForm" novalidate *ngIf="!secProgress">
+            <div class="form-group row">
+                <!-- Textbox with label of Vendor ID -->
+                 <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('vendorId') }">
+                     <label class="col-form-label" for="vendorId" i18n>Vendor ID</label>
+                     <input type="text" id="vendorId"  class="form-control" name="vendorId" maxlength="15" formControlName="vendorId" (keydown)="onLookupFieldChange($event)" />
+                      <small class="text-danger" *ngIf="formValidation.isValidField('vendorId')">
+                      {{ formValidation.errorMessage('vendorId') }}
+                     </small>
+                 </div>
+
+            </div>
+
+            <ng-container *ngIf="showVendorMasterField">
+
+                <div class="form-group row">
+                </div>
+
+                <div class="form-group row">
+                    <!-- Textbox with label of Full Name -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('fullName') }">
+                        <label class="col-form-label" for="fullName" i18n>Full Name</label>
+                        <input type="text" id="fullName"  class="form-control" name="fullName"
+                               formControlName="fullName"/>
+                        <small class="text-danger" *ngIf="formValidation.isValidField('fullName')">
+                            {{ formValidation.errorMessage('fullName') }}
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <!-- Textbox with label of Short Name -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('shortName') }">
+                        <label class="col-form-label mandatory-field" for="shortName" i18n>Short Name</label>
+                        <input type="text" id="shortName" name="shortName" #shortName (keydown)="onChangeShortName($event, shortName.value)"
+                               class="form-control" formControlName="shortName"/>
+                        <small class="text-danger" *ngIf="formValidation.isValidField('shortName')">
+                            {{ formValidation.errorMessage('shortName') }}
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <!-- DropdownList with label of Vendor Type -->
+                    <div class="selectContainer col-md-4 " [ngClass]="{'has-danger': formValidation.isValidField('vendorType') }">
+                        <label class="col-form-label mandatory-field"  for="vendorType" i18n>Vendor Type</label>
+                        <select class="form-control" id="vendorType" name="vendorType" formControlName="vendorType" >
+                            <option value="">-Select-</option>
+                            <option *ngFor="let dddwDtl of dddwDtls" [value]="dddwDtl.dddwDtlPrimaryKey.dataVal">{{dddwDtl.dddwDtlPrimaryKey.displayVal}}</option>
+                        </select>
+                    </div>
+
+                    <!-- Textbox with label of IRS Tax ID -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('irsTaxId') }">
+                        <label class="col-form-label" for="irsTaxId" i18n>IRS Tax ID</label>
+                        <input type="text" id="irsTaxId" name="irsTaxId"  class="form-control" formControlName="irsTaxId" (keydown)="onLookupFieldChange2($event)"/>
+                        <small class="text-danger" *ngIf="formValidation.isValidField('irsTaxId')">
+                            {{ formValidation.errorMessage('irsTaxId') }}
+                        </small>
+                    </div>
+                </div>
+
+
+                <div class="form-group row">
+                    <!-- Textbox with label of National Provider ID -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('nationalProviderId') }">
+                        <label class="col-form-label" for="nationalProviderId" i18n>National Provider ID</label>
+                        <input type="text" id="nationalProviderId"  name="nationalProviderId"  class="form-control" formControlName="nationalProviderId"/>
+                        <small class="text-danger" *ngIf="formValidation.isValidField('nationalProviderId')">
+                            {{ formValidation.errorMessage('nationalProviderId') }}
+                        </small>
+                    </div>
+
+                    <!-- Textbox with label of Trading Partner ID -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('tradingPartnerId') }">
+                        <label class="col-form-label" for="tradingPartnerId" i18n>Trading Partner ID</label>
+                        <input type="text" id="tradingPartnerId"  name="tradingPartnerId"  class="form-control" formControlName="tradingPartnerId" (keydown)="onLookupFieldChangeTradingPartnerId($event)"/>
+                        <small class="text-danger" *ngIf="formValidation.isValidField('tradingPartnerId')">
+                            {{ formValidation.errorMessage('tradingPartnerId') }}
+                        </small>
+                    </div>
+                </div>
+
+
+                <div class="form-group row">
+                    <!-- Checkbox with label of Hold Payment Flag -->
+                    <div class="" [ngClass]="{'has-error': displayMessage.holdPaymentFlag }">
+                        <div class="checkbox col-md-12">
+                            <input id="holdPaymentFlag" #holdPaymentFlag   type="checkbox"   (change)="changeStatus2(holdPaymentFlag.checked)"  formControlName="holdPaymentFlag">
+                            <label class="checkbox">
+                                Hold Payment Flag
+                            </label>
+                        </div>
+                        <span class="help-block" *ngIf="displayMessage.holdPaymentFlag">
+                        {{ displayMessage.holdPaymentFlag  }}
+                     </span>
+                    </div>
+
+                </div>
+
+                <div class="form-group row">
+                    <!-- Textbox with label of Payment Delay Days -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('paymentDelayDays') }">
+                        <label class="col-form-label" for="paymentDelayDays" i18n>Payment Delay Days</label>
+                        <input type="text" id="paymentDelayDays"  name="paymentDelayDays"  class="form-control" formControlName="paymentDelayDays"/>
+                        <small class="text-danger" *ngIf="formValidation.isValidField('paymentDelayDays')">
+                            {{ formValidation.errorMessage('paymentDelayDays') }}
+                        </small>
+                    </div>
+
+                </div>
+
+                <div class="form-group row">
+                    <!-- Checkbox with label of EFT Indicator -->
+                    <div class="" [ngClass]="{'has-error': displayMessage.eftIndicator }">
+                        <div class="checkbox col-md-12">
+                            <input id="eftIndicator" #eftIndicator value="eftIndicator"  [checked]="indicatorStatus" name="eftIndicator" (change)="changeStatus(eftIndicator.checked)" formControlName="eftIndicator" type="checkbox">
+                            <label class="checkbox">
+                                EFT Indicator
+                            </label>
+                        </div>
+                        <span class="help-block" *ngIf="displayMessage.eftIndicator">
+                        {{ displayMessage.eftIndicator  }}
+                     </span>
+                    </div>
+
+                </div>
+
+                <div class="form-group row">
+                    <!-- Textbox with label of Bank Account No. -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('bankAccountNo') }">
+                        <label class="col-form-label" for="bankAccountNo" i18n>Bank Account No.</label>
+                        <input type="text" id="bankAccountNo" name="bankAccountNo"
+                               class="form-control" formControlName="bankAccountNo" [readonly]="!isReadOnly"/>
+                        <small class="text-danger" *ngIf="formValidation.isValidField('bankAccountNo')">
+                            {{ formValidation.errorMessage('bankAccountNo') }}
+                        </small>
+                    </div>
+
+                    <!-- Textbox with label of Bank Acct Desc. -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('bankAcctDesc') }">
+                        <label class="col-form-label" for="bankAcctDesc" i18n>Bank Acct Desc.</label>
+                        <input type="text" id="bankAcctDesc"
+                               class="form-control" name="bankAcctDesc" formControlName="bankAcctDesc" [readonly]="!isReadOnly"/>
+                        <small class="text-danger" *ngIf="formValidation.isValidField('bankAcctDesc')">
+                            {{ formValidation.errorMessage('bankAcctDesc') }}
+                        </small>
+                    </div>
+                    <!-- Textbox with label of ABA Routing No. -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('abaRoutingNo') }">
+                        <label class="col-form-label" for="abaRoutingNo" i18n>ABA Routing No.</label>
+                        <input type="text" id="abaRoutingNo"
+                               name="abaRoutingNo"  class="form-control" formControlName="abaRoutingNo" [readonly]="!isReadOnly"/>
+                        <small class="text-danger" *ngIf="formValidation.isValidField('abaRoutingNo')">
+                            {{ formValidation.errorMessage('abaRoutingNo') }}
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <!-- DropdownList with label of Account Type -->
+                    <div class="selectContainer col-md-4 " [ngClass]="{'has-danger': formValidation.isValidField('accountType') }">
+                        <label class="col-form-label" for="accountType" i18n>Account Type</label>
+                        <select class="form-control" id="accountType"  name="accountType" formControlName="accountType" [attr.disabled] = "accountTypeState ? '' : null">
+                            <option value="">-Select-</option>
+                            <option *ngFor="let dddwDtl of dddwDtls1" [value]="dddwDtl.dddwDtlPrimaryKey.dataVal">{{dddwDtl.dddwDtlPrimaryKey.displayVal}}</option>
+                        </select>
+                    </div>
+
+                </div>
+
+                <div class="form-group row">
+                    <!-- Textbox with label of WC Vndr No. -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('wcVndrNo') }">
+                        <label class="col-form-label" for="wcVndrNo" i18n>WC Vndr No.</label>
+                        <input type="text" id="wcVndrNo" name="wcVndrNo"   class="form-control" formControlName="wcVndrNo"/>
+                        <small class="text-danger" *ngIf="formValidation.isValidField('wcVndrNo')">
+                            {{ formValidation.errorMessage('wcVndrNo') }}
+                        </small>
+                    </div>
+
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('userDate1') }">
+                        <!-- <label class="col-form-label" for="excProvEff" i18n>ExcProvEff</label> -->
+
+                        <!-- <input type="text" id="userDate1"  name="userDate1"  class="form-control" formControlName="userDate1"/> -->
+                        <app-datepicker [formGroup]="vendorMasterForm" [formValidation]="formValidation" [field]="'userDate1'"
+                                        [labelText]="'ExcProvEff'" [isRequired]="false"></app-datepicker>
+
+                    </div>
+
+                </div>
+
+                <div class="form-group row">
+                    <!-- Textbox with label of Surcharge? -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('surcharge') }">
+                        <label class="col-form-label" for="surcharge" i18n>Surcharge?</label>
+                        <input type="text" id="surcharge"   class="form-control" name="surcharge" formControlName="surcharge"/>
+                        <small class="text-danger" *ngIf="formValidation.isValidField('surcharge')">
+                            {{ formValidation.errorMessage('surcharge') }}
+                        </small>
+                    </div>
+
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('userDate2') }">
+                        <!-- <label class="col-form-label" for="userDate2" i18n>ExcProvTrm</label> -->
+                        <!-- <input type="text" id="userDate2"  name="userDate2" class="form-control" formControlName="userDate2"/> -->
+
+                        <app-datepicker [formGroup]="vendorMasterForm" [formValidation]="formValidation" [field]="'userDate2'"
+                                        [labelText]="'ExcProvTrm'" [isRequired]="false"></app-datepicker>
+
+                    </div>
+
+                </div>
+            </ng-container>
+        </form>
+    </div>
+</div>
+<ng-keyboard-shortcuts [shortcuts]="shortcuts"></ng-keyboard-shortcuts>
+<ng-keyboard-shortcuts-help [key]="'f1'" [closeKey]="'escape'" [title]="'Hotkeys Help'"></ng-keyboard-shortcuts-help>

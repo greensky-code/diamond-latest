@@ -1,0 +1,41 @@
+<!-- Copyright (c) 2021 . All Rights Reserved. -->
+<div class="container-fluid">
+    <div class="card-block">
+        <button type="button" *ngIf="showIcon" class="modal-close close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <form [formGroup]="procedureDeterminantForm" novalidate>
+            <h2 class="form-title card-label-admin">Procedure Determinant</h2>
+            <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+            <app-pop-up-message #popUpMesssage (buttonclickEvent)="popUpButtonHandler($event)"  [(popupMessage)] = "popUpMessage"></app-pop-up-message>
+                        
+            <div class="form-group row">
+            </div>
+            
+            
+            <div class="form-group row">
+                <!-- DynamicText with label of Procedure Code -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('procedureCode') }">
+                     <label class="col-form-label" for="procedureCode" i18n>Procedure Code</label>
+                     <input type="text"   readonly id="procedureCode" formControlName="procedureCode" class="form-control"/>
+                 </div>
+            
+            </div>
+            
+            <div class="row">
+                <div class="col-md-8">
+                    <!-- DataGrid with Name of DataGrid -->
+                    <dynamic-form  (onChangeFields)="onChangeDate($event)" (formSubmitted)="saveProDet($event)" [isSaveForm]="isSaveForm" [isAddNewRow]="isAddNewRow" [prevState]="procedureDetState" [title]="''" [config]="procedureFormConfig"></dynamic-form>
+                </div>
+                <div class="col-md-4">
+                <div class="col-md-2"><button (click)="OnSubmit()" class="button"> Okay </button></div>
+
+            </div>
+            </div>
+            
+                       
+            
+            
+        </form>
+    </div>
+</div>

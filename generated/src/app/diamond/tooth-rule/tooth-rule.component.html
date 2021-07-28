@@ -1,0 +1,251 @@
+<!-- Copyright (c) 2021 . All Rights Reserved. -->
+<div class="container-fluid">
+    <div class="card-block">
+        <form [formGroup]="toothRuleForm" novalidate>
+            <h2 class="form-title card-label-admin">Tooth Rule</h2>
+            <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+            <app-pop-up-message #popUpMesssage (buttonclickEvent)="popUpButtonHandler($event)"  [(popupMessage)] = "popUpMessage"></app-pop-up-message>
+                        
+            <div class="form-group row">
+                <!-- DynamicText with label of Tooth Rule ID -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('toothRuleId') }">
+                     <label class="col-form-label" for="toothRuleId" i18n>Tooth Rule ID</label>
+                     <input type="text"  [fieldLevelSec]="'Tooth Rule Id'" params]="Tooth Rule"  readonly id="toothRuleId" formControlName="toothRuleId" class="form-control"/>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+                <hr>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of Tooth Number -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('toothNumber') }">
+                     <label class="col-form-label" for="toothNumber" i18n>Tooth Number</label>
+                     <input type="text" id="toothNumber"  [fieldLevelSec]="'Tooth Number'" params]="Tooth Rule"   class="form-control" formControlName="toothNumber"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('toothNumber')">
+                      {{ formValidation.errorMessage('toothNumber') }}
+                     </small>
+                 </div>
+            
+                <!-- Textbox with label of Procedure Code -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('procedureCode') }">
+                     <label class="col-form-label" for="procedureCode" i18n>Procedure Code</label>
+                     <input type="text" id="procedureCode"  [fieldLevelSec]="'Procedure Code'" params]="Tooth Rule"   class="form-control" formControlName="procedureCode"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('procedureCode')">
+                      {{ formValidation.errorMessage('procedureCode') }}
+                     </small>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of Description -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('description') }">
+                     <label class="col-form-label" for="description" i18n>Description</label>
+                     <input type="text" id="description"  [fieldLevelSec]="'Description'" params]="Tooth Rule"   class="form-control" formControlName="description"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('description')">
+                      {{ formValidation.errorMessage('description') }}
+                     </small>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of Eff Date -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('effDate') }">
+                     <label class="col-form-label" for="effDate" i18n>Eff Date</label>
+                     <div class="input-group">
+                    <input id="effDate"  [fieldLevelSec]="'Eff Date'" params]="Tooth Rule"  class="form-control" angular-mydatepicker name="effDate" (click)="effDateId.toggleCalendar()"
+                    formControlName="effDate"[options]="datePickerConfig" #effDateId="angular-mydatepicker"/>
+                    <div class="input-group-append">
+                        <button type="button" class="btn btn-secondary" (click)="effDateId.clearDate()">
+                          <i class="fa fa-close"></i>
+                        </button>
+                      </div>
+                      <div class="input-group-append">
+                        <button type="button" class="btn btn-secondary" (click)="effDateId.toggleCalendar()">
+                          <i class="fa fa-calendar-o"></i>
+                        </button>
+                      </div>
+                    </div>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('effDate')">
+                      {{ formValidation.errorMessage('effDate') }}
+                     </small>
+                 </div>
+            
+                <!-- Textbox with label of Term Date -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('termDate') }">
+                     <label class="col-form-label" for="termDate" i18n>Term Date</label>
+                     <div class="input-group">
+                    <input id="termDate"  [fieldLevelSec]="'Term Date'" params]="Tooth Rule"  class="form-control" angular-mydatepicker name="termDate" (click)="termDateId.toggleCalendar()"
+                    formControlName="termDate"[options]="datePickerConfig" #termDateId="angular-mydatepicker"/>
+                    <div class="input-group-append">
+                        <button type="button" class="btn btn-secondary" (click)="termDateId.clearDate()">
+                          <i class="fa fa-close"></i>
+                        </button>
+                      </div>
+                      <div class="input-group-append">
+                        <button type="button" class="btn btn-secondary" (click)="termDateId.toggleCalendar()">
+                          <i class="fa fa-calendar-o"></i>
+                        </button>
+                      </div>
+                    </div>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('termDate')">
+                      {{ formValidation.errorMessage('termDate') }}
+                     </small>
+                 </div>
+            
+                <!-- Textbox with label of Term Reason -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('termReason') }">
+                     <label class="col-form-label" for="termReason" i18n>Term Reason</label>
+                     <input type="text" id="termReason"  [fieldLevelSec]="'Term Reason'" params]="Tooth Rule"   class="form-control" formControlName="termReason"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('termReason')">
+                      {{ formValidation.errorMessage('termReason') }}
+                     </small>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <hr>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of From Age -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('fromAge') }">
+                     <label class="col-form-label" for="fromAge" i18n>From Age</label>
+                     <input type="text" id="fromAge"  [fieldLevelSec]="'From Age'" params]="Tooth Rule"   class="form-control" formControlName="fromAge"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('fromAge')">
+                      {{ formValidation.errorMessage('fromAge') }}
+                     </small>
+                 </div>
+            
+                <!-- Textbox with label of To Age -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('toAge') }">
+                     <label class="col-form-label" for="toAge" i18n>To Age</label>
+                     <input type="text" id="toAge"  [fieldLevelSec]="'To Age'" params]="Tooth Rule"   class="form-control" formControlName="toAge"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('toAge')">
+                      {{ formValidation.errorMessage('toAge') }}
+                     </small>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- DynamicText with label of Surface -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('surface') }">
+                     <label class="col-form-label" for="surface" i18n>Surface</label>
+                     <input type="text"  [fieldLevelSec]="'All Surface Ind'" params]="Tooth Rule"  readonly id="surface" formControlName="surface" class="form-control"/>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- DynamicText with label of Arch -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('arch') }">
+                     <label class="col-form-label" for="arch" i18n>Arch</label>
+                     <input type="text"  [fieldLevelSec]="''" params]=""  readonly id="arch" formControlName="arch" class="form-control"/>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- DynamicText with label of Quadrant -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('quadrant') }">
+                     <label class="col-form-label" for="quadrant" i18n>Quadrant</label>
+                     <input type="text"  [fieldLevelSec]="''" params]=""  readonly id="quadrant" formControlName="quadrant" class="form-control"/>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- DynamicText with label of Oral Cavity -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('oralCavity') }">
+                     <label class="col-form-label" for="oralCavity" i18n>Oral Cavity</label>
+                     <input type="text"  [fieldLevelSec]="'All Oral Ind'" params]="Tooth Rule"  readonly id="oralCavity" formControlName="oralCavity" class="form-control"/>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <hr>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of User Defined 1 -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('userDefined1') }">
+                     <label class="col-form-label" for="userDefined1" i18n>User Defined 1</label>
+                     <input type="text" id="userDefined1"  [fieldLevelSec]="'User Defined 1'" params]="Tooth Rule"   class="form-control" formControlName="userDefined1"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('userDefined1')">
+                      {{ formValidation.errorMessage('userDefined1') }}
+                     </small>
+                 </div>
+            
+                <!-- Textbox with label of User Date 1 -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('userDate1') }">
+                     <label class="col-form-label" for="userDate1" i18n>User Date 1</label>
+                     <div class="input-group">
+                    <input id="userDate1"  [fieldLevelSec]="'User Date 1'" params]="Tooth Rule"  class="form-control" angular-mydatepicker name="userDate1" (click)="userDate1Id.toggleCalendar()"
+                    formControlName="userDate1"[options]="datePickerConfig" #userDate1Id="angular-mydatepicker"/>
+                    <div class="input-group-append">
+                        <button type="button" class="btn btn-secondary" (click)="userDate1Id.clearDate()">
+                          <i class="fa fa-close"></i>
+                        </button>
+                      </div>
+                      <div class="input-group-append">
+                        <button type="button" class="btn btn-secondary" (click)="userDate1Id.toggleCalendar()">
+                          <i class="fa fa-calendar-o"></i>
+                        </button>
+                      </div>
+                    </div>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('userDate1')">
+                      {{ formValidation.errorMessage('userDate1') }}
+                     </small>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of User Defined 2 -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('userDefined2') }">
+                     <label class="col-form-label" for="userDefined2" i18n>User Defined 2</label>
+                     <input type="text" id="userDefined2"  [fieldLevelSec]="'User Defined 2'" params]="Tooth Rule"   class="form-control" formControlName="userDefined2"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('userDefined2')">
+                      {{ formValidation.errorMessage('userDefined2') }}
+                     </small>
+                 </div>
+            
+                <!-- Textbox with label of User Date 2 -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('userDate2') }">
+                     <label class="col-form-label" for="userDate2" i18n>User Date 2</label>
+                     <div class="input-group">
+                    <input id="userDate2"  [fieldLevelSec]="'User Date 2'" params]="Tooth Rule"  class="form-control" angular-mydatepicker name="userDate2" (click)="userDate2Id.toggleCalendar()"
+                    formControlName="userDate2"[options]="datePickerConfig" #userDate2Id="angular-mydatepicker"/>
+                    <div class="input-group-append">
+                        <button type="button" class="btn btn-secondary" (click)="userDate2Id.clearDate()">
+                          <i class="fa fa-close"></i>
+                        </button>
+                      </div>
+                      <div class="input-group-append">
+                        <button type="button" class="btn btn-secondary" (click)="userDate2Id.toggleCalendar()">
+                          <i class="fa fa-calendar-o"></i>
+                        </button>
+                      </div>
+                    </div>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('userDate2')">
+                      {{ formValidation.errorMessage('userDate2') }}
+                     </small>
+                 </div>
+            
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,158 @@
+<!-- Copyright (c) 2021 . All Rights Reserved. -->
+<div class="container-fluid">
+    <div class="card-block">
+        <form [formGroup]="payTheProviderForm" novalidate>
+            <h2 class="form-title card-label-admin">Pay The Provider</h2>
+            <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+            <app-pop-up-message #popUpMesssage (buttonclickEvent)="popUpButtonHandler($event)"  [(popupMessage)] = "popUpMessage"></app-pop-up-message>
+                        
+            <div class="form-group row">
+                <div class="col-md-2 form-control-static mb-0" i18n>
+                    This is a WorldLink payment, specify the provider address information
+                </div>
+            
+            </div>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+                <div class="col-md-2 form-control-static mb-0" i18n>
+                    Provider
+                </div>
+            
+                <!-- Textbox with Name of Textbox001 -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('textbox001') }">
+                     <label class="col-form-label" for="textbox001" i18n>&nbsp;</label>
+                     <input type="text" id="textbox001"  [fieldLevelSec]="''" params]=""   class="form-control" formControlName="textbox001"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('textbox001')">
+                      {{ formValidation.errorMessage('textbox001') }}
+                     </small>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+                <div class="col-md-2 form-control-static mb-0" i18n>
+                    Address
+                </div>
+            
+                <!-- Textbox with Name of Textbox002 -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('textbox002') }">
+                     <label class="col-form-label" for="textbox002" i18n>&nbsp;</label>
+                     <input type="text" id="textbox002"  [fieldLevelSec]="''" params]=""   class="form-control" formControlName="textbox002"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('textbox002')">
+                      {{ formValidation.errorMessage('textbox002') }}
+                     </small>
+                 </div>
+            
+                <div class="col-md-2 form-control-static mb-0" i18n>
+                    Is this a bank address?
+                </div>
+            
+                <!-- DropdownList with Name of DropdownList001 -->
+                <div class="selectContainer col-md-2 " [ngClass]="{'has-danger': formValidation.isValidField('dropdownList001') }">
+                    <label class="col-form-label" for="dropdownList001" i18n>&nbsp;</label>
+                    <select class="form-control" id="dropdownlist001"  [fieldLevelSec]="''" params]=""  name="DropdownList001" formControlName="dropdownList001">
+                        <option value="">Please Select</option>
+                    </select>
+                </div>
+            
+            </div>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+                <div class="col-md-2 form-control-static mb-0" i18n>
+                    Bank Name
+                </div>
+            
+                <!-- Textbox with Name of Textbox003 -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('textbox003') }">
+                     <label class="col-form-label" for="textbox003" i18n>&nbsp;</label>
+                     <input type="text" id="textbox003"  [fieldLevelSec]="''" params]=""   class="form-control" formControlName="textbox003"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('textbox003')">
+                      {{ formValidation.errorMessage('textbox003') }}
+                     </small>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <div class="col-md-2 form-control-static mb-0" i18n>
+                    Routing Number
+                </div>
+            
+                <!-- Textbox with Name of Textbox004 -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('textbox004') }">
+                     <label class="col-form-label" for="textbox004" i18n>&nbsp;</label>
+                     <input type="text" id="textbox004"  [fieldLevelSec]="''" params]=""   class="form-control" formControlName="textbox004"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('textbox004')">
+                      {{ formValidation.errorMessage('textbox004') }}
+                     </small>
+                 </div>
+            
+                <div class="col-md-2 form-control-static mb-0" i18n>
+                    IBAN/Bank Account #
+                </div>
+            
+                <!-- Textbox with Name of Textbox005 -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('textbox005') }">
+                     <label class="col-form-label" for="textbox005" i18n>&nbsp;</label>
+                     <input type="text" id="textbox005"  [fieldLevelSec]="''" params]=""   class="form-control" formControlName="textbox005"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('textbox005')">
+                      {{ formValidation.errorMessage('textbox005') }}
+                     </small>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+                <div class="col-md-2 form-control-static mb-0" i18n>
+                    What country is this WorldLink payment going to?
+                </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- DropdownList with Name of DropdownList002 -->
+                <div class="selectContainer col-md-2 " [ngClass]="{'has-danger': formValidation.isValidField('dropdownList002') }">
+                    <label class="col-form-label" for="dropdownList002" i18n>&nbsp;</label>
+                    <select class="form-control" id="dropdownlist002"  [fieldLevelSec]="''" params]=""  name="DropdownList002" formControlName="dropdownList002">
+                        <option value="">Please Select</option>
+                    </select>
+                </div>
+            
+            </div>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+                <div class="col-md-2 form-control-static mb-0" i18n>
+                    Notes
+                </div>
+            
+                <!-- Textbox with Name of Textbox006 -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('textbox006') }">
+                     <label class="col-form-label" for="textbox006" i18n>&nbsp;</label>
+                     <input type="text" id="textbox006"  [fieldLevelSec]="''" params]=""   class="form-control" formControlName="textbox006"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('textbox006')">
+                      {{ formValidation.errorMessage('textbox006') }}
+                     </small>
+                 </div>
+            
+            </div>
+        </form>
+    </div>
+</div>

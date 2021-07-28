@@ -1,0 +1,30 @@
+<!-- Button trigger modal -->
+<button type="button" id="modalformbtn" [hidden]="true"  class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+    Launch demo modal
+  </button>
+  
+
+  <!-- Modal -->
+  <div class="modal fade show" #popUpMessageModal data-backdrop="static" data-keyboard="false" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal fade show" role="document" #popUpMessageModal >
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">{{popupMessage?.title}}</h5>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-md-2">
+                    <i class="fa fa-window-close fa-3x" aria-hidden="true"></i>
+                </div>
+                <div class="col-md-9 offset-md-1">
+                  
+                    {{popupMessage?.message}}
+                </div>
+              </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" *ngFor="let button of popupMessage?.buttons" (click)="triggerClick(button)"  class="{{button.cssClassName}}" data-dismiss="modal">{{button.text}}</button>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,51 @@
+<!-- Copyright (c) 2021 . All Rights Reserved. -->
+<div class="container-fluid">
+    <div class="card-block">
+        <form [formGroup]="codeTableMaintenanceForm" novalidate>
+            <h2 class="form-title card-label-admin">Code Table Maintenance</h2>
+            <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+            <app-pop-up-message #popUpMesssage (buttonclickEvent)="popUpButtonHandler($event)"  [(popupMessage)] = "popUpMessage"></app-pop-up-message>
+                        
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+                <!-- DynamicText with label of System Code Type -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('systemCodeType') }">
+                     <label class="col-form-label" for="systemCodeType" i18n>System Code Type</label>
+                     <input type="text"  [fieldLevelSec]="'System Code Type'" params]="System Code Token"  readonly id="systemCodeType" formControlName="systemCodeType" class="form-control"/>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+                <!-- DynamicText with label of Language Code -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('languageCode') }">
+                     <label class="col-form-label" for="languageCode" i18n>Language Code</label>
+                     <input type="text"  [fieldLevelSec]="'Language Id'" params]="System Code Token"  readonly id="languageCode" formControlName="languageCode" class="form-control"/>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+            </div>
+            
+                        <!-- DataGrid with Name of DataGrid -->
+                    <button (click)="dataGridGridOptionsExportCsv()">Export</button>
+                    <ag-grid-angular #agGrid class="ag-theme-fresh" [gridOptions]="dataGridGridOptions"
+                    style="width: 100%; height: 300px;"
+                    [enableSorting]="true"
+                    [enableFilter]="true"
+                    [floatingFilter]="true"
+                    [pagination]="true"
+                    [showToolPanel]="true">
+                    </ag-grid-angular>
+            
+            <div class="form-group row">
+            </div>
+        </form>
+    </div>
+</div>

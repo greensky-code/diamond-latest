@@ -1,0 +1,199 @@
+<!-- Copyright (c) 2020 . All Rights Reserved. -->
+<div class="container-fluid">
+    <div class="card-block">
+
+        <form [formGroup]="coveringProviderGroupsForm" novalidate>
+            <div class="row form-title">
+                <h2 class="col-md-5  card-label-admin"> Covering Provider Groups  </h2>
+                <div class="col-md"><b class="readonly-label">View Only</b></div>
+            </div>
+            <button type="button" *ngIf="showIcon" class="close" aria-label="Close"
+                (click)="modalClose()">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <div class="row">
+                <menu-bar [menus]="menu" (onMenuClick)="onMenuItemClick($event)"></menu-bar>
+              </div>
+            <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+            <app-pop-up-message #popUpMesssage (buttonclickEvent)="popUpButtonHandler($event)"
+                [popupMessage]="popUpMessage"></app-pop-up-message>
+
+            <!-- DataGrid with Name of DataGrid001 -->
+            <!--                    <button (click)="dataGrid001GridOptionsExportCsv()">Export</button>-->
+            <ag-grid-angular #agGrid class="ag-theme-fresh" [gridOptions]="dataGrid001GridOptions"
+                style="width: 100%; height: 300px;" [enableSorting]="true" [enableFilter]="true" [floatingFilter]="true"
+                [pagination]="true" [showToolPanel]="true" (selectionChanged)="grid1SelectionChange()">
+            </ag-grid-angular>
+
+            <div class="form-group row">
+            </div>
+
+            <!-- DataGrid with Name of DataGrid002 -->
+            <!--                    <button (click)="dataGrid002GridOptionsExportCsv()">Export</button>-->
+            <ag-grid-angular #agGrid class="ag-theme-fresh" [gridOptions]="dataGrid002GridOptions"
+                style="width: 100%; height: 300px;" [enableSorting]="true" [enableFilter]="true" [floatingFilter]="true"
+                [pagination]="true" [showToolPanel]="true" (selectionChanged)="onSelectionChange002($event)">
+            </ag-grid-angular>
+
+            <div class="form-group row">
+            </div>
+
+            <div class="form-group row">
+                <!-- Textbox with label of Prov ID -->
+                <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('provId') }">
+                    <label class="col-form-label clr-blue" for="provId" i18n>Prov ID</label>
+                    <input type="text" id="provId" class="form-control" formControlName="provId"
+                           (keydown)="onLookupFieldChange($event)"
+
+                    />
+                    <small class="text-danger" *ngIf="formValidation.isValidField('provId')">
+                        {{ formValidation.errorMessage('provId') }}
+                    </small>
+                </div>
+
+                <!-- DynamicText with label of Prov Description -->
+                <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('provDescription') }">
+                    <label class="col-form-label" for="provDescription" i18n>Prov Description</label>
+                    <input type="text" readonly id="provDescription" name="provDescription" formControlName="provDescription"
+                        class="form-control" />
+                </div>
+
+                <!-- Checkbox with label of Reimb Method -->
+
+            </div>
+
+            <div class="form-group row">
+                <div class="col-md-8" [ngClass]="{'has-error': displayMessage.reimbMethod }">
+                    <label class="col-form-label clr-blue" for="reimbMethod" i18n>Reimb Method</label>
+                    <select class="form-control" id="reimbMethod" name="reimbMethod" formControlName="reimbMethod">
+                        <option value="">-Select-</option>
+                        <option *ngFor="let dddwDtl of dddwDtls"
+
+                                [value]="dddwDtl.dddwDtlPrimaryKey.dataVal">
+                            {{dddwDtl.dddwDtlPrimaryKey.displayVal}}</option>
+                    </select>
+                    <span class="help-block" *ngIf="displayMessage.reimbMethod">
+                        {{ displayMessage.reimbMethod }}
+                    </span>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <!-- Textbox with label of Effectivity Date -->
+                <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('effectivityDate') }">
+                    <app-datepicker [formGroup]="coveringProviderGroupsForm" [isRequired]="true" [formValidation]="formValidation" [field]="'effectivityDate'"
+                        [labelText]="'Effectivity Date'"
+                    ></app-datepicker>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('effectivityDate')">
+                        {{ formValidation.errorMessage('effectivityDate') }}
+                    </small>
+                </div>
+
+                <!-- Textbox with label of Term Date -->
+                <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('termDate') }">
+                    <app-datepicker [formGroup]="coveringProviderGroupsForm" [formValidation]="formValidation" [field]="'termDate'"
+                        [labelText]="'Term Date'"
+                                    (onDateChanged)="selectTermDate($event)"></app-datepicker>
+                    <!-- <small class="text-danger" *ngIf="formValidation.isValidField('termDate')">
+                        {{ formValidation.errorMessage('termDate') }}
+                    </small> -->
+                </div>
+
+                <!-- DropdownList with label of Term Reason -->
+                <div class="selectContainer col-md-4 "
+                    [ngClass]="{'has-danger': formValidation.isValidField('termReason') }">
+                    <label class="col-form-label" for="termReason" i18n>Term Reason</label>
+                    <select class="form-control" id="termReason" name="termReason" formControlName="termReason" [(ngModel)]="termReasnCode" *ngIf="!isReadOnly">
+                        <option value="">Please Select</option>
+                        <option *ngFor="let reasonCodeMaster of reasonCodeMasters"
+
+                            [value]="reasonCodeMaster.reasonCode">{{ reasonCodeMaster.reasonCode}}    {{reasonCodeMaster.description}}</option>
+                    </select>
+
+                    <select class="form-control" *ngIf="isReadOnly" disabled>
+                        <option value=""></option>
+                    </select>
+                </div>
+
+            </div>
+
+            <div class="form-group row">
+                <!-- Textbox with label of Default vendor -->
+                <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('defaultVendor') }">
+                    <label class="col-form-label" for="defaultVendor" i18n>Default vendor</label>
+                    <input type="text" id="defaultVendor" name="defaultVendor" class="form-control"
+                           (keydown)="vendorKeyDown($event)"
+                           (change)="vendorKeyValueStatus($event)"
+                           formControlName="defaultVendor" />
+                    <small class="text-danger" *ngIf="formValidation.isValidField('defaultVendor')">
+                        {{ formValidation.errorMessage('defaultVendor') }}
+                    </small>
+                </div>
+                <div class="col-md-4"></div>
+                <!-- Textbox with label of User Def 1 -->
+                <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('userDef1') }">
+                    <label class="col-form-label" for="userDef1" i18n>User Def 1</label>
+                    <input type="text" id="userDef1" class="form-control" formControlName="userDef1"
+
+                    />
+                    <small class="text-danger" *ngIf="formValidation.isValidField('userDef1')">
+                        {{ formValidation.errorMessage('userDef1') }}
+                    </small>
+                </div>
+
+            </div>
+
+            <div class="form-group row">
+                <!-- Textbox with label of Default vend addr -->
+                <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('defaultVendAddr') }">
+                    <label class="col-form-label" for="defaultVendAddr" i18n>Default vend addr</label>
+                    <select class="form-control" #defaultAddr id="defaultVendAddr" name="defaultVendAddr" formControlName="defaultVendAddr" *ngIf="!vendorAddressStatus">
+                        <option value="">Please Select</option>
+                        <option *ngFor="let vendorAddress of vendorAddresses"
+                                [value]="vendorAddress.seqVendId">
+                                    {{ vendorAddress.name2?vendorAddress.name2+', ':''}}
+                                    {{vendorAddress.addressLine1?vendorAddress.addressLine1+', ':''}}
+                                    {{vendorAddress.city?vendorAddress.city + ', ':''}}
+                                    {{vendorAddress.county?vendorAddress.county+', ':''}}
+                                    {{vendorAddress.zipCode?vendorAddress.zipCode+', ':''}}
+                                    {{vendorAddress.country?vendorAddress.country+', ':''}}
+                        </option>
+                    </select>
+                    <select class="form-control" *ngIf="vendorAddressStatus" disabled>
+                        <option value=""></option>
+                    </select>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('defaultVendAddr')">
+                        {{ formValidation.errorMessage('defaultVendAddr') }}
+                    </small>
+                </div>
+                <div class="col-md-4"></div>
+                <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('userDef2') }">
+                    <label class="col-form-label" for="userDef2" i18n>User Def 2</label>
+                    <input type="text" id="userDef2" name="userDef2" class="form-control"
+
+                           formControlName="userDef2" />
+                    <small class="text-danger" *ngIf="formValidation.isValidField('userDef2')">
+                        {{ formValidation.errorMessage('userDef2') }}
+                    </small>
+                </div>
+
+            </div>
+
+            <div class="form-group row">
+                <div class="col-md-8"></div>
+                <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('userDef3') }">
+                    <label class="col-form-label" for="userDef3" i18n>User Def 3</label>
+                    <input type="text" id="userDef3" class="form-control" formControlName="userDef3"
+
+                    />
+                    <small class="text-danger" *ngIf="formValidation.isValidField('userDef3')">
+                        {{ formValidation.errorMessage('userDef3') }}
+                    </small>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>
+<ng-keyboard-shortcuts [shortcuts]="shortcuts"></ng-keyboard-shortcuts>
+<ng-keyboard-shortcuts-help [key]="'f2'" [closeKey]="'escape'" [title]="'Hotkeys Help'"></ng-keyboard-shortcuts-help>

@@ -1,0 +1,126 @@
+<!-- Copyright (c) 2021 . All Rights Reserved. -->
+<div class="container-fluid">
+    <div class="card-block">
+        <form [formGroup]="checkRegisterFilterForm" novalidate>
+            <h3 class="form-title card-label-admin">Check Register Filter Data</h3>
+            <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+            <app-pop-up-message #popUpMesssage (buttonclickEvent)="popUpButtonHandler($event)"
+                                [(popupMessage)]="popUpMessage"></app-pop-up-message>
+
+            <div class="form-group row">
+
+                <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('remittanceId') }">
+                    <label class="col-form-label" for="remittanceId" i18n>Remittance ID</label>
+                    <input type="text" id="remittanceId" class="form-control" formControlName="remittanceId"/>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('remittanceId')">
+                        {{ formValidation.errorMessage('remittanceId') }}
+                    </small>
+                </div>
+            </div>
+
+            <div class="form-group row">
+
+                <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('bankAccount') }">
+                    <label class="col-form-label clr-blue" for="bankAccount" i18n>Bank Account</label>
+                    <input type="text" id="bankAccount" #bankAccount
+                           (keydown)="onBankAccountLookupFieldChange($event, bankAccount.value)" class="form-control"
+                           formControlName="bankAccount"/>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('bankAccount')">
+                        {{ formValidation.errorMessage('bankAccount') }}
+                    </small>
+                </div>
+
+                <div class="col-md-8"
+                     [ngClass]="{'has-danger': formValidation.isValidField('bankName') }">
+                    <label class="col-form-label" for="bankName" i18n>&nbsp;</label>
+                    <input type="text" id="bankName" formControlName="bankName"
+                           class="form-control" readonly/>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('claimType') }">
+                    <label class="col-form-label" for="checkType" i18n>Check/EFT Type</label>
+                    <select class="form-control" id="checkType" #checkType name="checkType" formControlName="checkType">
+                        <option [value]="checkType.dddwDtlPrimaryKey.dataVal"
+                                *ngFor="let checkType of checkTypes">{{checkType.dddwDtlPrimaryKey.displayVal}}</option>
+                    </select>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('checkType')">
+                        {{ formValidation.errorMessage('checkType') }}
+                    </small>
+                </div>
+            </div>
+
+            <div class="form-group row">
+
+                <div class="col-md-3 label-blank-space">
+                    <label class="col-form-label " for="from" i18n>Check/EFT No:</label>
+                </div>
+
+                <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('from') }">
+                    <label class="col-form-label " for="from" i18n>From</label>
+                    <input type="text" id="from" class="form-control" formControlName="from"/>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('from')">
+                        {{ formValidation.errorMessage('from') }}
+                    </small>
+                </div>
+
+                <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('thru') }">
+                    <label class="col-form-label " for="thru" i18n>Thru</label>
+                    <input type="text" id="thru" class="form-control" formControlName="thru"/>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('thru')">
+                        {{ formValidation.errorMessage('thru') }}
+                    </small>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('vendor') }">
+                    <label class="col-form-label" for="vendor" i18n>Vendor</label>
+                    <input type="text" id="vendor" #vendor (keydown)="onVendorLookupFieldChange($event, vendor.value)"
+                           class="form-control" formControlName="vendor"/>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('vendor')">
+                        {{ formValidation.errorMessage('vendor') }}
+                    </small>
+                </div>
+
+                <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('paymentDate') }">
+                    <app-datepicker [formGroup]="checkRegisterFilterForm" [showClearButton]="false"
+                                    [formValidation]="formValidation" [field]="'paymentDate'"
+                                    [labelText]="'Payment Date'"></app-datepicker>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('status') }">
+                    <label class="col-form-label" for="checkType" i18n>Status</label>
+                    <select class="form-control" id="status" #checkType name="status" formControlName="status">
+                        <option [value]="status.dddwDtlPrimaryKey.dataVal"
+                                *ngFor="let status of statuses">{{status.dddwDtlPrimaryKey.displayVal}}</option>
+                    </select>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('status')">
+                        {{ formValidation.errorMessage('status') }}
+                    </small>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <!-- Button with label of OK -->
+                <div class="col-md-2">
+                    <button type="button" id="ok" name="ok" class="btn btn-small btn-primary w-100" (click)="onSubmitForm()">
+                        OK
+                    </button>
+                </div>
+
+                <div class="col-md-2">
+                    <button type="button" id="cancel" name="cancel" class="btn btn-small btn-primary"
+                            (click)="backToScreen()">Cancel
+                    </button>
+                </div>
+            </div>
+
+            <div class="form-group row">
+            </div>
+        </form>
+    </div>
+</div>

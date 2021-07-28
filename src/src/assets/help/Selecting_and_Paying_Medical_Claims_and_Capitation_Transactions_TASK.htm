@@ -1,0 +1,170 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+    <title>Selecting and Paying Medical Claims and Capitation Transactions</title>
+    <!--(Meta)==========================================================-->
+    <meta name="copyright" value="© Copyright 2002 Health Systems Design Corp., a wholly owned subsidiary of Perot Systems Corporation. All rights reserved"/>
+    <meta content="Task - High Level.htt" name="template"/>
+    <meta content="RoboHELP by eHelp Corporation - www.ehelp.com" name="generator"/>
+    <meta content="0.1" name="generator-major-version"/>
+    <meta content="1" name="generator-minor-version"/>
+    <meta content="kadov" name="filetype"/>
+    <meta content="1" name="filetype-version"/>
+    <meta content="1" name="page-count"/>
+    <meta content="725" name="layout-height"/>
+    <meta content="678" name="layout-width"/>
+    <!--(Links)=========================================================-->
+    <!--(Scripts)=======================================================-->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+   <link href="assets/help/stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="assets/help/page_styles.css" rel="stylesheet" type="text/css"/>
+
+  
+
+
+<link href="assets/help/calibreHtmlOutBasicCss.css" type="text/css" rel="stylesheet" />
+
+</head>
+<body>
+
+<div class="calibreMeta">
+  <div class="calibreMetaTitle">
+  
+  
+    
+    <h1>
+      <a href="../4xeqt-va1vo.html">DIAMOND 950 Help
+</a>
+    </h1>
+    
+    
+  
+  </div>
+  <div class="calibreMetaAuthor">
+    Unknown
+
+  </div>
+</div>
+
+<div class="calibreMain">
+
+  <div class="calibreEbookContent">
+    
+      <div class="calibreEbNavTop">
+        
+          <a href="Running_an_A_P_Update_Job.htm" class="calibreAPrev">previous page
+</a>
+        
+
+        
+          <a href="Selecting_Claims_for_Payment_How_DIAMOND_Thinks.htm" class="calibreANext">next page
+</a>
+        
+      </div>
+    
+
+    
+
+<h1 class="calibre3">Selecting and Paying Medical Claims and Capitation Transactions</h1>
+
+<p class="text">To select and pay medical claims and capitation transactions, 
+ you must do the following:</p>
+
+<h2 class="calibre10">1.  Create and run an A/P update job</h2>
+
+<p class="text">In keyword APUPD, create and run a new A/P update job or 
+ update and run an existing batch job.</p>
+
+<p class="text">A header hold will prevent claim detail lines from being 
+ sent to accounts payable. A header hold will also prevent claim lines 
+ from being finalized.</p>
+
+<p class="text">A partial payment election will be determined during APUPD 
+ preprocessing.</p>
+
+<p class="text">Use of Cap/Special Fund Distribution is determined during 
+ APUPD processing.</p>
+
+<p class="text">Evaluation of third-party audit software status will take 
+ place during APUPD processing.</p>
+
+<p class="text">To maximize performance, Perot Systems Healthcare recommends 
+ using minimal selection criteria when running APUPD. Additional filtering 
+ can then be applied when running a job in keyword CKPRT (Check Print)</p>
+
+<p class="text">Learn how to <a href="Running_an_A_P_Update_Job.htm">run 
+ an A/P update job</a>.</p>
+
+<h2 class="calibre10">2.  De-select or re-select A/P records for payment</h2>
+
+<p class="text">In keyword APSEL, de-select or re-select A/P records for 
+ payment. <span class="calibre11">Transactions can be de-selected 
+ for payment based on: </span></p>
+
+<ul class="calibre6">
+	
+	<li class="kadov-p-cbullet"><p class="bullet">Company code</p></li>
+	
+	<li class="kadov-p-cbullet"><p class="bullet">Vendor ID</p></li>
+	
+	<li class="kadov-p-cbullet"><p class="bullet">Due Date</p></li>
+	
+	<li class="kadov-p-cbullet"><p class="bullet">Entered Dates</p></li>
+</ul>
+
+<p class="text">When a transaction is de-selected for payment, it will not 
+ proceed through keyword CKPRT; it must be re-selected to re-enter the 
+ process.</p>
+
+<p class="text">Learn how to <a href="De_selecting_Claims_or_Capitation_Transactions_for_Payment_TASK.htm">de-select 
+ claims or capitation transactions for payment</a>.</p>
+
+<p class="text">Learn how to <a href="Re_selecting_Claims_or_Capitation_Transactions_for_Payment.htm">re-select 
+ claims or capitation transactions for payment</a>.</p>
+
+<h2 class="calibre10">3.  Run a check print job</h2>
+
+<p class="text">In keyword CKPRT, calculate and print a check print job.</p>
+
+<p class="text">Learn how to <a href="Calculating_a_Check_Print_Job.htm">calculate 
+ a check print job</a>.</p>
+
+<p class="text">Learn how to <a href="Printing_a_Check_Print_Job.htm">print 
+ a check print job</a>.</p>
+
+<h2 class="calibre10">4.  Post checks</h2>
+
+<p class="text">In keyword CKPST, post checks for payment.</p>
+
+<p class="text">Learn how to <a href="Posting_Checks.htm">post checks</a>.</p>
+
+
+
+
+
+
+  </div>
+
+  
+ 
+
+  <div class="calibreEbNav">
+    
+      <a href="Running_an_A_P_Update_Job.htm" class="calibreAPrev">previous page
+</a>
+    
+
+    <a href="../4xeqt-va1vo.html" class="calibreAHome">start
+</a>
+
+    
+      <a href="Selecting_Claims_for_Payment_How_DIAMOND_Thinks.htm" class="calibreANext">next page
+</a>
+    
+  </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!-- Copyright (c) 2021 . All Rights Reserved. -->
+<div class="container-fluid">
+    <div class="card-block">
+        <h2 class="form-title card-label-admin">Claims Hold Release Rule</h2>
+        <button type="button" *ngIf="showIcon" class="close" aria-label="Close" (click)="modalClose()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+        <app-pop-up-message #popUpMesssage (buttonclickEvent)="popUpButtonHandler($event)"
+                            [(popupMessage)]="popUpMessage"></app-pop-up-message>
+
+        <ng-template #loaderTemplate let-loaderValue="value">
+            <div class="row justify-content-center mt-4" *ngIf="loaderValue">
+                <div class="spinner-border text-success" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>
+            </div>
+        </ng-template>
+        <ng-container *ngTemplateOutlet="loaderTemplate;context:{value: secProgress }"></ng-container>
+
+        <ng-container *appWinSelect="{secWin: secWin, userTemplateId: userTemplateId, secModuleId: memberModuleId}">
+            <div class="row mt-3 mb-3">
+                <menu-bar [menus]="menu" (onMenuClick)="onMenuItemClick($event)"></menu-bar>
+            </div>
+            <form [formGroup]="claimsHoldReleaseRuleForm" novalidate>
+                <div class="form-group row">
+                </div>
+
+                <!-- DataGrid with Name of DataGrid -->
+                <ag-grid-angular #agGrid class="ag-theme-fresh" [gridOptions]="dataGridGridOptions"
+                                 style="width: 100%; height: 300px;"
+                                 [enableSorting]="true"
+                                 [enableFilter]="true"
+                                 [floatingFilter]="true"
+                                 [pagination]="true"
+                                 (rowSelected)="onRowSelectedGrid($event)"
+                                 [showToolPanel]="true">
+                </ag-grid-angular>
+
+                <div class="form-group row">
+                </div>
+                <div class="form-group row">
+                <!-- Textbox with label of Claim Type -->
+                <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('claimType') }">
+                    <label class="col-form-label clr-blue" for="claimType" i18n>Claim Type</label>
+                    <select id="claimType" [disabled]="isReadonly"  class="form-control" formControlName="claimType">
+                        <option value="null"> -Select- </option>
+                        <option *ngFor="let claimType of claimTypes" [value]="claimType.systemCode">
+                            {{claimType.systemCodeDesc2}} </option>
+                    </select>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('claimType')">
+                        {{ formValidation.errorMessage('claimType') }}
+                    </small>
+                </div>
+                </div>
+                <div class="form-group row">
+                    <!-- Textbox with label of Release Rule -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('releaseRule') }">
+                        <label class="col-form-label clr-blue" for="releaseRule" i18n>Release Rule</label>
+                        <input type="text" [readOnly]="isReadonly" id="releaseRule" [fieldLevelSec]="''" [params]="" class="form-control"
+                               formControlName="releaseRule"/>
+                        <small class="text-danger" *ngIf="formValidation.isValidField('releaseRule')">
+                            {{ formValidation.errorMessage('releaseRule') }}
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group row">
+
+                    <!-- Checkbox with label of Apply to Header Only -->
+                    <div class="" [ngClass]="{'has-error': displayMessage.applyToHeaderOnly }">
+                        <div class="checkbox col-md-12">
+                            <input id="applyToHeaderOnly" [fieldLevelSec]="''" [params]="" value="applyToHeaderOnly"
+                                   formControlName="applyToHeaderOnly" type="checkbox">
+                            <label class="checkbox">
+                                Apply to Header Only
+                            </label>
+                        </div>
+                        <span class="help-block" *ngIf="displayMessage.applyToHeaderOnly">
+                        {{ displayMessage.applyToHeaderOnly  }}
+                     </span>
+                    </div>
+
+                </div>
+
+                <div class="form-group row">
+                    <!-- Textbox with label of Description -->
+                    <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('description') }">
+                        <label class="col-form-label" for="description" i18n>Description</label>
+                        <input type="text" id="description" [fieldLevelSec]="''" [params]="" class="form-control"
+                               formControlName="description"/>
+                        <small class="text-danger" *ngIf="formValidation.isValidField('description')">
+                            {{ formValidation.errorMessage('description') }}
+                        </small>
+                    </div>
+
+                </div>
+            </form>
+        </ng-container>
+    </div>
+</div>
+
+<ng-keyboard-shortcuts [shortcuts]="shortcuts"></ng-keyboard-shortcuts>
+<ng-keyboard-shortcuts-help [key]="'f2'" [closeKey]="'escape'" [title]="'Hotkeys Help'"></ng-keyboard-shortcuts-help>

@@ -1,0 +1,110 @@
+<!-- Copyright (c) 2021 . All Rights Reserved. -->
+<div class="container-fluid">
+    <div class="card-block p-4 main">
+        <form [formGroup]="addressBankSearchForm" novalidate>
+            <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+            <app-pop-up-message #popUpMesssage (buttonclickEvent)="popUpButtonHandler($event)"
+                                [(popupMessage)]="popUpMessage"></app-pop-up-message>
+
+            <form [formGroup]="addressBankSearchForm" novalidate>
+                <div class="form-group row ">
+                    <!-- DynamicText with label of Bank Address -->
+
+                    <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('pEntityCode') }">
+                        <label class="col-form-label " for="pEntityCode" i18n>Entity Type</label>
+                        <select disabled="true" id="pEntityCode" formControlName="pEntityCode" class="form-control">
+                            <option value="1">Bank</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('pBankName') }">
+                        <label class="col-form-label " for="pBankName" i18n>*Entity Name</label>
+                        <input type="text" id="pBankName" formControlName="pBankName" class="form-control"/>
+                    </div>
+                    <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('pCity') }">
+                        <label class="col-form-label " for="pCity" i18n>City</label>
+                        <input type="text" id="pCity" formControlName="pCity" class="form-control"/>
+                    </div>
+                    <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('pState') }">
+                        <label class="col-form-label " for="pState" i18n>State/Province</label>
+                        <input type="text" id="pState" formControlName="pState" class="form-control"/>
+                    </div>
+                    <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('pPostalCode') }">
+                        <label class="col-form-label " for="pPostalCode" i18n>Postal Code</label>
+                        <input type="text" id="pPostalCode" formControlName="pPostalCode" class="form-control"/>
+                    </div>
+                    <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('pRoutingNum') }">
+                        <label class="col-form-label " for="pRoutingNum" i18n>*Routing Code</label>
+                        <input type="text" id="pRoutingNum" formControlName="pRoutingNum" class="form-control"/>
+                    </div>
+
+
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12" [ngClass]="{'has-danger': formValidation.isValidField('pCountryCode') }">
+                        <p class="col-md-12 text-light bg-dark">
+                            <label class="col-form-label col-xs-3 "
+                                   for="pCountryCode" i18n>County Code</label>
+                        </p>
+
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="selectContainer "
+                         [ngClass]="{'required-field':  formValidation.isValidField('pCountryCode') }">
+
+                        <div class="input-group" #myDrop="ngbDropdown" ngbDropdown>
+                            <input ngbDropdownToggle type="text" class="form-control" id="pCountryCode"
+                                   [value]="addressBankSearchForm.value.pCountryCode"
+                                   formControlName="pCountryCode">
+                            <div class="input-group-append" role="group">
+                                <button ngbDropdownToggle class="btn border"></button>
+                            </div>
+                            <div ngbDropdownMenu aria-labelledby="dropdown" class="max-dropdown-height">
+                                <button ngbDropdownItem value="{{value.countryCode}}"
+                                        (click)="setFieldValue('pCountryCode', value.countryDesc)"
+                                        *ngFor="let value of countryDropdownValues; let i = index">
+                                    {{value.countryDesc}}
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </form>
+            <div class="row mt-2">
+                <ag-grid-angular #agGrid class="ag-theme-fresh" [gridOptions]="dataGridGridOptions"
+                                 style="width: 100%; height: 300px;"
+                                 [enableSorting]="true"
+                                 [enableFilter]="true"
+                                 [floatingFilter]="true"
+                                 [pagination]="true"
+                                 [showToolPanel]="true">
+                </ag-grid-angular>
+            </div>
+
+            <div class="form-group row justify-content-center mt-2">
+                <button class=" button form-control-static mb-0" i18n (click)="resetAllForm()">
+                    Reset All
+                </button>
+            </div>
+            <div class="form-group row justify-content-center mt-2">
+                <button class=" col-md-2 button form-control-static mb-0" i18n (click)="startSearch()">
+                    Start Search
+                </button>
+
+                <button class="col-md-2 pl-2 button form-control-static mb-0" i18n (click)="closeModal()">
+                    Close
+                </button>
+
+            </div>
+            <div class="form-group row justify-content-center mt-2" *ngIf="showSelectBranch">
+                <button class=" button form-control-static mb-0" i18n (click)="SelectBranchSubmit()">
+Select Branch                </button>
+            </div>
+
+            <div class="form-group row">
+            </div>
+        </form>
+    </div>
+</div>

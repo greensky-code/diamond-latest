@@ -1,0 +1,307 @@
+<!-- Copyright (c) 2021 . All Rights Reserved. -->
+<div class="container-fluid">
+    <div class="card-block">
+        <div class="row form-title">
+            <h2 class="col-md-6 card-label-admin">Tooth History</h2>
+            <div class="col-md"><b class="readonly-label">View Only</b></div>
+        </div>
+        <button type="button" *ngIf="showIcon" class="modal-close close" aria-label="Close"
+            (click)="activeModal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+        <app-pop-up-message #popUpMesssage (buttonclickEvent)="popUpButtonHandler($event)"  [(popupMessage)] = "popUpMessage"></app-pop-up-message>
+
+        <ng-template #loaderTemplate let-loaderValue="value">
+            <div class="row justify-content-center mt-4" *ngIf="loaderValue">
+                <div class="spinner-border text-success" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>
+            </div>
+        </ng-template>
+        <ng-container *ngTemplateOutlet="loaderTemplate;context:{value: secProgress }"></ng-container>
+
+        <ng-container *appWinSelect="{secWin: secWin, userTemplateId: userTemplateId, secModuleId: memberModuleId}">
+            <div class="row mt-3 mb-3">
+                <menu-bar [menus]="menu" (onMenuClick)="onMenuItemClick($event)"></menu-bar>
+            </div>
+
+            <form [formGroup]="thistToothHistoryForm" novalidate>
+                <div class="form-group row">
+                    <!-- Textbox with label of DIAMOND ID -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('diamondId') }">
+                        <label class="col-form-label" for="diamondId" i18n>DIAMOND ID</label>
+                        <input readonly type="text" id="diamondId" class="form-control" formControlName="diamondId"/>
+                        <small class="text-danger" *ngIf="formValidation.isValidField('diamondId')">
+                            {{ formValidation.errorMessage('diamondId') }}
+                        </small>
+                    </div>
+                    <!-- Textbox with label of Subscriber ID -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('memberId') }">
+                        <label class="col-form-label" for="memberId" i18n>Member ID</label>
+                        <input [readonly]="isSubscriberDisabled" type="text" id="memberId" #memberIds
+                               class="form-control" formControlName="memberId"
+                               (keydown)="onLookupFieldChange($event, memberIds.value)"/>
+                        <small class="text-danger" *ngIf="formValidation.isValidField('memberId')">
+                            {{ formValidation.errorMessage('memberId') }}
+                        </small>
+                    </div>
+
+                    <div class="col-md-1"
+                         [ngClass]="{'has-danger': formValidation.isValidField('personNo') }">
+                        <label class="col-form-label" for="personNo" i18n>&nbsp;</label>
+                        <input [readonly]="isSubscriberDisabled" type="text"  #personNumber id="personNo" formControlName="personNo"
+                               (keydown)="onFieldChange($event, personNumber.value)"
+                               class="form-control"/>
+                    </div>
+                </div>
+
+                    <!-- DataGrid with Name of DataGrid -->
+                    <ag-grid-angular #agGrid class="ag-theme-fresh" [gridOptions]="dataGridGridOptions"
+                                     style="width: 100%; height: 300px;"
+                                     (rowSelected)="onRowSelectedGrid001($event)"
+                                     [enableSorting]="true"
+                                     [enableFilter]="true"
+                                     [floatingFilter]="true"
+                                     [pagination]="true"
+                                     [showToolPanel]="true">
+                    </ag-grid-angular>
+
+                <ng-container *ngIf="showToothHistoryField">
+
+                    <div class="form-group row">
+                    </div>
+
+                    <div class="form-group row">
+                        <!-- DynamicText with label of Date of Services -->
+                        <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('dateOfServices') }">
+                            <label class="col-form-label" for="dateOfServices" i18n>Date of Services</label>
+                            <input type="text" readonly id="dateOfServices" formControlName="dateOfServices"
+                                   class="form-control"/>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+
+                        <!-- DynamicText with label of Tooth Number -->
+                        <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('toothNumber') }">
+                            <label class="col-form-label" for="toothNumber" i18n>Tooth Number</label>
+                            <select id="toothNumber" disabled class="form-control" formControlName="toothNumber">
+                                <option value="null"> -Select- </option>
+                                <option *ngFor="let code of toothNumbers" [value]="code.systemCode">
+                                    {{code.systemCode}} {{code.systemCodeDesc2}}</option>
+                            </select>
+                        </div>
+
+                        <!-- DynamicText with label of Procedure -->
+                        <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('procedure') }">
+                            <label class="col-form-label" for="procedure" i18n>Procedure</label>
+                            <input type="text" readonly id="procedure" formControlName="procedure" class="form-control"/>
+                        </div>
+
+                        <!-- DynamicText with label of Provider -->
+                        <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('provider') }">
+                            <label class="col-form-label" for="provider" i18n>Provider</label>
+                            <input type="text" readonly id="provider" formControlName="provider" class="form-control"/>
+                        </div>
+
+                        <!-- DynamicText with label of Benefit Package -->
+                        <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('benefitPackage') }">
+                            <label class="col-form-label" for="benefitPackage" i18n>Benefit Package</label>
+                            <select disabled id="benefitPackage"  class="form-control" formControlName="benefitPackage">
+                                <option value="null"> -Select- </option>
+                                <option *ngFor="let code of benPackages" [value]="code.benefitPackageId">
+                                    {{code.benefitPackageId}}  {{code.shortDescription}} </option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-md-12 form-control-static mb-0" i18n>
+                            <h5> Surface </h5>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <!-- DynamicText with label of S1 -->
+                        <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('s1') }">
+                            <label class="col-form-label" for="s1" i18n>S1</label>
+                            <select disabled id="s1"  class="form-control" formControlName="s1">
+                                <option value="null"> -Select- </option>
+                                <option *ngFor="let code of surfaces" [value]="code.systemCode">
+                                    {{code.systemCodeDesc2}} </option>
+                            </select>
+                        </div>
+
+                        <!-- DynamicText with label of S2 -->
+                        <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('s2') }">
+                            <label class="col-form-label" for="s2" i18n>S2</label>
+                            <select disabled id="s2"  class="form-control" formControlName="s2">
+                                <option value="null"> -Select- </option>
+                                <option *ngFor="let code of surfaces" [value]="code.systemCode">
+                                   {{code.systemCodeDesc2}}</option>
+                            </select>
+                        </div>
+
+                        <!-- DynamicText with label of S3 -->
+                        <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('s3') }">
+                            <label class="col-form-label" for="s3" i18n>S3</label>
+                            <select disabled id="s3"  class="form-control" formControlName="s3">
+                                <option value="null"> -Select- </option>
+                                <option *ngFor="let code of surfaces" [value]="code.systemCode">
+                                    {{code.systemCodeDesc2}} </option>
+                            </select>
+                        </div>
+
+                        <!-- DynamicText with label of S4 -->
+                        <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('s4') }">
+                            <label class="col-form-label" for="s4" i18n>S4</label>
+                            <select disabled id="s4"  class="form-control" formControlName="s4">
+                                <option value="null"> -Select- </option>
+                                <option *ngFor="let code of surfaces" [value]="code.systemCode">
+                                   {{code.systemCodeDesc2}} </option>
+                            </select>
+                        </div>
+
+                        <!-- DynamicText with label of S5 -->
+                        <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('s5') }">
+                            <label class="col-form-label" for="s5" i18n>S5</label>
+                            <select disabled id="s5"  class="form-control" formControlName="s5">
+                                <option value="null"> -Select- </option>
+                                <option *ngFor="let code of surfaces" [value]="code.systemCode">
+                                    {{code.systemCodeDesc2}} </option>
+                            </select>
+                        </div>
+                    </div>
+                    <hr/>
+                    <div class="form-group row"> </div>
+
+                    <div class="form-group row">
+
+                        <!-- DynamicText with label of Arch -->
+                        <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('arch') }">
+                            <label class="col-form-label" for="arch" i18n>Arch</label>
+                            <select disabled id="arch"  class="form-control" formControlName="arch">
+                                <option value="null"> -Select- </option>
+                                <option *ngFor="let code of arches" [value]="code.systemCode">
+                                    {{code.systemCodeDesc2}}</option>
+                            </select>
+                        </div>
+
+                        <!-- DynamicText with label of Quadrant -->
+                        <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('quadrant') }">
+                            <label class="col-form-label" for="quadrant" i18n>Quadrant</label>
+                            <select disabled id="quadrant"  class="form-control" formControlName="quadrant">
+                                <option value="null"> -Select- </option>
+                                <option *ngFor="let code of quadrants" [value]="code.systemCode">
+                                    {{code.systemCodeDesc2}}</option>
+                            </select>
+                        </div>
+
+                        <!-- DynamicText with label of Oral Cavity -->
+                        <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('oralCavity') }">
+                            <label class="col-form-label" for="oralCavity" i18n>Oral Cavity</label>
+                            <select disabled id="oralCavity"  class="form-control" formControlName="oralCavity">
+                                <option value="null"> -Select- </option>
+                                <option *ngFor="let code of oralCavities" [value]="code.systemCode">
+                                    {{code.systemCodeDesc2}}</option>
+                            </select>
+                        </div>
+
+                        <!-- DynamicText with label of Tooth Status -->
+                        <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('toothStatus') }">
+                            <label class="col-form-label" for="toothStatus" i18n>Tooth Status</label>
+                            <select disabled id="toothStatus"  class="form-control" formControlName="toothStatus">
+                                <option value="null"> -Select- </option>
+                                <option *ngFor="let code of toothStatuses" [value]="code.systemCode">
+                                   {{code.systemCodeDesc2}}</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group row"></div>
+
+                    <div class="form-group row">
+                        <div class="col-md-12 form-control-static mb-0" i18n>
+                            <h4><u> Misc Tooth History Information </u></h4>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <!-- DynamicText with label of Med Def -->
+                        <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('mefDef') }">
+                            <label class="col-form-label" for="mefDef" i18n>Med Def</label>
+                            <input type="text" readonly id="mefDef" formControlName="mefDef" class="form-control"/>
+                        </div>
+
+                        <!-- DynamicText with label of Claim No/Line No -->
+                        <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('claimNo') }">
+                            <label class="col-form-label" for="claimNo" i18n>Claim No/Line No</label>
+                            <input type="text" readonly id="claimNo" formControlName="claimNo" class="form-control"/>
+                        </div>
+
+                        <div class="col-md-2"
+                             [ngClass]="{'has-danger': formValidation.isValidField('lineNo') }">
+                            <label class="col-form-label" for="lineNo" i18n>&nbsp;</label>
+                            <input type="text" readonly id="lineNo" formControlName="lineNo" class="form-control"/>
+                        </div>
+
+                        <!-- DynamicText with label of Source Type -->
+                        <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('sourceType') }">
+                            <label class="col-form-label" for="sourceType" i18n> Source Type</label>
+                            <input type="text" readonly id="sourceType" formControlName="sourceType" class="form-control"/>
+                        </div>
+
+                    </div>
+
+                    <div class="form-group row">
+                        <hr/>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-md-12 form-control-static mb-0" i18n>
+                            <h4><u> User Defined Information </u></h4>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <!-- DynamicText with label of User Defined 1 -->
+                        <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('userDefined1') }">
+                            <label class="col-form-label" for="userDefined1" i18n>User Defined 1</label>
+                            <input type="text" readonly id="userDefined1" formControlName="userDefined1"
+                                   class="form-control"/>
+                        </div>
+
+                        <!-- DynamicText with label of User Date 1 -->
+                        <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('userDate1') }">
+                            <label class="col-form-label" for="userDate1" i18n>User Date 1</label>
+                            <input type="text" readonly id="userDate1" formControlName="userDate1" class="form-control"/>
+                        </div>
+
+                    </div>
+
+                    <div class="form-group row">
+                        <!-- DynamicText with label of User Defined 2 -->
+                        <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('userDefined2') }">
+                            <label class="col-form-label" for="userDefined2" i18n>User Defined 2</label>
+                            <input type="text" readonly id="userDefined2" formControlName="userDefined2"
+                                   class="form-control"/>
+                        </div>
+
+                        <!-- DynamicText with label of User Date 2 -->
+                        <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('userDate2') }">
+                            <label class="col-form-label" for="userDate2" i18n>User Date 2</label>
+                            <input type="text" readonly id="userDate2" formControlName="userDate2" class="form-control"/>
+                        </div>
+                    </div>
+                </ng-container>
+            </form>
+        </ng-container>
+    </div>
+</div>
+
+<ng-keyboard-shortcuts [shortcuts]="shortcuts"></ng-keyboard-shortcuts>
+<ng-keyboard-shortcuts-help [key]="'f2'" [closeKey]="'escape'" [title]="'Hotkeys Help'"></ng-keyboard-shortcuts-help>

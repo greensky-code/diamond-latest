@@ -1,0 +1,250 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+    <title>Multiple Languages in DIAMOND, How DIAMOND Thinks</title>
+    <!--(Meta)==========================================================-->
+    <meta name="copyright"
+          value="© Copyright 2002 Health Systems Design Corp., a wholly owned subsidiary of Perot Systems Corporation. All rights reserved"/>
+    <meta content="About.htt" name="template"/>
+    <meta content="RoboHELP by eHelp Corporation - www.ehelp.com" name="generator"/>
+    <meta content="0.1" name="generator-major-version"/>
+    <meta content="1" name="generator-minor-version"/>
+    <meta content="kadov" name="filetype"/>
+    <meta content="1" name="filetype-version"/>
+    <meta content="1" name="page-count"/>
+    <meta content="1526" name="layout-height"/>
+    <meta content="675" name="layout-width"/>
+    <!--(Links)=========================================================-->
+    <!--(Scripts)=======================================================-->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+</head>
+<body>
+
+<div class="calibreMeta">
+    <div class="calibreMetaTitle">
+
+
+        <h1>
+            <a href="../2nlvj-mfnql.html">DIAMOND 950 Help
+            </a>
+        </h1>
+
+
+    </div>
+    <div class="calibreMetaAuthor">
+        Unknown
+
+    </div>
+</div>
+
+<div class="calibreMain">
+
+    <div class="calibreEbookContent">
+
+        <div class="calibreEbNavTop">
+
+            <a href="Modifier_codes_How_DIAMOND_Thinks.htm" class="calibreAPrev">previous page
+            </a>
+
+
+            <a href="Add_an_NDC_code.htm" class="calibreANext">next page
+            </a>
+
+        </div>
+
+
+        <h1 class="calibre1">Multiple Languages in DIAMOND, How DIAMOND Thinks</h1>
+
+        <p class="text">This topic provides processing logic information about:</p>
+
+        <p class="text"><a href="#Introduction">Introduction</a></p>
+
+        <p class="text"><a
+                href="Multiple_Languages_in_DIAMOND_How_DIAMOND_Thinks.htm#Multiple_Languages_in_DIAMOND_DIAMOND_s_Base_Language_MID">DIAMOND’s
+            Base Language</a></p>
+
+        <p class="text"><a
+                href="Multiple_Languages_in_DIAMOND_How_DIAMOND_Thinks.htm#Multiple_Languages_in_DIAMOND_Different_Languages_for_Different_Users_MID">Different
+            Languages for Different Users</a></p>
+
+        <p class="text"><a
+                href="Multiple_Languages_in_DIAMOND_How_DIAMOND_Thinks.htm#Multiple_Languages_in_DIAMOND_Default_Language_and_Base_Language_MID">Default
+            Language and Base Language</a></p>
+
+        <p class="text"><a
+                href="Multiple_Languages_in_DIAMOND_How_DIAMOND_Thinks.htm#Multiple_Languages_in_DIAMOND_Keywords_Which_Are_Updated_for_Multiple_Languages_MID">Keywords
+            Updated for Multiple Languages</a></p>
+
+        <h2 class="calibre20"><a name="Introduction">Introduction</a></h2>
+
+        <p class="text">You can display screen names, menus, field labels, and user
+            messages in multiple languages. In your implementation you may have everything
+            in a single language other than American English, or you may have different
+            languages for different users, e.g. some claims processors working in
+            Spanish, some in American English, and others in Portuguese.</p>
+
+        <p class="text">The technical term for the system capabilities that make
+            multiple languages possible is "tokenization," because each
+            individual item of text that may be modified, such as a field label or
+            processing message, is called a token.</p>
+
+        <p class="text">Naturally, the more languages you employ the more complex
+            the set up and management of your implementation. However, the steps used
+            to create a single alternate language are the same as for many alternates,
+            so, for example, once you have set up Spanish setting up French is a straightforward
+            process.</p>
+
+        <h2 class="calibre20"><a name="Multiple_Languages_in_DIAMOND_DIAMOND_s_Base_Language_MID"></a>DIAMOND’s
+            Base Language</h2>
+
+        <p class="text">DIAMOND is delivered with American English as its base language.
+            It displays as AMERI in keyword LANGM (Language), where language codes
+            are set up. You will see it elsewhere with a code of 0 (zero) and AMERI
+            as the description.</p>
+
+        <p class="text">There is no user access to the entries in AMERI for screen
+            names, field literals, messages, and other text. They cannot be changed.
+            To change DIAMOND’s text to different phrasing, but still in American
+            English, set up a new language code and enter your text changes for that
+            new code. For example, you could establish a language code ENGLI, for
+            this purpose.</p>
+
+        <h2 class="calibre20"><a name="Multiple_Languages_in_DIAMOND_Default_Language_and_Base_Language_MID"></a>Default
+            Language and Base Language</h2>
+
+        <p class="text">When DIAMOND is delivered, the de facto default language
+            is the same as the base language, 0. Entries in the base language are
+            in American English. When you change the default from American English
+            to another language, that new default language becomes the base language.
+            This is only important in the setting up of subsequent languages; the
+            base language is the text from which the new language text is created.
+            For example, when you go to MNUMT and retrieve menu entries (in the left
+            hand box), they will be the entries for the base language; American English,
+            unless you have changed the default to another language, in which case
+            they will be the entries for that other language, the new base.</p>
+
+        <p class="text">The default language is changed in LANGM. When it is changed
+            DIAMOND automatically assigns the new default language to every user (in
+            SUSER), and you may override individual users who will use a language
+            other than the default. Make sure you do not change the default language
+            until the new default is fully defined. Otherwise, the automatic assignment
+            to users in SUSER to an incompletely defined language will cause unpredictable
+            results when those users attempt to sign on.</p>
+
+        <h2 class="calibre20"><a name="Multiple_Languages_in_DIAMOND_Different_Languages_for_Different_Users_MID"></a>Different
+            Languages for Different Users</h2>
+
+        <p class="text">Once you have set up language codes in keyword LANGM you
+            may assign them to individual users by overriding the default language.
+            The base language, 0, AMERI, is available, as are all the alternate language
+            codes you have established. To activate the use of an alternate language,
+            you must establish the code in LANGM and set up associated records in
+            LOVMT, MNUMT, KWDMT, SCNMT, UDTXT, and MSGMT, and then assign the alternate
+            to users in SUSER. In order for the new language to ‘make sense’ you will
+            likely need new entries for CODES, UDATT, and NAVMT, although DIAMOND
+            does not require these.</p>
+
+        <p class="text">For example, if you are setting DIAMOND up to handle both
+            Spanish and English because your health plan operates near the border
+            with Mexico, you will want to enable the address field Country in UDATT
+            to distinguish between addresses in the US and those in Mexico. You will
+            also want to establish user defined code values in CODES for Spanish users.
+            However, if you are setting up an English version to replace the American
+            English version, you may not require Country to be part of DIAMOND addresses,
+            nor are the values for user defined codes (in CODES) or menu names (in
+            NAVMT) any different in the new English version. Therefore, you need not
+            set up CODES, NAVMT, or UDATT for the alternate language English.</p>
+
+        <p class="text">DIAMOND will not allow you to assign a user to a language
+            code that has not been completely established. The language field in SUSER
+            will not accept an incompletely defined value.</p>
+
+        <h2 class="calibre20"><a
+                name="Multiple_Languages_in_DIAMOND_Keywords_Which_Are_Updated_for_Multiple_Languages_MID"></a>Keywords
+            Updated for Multiple Languages</h2>
+
+        <ul class="calibre17">
+
+            <li class="kadov-p-cbullet"><p class="bullet">LANGM: Contains user-defined
+                language codes plus AMERI, the base language in which DIAMOND is delivered,
+                and establishes DIAMOND’s default language.</p></li>
+
+            <li class="kadov-p-cbullet"><p class="bullet">CODES: Contains descriptions
+                of the user-defined code values that appear in drop-down data windows.</p></li>
+
+            <li class="kadov-p-cbullet"><p class="bullet">KWDMT: Contains the short
+                descriptions for keywords which appear on menus and screens</p></li>
+
+            <li class="kadov-p-cbullet"><p class="bullet">LOVMT: Contains descriptions
+                of the "valid values" which are hard-coded in DIAMOND ("valid
+                values" are listed and descried in the keyword reference documentation
+                in the column "Comments.")</p></li>
+
+            <li class="kadov-p-cbullet"><p class="bullet">MNUMT: Contains descriptions
+                for the menu commands that are accessible from Window (e.g. Timestamp),
+                File (such as Save), Special (typically specific to a keyword, such as
+                "Reinstate" in MEMBR), Topic (navigational aids to other keywords
+                without returning to F3 or a functional group such as Benefits). Many
+                of these menu commands also have microhelp that appears at the bottom
+                of a page with the function is selected.</p></li>
+
+            <li class="kadov-p-cbullet"><p class="bullet">MSGMT: Contains text for
+                user messages.</p></li>
+
+            <li class="kadov-p-cbullet"><p class="bullet">NAVMT: Contains the names
+                of the DIAMOND modules that appear on the main menu under the module icons,
+                such as Claims, A/P, and Security.</p></li>
+
+            <li class="kadov-p-cbullet"><p class="bullet">SCNMT: Contains the field
+                names that appear on the screen for hard-coded fields (e.g., Address 1
+                in MEMBR) and the associated microhelp, if any, which appears at the bottom
+                of the page when the cursor is in that field (e.g., "Enter first
+                line of address").</p></li>
+
+            <li class="kadov-p-cbullet"><p class="bullet">UDATT: Contains US Standard
+                Attributes for phone number and address fields (such as the mask for US
+                phone numbers), and controls activation of the Country field.</p></li>
+
+            <li class="kadov-p-cbullet"><p class="bullet">UDTXT: Contains the screen
+                literals for user defined fields, designates which are required, and for
+                fields in the Authorization Master, defines valid values for entry in
+                those fields.</p></li>
+        </ul>
+
+        <h3 class="calibre2">A note about SCNMT</h3>
+
+        <p class="text">SCNMT contains all the hard-code field names and associated
+            microhelp for every DIAMOND screen. When you first request a language
+            which has not been set up in SCNMT, DIAMOND will create screens and microhelp
+            entries (from the base) associated with the new language for every DIAMOND
+            screen. This takes several minutes or longer. However, once these are
+            created you can make changes as you wish and at your leisure.</p>
+
+        <p class="text">However, there are hundreds of screens, fields, and microhelp
+            entries, and it may be easier to use a back-end database tool to make
+            the changes in SCNMT for an alternate language. </p>
+
+
+    </div>
+
+    <div class="calibreEbNav">
+
+        <a href="Modifier_codes_How_DIAMOND_Thinks.htm" class="calibreAPrev">previous page
+        </a>
+
+
+        <a href="../2nlvj-mfnql.html" class="calibreAHome">start
+        </a>
+
+
+        <a href="Add_an_NDC_code.htm" class="calibreANext">next page
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+</html>

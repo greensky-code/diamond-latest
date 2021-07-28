@@ -1,0 +1,61 @@
+<!-- Copyright (c) 2020 . All Rights Reserved. -->
+<div class="container-fluid">
+    <div class="card-block">
+        <form [formGroup]="auditForm" novalidate>
+            <h2 class="form-title card-label-admin">Audit Information</h2>
+            <button type="button" *ngIf="showIcon" class="close" aria-label="Close"
+                (click)="activeModal.dismiss('Cross click')">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+            <!-- <app-pop-up-message #popUpMesssage (buttonclickEvent)="popUpButtonHandler($event)"  [(popupMessage)] = "popUpMessage"></app-pop-up-message> -->
+
+            <div class="form-group row">
+                <!-- Textbox with label of DIAMOND ID -->
+                <div class="col-md-6">
+                    <label class="col-form-label" for="diamondId" i18n>Keyword</label>
+                    <input type="text" id="winID" name="winID" class="form-control" readonly formControlName="winID" />
+                </div>
+
+                <!-- Textbox with label of Subscriber ID -->
+                <div class="col-md-6">
+                    <label class="col-form-label" for="subscriberId" i18n>Data Window</label>
+                    <input type="text" id="win" name="win" class="form-control" readonly formControlName="win" />
+                </div>
+
+            </div>
+
+            <div class="form-group row">
+                <!-- Textbox with label of DIAMOND ID -->
+                <div class="col-md-6">
+                    <label class="col-form-label" for="diamondId" i18n>Key Names</label>
+                    <input type="text" id="keyNames" name="keyNames" formControlName="keyNames" class="form-control" readonly />
+                </div>
+
+                <!-- Textbox with label of Subscriber ID -->
+                <div class="col-md-6">
+                    <label class="col-form-label" for="subscriberId" i18n>Key Values</label>
+                    <input type="text" id="keyValues" name="keyValues" formControlName="keyValues" class="form-control" readonly />
+                </div>
+
+            </div>
+
+            <!-- DataGrid with Name of DataGrid001 -->
+            <ag-grid-angular #agGrid class="ag-theme-fresh" [gridOptions]="dataGrid001GridOptions"
+                style="width: 100%; height: 290px;" [enableSorting]="true" [enableFilter]="false"
+                [floatingFilter]="false" [pagination]="true" [showToolPanel]="true" (selectionChanged)="onSelectionChanged()">
+            </ag-grid-angular>
+
+            <br>
+            <!-- DataGrid with Name of DataGrid002 -->
+            <ag-grid-angular #agGrid class="ag-theme-fresh" [gridOptions]="dataGrid002GridOptions"
+                style="width: 100%; height: 290px;" [enableSorting]="true" [enableFilter]="false"
+                [floatingFilter]="false" [pagination]="true" [showToolPanel]="true">
+            </ag-grid-angular>
+            <div class="form-group row">
+            </div>
+        </form>
+    </div>
+</div>
+<ng-keyboard-shortcuts [shortcuts]="shortcuts"></ng-keyboard-shortcuts>
+<ng-keyboard-shortcuts-help [key]="'f1'" [closeKey]="'escape'" [title]="'Hotkeys Help'"></ng-keyboard-shortcuts-help>

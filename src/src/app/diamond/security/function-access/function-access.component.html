@@ -1,0 +1,89 @@
+<!-- Copyright (c) 2021 . All Rights Reserved. -->
+<div class="container-fluid">
+    <div class="card-block">
+        <form [formGroup]="functionAccessForm" novalidate>
+            <h2 class="form-title card-label-admin">Function Access</h2>
+            <button type="button" *ngIf="showIcon" class="modal-close close" aria-label="Close"
+                    (click)="modalClose()">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+            <app-pop-up-message #popUpMesssage (buttonclickEvent)="popUpButtonHandler($event)"
+                                [popupMessage]="popUpMessage"></app-pop-up-message>
+            <div class="row mt-3">
+                <menu-bar [menus]="menu" (onMenuClick)="onMenuItemClick($event)"></menu-bar>
+            </div>
+            <div class="form-group row">
+            </div>
+
+            <div class="form-group row">
+                <!-- Textbox with label of User ID -->
+                <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('userId') }">
+                    <label class="col-form-label" for="userId" i18n>User ID</label>
+                    <input #userId (keydown)="onLookupFieldUserId($event)" type="text" id="userId"
+                           class="form-control" formControlName="userId"/>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('userId')">
+                        {{ formValidation.errorMessage('userId') }}
+                    </small>
+                </div>
+
+                <!-- DynamicText with label of Name -->
+                <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('name') }">
+                    <label class="col-form-label" for="name" i18n>Name</label>
+                    <input type="text" readonly id="name" formControlName="name" class="form-control"/>
+                </div>
+
+            </div>
+
+            <div class="form-group row">
+            </div>
+
+            <div class="form-group row">
+
+                <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('userType') }">
+                    <label class="col-form-label" for="userType" i18n>User Type</label>
+                    <input type="text" id="userType" class="form-control text-primary" formControlName="userType"
+                           readonly/>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('userType')">
+                        {{ formValidation.errorMessage('userType') }}
+                    </small>
+                </div>
+
+                <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('department') }">
+                    <label class="col-form-label" for="department" i18n>Department</label>
+                    <input type="text" id="department" class="form-control" formControlName="department" readonly/>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('department')">
+                        {{ formValidation.errorMessage('department') }}
+                    </small>
+                </div>
+
+
+                <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('location') }">
+                    <label class="col-form-label" for="location" i18n>Location</label>
+                    <input type="text" id="location" class="form-control" formControlName="location" readonly/>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('location')">
+                        {{ formValidation.errorMessage('location') }}
+                    </small>
+                </div>
+
+            </div>
+
+
+            <div class="form-group row">
+                <div class="col-md-12 mt-3 p-0">
+                    <dynamic-form [prevState]="secFuncsState" [displayCheckBox]="false" [showRemoveButton]="false"
+                                  [isFormEditable]="true" [isResetForm]="isResetForm" [isSaveForm]="true" [title]="''"
+                                  [config]="secFuncsFormConfig"
+                                  [addNewDataRow]="addNewDataRowConfig"
+                                  (formSubmitted)="saveSecFuns($event, userId.value)" [showSubmitButton]="true"
+                                  (selectStatus)="onFieldFocusOut($event)"
+                                  (onAddRowButton)="onAddRow($event, userId.value)"
+                                  (onRowClick)="rowClicked($event)"
+                    ></dynamic-form>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<ng-keyboard-shortcuts [shortcuts]="shortcuts"></ng-keyboard-shortcuts>
+<ng-keyboard-shortcuts-help [key]="'f2'" [closeKey]="'escape'" [title]="'Hotkeys Help'"></ng-keyboard-shortcuts-help>

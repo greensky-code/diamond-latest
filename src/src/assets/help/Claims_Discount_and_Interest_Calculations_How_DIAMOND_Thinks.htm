@@ -1,0 +1,1157 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+    <title>Claims Discount and Interest Calculations, How DIAMOND Thinks</title>
+    <!--(Meta)==========================================================-->
+    <meta name="copyright"
+          value="© Copyright 2002 Health Systems Design Corp., a wholly owned subsidiary of Perot Systems Corporation. All rights reserved"/>
+    <meta content="RoboHELP by eHelp Corporation - www.ehelp.com" name="generator"/>
+    <meta content="0.1" name="generator-major-version"/>
+    <meta content="1" name="generator-minor-version"/>
+    <meta content="kadov" name="filetype"/>
+    <meta content="1" name="filetype-version"/>
+    <meta content="1" name="page-count"/>
+    <meta content="7436" name="layout-height"/>
+    <meta content="691" name="layout-width"/>
+    <!--(Links)=========================================================-->
+    <!--(Scripts)=======================================================-->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+</head>
+<body>
+
+<div class="calibreMeta">
+    <div class="calibreMetaTitle">
+
+
+        <h1>
+            <a href="../bj5if-qozss.html">DIAMOND 950 Help
+            </a>
+        </h1>
+
+
+    </div>
+    <div class="calibreMetaAuthor">
+        Unknown
+
+    </div>
+</div>
+
+<div class="calibreMain">
+
+    <div class="calibreEbookContent">
+
+        <div class="calibreEbNavTop">
+
+            <a href="Making_a_Claim_Evaluation_Rule_Inactive.htm" class="calibreAPrev">previous page
+            </a>
+
+
+            <a href="Conditional_Interest_Determination_Method_Examples.htm" class="calibreANext">next page
+            </a>
+
+        </div>
+
+
+        <h4 class="calibre6">Claims Discount and Interest Calculations, How DIAMOND Thinks</h4>
+
+        <!--(Table)=========================================================-->
+        <table cellspacing="0" width="672" x-use-null-cells="" class="calibre192">
+
+            <tbody class="calibre8">
+            <tr valign="top" class="calibre9">
+                <td width="228px" class="calibre193">
+                    <p class="map-links"><a href="Claims_Discount_and_Interest_Calculations_How_DIAMOND_Thinks.htm"><img
+                            alt="image\assets/help/MidTopic_shg.gif" border="0" height="10"
+                            src="assets/help/MidTopic_shg.gif" width="18" class=""/></a> Claims
+                        Disc./Int.Calculations, HDT</p></td>
+                <td width="228px" class="calibre193">
+                    <p class="map-links"><a
+                            href="Claims_Discount_and_Interest_Calculations_How_DIAMOND_Thinks.htm#ClaimsIntDiscCalc_Interest_Calculation_Date_MID"><img
+                            alt="image\assets/help/MidTopic_shg.gif" border="0" height="10"
+                            src="assets/help/MidTopic_shg.gif" width="18" class=""/></a> Int. Calculation Date
+                    </p></td>
+                <td width="216px" class="calibre194">
+                    <p class="map-links"><a
+                            href="Claims_Discount_and_Interest_Calculations_How_DIAMOND_Thinks.htm#ClaimsIntDiscCalc_1099_Reporting_MID"><img
+                            alt="image\assets/help/MidTopic_shg.gif" border="0" height="10"
+                            src="assets/help/MidTopic_shg.gif" width="18" class=""/></a> 1099 Reporting</p>
+                </td>
+            </tr>
+
+            <tr valign="top" class="calibre9">
+                <td width="228px" class="calibre193">
+                    <p class="map-links"><a
+                            href="Claims_Discount_and_Interest_Calculations_How_DIAMOND_Thinks.htm#ClaimsIntDiscCalc_Discount_Calculations_MID"><img
+                            alt="image\assets/help/MidTopic_shg.gif" border="0" height="10"
+                            src="assets/help/MidTopic_shg.gif" width="18" class=""/></a> Discount Calculations
+                    </p></td>
+                <td width="228px" class="calibre193">
+                    <p class="map-links"><a
+                            href="Claims_Discount_and_Interest_Calculations_How_DIAMOND_Thinks.htm#ClaimsIntDiscCalc_Interest_Formula_MID"><img
+                            alt="image\assets/help/MidTopic_shg.gif" border="0" height="10"
+                            src="assets/help/MidTopic_shg.gif" width="18" class=""/></a> Interest Formula</p>
+                </td>
+                <td width="216px" class="calibre194">
+                    <p class="map-links"><a
+                            href="Claims_Discount_and_Interest_Calculations_How_DIAMOND_Thinks.htm#ClaimsIntDiscCalc_Security_MID"><img
+                            alt="image\assets/help/MidTopic_shg.gif" border="0" height="10"
+                            src="assets/help/MidTopic_shg.gif" width="18" class=""/></a> Security</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre9">
+                <td width="228px" class="calibre193">
+                    <p class="map-links"><a
+                            href="Claims_Discount_and_Interest_Calculations_How_DIAMOND_Thinks.htm#ClaimsIntDiscCalc_Discounts_on_Adjusted_Claim_Lines_MID"><img
+                            alt="image\assets/help/MidTopic_shg.gif" border="0" height="10"
+                            src="assets/help/MidTopic_shg.gif" width="18" class=""/></a> Disc. on Adjusted
+                        Claim Lines</p></td>
+                <td width="228px" class="calibre193">
+                    <p class="map-links"><a
+                            href="Claims_Discount_and_Interest_Calculations_How_DIAMOND_Thinks.htm#ClaimsIntDiscCalc_Interest_Determination_Method_MID"><img
+                            alt="image\assets/help/MidTopic_shg.gif" border="0" height="10"
+                            src="assets/help/MidTopic_shg.gif" width="18" class=""/></a> Int. Determination
+                        Method</p></td>
+                <td width="216px" class="calibre194">
+                    <p class="map-links"><a href="Dynamic_Interest_Determination_Method_Examples.htm"><img
+                            alt="image\assets/help/MidTopic_shg.gif" border="0" height="10"
+                            src="assets/help/MidTopic_shg.gif" width="18" class=""/></a> Dynamic Det. Method
+                        Examples</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre9">
+                <td width="228px" class="calibre193">
+                    <p class="map-links"><a
+                            href="Claims_Discount_and_Interest_Calculations_How_DIAMOND_Thinks.htm#ClaimsIntDiscCalc_Interest_Calculations_MID"><img
+                            alt="image\assets/help/MidTopic_shg.gif" border="0" height="10"
+                            src="assets/help/MidTopic_shg.gif" width="18" class=""/></a> Interest and Penalty
+                        Calculations</p></td>
+                <td width="228px" class="calibre193">
+                    <p class="map-links"><a
+                            href="Claims_Discount_and_Interest_Calculations_How_DIAMOND_Thinks.htm#ClaimsIntDiscCalc_Interest_on_Adjusted_Claim_Lines_MID"><img
+                            alt="image\assets/help/MidTopic_shg.gif" border="0" height="10"
+                            src="assets/help/MidTopic_shg.gif" width="18" class=""/></a> Int. on Adjusted Claim
+                        Lines</p></td>
+                <td width="216px" class="calibre194">
+                    <p class="map-links"><a href="Conditional_Interest_Determination_Method_Examples.htm"><img
+                            alt="image\assets/help/MidTopic_shg.gif" border="0" height="10"
+                            src="assets/help/MidTopic_shg.gif" width="18" class=""/></a> Conditional Det.
+                        Method Examples</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre9">
+                <td width="228px" class="calibre193">
+                    <p class="map-links"><a
+                            href="Claims_Discount_and_Interest_Calculations_How_DIAMOND_Thinks.htm#ClaimsIntDiscCalc_Interest_Calculation_Options_MID"><img
+                            alt="image\assets/help/MidTopic_shg.gif" border="0" height="10"
+                            src="assets/help/MidTopic_shg.gif" width="18" class=""/></a> Int. Calculation
+                        Options</p></td>
+                <td width="228px" class="calibre193">
+                    <p class="map-links"><a
+                            href="Claims_Discount_and_Interest_Calculations_How_DIAMOND_Thinks.htm#ClaimsIntDiscCalc_What_Happens_When_You_Run_Check_Post_MID"><img
+                            alt="image\assets/help/MidTopic_shg.gif" border="0" height="10"
+                            src="assets/help/MidTopic_shg.gif" width="18" class=""/></a> What Happens – Check
+                        Print </p></td>
+                <td width="216px" class="calibre194">
+                    <p class="map-links"><a href="Total_Days_Interest_Determination_Method_Examples.htm"><img
+                            alt="image\assets/help/MidTopic_shg.gif" border="0" height="10"
+                            src="assets/help/MidTopic_shg.gif" width="18" class=""/></a> Total Days Det. Method
+                        Examples</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre9">
+                <td width="228px" class="calibre193">
+                    <p class="map-links"><a
+                            href="Claims_Discount_and_Interest_Calculations_How_DIAMOND_Thinks.htm#ClaimsIntDiscCalc_Unclean_Claim_Indicator_MID"><img
+                            alt="image\assets/help/MidTopic_shg.gif" border="0" height="10"
+                            src="assets/help/MidTopic_shg.gif" width="18" class=""/></a> Unclean Claim
+                        Indicator</p></td>
+                <td width="228px" class="calibre193">
+                    <p class="map-links"><a
+                            href="Claims_Discount_and_Interest_Calculations_How_DIAMOND_Thinks.htm#ClaimsIntDiscCalc_The_General_Ledger_and_Interest_and_Discount_Amounts_MID"><img
+                            alt="image\assets/help/MidTopic_shg.gif" border="0" height="10"
+                            src="assets/help/MidTopic_shg.gif" width="18" class=""/></a> G/L and Int. and Disc.
+                        Amounts</p></td>
+                <td width="216px" class="calibre194">
+                    <p class="map-links"><a href="Interest_Calculation_Examples.htm"><img
+                            alt="image\assets/help/MidTopic_shg.gif" border="0" height="10"
+                            src="assets/help/MidTopic_shg.gif" width="18" class=""/></a> Int. Calculation
+                        Examples</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre9">
+                <td width="228px" class="calibre193">
+                    <p class="map-links"><a
+                            href="Claims_Discount_and_Interest_Calculations_How_DIAMOND_Thinks.htm#ClaimsIntDiscCalc_Apply_Unclean_Indicator__MID"><img
+                            alt="image\assets/help/MidTopic_shg.gif" border="0" height="10"
+                            src="assets/help/MidTopic_shg.gif" width="18" class=""/></a> Apply Unclean
+                        Indicator</p></td>
+                <td width="228px" class="calibre193">
+                    <p class="map-links"><a
+                            href="Claims_Discount_and_Interest_Calculations_How_DIAMOND_Thinks.htm#ClaimsIntDiscCalc_Unclean_Days_on_Claims_in_837_Transaction_Sets_MID"><img
+                            alt="image\assets/help/MidTopic_shg.gif" border="0" height="10"
+                            src="assets/help/MidTopic_shg.gif" width="18" class=""/></a> Unclean Days on API
+                        Claims </p></td>
+                <td width="216px" class="calibre194">
+                    <p class="map-links"> </p></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <p class="body-text">The claims discount calculation, claims penalty, and
+            claims interest calculation functionality provides you the option to automatically
+            calculate discount, penalty, or interest payments against payable and
+            reversed payable claims.</p>
+
+        <p class="body-text">Claim discounts are typically based on negotiated arrangements
+            with providers. Some arrangements may allow for your organization to apply
+            discounts against claim payments that are made in a timely manner (for
+            example, within a time frame specified in a provider contract); these
+            types of arrangements are sometimes called prompt payment discounts. Conversely,
+            your organization may be required to pay a penalty amount, or interest,
+            for claims that are paid late. You can set up rules at the line of business
+            level that automatically calculate discount, penalty or interest amounts
+            for payable claim detail lines. DIAMOND provides a manual process for
+            you to apply discount, penalty, or interest amounts against adjusted lines.
+        </p>
+
+        <ul class="calibre2">
+
+            <li class="kadov-p-cbullet-list-h1"><p class="bullet-list-h1">Discount
+                and interest calculations are applied only to payable (including reversed
+                payable) claim detail lines. Discount and interest calculations are not
+                applied against informational lines that are created during whole claim
+                pricing, or against capitated lines or staff lines. </p></li>
+
+            <li class="kadov-p-cbullet-list-h1"><p class="bullet-list-h1">Discount
+                and interest calculations are system calculated based on the discount
+                and interest calculation rules your organization defines. The calculated
+                discount and interest amounts cannot be manually entered, changed, or
+                deleted.</p></li>
+
+            <li class="kadov-p-cbullet-list-h1"><p class="bullet-list-h1">Discount
+                and interest amounts are calculated during the check print process against
+                the claim’s net amount. The new amount (net amount less discount or plus
+                interest) is stored in the Paid Net Amt field.</p></li>
+
+            <li class="kadov-p-cbullet-list-h1"><p class="bullet-list-h1">Discount
+                and interest calculations are based on calendar days; no consideration
+                is given to weekends or holidays.</p></li>
+
+            <li class="kadov-p-cbullet-list-h1"><p class="bullet-list-h1">When the
+                period of time from the Calculation Date (Received Date, Reset Date, or
+                Interest Inquiry Date) to the payment date spans two sets of discount
+                or interest rates, DIAMOND uses the rate in effect at the payment date.</p></li>
+
+            <li class="kadov-p-cbullet-list-h1"><p class="bullet-list-h1">A single
+                claim detail line cannot have both a discount amount and an interest amount
+                applied. If you set your system to evaluate for both discount and interest,
+                DIAMOND evaluates the discount calculation rules first. </p></li>
+
+            <li class="kadov-p-cbullet-list-h1"><p class="bullet-list-h1">For each
+                line of business, you determine if you want to calculate discount, interest,
+                both discount and interest, or neither (the default is neither). If you
+                set a line of business to calculate both discount and interest, DIAMOND
+                will first evaluate discount rules. If a rule is found, then DIAMOND will
+                apply that rule and stop searching, if no discount rule is found, or if
+                the discount calculated is 0, then DIAMOND will evaluate the interest
+                rules to see if any are applicable. </p></li>
+
+            <li class="kadov-p-cbullet-list-h1"><p class="bullet-list-h1">The LINBS
+                (Line of Business) screen includes a separate check box called Pay Sub/Dep.
+                This field allows you to select a different setting for claims that are
+                paid directly to subscribers or dependents; for example, a line of business
+                could be set to evaluate both discount and interest calculation rules
+                for vendor payments, while payments for the same line of business payable
+                to the subscriber or dependent can be set so that they do not evaluate
+                either discount or interest calculation rules.</p></li>
+
+            <li class="kadov-p-cbullet-list-h1"><p class="bullet-list-h1">Discount
+                or interest amounts can only be manually applied to adjusted claim lines.</p></li>
+
+            <li class="kadov-p-cbullet-list-h1"><p class="bullet-list-h1">You cannot
+                use discount and or interest calculation rules if you use DIAMOND’s partial
+                pay functionality. </p></li>
+
+            <li class="kadov-p-cbullet-list-h1"><p class="bullet-list-h1">-You can
+                create user-defined Reason Codes to apply to each interest, discount,
+                or penalty assessment.</p></li>
+
+            <li class="kadov-p-cbullet-list-h1"><p class="bullet-list-h1">-You can
+                charge interest, discounts, and penalties to separate G/L accounts. To
+                view these accounts, use the View Additional G/L Accounts menu command
+                available from ACPAY and APVDS.</p></li>
+        </ul>
+
+        <p class="doc-level"><a name="ClaimsIntDiscCalc_Discount_Calculations_MID"></a>Discount
+            Calculations</p>
+
+        <p class="body-text">Discounts can be applied against payable claim lines
+            and reversed payable claim lines. Discounts are based on the number of
+            days it takes to pay a claim. The discount amount is based on the percentage
+            defined in the discount calculation rule; the percentage rate is multiplied
+            against the Net Amount to determine the actual discount amount that will
+            be subtracted from the claim payment. Discounts are calculated at the
+            time of payment. </p>
+
+        <p class="body-text">If a claim detail line is held for any reason prior
+            to the line being resolved and paid, the hold reason code will not impact
+            the discount amount applied. You cannot set a minimum amount for discount
+            payments; therefore, a discount can be as small as $0.01. </p>
+
+        <p class="body-text">Applying a discount to an adjusted line is a manual
+            process. For more information, see <a
+                    href="Claims_Discount_and_Interest_Calculations_How_DIAMOND_Thinks.htm#ClaimsIntDiscCalc_Discounts_on_Adjusted_Claim_Lines_MID">Discounts
+                on Adjusted Claim Lines.</a></p>
+
+        <p class="doc-level1">Discount Evaluation is Set at the Line of Business</p>
+
+        <p class="body-text">You use LINBS (Line of Business) to determine whether
+            or not discount calculation rules will be evaluated for vendor payments
+            and/or payments made directly to subscribers or dependents. </p>
+
+        <p class="doc-level1">Discount Calculation Rules</p>
+
+        <p class="body-text">You create rules in keyword LBCDC (Line of Business
+            Claims Discount Calculations) that DIAMOND uses to determine if a discount
+            should be applied to a claim line. For each discount calculation rule
+            you create, the combination of claim type, rule order id, and effective
+            date must be unique. For each discount calculation rule, you need to define
+            the following criteria: </p>
+
+        <ul class="calibre2">
+
+            <li class="kadov-p-cbullet-list-h1"><p class="bullet-list-h1">Claim Type
+            </p></li>
+
+            <li class="kadov-p-cbullet-list-h1"><p class="bullet-list-h1">Rule Order</p></li>
+
+            <li class="kadov-p-cbullet-list-h1"><p class="bullet-list-h1">Effective
+                Date </p></li>
+
+            <li class="kadov-p-cbullet-list-h1"><p class="bullet-list-h1">Termination
+                Date (optional)</p></li>
+
+            <li class="kadov-p-cbullet-list-h1"><p class="bullet-list-h1">Discount
+                Days</p></li>
+
+            <li class="kadov-p-cbullet-list-h1"><p class="bullet-list-h1">Discount
+                Rate (percentage)</p></li>
+
+            <li class="kadov-p-cbullet-list-h1"><p class="bullet-list-h1">Search Sequence(s)</p></li>
+        </ul>
+
+        <p class="doc-level2">Claim Type</p>
+
+        <p class="bullet-list-h2">You must select a claim type (professional, institutional,
+            or dental) for each rule.</p>
+
+        <p class="doc-level2">Rule Order</p>
+
+        <p class="bullet-list-h2">Rule order is the sequence number assigned to the
+            rule. This sequence number determines the order in which DIAMOND evaluates
+            the rule. Discount calculation rules are evaluated in order from lowest
+            number to highest number. DIAMOND stops searching as soon as it finds
+            a rule that matches the information on the claim line; therefore, the
+            more specific rules should have lower Rule Order numbers, while the more
+            general rules should have higher Rule Order numbers. </p>
+
+        <p class="doc-level2">Effective Date</p>
+
+        <p class="body-text">Effective Date is required and determines the first
+            date on which the rule may be applied to a claim. </p>
+
+        <p class="doc-level2">Termination Date</p>
+
+        <p class="body-text">Termination date is not required, but you can use it
+            to set an end date for the discount calculation rule.</p>
+
+        <p class="doc-level2">Discount Days</p>
+
+        <p class="body-text">Discount days is the maximum number of days from the
+            claim’s Received Date to the payment date (Check Date or EFT Date) in
+            which the payment is considered to be timely and, therefore, eligible
+            for a discount. </p>
+
+        <p class="doc-level2">Discount Rate</p>
+
+        <p class="body-text">Discount Rate is the percentage rate for the discount.
+            This percentage is multiplied against the Net Amt of the claim to determine
+            the actual discount. The discount amount is subtracted from the Net Amt
+            to create the Paid Net Amt which is the amount that will appear on the
+            check or the EFT payment.</p>
+
+        <p class="doc-level2">Search Sequences </p>
+
+        <p class="body-text">Each rule must have at least one search sequence and
+            each search sequence must include either a Secondary determinant or a
+            From value for the Primary Determinant. </p>
+
+        <p class="body-text">Each search sequence has a number (Search Seq) that
+            determines the order in which the search sequence is evaluated; sequences
+            are evaluated in numerical order, from lowest number to highest. </p>
+
+        <p class="body-text">If a rule has two or more search sequences, only claims
+            that match the criterion of all search sequences will match the discount
+            calculation rule.</p>
+
+        <p class="doc-level1">Calculating the Discount Amount</p>
+
+        <p class="body-text">DIAMOND first calculates the number of days it took
+            to pay the claim by subtracting the claim’s Received Date from the date
+            the claim line was paid (either the Check Date or EFT Date). Then DIAMOND
+            compares the days-to-pay against the Discount Days from the discount calculation
+            rule. DIAMOND applies the discount only if the days-to-pay is less than
+            or equal to the Discount Days.</p>
+
+        <p class="body-text">If DIAMOND determines that the claim is eligible for
+            a discount, then the discount is calculated by multiplying the Discount
+            Rate against the Net Amt of the claim line. The resulting discount amount
+            is subtracted from the Net Amt creating the Paid Net Amt. The Paid Net
+            Amount is the amount that will be paid on the check or EFT transaction.</p>
+
+        <p class="doc-level"><a name="ClaimsIntDiscCalc_Discounts_on_Adjusted_Claim_Lines_MID"></a>Discounts
+            on Adjusted Claim Lines</p>
+
+        <p class="body-text">Applying a discount to an adjusted claim line is a manual
+            process. Use the Adjust Interest/Discount Amount Special menu command
+            available from the claim detail screen to manually enter the discount
+            amount, and if desired, a reason code for the discount. </p>
+
+        <p class="doc-level"><a name="ClaimsIntDiscCalc_Interest_Calculations_MID"></a>Interest
+            and Penalty Calculations</p>
+
+        <p class="body-text">Interest and penalty payments can be made on payable
+            and reversed payable claim lines. Interest and/or penalty payments are
+            based on the number of days it takes to pay a claim and can also consider
+            whether or not the claim is or was ever marked as unclean. You can set
+            a minimum amount for interest payments either by claim line or by entire
+            claim. </p>
+
+        <p class="body-text">An automatically calculated interest or penalty amount
+            cannot be negative unless it is for a reversed payable line. </p>
+
+        <p class="body-text">Applying interest to an adjusted line is a manual process.
+            For more information, see <a
+                    href="Claims_Discount_and_Interest_Calculations_How_DIAMOND_Thinks.htm#ClaimsIntDiscCalc_Interest_on_Adjusted_Claim_Lines_MID">Interest
+                on Adjusted Claim Lines.</a></p>
+
+        <p class="doc-level1">Penalty Applications</p>
+
+        <p class="body-text">Penalties can be applied automatically based on rules
+            you establish in LBCIC. In LBCIC, you can establish a flat amount penalty
+            or a penalty that is a percentage of the net claim amount. Penalties can
+            be also applied manually. By manually entering a negative penalty amount
+            on the Adjust Interest/Penalty/Discount Amount Menu Command, you can apply
+            a discount to the affected claim detail line.</p>
+
+        <p class="doc-level1">Interest Evaluation is Set at the Line of Business</p>
+
+        <p class="body-text">You use LINBS (Line of Business) to determine whether
+            or not interest calculation rules will be evaluated for vendor payments
+            and/or payments made directly to subscribers or dependents. </p>
+
+        <p class="doc-level1">Interest Calculation Rules</p>
+
+        <p class="body-text">You create rules in keyword LBCIC (Line of Business
+            Claims Interest Calculation) that DIAMOND uses to determine if Interest
+            should be applied to a claim, and if so, how many days of interest should
+            be paid. For each interest calculation rule you create, the combination
+            of claim type, rule order id, and effective date must be unique. For each
+            interest calculation rule, you need to define the following criteria:
+        </p>
+
+        <ul class="calibre2">
+
+            <li class="kadov-p-cbullet-list-h1"><p class="bullet-list-h1">Claim Type
+            </p></li>
+
+            <li class="kadov-p-cbullet-list-h1"><p class="bullet-list-h1">Rule Order</p></li>
+
+            <li class="kadov-p-cbullet-list-h1"><p class="bullet-list-h1">Effective
+                Date </p></li>
+
+            <li class="kadov-p-cbullet-list-h1"><p class="bullet-list-h1">Termination
+                Date (optional)</p></li>
+
+            <li class="kadov-p-cbullet-list-h1"><p class="bullet-list-h1">Interest
+                Formula</p></li>
+
+            <li class="kadov-p-cbullet-list-h1"><p class="bullet-list-h1">Interest
+                Rate</p></li>
+
+            <li class="kadov-p-cbullet-list-h1"><p class="bullet-list-h1">Exclude Unclean
+                Claim Line (optional)</p></li>
+
+            <li class="kadov-p-cbullet-list-h1"><p class="bullet-list-h1">Grace Days
+                (optional)</p></li>
+
+            <li class="kadov-p-cbullet-list-h1"><p class="bullet-list-h1">Mailing Days
+                (optional)</p></li>
+
+            <li class="kadov-p-cbullet-list-h1"><p class="bullet-list-h1">Minimum Payable
+                Interest per Claim (optional)</p></li>
+
+            <li class="kadov-p-cbullet-list-h1"><p class="bullet-list-h1">Minimum Payable
+                Interest per Claim Detail Line (optional)</p></li>
+
+            <li class="kadov-p-cbullet-list-h1"><p class="bullet-list-h1">Search Sequence(s)</p></li>
+        </ul>
+
+        <p class="doc-level1">Claim Type</p>
+
+        <p class="bullet-list-h2">You must select a claim type (professional, institutional,
+            or dental) for each rule.</p>
+
+        <p class="doc-level1">Rule Order</p>
+
+        <p class="bullet-list-h2">Rule order is the number assigned to the rule.
+            This number determines the order in which DIAMOND evaluates the rule.
+            Interest calculation rules are evaluated in order from lowest number to
+            highest number. DIAMOND stops searching as soon as it finds a rule that
+            matches the information on the claim line; therefore, the more specific
+            rules should have lower Rule Order numbers, while the more general rules
+            should have higher Rule Order numbers. </p>
+
+        <p class="doc-level1">Effective Date</p>
+
+        <p class="body-text">Effective Date is the first date on which the rule may
+            be applied to a claim. </p>
+
+        <p class="doc-level1">Termination Date</p>
+
+        <p class="body-text">Termination date is not required, but you can use it
+            to set an end date for the interest calculation rule.</p>
+
+        <p class="doc-level1">Interest Formula</p>
+
+        <p class="body-text">You can select to calculate interest on a daily basis,
+            a monthly basis, or a yearly basis.</p>
+
+        <p class="doc-level1">Interest Rate</p>
+
+        <p class="body-text">Interest Rate is the percentage rate for the interest
+            calculation. </p>
+
+        <p class="doc-level1">Exclude Unclean Claim Line</p>
+
+        <p class="body-text">If your organization is tracking unclean days, you can
+            use this checkbox to exclude any claim detail that has ever been marked
+            as unclean from having interest applied against it. This field is not
+            available if you are using the Conditional Interest Determination Method.
+            For more information on unclean claims, see <a
+                    href="Claims_Discount_and_Interest_Calculations_How_DIAMOND_Thinks.htm#ClaimsIntDiscCalc_Unclean_Claim_Indicator_MID">Unclean
+                Claim Indicator.</a></p>
+
+        <p class="doc-level1">Grace Days</p>
+
+        <p class="body-text">You can set up a grace period for each interest calculation
+            rule. The number that you specify as Grace Days is the number of days
+            for which no interest will be applied. If the claim payment is made within
+            the grace period, then no interest will be due on the claim line. If the
+            claim payment is made after the grace period, interest may be applied
+            to the claim line, but the Grace Days will be subtracted from the total
+            number of days for which interest is paid. </p>
+
+        <p class="doc-level1">Mailing Days</p>
+
+        <p class="body-text">Mailing days applies only to claim payments made by
+            check, not EFT payments. Mailing days are added as additional days for
+            which to pay interest on those claims where interest is applied. </p>
+
+        <p class="doc-level1">Minimum Payable Interest per Claim</p>
+
+        <p class="body-text">You can specify the minimum dollar amount of interest
+            to be paid against an entire claim. If the interest calculation rule is
+            applied to a claim where the total amount of interest for the whole claim
+            is less than the amount specified in this field, then no interest is paid.
+        </p>
+
+        <p class="doc-level1">Minimum Payable Interest per Claim Detail Line </p>
+
+        <p class="body-text">You can specify the minimum dollar amount of interest
+            to be paid against a single claim detail line. If the interest calculation
+            rule is applied to a claim line where the amount of interest is less than
+            the amount specified in this field, then no interest is paid.</p>
+
+        <p class="doc-level1">Search Sequences</p>
+
+        <p class="body-text">Each rule must have at least one search sequence and
+            each search sequence must include either:</p>
+
+        <ul class="calibre2">
+
+            <li class="kadov-p-cbullet-list-h1"><p class="bullet-list-h1">A Secondary
+                Determinant </p></li>
+        </ul>
+
+        <p class="body-text">or </p>
+
+        <ul class="calibre2">
+
+            <li class="kadov-p-cbullet-list-h1"><p class="bullet-list-h1">A From value
+                for the Primary Determinant</p></li>
+        </ul>
+
+        <p class="body-text">Each search sequence has a number (Search Seq) that
+            determines the order in which the search sequence is evaluated; sequences
+            are evaluated in numerical order, from lowest number to highest. </p>
+
+        <p class="body-text">If a rule has two or more search sequences, only claims
+            that match the criterion of all search sequences will match the discount
+            calculation rule.</p>
+
+        <p class="doc-level"><a name="ClaimsIntDiscCalc_Interest_Calculation_Options_MID"></a>Interest
+            Calculation Options</p>
+
+        <p class="body-text">DIAMOND’s interest calculation functionality is quite
+            flexible. The following are options you can use to customize interest
+            calculations for your organization:</p>
+
+        <ul class="calibre2">
+
+            <li class="kadov-p-cbullet-list-h1"><p class="bullet-list-h1">Unclean Claim
+                Indicator</p></li>
+
+            <li class="kadov-p-cbullet-list-h1"><p class="bullet-list-h1">Apply Unclean
+                Indicator</p></li>
+
+            <li class="kadov-p-cbullet-list-h1"><p class="bullet-list-h1">Interest
+                Calculation Date</p></li>
+
+            <li class="kadov-p-cbullet-list-h1"><p class="bullet-list-h1">Interest
+                Formula</p></li>
+
+            <li class="kadov-p-cbullet-list-h1"><p class="bullet-list-h1">Interest
+                Determination Method</p></li>
+        </ul>
+
+        <p class="doc-level"><a name="ClaimsIntDiscCalc_Unclean_Claim_Indicator_MID"></a>Unclean
+            Claim Indicator</p>
+
+        <p class="body-text">Some organizations consider whether or not a claim is
+            unclean (also known as dirty) when calculating interest payments. A claim
+            may be considered unclean if it requires additional substantiating documentation
+            from a source outside of your organization and if the missing information
+            prevents you from paying the claim timely. </p>
+
+        <p class="body-text">Unclean days are only tracked on payable and informational
+            claim lines. If another type of claim line is changed to payable or informational,
+            unclean days can only be tracked from the date that the line is changed.</p>
+
+        <p class="body-text">If a claim line is deleted prior to payment, any unclean
+            days information for the claim line is also deleted.</p>
+
+        <p class="body-text">DIAMOND can automatically apply the unclean claim status
+            to payable claim detail lines and to informational detail lines (lines
+            that have undergone whole claim pricing) through the use of hold or deny
+            reason codes. You also have the option to manually mark a claim detail
+            line as unclean. </p>
+
+        <p class="doc-level1">Mark a Claim Detail Line as Unclean</p>
+
+        <p class="body-text">Each claim detail line includes an Unclean Indicator.
+            The default for this indicator is no (meaning that the claim is clean).
+            The indicator will be set to yes to indicate an unclean claim by either
+            of the following methods: </p>
+
+        <ul class="calibre2">
+
+            <li class="kadov-p-cbullet-list-h1"><p class="bullet-list-h1">Application
+                of an unclean hold or deny reason code.</p></li>
+
+            <li class="kadov-p-cbullet-list-h1"><p class="bullet-list-h1">Use of the
+                Reset Claim Indicator. </p></li>
+        </ul>
+
+        <p class="doc-level2">Unclean Hold and Deny Reason Codes</p>
+
+        <p class="body-text">REASN (Reason Code Maintenance) includes a checkbox
+            called Unclean Indicator. When this box is checked on a hold or deny reason
+            code, and this reason code is applied to a claim line, that claim line’s
+            Unclean Indicator is then checked. </p>
+
+        <p class="body-text">Only hold or deny reason codes can change a claim’s
+            unclean indicator to yes. If another type of reason code (besides hold
+            or deny) has the unclean claim indicator selected, and is applied to a
+            claim, it will not affect the claim’s Unclean Indicator. </p>
+
+        <p class="body-text">When you check the Unclean Indicator on a reason code,
+            it only affects claims to which it is applied after the check box is selected.
+            Claims to which this reason code was applied, prior to the check box being
+            selected will not be marked as unclean as a result of this reason code.</p>
+
+        <p class="body-text1"> </p>
+
+        <p class="tip-note-warning1">WARNING: <span class="calibre195">Once
+ a reason code’s Unclean Indicator has been checked, it cannot be unchecked.
+ If you want to change the reason code so that it no longer has a checked
+ Unclean Indicator, you have to create a new reason code.</span></p>
+
+        <p class="doc-level2">Reset Claim Indicator</p>
+
+        <p class="body-text">The Reset Claim Indicator is a Special menu command
+            available from the claim detail screen that enables you to switch a claim’s
+            Unclean Indicator from yes to no or from no to yes. Changing the Unclean
+            Indicator from yes to no only affects the claim going forward, it does
+            not erase any unclean days that have already accumulated. </p>
+
+        <p class="body-text">This command is not available if the Interest Determination
+            Method on the line of business is Conditional. </p>
+
+        <p class="doc-level1">Manually Changing the Number of Unclean Days </p>
+
+        <p class="body-text">There are two ways you can affect the number of unclean
+            days that have accumulated on a claim detail line:</p>
+
+        <ul class="calibre2">
+
+            <li class="kadov-p-cbullet-list-h1"><p class="bullet-list-h1">Override
+                all Unclean Days</p></li>
+
+            <li class="kadov-p-cbullet-list-h1"><p class="bullet-list-h1">Deduct Some
+                Unclean Days</p></li>
+        </ul>
+
+        <p class="body-text">These fields are available on the Claims Interest/Discount
+            Information menu command that is available from the claim detail screens.
+            If you want to use either of these options, you must fill in the fields
+            prior to running APUPD and check print. </p>
+
+        <p class="doc-level2">Override all Unclean Days</p>
+
+        <p class="body-text">Selecting this field erases any unclean days that have
+            accumulated. </p>
+
+        <p class="doc-level2">Deduct Some Unclean Days</p>
+
+        <p class="body-text">This field enables you to subtract some of the unclean
+            days from a claim without reversing all of the unclean days. </p>
+
+        <p class="doc-level1">Unclean Days on Informational Claim Lines</p>
+
+        <p class="body-text">If an informational claim line has accumulated unclean
+            days, those days will be transferred to the resulting system generated
+            payable line. </p>
+
+        <p class="doc-level"><a name="ClaimsIntDiscCalc_Apply_Unclean_Indicator__MID"></a>Apply
+            Unclean Indicator </p>
+
+        <p class="body-text">The Apply Unclean Indicator is an option you set at
+            the line of business to determine how DIAMOND applies the Unclean Indicator
+            on claim detail lines. There are two options; you can select to have all
+            claim detail lines set to unclean if one claim detail is unclean, or you
+            can select to have each claim detail line evaluated separately. The default
+            is to set all claim detail lines to unclean if one claim detail line is
+            unclean.</p>
+
+        <p class="doc-level"><a name="ClaimsIntDiscCalc_Interest_Calculation_Date_MID"></a>Interest
+            Calculation Date</p>
+
+        <p class="body-text">The Interest Calculation Date is the date that is used
+            as the From Date in interest calculations. There are three dates you can
+            use as the Calculation Date:</p>
+
+        <ul class="calibre2">
+
+            <li class="kadov-p-cbullet-list-h1"><p class="bullet-list-h1">Received
+                Date (default)</p></li>
+
+            <li class="kadov-p-cbullet-list-h1"><p class="bullet-list-h1">Reset Date</p></li>
+
+            <li class="kadov-p-cbullet-list-h1"><p class="bullet-list-h1">Interest
+                Inquiry Date</p></li>
+        </ul>
+
+        <p class="doc-level1">Received Date</p>
+
+        <p class="body-text">The default is to use the claim’s Received Date as the
+            calculation date. </p>
+
+        <p class="doc-level1">Reset Date</p>
+
+        <p class="body-text">Each claim detail line includes a Reset Date field.
+            If you want to use the reset date in the interest calculation instead
+            of the received date, you must select the Use Reset Date check box on
+            LINBS. DIAMOND uses the Reset Date as the From Date in the interest calculations
+            when the following criteria are met: the Reset Date check box on LINBS
+            is checked, the Reset Date field on the claim detail line is filled in,
+            and an interest calculation is applied. If the line of business record
+            specifies to use the Reset Date, but the reset date field on the claim
+            line is blank, DIAMOND uses the Received Date in the interest calculation.</p>
+
+        <p class="doc-level1">Inquiry Date</p>
+
+        <p class="body-text">If an Interest Inquiry Date is provided, it takes precedence
+            regardless of whether or not the Use Reset date is selected on the line
+            of business. The Interest Inquiry Date is set on the Special menu command,
+            Claims Interest/Discount Information. This Special menu command is available
+            from each claim detail screen.</p>
+
+        <p class="doc-level1">Examples of How DIAMOND Determines the Interest Calculation
+            Date</p>
+
+        <!--(Table)=========================================================-->
+        <table cellspacing="0" width="480" x-use-null-cells="" class="calibre196">
+
+            <tbody class="calibre8">
+            <tr valign="top" class="calibre9">
+                <td width="114px" class="calibre197">
+                    <p class="body-text"><span class="calibre5"><span class="calibre198">Use
+ Reset Date field on LINBS</span></span></p>
+                    <p class="body-text"><span class="calibre5"><span class="calibre198">No
+ = Unchecked Yes = checked</span></span></p></td>
+                <td width="77px" class="calibre199">
+                    <p class="body-text"><span class="calibre5"><span class="calibre198">Received
+ Date on Claim Detail</span></span></p></td>
+                <td width="82px" class="calibre200">
+                    <p class="body-text"><span class="calibre5"><span class="calibre198">Reset
+ Date on Claim Detail</span></span></p></td>
+                <td width="77px" class="calibre199">
+                    <p class="body-text"><span class="calibre5"><span class="calibre198">Inquiry
+ Date on Claim Detail</span></span></p></td>
+                <td width="128px" class="calibre201">
+                    <p class="body-text"><span class="calibre5"><span class="calibre198">Interest
+ Calculation Date</span></span></p>
+                    <p class="body-text"><span class="calibre5"><span class="calibre198">(Date
+ used as the from date in the interest calculation)</span></span></p></td>
+            </tr>
+
+            <tr valign="top" class="calibre9">
+                <td width="114px" class="calibre202">
+                    <p class="tbl-text">No</p></td>
+                <td width="77px" class="calibre203">
+                    <p class="tbl-text">Yes</p></td>
+                <td width="82px" class="calibre204">
+                    <p class="tbl-text">Blank</p></td>
+                <td width="77px" class="calibre203">
+                    <p class="tbl-text">Blank</p></td>
+                <td width="128px" class="calibre205">
+                    <p class="tbl-text">Received Date</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre9">
+                <td width="114px" class="calibre202">
+                    <p class="tbl-text">No</p></td>
+                <td width="77px" class="calibre203">
+                    <p class="tbl-text">Yes</p></td>
+                <td width="82px" class="calibre204">
+                    <p class="tbl-text">Yes</p></td>
+                <td width="77px" class="calibre203">
+                    <p class="tbl-text">Blank</p></td>
+                <td width="128px" class="calibre205">
+                    <p class="tbl-text">Received Date</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre9">
+                <td width="114px" class="calibre202">
+                    <p class="tbl-text">No</p></td>
+                <td width="77px" class="calibre203">
+                    <p class="tbl-text">Yes</p></td>
+                <td width="82px" class="calibre204">
+                    <p class="tbl-text">Blank</p></td>
+                <td width="77px" class="calibre203">
+                    <p class="tbl-text">Yes</p></td>
+                <td width="128px" class="calibre205">
+                    <p class="tbl-text">Inquiry Date</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre9">
+                <td width="114px" class="calibre202">
+                    <p class="tbl-text">No</p></td>
+                <td width="77px" class="calibre203">
+                    <p class="tbl-text">Yes</p></td>
+                <td width="82px" class="calibre204">
+                    <p class="tbl-text">Yes</p></td>
+                <td width="77px" class="calibre203">
+                    <p class="tbl-text">Yes</p></td>
+                <td width="128px" class="calibre205">
+                    <p class="tbl-text">Inquiry Date</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre9">
+                <td width="114px" class="calibre202">
+                    <p class="tbl-text">Yes</p></td>
+                <td width="77px" class="calibre203">
+                    <p class="tbl-text">Yes</p></td>
+                <td width="82px" class="calibre204">
+                    <p class="tbl-text">Blank</p></td>
+                <td width="77px" class="calibre203">
+                    <p class="tbl-text">Blank</p></td>
+                <td width="128px" class="calibre205">
+                    <p class="tbl-text">Received Date</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre9">
+                <td width="114px" class="calibre202">
+                    <p class="tbl-text">Yes</p></td>
+                <td width="77px" class="calibre203">
+                    <p class="tbl-text">Yes</p></td>
+                <td width="82px" class="calibre204">
+                    <p class="tbl-text">Yes</p></td>
+                <td width="77px" class="calibre203">
+                    <p class="tbl-text">Blank</p></td>
+                <td width="128px" class="calibre205">
+                    <p class="tbl-text">Reset Date</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre9">
+                <td width="114px" class="calibre202">
+                    <p class="tbl-text">Yes</p></td>
+                <td width="77px" class="calibre203">
+                    <p class="tbl-text">Yes</p></td>
+                <td width="82px" class="calibre204">
+                    <p class="tbl-text">Blank</p></td>
+                <td width="77px" class="calibre203">
+                    <p class="tbl-text">Yes</p></td>
+                <td width="128px" class="calibre205">
+                    <p class="tbl-text">Inquiry Date</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre9">
+                <td width="114px" class="calibre202">
+                    <p class="tbl-text">Yes</p></td>
+                <td width="77px" class="calibre203">
+                    <p class="tbl-text">Yes</p></td>
+                <td width="82px" class="calibre204">
+                    <p class="tbl-text">Yes</p></td>
+                <td width="77px" class="calibre203">
+                    <p class="tbl-text">Yes</p></td>
+                <td width="128px" class="calibre205">
+                    <p class="tbl-text">Inquiry Date</p></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <p class="doc-level"><a name="ClaimsIntDiscCalc_Interest_Formula_MID"></a>Interest
+            Formula</p>
+
+        <p class="body-text">The Interest Formula field on the LBCIC screen enables
+            you to have interest calculated at any of these intervals:</p>
+
+        <ul class="calibre2">
+
+            <li class="kadov-p-cbullet-list-h1"><p class="bullet-list-h1">Daily</p></li>
+
+            <li class="kadov-p-cbullet-list-h1"><p class="bullet-list-h1">Monthly</p></li>
+
+            <li class="kadov-p-cbullet-list-h1"><p class="bullet-list-h1">Annually</p></li>
+        </ul>
+
+        <p class="doc-level2">Daily Interest</p>
+
+        <p class="body-text">The Daily interest calculation formula is</p>
+
+        <p class="body-text">For Check payments: Net Amount * Interest Rate * (Days-to-pay
+            – Grace Days + Mailing Days)</p>
+
+        <p class="body-text">For EFT payments: Net Amount * Interest Rate * (Days-to-pay
+            – Grace Days)</p>
+
+        <p class="doc-level2">Monthly Interest</p>
+
+        <p class="body-text">The Monthly interest calculation formula is</p>
+
+        <p class="body-text">For Check payments: Net Amount * Interest Rate/number
+            of days in month * (Days-to-pay – Grace Days + Mailing Days)</p>
+
+        <p class="body-text">For EFT payments: Net Amount * Interest Rate/number
+            of days in month * (Days-to-pay – Grace Days)</p>
+
+        <p class="doc-level2">Annual Interest</p>
+
+        <p class="body-text">The Annual interest calculation formula is</p>
+
+        <p class="body-text">For Check payments: Net Amount * Interest Rate/number
+            of days in year * (Days-to-pay – Grace Days + Mailing Days)</p>
+
+        <p class="body-text">For EFT payments: Net Amount * Interest Rate/number
+            of days in year * (Days-to-pay – Grace Days)</p>
+
+        <p class="body-text"><a href="Interest_Calculation_Examples.htm">Interest
+            Formula Calculation Examples.</a></p>
+
+        <p class="doc-level"><a name="ClaimsIntDiscCalc_Interest_Determination_Method_MID"></a>Interest
+            Determination Method</p>
+
+        <p class="body-text">The interest determination method is set at the line
+            of business and determines whether or not unclean days are considered
+            in the interest calculation. There are three methods available: </p>
+
+        <ul class="calibre2">
+
+            <li class="kadov-p-cbullet-list-h1"><p class="bullet-list-h1">Dynamic </p></li>
+
+            <li class="kadov-p-cbullet-list-h1"><p class="bullet-list-h1">Conditional
+                (default)</p></li>
+
+            <li class="kadov-p-cbullet-list-h1"><p class="bullet-list-h1">Total Days</p></li>
+        </ul>
+
+        <p class="doc-level1">Dynamic</p>
+
+        <p class="body-text">The dynamic method calculates the number of days against
+            which to pay interest based on the number of days that the claim was clean.
+            The claim may have gone back and forth between being clean and unclean.
+            The calculation counts all days from the calculation date to the payment
+            date, then subtracts the number of days that the claim was unclean. The
+            number of days for which to pay interest are calculated as follows:</p>
+
+        <p class="body-text">[Pay date (check Date or EFT Date) minus Calculation
+            Date (Received Date, Inquiry Date, or Reset Date)] minus Unclean Days.
+        </p>
+
+        <p class="body-text"><a href="Dynamic_Interest_Determination_Method_Examples.htm">Dynamic
+            Interest Determination Method Examples</a></p>
+
+        <p class="doc-level1">Conditional</p>
+
+        <p class="body-text">The conditional method calculates the number of days
+            against which to pay interest based on whether or not the claim has ever
+            been marked as unclean. If the claim has, at any point, been marked as
+            unclean, then no interest is paid. Interest is only paid on claims that
+            have never been marked as unclean. The number of days for which to pay
+            interest are calculated as follows:</p>
+
+        <p class="body-text">If the number of Unclean days is greater than 0, do
+            not pay interest; otherwise, Pay Date (Check Date or EFT Date) minus Calculation
+            Date (Received Date, Inquiry Date, or Reset Date) </p>
+
+        <p class="body-text">When the conditional interest determination method is
+            used, you cannot use the Reset Indicator to change the claims unclean
+            setting and the Exclude Unclean Claim field on LBCIC is not available.</p>
+
+        <p class="body-text"><a href="Conditional_Interest_Determination_Method_Examples.htm">Conditional
+            Interest Determination Method Examples</a></p>
+
+        <p class="doc-level1">Total Days</p>
+
+        <p class="body-text">The total days method calculates the number of days
+            against which to pay interest based on the number of days it took to pay
+            the claim, regardless of whether or not the claim has ever been marked
+            as unclean. The number of days for which to pay interest are calculated
+            as follows:</p>
+
+        <p class="body-text">Pay Date (Check Date or EFT Date) minus Calculation
+            Date (Received Date, Inquiry Date, or Reset Date)</p>
+
+        <p class="body-text"><a href="Total_Days_Interest_Determination_Method_Examples.htm">Total
+            Days Interest Determination Method Examples</a></p>
+
+        <p class="doc-level"><a name="ClaimsIntDiscCalc_Interest_on_Adjusted_Claim_Lines_MID"></a>Interest
+            on Adjusted Claim Lines</p>
+
+        <p class="body-text">Applying interest to an adjusted claim line is a manual
+            process. The various options available for interest calculations, including
+            Unclean Claim Indicator, Apply Unclean Indicator, Interest Calculation
+            Date, Interest Formula, and Interest Determination Method are not available
+            for adjusted claim lines. Use the Adjust Interest/Discount Amount Special
+            menu command available from the claim detail screen to manually enter
+            the interest amount, and if desired, a reason code for the interest. </p>
+
+        <p class="doc-level"><a name="ClaimsIntDiscCalc_What_Happens_When_You_Run_Check_Post_MID"></a>What
+            Happens When You Run Check Print and Check Post</p>
+
+        <p class="body-text">Discount calculations and interest calculations are
+            evaluated and calculated during the check print process. The following
+            occurs for payable and reversed payable claim lines when you run check
+            print:</p>
+
+        <ul class="calibre2">
+
+            <li class="kadov-p-cbullet-list-h1"><p class="bullet-list-h1">DIAMOND evaluates
+                discount calculation rules and/or interest calculation rules if LINBS
+                is set to do so.</p></li>
+
+            <li class="kadov-p-cbullet-list-h1"><p class="bullet-list-h1">If DIAMOND
+                finds a matching rule, it calculates the discount or interest amount.</p></li>
+
+            <li class="kadov-p-cbullet-list-h1"><p class="bullet-list-h1">DIAMOND counts
+                the number of unclean days for each claim line.</p></li>
+        </ul>
+
+        <p class="body-text">The following occurs after you run check post:</p>
+
+        <ul class="calibre2">
+
+            <li class="kadov-p-cbullet-list-h1"><p class="bullet-list-h1">DIAMOND updates
+                the general ledger with any discount or interest amounts.</p></li>
+
+            <li class="kadov-p-cbullet-list-h1"><p class="bullet-list-h1">DIAMOND fills
+                in the discount or interest information on the claim detail screen, the
+                Claim Interest/Discount Information Special menu command, and the View
+                Claim Interest/Discount Information Special menu command. </p></li>
+        </ul>
+
+        <p class="doc-level"><a name="ClaimsIntDiscCalc_The_General_Ledger_and_Interest_and_Discount_Amounts_MID"></a>The
+            General Ledger and Interest and Discount Amounts</p>
+
+        <p class="body-text">The general ledger screen includes fields that enable
+            you to separate claims discount monies and claims interest monies from
+            the standard general ledger reference assignments to the primary and secondary
+            general ledger codes. </p>
+
+        <p class="doc-level"><a name="ClaimsIntDiscCalc_Unclean_Days_on_Claims_in_837_Transaction_Sets_MID"></a>Unclean
+            Days on Claims in the DDS API/EDI Staging Tables</p>
+
+        <p class="body-text">You can set up error messages that mark claim lines
+            as unclean when applied against a claim header or claim detail in the
+            DDS API/EDI staging tables. When these claims are moved from the staging
+            tables into DIAMOND’s production tables, they will no longer accumulate
+            unclean days as a result of the error message. Once in DIAMOND’s production
+            tables, these lines will be treated as all other claim lines and can be
+            marked as unclean by application of an unclean reason code or can be marked
+            manually by the Reset Indicator Special menu command. </p>
+
+        <p class="body-text">Unclean days that are accumulated while in the staging
+            tables will be counted and will be used in interest calculations in the
+            same way that all other unclean days are. </p>
+
+        <h2 class="calibre3"><a name="ClaimsIntDiscCalc_1099_Reporting_MID"></a>1099 Reporting</h2>
+
+        <p class="body-text">Interest and discount amounts are reflected in 1099
+            totals. </p>
+
+        <p class="doc-level"><a name="ClaimsIntDiscCalc_Security_MID"></a>Security
+        </p>
+
+        <p class="body-text">The access setup in SFUNC (Function Access) for the
+            following commands on the <span class="calibre5">Special</span>
+            menu is separate from that for the claim detail window:</p>
+
+        <ul class="calibre2">
+
+            <li class="kadov-p-cbullet-list-h1"><p class="bullet-list-h1">Claim Interest/Discount
+                Information</p></li>
+
+            <li class="kadov-p-cbullet-list-h1"><p class="bullet-list-h1">Reset Claim
+                Indicator</p></li>
+
+            <li class="kadov-p-cbullet-list-h1"><p class="bullet-list-h1">Adjust Interest/Discount
+                Amounts</p></li>
+        </ul>
+
+
+    </div>
+
+
+    <div class="calibreEbNav">
+
+        <a href="Making_a_Claim_Evaluation_Rule_Inactive.htm" class="calibreAPrev">previous page
+        </a>
+
+
+        <a href="../bj5if-qozss.html" class="calibreAHome">start
+        </a>
+
+
+        <a href="Conditional_Interest_Determination_Method_Examples.htm" class="calibreANext">next page
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+</html>

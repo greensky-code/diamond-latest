@@ -1,0 +1,19 @@
+
+<div class="card-block">
+    <div class="form-group row">
+        <div class="col-md-12">
+            <dmnd-dynamic-config-grid
+                [prevState]="addressEmailFormState"
+                [showRemoveButton]="false"
+                [config]="addressEmailFormConfig"
+                [showResetButton]="true"
+                [showSubmitButton]="true"
+                [submitBtnText]="saveChangeButton"
+                [restoreBtnText]="resetAllButton"
+                (onNewRowAdded)=onAddressEmailNewRowAdded($event)
+                (formSubmitted)="saveAddressEmailForm($event)"
+                (onChangeFields)="formFieldValueChanged($event)">
+            </dmnd-dynamic-config-grid>
+        </div>
+    </div>
+</div>

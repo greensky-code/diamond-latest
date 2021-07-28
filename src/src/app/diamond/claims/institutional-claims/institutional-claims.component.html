@@ -1,0 +1,1026 @@
+<!-- Copyright (c) 2021 . All Rights Reserved. -->
+<div class="container-fluid">
+    <div class="card-block">
+        <div class="modal-header">
+            <note-priority-header-display title="Institutional Claims" [seqSourceId]="seqSourceId" [noteWinId]="windowId"></note-priority-header-display>
+            <button (click)="modalClose()" *ngIf="showIcon" aria-label="Close"
+                class="modal-close close" type="button">
+            <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+        <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+        <app-pop-up-message #popUpMesssage (buttonclickEvent)="popUpButtonHandler($event)"
+                            [(popupMessage)]="popUpMessage"></app-pop-up-message>
+
+        <ng-template #loaderTemplate let-loaderValue="value">
+            <div *ngIf="loaderValue" class="row justify-content-center mt-4">
+                <div class="spinner-border text-success" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>
+            </div>
+        </ng-template>
+        <ng-container *ngTemplateOutlet="loaderTemplate; context:{value: secProgress }"></ng-container>
+
+        <ng-container *appWinSelect="{secWin: secWin, userTemplateId: userTemplateId, secModuleId: memberModuleId}">
+            <div class="row mt-3 mb-3">
+                <menu-bar [menus]="menu" (onMenuClick)="onMenuItemClick($event)"></menu-bar>
+            </div>
+
+            <form  [formGroup]="institutionalClaimsForm" novalidate>
+
+                <div class="form-group row">
+                    <!-- DynamicText with label of Claim Number -->
+                    <div [ngClass]="{'has-danger': formValidation.isValidField('claimNumber') }" class="col-md-4">
+                        <label class="col-form-label font-weight-bold" for="claimNumber" i18n>Claim Number</label>
+                        <input [fieldLevelSec]="'Claim Number'" [params]="''" class="form-control"
+                               formControlName="claimNumber" id="claimNumber" type="text"
+                               (keydown)="changeClaimNumber($event)"
+                               [readOnly]="isClaimNumberGenerated"
+                        />
+                    </div>
+
+                </div>
+
+                <div *ngIf="holdReasonTrue">
+                    <div class="form-group row">
+                    </div>
+
+                    <div class="form-group row">
+                        <!-- Textbox with label of Adm Date -->
+                        <div [ngClass]="{'has-danger': formValidation.isValidField('admDate') }" class="col-md-3">
+                            <!--<label class="col-form-label" for="admDate" i18n>Adm Date</label>-->
+                            <div class="input-group">
+                                <app-datepicker [fieldLevelSec]="'Admission Date'" [field]="'admDate'"
+                                                [formGroup]="institutionalClaimsForm"
+                                                [formValidation]="formValidation" [isRequired]="true"
+                                                [labelText]="'Adm Date'"
+                                                [disabled]="adminDateStatus"
+                                                [isBoldText]="true"
+                                                (onDateChanged)="validateAdmDate($event)"
+                                                [params]="{secColDetails: secColDetails, isEditState: editInstClaimHeader}">
+                                </app-datepicker>
+                            </div>
+                        </div>
+
+                        <!-- Textbox with label of Disch Date -->
+                        <div [ngClass]="{'has-danger': formValidation.isValidField('dischDate') }" class="col-md-3">
+                            <app-datepicker [fieldLevelSec]="'Primary Svc Date'" [field]="'dischDate'"
+                                            [formGroup]="institutionalClaimsForm"
+                                            [formValidation]="formValidation" [isRequired]="true"
+                                            [labelText]="'Disch Date'"
+                                            [isBoldText]="true"
+                                            [disabled]="dischDateStatus"
+                                            (onDateChanged)="validateDischDate($event)"
+                                            [params]="{secColDetails: secColDetails, isEditState: editInstClaimHeader}">
+                            </app-datepicker>
+                        </div>
+
+                        <!-- Textbox with label of Auth No -->
+                        <div [ngClass]="{'has-danger': formValidation.isValidField('authNo') }" class="col-md-2">
+                            <label class="col-form-label font-weight-bold" for="authNo" i18n>Auth No</label>
+                            <input [fieldLevelSec]="'Auth Number'" [params]="''" class="form-control"
+                                   formControlName="authNo" id="authNo" type="text"
+                                   (keydown)="onLookupAuthNumberFieldChange($event)" />
+                            <small *ngIf="formValidation.isValidField('authNo')" class="text-danger">
+                                {{ formValidation.errorMessage('authNo') }}
+                            </small>
+                        </div>
+
+                        <!-- Textbox with Name of Textbox001 -->
+                        <div [ngClass]="{'has-danger': formValidation.isValidField('textbox001') }"
+                             class="col-md-2">
+                            <label class="col-form-label" for="textbox001" i18n>&nbsp;</label>
+                            <input [fieldLevelSec]="''" [params]="" class="form-control"
+                                   formControlName="textbox001" id="textbox001" type="text"/>
+                            <small *ngIf="formValidation.isValidField('textbox001')" class="text-danger">
+                                {{ formValidation.errorMessage('textbox001') }}
+                            </small>
+                        </div>
+
+                        <div class="col-md-1 form-control-static mb-0 font-weight-bold" i18n>
+                            Lvl<br/><br/>
+                            {{institutionalClaimsForm.get('authLevel') ? institutionalClaimsForm.get('authLevel').value : ''}}
+                        </div>
+
+                        <div class="col-md-1 form-control-static mb-0 font-weight-bold" i18n>
+                            Method
+                        </div>
+
+                    </div>
+
+                    <div class="form-group row">
+                        <!-- Textbox with label of Bill Type -->
+                        <div [ngClass]="{'has-danger': formValidation.isValidField('billType') }" class="col-md-4">
+                            <label class="col-form-label clr-blue font-weight-bold" for="billType" i18n>Bill Type</label>
+                            <input [fieldLevelSec]="'Bill Type'" [params]="''" class="form-control"
+                                   formControlName="billType" id="billType" type="text"
+                                   (keydown)="onLookupBillTypeFieldChange($event)" />
+                            <small *ngIf="formValidation.isValidField('billType')" class="text-danger">
+                                {{ formValidation.errorMessage('billType') }}
+                            </small>
+                        </div>
+
+                        <!-- Checkbox with label of Continuation -->
+                        <div [ngClass]="{'has-error': displayMessage.continuation }" class="col-md-4 mt-5">
+                            <div class="checkbox col-md-12">
+                                <input [fieldLevelSec]="'Condition Code 1'" [params]="''"
+                                       formControlName="continuation" id="continuation" type="checkbox"
+                                       value="Y">
+                                <label class="checkbox font-weight-bold">
+                                    Continuation
+                                </label>
+                            </div>
+                            <span *ngIf="displayMessage.continuation" class="help-block">
+                            {{ displayMessage.continuation  }}
+                         </span>
+                        </div>
+
+                        <!-- Textbox with label of Pat Ctrl -->
+                        <div [ngClass]="{'has-danger': formValidation.isValidField('patCtrl') }" class="col-md-4">
+                            <label class="col-form-label font-weight-bold" for="patCtrl" i18n>Pat Ctrl</label>
+                            <input [fieldLevelSec]="'Patient Control No'" [params]="''" class="form-control"
+                                   formControlName="patCtrl" id="patCtrl" type="text"/>
+                            <small *ngIf="formValidation.isValidField('patCtrl')" class="text-danger">
+                                {{ formValidation.errorMessage('patCtrl') }}
+                            </small>
+                        </div>
+
+                    </div>
+
+                    <div class="form-group row">
+                        <!-- Textbox with label of Med Rec -->
+                        <div [ngClass]="{'has-danger': formValidation.isValidField('medRec') }" class="col-md-4">
+                            <label class="col-form-label font-weight-bold" for="medRec" i18n>Med Rec</label>
+                            <input [fieldLevelSec]="'Medical Record No'" [params]="''" class="form-control"
+                                   formControlName="medRec" id="medRec" type="text"/>
+                            <small *ngIf="formValidation.isValidField('medRec')" class="text-danger">
+                                {{ formValidation.errorMessage('medRec') }}
+                            </small>
+                        </div>
+
+                        <!-- DynamicText with label of First Admitted -->
+                        <div [ngClass]="{'has-danger': formValidation.isValidField('firstAdmitted') }"
+                             class="col-md-4">
+                            <!--<label class="col-form-label" for="firstAdmitted" i18n>First Admitted</label>-->
+                            <!--<input [fieldLevelSec]="'Admit Type'" [params]="''" class="form-control"
+                                   formControlName="firstAdmitted" id="firstAdmitted" readonly type="text"/>-->
+                            <app-datepicker [fieldLevelSec]="'Admit Type'" [field]="'firstAdmitted'"
+                                            [formGroup]="institutionalClaimsForm"
+                                            [formValidation]="formValidation" [isRequired]="false"
+                                            [labelText]="'First Admitted'"
+                                            [isBoldText]="true"
+                                            (onDateChanged)="validateFirstAdmittedDate($event)"
+                                            [params]="{secColDetails: secColDetails, isEditState: editInstClaimHeader}">
+                            </app-datepicker>
+                        </div>
+
+                        <!-- Textbox with label of Pat Status -->
+                        <div [ngClass]="{'has-danger': formValidation.isValidField('patStatus') }" class="col-md-4">
+                            <label class="col-form-label font-weight-bold" for="patStatus" i18n>Pat Status</label>
+                            <select [fieldLevelSec]="'Patient Status'" [params]="''" class="form-control"
+                                    formControlName="patStatus" id="patStatus">
+                                <option [value]="type.dddwDtlPrimaryKey.dataVal" *ngFor="let type of patientStatuses;">
+                                    {{type.dddwDtlPrimaryKey.displayVal}}
+                                </option>
+                            </select>
+                            <small *ngIf="formValidation.isValidField('patStatus')" class="text-danger">
+                                {{ formValidation.errorMessage('patStatus') }}
+                            </small>
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+                        <h3 class="clr-blue"><i>Member Information</i></h3>
+                        <hr>
+
+                    </div>
+
+                    <div class="form-group row">
+                        <!-- DynamicText with label of DIAMOND ID -->
+                        <div [ngClass]="{'has-danger': formValidation.isValidField('diamondId') }" class="col-md-3">
+                            <label class="col-form-label font-weight-bold" for="diamondId" i18n>DIAMOND ID</label>
+                            <input [fieldLevelSec]="'Seq Mcond Id'" [params]="''" class="form-control"
+                                   formControlName="diamondId" id="diamondId" readonly type="text"/>
+                        </div>
+
+                        <!-- Textbox with label of Member ID -->
+                        <div [ngClass]="{'has-danger': formValidation.isValidField('memberId') }" class="col-md-2">
+                            <label class="col-form-label font-weight-bold clr-blue" for="memberId" i18n>Member ID</label>
+                            <input [fieldLevelSec]="'Member Age'" [params]="''" class="form-control"
+                                   formControlName="memberId" id="memberId" type="text" (keydown)="onLookupMemberFieldChange($event)" />
+                            <small *ngIf="formValidation.isValidField('memberId')" class="text-danger">
+                                {{ formValidation.errorMessage('memberId') }}
+                            </small>
+                        </div>
+
+                        <!-- Textbox with Name of personNumber -->
+                        <div [ngClass]="{'has-danger': formValidation.isValidField('personNumber') }"
+                             class="col-md-2">
+                            <label class="col-form-label" for="personNumber" i18n>&nbsp;</label>
+                            <select [fieldLevelSec]="''" [params]="" class="form-control"
+                                    formControlName="personNumber" id="personNumber"
+                                    [attr.disabled]="personNumberStatus?'disabled':null"
+                                    (change)="onChangPersonNumber($event)"
+                                    (keydown)="onChangPersonNumber($event)">
+                                <option *ngFor="let m of memberMasters" [value]="m.personNumber">{{m.personNumber}}</option>
+                            </select>
+                            <small *ngIf="formValidation.isValidField('personNumber')" class="text-danger">
+                                {{ formValidation.errorMessage('personNumber') }}
+                            </small>
+                        </div>
+
+                        <div class="col-md-2 form-control-static mb-0 clr-blue mt-4 pt-3" i18n>
+                            {{memberMaster ? (memberMaster.firstName + ' ' + memberMaster.lastName) : ''}}
+                        </div>
+                        <div class="col-md-3 form-control-static mb-0 font-weight-bold" i18n>
+                            Residence State
+                        </div>
+
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-md-6 form-control-static mb-0 font-weight-bold" i18n>
+                            PCP ID
+                        </div>
+
+                        <div class="col-md-2 form-control-static mb-0 font-weight-bold" i18n>
+                            Type
+                        </div>
+
+                        <div class="col-md-2 form-control-static mb-0" i18n>
+                            <span class="font-weight-bold">Age</span><br/><br/>
+                            <span class="clr-blue">
+                                {{institutionalClaimsForm.get('memberAge') ? institutionalClaimsForm.get('memberAge').value : ''}}
+                            </span>
+                        </div>
+
+                        <div class="col-md-2 form-control-static mb-0" i18n>
+                            <span class="font-weight-bold">
+                                Gender
+                            </span>
+                            <br/><br/>
+                            <span class="clr-blue">
+                                {{institutionalClaimsForm.get('memberGender') ? institutionalClaimsForm.get('memberGender').value : ''}}
+                            </span>
+                        </div>
+
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-md-2 form-control-static mb-0" i18n>
+                            <span class="font-weight-bold">
+                                Group ID
+                            </span>
+                            <br/><br/>
+                            <span class="clr-blue">
+                                {{institutionalClaimsForm.get('groupId') ? institutionalClaimsForm.get('groupId').value : ''}}
+                            </span>
+                        </div>
+
+                        <div class="col-md-2 form-control-static mb-0" i18n>
+                            &nbsp;&nbsp;&nbsp;<br/><br/>
+                            <span class="clr-blue">
+                                {{institutionalClaimsForm.get('groupName') ? institutionalClaimsForm.get('groupName').value : ''}}
+                            </span>
+                        </div>
+
+                        <div class="col-md-2 form-control-static mb-0" i18n>
+                            <span class="font-weight-bold">St</span>
+                            <br/><br/>
+                            <span class="clr-blue">
+                                {{institutionalClaimsForm.get('groupState') ? institutionalClaimsForm.get('groupState').value : ''}}
+                            </span>
+                        </div>
+
+                        <div class="col-md-2 form-control-static mb-0" i18n>
+                            <span class="font-weight-bold">
+                                Plan
+                            </span>
+                            <br/><br/>
+                            <span class="clr-blue">
+                                {{institutionalClaimsForm.get('planCode') ? institutionalClaimsForm.get('planCode').value : ''}}
+                            </span>
+                        </div>
+
+                        <div class="col-md-2 form-control-static mb-0" i18n>
+                            <span class="font-weight-bold">
+                                Spec
+                            </span><br><br>
+                            <span class="clr-blue"></span>
+                        </div>
+
+                        <div class="col-md-2 form-control-static mb-0" i18n>
+                            <span class="font-weight-bold">IPA</span><br/><br/>
+                            <span class="clr-blue">{{institutionalClaimsForm.get('pcpIpaId') ? institutionalClaimsForm.get('pcpIpaId').value : ''}}</span>
+                        </div>
+
+                    </div>
+
+                    <div class="form-group row">
+                        <!-- Textbox with label of GU Cat -->
+                        <div [ngClass]="{'has-danger': formValidation.isValidField('guCat') }" class="col-md-4">
+                            <label class="col-form-label font-weight-bold" for="guCat" i18n>GU Category</label>
+                            <input [fieldLevelSec]="''" readonly [params]="" class="form-control text-primary" formControlName="guCat"
+                                   id="guCat" type="text"/>
+                            <small *ngIf="formValidation.isValidField('guCat')" class="text-danger">
+                                {{ formValidation.errorMessage('guCat') }}
+                            </small>
+                        </div>
+
+                        <div class="col-md-4 form-control-static mb-0" i18n>
+                            <span class="font-weight-bold">GU Cat. Effective Date:</span><br/><br/>
+                            <span class="clr-blue">{{institutionalClaimsForm.get('guCatEffDate') ? institutionalClaimsForm.get('guCatEffDate').value : ''}}</span>
+                        </div>
+
+                        <div class="col-md-2 form-control-static mb-0" i18n>
+                            <span class="font-weight-bold">LOB</span><br/><br/>
+                            <span class="clr-blue">{{institutionalClaimsForm.get('lineOfBusiness') ? institutionalClaimsForm.get('lineOfBusiness').value : ''}}</span>
+                        </div>
+
+                        <div class="col-md-2 form-control-static mb-0" i18n>
+                            <span class="font-weight-bold">Panel</span><br/><br/>
+                            <span class="clr-blue">{{institutionalClaimsForm.get('panelId') ? institutionalClaimsForm.get('panelId').value : ''}}</span>
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+                        <h3 class="clr-blue"><i>Provider Information</i></h3>
+                        <hr>
+
+                    </div>
+
+                    <div class="form-group row">
+                        <!-- Textbox with label of Adm Prov -->
+                        <div [ngClass]="{'has-danger': formValidation.isValidField('admProv') }" class="col-md-4">
+                            <label class="col-form-label font-weight-bold" for="admProv" i18n>Adm Prov</label>
+                            <input [fieldLevelSec]="'Adm Prov Spec'" [params]="''" class="form-control"
+                                   formControlName="admProv" id="admProv" type="text"
+                                   (keydown)="onAdmProvFieldChange($event)" />
+                            <small *ngIf="formValidation.isValidField('admProv')" class="text-danger">
+                                {{ formValidation.errorMessage('admProv') }}
+                            </small>
+                        </div>
+
+                        <div class="col-md-2 form-control-static mb-0" i18n>
+                            &nbsp;&nbsp;&nbsp;&nbsp;<br/><br/>
+                            <span class="clr-blue">{{institutionalClaimsForm.get('admProvShortName').value}}</span>
+                        </div>
+
+                        <div class="col-md-2 form-control-static mb-0" i18n>
+                            <span class="font-weight-bold">Type</span><br/><br/>
+                            <span class="clr-blue">{{institutionalClaimsForm.get('admProvType').value}}</span>
+                        </div>
+
+                        <div class="col-md-2 form-control-static mb-0" i18n>
+                            <span class="font-weight-bold">Spec</span><br/><br/>
+                            <span class="clr-blue">{{institutionalClaimsForm.get('admProvSpec').value}}</span>
+                        </div>
+
+                        <div class="col-md-2 form-control-static mb-0" i18n>
+                            <span class="font-weight-bold">IPA</span><br/><br/>
+                            <span class="clr-blue">{{institutionalClaimsForm.get('admProvIpaId').value}}</span>
+                        </div>
+
+                    </div>
+
+                    <div class="form-group row">
+                        <!-- Textbox with label of Att Prov -->
+                        <div [ngClass]="{'has-danger': formValidation.isValidField('attProv') }" class="col-md-4">
+                            <label class="col-form-label font-weight-bold" for="attProv" i18n>Att Prov</label>
+                            <input [fieldLevelSec]="'Att Prov Pcp'" [params]="''" class="form-control"
+                                   formControlName="attProv" id="attProv" type="text"
+                                   (keydown)="onAttProvFieldChange($event)" />
+                            <small *ngIf="formValidation.isValidField('attProv')" class="text-danger">
+                                {{ formValidation.errorMessage('attProv') }}
+                            </small>
+                        </div>
+                        <div class="col-md-2 form-control-static mb-0" i18n>
+                            &nbsp;&nbsp;&nbsp;&nbsp;<br/><br/>
+                            <span class="clr-blue">{{institutionalClaimsForm.get('attProvShortName').value}}</span>
+                        </div>
+
+                        <div class="col-md-2 form-control-static mb-0" i18n>
+                            <span class="font-weight-bold">Type</span><br/><br/>
+                            <span class="clr-blue">{{institutionalClaimsForm.get('attProvType').value}}</span>
+                        </div>
+
+                        <div class="col-md-2 form-control-static mb-0" i18n>
+                            <span class="font-weight-bold">Spec</span><br/><br/>
+                            <span class="clr-blue">{{institutionalClaimsForm.get('attProvSpec').value}}</span>
+                        </div>
+
+                        <div class="col-md-2 form-control-static mb-0" i18n>
+                            <span class="font-weight-bold">IPA</span><br/><br/>
+                            <span class="clr-blue">{{institutionalClaimsForm.get('attProvIpaId').value}}</span>
+                        </div>
+
+                    </div>
+
+                    <div class="form-group row">
+                        <!-- Textbox with label of Institution -->
+                        <div [ngClass]="{'has-danger': formValidation.isValidField('institution') }"
+                             class="col-md-4">
+                            <label class="col-form-label clr-blue font-weight-bold" for="institution" i18n>Institution</label>
+                            <input [fieldLevelSec]="''" [params]="" class="form-control"
+                                   formControlName="institution" id="institution" type="text"
+                                   (keydown)="onInstitutionalFieldChange($event)" />
+                            <small *ngIf="formValidation.isValidField('institution')" class="text-danger">
+                                {{ formValidation.errorMessage('institution') }}
+                            </small>
+                        </div>
+
+                        <div class="col-md-2 form-control-static mb-0" i18n>
+                            &nbsp;&nbsp;&nbsp;&nbsp;<br/><br/>
+                            <span class="clr-blue">{{institutionalClaimsForm.get('providerShortName').value}}</span>
+                        </div>
+
+                        <div class="col-md-2 form-control-static mb-0" i18n>
+                            <span class="font-weight-bold"></span><br/><br/>
+                            <span class="clr-blue">{{institutionalClaimsForm.get('providerType').value}}</span>
+                        </div>
+
+                        <div class="col-md-2 form-control-static mb-0" i18n>
+                            <span class="font-weight-bold">Spec</span><br/><br/>
+                            <span class="clr-blue">{{institutionalClaimsForm.get('providerSpec').value}}</span>
+                        </div>
+
+                        <div class="col-md-2 form-control-static mb-0" i18n>
+                            <span class="font-weight-bold">IPA</span><br/><br/>
+                            <span class="clr-blue">{{institutionalClaimsForm.get('providerIpaId').value}}</span>
+                        </div>
+
+                    </div>
+
+                    <div class="form-group row">
+                        <!-- DynamicText with label of Addr -->
+                        <div [ngClass]="{'has-danger': formValidation.isValidField('addr001') }" class="col-md-6">
+                            <label class="col-form-label font-weight-bold" for="addr001" i18n>Addr</label>
+                            <!--<input [fieldLevelSec]="''" [params]="" class="form-control" formControlName="addr001"
+                                   id="addr001" type="text"/>-->
+                            <select [fieldLevelSec]="''" [params]="" class="form-control" formControlName="addr001"
+                                    id="addr001" [attr.disabled]="addrStatus?'disabled':null"
+
+                                    (change)="onAddressChange($event)"
+                                    (keydown)="addressKeyEvent($event)"
+                            >
+                                <option [value]="a.seqProvAddress" *ngFor="let a of addresses;">
+                                    {{a.addressLine1 ? a.addressLine1 + ', ' : ''}}
+                                    {{a.addressLine2 ? a.addressLine2 + ', ' : ''}}
+                                    {{a.city ? a.city + ', ' : ''}}
+                                    {{a.state ? a.state + ', ' : ''}}
+                                    {{a.country ? a.country + ' - ' : ''}}
+                                    {{a.zipCode ? a.zipCode : ''}}
+                                </option>
+                            </select>
+                        </div>
+
+                        <!-- Textbox with label of Zip -->
+                        <div [ngClass]="{'has-danger': formValidation.isValidField('zip') }" class="col-md-2">
+                            <label class="col-form-label font-weight-bold" for="zip" i18n>Zip</label>
+                            <input [fieldLevelSec]="''" [params]="" class="form-control" formControlName="zip"
+                                   (keydown)="zipCodeValidation($event)"
+                                   id="zip" type="text"/>
+                            <small *ngIf="formValidation.isValidField('zip')" class="text-danger">
+                                {{ formValidation.errorMessage('zip') }}
+                            </small>
+                        </div>
+
+                        <div class="col-md-2 form-control-static mb-0" i18n>
+                            <span class="font-weight-bold">In Svc Area</span><br><br>
+                            <span class="clr-blue"></span>
+                        </div>
+
+                        <!-- DynamicText with label of Pay Stub -->
+                        <div [ngClass]="{'has-danger': formValidation.isValidField('payStub') }" class="col-md-2">
+                            <label class="col-form-label font-weight-bold" for="payStub" i18n>Pay Sub</label>
+                            <input [fieldLevelSec]="'Pay Subscriber'" [params]="''" class="form-control"
+                                   formControlName="payStub" id="payStub" readonly type="text"/>
+                        </div>
+
+                    </div>
+
+                    <div class="form-group row">
+                        <!-- Textbox with label of Release Rec -->
+                        <div [ngClass]="{'has-danger': formValidation.isValidField('releaseRec') }"
+                             class="col-md-6">
+                            <label class="col-form-label font-weight-bold" for="releaseRec" i18n>Release Rec</label>
+                            <select [fieldLevelSec]="'Medical Release'" [params]="''" class="form-control"
+                                    formControlName="releaseRec"
+                                    #releaseRec
+                                    (keydown)="releaseRecKeyEvent($event)"
+                                    id="releaseRec">
+                                <option [value]="type.dddwDtlPrimaryKey.dataVal" *ngFor="let type of medicalReleases;">
+                                    {{type.dddwDtlPrimaryKey.displayVal}}
+                                </option>
+                            </select>
+                            <small *ngIf="formValidation.isValidField('releaseRec')" class="text-danger">
+                                {{ formValidation.errorMessage('releaseRec') }}
+                            </small>
+                        </div>
+
+                        <!-- Textbox with label of Par -->
+                        <div [ngClass]="{'has-danger': formValidation.isValidField('par') }" class="col-md-2">
+                            <label class="col-form-label font-weight-bold" for="par" i18n>Par</label>
+                            <!--<input [fieldLevelSec]="''" [params]="" class="form-control" formControlName="par"
+                                   id="par" type="text"/>-->
+                            <select [fieldLevelSec]="''" [params]="" class="form-control"
+                                    formControlName="par"
+                                    id="par"
+                                    #par
+                                    (keydown)="parKeyEvent($event)"
+                            >
+                                <option [value]="c.systemCode" *ngFor="let c of parStats;">{{c.systemCode}}&nbsp;&nbsp;&nbsp;{{c.systemCodeDesc1}}&nbsp;&nbsp;&nbsp;{{c.systemCodeDesc2}}</option>
+                            </select>
+                            <small *ngIf="formValidation.isValidField('par')" class="text-danger">
+                                {{ formValidation.errorMessage('par') }}
+                            </small>
+                        </div>
+
+                        <!-- Checkbox with label of Assign Bfts -->
+                        <div [ngClass]="{'has-error': displayMessage.assignBfts }" class="col-sm-2 mt-5">
+                            <div class="checkbox col-md-12">
+                                <input [fieldLevelSec]="'Assignment Of Benefits'" [params]="''"
+                                       formControlName="assignBfts" id="assignBfts" type="checkbox"
+                                       (keydown)="assignBftKeyEvent($event)"
+                                       value="Y">
+                                <label class="checkbox font-weight-bold">
+                                    Assign Bfts
+                                </label>
+                            </div>
+                            <span *ngIf="displayMessage.assignBfts" class="help-block">
+                            {{ displayMessage.assignBfts  }}
+                         </span>
+                        </div>
+
+                        <!-- DynamicText with label of Pay Dep -->
+                        <div [ngClass]="{'has-danger': formValidation.isValidField('payDep') }" class="col-md-2">
+                            <label class="col-form-label font-weight-bold" for="payDep" i18n>Pay Dep</label>
+                            <input [fieldLevelSec]="'Pay Dependent'" [params]="''" class="form-control"
+                                   formControlName="payDep" id="payDep" readonly type="text"/>
+                        </div>
+
+                    </div>
+
+                    <div class="form-group row">
+                        <!-- Textbox with label of Vendor -->
+                        <div [ngClass]="{'has-danger': formValidation.isValidField('vendor') }" class="col-md-3">
+                            <label class="col-form-label clr-blue font-weight-bold" for="vendor" i18n>Vendor</label>
+                            <input [fieldLevelSec]="''" [params]="" class="form-control" formControlName="vendor"
+                                   id="vendor" type="text" (keydown)="onLookupVendorFieldChange($event)" />
+                            <small *ngIf="formValidation.isValidField('vendor')" class="text-danger">
+                                {{ formValidation.errorMessage('vendor') }}
+                            </small>
+                        </div>
+
+                        <div class="col-md-3 form-control-static mb-0" i18n>
+                            <br><br>
+                            <span class="clr-blue">{{institutionalClaimsForm.get('vendorName') ? institutionalClaimsForm.get('vendorName').value : ''}}</span>
+                        </div>
+
+                        <!-- DynamicText with label of Addr -->
+                        <div [ngClass]="{'has-danger': formValidation.isValidField('addr002') }" class="col-md-6" *ngIf="!vendorValueStatus">
+                            <label class="col-form-label font-weight-bold  clr-blue" for="addr002" i18n>Addr</label>
+                            <select class="form-control" formControlName="addr002" disabled
+                                    id="addr002" [fieldLevelSec]="''" [params]=""
+                                    (change)="onVendorAddressChange($event)" (keydown)="onVendorAddrTab($event)" (blur)="onVendorBlurEvent($event)" >
+                                <option [value]="a.seqVendAddress" *ngFor="let a of vendorAddresses;">
+                                    {{a.addressLine1 ? a.addressLine1 + ', ' : ''}}
+                                    {{a.addressLine2 ? a.addressLine2 + ', ' : ''}}
+                                    {{a.city ? a.city + ', ' : ''}}
+                                    {{a.state ? a.state + ', ' : ''}}
+                                    {{a.country ? a.country + ' - ' : ''}}
+                                    {{a.zipCode ? a.zipCode : ''}}
+                                </option>
+                            </select>
+                        </div>
+
+                        <div [ngClass]="{'has-danger': formValidation.isValidField('addr002') }" class="col-md-6" *ngIf="vendorValueStatus">
+                            <label class="col-form-label font-weight-bold clr-blue" for="addr002" i18n>Addr</label>
+                            <select class="form-control" formControlName="addr002"
+                                    #vendorAddElf
+                                    id="addr002" [fieldLevelSec]="''" [params]=""
+                                    (change)="onVendorAddressChange($event)" (keydown)="onVendorAddrTab($event)" (blur)="onVendorAddrTab($event)" >
+                                <option [value]="a.seqVendAddress" *ngFor="let a of vendorAddresses;">
+                                    {{a.addressLine1 ? a.addressLine1 + ', ' : ''}}
+                                    {{a.addressLine2 ? a.addressLine2 + ', ' : ''}}
+                                    {{a.city ? a.city + ', ' : ''}}
+                                    {{a.state ? a.state + ', ' : ''}}
+                                    {{a.country ? a.country + ' - ' : ''}}
+                                    {{a.zipCode ? a.zipCode : ''}}
+                                </option>
+                            </select>
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+                        <h3 class="clr-blue"><i>Claim Information</i></h3>
+                        <hr>
+
+                    </div>
+
+                    <div class="form-group row">
+                        <!-- Textbox with label of Plc Of Svc -->
+                        <div [ngClass]="{'has-danger': formValidation.isValidField('plcOfSvc') }" class="col-md-3">
+                            <label class="col-form-label font-weight-bold clr-blue" for="plcOfSvc" i18n>Plc Of Svc</label>
+                            <input [fieldLevelSec]="'Place Of Service 1'" [params]="''" class="form-control"
+                                   formControlName="plcOfSvc" id="plcOfSvc" type="text"
+                                   [maxlength]="5"
+                                   (keydown)="onLookupPOSFieldChange($event)"/>
+                            <small *ngIf="formValidation.isValidField('plcOfSvc')" class="text-danger">
+                                {{ formValidation.errorMessage('plcOfSvc') }}
+                            </small>
+                        </div>
+
+                        <!-- Textbox with label of Dx 1 -->
+                        <div [ngClass]="{'has-danger': formValidation.isValidField('dx1') }" class="col-md-2">
+                            <label class="col-form-label font-weight-bold" for="dx1" i18n>Dx 1</label>
+                            <input [fieldLevelSec]="''" [params]="" class="form-control" formControlName="dx1"
+                                   id="dx1" type="text" (keydown)="onLookupDxFieldChange($event, 'dx1')" />
+                            <small *ngIf="formValidation.isValidField('dx1')" class="text-danger">
+                                {{ formValidation.errorMessage('dx1') }}
+                            </small>
+                        </div>
+
+                        <div class="col-sm-3">
+                            <br><br>
+                            <span class="clr-blue">{{institutionalClaimsForm.get('dx1ShortDesc').value}}</span>
+                        </div>
+
+                        <!-- DynamicText with label of DRG -->
+                        <div [ngClass]="{'has-danger': formValidation.isValidField('drg') }" class="col-md-2">
+                            <label class="col-form-label font-weight-bold" for="drg" i18n>DRG</label>
+                            <input [fieldLevelSec]="'Drg Code'" [params]="''" class="form-control"
+                                   (keydown)="drgKeyEvent($event)"
+                                   formControlName="drg" id="drg"  type="text"/>
+                        </div>
+
+                        <!-- Textbox with label of Incrd Cntry -->
+                        <div class="col-md-2">
+                            <label for="incrdCntry" class="col-form-label clr-blue font-weight-bold" i18n><b>Incrd Cntry</b></label>
+                            <div class="selectContainer "
+                                 [ngClass]="{'required-field': formValidation.isValidField('incrdCntry') }">
+
+                                <div class="input-group" #myDrop="ngbDropdown" ngbDropdown>
+                                    <input ngbDropdownToggle type="text" class="form-control" id="incrdCntry"
+                                           [value]="institutionalClaimsForm.value.incrdCntry"
+                                           (keydown)="incrdCntryKeyEvent($event)"
+                                           #incrdFieldElf
+                                           formControlName="incrdCntry">
+                                    <div class="input-group-append" role="group" tabindex="-1">
+                                        <button ngbDropdownToggle class="btn border"></button>
+                                    </div>
+                                    <div ngbDropdownMenu aria-labelledby="dropdown" class="max-dropdown-height">
+                                        <button ngbDropdownItem value="{{option.country}}"
+                                                (click)="setFieldValue('incrdCntry', option.systemCodeDesc1)"
+                                                *ngFor="let option of countries; let i = index">
+                                            {{option.systemCodeDesc1}} - {{option.systemCodeDesc2}}
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <small class="text-danger" *ngIf="formValidation.isValidField('incrdCntry')">
+                                {{ formValidation.errorMessage('incrdCntry') }}
+                            </small>
+                        </div>
+
+                    </div>
+
+                    <div class="form-group row">
+                        <!-- Textbox with label of Serv Rsn -->
+                        <div [ngClass]="{'has-danger': formValidation.isValidField('servRsn') }" class="col-md-3">
+                            <label class="col-form-label font-weight-bold" for="servRsn" i18n>Serv Rsn</label>
+                            <input [fieldLevelSec]="'Service Reason 1'" [params]="''" class="form-control"
+                                   formControlName="servRsn" id="servRsn" type="text"
+                                   (keydown)="onLookupServRsnFieldChange($event)" />
+                            <small *ngIf="formValidation.isValidField('servRsn')" class="text-danger">
+                                {{ formValidation.errorMessage('servRsn') }}
+                            </small>
+                        </div>
+
+                        <!-- DynamicText with label of Dx 2 -->
+                        <div [ngClass]="{'has-danger': formValidation.isValidField('dx2') }" class="col-md-2">
+                            <label class="col-form-label font-weight-bold" for="dx2" i18n>Dx 2</label>
+                            <input [fieldLevelSec]="''" [params]="" class="form-control" formControlName="dx2"
+                                   id="dx2" [attr.disabled]="!institutionalClaimsForm.get('dx1').value ? 'disabled' : null" type="text"
+                                   (keydown)="onLookupDxFieldChange($event, 'dx2')" />
+                        </div>
+
+                        <div class="col-sm-3">
+                            <br><br>
+                            <span class="clr-blue">{{institutionalClaimsForm.get('dx2ShortDesc').value}}</span>
+                        </div>
+
+                        <div class="col-md-2 form-control-static mb-0" i18n>
+                            <span class="font-weight-bold">Holds</span><br><br>
+                            <span class="clr-blue"></span>
+                        </div>
+
+                        <!-- Textbox with label of Image No -->
+                        <div [ngClass]="{'has-danger': formValidation.isValidField('imageNo') }" class="col-md-2">
+                            <label class="col-form-label font-weight-bold clr-blue" for="imageNo" i18n>Image No</label>
+                            <input [fieldLevelSec]="'Discharge Hour'" [params]="''" class="form-control"
+                                   (keydown)="imageNoKeyEvent($event)"
+                                   formControlName="imageNo" id="imageNo" type="text"/>
+                            <small *ngIf="formValidation.isValidField('imageNo')" class="text-danger">
+                                {{ formValidation.errorMessage('imageNo') }}
+                            </small>
+                        </div>
+
+                    </div>
+
+                    <div class="form-group row">
+                        <!-- Textbox with label of Total Billed -->
+                        <div [ngClass]="{'has-danger': formValidation.isValidField('totalBilled') }"
+                             class="col-md-3">
+                            <label class="col-form-label font-weight-bold" for="totalBilled" i18n>Total Billed</label>
+                            <input [fieldLevelSec]="'Total Billed Amt'" [params]="''" class="form-control"
+                                   (keydown)="totalBilledKeyEvent($event)"
+                                   formControlName="totalBilled" id="totalBilled" type="text"/>
+                            <small *ngIf="formValidation.isValidField('totalBilled')" class="text-danger">
+                                {{ formValidation.errorMessage('totalBilled') }}
+                            </small>
+                        </div>
+
+                        <!-- DynamicText with label of Dx 3 -->
+                        <div [ngClass]="{'has-danger': formValidation.isValidField('dx3') }" class="col-md-2">
+                            <label class="col-form-label font-weight-bold" for="dx3" i18n>Dx 3</label>
+                            <input [fieldLevelSec]="''" [params]="" class="form-control" formControlName="dx3"
+                                   id="dx3" [attr.disabled]="!institutionalClaimsForm.get('dx2').value ? 'disabled' : null" type="text" (keydown)="onLookupDxFieldChange($event, 'dx3')" />
+                        </div>
+
+                        <div class="col-sm-3">
+                            <br><br>
+                            <span class="clr-blue">{{institutionalClaimsForm.get('dx3ShortDesc').value}}</span>
+                        </div>
+
+                        <!-- Textbox with label of EOB Ind -->
+                        <div [ngClass]="{'has-danger': formValidation.isValidField('eobInd') }" class="col-md-2">
+                            <label class="col-form-label font-weight-bold" for="eobInd" i18n>EOB Ind</label>
+                            <select [fieldLevelSec]="'Seq Memb Id'" [params]="''" class="form-control"
+                                    #eobIndElf
+                                    (keydown)="eobIndKeyValue($event)"
+                                    formControlName="eobInd" id="eobInd">
+                                <option value="B">B - EOB</option>
+                                <option value="M">M - EOMB</option>
+                                <option value="N">N - NONE</option>
+                            </select>
+                            <small *ngIf="formValidation.isValidField('eobInd')" class="text-danger">
+                                {{ formValidation.errorMessage('eobInd') }}
+                            </small>
+                        </div>
+
+                        <!-- Textbox with label of Sec -->
+                        <div [ngClass]="{'has-danger': formValidation.isValidField('sec') }" class="col-md-2">
+                            <label class="col-form-label font-weight-bold" for="sec" i18n>Sec</label>
+                            <input [fieldLevelSec]="'Pcp Spec'" [params]="''" class="form-control"
+                                   (keydown)="secKeyEvent($event)"
+                                   formControlName="sec" id="sec" type="text"/>
+                            <small *ngIf="formValidation.isValidField('sec')" class="text-danger">
+                                {{ formValidation.errorMessage('sec') }}
+                            </small>
+                        </div>
+
+                    </div>
+
+                    <div class="form-group row">
+                        <!-- Textbox with label of Date Recv -->
+                        <div [ngClass]="{'has-danger': formValidation.isValidField('dateRecv') }" class="col-md-3">
+                            <app-datepicker [fieldLevelSec]="'Date Received'" [field]="'dateRecv'"
+                                            [formGroup]="institutionalClaimsForm"
+                                            [formValidation]="formValidation" [isRequired]="true"
+                                            [labelText]="'Date Recv'"
+                                            [isBoldText]="true"
+                                            (onDateChanged)="validateDateReceivedDate($event)"
+                                            (dateValueStatus) = "valueManualInputDate($event)"
+                                            [isDatePickerTabEvent] = "true"
+                                            [params]="{secColDetails: secColDetails, isEditState: editInstClaimHeader}">
+                            </app-datepicker>
+                            <!--<label class="col-form-label" for="dateRecv" i18n>Date Recv</label>
+                            <div class="input-group">
+                           <input id="dateRecv"  [fieldLevelSec]="'Date Received'" [params]="''"  class="form-control" angular-mydatepicker name="dateRecv" (click)="dateRecvId.toggleCalendar()"
+                           formControlName="dateRecv"[options]="datePickerConfig" #dateRecvId="angular-mydatepicker"/>
+                           <div class="input-group-append">
+                               <button type="button" class="btn btn-secondary" (click)="dateRecvId.clearDate()">
+                                 <i class="fa fa-close"></i>
+                               </button>
+                             </div>
+                             <div class="input-group-append">
+                               <button type="button" class="btn btn-secondary" (click)="dateRecvId.toggleCalendar()">
+                                 <i class="fa fa-calendar-o"></i>
+                               </button>
+                             </div>
+                           </div>
+                             <small class="text-danger" *ngIf="formValidation.isValidField('dateRecv')">
+                             {{ formValidation.errorMessage('dateRecv') }}
+                            </small>-->
+                        </div>
+
+                        <!-- DynamicText with label of Dx 4 -->
+                        <div [ngClass]="{'has-danger': formValidation.isValidField('dx4') }" class="col-md-2">
+                            <label class="col-form-label font-weight-bold" for="dx4" i18n>Dx 4</label>
+                            <input [fieldLevelSec]="''" [params]="" class="form-control" formControlName="dx4"
+                                   id="dx4" [attr.disabled]="!institutionalClaimsForm.get('dx3').value ? 'disabled' : null" type="text" (keydown)="onLookupDxFieldChange($event, 'dx4')" />
+                        </div>
+
+                        <div class="col-sm-3">
+                            <br><br>
+                            <span class="clr-blue">{{institutionalClaimsForm.get('dx4ShortDesc').value}}</span>
+                        </div>
+
+                        <div class="col-md-2 form-control-static mb-0" i18n>
+                            <span class="font-weight-bold">Hdr Chgd</span><br><br>
+                            <span class="clr-blue"></span>
+                        </div>
+
+                        <!-- Textbox with label of Batch Number -->
+                        <div [ngClass]="{'has-danger': formValidation.isValidField('batchNumber') }"
+                             class="col-md-2">
+                            <label class="col-form-label font-weight-bold" for="batchNumber" i18n>Batch Number</label>
+                            <input [fieldLevelSec]="'Batch Number'" [params]="''" class="form-control"
+                                   formControlName="batchNumber" id="batchNumber" type="text"/>
+                            <small *ngIf="formValidation.isValidField('batchNumber')" class="text-danger">
+                                {{ formValidation.errorMessage('batchNumber') }}
+                            </small>
+                        </div>
+
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-md-3 form-control-static mb-0" i18n>
+                            <span class="font-weight-bold">APC Status</span><br><br>
+                            <span class="clr-blue"></span>
+                        </div>
+
+                        <!-- Textbox with label of Paper EOB Req -->
+                        <div [ngClass]="{'has-danger': formValidation.isValidField('paperEobReq') }"
+                             class="col-md-2">
+                            <label class="col-form-label font-weight-bold" for="paperEobReq" i18n>Paper EOB Req.</label>
+                            <select [fieldLevelSec]="'Paper Eob'" [params]="''"
+                                    #paperEobReqElf
+                                    class="form-control"
+                                    (keydown)="paperEobReqKeyDown($event)"
+                                    formControlName="paperEobReq" id="paperEobReq">
+                                <option value="N">No</option>
+                                <option value="Y">Yes</option>
+                            </select>
+                            <small *ngIf="formValidation.isValidField('paperEobReq')" class="text-danger">
+                                {{ formValidation.errorMessage('paperEobReq') }}
+                            </small>
+                        </div>
+
+                        <!-- DynamicText with label of Privacy Applies -->
+                        <div [ngClass]="{'has-danger': formValidation.isValidField('privacyApplies') }"
+                             class="col-md-3">
+                            <label class="col-form-label font-weight-bold" for="privacyApplies" i18n>Privacy Applies</label>
+                            <input [fieldLevelSec]="'Privacy Applies'" [params]="''" class="form-control text-primary"
+                                   formControlName="privacyApplies" id="privacyApplies" readonly type="text"/>
+                        </div>
+
+                    </div>
+
+                    <div class="form-group row">
+                        <!-- Checkbox with label of Invalid Data -->
+                        <div [ngClass]="{'has-error': displayMessage.invalidData }" class="col-md-3 mt-5">
+                            <div class="checkbox">
+                                <input [fieldLevelSec]="'Invalid Data Ind'" [params]="''"
+                                       formControlName="invalidData" id="invalidData" type="checkbox"
+                                       (keydown)="invalidDataKeyEvent($event)"
+                                       value="Y" [checked]="institutionalClaimsForm.value.invalidData === 'Y'">
+                                <label class="checkbox font-weight-bold">
+                                    Invalid Data
+                                </label>
+                            </div>
+                            <span *ngIf="displayMessage.invalidData" class="help-block">
+                            {{ displayMessage.invalidData  }}
+                         </span>
+                        </div>
+
+                        <!-- Textbox with label of Prov Sign. on File -->
+                        <div [ngClass]="{'has-danger': formValidation.isValidField('provSignOnFile') }"
+                             class="col-md-2">
+                            <label class="col-form-label font-weight-bold" for="provSignOnFile" i18n>Prov. Sign. on File</label>
+                            <select [fieldLevelSec]="'Prov Sign On File'" [params]="''" class="form-control"
+                                    formControlName="provSignOnFile" id="provSignOnFile"
+                                    #provSignOnFileElf
+                                    (keydown)="provSignFileKeyEvent($event)" >
+                                <option value="N">No</option>
+                                <option value="Y">Yes</option>
+                            </select>
+                            <small *ngIf="formValidation.isValidField('provSignOnFile')" class="text-danger">
+                                {{ formValidation.errorMessage('provSignOnFile') }}
+                            </small>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div *ngIf="!holdReasonTrue1">
+                    <ag-grid-angular #agGrid class="ag-theme-fresh"
+                                     [gridOptions]="dataGridGridOptions"
+                                     style="width: 100%; height: 300px;"
+                                     rowSelection='single'
+                                     [enableSorting]="true"
+                                     [floatingFilter]="true"
+                                     [pagination]="true"
+                    >
+                    </ag-grid-angular>
+
+                    <div class="pt-5" *ngIf="createNewDataStatus">
+                        <div class="form-group row">
+                            <div class="col-md-8">
+                                <div class="row">
+                                    <div class="col-md-6 p-1">
+                                        <label class="col-form-label pr-1" for="lineNumber" i18n>Line Number</label>
+                                        <input type="text" id="lineNumber" formControlName="lineNumber" disabled value="000" />
+                                    </div>
+
+                                    <div class="col-md-6 p-1">
+                                        <label class="col-form-label pr-1" for="subLine" i18n>Sub-Line:</label>
+                                        <input type="text" id="subLine" disabled formControlName="subLine" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 mt-2">
+                                <div class="row">
+                                    <div class="col-md-5 p-0">
+                                        <div class="checkbox">
+                                            <input id="history"  formControlName="history" type="checkbox">
+                                            <label class="checkbox">
+                                                History
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-7 p-0">
+                                        <div class="checkbox">
+                                            <label class="checkbox pr-1">
+                                                Unclean Indicator:
+                                            </label>
+                                            <input id="indicator"  formControlName="indicator" type="checkbox">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-8">
+                                <div class="row">
+                                    <div class="col-md-6 p-1">
+                                        <label class="col-form-label pr-1" for="lineNumber" i18n>Hold Reason Code:</label>
+                                        <input type="text" id="holdReasonCode"
+                                               formControlName="holdReasonCode"
+                                               (keydown)="onLookupFieldHoldCode($event)"
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <ng-template #paySubscriberTemplate>
+
+
+                    <div class="container-fluid">
+                        <div class="card-block">
+
+                            <h2 class="form-title card-label-admin">Claim Header Pay Subscriber</h2>
+                            <button type="button" *ngIf="showIcon" class="close" aria-label="Close"
+                                    (click)="paySubModalRef.dismiss()">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+
+                            <div class="row">
+                                <div class="col-md-8 offset-1 mt-4 mb-4">
+                                    <div class="form-group row">
+                                        <!-- Textbox with label of paySubscriber -->
+                                        <label class="checkbox font-weight-bold" for="paySubscriber" i18n>Pay Subscriber</label>
+                                        <div [ngClass]="{'has-error': displayMessage.paySubscriber }" class="col-md-2">
+                                            <div class="checkbox">
+                                                <input formControlName="paySubscriber" id="paySubscriber" type="checkbox"  style="height: 20px; width: 20px">
+                                            </div>
+                                            <span *ngIf="displayMessage.paySubscriber" class="help-block">{{ displayMessage.paySubscriber  }}</span>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="col-md-3 mb-1">
+                                    <button class="col-sm-12 button" (click)="saveInstClaimHeader()">OK</button>
+                                    <button class="col-sm-12 button mt-1" (click)="paySubModalRef.dismiss()">Cancel</button>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+
+                </ng-template>
+            </form>
+        </ng-container>
+    </div>
+</div>
+<ng-keyboard-shortcuts [shortcuts]="shortcuts" [disabled]="isChildModalOpen"></ng-keyboard-shortcuts>
+<ng-keyboard-shortcuts-help [key]="'f2'" [closeKey]="'escape'" [title]="'Hotkeys Help'"></ng-keyboard-shortcuts-help>
+

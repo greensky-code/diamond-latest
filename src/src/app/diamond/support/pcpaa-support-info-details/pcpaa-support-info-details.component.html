@@ -1,0 +1,178 @@
+<!-- Copyright (c) 2021 . All Rights Reserved. -->
+<div class="container-fluid">
+    <div class="card-block">
+        <div class="row form-title">
+            <h2 class="col-md-6  card-label-admin"> PCPAA Support Info Details </h2>
+            <div class="col-md"><b class="readonly-label">View Only</b></div>
+          </div>
+
+          <button type="button" *ngIf="showIcon" class="modal-close close" aria-label="Close"
+                  (click)="modalClose()">
+            <span aria-hidden="true">&times;</span>
+
+          </button>
+
+          <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+          <app-pop-up-message #popUpMesssage (buttonclickEvent)="popUpButtonHandler($event)"  [(popupMessage)] = "popUpMessage"></app-pop-up-message>
+
+
+          <div class="row mt-3">
+            <menu-bar [menus]="menu" (onMenuClick)="onMenuItemClick($event)"></menu-bar>
+          </div>
+
+        <form [formGroup]="pcpaaSupportInfoDetailsForm" novalidate>
+
+            <div class="form-group row">
+            </div>
+
+            <div class="form-group row">
+
+                <!-- Textbox with label of Line Of Business -->
+                 <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('lineOfBusiness') }">
+                     <label class="col-form-label" for="lineOfBusiness" i18n>Line Of Business</label>
+                     <input type="text" #lineOfBusiness id="lineOfBusiness"  [fieldLevelSec]="''"  class="form-control"
+                     formControlName="lineOfBusiness" (keydown)="lookupLOB($event,lineOfBusiness.value)" />
+                      <small class="text-danger" *ngIf="formValidation.isValidField('lineOfBusiness')">
+                      {{ formValidation.errorMessage('lineOfBusiness') }}
+                     </small>
+                 </div>
+
+                <!-- DynamicText with Name of DynamicText -->
+                 <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('dynamicText') }">
+                     <label class="col-form-label" for="dynamicText" i18n>&nbsp;</label>
+                     <input type="text"  [fieldLevelSec]="''"  readonly id="dynamicText" formControlName="dynamicText" class="form-control"/>
+                 </div>
+
+            </div>
+
+            <div class="form-group row">
+            </div>
+
+
+            <div class="form-group row" >
+                <label class="label-broken col-md-4 text-primary text-right">
+                    <span>
+                        <b>Pediatric Indicator</b>
+                    </span>
+                </label>
+                <label class="col-md-8 label-broken"><span></span></label>
+            </div>
+
+            <div class="form-group row">
+            </div>
+
+                        <!-- DataGrid with Name of DataGrid001 -->
+                    <ag-grid-angular #agGrid class="ag-theme-fresh" [gridOptions]="dataGrid001GridOptions"
+                    style="width: 100%; height: 250px;"
+                    [enableSorting]="true"
+                    [enableFilter]="true"
+                    [floatingFilter]="true"
+                    [pagination]="true"
+                                     (selectionChanged)="onSelectionChanged1($event)"
+                    [showToolPanel]="true">
+                    </ag-grid-angular>
+
+            <div class="form-group row">
+            </div>
+
+            <div class="form-group row">
+            </div>
+
+            <div class="form-group row">
+
+                    <label class="label-broken col-md-4 text-primary text-right">
+                        <span>
+                            <b>OB/GYM Indicator</b>
+                        </span>
+                    </label>
+                    <label class="col-md-8 label-broken"><span></span></label>
+
+
+            </div>
+
+            <div class="form-group row">
+            </div>
+
+                        <!-- DataGrid with Name of DataGrid002 -->
+                    <ag-grid-angular #agGrid class="ag-theme-fresh" [gridOptions]="dataGrid002GridOptions"
+                    style="width: 100%; height: 250px;"
+                    [enableSorting]="true"
+                    [enableFilter]="true"
+                    [floatingFilter]="true"
+                    [pagination]="true"
+                                     (selectionChanged)="onSelectionChanged2($event)"
+                    [showToolPanel]="true">
+                    </ag-grid-angular>
+
+            <div class="form-group row">
+            </div>
+
+            <div class="form-group row">
+            </div>
+
+            <div class="form-group row">
+
+                    <label class="label-broken col-md-4 text-primary text-right">
+                        <span>
+                            <b>Specialty Restriction by Gender</b>
+                        </span>
+                    </label>
+                    <label class="col-md-8 label-broken"><span></span></label>
+
+
+            </div>
+
+            <div class="form-group row">
+            </div>
+
+                        <!-- DataGrid with Name of DataGrid003 -->
+                    <ag-grid-angular #agGrid class="ag-theme-fresh" [gridOptions]="dataGrid003GridOptions"
+                    style="width: 100%; height: 250px;"
+                    [enableSorting]="true"
+                    [enableFilter]="true"
+                    [floatingFilter]="true"
+                    [pagination]="true"
+                                     (selectionChanged)="onSelectionChanged3($event)"
+                    [showToolPanel]="true">
+                    </ag-grid-angular>
+
+            <div class="form-group row">
+            </div>
+
+            <div class="form-group row">
+            </div>
+
+            <div class="form-group row">
+
+                    <label class="label-broken col-md-4 text-primary text-right">
+                        <span>
+                            <b>Specialty Restriction by Age</b>
+                        </span>
+                    </label>
+                    <label class="col-md-8 label-broken"><span></span></label>
+
+
+            </div>
+
+            <div class="form-group row">
+            </div>
+
+                        <!-- DataGrid with Name of DataGrid004 -->
+                    <ag-grid-angular #agGrid class="ag-theme-fresh" [gridOptions]="dataGrid004GridOptions"
+                    style="width: 100%; height: 250px;"
+                    [enableSorting]="true"
+                    [enableFilter]="true"
+                    [floatingFilter]="true"
+                    [pagination]="true"
+                                     (selectionChanged)="onSelectionChanged4($event)"
+                    [showToolPanel]="true">
+                    </ag-grid-angular>
+
+            <div class="form-group row">
+            </div>
+        </form>
+    </div>
+</div>
+
+<ng-keyboard-shortcuts [shortcuts]="shortcuts"></ng-keyboard-shortcuts>
+<ng-keyboard-shortcuts-help [key]="'f2'" [closeKey]="'escape'" [title]="'Hotkeys Help'"></ng-keyboard-shortcuts-help>

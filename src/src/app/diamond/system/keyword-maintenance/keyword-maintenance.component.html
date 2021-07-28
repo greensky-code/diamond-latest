@@ -1,0 +1,52 @@
+<!-- Copyright (c) 2021 . All Rights Reserved. -->
+<div class="container-fluid">
+    <div class="card-block">
+
+        <div class="row form-title">
+            <h2 class="col-md-6  card-label-admin">Keyword Maintenance</h2>
+            <div class="col-md"><strong class="readonly-label">View Only</strong></div>
+        </div>
+        <button type="button" *ngIf="showIcon" class="modal-close close" aria-label="Close"
+                (click)="activeModal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <div class="row mt-3 mb-3">
+            <menu-bar [menus]="menu" (onMenuClick)="onMenuItemClick($event)"></menu-bar>
+        </div>
+        <form [formGroup]="keywordMaintenanceForm" novalidate>
+            <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+            <app-pop-up-message #popUpMesssage (buttonclickEvent)="popUpButtonHandler($event)"  [(popupMessage)] = "popUpMessage"></app-pop-up-message>
+
+            <div class="form-group row">
+                <!-- DynamicText with label of Language Code -->
+                 <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('languageCode001') }">
+                     <label class="col-form-label" for="languageCode001" i18n>Language Code</label>
+                     <input [readOnly]="isDisabledField" [(ngModel)]="languageCode001" (keydown)="keydownLangCode001($event);" type="text"  [fieldLevelSec]="'Language Id'" params="Sec Win Descr"   id="languageCode001" formControlName="languageCode001" class="form-control"/>
+                 </div>
+            </div>
+
+            <ng-container *ngIf="showKeywordMaintenance">
+                <hr/>
+                <div class="form-group row">
+                    <!-- DynamicText with label of Language Code -->
+                    <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('languageCode001') }">
+                        <label class="col-form-label"  for="languageCode001" i18n>Language Code</label>
+                        <input  readonly type="text"  [fieldLevelSec]="'Language Id'" params="Sec Win Descr"   id="languageCode001" formControlName="languageCode001" class="form-control"/>
+                    </div>
+                </div>
+                <ag-grid-angular #agGrid class="ag-theme-fresh" [gridOptions]="dataGridGridOptions"
+                                 style="width: 100%; height: 300px;"
+                                 [enableSorting]="true"
+                                 [enableFilter]="true"
+                                 [floatingFilter]="true"
+                                 [pagination]="true"
+                                 [showToolPanel]="true">
+                </ag-grid-angular>
+
+                <div class="form-group row">
+                </div>
+            </ng-container>
+
+        </form>
+    </div>
+</div>

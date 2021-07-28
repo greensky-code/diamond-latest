@@ -1,0 +1,1049 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+    <title>Member Conditions, How DIAMOND Thinks</title>
+    <!--(Meta)==========================================================-->
+    <meta content="Overview.htt" name="template"/>
+    <meta content="RoboHELP by eHelp Corporation - www.ehelp.com" name="generator"/>
+    <meta content="0.1" name="generator-major-version"/>
+    <meta content="1" name="generator-minor-version"/>
+    <meta content="kadov" name="filetype"/>
+    <meta content="1" name="filetype-version"/>
+    <meta content="1" name="page-count"/>
+    <meta content="4969" name="layout-height"/>
+    <meta content="567" name="layout-width"/>
+    <meta content="F;N;C;Disch;Thru;Y;seq_memb_cond_id;Proc;Req;AUTYP;Dep;JI;Svc" name="x-ignored-words"/>
+    <!--(Links)=========================================================-->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+
+</head>
+<body>
+
+<div class="calibreMeta">
+    <div class="calibreMetaTitle">
+
+
+        <h1>
+            <a href="../ib0gc-jzzjl.html">DIAMOND 950 Help
+            </a>
+        </h1>
+
+
+    </div>
+    <div class="calibreMetaAuthor">
+        Unknown
+
+    </div>
+</div>
+
+<div class="calibreMain">
+
+    <div class="calibreEbookContent">
+
+        <div class="calibreEbNavTop">
+
+            <a href="Delete_a_member_privacy_contact.htm" class="calibreAPrev">previous page
+            </a>
+
+
+            <a href="Setting_up_Pre-Existing_Conditions.htm" class="calibreANext">next page
+            </a>
+
+        </div>
+
+
+        <h4 class="calibre1"><!--kadov_tag{{<variable name=title
+						x-format=default
+						x-value="Member Conditions, How DIAMOND Thinks">}}-->Member
+            Conditions, How DIAMOND Thinks<!--kadov_tag{{</variable>}}--></h4>
+
+        <p class="text">DIAMOND logic supports two types of member conditions:</p>
+
+        <ul class="calibre15">
+
+            <li class="kadov-p-cbullet1"><p class="bullet1">Privacy - a keyword MCOND
+                (Member Conditions) member <span class="calibre41">Condition
+ Type</span> of Privacy represents "privacy by diagnosis" functionality</p></li>
+
+            <li class="kadov-p-cbullet1"><p class="bullet1">Pre-Existing Condition -
+                a keyword MCOND member <span class="calibre41">Condition Type</span>
+                of Pre-Existing, Rated-up, or Ridered-out represents "pre-existing
+                condition" functionality</p></li>
+        </ul>
+
+        <p class="text">DIAMOND evaluates each type of member condition record at
+            different times and in a different manner. For information see the following
+            two sections:</p>
+
+        <ul class="calibre15">
+
+            <li class="kadov-p-cbullet1"><p class="bullet1"><a href="#Evaluating_Privacy_Member_Condition_Records">Evaluating
+                Privacy Member Condition Records</a></p></li>
+
+            <li class="kadov-p-cbullet1"><p class="bullet1"><a
+                    href="#Evaluating_Pre_Existing__Condition_Member_Condition_Records">Evaluating
+                Pre-Existing Condition Member Condition Records</a></p></li>
+        </ul>
+
+        <h2 class="calibre1"><a name="Evaluating_Privacy_Member_Condition_Records">Evaluating Privacy
+            Member Condition Records</a></h2>
+
+        <p class="text">DIAMOND logic evaluates privacy member condition records
+            during:</p>
+
+        <ul type="disc" class="calibre99">
+
+            <li class="kadov-p-cbullet-list-h1"><p class="bullet-list-h3">Institutional
+                claims processing</p></li>
+
+            <li class="kadov-p-cbullet-list-h1"><p class="bullet-list-h3">Professional
+                claims processing</p></li>
+
+            <li class="kadov-p-cbullet-list-h1"><p class="bullet-list-h3">Dental claims
+                processing</p></li>
+
+            <li class="kadov-p-cbullet-list-h1"><p class="bullet-list-h3">Authorizations
+                processing</p></li>
+        </ul>
+
+        <h3 class="calibre98">Evaluating Privacy Member Condition Records in Institutional Claims</h3>
+
+        <p class="text">For online claims processing, DIAMOND logic evaluates privacy
+            member condition records when you:</p>
+
+        <ul type="disc" class="calibre99">
+
+            <li class="kadov-p-ctext"><p class="text1">Save the claim header for the
+                first time</p></li>
+
+            <li class="kadov-p-ctext"><p class="text1">Change one or more diagnosis
+                codes on the claim header and save, but only if no claim detail lines
+                have a <span class="calibre41"><!--kadov_tag{{<ignored>}}-->Proc<!--kadov_tag{{</ignored>}}-->
+ Status</span><span> equal to F - Final (posted), P - Paid, N - Paid (no
+ check), or C - Check Issued (paid)</span></p></li>
+
+            <li class="kadov-p-ctext"><p class="text1">Use <span class="calibre41">Special</span>
+                menu command <span class="calibre41">Change Header</span> to
+                change the <span class="calibre41">Member ID</span> on the claim
+                header and save</p></li>
+
+            <li class="kadov-p-ctext"><p class="text1">Use <span class="calibre41">Topic</span>
+                menu command <span class="calibre41">UB92</span> to change one
+                or more diagnosis codes and save</p></li>
+        </ul>
+
+        <p class="text">For DDS API processing, DIAMOND logic evaluates privacy member
+            condition records when you:</p>
+
+        <ul type="disc" class="calibre99">
+
+            <li class="kadov-p-ctext"><p class="text1">Post a claim</p></li>
+        </ul>
+
+        <p class="text">During privacy member condition record evaluation, DIAMOND
+            logic compares the claim header data to each privacy member condition
+            record looking for the first record to satisfy all of the following:</p>
+
+        <ul type="disc" class="calibre99">
+
+            <li class="kadov-p-ctext"><p class="text1">Claim header <span class="calibre41">Member
+ ID</span> matches the privacy member condition record <span class="calibre41">Subscriber
+ ID</span> + <span class="calibre41">Person No.</span></p></li>
+
+            <li class="kadov-p-ctext"><p class="text1">Either the claim header <span class="calibre41">Admit Date</span>
+                or <span class="calibre41">Disch
+ Date</span> are within the <span class="calibre41">Effective
+ Date</span>/<span class="calibre41">Term Date</span> range of
+                the privacy member condition record</p></li>
+
+            <li class="kadov-p-ctext"><p class="text1">One of the diagnosis codes on
+                the claim header or <span class="calibre41">Topic</span> menu
+                command <span class="calibre41">UB92</span> falls within the
+                privacy member condition record <span class="calibre41">From
+ Value</span>/<span class="calibre41">Thru Value</span> diagnosis
+                code range</p></li>
+        </ul>
+
+        <p class="text">Based on the results of the evaluation, DIAMOND logic proceeds
+            as follows:</p>
+
+        <ul type="disc" class="calibre99">
+
+            <li class="kadov-p-ctext"><p class="text1">When a privacy member condition
+                record is found that satisfies all the criteria, DIAMOND logic sets the
+                claim header <span class="calibre41">Privacy Applies</span> box
+                to Y and saves the seq_memb_cond_id to the claim header table.</p></li>
+
+            <li class="kadov-p-ctext"><p class="text1">If no privacy member condition
+                record is found that satisfies all the criteria, DIAMOND logic sets the
+                claim header <span class="calibre41">Privacy Applies</span> box
+                to N.</p></li>
+        </ul>
+
+        <h3 class="calibre98">Evaluating privacy member condition Records in Professional
+            Claims</h3>
+
+        <p class="text">For online claims processing, DIAMOND logic evaluates privacy
+            member condition records when you:</p>
+
+        <ul type="disc" class="calibre99">
+
+            <li class="kadov-p-ctext"><p class="text1">Save the claim header for the
+                first time</p></li>
+
+            <li class="kadov-p-ctext"><p class="text1">Change one or more diagnosis
+                codes on the claim header and save, but only if no claim detail lines
+                have a <span class="calibre41">Proc Status</span><span> equal
+ to F - Final (posted), P - Paid, N - Paid (no check), or C - Check Issued
+ (paid)</span></p></li>
+
+            <li class="kadov-p-ctext"><p class="text1">Use <span class="calibre41">Special</span>
+                menu command <span class="calibre41">Change Header</span> to
+                change the <span class="calibre41">Member ID</span> on the claim
+                header and save</p></li>
+
+            <li class="kadov-p-ctext"><p class="text1">After pricing, medical definitions
+                evaluation, and adjudication of a claim have been completed</p></li>
+        </ul>
+
+        <p class="text">For DDS API processing, DIAMOND logic evaluates privacy member
+            condition records when you:</p>
+
+        <ul type="disc" class="calibre99">
+
+            <li class="kadov-p-ctext"><p class="text1">Post a claim</p></li>
+        </ul>
+
+        <p class="text">During privacy member condition record evaluation, DIAMOND
+            logic compares the claim header data to each privacy member condition
+            record looking for the first record to satisfy all of the following:</p>
+
+        <ul type="disc" class="calibre99">
+
+            <li class="kadov-p-ctext"><p class="text1">Claim header <span class="calibre41">Member
+ ID</span> matches the privacy member condition record <span class="calibre41">Subscriber
+ ID</span> + <span class="calibre41">Person No.</span></p></li>
+
+            <li class="kadov-p-ctext"><p class="text1">Either the claim header <span class="calibre41">Svc Date</span>
+                or <span class="calibre41">Thru
+ Date</span> are within the <span class="calibre41">Effective
+ Date</span>/<span class="calibre41">Term Date</span> range of
+                the privacy member condition record</p></li>
+
+            <li class="kadov-p-ctext"><p class="text1">One of the diagnosis codes on
+                the claim header falls within the privacy member condition record <span
+                        class="calibre41">From Value</span>/<span class="calibre41">Thru
+ Value</span> diagnosis code range</p></li>
+        </ul>
+
+        <p class="text">Based on the results of the evaluation, DIAMOND logic proceeds
+            as follows:</p>
+
+        <ul type="disc" class="calibre99">
+
+            <li class="kadov-p-ctext"><p class="text1">When a privacy member condition
+                record is found that satisfies all the criteria, DIAMOND logic sets the
+                claim header <span class="calibre41">Privacy Applies</span> box
+                to Y and saves the seq_memb_cond_id to the claim header table.</p></li>
+
+            <li class="kadov-p-ctext"><p class="text1">If no privacy member condition
+                record is found that satisfies all the criteria, DIAMOND logic sets the
+                claim header <span class="calibre41">Privacy Applies</span> box
+                to N.</p></li>
+        </ul>
+
+        <h3 class="calibre98">Evaluating privacy member condition Records in Dental Claims</h3>
+
+        <p class="text">For online claims processing, DIAMOND logic evaluates privacy
+            member condition records when you:</p>
+
+        <ul type="disc" class="calibre99">
+
+            <li class="kadov-p-ctext"><p class="text1">Save the claim header for the
+                first time</p></li>
+
+            <li class="kadov-p-ctext"><p class="text1">Change one or more diagnosis
+                codes on the claim header and save, but only if no claim detail lines
+                have a <span class="calibre41">Proc Status</span><span> equal
+ to F - Final (posted), P - Paid, N - Paid (no check), or C - Check Issued
+ (paid).</span></p></li>
+
+            <li class="kadov-p-ctext"><p class="text1">Use <span class="calibre41">Special</span>
+                menu command <span class="calibre41">Change Header</span> to
+                change the <span class="calibre41">Member ID</span> on the claim
+                header and save</p></li>
+
+            <li class="kadov-p-ctext"><p class="text1">Use <span class="calibre41">Topic</span>
+                menu command <span class="calibre41">Other Claim Info</span>
+                to change one or more diagnosis codes and save</p></li>
+
+            <li class="kadov-p-ctext"><p class="text1">After pricing, medical definitions
+                evaluation, and adjudication of a claim have been completed</p></li>
+        </ul>
+
+        <p class="text">For DDS API processing, DIAMOND logic evaluates privacy member
+            condition records when you:</p>
+
+        <ul type="disc" class="calibre99">
+
+            <li class="kadov-p-ctext"><p class="text1">Post a claim</p></li>
+        </ul>
+
+        <p class="text">During privacy member condition record evaluation, DIAMOND
+            logic compares the claim header data to each privacy member condition
+            record looking for the first record to satisfy all of the following:</p>
+
+        <ul type="disc" class="calibre99">
+
+            <li class="kadov-p-ctext"><p class="text1">Claim header <span class="calibre41">Member
+ ID</span> matches the privacy member condition record <span class="calibre41">Subscriber
+ ID</span> + <span class="calibre41">Person No.</span></p></li>
+
+            <li class="kadov-p-ctext"><p class="text1">Either the claim header <span class="calibre41">Svc Date</span>
+                or <span class="calibre41">Thru
+ Date</span> are within the <span class="calibre41">Effective
+ Date</span>/<span class="calibre41">Term Date</span> range of
+                the privacy member condition record</p></li>
+
+            <li class="kadov-p-ctext"><p class="text1">One of the diagnosis codes on
+                the claim header or <span class="calibre41">Topic</span> menu
+                command <span class="calibre41">Other Claim Info</span> falls
+                within the privacy member condition record <span class="calibre41">From
+ Value</span>/<span class="calibre41">Thru Value</span> diagnosis
+                code range</p></li>
+        </ul>
+
+        <p class="text">Based on the results of the evaluation, DIAMOND logic proceeds
+            as follows:</p>
+
+        <ul type="disc" class="calibre99">
+
+            <li class="kadov-p-ctext"><p class="text1">When a privacy member condition
+                record is found that satisfies all the criteria, DIAMOND logic sets the
+                claim header <span class="calibre41">Privacy Applies</span> box
+                to Y and saves the seq_memb_cond_id to the claim header table.</p></li>
+
+            <li class="kadov-p-ctext"><p class="text1">If no privacy member condition
+                record is found that satisfies all the criteria, DIAMOND logic sets the
+                claim header <span class="calibre41">Privacy Applies</span> box
+                to N.</p></li>
+        </ul>
+
+        <h2 class="calibre1">Evaluating privacy member condition Records in Authorizations</h2>
+
+        <p class="text">For online and DDS API authorization processing, DIAMOND
+            logic evaluates privacy member condition records when you:</p>
+
+        <ul type="disc" class="calibre99">
+
+            <li class="kadov-p-ctext"><p class="text1">Save an authorization for the
+                first time</p></li>
+
+            <li class="kadov-p-ctext"><p class="text1">Change the <span class="calibre41">Member
+ ID</span> or <span class="calibre41">Req Date</span> on an authorization
+                and save</p></li>
+        </ul>
+
+        <p class="text">During privacy member condition record evaluation, DIAMOND
+            logic compares the authorization data to each privacy member condition
+            record looking for the first record to satisfy all of the following:</p>
+
+        <ul type="disc" class="calibre99">
+
+            <li class="kadov-p-ctext"><p class="text1">Authorization <span class="calibre41">Member
+ ID</span> matches the privacy member condition record <span class="calibre41">Subscriber
+ ID</span> + <span class="calibre41">Person No.</span></p></li>
+
+            <li class="kadov-p-ctext"><p class="text1">For online authorization processing,
+                the authorization <span class="calibre41">Req Date</span> falls
+                within the <span class="calibre41">Effective Date</span>/<span class="calibre41">Term Date</span> range
+                of the privacy member
+                condition record</p></li>
+
+            <li class="kadov-p-ctext"><p class="text1">For DDS API inpatient authorization
+                processing, the authorization <span class="calibre41">Admit Date</span>
+                falls within the <span class="calibre41">Effective Date</span>/<span class="calibre41">Term Date</span>
+                range of the privacy member
+                condition record</p></li>
+
+            <li class="kadov-p-ctext"><p class="text1">For DDS API non-inpatient authorization
+                processing, the authorization <span class="calibre41">Request
+ Date</span> falls within the <span class="calibre41">Effective
+ Date</span>/<span class="calibre41">Term Date</span> range of
+                the privacy member condition record</p></li>
+        </ul>
+
+        <p class="text">DIAMOND logic determines whether an authorization is inpatient
+            or non-inpatient based on the authorization type. You maintain authorization
+            types using keyword AUTYP (Authorization Type). For more information,
+            see <a href="Auth/AUTYP_Field_Definitions.htm">AUTYP Field Definitions</a>.</p>
+
+        <p class="text">Based on the results of the evaluation, DIAMOND logic proceeds
+            as follows:</p>
+
+        <ul type="disc" class="calibre99">
+
+            <li class="kadov-p-ctext"><p class="text1">When a privacy member condition
+                record is found that satisfies all the criteria, DIAMOND logic sets the
+                authorization <span class="calibre41">Privacy Exists </span>box
+                to Y.</p></li>
+
+            <li class="kadov-p-ctext"><p class="text1">If no privacy member condition
+                record is found that satisfies all the criteria, DIAMOND logic sets the
+                authorization <span class="calibre41">Privacy Exists </span>box
+                to N.</p></li>
+        </ul>
+
+        <h2 class="calibre1">Using the Privacy Address for Pay to Subscriber and Pay to Dependent
+            Claims</h2>
+
+        <p class="text">During accounts payable processing, DIAMOND logic determines
+            whether to use the privacy address as the vendor address for a claim payment.
+            The privacy address is only used for Pay to Subscriber or Pay to Dependent
+            claims and only under certain conditions. </p>
+
+        <p class="text">You enter a privacy address for a member using keyword ALIAS
+            (Alias/Responsible Party/Privacy). For more information, see <a href="Add_a_member_privacy_address.htm">Adding
+                a member privacy address</a>.</p>
+
+        <h3 class="calibre98">Pay to Subscriber claims where member is the subscriber</h3>
+
+        <p class="text">DIAMOND uses the member's privacy address as the vendor address
+            for Pay to Subscriber claims if all of the following are true:</p>
+
+        <ul type="disc" class="calibre99">
+
+            <li class="kadov-p-cbullet-list-h1"><p class="bullet-list-h3">Member is
+                the Subscriber</p></li>
+
+            <li class="kadov-p-cbullet-list-h1"><p class="bullet-list-h3">Claim header
+                <span class="calibre41">Pay Sub</span> box = Y</p></li>
+
+            <li class="kadov-p-cbullet-list-h1"><p class="bullet-list-h3">Claim header
+                <span class="calibre41">Privacy Applies </span>box = Y</p></li>
+
+            <li class="kadov-p-cbullet-list-h1"><p class="bullet-list-h3">A privacy
+                address exists for the member</p></li>
+        </ul>
+
+        <p class="text">If the other criteria are met but no privacy address exists
+            for the member, <span class="calibre100">DIAMOND logic uses the
+ member's address from the Member Master table. If no member address exists,
+ the vendor address is blank.</span></p>
+
+        <h3 class="calibre98">Pay to Subscriber claims where member is a dependent</h3>
+
+        <p class="text">DIAMOND does <span class="calibre41">not</span>
+            use the privacy address as the vendor address for Pay to Subscriber claims
+            if the following are true:</p>
+
+        <ul type="disc" class="calibre99">
+
+            <li class="kadov-p-cbullet-list-h1"><p class="bullet-list-h3">Claim header
+                <span class="calibre41">Pay Sub</span> box = Y</p></li>
+
+            <li class="kadov-p-cbullet-list-h1"><p class="bullet-list-h3">Claim header
+                <span class="calibre41">Privacy Applies </span>box = Y</p></li>
+
+            <li class="kadov-p-cbullet-list-h1"><p class="bullet-list-h3">A privacy
+                address exists for the member <span class="calibre41">or</span>
+                <span class="calibre41">subscriber</span></p></li>
+        </ul>
+
+        <p class="text">but</p>
+
+        <ul type="disc" class="calibre99">
+
+            <li class="kadov-p-cbullet-list-h1"><p class="bullet-list-h3">Member is
+                a dependent, <span class="calibre41">not</span> the subscriber</p></li>
+        </ul>
+
+        <p class="text">Here DIAMOND logic instead uses the subscriber's member address
+            as the vendor address for this Pay to Subscriber claim. The subscriber's
+            privacy address is reserved for the subscriber's own Pay to Subscriber
+            claims where privacy applies. It is not used for any dependent's Pay to
+            Subscriber claims.</p>
+
+        <h3 class="calibre98">Pay to Dependent claims</h3>
+
+        <p class="text">DIAMOND uses the member's privacy address as the vendor address
+            for Pay to Dependent claims if all of the following are true:</p>
+
+        <ul type="disc" class="calibre99">
+
+            <li class="kadov-p-cbullet-list-h1"><p class="bullet-list-h3">Member is
+                a dependent</p></li>
+
+            <li class="kadov-p-cbullet-list-h1"><p class="bullet-list-h3">Claim header
+                <span class="calibre41">Pay Dep </span>box = Y</p></li>
+
+            <li class="kadov-p-cbullet-list-h1"><p class="bullet-list-h3">Claim header
+                <span class="calibre41">Privacy Applies </span>box = Y</p></li>
+
+            <li class="kadov-p-cbullet-list-h1"><p class="bullet-list-h3">A privacy
+                address exists for the member</p></li>
+        </ul>
+
+        <p class="text">If the other criteria are met but no privacy address exists
+            for the member, then DIAMOND logic uses the member's address from the
+            Member Master table. If no member address exists, the vendor address is
+            blank.</p>
+
+        <p class="text"> </p>
+
+        <h3 class="calibre98">Examples</h3>
+
+        <p class="text">privacy member condition Evaluation on a Claim:</p>
+
+        <p class="text"> </p>
+
+        <!--(Table)=========================================================-->
+        <!--begin!kadov{{-->
+        <div class="calibre101"><!--}}end!kadov-->
+            <table width="100%" x-use-null-cells="" class="calibre102">
+                <colgroup class="calibre25">
+                    <col class="calibre103"/>
+                    <col class="calibre103"/>
+                    <col class="calibre103"/>
+                    <col class="calibre103"/>
+                    <col class="calibre103"/>
+
+                </colgroup>
+                <tbody class="calibre3">
+                <tr class="calibre104">
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-header-nonscroll"> </p></td>
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-header-nonscroll">Claim 1</p></td>
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-header-nonscroll">Claim 2</p></td>
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-header-nonscroll">Claim 3</p></td>
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-header-nonscroll">Claim 4</p></td>
+                </tr>
+
+                <tr class="calibre104">
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-text-noline">Claim for Subscriber or Dependent</p></td>
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-text-noline">Subscriber</p></td>
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-text-noline">Subscriber</p></td>
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-text-noline">Subscriber</p></td>
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-text-noline">Subscriber</p></td>
+                </tr>
+
+                <tr class="calibre104">
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-text-noline">Privacy Applies</p></td>
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-text-noline">N</p></td>
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-text-noline">Y</p></td>
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-text-noline">N</p></td>
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-text-noline">Y</p></td>
+                </tr>
+
+                <tr class="calibre104">
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-text-noline">Pay Provider/Vendor</p></td>
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-text-noline">Y</p></td>
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-text-noline">Y</p></td>
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-text-noline">N</p></td>
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-text-noline">N</p></td>
+                </tr>
+
+                <tr class="calibre104">
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-text-noline">Pay Subscriber</p></td>
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-text-noline">N</p></td>
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-text-noline">N</p></td>
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-text-noline">Y</p></td>
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-text-noline">Y</p></td>
+                </tr>
+
+                <tr class="calibre104">
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-text-noline">Pay Dependent</p></td>
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-text-noline">N</p></td>
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-text-noline">N</p></td>
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-text-noline">N</p></td>
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-text-noline">N</p></td>
+                </tr>
+
+                <tr class="calibre104">
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-text-noline">Subscriber have Subscriber/Member Address</p></td>
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-text-noline">Y</p></td>
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-text-noline">Y</p></td>
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-text-noline">Y</p></td>
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-text-noline">Y</p></td>
+                </tr>
+
+                <tr class="calibre104">
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-text-noline">Subscriber have Privacy Address</p></td>
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-text-noline">Y</p></td>
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-text-noline">Y</p></td>
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-text-noline">Y</p></td>
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-text-noline">Y</p></td>
+                </tr>
+
+                <tr class="calibre104">
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-text-noline">Dependent have Member Address</p></td>
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-text-noline">Y</p></td>
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-text-noline">Y</p></td>
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-text-noline">Y</p></td>
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-text-noline">Y</p></td>
+                </tr>
+
+                <tr class="calibre104">
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-text-noline">Dependent have Member Privacy Address</p></td>
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-text-noline">Y</p></td>
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-text-noline">Y</p></td>
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-text-noline">Y</p></td>
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-text-noline">Y</p></td>
+                </tr>
+
+                <tr class="calibre104">
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-text-noline">Outcome for claim</p></td>
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-text-noline">Pay Provider / Vendor</p></td>
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-text-noline">Pay Provider / Vendor</p></td>
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-text-noline">Pay Subscriber Member Master Address</p></td>
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-text-noline">Pay Subscriber Privacy Address</p></td>
+                </tr>
+
+                <tr class="calibre104">
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-text-noline">Outcome for EOB</p></td>
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-text-noline">Subscriber Member Master address</p></td>
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-text-noline">Subscriber Privacy Address</p></td>
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-text-noline">Subscriber Member Master Address</p></td>
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-text-noline">Subscriber Privacy Address</p></td>
+                </tr>
+                </tbody>
+            </table>
+            <!--begin!kadov{{--></div><!--}}end!kadov-->
+        <p class="text"> </p>
+
+        <!--(Table)=========================================================-->
+        <!--begin!kadov{{-->
+        <div class="calibre101"><!--}}end!kadov-->
+            <table width="100%" x-use-null-cells="" class="calibre102">
+                <colgroup class="calibre25">
+                    <col class="calibre103"/>
+                    <col class="calibre103"/>
+                    <col class="calibre103"/>
+                    <col class="calibre103"/>
+                    <col class="calibre103"/>
+
+                </colgroup>
+                <tbody class="calibre3">
+                <tr class="calibre104">
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-header-nonscroll"> </p></td>
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-header-nonscroll">Claim 5</p></td>
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-header-nonscroll">Claim 6</p></td>
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-header-nonscroll">Claim 7</p></td>
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-header-nonscroll">Claim 8</p></td>
+                </tr>
+
+                <tr class="calibre104">
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-text-noline">Claim for Subscriber or Dependent</p></td>
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-text-noline">Dependent</p></td>
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-text-noline">Dependent</p></td>
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-text-noline">Dependent</p></td>
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-text-noline">Dependent</p></td>
+                </tr>
+
+                <tr class="calibre104">
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-text-noline">Privacy Applies</p></td>
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-text-noline">N</p></td>
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-text-noline">Y</p></td>
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-text-noline">N</p></td>
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-text-noline">Y</p></td>
+                </tr>
+
+                <tr class="calibre104">
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-text-noline">Pay Provider/Vendor</p></td>
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-text-noline">Y</p></td>
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-text-noline">Y</p></td>
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-text-noline">N</p></td>
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-text-noline">N</p></td>
+                </tr>
+
+                <tr class="calibre104">
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-text-noline">Pay Subscriber</p></td>
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-text-noline">N</p></td>
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-text-noline">N</p></td>
+                    <td width="20%" class="calibre105">
+                        <p class="body-text1">N</p></td>
+                    <td width="20%" class="calibre105">
+                        <p class="body-text1">N</p></td>
+                </tr>
+
+                <tr class="calibre104">
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-text-noline">Pay Dependent</p></td>
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-text-noline">N</p></td>
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-text-noline">N</p></td>
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-text-noline">Y</p></td>
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-text-noline">Y</p></td>
+                </tr>
+
+                <tr class="calibre104">
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-text-noline">Subscriber have Subscriber/Member Address</p></td>
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-text-noline">Y</p></td>
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-text-noline">Y</p></td>
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-text-noline">Y</p></td>
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-text-noline">Y</p></td>
+                </tr>
+
+                <tr class="calibre104">
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-text-noline">Subscriber have Privacy Address</p></td>
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-text-noline">Y</p></td>
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-text-noline">Y</p></td>
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-text-noline">Y</p></td>
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-text-noline">Y</p></td>
+                </tr>
+
+                <tr class="calibre104">
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-text-noline">Dependent have Member Address</p></td>
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-text-noline">Y</p></td>
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-text-noline">Y</p></td>
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-text-noline">Y</p></td>
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-text-noline">Y</p></td>
+                </tr>
+
+                <tr class="calibre104">
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-text-noline">Dependent have Member Privacy Address</p></td>
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-text-noline">Y</p></td>
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-text-noline">Y</p></td>
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-text-noline">Y</p></td>
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-text-noline">Y</p></td>
+                </tr>
+
+                <tr class="calibre104">
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-text-noline">Outcome for claim</p></td>
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-text-noline">Pay Provider / Vendor</p></td>
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-text-noline">Pay Provider / Vendor</p></td>
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-text-noline">Pay Dependent Member Master Address</p></td>
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-text-noline">Pay Dependent Privacy Address</p></td>
+                </tr>
+
+                <tr class="calibre104">
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-text-noline">Outcome for EOB</p></td>
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-text-noline">Dependent Member Master address</p></td>
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-text-noline">Dependent Privacy Address</p></td>
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-text-noline">Dependent Member Master Address</p></td>
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-text-noline">Dependent Privacy Address</p></td>
+                </tr>
+                </tbody>
+            </table>
+            <!--begin!kadov{{--></div><!--}}end!kadov-->
+        <p class="text"> </p>
+
+        <!--(Table)=========================================================-->
+        <!--begin!kadov{{-->
+        <div class="calibre101"><!--}}end!kadov-->
+            <table width="100%" x-use-null-cells="" class="calibre102">
+                <colgroup class="calibre25">
+                    <col class="calibre103"/>
+                    <col class="calibre103"/>
+                    <col class="calibre103"/>
+                    <col class="calibre103"/>
+                    <col class="calibre103"/>
+
+                </colgroup>
+                <tbody class="calibre3">
+                <tr class="calibre104">
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-header-nonscroll"> </p></td>
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-header-nonscroll">Claim 9</p></td>
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-header-nonscroll">Claim 10</p></td>
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-header-nonscroll">Claim 11</p></td>
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-header-nonscroll">Claim 12</p></td>
+                </tr>
+
+                <tr class="calibre104">
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-text-noline">Claim for Subscriber or Dependent</p></td>
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-text-noline">Subscriber</p></td>
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-text-noline">Subscriber</p></td>
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-text-noline">Subscriber</p></td>
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-text-noline">Subscriber</p></td>
+                </tr>
+
+                <tr class="calibre104">
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-text-noline">Privacy Applies</p></td>
+                    <td width="20%" class="calibre105">
+                        <p class="body-text1">Y</p></td>
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-text-noline">Y</p></td>
+                    <td width="20%" class="calibre105">
+                        <p class="body-text1">Y</p></td>
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-text-noline">N</p></td>
+                </tr>
+
+                <tr class="calibre104">
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-text-noline">Pay Provider/Vendor</p></td>
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-text-noline">Y</p></td>
+                    <td width="20%" class="calibre105">
+                        <p class="body-text1">N</p></td>
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-text-noline">N</p></td>
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-text-noline">N</p></td>
+                </tr>
+
+                <tr class="calibre104">
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-text-noline">Pay Subscriber</p></td>
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-text-noline">N</p></td>
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-text-noline">N</p></td>
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-text-noline">Y</p></td>
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-text-noline">Y</p></td>
+                </tr>
+
+                <tr class="calibre104">
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-text-noline">Pay Dependent</p></td>
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-text-noline">N</p></td>
+                    <td width="20%" class="calibre105">
+                        <p class="body-text1">Y</p></td>
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-text-noline">N</p></td>
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-text-noline">N</p></td>
+                </tr>
+
+                <tr class="calibre104">
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-text-noline">Subscriber have Subscriber/Member Address</p></td>
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-text-noline">Y</p></td>
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-text-noline">Y</p></td>
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-text-noline">Y</p></td>
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-text-noline">Y</p></td>
+                </tr>
+
+                <tr class="calibre104">
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-text-noline">Subscriber have Privacy Address</p></td>
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-text-noline">Y</p></td>
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-text-noline">Y</p></td>
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-text-noline">Y</p></td>
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-text-noline">Y</p></td>
+                </tr>
+
+                <tr class="calibre104">
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-text-noline">Dependent have Member Address</p></td>
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-text-noline">Y</p></td>
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-text-noline">Y</p></td>
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-text-noline">Y</p></td>
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-text-noline">Y</p></td>
+                </tr>
+
+                <tr class="calibre104">
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-text-noline">Dependent have Member Privacy Address</p></td>
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-text-noline">N</p></td>
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-text-noline">N</p></td>
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-text-noline">Y</p></td>
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-text-noline">Y</p></td>
+                </tr>
+
+                <tr class="calibre104">
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-text-noline">Outcome for claim</p></td>
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-text-noline">Pay Provider / Vendor</p></td>
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-text-noline">Pay Dependent Member Master Address</p></td>
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-text-noline">Pay Subscriber Member Master Address</p></td>
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-text-noline">Pay Subscriber Member Master Address</p></td>
+                </tr>
+
+                <tr class="calibre104">
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-text-noline">Outcome for EOB</p></td>
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-text-noline">Subscriber Member Master address</p></td>
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-text-noline">Dependent Member Master Address</p></td>
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-text-noline">Subscriber Member Master Address</p></td>
+                    <td width="20%" class="calibre105">
+                        <p class="tbl-text-noline">Subscriber Member Master Address</p></td>
+                </tr>
+                </tbody>
+            </table>
+            <!--begin!kadov{{--></div><!--}}end!kadov-->
+        <h2 class="calibre1"><a name="Evaluating_Pre_Existing__Condition_Member_Condition_Records">Evaluating
+            Pre-Existing Condition Member Condition Records</a></h2>
+
+        <p class="text">For information on evaluating Pre-Existing Condition Member
+            Condition Records, see <a href="Pre_Existing_Conditions_How_DIAMOND_Thinks.htm">Pre-Existing
+                Conditions, How DIAMOND Thinks</a>.</p>
+
+
+    </div>
+
+
+
+    <div class="calibreEbNav">
+
+        <a href="Delete_a_member_privacy_contact.htm" class="calibreAPrev">previous page
+        </a>
+
+
+        <a href="../ib0gc-jzzjl.html" class="calibreAHome">start
+        </a>
+
+
+        <a href="Setting_up_Pre-Existing_Conditions.htm" class="calibreANext">next page
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+</html>

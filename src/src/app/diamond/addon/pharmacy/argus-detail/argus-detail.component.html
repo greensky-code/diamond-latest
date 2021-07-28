@@ -1,0 +1,64 @@
+<!-- Copyright (c) 2021 . All Rights Reserved. -->
+<div class="container-fluid">
+    <div class="card-block">
+
+        <form  novalidate>
+            <!-- <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+            <app-pop-up-message #popUpMesssage (buttonclickEvent)="popUpButtonHandler($event)"
+                                [popupMessage]="popUpMessage"></app-pop-up-message>
+ -->
+
+            <div class="form-group row bg-dark text-white">
+                <div class="col-md-2 offset-2 form-control-static mb-0 font-weight-bold " i18n>
+                    Group Number
+                    <br>
+                    <span class="col-md required-field-label justify-content-center pt-1">  {{groupNumber}}</span>
+                </div>
+                <div class="col-md-2 offset-2 form-control-static mb-0 font-weight-bold" i18n>
+                    Group Name
+                    <br>
+                   <span class="col-md pt-1 required-field-label justify-content-center"> {{groupName}}</span>
+                </div>
+                <div class="col-md-2 offset-2 form-control-static mb-0 font-weight-bold" i18n>
+                    RXPrimeClientID
+                    <br>
+                    <span >
+                        <input [ngModelOptions]="{standalone: true}"
+                               (ngModelChange)="onRxPrimeClientIdChange($event)"
+                               [ngModel]="rxprimeClientId" class="col-md pt-1 required-field-label justify-content-center" type="text">
+                    </span>
+                    
+                </div>
+                
+            </div>
+
+            <!-- <div class="form-group row">
+                <div class="col-md-12 mt-3 mt-2 p-0">
+                    <ag-grid-angular #agGrid class="ag-theme-fresh" [gridOptions]="dataGridGridOptions"
+                    style="width: 100%; height: 300px;"
+                    [enableSorting]="true"
+                    [enableFilter]="true"
+                    [floatingFilter]="true"
+                    [pagination]="true"
+                    [showToolPanel]="true">
+                    </ag-grid-angular>
+                </div>
+            </div> -->
+            <div class="form-group row">
+                    <div class="col-md-12 mt-3 mt-2 p-0">
+                        <dmnd-dynamic-config-grid
+                                [prevState]="argusDetailsConfigFormState" [isResetForm]="resetInlineGrid" [isSaveForm]="saveInlineGrid"
+                                [title]="''" [showRemoveButton]="false"
+                                [config]="argusDetailsConfig" [displayCheckBox]="false" [submitBtnText]="SaveBtnText"
+                                [showSubmitButton]="true" [showResetButton]="true" [restoreBtnText]="restoreBtnText"
+                                (formSubmitted)="saveForm($event)" [showAddNewline]="false"
+                        ></dmnd-dynamic-config-grid>
+                    </div>
+    
+                </div>
+
+         
+
+        </form>
+    </div>
+</div>

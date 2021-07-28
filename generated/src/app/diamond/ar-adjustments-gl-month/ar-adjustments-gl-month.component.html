@@ -1,0 +1,76 @@
+<!-- Copyright (c) 2021 . All Rights Reserved. -->
+<div class="container-fluid">
+    <div class="card-block">
+        <form [formGroup]="arAdjustmentsGlMonthForm" novalidate>
+            <h2 class="form-title card-label-admin">Ar Adjustments Gl Month</h2>
+            <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+            <app-pop-up-message #popUpMesssage (buttonclickEvent)="popUpButtonHandler($event)"  [(popupMessage)] = "popUpMessage"></app-pop-up-message>
+                        
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of Gl Month -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('glMonth') }">
+                     <label class="col-form-label" for="glMonth" i18n>Gl Month</label>
+                     <div class="input-group">
+                    <input id="glMonth"  [fieldLevelSec]="''" params]=""  class="form-control" angular-mydatepicker name="glMonth" (click)="glMonthId.toggleCalendar()"
+                    formControlName="glMonth"[options]="datePickerConfig" #glMonthId="angular-mydatepicker"/>
+                    <div class="input-group-append">
+                        <button type="button" class="btn btn-secondary" (click)="glMonthId.clearDate()">
+                          <i class="fa fa-close"></i>
+                        </button>
+                      </div>
+                      <div class="input-group-append">
+                        <button type="button" class="btn btn-secondary" (click)="glMonthId.toggleCalendar()">
+                          <i class="fa fa-calendar-o"></i>
+                        </button>
+                      </div>
+                    </div>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('glMonth')">
+                      {{ formValidation.errorMessage('glMonth') }}
+                     </small>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of Paid Thru Date -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('paidThruDate') }">
+                     <label class="col-form-label" for="paidThruDate" i18n>Paid Thru Date</label>
+                     <div class="input-group">
+                    <input id="paidThruDate"  [fieldLevelSec]="''" params]=""  class="form-control" angular-mydatepicker name="paidThruDate" (click)="paidThruDateId.toggleCalendar()"
+                    formControlName="paidThruDate"[options]="datePickerConfig" #paidThruDateId="angular-mydatepicker"/>
+                    <div class="input-group-append">
+                        <button type="button" class="btn btn-secondary" (click)="paidThruDateId.clearDate()">
+                          <i class="fa fa-close"></i>
+                        </button>
+                      </div>
+                      <div class="input-group-append">
+                        <button type="button" class="btn btn-secondary" (click)="paidThruDateId.toggleCalendar()">
+                          <i class="fa fa-calendar-o"></i>
+                        </button>
+                      </div>
+                    </div>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('paidThruDate')">
+                      {{ formValidation.errorMessage('paidThruDate') }}
+                     </small>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+                <div class="col-md-2 form-control-static mb-0" i18n>
+                    ^BTOK ^BTCancel
+                </div>
+            
+            </div>
+            
+            <div class="form-group row">
+            </div>
+        </form>
+    </div>
+</div>

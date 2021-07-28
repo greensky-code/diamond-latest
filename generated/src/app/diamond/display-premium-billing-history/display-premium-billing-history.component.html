@@ -1,0 +1,146 @@
+<!-- Copyright (c) 2021 . All Rights Reserved. -->
+<div class="container-fluid">
+    <div class="card-block">
+        <form [formGroup]="displayPremiumBillingHistoryForm" novalidate>
+            <h2 class="form-title card-label-admin">Display Premium Billing History</h2>
+            <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+            <app-pop-up-message #popUpMesssage (buttonclickEvent)="popUpButtonHandler($event)"  [(popupMessage)] = "popUpMessage"></app-pop-up-message>
+                        
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+                <!-- DynamicText with label of Customer ID -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('customerId') }">
+                     <label class="col-form-label" for="customerId" i18n>Customer ID</label>
+                     <input type="text"  [fieldLevelSec]="'Customer Id'" params]="Pmb Ar Cust Bill History"  readonly id="customerId" formControlName="customerId" class="form-control"/>
+                 </div>
+            
+                <!-- DynamicText with label of Customer Type -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('customerType') }">
+                     <label class="col-form-label" for="customerType" i18n>Customer Type</label>
+                     <input type="text"  [fieldLevelSec]="'Customer Type'" params]="Pmb Ar Cust Bill History"  readonly id="customerType" formControlName="customerType" class="form-control"/>
+                 </div>
+            
+                <!-- DynamicText with label of Name -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('name') }">
+                     <label class="col-form-label" for="name" i18n>Name</label>
+                     <input type="text"  [fieldLevelSec]="''" params]=""  readonly id="name" formControlName="name" class="form-control"/>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+            </div>
+            
+                        <!-- DataGrid with Name of DataGrid001 -->
+                    <button (click)="dataGrid001GridOptionsExportCsv()">Export</button>
+                    <ag-grid-angular #agGrid class="ag-theme-fresh" [gridOptions]="dataGrid001GridOptions"
+                    style="width: 100%; height: 300px;"
+                    [enableSorting]="true"
+                    [enableFilter]="true"
+                    [floatingFilter]="true"
+                    [pagination]="true"
+                    [showToolPanel]="true">
+                    </ag-grid-angular>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+                <hr>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- DynamicText with label of Balance Forward -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('balanceForward') }">
+                     <label class="col-form-label" for="balanceForward" i18n>Balance Forward</label>
+                     <input type="text"  [fieldLevelSec]="'Balance Forward'" params]="Pmb Ar Cust Bill History"  readonly id="balanceForward" formControlName="balanceForward" class="form-control"/>
+                 </div>
+            
+                <!-- DynamicText with label of Outstanding Balance -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('outstandingBalance') }">
+                     <label class="col-form-label" for="outstandingBalance" i18n>Outstanding Balance</label>
+                     <input type="text"  [fieldLevelSec]="'New Balance'" params]="Pmb Ar Cust Bill History"  readonly id="outstandingBalance" formControlName="outstandingBalance" class="form-control"/>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- DynamicText with label of Payment Amount -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('paymentAmount') }">
+                     <label class="col-form-label" for="paymentAmount" i18n>Payment Amount</label>
+                     <input type="text"  [fieldLevelSec]="'Total Payment Amt'" params]="Pmb Ar Cust Bill History"  readonly id="paymentAmount" formControlName="paymentAmount" class="form-control"/>
+                 </div>
+            
+                <!-- DynamicText with label of Billed Through Date -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('billedThroughDate') }">
+                     <label class="col-form-label" for="billedThroughDate" i18n>Billed Through Date</label>
+                     <input type="text"  [fieldLevelSec]="'Billed Start Date'" params]="Pmb Ar Cust Bill History"  readonly id="billedThroughDate" formControlName="billedThroughDate" class="form-control"/>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- DynamicText with label of Adjustment Amount -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('adjustmentAmount') }">
+                     <label class="col-form-label" for="adjustmentAmount" i18n>Adjustment Amount</label>
+                     <input type="text"  [fieldLevelSec]="'Total Adjustment Amt'" params]="Pmb Ar Cust Bill History"  readonly id="adjustmentAmount" formControlName="adjustmentAmount" class="form-control"/>
+                 </div>
+            
+                <!-- DynamicText with label of Payment Due Date -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('paymentDueDate') }">
+                     <label class="col-form-label" for="paymentDueDate" i18n>Payment Due Date</label>
+                     <input type="text"  [fieldLevelSec]="'Payment Due Date'" params]="Pmb Ar Cust Bill History"  readonly id="paymentDueDate" formControlName="paymentDueDate" class="form-control"/>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- DynamicText with label of Current Billed Amount -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('currentBilledAmount') }">
+                     <label class="col-form-label" for="currentBilledAmount" i18n>Current Billed Amount</label>
+                     <input type="text"  [fieldLevelSec]="''" params]=""  readonly id="currentBilledAmount" formControlName="currentBilledAmount" class="form-control"/>
+                 </div>
+            
+                <!-- DynamicText with label of Annual Premium Income -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('annualPremiumIncome') }">
+                     <label class="col-form-label" for="annualPremiumIncome" i18n>Annual Premium Income</label>
+                     <input type="text"  [fieldLevelSec]="'Annual Premium Income'" params]="Pmb Ar Cust Bill History"  readonly id="annualPremiumIncome" formControlName="annualPremiumIncome" class="form-control"/>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+                <div class="col-md-2 form-control-static mb-0" i18n>
+                    A/R Cash Receipts
+                </div>
+            
+            </div>
+            
+                        <!-- DataGrid with Name of DataGrid002 -->
+                    <button (click)="dataGrid002GridOptionsExportCsv()">Export</button>
+                    <ag-grid-angular #agGrid class="ag-theme-fresh" [gridOptions]="dataGrid002GridOptions"
+                    style="width: 100%; height: 300px;"
+                    [enableSorting]="true"
+                    [enableFilter]="true"
+                    [floatingFilter]="true"
+                    [pagination]="true"
+                    [showToolPanel]="true">
+                    </ag-grid-angular>
+            
+            <div class="form-group row">
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,77 @@
+<!-- Copyright (c) 2021 . All Rights Reserved. -->
+<div class="container-fluid">
+    <ng-template #loaderTemplate let-loaderValue="value">
+        <div class="row justify-content-center mt-4" *ngIf="loaderValue">
+            <div class="spinner-border text-success" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+        </div>
+    </ng-template>
+
+    <ng-container *ngTemplateOutlet="loaderTemplate; context:{value: secProgress }"></ng-container>
+
+    <div class="card-block" *ngIf="!secProgress">
+
+        <h2 class="form-title card-label-admin">External Carrier</h2>
+        <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+        <app-pop-up-message #popUpMesssage (buttonclickEvent)="popUpButtonHandler($event)"
+                            [(popupMessage)]="popUpMessage"></app-pop-up-message>
+        <button type="button" *ngIf="showIcon" class="modal-close close" aria-label="Close"
+                (click)="activeModal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <div class="form-group row">
+        </div>
+        <div class="form-group row bg-dark text-white">
+            <div class="col-md-4 offset-2 form-control-static mb-0 font-weight-bold " i18n>
+                Group Number
+                <br>
+                <span class="col-md required-field-label justify-content-center pt-1"> {{groupNumber}}</span>
+            </div>
+            <div class="col-md-4 offset-2 form-control-static mb-0 font-weight-bold" i18n>
+                Group Name
+                <br>
+                <span class="col-md pt-1 required-field-label justify-content-center"> {{groupName}}</span>
+            </div>
+        </div>
+
+        <div class="col-md-12 mt-3 p-0">
+            <dmnd-dynamic-config-grid
+                    (onChangeFields)="onChangeDynamic($event)" [AddNewWithShortcut]="false"
+                    [showAddNewline]="false" [showSubmitButton]="false" [isSaveForm]="saveForm"
+                    [displayCheckBox]="false"
+                    [showRemoveButton]="false" [isResetForm]="isResetForm"
+                    [isAddNewRow]="isAddNewRow" [prevState]="externalCarState"
+                    [title]="''" [config]="externalCarrierFromConfig"
+                    (formSubmitted)="saveExternalCarrier($event)"></dmnd-dynamic-config-grid>
+        </div>
+
+        <div class="form-group row">
+        </div>
+
+        <div class="form-group row">
+        </div>
+
+        <div class="form-group row">
+            <!-- Button with label of Save Changes -->
+            <div class="col-md-6">
+                <button type="button" id="saveChanges" (click)="saveCarrier()" name="saveChanges"
+                        class="float-right btn btn-small btn-primary">Save Changes
+                </button>
+
+            </div>
+
+            <!-- Button with label of Reset All -->
+            <div class="col-md-6">
+                <button type="button" id="resetAll" (click)="reset()" name="resetAll"
+                        class="float-left btn btn-small btn-primary">Reset All
+                </button>
+
+
+            </div>
+
+        </div>
+
+
+    </div>
+</div>

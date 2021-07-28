@@ -1,0 +1,633 @@
+<!-- Copyright (c) 2021 . All Rights Reserved. -->
+<div class="container-fluid">
+    <div class="card-block">
+        <form [formGroup]="lineOfBusinessForm" novalidate>
+
+
+            <div class="row form-title">
+                <h2 class="col-md-4  card-label-admin">Line Of Business</h2>
+                <div class="col-md"><b class="readonly-label">View Only</b></div>
+            </div>
+            <button type="button" *ngIf="showIcon" class="close" aria-label="Close"
+                    (click)="modalClose()">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+            <app-pop-up-message #popUpMesssage (buttonclickEvent)="popUpButtonHandler($event)"  [popupMessage] = "popUpMessage"></app-pop-up-message>
+
+
+            <div class="row mt-3 mb-2">
+                <menu-bar [menus]="menu" (onMenuClick)="onMenuItemClick($event)"></menu-bar>
+            </div>
+
+            <div class="form-group row">
+                <!-- DynamicText with label of Line of Business -->
+                 <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('lineOfBusinessLb') }">
+                     <label class="col-form-label" for="lineOfBusinessLb" i18n>Line of Business</label>
+                     <input type="text"  [fieldLevelSec]="'Line Of Business'" params="Line Of Business Master" (keydown)="lookupLOB($event)"
+                            id="lineOfBusinessLb" formControlName="lineOfBusinessLb" class="form-control"/>
+                 </div>
+
+                 <div class="col-md-4">
+                    <span  style="color:blue; vertical-align: middle; line-height: 100px;" *ngIf="description">{{this.description}}</span>
+                  </div>
+
+            </div>
+
+            <div *ngIf="displayedDataStatus">
+                <div class="form-group row">
+                    <!-- Textbox with label of userDefined1-->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('lineOfBusinessLb') }">
+                        <label class="col-form-label required-field-label" for="paySubdep" i18n> Line of Business </label>
+                        <input readonly type="text" id="lineOfBusinessLb2"  [fieldLevelSec]="''" params=""   class="form-control" formControlName="lineOfBusinessLb"/>
+                        <small class="text-danger" *ngIf="formValidation.isValidField('lineOfBusinessLb')">
+                            {{ formValidation.errorMessage('lineOfBusinessLb') }}
+                        </small>
+                    </div>
+
+                    <!-- Textbox with label of userDefined2-->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('textbox003') }">
+                        <label class="col-form-label required-field-label" for="paySubdep" i18n>Description</label>
+                        <input  type="text" id="textbox003"  [fieldLevelSec]="''" params=""   class="form-control" formControlName="textbox003"/>
+                        <small class="text-danger" *ngIf="formValidation.isValidField('textbox003')">
+                            {{ formValidation.errorMessage('textbox003') }}
+                        </small>
+                    </div>
+
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-md form-control-static mb-0" i18n>
+                        <h4 class="fa-underline required-field-label"><u> <i>Address</i></u></h4>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <!-- Textbox with label of Name -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('name') }">
+                        <label class="col-form-label" for="name" i18n>Name</label>
+                        <input type="text" id="name"  [fieldLevelSec]="'Name'" params="Line Of Business Master"   class="form-control" formControlName="name"/>
+                        <small class="text-danger" *ngIf="formValidation.isValidField('name')">
+                            {{ formValidation.errorMessage('name') }}
+                        </small>
+                    </div>
+
+                    <!-- Textbox with label of Country -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('country') }">
+                        <label class="col-form-label" for="country" i18n>Country</label>
+                        <input type="text" id="country"  [fieldLevelSec]="'Country'" params="Line Of Business Master"   class="form-control" formControlName="country"/>
+                        <small class="text-danger" *ngIf="formValidation.isValidField('country')">
+                            {{ formValidation.errorMessage('country') }}
+                        </small>
+                    </div>
+
+                </div>
+
+                <div class="form-group row">
+                    <!-- Textbox with label of Addr Line 1 -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('addrLine1') }">
+                        <label class="col-form-label" for="addrLine1" i18n>Addr Line 1</label>
+                        <input type="text" id="addrLine1"  [fieldLevelSec]="'Address Line 1'" params="Line Of Business Master"   class="form-control" formControlName="addrLine1"/>
+                        <small class="text-danger" *ngIf="formValidation.isValidField('addrLine1')">
+                            {{ formValidation.errorMessage('addrLine1') }}
+                        </small>
+                    </div>
+
+                    <!-- Textbox with label of Zip Code -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('zipCode') }">
+                        <label class="col-form-label" for="zipCode" i18n>Zip Code</label>
+                        <input type="text" id="zipCode"  [fieldLevelSec]="'Zip Code'" params="Line Of Business Master"   class="form-control" formControlName="zipCode"/>
+                        <small class="text-danger" *ngIf="formValidation.isValidField('zipCode')">
+                            {{ formValidation.errorMessage('zipCode') }}
+                        </small>
+                    </div>
+
+                </div>
+
+                <div class="form-group row">
+                    <!-- Textbox with label of Addr Line 2 -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('addrLine2') }">
+                        <label class="col-form-label" for="addrLine2" i18n>Addr Line 2</label>
+                        <input type="text" id="addrLine2"  [fieldLevelSec]="'Address Line 2'" params="Line Of Business Master"   class="form-control" formControlName="addrLine2"/>
+                        <small class="text-danger" *ngIf="formValidation.isValidField('addrLine2')">
+                            {{ formValidation.errorMessage('addrLine2') }}
+                        </small>
+                    </div>
+
+                    <!-- Textbox with label of Phone Number -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('phoneNumber') }">
+                        <label class="col-form-label" for="phoneNumber" i18n>Phone Number</label>
+                        <input type="text" id="phoneNumber"  [fieldLevelSec]="'Phone Number'" params="Line Of Business Master"   class="form-control" formControlName="phoneNumber"/>
+                        <small class="text-danger" *ngIf="formValidation.isValidField('phoneNumber')">
+                            {{ formValidation.errorMessage('phoneNumber') }}
+                        </small>
+                    </div>
+
+                </div>
+
+                <div class="form-group row">
+                    <!-- Textbox with label of City -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('city') }">
+                        <label class="col-form-label" for="city" i18n>City</label>
+                        <input type="text" id="city"  [fieldLevelSec]="'City'" params="Line Of Business Master"   class="form-control" formControlName="city"/>
+                        <small class="text-danger" *ngIf="formValidation.isValidField('city')">
+                            {{ formValidation.errorMessage('city') }}
+                        </small>
+                    </div>
+
+                    <!-- Textbox with label of State -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('state') }">
+                        <label class="col-form-label" for="state" i18n>State</label>
+                        <input type="text" id="state"  [fieldLevelSec]="'State'" params="Line Of Business Master"   class="form-control" formControlName="state"/>
+                        <small class="text-danger" *ngIf="formValidation.isValidField('state')">
+                            {{ formValidation.errorMessage('state') }}
+                        </small>
+                    </div>
+
+                    <!-- Textbox with label of Fax Number -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('faxNumber') }">
+                        <label class="col-form-label" for="faxNumber" i18n>Fax Number</label>
+                        <input type="text" id="faxNumber"  [fieldLevelSec]="'Fax Number'" params="Line Of Business Master"   class="form-control" formControlName="faxNumber"/>
+                        <small class="text-danger" *ngIf="formValidation.isValidField('faxNumber')">
+                            {{ formValidation.errorMessage('faxNumber') }}
+                        </small>
+                    </div>
+
+                </div>
+
+
+
+                <div class="form-group row">
+                    <div class="col-md form-control-static mb-0" i18n>
+                        <h4 class="fa-underline required-field-label"><u>  <i>Lines Of Business Specifications</i></u></h4>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <!-- Textbox with label of PCP Required -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('pcpRequired') }">
+                        <label class="col-form-label required-field-label" for="pcpRequired" i18n>PCP Required</label>
+                        <input type="text" id="pcpRequired"  [fieldLevelSec]="'Pcp Required'" params="Line Of Business Master"   class="form-control" formControlName="pcpRequired"/>
+                        <small class="text-danger" *ngIf="formValidation.isValidField('pcpRequired')">
+                            {{ formValidation.errorMessage('pcpRequired') }}
+                        </small>
+                    </div>
+
+                    <!-- Checkbox with label of Auth/Claims Match -->
+                    <div class="col-md-2 mt-4 pt-3" [ngClass]="{'has-error': displayMessage.authclaimsMatch }">
+                        <div class="checkbox col-md-12">
+                            <input id="authclaimsMatch"  [fieldLevelSec]="'Perform Auth Claim Match'" params="Line Of Business Master"  value="authclaimsMatch" formControlName="authclaimsMatch" type="checkbox">
+                            <label class="checkbox">
+                                Auth/Claims Match
+                            </label>
+                        </div>
+                        <span class="help-block" *ngIf="displayMessage.authclaimsMatch">
+                        {{ displayMessage.authclaimsMatch  }}
+                     </span>
+                    </div>
+
+                    <!-- Checkbox with label of M+C Plan Ind -->
+                    <div class="col-md-2 mt-4 pt-3" [ngClass]="{'has-error': displayMessage.mcPlanInd }">
+                        <div class="checkbox col-md-12">
+                            <input id="mcPlanInd"  [fieldLevelSec]="'Apply Unclean Ind'" params="Line Of Business Master"  value="mcPlanInd" formControlName="mcPlanInd" type="checkbox">
+                            <label class="checkbox">
+                                M+C Plan Ind
+                            </label>
+                        </div>
+                        <span class="help-block" *ngIf="displayMessage.mcPlanInd">
+                        {{ displayMessage.mcPlanInd  }}
+                     </span>
+                    </div>
+
+                    <!-- Checkbox with label of Dep Edit -->
+                    <div class="col-md-2 mt-4 pt-3" [ngClass]="{'has-error': displayMessage.depEdit }">
+                        <div class="checkbox col-md-12">
+                            <input id="depEdit"  [fieldLevelSec]="'Use Apc Editor'" params="Line Of Business Master"  value="depEdit" formControlName="depEdit" type="checkbox">
+                            <label class="checkbox">
+                                Dep Edit
+                            </label>
+                        </div>
+                        <span class="help-block" *ngIf="displayMessage.depEdit">
+                        {{ displayMessage.depEdit  }}
+                     </span>
+                    </div>
+
+                    <!-- Checkbox with label of Allowed > Billed -->
+                    <div class="col-md-2 mt-4 pt-3" [ngClass]="{'has-error': displayMessage.allowedBilled }">
+                        <div class="checkbox col-md-12">
+                            <input id="allowedBilled"  [fieldLevelSec]="'Allowed Greater Than Billed'" params="Line Of Business Master"  value="allowedBilled" formControlName="allowedBilled" type="checkbox">
+                            <label class="checkbox">
+                                Allowed > Billed
+                            </label>
+                        </div>
+                        <span class="help-block" *ngIf="displayMessage.allowedBilled">
+                        {{ displayMessage.allowedBilled  }}
+                     </span>
+                    </div>
+
+                </div>
+
+                <div class="form-group row">
+                    <!-- Textbox with label of Primary Price Search -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('primaryPriceSearch') }">
+                        <label class="col-form-label required-field-label" for="primaryPriceSearch" i18n>Primary Price Search</label>
+                        <input type="text" id="primaryPriceSearch"  [fieldLevelSec]="''" params=""   class="form-control" formControlName="primaryPriceSearch"/>
+                        <small class="text-danger" *ngIf="formValidation.isValidField('primaryPriceSearch')">
+                            {{ formValidation.errorMessage('primaryPriceSearch') }}
+                        </small>
+                    </div>
+
+                    <!-- Textbox with label of CovProv Days Before -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('covprovDaysBefore') }">
+                        <label class="col-form-label required-field-label" for="covprovDaysBefore" i18n>CovProv Days Before</label>
+                        <input type="text" id="covprovDaysBefore"  [fieldLevelSec]="'Auth Claim Match Days Before'" params="Line Of Business Master"   class="form-control" formControlName="covprovDaysBefore"/>
+                        <small class="text-danger" *ngIf="formValidation.isValidField('covprovDaysBefore')">
+                            {{ formValidation.errorMessage('covprovDaysBefore') }}
+                        </small>
+                    </div>
+
+                    <!-- Checkbox with label of COB Print Flag -->
+                    <div class="mt-4 pt-3" [ngClass]="{'has-error': displayMessage.cobPrintFlag }">
+                        <div class="checkbox col-md-12">
+                            <input id="cobPrintFlag"  [fieldLevelSec]="'Eob Print Flag'" params="Line Of Business Master"  value="cobPrintFlag" formControlName="cobPrintFlag" type="checkbox">
+                            <label class="checkbox">
+                                EOB Print Flag
+                            </label>
+                        </div>
+                        <span class="help-block" *ngIf="displayMessage.cobPrintFlag">
+                        {{ displayMessage.cobPrintFlag  }}
+                     </span>
+                    </div>
+
+                    <!-- Textbox with label of DDD Rule -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('dddRule') }">
+                        <label class="col-form-label" for="dddRule" i18n>DOD Rule</label>
+                        <input type="text" id="dddRule"  [fieldLevelSec]="'Claim Dup Rule'" params="Line Of Business Master"   class="form-control" formControlName="dddRule"/>
+                        <small class="text-danger" *ngIf="formValidation.isValidField('dddRule')">
+                            {{ formValidation.errorMessage('dddRule') }}
+                        </small>
+                    </div>
+
+                </div>
+
+                <div class="form-group row">
+                    <!-- Textbox with label of Claim Dup Rule -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('claimDupRule') }">
+                        <label class="col-form-label" for="claimDupRule" i18n>Claim Dup Rule</label>
+                        <input type="text" id="claimDupRule"  [fieldLevelSec]="''" params=""   class="form-control" formControlName="claimDupRule"/>
+                        <small class="text-danger" *ngIf="formValidation.isValidField('claimDupRule')">
+                            {{ formValidation.errorMessage('claimDupRule') }}
+                        </small>
+                    </div>
+
+                    <!-- Textbox with label of CovProv Days After -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('covprovDaysAfter') }">
+                        <label class="col-form-label required-field-label" for="covprovDaysAfter" i18n>CovProv Days After</label>
+                        <input type="text" id="covprovDaysAfter"  [fieldLevelSec]="'Auth Claim Match Days After'" params="Line Of Business Master"   class="form-control" formControlName="covprovDaysAfter"/>
+                        <small class="text-danger" *ngIf="formValidation.isValidField('covprovDaysAfter')">
+                            {{ formValidation.errorMessage('covprovDaysAfter') }}
+                        </small>
+                    </div>
+
+                    <!-- Checkbox with label of Perform Auth Waive -->
+                    <div class="mt-4 pt-3" [ngClass]="{'has-error': displayMessage.performAuthWaive }">
+                        <div class="checkbox col-md-12">
+                            <input id="performAuthWaive"  [fieldLevelSec]="'Perform Auth Waive'" params="Line Of Business Master"  value="performAuthWaive" formControlName="performAuthWaive" type="checkbox">
+                            <label class="checkbox">
+                                Perform Auth Waive
+                            </label>
+                        </div>
+                        <span class="help-block" *ngIf="displayMessage.performAuthWaive">
+                        {{ displayMessage.performAuthWaive  }}
+                     </span>
+                    </div>
+
+                </div>
+
+                <div class="form-group row">
+                    <!-- Textbox with label of INCLM Order -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('inclmOrder') }">
+                        <label class="col-form-label required-field-label" for="inclmOrder" i18n>INCLM Order</label>
+                        <input type="text" id="inclmOrder"  [fieldLevelSec]="'Waive Match Order'" params="Line Of Business Master"   class="form-control" formControlName="inclmOrder"/>
+                        <small class="text-danger" *ngIf="formValidation.isValidField('inclmOrder')">
+                            {{ formValidation.errorMessage('inclmOrder') }}
+                        </small>
+                    </div>
+
+                    <!-- Checkbox with label of Covering Prov -->
+                    <div class="col-md-4 mt-4 pt-3" [ngClass]="{'has-error': displayMessage.coveringProv }">
+                        <div class="checkbox col-md-12">
+                            <input id="coveringProv"  [fieldLevelSec]="'Covering Prov Ind'" params="Line Of Business Master"  value="coveringProv" formControlName="coveringProv" type="checkbox">
+                            <label class="checkbox">
+                                Covering Prov
+                            </label>
+                        </div>
+                        <span class="help-block" *ngIf="displayMessage.coveringProv">
+                        {{ displayMessage.coveringProv  }}
+                     </span>
+                    </div>
+
+                    <!-- Textbox with label of Waive Auth Level -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('waiveAuthLevel') }">
+                        <label class="col-form-label" for="waiveAuthLevel" i18n>Waive Auth Level</label>
+                        <input type="text" id="waiveAuthLevel"  [fieldLevelSec]="'Auth Level'" params="Line Of Business Master"   class="form-control" formControlName="waiveAuthLevel"/>
+                        <small class="text-danger" *ngIf="formValidation.isValidField('waiveAuthLevel')">
+                            {{ formValidation.errorMessage('waiveAuthLevel') }}
+                        </small>
+                    </div>
+
+                </div>
+
+                <div class="form-group row">
+                    <!-- Textbox with label of Par Reason Code -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('parReasonCode') }">
+                        <label class="col-form-label" for="parReasonCode" i18n>Par Reason Code</label>
+                        <input type="text" id="parReasonCode"  [fieldLevelSec]="'Par Reason Code'" params="Line Of Business Master"   class="form-control" formControlName="parReasonCode"/>
+                        <small class="text-danger" *ngIf="formValidation.isValidField('parReasonCode')">
+                            {{ formValidation.errorMessage('parReasonCode') }}
+                        </small>
+                    </div>
+
+                    <!-- Textbox with label of Non Par Reason Code -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('nonParReasonCode') }">
+                        <label class="col-form-label" for="nonParReasonCode" i18n>Non Par Reason Code</label>
+                        <input type="text" id="nonParReasonCode"  [fieldLevelSec]="'Non Par Reason Code'" params="Line Of Business Master"   class="form-control" formControlName="nonParReasonCode"/>
+                        <small class="text-danger" *ngIf="formValidation.isValidField('nonParReasonCode')">
+                            {{ formValidation.errorMessage('nonParReasonCode') }}
+                        </small>
+                    </div>
+
+                    <!-- Textbox with label of Waive Match Order -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('waiveMatchOrder') }">
+                        <label class="col-form-label" for="waiveMatchOrder" i18n>Waive Match Order</label>
+                        <input type="text" id="waiveMatchOrder"  [fieldLevelSec]="'Use Apc Pricer'" params="Line Of Business Master"   class="form-control" formControlName="waiveMatchOrder"/>
+                        <small class="text-danger" *ngIf="formValidation.isValidField('waiveMatchOrder')">
+                            {{ formValidation.errorMessage('waiveMatchOrder') }}
+                        </small>
+                    </div>
+
+                </div>
+
+                <div class="form-group row">
+                    <!-- Checkbox with label of Site Req -->
+                    <div class="col-md-2 mt-4 pt-3" [ngClass]="{'has-error': displayMessage.siteReq }">
+                        <div class="checkbox col-md-12">
+                            <input id="siteReq"  [fieldLevelSec]="'Site Flg'" params="Line Of Business Master"  value="siteReq" formControlName="siteReq" type="checkbox">
+                            <label class="checkbox">
+                                Site Req
+                            </label>
+                        </div>
+                        <span class="help-block" *ngIf="displayMessage.siteReq">
+                        {{ displayMessage.siteReq  }}
+                     </span>
+                    </div>
+
+                    <!-- Checkbox with label of Cert -->
+                    <div class="col-md-2 mt-4 pt-3" [ngClass]="{'has-error': displayMessage.cert }">
+                        <div class="checkbox col-md-12">
+                            <input id="cert"  [fieldLevelSec]="''" params=""  value="cert" formControlName="cert" type="checkbox">
+                            <label class="checkbox">
+                                Cert
+                            </label>
+                        </div>
+                        <span class="help-block" *ngIf="displayMessage.cert">
+                        {{ displayMessage.cert  }}
+                     </span>
+                    </div>
+
+                    <!-- DynamicText with label of Age From -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('ageFrom') }">
+                        <label class="col-form-label required-field-label" for="ageFrom" i18n>Age From</label>
+                        <input type="text"  [fieldLevelSec]="'Age From'" params="Line Of Business Master"  readonly id="ageFrom" formControlName="ageFrom" class="form-control"/>
+                    </div>
+
+                    <!-- DynamicText with label of Age Through -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('ageThrough') }">
+                        <label class="col-form-label required-field-label" for="ageThrough" i18n>Age Through</label>
+                        <input type="text"  [fieldLevelSec]="'Age Through'" params="Line Of Business Master"  readonly id="ageThrough" formControlName="ageThrough" class="form-control"/>
+                    </div>
+
+                </div>
+
+
+                <div class="form-group row">
+                    <div class="col-md form-control-static mb-0" i18n>
+                        <h4 class="fa-underline required-field-label"><u>    <i>PCP Auto Assign Info</i> </u></h4>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+
+
+                    <!-- Textbox with label of PCP/LINBS MxEnroll.mt -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('pcplinbsMxenrollmt') }">
+                        <label class="col-form-label" for="pcplinbsMxenrollmt" i18n>Ind PCP/LINBS MxEnroll.mt</label>
+                        <input type="text" id="pcplinbsMxenrollmt"  [fieldLevelSec]="'Ind Pcp Max Enroll Lmt'" params="Line Of Business Master"   class="form-control" formControlName="pcplinbsMxenrollmt"/>
+                        <small class="text-danger" *ngIf="formValidation.isValidField('pcplinbsMxenrollmt')">
+                            {{ formValidation.errorMessage('pcplinbsMxenrollmt') }}
+                        </small>
+                    </div>
+
+                    <!-- Textbox with label of Default PCP -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('defaultPcp') }">
+                        <label class="col-form-label" for="defaultPcp" i18n>Default PCP</label>
+                        <input type="text" id="defaultPcp"  [fieldLevelSec]="'Seq Fail Pcp'" params="Line Of Business Master"   class="form-control" formControlName="defaultPcp"/>
+                        <small class="text-danger" *ngIf="formValidation.isValidField('defaultPcp')">
+                            {{ formValidation.errorMessage('defaultPcp') }}
+                        </small>
+                    </div>
+
+                    <!-- Textbox with label of ID Card Reinst Days -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('idCardReinstDays') }">
+                        <label class="col-form-label" for="idCardReinstDays" i18n>ID Card Reinst Days</label>
+                        <input type="text" id="idCardReinstDays"  [fieldLevelSec]="'Idcard Reinst Days'" params="Line Of Business Master"   class="form-control" formControlName="idCardReinstDays"/>
+                        <small class="text-danger" *ngIf="formValidation.isValidField('idCardReinstDays')">
+                            {{ formValidation.errorMessage('idCardReinstDays') }}
+                        </small>
+                    </div>
+
+                </div>
+
+                <div class="form-group row">
+                    <!-- Textbox with label of Ind PCP/LINBS Threshold -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('indPcplinbsThreshold') }">
+                        <label class="col-form-label" for="indPcplinbsThreshold" i18n>Ind PCP/LINBS Threshold</label>
+                        <input type="text" id="indPcplinbsThreshold"  [fieldLevelSec]="'Ind Pcp Threshold'" params="Line Of Business Master"   class="form-control" formControlName="indPcplinbsThreshold"/>
+                        <small class="text-danger" *ngIf="formValidation.isValidField('indPcplinbsThreshold')">
+                            {{ formValidation.errorMessage('indPcplinbsThreshold') }}
+                        </small>
+                    </div>
+
+                    <!-- Textbox with label of No Auto PCP Found -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('noAutoPcpFound') }">
+                        <label class="col-form-label" for="noAutoPcpFound" i18n>No Auto PCP Found</label>
+                        <input type="text" id="noAutoPcpFound"  [fieldLevelSec]="''" params=""   class="form-control" formControlName="noAutoPcpFound"/>
+                        <small class="text-danger" *ngIf="formValidation.isValidField('noAutoPcpFound')">
+                            {{ formValidation.errorMessage('noAutoPcpFound') }}
+                        </small>
+                    </div>
+
+                    <!-- Textbox with label of Family Affliation -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('familyAffliation') }">
+                        <label class="col-form-label" for="familyAffliation" i18n>Family Affiliation</label>
+                        <input type="text" id="familyAffliation"  [fieldLevelSec]="'Family Affiliation'" params="Line Of Business Master"   class="form-control" formControlName="familyAffliation"/>
+                        <small class="text-danger" *ngIf="formValidation.isValidField('familyAffliation')">
+                            {{ formValidation.errorMessage('familyAffliation') }}
+                        </small>
+                    </div>
+
+                </div>
+
+                <div class="form-group row">
+                </div>
+
+
+                <div class="form-group row">
+                    <div class="col-md form-control-static mb-0" i18n>
+                        <h4 class="fa-underline required-field-label"><u>      <i> Discount / Interest / Penalty Info</i> </u></h4>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <!-- Textbox with label of Calc. Disc./ Intr./Pnlty -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('calcDiscIntrpnlty') }">
+                        <label class="col-form-label" for="calcDiscIntrpnlty" i18n>Calc. Disc./ Intr./Pnlty</label>
+                        <input type="text" id="calcDiscIntrpnlty"  [fieldLevelSec]="'Calc Int Dscnt'" params="Line Of Business Master"   class="form-control" formControlName="calcDiscIntrpnlty"/>
+                        <small class="text-danger" *ngIf="formValidation.isValidField('calcDiscIntrpnlty')">
+                            {{ formValidation.errorMessage('calcDiscIntrpnlty') }}
+                        </small>
+                    </div>
+
+                    <!-- Checkbox with label of Use Reset Date -->
+                    <div class="mt-4 pt-3" [ngClass]="{'has-error': displayMessage.useResetDate }">
+                        <div class="checkbox col-md-12">
+                            <input id="useResetDate"  [fieldLevelSec]="'Use Reset Date Flag'" params="Line Of Business Master"  value="useResetDate" formControlName="useResetDate" type="checkbox">
+                            <label class="checkbox">
+                                Use Reset Date
+                            </label>
+                        </div>
+                        <span class="help-block" *ngIf="displayMessage.useResetDate">
+                        {{ displayMessage.useResetDate  }}
+                     </span>
+                    </div>
+
+                </div>
+
+                <div class="form-group row">
+                    <!-- Textbox with label of Intr. Det. Method -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('intrDetMethod') }">
+                        <label class="col-form-label" for="intrDetMethod" i18n>Intr. Det. Method</label>
+                        <input type="text" id="intrDetMethod"  [fieldLevelSec]="'Insert Datetime'" params="Line Of Business Master"   class="form-control" formControlName="intrDetMethod"/>
+                        <small class="text-danger" *ngIf="formValidation.isValidField('intrDetMethod')">
+                            {{ formValidation.errorMessage('intrDetMethod') }}
+                        </small>
+                    </div>
+
+                    <!-- Textbox with label of Apply Unlcean Ind (Interest) -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('applyUnlceanIndInterest') }">
+                        <label class="col-form-label" for="applyUnlceanIndInterest" i18n>Apply Unlcean Ind (Interest)</label>
+                        <input type="text" id="applyUnlceanIndInterest"  [fieldLevelSec]="'Pen Apply Unclean Ind'" params="Line Of Business Master"   class="form-control" formControlName="applyUnlceanIndInterest"/>
+                        <small class="text-danger" *ngIf="formValidation.isValidField('applyUnlceanIndInterest')">
+                            {{ formValidation.errorMessage('applyUnlceanIndInterest') }}
+                        </small>
+                    </div>
+
+                </div>
+
+                <div class="form-group row">
+                    <!-- Textbox with label of Pay Sub/Dep -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('paySubdep') }">
+                        <label class="col-form-label" for="paySubdep" i18n>Pay Sub/Dep</label>
+                        <input type="text" id="paySubdep"  [fieldLevelSec]="''" params=""   class="form-control" formControlName="paySubdep"/>
+                        <small class="text-danger" *ngIf="formValidation.isValidField('paySubdep')">
+                            {{ formValidation.errorMessage('paySubdep') }}
+                        </small>
+                    </div>
+
+                    <!-- Textbox with label of Apply Unlcean Ind (Penalty) -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('applyUnlceanIndPenalty') }">
+                        <label class="col-form-label" for="applyUnlceanIndPenalty" i18n>Apply Unlcean Ind (Penalty)</label>
+                        <input type="text" id="applyUnlceanIndPenalty"  [fieldLevelSec]="''" params=""   class="form-control" formControlName="applyUnlceanIndPenalty"/>
+                        <small class="text-danger" *ngIf="formValidation.isValidField('applyUnlceanIndPenalty')">
+                            {{ formValidation.errorMessage('applyUnlceanIndPenalty') }}
+                        </small>
+                    </div>
+
+                </div>
+
+
+                <div class="form-group row">
+                    <div class="col-md-4 form-control-static mb-0" i18n>
+                        <h4 class="fa-underline required-field-label"><u>  <i>User Defined</i> </u></h4>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <!-- Textbox with label of userDefined1-->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('userDefined1') }">
+                        <label class="col-form-label" for="paySubdep" i18n>Pay Sub/Dep</label>
+                        <input type="text" id="userDefined1"  [fieldLevelSec]="''" params=""   class="form-control" formControlName="userDefined1"/>
+                        <small class="text-danger" *ngIf="formValidation.isValidField('userDefined1')">
+                            {{ formValidation.errorMessage('userDefined1') }}
+                        </small>
+                    </div>
+
+                    <!-- Textbox with label of userDefined2-->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('userDefined2') }">
+                        <label class="col-form-label" for="paySubdep" i18n>Pay Sub/Dep</label>
+                        <input type="text" id="userDefined2"  [fieldLevelSec]="''" params=""   class="form-control" formControlName="userDefined2"/>
+                        <small class="text-danger" *ngIf="formValidation.isValidField('userDefined2')">
+                            {{ formValidation.errorMessage('userDefined2') }}
+                        </small>
+                    </div>
+
+                </div>
+
+
+                <div class="form-group row">
+                    <!-- Textbox with label of User Date 1 -->
+
+                    <div class="col-md-4">
+                        <app-datepicker [formGroup]="lineOfBusinessForm"
+
+                                        [formValidation]="formValidation"
+                                        [field]="'userDate1'" [labelText]="'User Date 1'" [isRequired]="false"></app-datepicker>
+                    </div>
+
+                    <!-- Textbox with Name of Textbox001 -->
+
+                    <div class="col-md-4">
+                        <app-datepicker [formGroup]="lineOfBusinessForm"
+                                        [formValidation]="formValidation"
+                                        [field]="'userDate2'" [labelText]="'User Date 2'" [isRequired]="false"></app-datepicker>
+                    </div>
+                </div>
+            </div>
+
+        </form>
+
+        <div class="form-group row">
+            <div class="col-md-4 form-control-static mb-0 required-field-label" i18n>
+                <h4 class="fa-underline required-field-label"><u>  <i> Contract Search Criteria</i></u></h4>
+            </div>
+
+        </div>
+
+        <div class="form-group row">
+            <div class="col-md-12 mt-3 p-0">
+                <dmnd-dynamic-config-grid
+                        [prevState]="linbsContractSearchesFormState" [isResetForm]="resetInlineGrid"
+                        [showRemoveButton]="false"
+                        [isFormEditable] = "false"
+                        [config]="formConfig"
+                ></dmnd-dynamic-config-grid>
+            </div>
+
+        </div>
+
+
+    </div>
+</div>
+
+<ng-keyboard-shortcuts [shortcuts]="shortcuts"></ng-keyboard-shortcuts>
+<ng-keyboard-shortcuts-help [key]="'f2'" [closeKey]="'escape'" [title]="'Hotkeys Help'"></ng-keyboard-shortcuts-help>

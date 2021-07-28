@@ -1,0 +1,318 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+    <title>Modifier Codes, How DIAMOND Thinks</title>
+    <!--(Meta)==========================================================-->
+    <meta name="copyright"
+          value="© Copyright 2002 Health Systems Design Corp., a wholly owned subsidiary of Perot Systems Corporation. All rights reserved"/>
+    <meta content="About.htt" name="template"/>
+    <meta content="RoboHELP by eHelp Corporation - www.ehelp.com" name="generator"/>
+    <meta content="0.1" name="generator-major-version"/>
+    <meta content="1" name="generator-minor-version"/>
+    <meta content="kadov" name="filetype"/>
+    <meta content="1" name="filetype-version"/>
+    <meta content="1" name="page-count"/>
+    <meta content="1736" name="layout-height"/>
+    <meta content="675" name="layout-width"/>
+    <!--(Links)=========================================================-->
+    <!--(Scripts)=======================================================-->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+</head>
+<body>
+
+<div class="calibreMeta">
+    <div class="calibreMetaTitle">
+
+
+        <h1>
+            <a href="../2nlvj-mfnql.html">DIAMOND 950 Help
+            </a>
+        </h1>
+
+
+    </div>
+    <div class="calibreMetaAuthor">
+        Unknown
+
+    </div>
+</div>
+
+<div class="calibreMain">
+
+    <div class="calibreEbookContent">
+
+        <div class="calibreEbNavTop">
+
+            <a href="Make_a_Modifier_code_informational_only.htm" class="calibreAPrev">previous page
+            </a>
+
+
+            <a href="Multiple_Languages_in_DIAMOND_How_DIAMOND_Thinks.htm" class="calibreANext">next page
+            </a>
+
+        </div>
+
+
+        <h1 class="calibre1">Modifier Codes, How DIAMOND Thinks</h1>
+
+        <p class="text">This topic provides processing logic information about:</p>
+
+        <p class="text"><a
+                href="Modifier_codes_How_DIAMOND_Thinks.htm#Modifier_codes_How_DIAMOND_Thinks_About_Modifier_codes_MID">About
+            modifier codes</a></p>
+
+        <p class="text"><a
+                href="Modifier_codes_How_DIAMOND_Thinks.htm#Modifier_codes_How_DIAMOND_Thinks_Where_Modifier_codes_are_used_MID">Where
+            you can use modifier codes</a></p>
+
+        <p class="text"><a
+                href="Modifier_codes_How_DIAMOND_Thinks.htm#Modifier_codes_How_DIAMOND_Thinks_Wildcard_Modifier_codes_MID">About
+            wildcard modifier codes</a></p>
+
+        <p class="text"><a
+                href="Modifier_codes_How_DIAMOND_Thinks.htm#Modifier_codes_How_DIAMOND_Thinks_About_Professional_Modifier_Pricing_MID">About
+            Professional Modifier Pricing</a></p>
+
+        <h2 class="calibre20"><a name="Modifier_codes_How_DIAMOND_Thinks_About_Modifier_codes_MID"></a>About
+            modifier codes</h2>
+
+        <p class="text">A modifier code is a 2-digit suffix entered along with a
+            procedure code that further defines the nature of the service provided.
+            While there can be implementation-specific modifier codes, most are defined
+            in the CPT schedule and therefore come with the claim.</p>
+
+        <p class="text">Some modifier codes require manually pricing; the calculations
+            required are situation-specific. You can also use keyword PRULD (Price
+            Rule Detail) to set up a pricing logic so the modifier code will use table-driven
+            pricing. </p>
+
+        <p class="text">Learn how to <a href="Add_a_Modifier_code.htm">add a modifier
+            code</a>.</p>
+
+        <h2 class="calibre20"><a name="Modifier_codes_How_DIAMOND_Thinks_Where_Modifier_codes_are_used_MID"></a>Where
+            you can use modifier codes</h2>
+
+        <p class="text">You can use modifier codes when entering claim detail line
+            items in keyword PSCLM (Professional Services Claims) and keyword INCLM
+            (Institutional claims).</p>
+
+        <p class="text">You can enter up to four modifier codes in keyword PSCLM,
+            but only the modifier codes entered in the first or second <span class="calibre4">Mods</span>
+            boxes are using in pricing and adjudication. The modifier codes entered
+            in the third or fourth <span class="calibre4">Mods</span> boxes
+            can be used for reporting purposes.</p>
+
+        <p class="text">You can enter one modifier code in the <span class="calibre4">Modifier</span>
+            box in keyword INCLM.</p>
+
+        <h2 class="calibre20"><a name="Modifier_codes_How_DIAMOND_Thinks_Wildcard_Modifier_codes_MID"></a>About
+            wildcard modifier codes</h2>
+
+        <p class="text">A wildcard modifier code can be used by added a default procedure
+            price record in keyword PROCP that will be used when DIAMOND does not
+            find a match between the claim detail line modifier code and the procedure
+            price record.</p>
+
+        <h3 class="calibre2">Sample calculation</h3>
+
+        <p class="text">The following sample calculations refer only to a modifier
+            code being entered in the first <span class="calibre4">Mods</span>
+            box.</p>
+
+        <p class="text">A. Price rule record 12345 is added in keyword PRULE with
+            a wildcard modifier of XX</p>
+
+        <ul class="calibre17">
+
+            <li class="kadov-p-cbullet"><p class="bullet">Price rule 12345; wildcard
+                modifier XX</p></li>
+        </ul>
+
+        <p class="text">B. The following price rule detail records are added in keyword
+            PRULD for price rule 12345:</p>
+
+        <ul class="calibre17">
+
+            <li class="kadov-p-cbullet"><p class="bullet">Price rule 12345; modifier
+                code 90</p></li>
+
+            <li class="kadov-p-cbullet"><p class="bullet">Price rule 12345; modifier
+                code 30</p></li>
+
+            <li class="kadov-p-cbullet"><p class="bullet">Price rule 12345; no modifier
+                code</p></li>
+        </ul>
+
+        <p class="text">Price rule detail records must be added in keyword PRULD
+            for all modifier codes that will be entered on claim detail lines.</p>
+
+        <p class="text">C. Procedure price records are added in keyword PROCP for
+            the following:</p>
+
+        <ul class="calibre17">
+
+            <li class="kadov-p-cbullet"><p class="bullet">Procedure code 98765; modifier
+                code 90; $44 (procedure/modifier specifically priced)</p></li>
+
+            <li class="kadov-p-cbullet"><p class="bullet">Procedure code 98765; no
+                modifier code; $27 (price for procedure if no modifier code is entered
+                on the detail claim line)</p></li>
+
+            <li class="kadov-p-cbullet"><p class="bullet">Procedure code 98765; wildcard
+                modifier XX; $26 (default modifier price)</p></li>
+        </ul>
+
+        <p class="text">D. Claim detail lines entered for the following:</p>
+
+        <ul class="calibre17">
+
+            <li class="kadov-p-cbullet"><p class="bullet">Procedure code 98765; modifier
+                code 90; pay at $44</p></li>
+
+            <li class="kadov-p-cbullet"><p class="bullet">Procedure code 98765; no
+                modifier code; pay at $27</p></li>
+
+            <li class="kadov-p-cbullet"><p class="bullet">Procedure code 98765; modifier
+                code 30; pay at $26 (default when modifier entered, modifier is not specifically
+                priced and wildcard modifier is defined/priced)</p></li>
+        </ul>
+
+        <h2 class="calibre20"><a name="Modifier_codes_How_DIAMOND_Thinks_About_Professional_Modifier_Pricing_MID"></a>About
+            Professional Modifier Pricing</h2>
+
+        <p class="text">In keyword PRULD, you can add a price rule detail record
+            to use Professional Modifier Pricing. It allows you to use the second
+            <span class="calibre4">Mods</span> box in keyword PSCLM to price
+            a claim. In keyword PRULD, the <span class="calibre4">Price
+ Method</span> list allows you to select four different methods of pricing.</p>
+
+        <p class="text">The following table describes the methods available in the
+            <span class="calibre4">Price Method</span> list in keyword PRULD:</p>
+
+        <!--(Table)=========================================================-->
+        <table cellspacing="0" x-use-null-cells="" class="calibre172">
+
+            <tbody class="calibre6">
+            <tr valign="top" class="calibre7">
+                <td width="144px" class="">
+                    <p class="tableheading">Method</p></td>
+                <td width="439px" class="calibre44">
+                    <p class="tableheading">Description</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre7">
+                <td width="144px" class="">
+                    <p class="tableboldtext">Standard Modifier 1</p></td>
+                <td width="439px" class="calibre47">
+                    <p class="tabletext">In keyword PSCLM, use the modifier code in the first
+                        <span class="calibre4">Mods</span> box to calculate the <a
+                                href="DMDHelp.chm::/Allowed_Amount.htm">allowed
+                            amount</a> for the claim line item using the price rule detail record.
+                        This is standard modifier pricing. </p>
+                    <p class="tabletext">If modifier codes are entered in the second, third,
+                        and fourth <span class="calibre4">Mods</span> boxes, then pricing
+                        and adjudication ignores them. Instead, they are only available for reporting
+                        purposes.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre7">
+                <td width="144px" class="">
+                    <p class="tableboldtext">Pay Modifier 2</p></td>
+                <td width="439px" class="calibre47">
+                    <p class="tabletext">In keyword PSCLM, use the modifier code in the second
+                        <span class="calibre4">Mods</span> box to calculate the <a
+                                href="DMDHelp.chm::/Allowed_Amount.htm">allowed
+                            amount</a> for the claim line item using the price rule detail record.</p>
+                    <p class="tabletext">If modifier codes are entered in the first, third, and
+                        fourth <span class="calibre4">Mods</span> boxes, then pricing
+                        and adjudication ignores them. Instead, they are only available for reporting
+                        purposes.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre7">
+                <td width="144px" class="">
+                    <p class="tableboldtext">Modifier 1 + Modifier 2</p></td>
+                <td width="439px" class="calibre47">
+                    <p class="tabletext">In keyword PSCLM, do the following:</p>
+                    <ul class="calibre17">
+
+                        <li class="kadov-p-cstepbullet"><p class="tablebullet">Use the modifier
+                            code in the first <span class="calibre4">Mods</span> box to
+                            calculate an <a href="DMDHelp.chm::/Allowed_Amount.htm">allowed amount</a>
+                            for the claim line item using the price rule detail record</p></li>
+                    </ul>
+                    <p class="tablebulletcont">- Then -</p>
+                    <ul class="calibre17">
+
+                        <li class="kadov-p-cstepbullet"><p class="tablebullet">Use the modifier
+                            code in the second <span class="calibre4">Mods</span> box to
+                            calculate an <a href="DMDHelp.chm::/Allowed_Amount.htm">allowed amount</a>
+                            for the claim line item using the price rule detail record</p></li>
+                    </ul>
+                    <p class="tablebulletcont">- Then –</p>
+                    <ul class="calibre17">
+
+                        <li class="kadov-p-cstepbullet"><p class="tablebullet">Take the results
+                            of each both calculations, add them together, and calculate the final
+                            <a href="DMDHelp.chm::/Allowed_Amount.htm">allowed amount</a></p></li>
+                    </ul>
+                </td>
+            </tr>
+
+            <tr valign="top" class="calibre7">
+                <td width="144px" class="">
+                    <p class="tableboldtext">Modifier 1 + Modifier 2%</p></td>
+                <td width="439px" class="calibre47">
+                    <p class="tabletext">In keyword PSCLM, do the following:</p>
+                    <ul class="calibre17">
+
+                        <li class="kadov-p-cstepbullet"><p class="tablebullet">Use the modifier
+                            code in the first <span class="calibre4">Mods</span> box to
+                            calculate an <a href="DMDHelp.chm::/Allowed_Amount.htm">allowed amount</a>
+                            for the claim line item using the price rule detail record</p></li>
+                    </ul>
+                    <p class="tablebulletcont">- Then -</p>
+                    <ul class="calibre17">
+
+                        <li class="kadov-p-cstepbullet"><p class="tablebullet">Take the resulting
+                            calculation and multiply it by the amount in the <span class="calibre4">Allowed
+ Factor Ovr</span> box under <span class="calibre4">Multiple
+ Modifier Pricing Information</span> on the price rule detail record</p></li>
+                    </ul>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <p class="text">You can also set up the PRICEMODS12 system parameter in keyword
+            PARAM (Parameter) to price or deny a claim line item when price rule detail
+            can be found for the Modifier code in the first <span class="calibre4">Mods</span>
+            box in keyword PSCLM, but price rule detail cannot be found for the modifier
+            code in the second <span class="calibre4">Mods</span> box. For
+            more information about system parameters, see <a href="System.chm::/PARAM_Parameters.htm">PARAM,
+                Parameters</a>. </p>
+
+
+    </div>
+
+    <div class="calibreEbNav">
+
+        <a href="Make_a_Modifier_code_informational_only.htm" class="calibreAPrev">previous page
+        </a>
+
+
+        <a href="../2nlvj-mfnql.html" class="calibreAHome">start
+        </a>
+
+
+        <a href="Multiple_Languages_in_DIAMOND_How_DIAMOND_Thinks.htm" class="calibreANext">next page
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+</html>

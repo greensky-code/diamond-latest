@@ -1,0 +1,509 @@
+<!-- Copyright (c) 2020 . All Rights Reserved. -->
+<div class="container-fluid">
+    <div class="card-block">
+        <note-priority-header-display title="Member COB History" [seqSourceId]="seqSourceId" [noteWinId]="windowId"></note-priority-header-display>
+        <button type="button" *ngIf="showIcon" class="close" aria-label="Close" (click)="modalClose()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+        <app-pop-up-message #popUpMesssage (buttonclickEvent)="popUpButtonHandler($event)"
+                            [(popupMessage)]="popUpMessage"></app-pop-up-message>
+
+        <ng-template #loaderTemplate let-loaderValue="value">
+            <div class="row justify-content-center mt-4" *ngIf="loaderValue">
+                <div class="spinner-border text-success" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>
+            </div>
+        </ng-template>
+
+        <ng-container *ngTemplateOutlet="loaderTemplate; context:{value: secProgress }"></ng-container>
+
+        <ng-container
+            *appWinSelect="{secWin: secWin, userTemplateId: userTemplateId, secModuleId: memberModuleId}">
+
+            <div class="row">
+                <menu-bar [menus]="menu" (onMenuClick)="onMenuItemClick($event)"></menu-bar>
+            </div>
+
+
+        <form [formGroup]="memberCobHistoryForm" class="mt-4" novalidate *ngIf="!secProgress">
+
+            <div class="form-group row">
+                <!-- Textbox with label of DIAMOND ID -->
+                <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('diamondId') }">
+                    <label class="col-form-label" for="diamondId" i18n>DIAMOND ID</label>
+                    <input disabled type="text" id="diamondId" class="form-control" formControlName="diamondId"
+                           [fieldLevelSec]="'DIAMOND_ID'" [params]="{secColDetails: secColDetails, isEditState: editCobHistory}"/>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('diamondId')">
+                        {{ formValidation.errorMessage('diamondId') }}
+                    </small>
+                </div>
+
+                <!-- Textbox with label of Subscriber ID -->
+                <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('subscriberId') }">
+                    <label class="col-form-label" for="subscriberId" i18n>Subscriber ID</label>
+                    <input type="text" id="subscriberId" class="form-control" formControlName="subscriberId" #subscriberIds (keydown)="onLookupFieldChange($event, subscriberIds.value)"
+                           [fieldLevelSec]="'DIAMOND_ID'" [params]="{secColDetails: secColDetails, isEditState: editCobHistory}"/>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('subscriberId')">
+                        {{ formValidation.errorMessage('subscriberId') }}
+                    </small>
+                </div>
+            </div>
+
+            <!-- DataGrid with Name of DataGrid001 -->
+            <ag-grid-angular #agGrid class="ag-theme-fresh" rowSelection='single' [gridOptions]="dataGrid001GridOptions"
+                             style="width: 100%; height: 300px;"
+                             (selectionChanged)="onRowSelectedGrid001($event)"
+                             [enableSorting]="true"
+                             [enableFilter]="false"
+                             [floatingFilter]="false"
+                             [pagination]="true"
+                             [showToolPanel]="true">
+            </ag-grid-angular>
+
+            <div class="form-group row"></div>
+
+            <!-- DataGrid with Name of DataGrid002 -->
+            <ag-grid-angular #agGrid class="ag-theme-fresh" rowSelection='single' [gridOptions]="dataGrid002GridOptions"
+                             style="width: 100%; height: 300px;"
+                             (selectionChanged)="onRowSelectedGrid002($event)"
+                             [enableSorting]="true"
+                             [enableFilter]="false"
+                             [floatingFilter]="false"
+                             [pagination]="true"
+                             [showToolPanel]="true">
+            </ag-grid-angular>
+
+        <div [hidden]="!(isNewRecord || editCobHistory)  ">
+
+            <h5 class="clr-blue">Carrier Information</h5>
+
+            <div class="form-group row">
+
+                <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('carrier') }">
+                    <label class="col-form-label clr-blue" for="carrier" i18n>Carrier</label>
+<!--                    <input type="text"  id="carrier" formControlName="carrier" class="form-control"/>-->
+                    <select #carrier class="form-control" id="carrier" name="carrier" formControlName="carrier" (change)="onChangeCarrierDdl(carrier.value)"
+                            [fieldLevelSec]="'CARRIER_CODE'" [params]="{secColDetails: secColDetails, isEditState: editCobHistory}">
+                        <option [value]="carrierCode.carrierCode" *ngFor="let carrierCode of carrierCodes"   >{{carrierCode.carrierCode}}  {{carrierCode.shortName}}</option>
+                    </select>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('carrier')">
+                        {{ formValidation.errorMessage('carrier') }}
+                    </small>
+                </div>
+
+                <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('name') }">
+                    <label class="col-form-label" for="name" i18n>Name</label>
+                    <input type="text" readonly id="name" formControlName="name" class="form-control"/>
+                </div>
+
+                <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('entitlement') }">
+                    <label class="col-form-label" for="entitlement" i18n>Entitlement</label>
+                    <input type="text" id="entitlement" class="form-control" disabled="disabled"
+                           [fieldLevelSec]="'ENTITLEMENT_CODE'" [params]="{secColDetails: secColDetails, isEditState: editCobHistory}"/>
+                </div>
+
+                <div class="col-md-2" [ngClass]="{'has-error': displayMessage.workingAged }">
+                    <div class="checkbox col-md-12">
+                        <label class="case-mgmt-blank-space">&nbsp;</label>
+                        <input id="workingAged" value="workingAged" formControlName="workingAged" type="checkbox"
+                               [fieldLevelSec]="'WORKING_AGED_STATUS'" [params]="{secColDetails: secColDetails, isEditState: editCobHistory}">
+                        <label class="checkbox">
+                            Working Aged
+                        </label>
+                    </div>
+                    <span class="help-block" *ngIf="displayMessage.workingAged">{{ displayMessage.workingAged  }}</span>
+                </div>
+            </div>
+
+            <div class="form-group row">
+
+                <div class="col-md-3">
+                    <app-datepicker [isRequired]="true" [formGroup]="memberCobHistoryForm"
+                                    [formValidation]="formValidation" [field]="'coverageEffDate'"
+                                    [labelText]="'Coverage Eff Date'"
+                                    [fieldLevelSec]="'COVERAGE_EFFEC_DATE'"
+                                    [params]="{secColDetails: secColDetails, isEditState: editCobHistory}"></app-datepicker>
+                </div>
+
+                <div class="col-md-3">
+                    <app-datepicker [isRequired]="false" [formGroup]="memberCobHistoryForm"
+                                    [formValidation]="formValidation" [field]="'termDate'"
+                                    [labelText]="'Term Date'" (onDateChanged)="onTermDateChange($event)"
+                                    [fieldLevelSec]="'TERM_DATE'" [params]="{secColDetails: secColDetails, isEditState: editCobHistory}"></app-datepicker>
+                </div>
+
+                <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('termReason') }">
+                    <label class="col-form-label" for="termReason" i18n>Term Reason</label>
+                    <input type="text" id="termReason" [readonly]="isTermReasonReadOnly" (keydown)="onLookupTermReason($event)"  class="form-control" formControlName="termReason"/>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('termReason')">
+                        {{ formValidation.errorMessage('termReason') }}
+                    </small>
+                </div>
+
+                <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('policyNo') }">
+                    <label class="col-form-label" for="policyNo" i18n>Policy No</label>
+                    <input type="text" id="policyNo" class="form-control" formControlName="policyNo"
+                           [fieldLevelSec]="'POLICY_NUMBER'" [params]="{secColDetails: secColDetails, isEditState: editCobHistory}"/>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('policyNo')">
+                        {{ formValidation.errorMessage('policyNo') }}
+                    </small>
+                </div>
+
+            </div>
+
+            <div class="form-group row">
+
+                <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('cobOrder') }">
+                    <label class="col-form-label clr-blue" for="cobOrder" i18n>COB Order</label>
+                    <select class="form-control" id="cobOrder" name="cobOrder" formControlName="cobOrder"
+                            [fieldLevelSec]="'C'" [params]="{secColDetails: secColDetails, isEditState: editCobHistory}">
+                        <option [value]="cobOrder.dddwDtlPrimaryKey.dataVal" *ngFor="let cobOrder of cobOrders">{{cobOrder.dddwDtlPrimaryKey.displayVal}}</option>
+                    </select>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('cobOrder')">
+                        {{ formValidation.errorMessage('cobOrder') }}
+                    </small>
+                </div>
+
+                <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('otherFamilyCoverage') }">
+                    <label class="col-form-label clr-blue" for="otherFamilyCoverage" i18n>Other Family Coverage</label>
+                    <select class="form-control" id="otherFamilyCoverage" name="otherFamilyCoverage"
+                            formControlName="otherFamilyCoverage" (change)="onChangeOtherFamilyCoverage($event)"
+                            [fieldLevelSec]="'COB_CODE'" [params]="{secColDetails: secColDetails, isEditState: editCobHistory}">
+                        <option [value]="otherFamilyCoverage.dddwDtlPrimaryKey.dataVal" *ngFor="let otherFamilyCoverage of otherFamilyCoverages">{{otherFamilyCoverage.dddwDtlPrimaryKey.displayVal}}</option>
+                    </select>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('otherFamilyCoverage')">
+                        {{ formValidation.errorMessage('otherFamilyCoverage') }}
+                    </small>
+                </div>
+
+                <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('pn1') }">
+                    <label [ngStyle]="{'color': isReadOnly ? '#000000' : '#6ac5fe'}" class="col-form-label" for="pn1" i18n>P/N</label>
+                    <input type="text" id="pn1" [readOnly]="isReadOnly" class="form-control" formControlName="pn1" #pn1 (change)="onChangePersonOne($event, pn1.value)"
+                           [fieldLevelSec]="'PERSON_NUMBER_1'" [params]="{secColDetails: secColDetails, isEditState: editCobHistory}"/>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('pn1')">
+                        {{ formValidation.errorMessage('pn1') }}
+                    </small>
+                </div>
+
+                <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('pn2') }">
+                    <label class="col-form-label" for="pn2" i18n>P/N</label>
+                    <input type="text" id="pn2" [readOnly]="pnReadOnly" class="form-control" formControlName="pn2"
+                           [fieldLevelSec]="'PERSON_NUMBER_2'" [params]="{secColDetails: secColDetails, isEditState: editCobHistory}"/>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('pn2')">
+                        {{ formValidation.errorMessage('pn2') }}
+                    </small>
+                </div>
+
+                <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('pn3') }">
+                    <label class="col-form-label" for="pn3" i18n>P/N</label>
+                    <input type="text" id="pn3" [readOnly]="pnReadOnly" class="form-control" formControlName="pn3"
+                           [fieldLevelSec]="'PERSON_NUMBER_3'" [params]="{secColDetails: secColDetails, isEditState: editCobHistory}"/>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('pn3')">
+                        {{ formValidation.errorMessage('pn3') }}
+                    </small>
+                </div>
+            </div>
+
+            <div class="form-group row">
+
+                <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('userDefined1') }">
+                    <label class="col-form-label" for="userDefined1" i18n>User Defined 1</label>
+                    <input type="text"  id="userDefined1" class="form-control" formControlName="userDefined1"
+                           [fieldLevelSec]="'USER_DEFINED_1'" [params]="{secColDetails: secColDetails, isEditState: editCobHistory}"/>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('userDefined1')">
+                        {{ formValidation.errorMessage('userDefined1') }}
+                    </small>
+                </div>
+
+                <div class="col-md-3">
+                    <app-datepicker [formGroup]="memberCobHistoryForm" [formValidation]="formValidation"
+                                    [field]="'usrDat1'"
+                                    [labelText]="'UsrDat1'"
+                                    [fieldLevelSec]="'COBHS_USER_DATE_1'" [params]="{secColDetails: secColDetails, isEditState: editCobHistory}"></app-datepicker>
+                </div>
+
+                <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('userDefined2') }">
+                    <label class="col-form-label" for="userDefined2" i18n>User Defined 2</label>
+                    <input type="text" id="userDefined2" class="form-control" formControlName="userDefined2"
+                           [fieldLevelSec]="'USER_DEFINED_2'" [params]="{secColDetails: secColDetails, isEditState: editCobHistory}"/>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('userDefined2')">
+                        {{ formValidation.errorMessage('userDefined2') }}
+                    </small>
+                </div>
+
+                <div class="col-md-3">
+                    <app-datepicker [formGroup]="memberCobHistoryForm" [formValidation]="formValidation"
+                                    [field]="'usrDat2'"
+                                    [labelText]="'UsrDat2'"
+                                    [fieldLevelSec]="'COBHS_USER_DATE_2'" [params]="{secColDetails: secColDetails, isEditState: editCobHistory}"></app-datepicker>
+                </div>
+            </div>
+
+            <div class="form-group row"></div>
+            <hr/>
+
+            <h5 class="clr-blue">Other Carrier Details</h5>
+
+            <div class="form-group row">
+
+                <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('coverageType') }">
+                    <label class="col-form-label" for="coverageType" i18n>Coverage Type</label>
+                    <select class="form-control" id="coverageType" name="coverageType" formControlName="coverageType"
+                            [fieldLevelSec]="'COVERAGE_TYPE_CODE'" [params]="{secColDetails: secColDetails, isEditState: editCobHistory}">
+                        <option [value]="coverageType.systemCode" *ngFor="let coverageType of coverageTypes">{{coverageType.systemCodeDesc1}}</option>
+                    </select>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('coverageType')">
+                        {{ formValidation.errorMessage('coverageType') }}
+                    </small>
+                </div>
+
+                <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('productType') }">
+                    <label class="col-form-label" for="productType" i18n>Product Type</label>
+                    <select class="form-control" id="productType" name="productType" formControlName="productType"
+                            [fieldLevelSec]="'PRODUCT_TYPE'" [params]="{secColDetails: secColDetails, isEditState: editCobHistory}">
+                        <option [value]="productType.systemCode" *ngFor="let productType of productTypes">{{productType.systemCodeDesc1}}</option>
+                    </select>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('productType')">
+                        {{ formValidation.errorMessage('productType') }}
+                    </small>
+                </div>
+
+                <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('planType') }">
+                    <label class="col-form-label" for="planType" i18n>Plan Type</label>
+                    <select class="form-control" id="planType" name="planType" formControlName="planType"
+                            [fieldLevelSec]="'PLAN_TYPE_CODE'" [params]="{secColDetails: secColDetails, isEditState: editCobHistory}">
+                        <option [value]="planType.systemCode" *ngFor="let planType of planTypes">{{planType.systemCodeDesc1}}</option>
+                    </select>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('planType')">
+                        {{ formValidation.errorMessage('planType') }}
+                    </small>
+                </div>
+
+                <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('othCarrierSubId') }">
+                    <label class="col-form-label" for="othCarrierSubId" i18n>Other Carrier Sub Id</label>
+                    <input type="text" id="othCarrierSubId" class="form-control" formControlName="othCarrierSubId"
+                           [fieldLevelSec]="'OTH_CARRIER_SUBS_ID'" [params]="{secColDetails: secColDetails, isEditState: editCobHistory}"/>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('othCarrierSubId')">
+                        {{ formValidation.errorMessage('othCarrierSubId') }}
+                    </small>
+                </div>
+            </div>
+
+            <div class="form-group row">
+
+                <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('relationship') }">
+                    <label class="col-form-label" for="relationship" i18n>Relationship</label>
+                    <select class="form-control" id="relationship" #maritalStatus name="relationship"
+                            formControlName="relationship"
+                            [fieldLevelSec]="'RELATIONSHIP_CODE'" [params]="{secColDetails: secColDetails, isEditState: editCobHistory}">
+                        <option [value]="relationshipCode.dddwDtlPrimaryKey.dataVal" *ngFor="let relationshipCode of relationshipCodes">{{relationshipCode.dddwDtlPrimaryKey.displayVal}}</option>
+                    </select>
+<!--                    <input type="text" id="relationship" class="form-control" formControlName="relationship"/>-->
+                    <small class="text-danger" *ngIf="formValidation.isValidField('relationship')">
+                        {{ formValidation.errorMessage('relationship') }}
+                    </small>
+                </div>
+
+                <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('lastName') }">
+                    <label class="col-form-label" for="lastName" i18n>Last Name</label>
+                    <input type="text" id="lastName" class="form-control" formControlName="lastName"
+                           [fieldLevelSec]="'OTH_CARRIER_SUBS_LAST_NAME'" [params]="{secColDetails: secColDetails, isEditState: editCobHistory}"/>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('lastName')">
+                        {{ formValidation.errorMessage('lastName') }}
+                    </small>
+                </div>
+
+                <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('firstName') }">
+                    <label class="col-form-label" for="firstName" i18n>First Name</label>
+                    <input type="text" id="firstName" class="form-control" formControlName="firstName"
+                           [fieldLevelSec]="'OTH_CARRIER_SUBS_FIRST_NAME'" [params]="{secColDetails: secColDetails, isEditState: editCobHistory}"/>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('firstName')">
+                        {{ formValidation.errorMessage('firstName') }}
+                    </small>
+                </div>
+
+
+            </div>
+            <div class="form-group row">
+                <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('gender') }">
+                    <label class="col-form-label" for="gender" i18n>Gender</label>
+                    <select class="form-control" id="gender" #maritalStatus name="gender" formControlName="gender"
+                            [fieldLevelSec]="'OTH_CARRIER_SUBS_GENDE'" [params]="{secColDetails: secColDetails, isEditState: editCobHistory}">
+                        <option [value]="gender.dddwDtlPrimaryKey.dataVal" *ngFor="let gender of genders">{{gender.dddwDtlPrimaryKey.displayVal}}</option>
+                    </select>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('gender')">
+                        {{ formValidation.errorMessage('gender') }}
+                    </small>
+                </div>
+
+                <div class="col-md-4">
+                    <app-datepicker [isRequired]="false" [formGroup]="memberCobHistoryForm"
+                                    [formValidation]="formValidation" [field]="'dob'"
+                                    [labelText]="'DOB'"
+                                    [fieldLevelSec]="'OTH_CARRIER_SUBS_DOB'" [params]="{secColDetails: secColDetails, isEditState: editCobHistory}"></app-datepicker>
+                </div>
+            </div>
+
+            <div class="form-group row">
+
+                <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('employerGroup') }">
+                    <label class="col-form-label" for="employerGroup" i18n>Employer Group</label>
+                    <input type="text" id="employerGroup" class="form-control" formControlName="employerGroup"
+                           [fieldLevelSec]="'EMPLOYER_GROUP'" [params]="{secColDetails: secColDetails, isEditState: editCobHistory}"/>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('employerGroup')">
+                        {{ formValidation.errorMessage('employerGroup') }}
+                    </small>
+                </div>
+
+                <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('diagCode') }">
+                    <label class="col-form-label" for="diagCode" i18n>Diag Code</label>
+                    <input type="text" id="diagCode" class="form-control" formControlName="diagCode"
+                           [fieldLevelSec]="'DIAGNOSIS_CODE'" [params]="{secColDetails: secColDetails, isEditState: editCobHistory}"/>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('diagCode')">
+                        {{ formValidation.errorMessage('diagCode') }}
+                    </small>
+                </div>
+
+                <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('caseNo') }">
+                    <label class="col-form-label" for="caseNo" i18n>Case No</label>
+                    <input type="text" id="caseNo" class="form-control" formControlName="caseNo"
+                           [fieldLevelSec]="'CASE_NUMBER'" [params]="{secColDetails: secColDetails, isEditState: editCobHistory}"/>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('caseNo')">
+                        {{ formValidation.errorMessage('caseNo') }}
+                    </small>
+                </div>
+
+                <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('paymentPolicy') }">
+                    <label class="col-form-label" for="paymentPolicy" i18n>Payment Policy</label>
+                    <select class="form-control" id="paymentPolicy" name="paymentPolicy" formControlName="paymentPolicy"
+                            [fieldLevelSec]="'PAYMENT_POLICY_CODE'" [params]="{secColDetails: secColDetails, isEditState: editCobHistory}">
+                        <option [value]="paymentPolicy.systemCode" *ngFor="let paymentPolicy of paymentPolicies">{{paymentPolicy.systemCodeDesc1}}</option>
+                    </select>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('paymentPolicy')">
+                        {{ formValidation.errorMessage('paymentPolicy') }}
+                    </small>
+                </div>
+            </div>
+
+            <div class="form-group row">
+
+                <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('depDetermRule') }">
+                    <label class="col-form-label" for="depDetermRule" i18n>Dep Determ Rule</label>
+                    <select class="form-control" id="depDetermRule"  name="depDetermRule" formControlName="depDetermRule"
+                            [fieldLevelSec]="'DEP_DETERM_RULE_CODE'" [params]="{secColDetails: secColDetails, isEditState: editCobHistory}">
+                        <option [value]="depDetermRule.dddwDtlPrimaryKey.dataVal" *ngFor="let depDetermRule of depDetermRules">{{depDetermRule.dddwDtlPrimaryKey.displayVal}}</option>
+                    </select>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('depDetermRule')">
+                        {{ formValidation.errorMessage('depDetermRule') }}
+                    </small>
+                </div>
+
+                <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('secDepRule') }">
+                    <label class="col-form-label" for="secDepRule" i18n>Sec Dep Rule</label>
+                    <select class="form-control" id="secDepRule" name="secDepRule" formControlName="secDepRule"
+                            [fieldLevelSec]="'SEC_DEP_DETERM_RULE_CODE'" [params]="{secColDetails: secColDetails, isEditState: editCobHistory}">
+                        <option [value]="secDepRule.systemCode" *ngFor="let secDepRule of secDepRules">{{secDepRule.systemCodeDesc1}}</option>
+                    </select>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('secDepRule')">
+                        {{ formValidation.errorMessage('secDepRule') }}
+                    </small>
+                </div>
+
+                <div class="col-md-2" [ngClass]="{'has-error': displayMessage.preCertReqd }">
+                    <div class="checkbox col-md-12">
+                        <label class="case-mgmt-blank-space">&nbsp;</label>
+                        <input id="preCertReqd" value="preCertReqd" formControlName="preCertReqd" type="checkbox"
+                               [fieldLevelSec]="'PRE_CERT_REQD_FLAG'" [params]="{secColDetails: secColDetails, isEditState: editCobHistory}">
+                        <label class="checkbox">
+                            Pre Cert Reqd
+                        </label>
+                    </div>
+                    <span class="help-block" *ngIf="displayMessage.preCertReqd">{{ displayMessage.preCertReqd  }}</span>
+                </div>
+
+                <div class="col-md-2" [ngClass]="{'has-error': displayMessage.benefCoord }">
+                    <div class="checkbox col-md-12">
+                        <label class="case-mgmt-blank-space">&nbsp;</label>
+                        <input id="benefCoord" value="benefCoord" formControlName="benefCoord" type="checkbox">
+                        <label class="checkbox">
+                            Benef Coord
+                        </label>
+                    </div>
+                    <span class="help-block" *ngIf="displayMessage.benefCoord">{{ displayMessage.benefCoord  }}</span>
+                </div>
+            </div>
+
+            <div class="form-group row">
+
+                <div class="col-md-4">
+                    <app-datepicker [isRequired]="false" [formGroup]="memberCobHistoryForm"
+                                    [formValidation]="formValidation" [field]="'date1'"
+                                    [labelText]="'Date 1'"
+                                    [fieldLevelSec]="'EVENT_DATE_1'" [params]="{secColDetails: secColDetails, isEditState: editCobHistory}"></app-datepicker>
+                </div>
+
+                <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('type1') }">
+                    <label class="col-form-label " for="type1" i18n>Type</label>
+                    <select class="form-control" id="type1" name="type1" formControlName="type1"
+                            [fieldLevelSec]="'EVENT_DATE_1_TYPE_CODE'" [params]="{secColDetails: secColDetails, isEditState: editCobHistory}">
+                        <option [value]="dateType.systemCodesPrimaryKey.systemCode" *ngFor="let dateType of dateTypeDdlData">{{dateType.systemCodesPrimaryKey.systemCode}}  {{dateType.systemCodeDesc1}}</option>
+                    </select>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('type1')">
+                        {{ formValidation.errorMessage('type1') }}
+                    </small>
+                </div>
+            </div>
+            <div class="form-group row">
+
+                <div class="col-md-4">
+                    <app-datepicker [isRequired]="false" [formGroup]="memberCobHistoryForm"
+                                    [formValidation]="formValidation" [field]="'date2'"
+                                    [labelText]="'Date 2'"
+                                    [fieldLevelSec]="'EVENT_DATE_2'" [params]="{secColDetails: secColDetails, isEditState: editCobHistory}"></app-datepicker>
+                </div>
+
+
+                <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('type2') }">
+                    <label class="col-form-label " for="type2" i18n>Type</label>
+                    <select class="form-control" id="type2" name="type2" formControlName="type2"
+                            [fieldLevelSec]="'EVENT_DATE_2_TYPE_CODE'" [params]="{secColDetails: secColDetails, isEditState: editCobHistory}">
+                        <option [value]="dateType.systemCodesPrimaryKey.systemCode" *ngFor="let dateType of dateTypeDdlData">{{dateType.systemCodesPrimaryKey.systemCode}}  {{dateType.systemCodeDesc1}}</option>
+                    </select>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('type2')">
+                        {{ formValidation.errorMessage('type2') }}
+                    </small>
+                </div>
+            </div>
+            <div class="form-group row">
+
+                <div class="col-md-4">
+                    <app-datepicker [isRequired]="false" [formGroup]="memberCobHistoryForm"
+                                    [formValidation]="formValidation" [field]="'date3'"
+                                    [labelText]="'Date 3'"
+                                    [fieldLevelSec]="'EVENT_DATE_3'" [params]="{secColDetails: secColDetails, isEditState: editCobHistory}"></app-datepicker>
+                </div>
+
+                <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('type3') }">
+                    <label class="col-form-label " for="type3" i18n>Type</label>
+                    <select class="form-control" id="type3" name="type3" formControlName="type3"
+                            [fieldLevelSec]="'EVENT_DATE_3_TYPE_CODE'" [params]="{secColDetails: secColDetails, isEditState: editCobHistory}">
+                        <option [value]="dateType.systemCodesPrimaryKey.systemCode" *ngFor="let dateType of dateTypeDdlData">{{dateType.systemCodesPrimaryKey.systemCode}}  {{dateType.systemCodeDesc1}}</option>
+                    </select>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('type3')">
+                        {{ formValidation.errorMessage('type3') }}
+                    </small>
+                </div>
+            </div>
+
+            <div class="form-group row">
+            </div>
+        </div>
+            </form>
+        </ng-container>
+    </div>
+</div>
+
+<ng-keyboard-shortcuts [shortcuts]="shortcuts"></ng-keyboard-shortcuts>
+<ng-keyboard-shortcuts-help [key]="'f2'" [closeKey]="'escape'" [title]="'Hotkeys Help'"></ng-keyboard-shortcuts-help>

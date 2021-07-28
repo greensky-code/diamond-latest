@@ -1,0 +1,184 @@
+<!-- Copyright (c) 2021 . All Rights Reserved. -->
+<div class="container-fluid">
+    <div class="card-block">
+        <form [formGroup]="payerDetailsForm" novalidate>
+            <h2 class="form-title card-label-admin">Payer Details</h2>
+            <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+            <app-pop-up-message #popUpMesssage (buttonclickEvent)="popUpButtonHandler($event)"  [(popupMessage)] = "popUpMessage"></app-pop-up-message>
+                        
+            <div class="form-group row">
+                <!-- RadioButton with label of Argus -->
+                <div class="col-md-2" [ngClass]="{'has-error': displayMessage.argus }">
+                    <label class="col-form-label" for="argus" i18n>Argus</label>
+                    <input type="radio"  formControlName="argus"  [fieldLevelSec]="''" params]=""  value="Argus"/>
+                </div>
+            
+                <!-- RadioButtonGroup with Name of RadioButtonGroup 4426 -->
+                <div class="form-inline">
+                    <!--  with label of Payer -->
+                <div class="" [ngClass]="{'has-error': displayMessage.payer001 }">
+                    <label class="col-form-label" for="payer001" i18n>Payer</label>
+                    <input type="radio" value="Payer"  [fieldLevelSec]="" params]=""  formControlName="radiobuttongroup4426" />
+                </div>
+                </div>
+            
+                <!-- RadioButtonGroup with Name of RadioButtonGroup 1798 -->
+                <div class="form-inline">
+                    <!--  with label of ES -->
+                <div class="" [ngClass]="{'has-error': displayMessage.es001 }">
+                    <label class="col-form-label" for="es001" i18n>ES</label>
+                    <input type="radio" value="ES"  [fieldLevelSec]="" params]=""  formControlName="radiobuttongroup1798" />
+                </div>
+                </div>
+            
+            </div>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+                <div class="col-md-2 form-control-static mb-0" i18n>
+                    Group NumberGroup Name
+                </div>
+            
+                <div class="col-md-2 form-control-static mb-0" i18n>
+                    Payer/Argus Client ID
+                </div>
+            
+                <div class="col-md-2 form-control-static mb-0" i18n>
+                    Payer Group ID
+                </div>
+            
+                <div class="col-md-2 form-control-static mb-0" i18n>
+                    Test Status
+                </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- DynamicText with Name of DynamicText001 -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('dynamicText001') }">
+                     <label class="col-form-label" for="dynamicText001" i18n>&nbsp;</label>
+                     <input type="text"  [fieldLevelSec]="''" params]=""  readonly id="dynamicText001" formControlName="dynamicText001" class="form-control"/>
+                 </div>
+            
+                <!-- DynamicText with Name of DynamicText002 -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('dynamicText002') }">
+                     <label class="col-form-label" for="dynamicText002" i18n>&nbsp;</label>
+                     <input type="text"  [fieldLevelSec]="''" params]=""  readonly id="dynamicText002" formControlName="dynamicText002" class="form-control"/>
+                 </div>
+            
+                <!-- Textbox with Name of Textbox001 -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('textbox001') }">
+                     <label class="col-form-label" for="textbox001" i18n>&nbsp;</label>
+                     <input type="text" id="textbox001"  [fieldLevelSec]="''" params]=""   class="form-control" formControlName="textbox001"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('textbox001')">
+                      {{ formValidation.errorMessage('textbox001') }}
+                     </small>
+                 </div>
+            
+                <!-- Textbox with Name of Textbox002 -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('textbox002') }">
+                     <label class="col-form-label" for="textbox002" i18n>&nbsp;</label>
+                     <input type="text" id="textbox002"  [fieldLevelSec]="''" params]=""   class="form-control" formControlName="textbox002"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('textbox002')">
+                      {{ formValidation.errorMessage('textbox002') }}
+                     </small>
+                 </div>
+            
+                <!-- DropdownList with Name of DropdownList -->
+                <div class="selectContainer col-md-2 " [ngClass]="{'has-danger': formValidation.isValidField('dropdownList') }">
+                    <label class="col-form-label" for="dropdownList" i18n>&nbsp;</label>
+                    <select class="form-control" id="dropdownlist"  [fieldLevelSec]="''" params]=""  name="DropdownList" formControlName="dropdownList">
+                        <option value="">Please Select</option>
+                    </select>
+                </div>
+            
+            </div>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of Player Start Date -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('playerStartDate') }">
+                     <label class="col-form-label" for="playerStartDate" i18n>Player Start Date</label>
+                     <div class="input-group">
+                    <input id="playerStartDate"  [fieldLevelSec]="''" params]=""  class="form-control" angular-mydatepicker name="playerStartDate" (click)="playerStartDateId.toggleCalendar()"
+                    formControlName="playerStartDate"[options]="datePickerConfig" #playerStartDateId="angular-mydatepicker"/>
+                    <div class="input-group-append">
+                        <button type="button" class="btn btn-secondary" (click)="playerStartDateId.clearDate()">
+                          <i class="fa fa-close"></i>
+                        </button>
+                      </div>
+                      <div class="input-group-append">
+                        <button type="button" class="btn btn-secondary" (click)="playerStartDateId.toggleCalendar()">
+                          <i class="fa fa-calendar-o"></i>
+                        </button>
+                      </div>
+                    </div>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('playerStartDate')">
+                      {{ formValidation.errorMessage('playerStartDate') }}
+                     </small>
+                 </div>
+            
+            </div>
+            
+                        <!-- DataGrid with Name of DataGrid -->
+                    <button (click)="dataGridGridOptionsExportCsv()">Export</button>
+                    <ag-grid-angular #agGrid class="ag-theme-fresh" [gridOptions]="dataGridGridOptions"
+                    style="width: 100%; height: 300px;"
+                    [enableSorting]="true"
+                    [enableFilter]="true"
+                    [floatingFilter]="true"
+                    [pagination]="true"
+                    [showToolPanel]="true">
+                    </ag-grid-angular>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+                <!-- Button with label of Save Changes -->
+                <div class="col-md-2">
+                    <button type="button" id="saveChanges" name="saveChanges" class="btn btn-small btn-primary">Save Changes</button>
+                
+                
+                </div>
+            
+                <!-- Button with label of Reset All -->
+                <div class="col-md-2">
+                    <button type="button" id="resetAll" name="resetAll" class="btn btn-small btn-primary">Reset All</button>
+                
+                
+                </div>
+            
+            </div>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+                <!-- Button with label of Close -->
+                <div class="col-md-2">
+                    <button type="button" id="close" name="close" class="btn btn-small btn-primary">Close</button>
+                
+                
+                </div>
+            
+            </div>
+        </form>
+    </div>
+</div>

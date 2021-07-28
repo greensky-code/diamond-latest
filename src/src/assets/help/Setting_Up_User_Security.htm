@@ -1,0 +1,281 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+    <title>Setting Up User Security</title>
+    <!--(Meta)==========================================================-->
+    <meta name="copyright"
+          value="© Copyright 2002 Health Systems Design Corp., a wholly owned subsidiary of Perot Systems Corporation. All rights reserved"/>
+    <meta content="Task - High Level.htt" name="template"/>
+    <meta content="RoboHELP by eHelp Corporation - www.ehelp.com" name="generator"/>
+    <meta content="0.1" name="generator-major-version"/>
+    <meta content="1" name="generator-minor-version"/>
+    <meta content="kadov" name="filetype"/>
+    <meta content="1" name="filetype-version"/>
+    <meta content="1" name="page-count"/>
+    <meta content="1895" name="layout-height"/>
+    <meta content="678" name="layout-width"/>
+    <!--(Links)=========================================================-->
+    <!--(Scripts)=======================================================-->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+</head>
+<body>
+
+<div class="calibreMeta">
+    <div class="calibreMetaTitle">
+
+
+        <h1>
+            <a href="../co5tp-ch4tl.html">DIAMOND 950 Help
+            </a>
+        </h1>
+
+
+    </div>
+    <div class="calibreMetaAuthor">
+        Unknown
+
+    </div>
+</div>
+
+<div class="calibreMain">
+
+    <div class="calibreEbookContent">
+
+        <div class="calibreEbNavTop">
+
+            <a href="../co5tp-ch4tl.html" class="calibreAPrev">previous page
+            </a>
+
+
+            <a href="Enable_System_Security.htm" class="calibreANext">next page
+            </a>
+
+        </div>
+
+
+        <h4 class="calibre1">Setting Up Security</h4>
+
+        <p class="body-text">In order to begin using the DIAMOND program, you must
+            set up each user and grant security access to keywords, Special menu commands,
+            and actions.</p>
+
+        <p class="body-text">You can either set up each user from scratch or you
+            can set up access characteristics in templates and assign those templates
+            to users.</p>
+
+        <h3 class="calibre2">Oracle Roles and DIAMOND Security</h3>
+
+        <p class="body-text">DIAMOND uses Oracle’s security templates, called roles,
+            to manage user IDs, passwords, and access to the application. This is
+            important because it means DIAMOND users cannot use an external tool,
+            such as SQL*Plus, to access DIAMOND and change records (with a specific
+            exception explained below). DIAMOND manages this relationship to Oracle
+            automatically. </p>
+
+        <p class="body-text">For more information about roles, see <a href="Security_and_Users_How_DIAMOND_Thinks.htm">Security
+            and Users, How DIAMOND Thinks</a>.</p>
+
+        <h3 class="calibre2">Restrictions</h3>
+
+        <p class="body-text">User associations with security templates override any
+            entries for those users as individuals in keywords SWIND and SFUNC. Therefore,
+            keywords SWIND and SFUNC limitations must be defined in the security templates
+            themselves.</p>
+
+        <h2 class="calibre3">1. Enable system security</h2>
+
+        <p class="text">Enable system security in keyword PARAM (Parameter).</p>
+
+        <p class="text">Learn how to <a href="Enable_System_Security.htm">enable
+            system security</a>.</p>
+
+        <h2 class="calibre3">2. Add a super user</h2>
+
+        <p class="text">Add at least one super user in keyword SUSER (Users). <span class="calibre4">A</span><span
+                class="calibre5">
+ super user is defined as a user with full access to all commands, windows, 
+ and capabilities in DIAMOND. You will need more than one super user. Security 
+ officers, database administrators, and other management level employees 
+ are typically super users.</span></p>
+
+        <p class="text">Learn how to <a href="Add_a_Super_User.htm">add a super user</a>.</p>
+
+        <h2 class="calibre3">3. Add security templates</h2>
+
+        <p class="text">Determine if any menu command, specific window, add/update/delete,
+            claims processing, or record access limitations are shared by more than
+            one user in your organization. </p>
+
+        <p class="text">To the extent you can define shared security privileges,
+            you can define security templates with those shared characteristics. This
+            can be much easier to maintain than entering specifics for each individual
+            user.</p>
+
+        <p class="text">Define the number of templates you need, the access characteristics
+            for each, and give each template a name.</p>
+
+        <p class="text">Add security templates in keyword SUSER. A security template
+            is similar to individual user records except:</p>
+
+        <ul class="calibre6">
+
+            <li class="kadov-p-cbullet"><p class="bullet">The <span class="calibre7">Template</span>
+                check box is selected.</p></li>
+
+            <li class="kadov-p-cbullet"><p class="bullet">There is no template ID assigned
+                to a template user.</p></li>
+
+            <li class="kadov-p-cbullet"><p class="bullet">You do not use <span class="calibre7">Special</span>
+                menu command <span class="calibre7">Add Database User </span>for
+                template records.</p></li>
+        </ul>
+
+        <p class="text">If you are entering claim limit information, note that the
+            entire section must be completed.</p>
+
+        <p class="text">Learn how to <a href="Add_a_Security_Template.htm">add a
+            security template</a>.</p>
+
+        <h2 class="calibre3">3. Grant access to menu commands</h2>
+
+        <p class="text">If applicable, enter any menu command limitations for each
+            template in keyword SFUNC.</p>
+
+        <p class="text">Keyword SFUNC allows limitations to certain commands on the
+            menu bar, which reside within keywords, such as the <span class="calibre7">Terminate
+ Member</span> command in keyword MEMBR.</p>
+
+        <h2 class="calibre3">4. Grant access to keyword windows</h2>
+
+        <p class="text">In keyword SWIND, enter each keyword add (ins), view (sel),
+            change (upd), and delete (del) access for each template.</p>
+
+        <p class="text">If no access is granted to a template in keyword SWIND, that
+            template will not be able to do anything in DIAMOND.</p>
+
+        <p class="text">To grant access to a keyword you must make sure you enter
+            access to both the keywords themselves and the associated "sheet."</p>
+
+        <p class="text">A table of keywords and associated sheets is found in <a
+                href="Security_and_Users_How_DIAMOND_Thinks.htm">Security and Users, How
+            DIAMOND Thinks</a>.</p>
+
+        <h2 class="calibre3">5. Grant access to fields</h2>
+
+        <p class="text">In keyword SFLDL, create a new field-level security profile
+            and assign a Field Level Security ID to the profile.</p>
+
+        <p class="text">Enter the ID from SFLDL in the Field Level Security ID field
+            in SUSER; this attaches the field-level security profile to the template.</p>
+
+        <h2 class="calibre3">6. Add users assigned to templates</h2>
+
+        <p class="text">For each individual user whose security privileges are defined
+            by one of the templates, add an SUSER record. </p>
+
+        <ul class="calibre6">
+
+            <li class="kadov-p-cbullet"><p class="bullet">Required fields are <span class="calibre7">User ID</span>,
+                <span class="calibre7">User
+ Type</span>, <span class="calibre7">Language</span>, and <span class="calibre7">Row Level Security</span>.</p></li>
+
+            <li class="kadov-p-cbullet"><p class="bullet">Complete the <span class="calibre7">Template
+ ID</span> field with the appropriate SUSER template User ID.</p></li>
+        </ul>
+
+        <p class="text">For User Type, currently there is only one valid entry, Operator.</p>
+
+        <p class="text">Remember that a user who is assigned a template should not
+            have any entries in SWIND or SFUNC; those access privileges must be set
+            up in the template, and any user-specific entries will be ignored.</p>
+
+        <p class="text">Learn how to <a href="Add_a_User_Assigned_to_a_Template.htm">add
+            a user assigned to a template</a>.</p>
+
+        <h2 class="calibre3">7. Add users not assigned templates</h2>
+
+        <p class="text">For each individual user whose security privileges fall outside
+            those set up in a template, add a record in keywords SUSER, SWIND, and
+            SFUNC. To set up field-level security restrictions, add an individual
+            record in keyword SFLDL.</p>
+
+        <p class="text">To copy an existing record to an individual user’s profile,
+            use one of the following special functions:</p>
+
+        <ul class="calibre6">
+
+            <li class="kadov-p-cbullet"><p class="bullet">SFLDL: Copy Field Level Security
+                ID</p></li>
+
+            <li class="kadov-p-cbullet"><p class="bullet">SWIND: Copy Window Access</p></li>
+
+            <li class="kadov-p-cbullet"><p class="bullet">SFUNC: Copy Function Access</p></li>
+        </ul>
+
+        <p class="text">Remember, the last step in setting up a user in SUSER is
+            the Special command <span class="calibre7">Add Database User</span>,
+            where you set the user’s password. </p>
+
+        <p class="text">Learn how to <a href="Add_a_User.htm">add a user</a>.</p>
+
+        <h2 class="calibre3">Frequently Asked Questions</h2>
+
+        <h3 class="calibre2">Under what circumstances must I establish "database roles?"?</h3>
+
+        <p class="text">The only circumstance is when you want to grant a power user
+            the ability to change DIAMOND data using an external tool such as SQL*Plus.
+            DIAMOND automatically invokes the DIAMONDVIEW and DIAMONDUPDATE Oracle
+            roles as part of creating a user. </p>
+
+        <p class="text">For information about how roles work, see <a href="Security_and_Users_How_DIAMOND_Thinks.htm">Security
+            and Users, How DIAMOND Thinks</a>.</p>
+
+        <h3 class="calibre2">There are two keywords on the Security menu that aren’t mentioned in
+            this task, SFNDS and SWNDS. Do I have to update records in these?</h3>
+
+        <p class="text">DIAMOND is delivered with all the necessary entries. The
+            only circumstance in which you might have a reason to update these is
+            if you have created software external to DIAMOND and without Perot Systems
+            assistance, and you want those functions to appear on DIAMOND menus and
+            work with DIAMOND security. At some point you would add those externally
+            created functions to these two keywords.</p>
+
+        <h3 class="calibre2">Can I add other menu or commands to SFNDS so that I can impose security
+            on them?</h3>
+
+        <p class="text">No. While SFNDS allows entries, they will be ignored by DIAMOND
+            security features. To see a complete list of SFNDS pre-defined functions,
+            see SFNDS reference documentation.</p>
+
+        <h3 class="calibre2">If I give someone access to certain claim records using SUSER Affiliations
+            and I don’t give them access to the claims keywords in SWIND, which instruction
+            prevails?</h3>
+
+        <p class="text">SWIND will prevail. DIAMOND looks at SWIND first to see if
+            access to a keyword exists at all, and then limits that access according
+            to the affiliations and claim limit parameters in SUSER.</p>
+
+
+    </div>
+
+
+    <div class="calibreEbNav">
+
+        <a href="../co5tp-ch4tl.html" class="calibreAPrev">previous page
+        </a>
+
+
+        <a href="../co5tp-ch4tl.html" class="calibreAHome">start
+        </a>
+
+
+        <a href="Enable_System_Security.htm" class="calibreANext">next page
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+</html>

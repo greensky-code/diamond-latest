@@ -1,0 +1,244 @@
+<!-- Copyright (c) 2021 . All Rights Reserved. -->
+<div class="container-fluid">
+    <div class="card-block">
+      <button type="button" *ngIf="showIcon" class="close" aria-label="Close" (click)="modalClose()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      <ng-container *ngTemplateOutlet="loaderTemplate;context:{value: !isDataLoaded }"></ng-container>
+      <div class="card-block" *ngIf="isDataLoaded">
+        <div class="row form-title">
+          <h2 class="col-md-6  card-label-admin">Accounts Payable Selection </h2>
+          <div class="col-md-2"><b class="readonly-label">View Only</b></div>
+        </div>
+        <!-- <h2 class="form-title card-label-admin">Accounts Payable Selection</h2> -->
+        <div class="row">
+            <menu-bar [menus]="menu" (onMenuClick)="onMenuItemClick($event)"></menu-bar>
+        </div>
+        <form [formGroup]="accountsPayableSelectionForm" novalidate>
+
+            <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+            <app-pop-up-message #popUpMesssage (buttonclickEvent)="popUpButtonHandler($event)"  [(popupMessage)] = "popUpMessage"></app-pop-up-message>
+
+            <div class="form-group row">
+            </div>
+
+                        <!-- DataGrid with Name of DataGrid -->
+                    <ag-grid-angular #agGrid class="ag-theme-fresh" [gridOptions]="dataGridGridOptions"
+                    style="width: 100%; height: 300px;"
+                    [enableSorting]="true"
+                    [enableFilter]="true"
+                    [floatingFilter]="true"
+                    [pagination]="true"
+                    [showToolPanel]="true"
+                    (selectionChanged)="gridSelectionChange()">
+                    </ag-grid-angular>
+
+            <div class="form-group row">
+            </div>
+
+            <div class="form-group row">
+                <!-- Textbox with label of Job Id -->
+                 <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('jobId') }">
+                     <label class="col-form-label clr-blue" for="jobId" i18n>Job Id</label>
+                     <input type="text" id="jobId"  [fieldLevelSec]="''" [params]=""   class="form-control" formControlName="jobId"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('jobId')">
+                      {{ formValidation.errorMessage('jobId') }}
+                     </small>
+                 </div>
+
+                <!-- Textbox with label of Request User -->
+                 <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('requestUser') }">
+                     <label class="col-form-label" for="requestUser" i18n>Request User</label>
+                     <input type="text" id="requestUser"  [fieldLevelSec]="'Request User'" [params]=""   class="form-control" formControlName="requestUser"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('requestUser')">
+                      {{ formValidation.errorMessage('requestUser') }}
+                     </small>
+                 </div>
+
+                <!-- Textbox with label of Date -->
+                 <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('date') }">
+                     <app-datepicker [formGroup]="accountsPayableSelectionForm "
+                                     [formValidation]="formValidation"
+                                     [disabled]="true"
+                                     [field]="'date'" [labelText]="'Date'"></app-datepicker>
+                 </div>
+
+            </div>
+
+            <div class="form-group row">
+                <!-- Textbox with label of Payable type -->
+                 <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('payableType') }">
+                     <label class="col-form-label clr-blue" for="payableType" i18n>Payable type</label>
+                      <select class="form-control" id="payableType" name="payableType" formControlName="payableType">
+                        <option value="">-Select-</option>
+                        <option *ngFor="let dddwDtl of paybleType" [value]="dddwDtl.dddwDtlPrimaryKey.dataVal">
+                            {{dddwDtl.dddwDtlPrimaryKey.displayVal}}</option>
+                     </select>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('payableType')">
+                      {{ formValidation.errorMessage('payableType') }}
+                     </small>
+                 </div>
+
+                <!-- Textbox with label of Company Code -->
+                 <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('companyCode') }">
+                     <label class="col-form-label" for="companyCode" i18n>Company Code</label>
+                     <input type="text" id="companyCode"  [fieldLevelSec]="'Company Code'" [params]=""   class="form-control" formControlName="companyCode"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('companyCode')">
+                      {{ formValidation.errorMessage('companyCode') }}
+                     </small>
+                 </div>
+
+            </div>
+
+            <div class="form-group row">
+                <!-- Textbox with label of Vendor ID -->
+                 <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('vendorId') }">
+                     <label class="col-form-label" for="vendorId" i18n>Vendor ID</label>
+                     <input type="text" id="vendorId"  [fieldLevelSec]="'Seq Vend Id'" [params]=""   class="form-control" formControlName="vendorId"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('vendorId')">
+                      {{ formValidation.errorMessage('vendorId') }}
+                     </small>
+                 </div>
+
+            </div>
+
+            <div class="form-group row">
+            </div>
+
+            <div class="form-group row">
+                <!-- Textbox with label of From Inserted Date -->
+                 <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('fromInsertedDate') }">
+                     <app-datepicker [formGroup]="accountsPayableSelectionForm"
+                                     [formValidation]="formValidation"
+                                     [disabled]="true"
+                                     [field]="'fromInsertedDate'" [labelText]="'From Inserted Date'"></app-datepicker>
+                 </div>
+
+                <!-- Textbox with label of Thru Inserted Date -->
+                 <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('thruInsertedDate001') }">
+                     <app-datepicker [formGroup]="accountsPayableSelectionForm"
+                                     [formValidation]="formValidation"
+                                     [disabled]="true"
+                                     [field]="'thruInsertedDate001'" [labelText]="'Thru Inserted Date'"></app-datepicker>
+                 </div>
+
+            </div>
+
+            <div class="form-group row">
+                <!-- Textbox with label of From Due Date -->
+                 <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('fromDueDate002') }">
+                     <app-datepicker [formGroup]="accountsPayableSelectionForm"
+                                     [formValidation]="formValidation"
+                                     [disabled]="true"
+                                     [field]="'fromDueDate002'" [labelText]="'From Due Date'"></app-datepicker>
+                 </div>
+
+                <!-- Textbox with label of Thru Due Date -->
+                 <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('thruDueDate') }">
+                     <app-datepicker [formGroup]="accountsPayableSelectionForm"
+                                     [formValidation]="formValidation"
+                                     [disabled]="true"
+                                     [field]="'thruDueDate'" [labelText]="'Thru Due Date'"></app-datepicker>
+                 </div>
+
+            </div>
+
+            <div class="row mt-3">
+              <div class="col">
+                  <span class="clr-blue">Next Action</span>
+                  <hr class="dashed-line"/>
+              </div>
+            </div>
+
+              <div class="form-group row">
+                <!-- Textbox with label of Action -->
+                 <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('action') }">
+                     <label class="col-form-label" for="action" i18n>Action</label>
+                      <select class="form-control" id="action" name="action" formControlName="action">
+                        <option value="">-Select-</option>
+                        <option *ngFor="let dddwDtl of actions" [value]="dddwDtl.dddwDtlPrimaryKey.dataVal">
+                            {{dddwDtl.dddwDtlPrimaryKey.displayVal}}</option>
+                     </select>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('action')">
+                      {{ formValidation.errorMessage('action') }}
+                     </small>
+                 </div>
+
+                <!-- Textbox with label of Status -->
+                 <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('status') }">
+                     <label class="col-form-label" for="status" i18n>Status</label>
+                      <select class="form-control" id="status" name="status" formControlName="status">
+                        <option value="">-Select-</option>
+                        <option *ngFor="let dddwDtl of statuses" [value]="dddwDtl.dddwDtlPrimaryKey.dataVal">
+                            {{dddwDtl.dddwDtlPrimaryKey.displayVal}}</option>
+                     </select>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('status')">
+                      {{ formValidation.errorMessage('status') }}
+                     </small>
+                 </div>
+
+                <!-- Textbox with label of Action Type -->
+                 <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('actionType') }">
+                     <label class="col-form-label clr-blue" for="actionType" i18n>Action Type</label>
+                      <select class="form-control" id="actionType" name="actionType" formControlName="actionType">
+                        <option value="">-Select-</option>
+                        <option *ngFor="let dddwDtl of actionTypes" [value]="dddwDtl.dddwDtlPrimaryKey.dataVal">
+                            {{dddwDtl.dddwDtlPrimaryKey.displayVal}}</option>
+                     </select>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('actionType')">
+                      {{ formValidation.errorMessage('actionType') }}
+                     </small>
+                 </div>
+
+            </div>
+
+            <div class="row mt-3">
+                <div class="col">
+                    <span class="clr-blue">Run option</span>
+                    <hr class="dashed-line"/>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-md-3">
+                    Request Type:
+                </div>
+                <!-- RadioButtonGroup with label of Action -->
+                <div class="col-md-3" [ngClass]="{'has-error': displayMessage.requestType }">
+                    <input id="immediate001" type="radio" name="requestType"
+                          value="I" formControlName="requestType"/>
+                    <label class="col-form-label ml-1" for="immediate001" i18n>Immediate</label>
+                </div>
+
+                <!-- RadioButton with label of Post -->
+                <div class="col-md-3" [ngClass]="{'has-error': displayMessage.requestType }">
+                    <input id="deffered" type="radio" name="requestType" formControlName="requestType" value="D"/>
+                    <label class="col-form-label ml-1" for="deffered" i18n>Deffered</label>
+
+                </div>
+
+          </div>
+            <div class="form-group row">
+                <!-- Textbox with label of Comments -->
+                 <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('comments') }">
+                     <label class="col-form-label" for="comments" i18n>Comments</label>
+                     <input type="text" id="comments"  [fieldLevelSec]="'Comments'" [params]=""   class="form-control" formControlName="comments"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('comments')">
+                      {{ formValidation.errorMessage('comments') }}
+                     </small>
+                 </div>
+
+            </div>
+        </form>
+      </div> <!--.isDataLoaded-->
+    </div>
+</div>
+<ng-template #loaderTemplate let-loaderValue="value">
+  <div class="row justify-content-center mt-4" *ngIf="loaderValue">
+    <div class="spinner-border text-success" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+  </div>
+</ng-template>
+<ng-keyboard-shortcuts [shortcuts]="shortcuts"></ng-keyboard-shortcuts>
+<ng-keyboard-shortcuts-help [key]="'f2'" [closeKey]="'escape'" [title]="'Hotkeys Help'"></ng-keyboard-shortcuts-help>

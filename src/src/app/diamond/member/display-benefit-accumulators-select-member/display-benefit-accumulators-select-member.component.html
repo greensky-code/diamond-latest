@@ -1,0 +1,88 @@
+<div class="container-fluid">
+    <h4 class="mt-3">Select Member</h4>
+    <button type="button" *ngIf="showIcon" class="modal-close close" aria-label="Close"
+            (click)="activeModal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+    <div class="card-block">
+        <form [formGroup]="selectMemberForm" novalidate>
+            <div class="row">
+                <div class="col-md-9">
+                    <div class="form-group row">
+                        <div class="col-md-4 form-control-static mb-0 mt-2">
+                            Diamond ID:
+                        </div>
+                        <div class="col-md-4 form-control-static mb-0">
+                            <input type="text" formControlName="diamondId" class="form-control" readonly/>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-4 form-control-static mb-0  mt-2 text-primary" >
+                            Subscriber ID:
+                        </div>
+                        <div class="col-md-4 form-control-static mb-0"
+                             [ngClass]="{'has-danger': formValidation.isValidField('subscriberId1') }">
+                            <input type="text" id="subscriberId1" name="subscriberId1"
+                                   formControlName="subscriberId1"
+                                   class="form-control"
+                                   (keydown)="onLookupFieldChange($event)"/>
+                        </div>
+                        <div class="col-md-4 form-control-static mb-0 text-primary">
+                            <span *ngIf="lastName" class="text-primary">
+                              {{lastName}}
+                            </span>
+                        </div>
+                        <div class="col-md-4 form-control-static mb-0">
+                            <small class="text-danger" *ngIf="formValidation.isValidField('subscriberId1')">
+                                {{ formValidation.errorMessage('subscriberId1') }}
+                            </small>
+                        </div>
+
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-4 form-control-static mb-0 mt-2 text-primary">
+                            Person Number:
+                        </div>
+                        <div class="col-md-4 form-control-static mb-0"
+                             [ngClass]="{'has-danger': formValidation.isValidField('personNo') }">
+                            <input type="text" id="personNo" name="personNo" (focusout)="onChangePersonId($event)"
+                                   formControlName="personNo" class="form-control"/>
+                        </div>
+                        <div class="col-md-4 form-control-static mb-0">
+                            <small class="text-danger" *ngIf="formValidation.isValidField('personNo')">
+                                {{ formValidation.errorMessage('personNo') }}
+                            </small>
+                        </div>
+
+                    </div>
+                    <div class="form-group row">
+                        <!-- Textbox with label of As of Date -->
+                        <div class="col-md-4 form-control-static mb-0 mt-4 pt-2 text-primary">
+                            As of Date:
+                        </div>
+                        <div class="col-md-4">
+                            <app-datepicker [formGroup]="selectMemberForm" [formValidation]="formValidation"
+                                            [field]="'asOfDate'" [labelText]="''"></app-datepicker>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="col-md-12 form-control-static mb-0 text-right">
+                        <button type="button" id="selectMbr" name="selectMbr" class="btn btn-primary"
+                                style="width: 78px;" (click)="search()">OK
+                        </button>
+                    </div>
+                    <br>
+                    <div class="col-md-12 form-control-static mb-0 text-right">
+                        <button type="button" id="selectMbr2" name="selectMbr" class="btn btn-primary"
+                                style="width: 78px;" (click)="close()">Cancel
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<ng-keyboard-shortcuts [shortcuts]="shortcuts"></ng-keyboard-shortcuts>
+<ng-keyboard-shortcuts-help [key]="'f1'" [closeKey]="'escape'" [title]="'Hotkeys Help'"></ng-keyboard-shortcuts-help>

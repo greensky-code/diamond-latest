@@ -1,0 +1,82 @@
+/* Copyright (c) 2020 . All Rights Reserved. */
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs/Rx';
+import { Headers } from '@angular/http';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/toPromise';
+import 'rxjs/add/operator/map';
+import { BatchMasterIn } from '../api-models/batch-master-in.model'
+import { CONFIG } from '../core/config';
+import { environment } from '../../environments/environment'
+import { HttpHeaders } from '@angular/common/http';
+import { SharedService } from '../shared/services/shared.service';
+import { catchError, map } from 'rxjs/operators';
+
+@Injectable()
+export class BatchMasterInService {
+
+    private batchMasterInUrl: string = `${environment.apiUrl}/batchmasterins`;
+    private contentHeaders = new HttpHeaders();
+    constructor(private httpClient : HttpClient,
+                private sharedService: SharedService) {
+        this.contentHeaders = this.contentHeaders.set('Accept', 'application/json');
+        this.contentHeaders = this.contentHeaders.set('Content-Type', 'application/json; charset=utf-8');
+    }
+
+    getBatchMasterIns(usePagination: boolean=false, page: number = 0, size: number = 0): Observable<BatchMasterIn[]> {
+        var url = `${this.batchMasterInUrl}/?use-pagination=${usePagination}&page=${page}&size=${size}`;
+        return this.httpClient.get(url, {observe: 'response'})
+            .pipe(map(response => response.body as BatchMasterIn[]),
+                catchError(this.sharedService.handleError))
+    }
+
+    getBatchMasterIn(batchId : string): Observable<BatchMasterIn> {
+        return this.httpClient.get(`${this.batchMasterInUrl}/${batchId}`, {observe: 'response'})
+            .pipe(map(response => response.body as BatchMasterIn),
+                catchError(this.sharedService.handleError))
+    }
+
+    getBatchMasterInsCount(): Observable<number> {
+        var url = `${this.batchMasterInUrl}/count`;
+        return this.httpClient.get(url, {observe: 'response'})
+            .pipe(map(response => response.body as number),
+                catchError(this.sharedService.handleError))
+    }
+
+    findByBatchId(batchId : string): Observable<BatchMasterIn[]> {
+        return this.httpClient.get(`${this.batchMasterInUrl}/find-by-batchid/${batchId}`, {observe: 'response'})
+            .pipe(map(response => response.body as BatchMasterIn),
+                catchError(this.sharedService.handleError))
+    }
+
+
+
+
+    createBatchMasterIn(batchMasterIn : BatchMasterIn): Observable<any> {
+        let body = JSON.stringify(batchMasterIn);
+        return this.httpClient.post(this.batchMasterInUrl, body, { headers: this.contentHeaders })
+            .pipe(map(response => response),
+                 catchError(this.sharedService.handleError))
+    }
+
+    updateBatchMasterIn(batchMasterIn : BatchMasterIn, batchId : string): Observable<any> {
+        let body = JSON.stringify(batchMasterIn);
+        return this.httpClient.put(`${this.batchMasterInUrl}/${batchId}`, body, { headers: this.contentHeaders })
+             .pipe(map(response => response),
+                 catchError(this.sharedService.handleError))
+    }
+
+    partiallyUpdateBatchMasterIn(batchMasterIn : BatchMasterIn, batchId : string): Observable<any> {
+        let body = JSON.stringify(batchMasterIn);
+        return this.httpClient.patch(`${this.batchMasterInUrl}/${batchId}`, body, { headers: this.contentHeaders })
+            .pipe(map(response => response),
+                catchError(this.sharedService.handleError))
+    }
+
+    deleteBatchMasterIn(batchId : string): Observable<any> {
+        return this.httpClient.delete(`${this.batchMasterInUrl}/${batchId}`, {observe: 'response'})
+            .pipe(map(response => response.body),
+                catchError(this.sharedService.handleError))
+    }
+}

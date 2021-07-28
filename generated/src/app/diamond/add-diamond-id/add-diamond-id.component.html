@@ -1,0 +1,49 @@
+<!-- Copyright (c) 2020 . All Rights Reserved. -->
+<div class="container-fluid">
+    <div class="card-block">
+        <form [formGroup]="addDiamondIdForm" novalidate>
+            <h2 class="form-title card-label-admin">Add Diamond Id</h2>
+            <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+            <app-pop-up-message #popUpMesssage (buttonclickEvent)="popUpButtonHandler($event)"  [(popupMessage)] = "popUpMessage"></app-pop-up-message>
+                        
+            <div class="form-group row">
+                <!-- Textbox with label of DIAMOND ID -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('diamondId') }">
+                     <label class="col-form-label" for="diamondId" i18n>DIAMOND ID</label>
+                     <input type="text" id="diamondId"  class="form-control" formControlName="diamondId"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('diamondId')">
+                      {{ formValidation.errorMessage('diamondId') }}
+                     </small>
+                 </div>
+            
+                <!-- Button with label of View -->
+                <div class="col-md-2">
+                    <button type="button" id="view" name="view" class="btn btn-small btn-primary">View</button>
+                
+                
+                </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Button with label of Save -->
+                <div class="col-md-2">
+                    <button type="button" id="save" name="save" class="btn btn-small btn-primary">Save</button>
+                
+                
+                </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Button with label of Cancel -->
+                <div class="col-md-2">
+                    <button type="button" id="cancel" name="cancel" class="btn btn-small btn-primary">Cancel</button>
+                
+                
+                </div>
+            
+            </div>
+        </form>
+    </div>
+</div>

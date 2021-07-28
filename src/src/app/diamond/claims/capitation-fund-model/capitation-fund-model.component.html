@@ -1,0 +1,172 @@
+<!-- Copyright (c) 2021 . All Rights Reserved. -->
+<div class="container-fluid">
+    <div class="card-block">
+        <h2 class="form-title card-label-admin">Capitation Fund Model</h2>
+        <button type="button" *ngIf="showIcon" class="close" aria-label="Close" (click)="modalClose()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+        <app-pop-up-message #popUpMesssage (buttonclickEvent)="popUpButtonHandler($event)"  [(popupMessage)] = "popUpMessage"></app-pop-up-message>
+
+        <ng-template #loaderTemplate let-loaderValue="value">
+            <div class="row justify-content-center mt-4" *ngIf="loaderValue">
+                <div class="spinner-border text-success" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>
+            </div>
+        </ng-template>
+        <ng-container *ngTemplateOutlet="loaderTemplate;context:{value: secProgress }"></ng-container>
+
+        <ng-container *appWinSelect="{secWin: secWin, userTemplateId: userTemplateId, secModuleId: memberModuleId}">
+            <div class="row mt-3 mb-3">
+                <menu-bar [menus]="menu" (onMenuClick)="onMenuItemClick($event)"></menu-bar>
+            </div>
+        <form [formGroup]="capitationFundModelForm" novalidate>
+            <div class="form-group row">
+            </div>
+            <!-- DataGrid with Name of DataGrid -->
+            <ag-grid-angular #agGrid class="ag-theme-fresh" [gridOptions]="dataGridGridOptions"
+                             style="width: 100%; height: 300px;"
+                             (rowSelected)="onRowSelectedGrid($event)"
+                             [enableSorting]="true"
+                             [enableFilter]="true"
+                             [floatingFilter]="true"
+                             [pagination]="true"
+                             (click)="changeActionStatus('001')"
+                             [showToolPanel]="true">
+            </ag-grid-angular>
+
+            <div class="form-group row">
+            </div>
+
+            <div class="form-group row">
+                <!-- Textbox with label of Model ID -->
+                <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('modelId') }">
+                    <label class="col-form-label clr-blue" for="modelId" i18n>Model ID</label>
+                    <input type="text" [readOnly]="isModalIdReadonly" id="modelId" [fieldLevelSec]="''" [params]="" class="form-control"
+                           formControlName="modelId"/>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('modelId')">
+                        {{ formValidation.errorMessage('modelId') }}
+                    </small>
+                </div>
+
+                <!-- Textbox with label of Claim Type -->
+                <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('claimType') }">
+                    <label class="col-form-label clr-blue" for="claimType" i18n>Claim Type</label>
+                    <select id="claimType"  class="form-control" formControlName="claimType">
+                        <option value="null"> -Select- </option>
+                        <option *ngFor="let claimType of claimTypes" [value]="claimType.systemCode">
+                            {{claimType.systemCodeDesc2}} </option>
+                    </select>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('claimType')">
+                        {{ formValidation.errorMessage('claimType') }}
+                    </small>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <!-- Textbox with label of Model Description -->
+                <div class="col-md-8" [ngClass]="{'has-danger': formValidation.isValidField('modelDescription') }">
+                    <label class="col-form-label" for="modelDescription" i18n>Model Description</label>
+                    <input type="text" id="modelDescription" [fieldLevelSec]="''" [params]="" class="form-control"
+                           formControlName="modelDescription"/>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('modelDescription')">
+                        {{ formValidation.errorMessage('modelDescription') }}
+                    </small>
+                </div>
+
+            </div>
+
+            <div class="form-group row">
+                <!-- Textbox with label of Allocation Method -->
+                <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('allocationMethod') }">
+                    <label class="col-form-label clr-blue" for="allocationMethod" i18n>Allocation Method</label>
+                    <select id="allocationMethod"  class="form-control" formControlName="allocationMethod">
+                        <option value="null"> -Select- </option>
+                        <option *ngFor="let allocationMethod of allocationMethods" [value]="allocationMethod.dddwDtlPrimaryKey.dataVal">
+                            {{allocationMethod.dddwDtlPrimaryKey.displayVal}} </option>
+                    </select>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('allocationMethod')">
+                        {{ formValidation.errorMessage('allocationMethod') }}
+                    </small>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <!-- Textbox with label of Min Allocation -->
+                <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('minAllocation') }">
+                    <label class="col-form-label clr-blue" for="minAllocation" i18n>Min Allocation</label>
+                    <input type="number" max="1" id="minAllocation" [fieldLevelSec]="''" [params]="" class="form-control"
+                           formControlName="minAllocation"/>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('minAllocation')">
+                        {{ formValidation.errorMessage('minAllocation') }}
+                    </small>
+                </div>
+
+                <!-- Textbox with label of Max Allocation -->
+                <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('maxAllocation') }">
+                    <label class="col-form-label clr-blue" for="maxAllocation" i18n>Max Allocation</label>
+                    <input type="number" max="1" id="maxAllocation" [fieldLevelSec]="''" [params]="" class="form-control"
+                           formControlName="maxAllocation"/>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('maxAllocation')">
+                        {{ formValidation.errorMessage('maxAllocation') }}
+                    </small>
+                </div>
+
+            </div>
+
+            <div class="form-group row">
+            </div>
+        </form>
+            <ng-container *ngIf="showSubModelDetails">
+                <form [formGroup]="capitationFundModelDetailForm" novalidate>
+                <ag-grid-angular #agGrid class="ag-theme-fresh" [gridOptions]="dataGrid002GridOptions"
+                                 style="width: 100%; height: 300px;"
+                                 (rowSelected)="onRowSelectedGrid002($event)"
+                                 [enableSorting]="true"
+                                 [enableFilter]="true"
+                                 [floatingFilter]="true"
+                                 [pagination]="true"
+                                 (click)="changeActionStatus('002')"
+                                 [showToolPanel]="true">
+                </ag-grid-angular>
+
+                <div class="form-group row">
+                </div>
+
+                <div class="form-group row">
+                    <!-- Textbox with label of Sub Model ID -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('subModelId002') }">
+                        <label class="col-form-label clr-blue" for="subModelId002" i18n>Sub Model ID</label>
+                        <input type="text" id="subModelId002" [fieldLevelSec]="''" [params]="" class="form-control"
+                               formControlName="subModelId002"/>
+                        <small class="text-danger" *ngIf="formValidation.isValidField('subModelId002')">
+                            {{ formValidation.errorMessage('subModelId002') }}
+                        </small>
+                    </div>
+
+                    <!-- Textbox with label of Description -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('description002') }">
+                        <label class="col-form-label" for="description002" i18n>Description</label>
+                        <input type="text" id="description002" [fieldLevelSec]="''" [params]="" class="form-control"
+                               formControlName="description002"/>
+                        <small class="text-danger" *ngIf="formValidation.isValidField('description002')">
+                            {{ formValidation.errorMessage('description002') }}
+                        </small>
+                    </div>
+
+                </div>
+
+                <div class="form-group row">
+                </div>
+
+                <div class="form-group row">
+                </div>
+                </form>
+            </ng-container>
+        </ng-container>
+    </div>
+</div>
+
+<ng-keyboard-shortcuts [shortcuts]="shortcuts"></ng-keyboard-shortcuts>
+<ng-keyboard-shortcuts-help [key]="'f2'" [closeKey]="'escape'" [title]="'Hotkeys Help'"></ng-keyboard-shortcuts-help>

@@ -1,0 +1,197 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+    <title>Running PCP Auto Assignment</title>
+    <!--(Meta)==========================================================-->
+    <meta name="copyright"
+          value="© Copyright 2002 Health Systems Design Corp., a wholly owned subsidiary of Perot Systems Corporation. All rights reserved"/>
+    <meta content="RoboHELP by eHelp Corporation - www.ehelp.com" name="generator"/>
+    <meta content="0.1" name="generator-major-version"/>
+    <meta content="1" name="generator-minor-version"/>
+    <meta content="kadov" name="filetype"/>
+    <meta content="1" name="filetype-version"/>
+    <meta content="0" name="page-count"/>
+    <meta content="0" name="layout-height"/>
+    <meta content="0" name="layout-width"/>
+    <!--(Links)=========================================================-->
+    <!--(Scripts)=======================================================-->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+</head>
+<body>
+
+<div class="calibreMeta">
+    <div class="calibreMetaTitle">
+
+
+        <h1>
+            <a href="../2nlvj-mfnql.html">DIAMOND 950 Help
+            </a>
+        </h1>
+
+
+    </div>
+    <div class="calibreMetaAuthor">
+        Unknown
+
+    </div>
+</div>
+
+<div class="calibreMain">
+
+    <div class="calibreEbookContent">
+
+        <div class="calibreEbNavTop">
+
+            <a href="Setting_Up_PCP_Auto_Assignment.htm" class="calibreAPrev">previous page
+            </a>
+
+
+            <a href="PCP_Auto_Assignment_How_DIAMOND_Thinks.htm" class="calibreANext">next page
+            </a>
+
+        </div>
+
+
+        <h1 class="calibre1">Running PCP Auto Assignment</h1>
+
+        <!--(Table)=========================================================-->
+        <table cellspacing="0" width="480" x-use-null-cells="" class="calibre172">
+
+            <tbody class="calibre6">
+            <tr valign="top" class="calibre7">
+                <td width="120px" class="">
+                    <p class="map-links"><a
+                            href="Running_PCP_Auto_Assignment.htm#Running_PCP_Auto_Assignment_Restrictions_TASK_MID"><img
+                            alt="image\assets/help/MidTopic_shg.gif" border="0" height="10" src="assets/help/MidTopic_shg.gif" width="18"
+                            class=""/></a> Restrictions</p></td>
+                <td width="126px" class="">
+                    <p class="map-links"><a
+                            href="Running_PCP_Auto_Assignment.htm#Running_PCP_Auto_Assignment_Instructions_TASK_MID"><img
+                            alt="image\assets/help/MidTopic_shg.gif" border="0" height="10" src="assets/help/MidTopic_shg.gif" width="18"
+                            class=""/></a> Instructions</p></td>
+                <td width="234px" class="">
+                    <p class="map-links"><a
+                            href="Running_PCP_Auto_Assignment.htm#Running_PCP_Auto_Assignment_Frequently_Asked_Questions_TASK_MID"><img
+                            alt="image\assets/help/MidTopic_shg.gif" border="0" height="10" src="assets/help/MidTopic_shg.gif" width="18"
+                            class=""/></a> Frequently Asked Questions</p></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <p class="step-comment-noline">PCP Auto Assignment is a batch process by which you
+            can:</p>
+
+        <ul class="calibre17">
+
+            <li class="kadov-p-cbullet-list-h"><p class="bullet-list-h">Validate/Replace
+                a submitted PCP assignment</p></li>
+
+            <li class="kadov-p-cbullet-list-h"><p class="bullet-list-h">Automatically
+                assign a suitable PCP to a current member eligibility record</p></li>
+        </ul>
+
+        <p class="step-comment-noline">You use PCPJB as described below to run a PCP Auto Assignment
+            batch job that applies the PCPAA rules and other criteria and logic to
+            assign a PCP or validate a submitted PCP for selected member eligibility
+            records</p>
+
+        <p class="step-comment-noline">For more information on PCP Auto Assignment batch processing,
+            see
+            <a href="PCP_Auto_Assignment_How_DIAMOND_Thinks.htm#PCP_Auto_Assignment_HDT_PCP_Auto_Assignment_Processing_Logic_MID">PCP
+                Auto Assignment Processing Logic</a>.</p>
+
+        <p class="doc-level"><a name="Running_PCP_Auto_Assignment_Restrictions_TASK_MID"></a>Restrictions</p>
+
+        <p class="step-comment-noline">It is recommended that you ensure that all Member batch
+            and Member API transactions have completed (that is, are no longer running)
+            before running a PCP Auto Assignment batch job. </p>
+
+        <p class="doc-level"><a name="Running_PCP_Auto_Assignment_Instructions_TASK_MID"></a>Instructions</p>
+
+        <!--(Table)=========================================================-->
+        <table cellspacing="0" width="526" x-use-null-cells="" class="calibre172">
+
+            <tbody class="calibre6">
+            <tr valign="top" class="calibre7">
+                <td width="250px" class="calibre13">
+                    <p class="tbl-header">Step</p></td>
+                <td width="276px" class="calibre14">
+                    <p class="tbl-header">Comment</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre7">
+                <td width="250px" class="calibre15">
+                    <p class="step1">1. Ensure that all PCP
+                        Auto Assignment setup tasks are complete.</p></td>
+                <td width="276px" class="calibre16">
+                    <p class="step-comment">For more information, see
+                        <a href="Setting_Up_PCP_Auto_Assignment.htm">Setting Up PCP Auto Assignment</a>.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre7">
+                <td width="250px" class="calibre15">
+                    <p class="step1">2. Use PCPJB to enter
+                        the PCP Auto Assignment batch job selection criteria:</p>
+                    <ul class="calibre17">
+
+                        <li class="kadov-p-ctbl-list-bullet"><p class="step--bullet">Lines of business
+                            included</p></li>
+
+                        <li class="kadov-p-ctbl-list-bullet"><p class="step--bullet">Date range of
+                            member eligibility record insert dates included</p></li>
+
+                        <li class="kadov-p-ctbl-list-bullet"><p class="step--bullet">Member eligibility
+                            record insert processes (batch, online) included</p></li>
+                    </ul>
+                </td>
+                <td width="276px" class="calibre16">
+                    <p class="step-comment">To select the included lines
+                        of business, from the <span class="calibre4">Special</span>
+                        menu select <span class="calibre4">Line Of Business</span>.
+                        Then complete the fields as needed to include or exclude specific lines
+                        or business or ranges of lines of business.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre7">
+                <td width="250px" class="calibre15">
+                    <p class="step1">3.  Run the PCPJB batch
+                        job. From the <span class="calibre4">File</span> menu, select
+                        <span class="calibre4">Run</span>.</p></td>
+                <td width="276px" class="calibre16">
+                    <p class="step-comment">You cannot cancel a PCPJB
+                        job.</p></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <p class="calibre38"> </p>
+
+        <p class="doc-level"><a name="Running_PCP_Auto_Assignment_Frequently_Asked_Questions_TASK_MID"></a>Frequently
+            Asked Questions</p>
+
+        <p class="step-comment-noline">None.</p>
+
+
+    </div>
+
+    <div class="calibreEbNav">
+
+        <a href="Setting_Up_PCP_Auto_Assignment.htm" class="calibreAPrev">previous page
+        </a>
+
+
+        <a href="../2nlvj-mfnql.html" class="calibreAHome">start
+        </a>
+
+
+        <a href="PCP_Auto_Assignment_How_DIAMOND_Thinks.htm" class="calibreANext">next page
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+</html>

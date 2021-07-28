@@ -1,0 +1,54 @@
+<!-- Copyright (c) 2021 . All Rights Reserved. -->
+<div class="modal-header">
+  <h4 class="modal-title">{{title}}</h4>
+</div>
+
+<div class="modal-body">
+
+  <form [formGroup]="arAdjustmentsGlMonthForm" novalidate>
+
+    <div class="form-group row">
+    </div>
+
+    <div class="form-group row">
+      <!-- Textbox with label of Gl Month -->
+      <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('glMonth') }">
+        <app-datepicker [isRequired]="false" [formGroup]="arAdjustmentsGlMonthForm" [formValidation]="formValidation"
+          [field]="'glMonth'" [fieldLevelSec]="''" [params]="{secColDetails: secColDetails, isEditState: false}"
+          [labelText]="'Gl Month'">
+        </app-datepicker>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <!-- Textbox with label of Paid Thru Date -->
+      <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('paidThruDate') }">
+        <label class="col-form-label" for="transactionDate" i18n>Paid Thru Date</label>
+        <div class="input-group">          
+          <input id="paidThruDate" [fieldLevelSec]="'paidThruDate'" [params]="{secColDetails: secColDetails}"  class="form-control" angular-mydatepicker name="paidThruDate" (click)="paidThruDateId.toggleCalendar()"
+          formControlName="paidThruDate" #paidThruDateId="angular-mydatepicker"/>
+            <div class="input-group-append">
+              <button type="button" class="btn btn-secondary" (click)="paidThruDateId.clearDate()">
+                <fa-icon [icon]="['far', 'window-close']"></fa-icon>
+              </button>
+            </div>
+            <div class="input-group-append">
+              <button type="button" class="btn btn-secondary" (click)="paidThruDateId.toggleCalendar()">
+                  <fa-icon [icon]="['far', 'calendar']"></fa-icon>
+              </button>
+            </div>
+          </div>
+      </div>
+
+    </div>
+
+    <div class="form-group row">
+    </div>
+  </form>
+
+</div>
+
+<div class="modal-footer">
+  <button type="button" (click)="triggerClick(true)" class="button" data-dismiss="modal">OK</button>
+  <button type="button" (click)="triggerClick(false)" class="button" data-dismiss="modal">Cancel</button>
+</div>

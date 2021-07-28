@@ -1,0 +1,571 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+    <title>Vendor Management, How DIAMOND Thinks</title>
+    <!--(Meta)==========================================================-->
+    <meta content="About.htt" name="template"/>
+    <meta content="RoboHELP by eHelp Corporation - www.ehelp.com" name="generator"/>
+    <meta content="0.1" name="generator-major-version"/>
+    <meta content="1" name="generator-minor-version"/>
+    <meta content="kadov" name="filetype"/>
+    <meta content="1" name="filetype-version"/>
+    <meta content="1" name="page-count"/>
+    <meta content="4228" name="layout-height"/>
+    <meta content="889" name="layout-width"/>
+    <!--(Links)=========================================================-->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+   <link href="assets/help/stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="assets/help/page_styles.css" rel="stylesheet" type="text/css"/>
+
+  
+
+
+<link href="assets/help/calibreHtmlOutBasicCss.css" type="text/css" rel="stylesheet" />
+
+</head>
+<body>
+
+<div class="calibreMeta">
+  <div class="calibreMetaTitle">
+  
+  
+    
+    <h1>
+      <a href="../4xeqt-va1vo.html">DIAMOND 950 Help
+</a>
+    </h1>
+    
+    
+  
+  </div>
+  <div class="calibreMetaAuthor">
+    Unknown
+
+  </div>
+</div>
+
+<div class="calibreMain">
+
+  <div class="calibreEbookContent">
+    
+      <div class="calibreEbNavTop">
+        
+          <a href="Display_A_P_transaction_information_for_a_vendor.htm" class="calibreAPrev">previous page
+</a>
+        
+
+        
+          <a href="VADPP_Vendor_Advance_Pay_Priority.htm" class="calibreANext">next page
+</a>
+        
+      </div>
+    
+
+    
+
+<h1 class="calibre3"><!--kadov_tag{{<variable name=title
+						x-format=default
+						x-value="Vendor Management, How DIAMOND Thinks">}}-->Vendor 
+ Management, How DIAMOND Thinks<!--kadov_tag{{</variable>}}--></h1>
+
+<p class="text"><a href="#Overview">Overview</a> </p>
+
+<p class="text"><a href="#Keywords, Windows, and Parameters Used to Set Up Vendor Management">Keywords, 
+ Windows, and Parameters Used to Set Up Vendor Management</a></p>
+
+<p class="text"><a href="#APUPD_Accounts_Payable_Processing_Logic">APUPD 
+ Accounts Payable Processing Logic</a></p>
+
+<p class="text"><a href="#CKPRT Check Print Processing Logic">CKPRT Check 
+ Print Processing Logic</a></p>
+
+<p class="text"><a href="#Zero Payment Options">Zero Payment Options</a></p>
+
+<p class="text"><a href="#Offset By">Offset By</a></p>
+
+<p class="text"><a href="#Line of Business">Line of Business</a></p>
+
+<p class="text"><a href="#Updating_Accounts_Payable_Records">Updating Accounts 
+ Payable Records</a></p>
+
+<p class="text"><a href="#1099_Processing">1099 Processing</a></p>
+
+<h1 class="calibre3"><a name="Overview"></a>Overview </h1>
+
+<p class="body-text">The DIAMOND system’s vendor management functionality 
+ enables you to create advance payment accounts and make advance payments 
+ to vendors thereby creating a credit balance, determine which claims payments 
+ to offset against a vendor’s advance payment account, and to track the 
+ current dollar value of a vendor’s advance payment account. </p>
+
+<p class="body-text">Use the vendor management functionality to perform the 
+ following tasks: </p>
+
+<ul class="calibre6">
+	
+	<li class="kadov-p-cbullet1"><p class="bullet1">Make advance payments 
+ to providers, and then offset (deduct) future claims payments from the 
+ advance amount.</p></li>
+	
+	<li class="kadov-p-cbullet1"><p class="bullet1">Apply to accounts 
+ payable non-DIAMOND checks you receive from vendors. </p></li>
+	
+	<li class="kadov-p-cbullet1"><p class="bullet1">Manually write-off 
+ credit balances for advance payments or credit balances that are not created 
+ by the advance payment process.</p></li>
+	
+	<li class="kadov-p-cbullet1"><p class="bullet1">Apply vendor advance 
+ payments, claims offsets, balance transfers, and checks from the vendor 
+ to the general ledger interface.</p></li>
+	
+	<li class="kadov-p-cbullet1"><p class="bullet1">View vendors advance 
+ payment accounts showing credit balances and the respective claims that 
+ have been paid against each advance payment account. </p></li>
+	
+	<li class="kadov-p-cbullet1"><p class="bullet1">View vendors credit 
+ balances and offsets on RAs.</p></li>
+</ul>
+
+<p class="body-text"><a href="Vendor_Management%2c_How_DIAMOND_Thinks.htm">Top</a></p>
+
+<h1 class="calibre3"><a name="Keywords, Windows, and Parameters Used to Set Up Vendor Management"></a>Keywords, 
+ Windows, and Parameters Used to Set Up Vendor Management </h1>
+
+<h2 class="calibre161">CODES (System Codes Maintenance)</h2>
+
+<p class="body-text">Use the CODES window to define advance payment account 
+ type codes, ADVANCEPMTTYPE. </p>
+
+<h2 class="calibre10">REASN (Reason Codes)</h2>
+
+<p class="body-text">Use the REASN window to create a new reason code type 
+ – CR credit. </p>
+
+<h2 class="calibre10">VADPR (Vendor Advance Payment Rules)</h2>
+
+<p class="body-text">Use VADPR to define the rules that are in effect for 
+ the advance Payment account types that you created in CODES. You can also 
+ associate the rules you define in VADPR with Advance Payment Accounts 
+ by referencing them in VADPY. You can define rules for the following:</p>
+
+<ul class="calibre6">
+	
+	<li class="kadov-p-cbullet1"><p class="bullet1">Define whether 
+ or not the advance payment account is one-time-only, or if it can be replenished 
+ when it reaches a zero balance.</p></li>
+	
+	<li class="kadov-p-cbullet1"><p class="bullet1">Define which transactions, 
+ those for matching vendors, members, or providers, will be used to offset 
+ the advance payment account.</p></li>
+	
+	<li class="kadov-p-cbullet1"><p class="bullet1">Define what happens 
+ when the advance payment account reaches a zero balance or is near a zero 
+ balance.</p></li>
+</ul>
+
+<h2 class="calibre10">VADPY (Vendor Advance Payment Account)</h2>
+
+<p class="body-text">Use VADPY to create advance payment accounts for vendors 
+ and to enter payment information for advance payment accounts. You can 
+ enter information for payments that were made either through DIAMOND processing 
+ or received from an outside source. Also use this keyword to set up rules 
+ that define how the DIAMOND system will manage advance payments and offsets 
+ for advance payment accounts. </p>
+
+<h2 class="calibre10">Line of Business Special Function</h2>
+
+<p class="body-text">This is a special function that is available from VADPY. 
+ Use this special function to add lines of business that are valid for 
+ each advance payment account.</p>
+
+<h2 class="calibre10">Advance Payment Approval Special Function</h2>
+
+<p class="body-text">This is a special function that is available from VADPY. 
+ Use this special function to approve advance payment entries so they will 
+ be processed and applied to the appropriate advance payment accounts. 
+ </p>
+
+<h2 class="calibre10">VADPP (Vendor Advance Pay Priority)</h2>
+
+<p class="body-text">Use VADPP to define the priority in which offsets are 
+ applied to advance payment accounts when a vendor has more than one account.</p>
+
+<h2 class="calibre10">VENCR (Vendor Credit)</h2>
+
+<p class="body-text">Use VENCR to store information about a check the vendor 
+ has returned until you have sufficient time to research and adjust claims 
+ as necessary, to offset a credit balance, or to transfer an advance payment 
+ balance from one advance payment account to another. </p>
+
+<h2 class="calibre10">Vendor Credit Status Special Function</h2>
+
+<p class="body-text">This is a special function that is available from VENCR. 
+ Use this special function to approve or deny a credit. This special function 
+ is required only if parameter VENDSECAPP is set to yes. </p>
+
+<h2 class="calibre10">Apply Vendor Credit Special Function</h2>
+
+<p class="body-text">This is a special function that is available from VENCR. 
+ Use this special function to apply the vendor credit you defined in VENCR. 
+ After you supply the information for this window and save it, the system 
+ will generate a write-off the next time you run APUPD for this Vendor.</p>
+
+<h2 class="calibre10">View Vendor Credit Balance Special Function</h2>
+
+<p class="body-text">This is a special function that is available from VENDR, 
+ VENDA, VADPP, VADPY, and VENCR. Use this special function to view transaction 
+ information and the current credit balance for a vendor’s advance payment 
+ account. </p>
+
+<h2 class="calibre10">VPDSP (Advance Payment History Display)</h2>
+
+<p class="body-text">Use VPDSP to view historical transactions for an advance 
+ payment account. Enter the desired information into the filter screen 
+ to determine which transactions will be displayed. </p>
+
+<h2 class="calibre10">VENDA (Vendor Address)</h2>
+
+<p class="body-text">Use VENDA to determine the Auto Letter Distribution 
+ Method; Email, Fax or Print. <!--kadov_tag{{<spaces>}}--> <!--kadov_tag{{</spaces>}}-->(is 
+ this functionality directly related to advance payment accounts or was 
+ this added as a separate feature – not sure if this should be included 
+ in this list)</p>
+
+<h2 class="calibre10">Vendor Credit Status Special Function</h2>
+
+<p class="body-text">This is a special function that is available from VENCR. 
+ Use this special function to view the Advance Payment Status window that 
+ shows the current status of an advance payment.</p>
+
+<h2 class="calibre10">Payment Detail Special Function</h2>
+
+<p class="body-text">This is a special function that is available from DNCLM 
+ Detail, INCLM Detail, or PSCLM Detail. Use this function to view if the 
+ detail line payment is an offset to an advance payment account.</p>
+
+<h2 class="calibre10">View AP Additional Info Special Function </h2>
+
+<p class="body-text">This is a special function that is available from ACPAY 
+ and APVDS. Use this function to view additional accounts payable information 
+ including Check/EFT Number, Offset Indicator, and the check/EFT payment 
+ amount. </p>
+
+<h2 class="calibre10">APTAX (AP 1099 Reporting)</h2>
+
+<p class="body-text">The APTAX window contains the Include Offsets check 
+ box that determines whether or not offset amounts are included in 1099 
+ reporting. </p>
+
+<h2 class="calibre10">ADVANCEPAY System Parameter</h2>
+
+<p class="body-text">Use parameter ADVANCEPAY to indicate whether or not 
+ your organization uses the advance payment process</p>
+
+<h2 class="calibre10">VENDSECAPP System Parameter</h2>
+
+<p class="body-text">Use parameter VENDSECAPP to define whether or not there 
+ are special security requirements to approve or activate an advance payment 
+ account.</p>
+
+<p class="body-text"><a href="Vendor_Management%2c_How_DIAMOND_Thinks.htm">Top</a></p>
+
+<h1 class="calibre3"><a name="APUPD_Accounts_Payable_Processing_Logic"></a>APUPD Accounts 
+ Payable Processing Logic</h1>
+
+<h2 class="calibre161">Accounts Payable Records </h2>
+
+<p class="body-text">APUPD reads advance payment records and creates an accounts 
+ payable record for every advance payment transaction that is in an active 
+ status. The information you provide in the APUPD filter screen determines 
+ which advance payment accounts are updated.</p>
+
+<p class="body-text">APUPD creates two types of account payable records for 
+ advance payment accounts: one for payments that represents a positive 
+ amount and one for credit balances that represents a negative amount. 
+ </p>
+
+<p class="body-text">When you manually enter the check date and check number 
+ for an advance payment, the DIAMOND system assumes that a check will not 
+ be created and creates an accounts payable record as if it had already 
+ been run through the check write and check post processes.</p>
+
+<h2 class="calibre10">General Ledger Reference Accounts</h2>
+
+<p class="body-text">APUPD creates entries into the general ledger file interface. 
+ The DIAMOND system determines which GL Reference account codes to use 
+ based on the Company Code and GL Reference codes you entered for the advance 
+ payment account. </p>
+
+<p class="body-text">You define which debit and credit accounts are used 
+ for advance payments and for offsets in VADPY (Vendor Advance Payment 
+ Account). If you use the advance payment debit and credit field on GLREF, 
+ the values will be updated into accounts payable. If you don’t use the 
+ advance payment debit and credit fields on GLREF, the primary debit and 
+ credit accounts will be updated. </p>
+
+<p class="body-text">Two GL entries are made for each advance payment account 
+ transaction; a debit entry for which the dollar amount appears in the 
+ credit amount column and a credit entry for which the dollar amount appears 
+ in the debit amount column. </p>
+
+<p class="body-text"><a href="Vendor_Management%2c_How_DIAMOND_Thinks.htm">Top</a></p>
+
+<h1 class="calibre3"><a name="CKPRT Check Print Processing Logic"></a>CKPRT Check Print 
+ Processing Logic</h1>
+
+<p class="body-text">The check print process creates checks for advance payment 
+ to vendors and evaluates accounts payable records for offsets against 
+ advance payment accounts based on rules that you define in VADPY (Vendor 
+ Advance Payment Account). </p>
+
+<p class="body-text">The check print process assesses each accounts payable 
+ record (created during accounts payable update) to determine if it should 
+ be offset against a credit balance. The check print process also reads 
+ advance payment records to determine if offsets can be applied and to 
+ determine what rules govern those offsets. </p>
+
+<p class="body-text">If a vendor has multiple advance payment accounts, the 
+ check print process reads vendor master to determine which advance payment 
+ account is to be offset.</p>
+
+<p class="body-text"><a href="Vendor_Management%2c_How_DIAMOND_Thinks.htm">Top</a></p>
+
+<h1 class="calibre3"><a name="Zero Payment Options"></a>Zero Payment Options</h1>
+
+<p class="body-text">The check print process reads the Zero Payment Options 
+ field from VADPR to determine what action to take when the credit balance 
+ of an advance payment account is insufficient to cover a claim payment. 
+ Claims are offset against advance payment accounts based on a first-in, 
+ first-out situation and based on the priority of Advance Pay Types defined 
+ in Provider Master. <!--kadov_tag{{<spaces>}}--> <!--kadov_tag{{</spaces>}}-->Claims 
+ should exhaust all monies for one Account Type/Payment, before offsetting 
+ against another. The zero payment options are:</p>
+
+<ul class="calibre6">
+	
+	<li class="kadov-p-cbullet"><p class="bullet">Remain to General Account</p></li>
+	
+	<li class="kadov-p-cbullet"><p class="bullet">Below Zero</p></li>
+</ul>
+
+<h2 class="calibre10">Remain to General Account</h2>
+
+<p class="body-text">If a claim payment exceeds the credit balance of the 
+ advance payment account, the claim will be paid from the general account 
+ that is used for standard claims processing</p>
+
+<h2 class="calibre10">Below Zero</h2>
+
+<p class="body-text">If a claim payment exceeds the credit balance of the 
+ advance payment account, the claim payment is held in a finalized state 
+ until the will still get paid, however, the credit balance will be in 
+ a negative condition. <!--kadov_tag{{<spaces>}}--> <!--kadov_tag{{</spaces>}}-->When 
+ the next advance payment is applied to that account, the credit balance 
+ will be brought back to a positive amount, minus the negative amount created 
+ by the offsets. <!--kadov_tag{{<spaces>}}--> <!--kadov_tag{{</spaces>}}--></p>
+
+<p class="body-text">When a claim payment exceeds the credit balance available 
+ in the advance payment account, and the VADPR Replenish box for this account 
+ is checked, the claim payment will be held in a finalized state until 
+ there is enough money in the advance payment account to cover the amount 
+ of the claim payment. </p>
+
+<p class="body-text"><a href="Vendor_Management%2c_How_DIAMOND_Thinks.htm">Top</a></p>
+
+<h1 class="calibre3"><a name="Offset By"></a>Offset By</h1>
+
+<p class="body-text">Check print evaluates information in the Offset By field 
+ of the VADPR window to help determine if an accounts payable transaction 
+ should be offset against an advance payment account. The Offset By options 
+ are:</p>
+
+<ul class="calibre6">
+	
+	<li class="kadov-p-cbullet1"><p class="bullet1">Vendor</p></li>
+	
+	<li class="kadov-p-cbullet1"><p class="bullet1">Vendor + Provider</p></li>
+	
+	<li class="kadov-p-cbullet1"><p class="bullet1">Vendor + Provider 
+ + Member</p></li>
+	
+	<li class="kadov-p-cbullet1"><p class="bullet1">Vendor + Member</p></li>
+</ul>
+
+<h2 class="calibre10">Vendor </h2>
+
+<p class="body-text">All payments for the vendor you specified on the advance 
+ payment account will be deducted against the credit balance as long as 
+ all other rules are met. </p>
+
+<h2 class="calibre10">Vendor + Provider </h2>
+
+<p class="body-text">All payments that match the vendor and provider you 
+ specified on the advance payment account will be deducted from the credit 
+ balance if the From and Thru DOS matches and if all other rules are met. 
+ If either the vendor or provider on the transaction does not match the 
+ advance payment account, then the transaction is not applied. </p>
+
+<h2 class="calibre10">Vendor + Provider + Member</h2>
+
+<p class="body-text">All payments that match the vendor, provider, and member 
+ you specified on the advance payment account will be deducted from the 
+ credit balance if the From and Thru DOS matches and if all other rules 
+ are met. If the vendor, provider, or member on the transaction does not 
+ match the advance payment account, then the transaction is not applied.</p>
+
+<h2 class="calibre10">Vendor + Member</h2>
+
+<p class="body-text">All payments that match the vendor and member you specified 
+ on the advance payment account will be deducted from the credit balance 
+ if the From and Thru DOS matches and if all other rules are met. If either 
+ the vendor or member on the transaction does not match the advance payment 
+ account, then the transaction is not applied.</p>
+
+<p class="body-text"><a href="Vendor_Management%2c_How_DIAMOND_Thinks.htm">Top</a></p>
+
+<h1 class="calibre3"><a name="Line of Business"></a>Line of Business</h1>
+
+<p class="body-text">For an accounts payable transaction to offset an advance 
+ payment account, the line of business you specified on the advance payment 
+ account must match the line of business for the provider on the claim. 
+ </p>
+
+<p class="body-text"><a href="Vendor_Management%2c_How_DIAMOND_Thinks.htm">Top</a></p>
+
+<h1 class="calibre3"><a name="Updating_Accounts_Payable_Records"></a>Updating Accounts Payable 
+ Records</h1>
+
+<p class="body-text">When the check print process locates an accounts payable 
+ transaction that matches an advance payment account, it updates the accounts 
+ payable record with the check number from the advance payment. </p>
+
+<p class="body-text"><a href="Vendor_Management%2c_How_DIAMOND_Thinks.htm">Top</a></p>
+
+<h1 class="calibre3"><a name="1099_Processing"></a>1099 Processing</h1>
+
+<p class="body-text">Advance Payments will be included in 1099 reporting 
+ if the vendor's 1099 Flag in VENTX is set to P or Y. You can choose whether 
+ or not you want offset amounts to be included in 1099s - this is controlled 
+ by the Include Offsets option on the APTAX window.</p>
+
+<p class="body-text"><a href="Vendor_Management%2c_How_DIAMOND_Thinks.htm">Top</a></p>
+
+<p class="calibre162"> </p>
+
+<p class="calibre162"> </p>
+
+<p class="calibre162"> </p>
+
+<p class="calibre162"> </p>
+
+<p class="calibre162"> </p>
+
+<p class="calibre162"> </p>
+
+<p class="calibre162"> </p>
+
+<p class="calibre162"> </p>
+
+<p class="calibre162"> </p>
+
+<p class="calibre162"> </p>
+
+<p class="calibre162"> </p>
+
+<p class="calibre162"> </p>
+
+<p class="calibre162"> </p>
+
+<p class="calibre162"> </p>
+
+<p class="calibre162"> </p>
+
+<p class="calibre162"> </p>
+
+<p class="calibre162"> </p>
+
+<p class="calibre162"> </p>
+
+<p class="calibre162"> </p>
+
+<p class="calibre162"> </p>
+
+<p class="calibre162"> </p>
+
+<p class="calibre162"> </p>
+
+<p class="calibre162"> </p>
+
+<p class="calibre162"> </p>
+
+<p class="calibre162"> </p>
+
+<p class="calibre162"> </p>
+
+<p class="calibre162"> </p>
+
+<p class="calibre162"> </p>
+
+<p class="calibre162"> </p>
+
+<p class="calibre162"> </p>
+
+<p class="calibre162"> </p>
+
+<p class="calibre162"> </p>
+
+<p class="calibre162"> </p>
+
+<p class="calibre162"> </p>
+
+<p class="calibre162"> </p>
+
+<p class="calibre162"> </p>
+
+<p class="calibre162"> </p>
+
+<p class="calibre162"> </p>
+
+<p class="calibre162"> </p>
+
+<p class="calibre162"> </p>
+
+<p class="calibre162"> </p>
+
+<p class="calibre162"> </p>
+
+<p class="calibre162"> </p>
+
+<p class="calibre162"> </p>
+
+
+
+
+
+
+  </div>
+
+  
+  
+  
+
+  <div class="calibreEbNav">
+    
+      <a href="Display_A_P_transaction_information_for_a_vendor.htm" class="calibreAPrev">previous page
+</a>
+    
+
+    <a href="../4xeqt-va1vo.html" class="calibreAHome">start
+</a>
+
+    
+      <a href="VADPP_Vendor_Advance_Pay_Priority.htm" class="calibreANext">next page
+</a>
+    
+  </div>
+
+</div>
+
+</body>
+</html>

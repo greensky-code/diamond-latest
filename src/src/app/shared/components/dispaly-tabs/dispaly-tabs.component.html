@@ -1,0 +1,28 @@
+<ul ngbNav #nav="ngbNav" class="nav-tabs">
+
+    <ng-container *ngFor="let menu of menus">
+        <li [ngbNavItem]="menu.menuItem">
+            <a ngbNavLink (click)="menuItemClicked(menu)">
+                Tab {{ menu.menuItem }}
+            </a>
+            <ng-template ngbNavContent>
+                <p>Tab {{ menu.menuItem }} content</p>
+            </ng-template>
+
+        </li>
+        <li ngbDropdown class="nav-item" *ngIf="menu.dropdownItems?.length > 0">
+            <a href (click)="false" class="nav-link" ngbDropdownToggle>{{menu.menuItem}}</a>
+            <div ngbDropdownMenu>
+                <ng-container *ngFor="let dropDown of menu.dropdownItems; let i = index">
+                    <button ngbDropdownItem (click)="menuItemClicked(menu,dropDown)">
+                        {{dropDown}}
+                    </button>
+                    <div *ngIf="(menu.dropdownItems.length)-1 !== i" class="dropdown-divider"></div>
+                </ng-container>
+            </div>
+        </li>
+    </ng-container>
+
+</ul>
+
+<div [ngbNavOutlet]="nav" class="mt-2"></div>

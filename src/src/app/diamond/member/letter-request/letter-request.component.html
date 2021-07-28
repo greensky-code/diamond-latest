@@ -1,0 +1,49 @@
+<!-- Copyright (c) 2020 . All Rights Reserved. -->
+<div class="container-fluid">
+    <div class="card-block">
+        <form [formGroup]="letterRequestForm" novalidate>
+            <h2 class="form-title card-label-admin">Letter Request</h2>
+            <button type="button" *ngIf="showIcon" class="modal-close close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+            <app-pop-up-message #popUpMesssage (buttonclickEvent)="popUpButtonHandler($event)"  [(popupMessage)] = "popUpMessage"></app-pop-up-message>
+                        
+                        <!-- DataGrid with Name of DataGrid -->
+                    <ag-grid-angular #agGrid class="ag-theme-fresh" [gridOptions]="dataGridGridOptions"
+                    style="width: 100%; height: 300px;"
+                    [enableSorting]="true"
+                    [enableFilter]="false"
+                    [floatingFilter]="false"
+                    [pagination]="true"
+                    [showToolPanel]="true">
+                    </ag-grid-angular>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+                <!-- Button with label of Select -->
+                <div class="col-md-12">
+                    <button type="button" id="addData" name="addData" class=" float-right  ml-2 btn btn-small btn-primary">Add. Data</button>
+                    <button type="button" id="select" name="select" class="  float-right btn btn-small btn-primary">Select</button>
+              
+                </div>
+            </div>
+              <div class="form-group row">
+                <!-- Button with label of View -->
+                <div class="col-md-12">
+                     <button type="button" id="send" name="send" class=" float-right  ml-2 btn btn-small btn-primary">Send</button>
+                    <button type="button" id="view" name="view" class="float-right btn btn-small btn-primary">View</button>
+                </div>
+            </div>
+           
+            <div class="form-group row">
+                <!-- Button with label of Close -->
+                <div class="col-md-12">
+                    <button type="button" id="close" name="close" class=" float-right btn btn-small btn-primary">Close</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

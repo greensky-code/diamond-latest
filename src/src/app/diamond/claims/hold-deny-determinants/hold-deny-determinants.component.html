@@ -1,0 +1,169 @@
+<!-- Copyright (c) 2021 . All Rights Reserved. -->
+<div class="container-fluid">
+    <div class="card-block">
+        <div class="row form-title">
+            <h2 class="col-md-6 card-label-admin">COB Hold/Deny Determinants</h2>
+        </div>
+        <button type="button" *ngIf="showIcon" class="close" aria-label="Close" (click)="modalClose()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+        <app-pop-up-message #popUpMesssage (buttonclickEvent)="popUpButtonHandler($event)"  [(popupMessage)] = "popUpMessage"></app-pop-up-message>
+
+        <div class="row mt-3 mb-3">
+            <menu-bar [menus]="menu" (onMenuClick)="onMenuItemClick($event)"></menu-bar>
+        </div>
+
+        <form [formGroup]="holdDenyDeterminantsForm" novalidate>
+            <!-- DataGrid with Name of DataGrid001 -->
+            <ag-grid-angular  class="ag-theme-fresh mt-4" [gridOptions]="dataGrid001GridOptions"
+                              style="width: 100%; height: 300px;"
+                              [enableSorting]="true"
+                              [enableFilter]="true"
+                              [floatingFilter]="true"
+                              [pagination]="true"
+                              (selectionChanged)="onRowClicked($event)"
+                              [showToolPanel]="true"
+                              (click)="changeActionStatus('001')"
+            >
+            </ag-grid-angular>
+
+            <div class="form-group row">
+                <!-- DynamicText with label of Claim Type -->
+                <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('claimType') }">
+                    <label class="col-form-label clr-blue" for="claimType" i18n>Claim Type</label>
+                    <input type="text" id="claimType" name="claimType" formControlName="claimType" class="form-control" [readonly]="editDeterminantRules" *ngIf="editDeterminantRules"/>
+                    <select (focus) = 'gridSelection("001")'  class="form-control" formControlName="claimType" id="claimType"
+                            (blur)="newValueChanged($event)"
+                            name="claimType" *ngIf="editDeterminantRules===false" (change)="modifyValue()">
+                        <option *ngFor="let claimType of claimTypes"
+                                [value]="claimType.systemCode">{{claimType.systemCodeDesc1}}</option>
+                    </select>
+                </div>
+
+                <!-- DynamicText with label of Action Code -->
+                <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('actionCode') }">
+                    <label class="col-form-label clr-blue" for="actionCode" i18n>Action Code</label>
+                    <input type="text" id="actionCode" name="actionCode" formControlName="actionCode" class="form-control" [readonly]="editDeterminantRules" *ngIf="editDeterminantRules"/>
+                    <select  class="form-control" formControlName="actionCode" id="actionCode"
+                             name="actionCode" (change)="onChangeActionCode($event)"
+                             (blur)="newValueChanged($event)"
+                             (keydown)="onLookupActionCodeChange($event)"  *ngIf="editDeterminantRules==false">
+                        <option *ngFor="let determinantAction of determinantActions"
+                                [value]="determinantAction.value">{{determinantAction.key}}</option>
+                    </select>
+                </div>
+
+            </div>
+
+            <div class="form-group row" >
+                <!-- DynamicText with label of Order No -->
+
+                 <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('orderNo') }">
+                     <label class="col-form-label clr-blue" for="orderNo" i18n>Order No</label>
+                     <input type="text"   [fieldLevelSec]="''" [params]=""   id="orderNo" formControlName="orderNo" maxlength="4"
+                            (blur)="newValueChanged($event)"
+                            (keydown)="onChangeOrder($event)" class="form-control" [readonly]="editDeterminantRules"/>
+                    </div>
+
+                <!-- DynamicText with label of Reason Code -->
+                <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('reasonCode') }">
+                    <label class="col-form-label clr-blue" for="reasonCode" i18n>Reason Code</label>
+                    <input type="text" id="reasonCode" name="reasonCode" formControlName="reasonCode" class="form-control" [readonly]="editDeterminantRules" *ngIf="editDeterminantRules"/>
+                    <select  class="form-control" formControlName="reasonCode" id="reasonCode"
+                             (blur)="newValueChanged($event)"
+                             (mouseup)="changedReasonCode()"
+                             (keydown)="onChangeReasonCode($event)"
+                             name="reasonCode" (change)="modifyValue()" *ngIf="editDeterminantRules==false">
+                        <option *ngFor="let authorizationReason of authorizationReasons"
+                                [value]="authorizationReason.reasonCode">{{authorizationReason.reasonCode}} {{authorizationReason.description}}</option>
+                    </select>
+                </div>
+
+            </div>
+
+            <div class="form-group row">
+                <!-- Textbox with label of Description -->
+                <div class="col-md" [ngClass]="{'has-danger': formValidation.isValidField('description') }">
+                    <label class="col-form-label" for="description" i18n>Description</label>
+                    <input type="text" id="description"  [fieldLevelSec]="''" [params]=""
+                           (blur)="newValueChanged($event)"
+                           class="form-control" formControlName="description" (keydown)="modifyValue()" />
+                    <small class="text-danger" *ngIf="formValidation.isValidField('description')">
+                        {{ formValidation.errorMessage('description') }}
+                    </small>
+                </div>
+
+            </div>
+        </form>
+        <ng-container *ngIf="editDeterminantRules">
+            <form [formGroup]="holdDenyDeterminantTableForm" novalidate>
+                <div class="form-group row">
+                </div>
+                <ag-grid-angular  class="ag-theme-fresh mt-4" [gridOptions]="dataGrid002GridOptions"
+                                  style="width: 100%; height: 300px;"
+                                  [enableSorting]="true"
+                                  [enableFilter]="false"
+                                  [floatingFilter]="false"
+                                  [pagination]="true"
+                                  (selectionChanged)="onRowClickedGrid002($event.data)"
+                                  [showToolPanel]="true"
+                                  (click)="changeActionStatus('002')"
+                                  >
+                </ag-grid-angular>
+
+                <div class="form-group row">
+                </div>
+
+                <div class="form-group row">
+                </div>
+                <div>
+
+                    <div class="form-group row">
+                        <!-- DynamicText with label of Sequence -->
+                        <div class="col-md-12" [ngClass]="{'has-danger': tableFormValidation.isValidField('sequence') }">
+                            <label class="col-form-label clr-blue" for="sequence" i18n>Sequence</label>
+                            <input  (focus) = 'gridSelection("002")'  type="text"  [fieldLevelSec]="''" [params]=""
+                                    id="sequence" name="sequence" formControlName="sequence"
+                                    class="form-control"
+                                    (keydown)="onKeydownSequence($event)" [readonly]="editDeterminantTables"
+                                    (change)="onChangeSequence($event.target.value)" #sequence />
+                        </div>
+                        <div class="col-md-6" [ngClass]="{'has-danger': tableFormValidation.isValidField('determinant') }">
+                            <label class="col-form-label clr-blue" for="determinant" i18n>Determinant</label>
+                            <!-- <input type="text"  [fieldLevelSec]="'Term Date'" [params]=""  /> -->
+                            <input type="text"  id="determinant" name="determinant" formControlName="determinant" [readonly]="editDeterminantTables"  class="form-control"
+                                   (keydown)="onLookupFieldDeterminant($event)" (change)="onChangeDeterminant($event)" />
+                        </div>
+                        <div class="col-md-6" [ngClass]="{'has-danger': tableFormValidation.isValidField('determinantColumn') }">
+                            <label class="col-form-label clr-blue" for="determinantColumn" i18n>Determinant Column</label>
+
+                            <input type="text"  id="determinantColumn" name="determinantColumn" formControlName="determinantColumn" [readonly]="editDeterminantTables" class="form-control"
+                                   (keydown)="onLookupFieldDeterminant($event)" (change)="onChangeDeterminantColumn($event)"/>
+                            <small class="text-danger" *ngIf="tableFormValidation.isValidField('determinantColumn')">
+                                {{ tableFormValidation.errorMessage('determinantColumn') }}
+                            </small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                </div>
+
+                <ng-container *ngIf="determinantTable">
+                    <div class="row" (click)="changeActionStatus('003')">
+                        <div class="col-md-12 mt-3 p-0">
+                            <dynamic-form [prevState]="determinantValuePrevState" [noOfRecords]="recordCount" [config]="cobOrderLiabilityFormConfig" [isSaveForm]="isSaveForm" [showRemoveButton]="false"
+                                          [showSubmitButton]="'true'" (formSubmitted)="saveDynamicForm($event)" (formValueChanged)="addNewLine($event)" (onKeyUpFields)="onFieldChange($event)" (onRowClick)="rowClicked($event)"></dynamic-form>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                    </div>
+                </ng-container>
+            </form>
+        </ng-container>
+    </div>
+</div>
+<ng-keyboard-shortcuts [shortcuts]="shortcuts"></ng-keyboard-shortcuts>
+<ng-keyboard-shortcuts-help [key]="'f2'" [closeKey]="'escape'" [title]="'Hotkeys Help'"></ng-keyboard-shortcuts-help>

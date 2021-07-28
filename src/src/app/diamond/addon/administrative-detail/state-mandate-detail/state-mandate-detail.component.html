@@ -1,0 +1,84 @@
+<div class="container">
+    <h3 class="text-center">ADD ET STATE MANDATE</h3>
+</div>
+<div class="form-group row bg-white text-dark" style="margin: 0px;">
+    <div class="col-md-4 offset-2 form-control-static mb-0 font-weight-bold " i18n>
+        Super Group Number
+        <br>
+        <span class="col-md required-field-label justify-content-center pt-1">  {{groupMaster?.groupId}}</span>
+    </div>
+    <div class="col-md-4 offset-2 form-control-static mb-0 font-weight-bold" i18n>
+        Super Group Name
+        <br>
+        <span class="col-md pt-1 required-field-label justify-content-center"> {{groupMaster?.shortName}}</span>
+    </div>
+</div>
+<div class="form-group row"></div>
+
+<div class="form-group row">
+    <ng-template #loaderTemplate let-loaderValue="value">
+        <div class="row justify-content-center mt-4" style="display: flex;margin-left: auto;margin-right: auto;" *ngIf="loaderValue">
+            <div class="spinner-border text-success" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+        </div>
+    </ng-template>
+    <ng-container *ngTemplateOutlet="loaderTemplate; context:{value: loaderOne }"></ng-container>
+    <div class="col-md-12 mt-3 p-2" *ngIf="isInitialDataLoaded">
+        <dmnd-dynamic-config-grid *ngIf="isInitialDataLoaded"
+            [prevState]="etStateMandateGroupFilingsFormState"
+            [title]="''" [showRemoveButton]="false"
+            [submitBtnText]="SubmitBtn"
+            [config]="etStateMandateGroupFilingsConfig" [displayCheckBox]="false"
+            (formSubmitted)="saveForm($event)"
+            (onChangeFields)="onFilingDetailFieldChange($event)"
+            (onNewRowAdded)="onFilingDetailNewRowAdded($event)">
+        </dmnd-dynamic-config-grid>
+    </div>
+
+</div>
+
+
+<div class="form-group row">
+</div>
+
+<div class="container">
+    <h3 class="text-center">EXCLUDE SUBGROUP FROM ET STATE MANDATE</h3>
+</div>
+<div class="form-group row bg-white text-dark" style="margin: 0px;">
+    <div class="col-md-4 offset-2 form-control-static mb-0 font-weight-bold " i18n>
+        Subgroup Number
+        <br>
+        <span class="col-md required-field-label justify-content-center pt-1">  {{parentComponent.groupNumber}}</span>
+    </div>
+    <div class="col-md-4 offset-2 form-control-static mb-0 font-weight-bold" i18n>
+        Subgroup Name
+        <br>
+        <span class="col-md pt-1 required-field-label justify-content-center"> {{parentComponent.groupName}}</span>
+    </div>
+</div>
+<div class="form-group row">
+</div>
+
+<div class="form-group row">
+    <ng-template #loaderTemplate let-loaderValue="value">
+        <div class="row justify-content-center mt-4" style="display: flex;margin-left: auto;margin-right: auto;" *ngIf="loaderValue">
+            <div class="spinner-border text-success" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+        </div>
+    </ng-template>
+    <ng-container *ngTemplateOutlet="loaderTemplate; context:{value: loaderTwo }"></ng-container>
+    <div class="col-md-12 mt-3 p-2" *ngIf="isInitialSubDataLoaded">
+        <dmnd-dynamic-config-grid *ngIf="isInitialSubDataLoaded"
+            [submitBtnText]="SubmitBtn"
+            [prevState]="stateMandateSubFilingsFormState" [isResetForm]="resetStateMandateSubGrid"
+            [title]="''" [showRemoveButton]="false"
+            [config]="stateMandateSubFilingsConfig" [displayCheckBox]="false"
+            (formSubmitted)="saveSubFillingForm($event)"
+            (onChangeFields)="onSubStateFieldChange($event)"
+            (onNewRowAdded)="onSubStateNewRowAdded($event)">
+        </dmnd-dynamic-config-grid>
+    </div>
+
+</div>

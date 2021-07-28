@@ -1,0 +1,326 @@
+<!-- Copyright (c) 2021 . All Rights Reserved. -->
+<div class="container-fluid">
+    <div class="card-block">
+        <h2 class="form-title card-label-admin">Diagnosis Code</h2>
+
+        <button type="button" *ngIf="showIcon" class="modal-close close" aria-label="Close"
+                (click)="modalClose()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+
+        <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+        <app-pop-up-message #popUpMesssage (buttonclickEvent)="popUpButtonHandler($event)"
+                            [popupMessage]="popUpMessage"></app-pop-up-message>
+
+        <ng-template #loaderTemplate let-loaderValue="value">
+            <div class="row justify-content-center mt-4" *ngIf="loaderValue">
+                <div class="spinner-border text-success" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>
+            </div>
+        </ng-template>
+
+
+        <ng-container *ngTemplateOutlet="loaderTemplate;context:{value: secProgress }"></ng-container>
+
+        <ng-container *appWinSelect="{secWin: secWin, userTemplateId: userTemplateId, secModuleId: memberModuleId}">
+
+            <div class="row mt-3">
+                                <menu-bar [menus]="menu" (onMenuClick)="onMenuItemClick($event)"></menu-bar>
+            </div>
+
+            <div class="form-group row">
+            </div>
+
+            <form [formGroup]="diagnosisCodeForm" novalidate>
+                <div class="form-group row">
+                    <!-- Textbox with label of Diagnosis Code -->
+                    <div class="col-sm-4" [ngClass]="{'has-danger': formValidation.isValidField('diagnosisCode') }">
+                        <label class="col-form-label" for="diagnosisCode" i18n><b>Diagnosis Code</b></label>
+                        <input type="text" id="diagnosisCode" #diagnosisCode
+                               (keydown)="onLookupFieldChange($event, diagnosisCode.value)"
+                               class="form-control" formControlName="diagnosisCode"/>
+                        <small class="text-danger" *ngIf="formValidation.isValidField('diagnosisCode')">
+                            {{ formValidation.errorMessage('diagnosisCode') }}
+                        </small>
+                    </div>
+                </div>
+                <hr>
+                <ng-container *ngIf="showFormPanel">
+                    <div class="form-group row">
+                        <!-- Textbox with label of Short Desctription -->
+                        <div class="col-sm-12"
+                             [ngClass]="{'has-danger': formValidation.isValidField('shortDesctription') }">
+                            <label class="col-form-label" for="shortDesctription" i18n>Short Desctription: </label>
+                            <input type="text" id="shortDesctription" class="form-control" maxlength="23"
+                                   formControlName="shortDesctription"/>
+                            <small class="text-danger" *ngIf="formValidation.isValidField('shortDesctription')">
+                                {{ formValidation.errorMessage('shortDesctription') }}
+                            </small>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <!-- Textbox with label of Full Description -->
+                        <div class="col-sm-12"
+                             [ngClass]="{'has-danger': formValidation.isValidField('fullDescription') }">
+                            <label class="col-form-label" for="fullDescription" i18n>Full Description: </label>
+                            <textarea id="fullDescription" class="form-control" formControlName="fullDescription" cols="30"
+                                      rows="3"></textarea>
+                            <small class="text-danger" *ngIf="formValidation.isValidField('fullDescription')">
+                                {{ formValidation.errorMessage('fullDescription') }}
+                            </small>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <!-- Textbox with label of Effective Date -->
+                        <div class="col-sm-6" [ngClass]="{'has-danger': formValidation.isValidField('effectiveDate') }" >
+                            <label class="col-form-label" for="effectiveDate" i18n>Effective Date: </label>
+                            <app-datepicker [isRequired]="false" [formGroup]="diagnosisCodeForm"
+                                            [formValidation]="formValidation" [field]="'effectiveDate'"
+                                            id="effectiveDate"
+                                            (onDateChanged)="this.effectiveDateStatus = true;"
+                                            [showClearButton]="false">
+                            </app-datepicker>
+                            <small class="text-danger" *ngIf="formValidation.isValidField('effectiveDate')">
+                                {{ formValidation.errorMessage('effectiveDate') }}
+                            </small>
+                        </div>
+
+                        <!-- Textbox with label of Term Date -->
+                        <div class="col-sm-6" [ngClass]="{'has-danger': formValidation.isValidField('termDate') }" *ngIf="effectiveDateStatus">
+                            <label class="col-form-label" for="termDate" i18n>Term Date: </label>
+                            <app-datepicker [isRequired]="false" [formGroup]="diagnosisCodeForm"
+                                            [formValidation]="formValidation" [field]="'termDate'" id="termDate"
+                                            [showClearButton]="false">
+                            </app-datepicker>
+                            <small class="text-danger" *ngIf="formValidation.isValidField('termDate')">
+                                {{ formValidation.errorMessage('termDate') }}
+                            </small>
+                        </div>
+
+                        <div class="col-sm-6" [ngClass]="{'has-danger': formValidation.isValidField('termDate') }" *ngIf="!effectiveDateStatus">
+                            <label class="col-form-label" for="termDate" i18n>Term Date: </label>
+                            <app-datepicker [isRequired]="false" [formGroup]="diagnosisCodeForm"
+                                            [formValidation]="formValidation" [field]="'termDate'" id="termDate"
+                                            [disabled]="true"
+                                            [showClearButton]="false">
+                            </app-datepicker>
+                            <small class="text-danger" *ngIf="formValidation.isValidField('termDate')">
+                                {{ formValidation.errorMessage('termDate') }}
+                            </small>
+                        </div>
+
+                    </div>
+
+                    <div class="form-group row">
+                        <!-- Textbox with label of ID Qualifier -->
+                        <div class="col-sm-12 selectContainer" [ngClass]="{'has-danger': formValidation.isValidField('idQualifier') }">
+                            <label class="col-form-label required-field-label" for="idQualifier" i18n>ID Qualifier: </label>
+                            <div class="input-group" #myDrop="ngbDropdown" ngbDropdown>
+                                <input ngbDropdownToggle type="text" class="form-control" id="idQualifier"
+                                       [value]="diagnosisCodeForm.value.idQualifier"
+                                       formControlName="idQualifier">
+                                <div class="input-group-append" role="group">
+                                    <button ngbDropdownToggle class="btn border"></button>
+                                </div>
+                                <div ngbDropdownMenu aria-labelledby="dropdown" class="max-dropdown-height">
+                                    <button ngbDropdownItem value="{{ option.systemCodeDesc1}}"
+                                            (click)="setFieldValue('idQualifier', option.systemCodeDesc1)"
+                                            *ngFor="let option of qualifierList; let i = index">
+                                        {{option.systemCodesPrimaryKey.systemCode}} &nbsp; {{option.systemCodeDesc1}} &nbsp; {{option.systemCodeDesc2}}
+                                    </button>
+                                </div>
+                            </div>
+                            <small class="text-danger" *ngIf="formValidation.isValidField('idQualifier')">
+                                {{ formValidation.errorMessage('idQualifier') }}
+                            </small>
+                        </div>
+
+                    </div>
+
+                    <div class="separator required-field-label" i18n>
+                        Classifications
+                    </div>
+
+                    <div class="form-group row">
+                    </div>
+
+                    <div class="form-group row">
+                        <!-- Textbox with label of Diagnosis Class 1 -->
+                        <div class="col-sm-4"
+                             [ngClass]="{'has-danger': formValidation.isValidField('diagnosisClass1') }">
+                            <label class="col-form-label" for="diagnosisClass1" i18n>Diagnosis Class 1: </label>
+                            <input type="text" id="diagnosisClass1" class="form-control" maxlength="2"
+                                   formControlName="diagnosisClass1"/>
+                            <small class="text-danger" *ngIf="formValidation.isValidField('diagnosisClass1')">
+                                {{ formValidation.errorMessage('diagnosisClass1') }}
+                            </small>
+                        </div>
+
+                        <!-- Textbox with label of Class 2 -->
+                        <div class="col-sm-4" [ngClass]="{'has-danger': formValidation.isValidField('class2') }">
+                            <label class="col-form-label" for="class2" i18n>Class 2: </label>
+                            <input type="text" id="class2" class="form-control" maxlength="2" formControlName="class2"/>
+                            <small class="text-danger" *ngIf="formValidation.isValidField('class2')">
+                                {{ formValidation.errorMessage('class2') }}
+                            </small>
+                        </div>
+
+                        <!-- Textbox with label of Class 3 -->
+                        <div class="col-sm-4" [ngClass]="{'has-danger': formValidation.isValidField('class3') }">
+                            <label class="col-form-label" for="class3" i18n>Class 3: </label>
+                            <input type="text" id="class3" class="form-control" maxlength="2" formControlName="class3"/>
+                            <small class="text-danger" *ngIf="formValidation.isValidField('class3')">
+                                {{ formValidation.errorMessage('class3') }}
+                            </small>
+                        </div>
+
+                    </div>
+
+                    <div class="separator required-field-label" i18n>
+                        Applicability
+                    </div>
+
+                    <div class="form-group row">
+                    </div>
+
+                    <div class="form-group row">
+                        <!-- Textbox with label of From Age -->
+                        <div class="col-sm-4" [ngClass]="{'has-danger': formValidation.isValidField('fromAge') }">
+                            <label class="col-form-label" for="fromAge" i18n>From Age: </label>
+                            <input type="text" id="fromAge" class="form-control" formControlName="fromAge"
+                                    (blur)="this.fromAgeStatus = false;"
+                            />
+                            <small class="text-danger" *ngIf="formValidation.isValidField('fromAge')">
+                                {{ formValidation.errorMessage('fromAge') }}
+                            </small>
+                        </div>
+
+                        <!-- Textbox with label of To Age -->
+                        <div class="col-sm-4" [ngClass]="{'has-danger': formValidation.isValidField('toAge') }">
+                            <label class="col-form-label" for="toAge" i18n>To Age: </label>
+                            <input type="text" id="toAge" class="form-control" formControlName="toAge"
+                                    [readonly]="fromAgeStatus"
+                            />
+                            <small class="text-danger" *ngIf="formValidation.isValidField('toAge')">
+                                {{ formValidation.errorMessage('toAge') }}
+                            </small>
+                        </div>
+
+                        <!-- Textbox with label of Gender -->
+                        <div class="col-sm-4" [ngClass]="{'has-danger': formValidation.isValidField('gender') }">
+                            <label class="col-form-label" for="gender" i18n>Gender: </label>
+                            <select id="gender" name="gender" class="form-control" formControlName="gender">
+                                <option value=""></option>
+                                <option *ngFor="let dddwDtl of patientGenderList"
+                                        [value]="dddwDtl.dddwDtlPrimaryKey.dataVal">{{dddwDtl.dddwDtlPrimaryKey.displayVal}}</option>
+                            </select>
+                            <small class="text-danger" *ngIf="formValidation.isValidField('gender')">
+                                {{ formValidation.errorMessage('gender') }}
+                            </small>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <!-- Textbox with label of Trauma Flag -->
+                        <div class="col-sm-4" [ngClass]="{'has-danger': formValidation.isValidField('traumaFlag') }">
+                            <label class="col-form-label" for="traumaFlag" i18n>Trauma Flag: </label>
+                            <select id="traumaFlag" name="traumaFlag" class="form-control" formControlName="traumaFlag">
+                                <option *ngFor="let dddwDtl of traumaFlagList"
+                                        [value]="dddwDtl.dddwDtlPrimaryKey.dataVal">{{dddwDtl.dddwDtlPrimaryKey.displayVal}}</option>
+                            </select>
+                            <small class="text-danger" *ngIf="formValidation.isValidField('traumaFlag')">
+                                {{ formValidation.errorMessage('traumaFlag') }}
+                            </small>
+                        </div>
+
+                        <!-- Textbox with label of Case Mgmt ^TBOR Procedure -->
+                        <div class="col-sm-4"
+                             [ngClass]="{'has-danger': formValidation.isValidField('caseMgmt') }">
+                            <label class="col-form-label" for="caseMgmt" i18n>Case Mgmt: </label>
+                            <select id="caseMgmt" name="caseMgmt" class="form-control" formControlName="caseMgmt">
+                                <option *ngFor="let dddwDtl of caseManagementList"
+                                        [value]="dddwDtl.dddwDtlPrimaryKey.dataVal">{{dddwDtl.dddwDtlPrimaryKey.displayVal}}</option>
+                            </select>
+                            <small class="text-danger" *ngIf="formValidation.isValidField('caseMgmt')">
+                                {{ formValidation.errorMessage('caseMgmt') }}
+                            </small>
+                        </div>
+
+                        <div class="col-sm-4"
+                             [ngClass]="{'has-danger': formValidation.isValidField('orProcedure') }">
+                            <label class="col-form-label" for="orProcedure" i18n>OR Procedure: </label>
+                            <select id="orProcedure" name="orProcedure" class="form-control"
+                                    formControlName="orProcedure">
+                                <option *ngFor="let dddwDtl of procedureFlagList"
+                                        [value]="dddwDtl.dddwDtlPrimaryKey.dataVal">{{dddwDtl.dddwDtlPrimaryKey.displayVal}}</option>
+                            </select>
+                            <small class="text-danger" *ngIf="formValidation.isValidField('orProcedure')">
+                                {{ formValidation.errorMessage('orProcedure') }}
+                            </small>
+                        </div>
+
+                    </div>
+
+                    <div class="form-group row">
+                        <!-- Textbox with label of Procedure Class -->
+                        <div class="col-sm-6"
+                             [ngClass]="{'has-danger': formValidation.isValidField('procedureClass') }">
+                            <label class="col-form-label" for="procedureClass" i18n>Procedure Class: </label>
+                            <select id="procedureClass" name="procedureClass" class="form-control"
+                                    formControlName="procedureClass">
+                                <option *ngFor="let dddwDtl of procedureClassList"
+                                        [value]="dddwDtl.dddwDtlPrimaryKey.dataVal">{{dddwDtl.dddwDtlPrimaryKey.displayVal}}</option>
+                            </select>
+                            <small class="text-danger" *ngIf="formValidation.isValidField('procedureClass')">
+                                {{ formValidation.errorMessage('procedureClass') }}
+                            </small>
+                        </div>
+
+                        <!-- Textbox with label of MDC Code -->
+                        <div class="col-sm-6" [ngClass]="{'has-danger': formValidation.isValidField('mdcCode') }">
+                            <label class="col-form-label" for="mdcCode" i18n>MDC Code: </label>
+                            <input type="text" id="mdcCode" class="form-control" maxlength="2"
+                                   formControlName="mdcCode"/>
+                            <small class="text-danger" *ngIf="formValidation.isValidField('mdcCode')">
+                                {{ formValidation.errorMessage('mdcCode') }}
+                            </small>
+                        </div>
+
+                    </div>
+
+                    <div class="form-group row">
+                        <!-- Textbox with label of Edit Flag -->
+                        <div class="col-sm-6" [ngClass]="{'has-danger': formValidation.isValidField('editFlag') }">
+                            <label class="col-form-label" for="editFlag" i18n>Edit Flag: </label>
+                            <select id="editFlag" name="editFlag" class="form-control" formControlName="editFlag">
+                                <option *ngFor="let dddwDtl of editFlagList"
+                                        [value]="dddwDtl.dddwDtlPrimaryKey.dataVal">{{dddwDtl.dddwDtlPrimaryKey.displayVal}}</option>
+                            </select>
+                            <small class="text-danger" *ngIf="formValidation.isValidField('editFlag')">
+                                {{ formValidation.errorMessage('editFlag') }}
+                            </small>
+                        </div>
+
+                        <!-- Textbox with label of Default Birth Wgt -->
+                        <div class="col-sm-6"
+                             [ngClass]="{'has-danger': formValidation.isValidField('defaultBirthWgt') }">
+                            <label class="col-form-label" for="defaultBirthWgt" i18n>Default Birth Wgt: </label>
+                            <input type="text" id="defaultBirthWgt" class="form-control"
+                                   formControlName="defaultBirthWgt"/>
+                            <small class="text-danger" *ngIf="formValidation.isValidField('defaultBirthWgt')">
+                                {{ formValidation.errorMessage('defaultBirthWgt') }}
+                            </small>
+                        </div>
+
+                    </div>
+                </ng-container>
+            </form>
+        </ng-container>
+    </div>
+</div>
+
+<ng-keyboard-shortcuts [shortcuts]="shortcuts"></ng-keyboard-shortcuts>
+<ng-keyboard-shortcuts-help [key]="'f2'" [closeKey]="'escape'" [title]="'Hotkeys Help'"></ng-keyboard-shortcuts-help>

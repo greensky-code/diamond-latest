@@ -1,0 +1,46 @@
+<!-- Copyright (c) 2021 . All Rights Reserved. -->
+<div class="container-fluid">
+    <div class="card-block">
+        <form [formGroup]="claimsBatchInitiationForm" novalidate>
+            <h2 class="form-title card-label-admin">Claims Batch Initiation</h2>
+            <button type="button" *ngIf="showIcon" class="close" aria-label="Close"
+                    (click)="activeModal.dismiss()">
+                <span aria-hidden="true">&times;</span>
+            </button>
+
+            <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+            <app-pop-up-message #popUpMesssage (buttonclickEvent)="popUpButtonHandler($event)"
+                                [popupMessage]="popUpMessage"></app-pop-up-message>
+
+
+
+            <div class="col-sm-8 pull-left">
+                <div class="form-group row">
+                    <!-- Textbox with label of Batch Number -->
+                    <div class="col-md-12" [ngClass]="{'has-danger': formValidation.isValidField('batchNumber') }">
+                        <label class="col-form-label" for="batchNumber" i18n>Batch Number</label>
+                        <input type="text" id="batchNumber" [fieldLevelSec]="''" [params]="''" class="form-control"
+                               formControlName="batchNumber"/>
+                        <small class="text-danger" *ngIf="formValidation.isValidField('batchNumber')">
+                            {{ formValidation.errorMessage('batchNumber') }}
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <!-- Textbox with label of Date Received -->
+                    <div class="col-md-12" [ngClass]="{'has-danger': formValidation.isValidField('dateReceived') }">
+                        <app-datepicker [isRequired]="false" [formGroup]="claimsBatchInitiationForm" [formValidation]="formValidation"
+                                        [field]="'dateReceived'"
+                                        [labelText]="'Date Received'">
+                        </app-datepicker>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-sm-2 mt-4 pull-right">
+                <button class="col-sm-12 button"  (click)="submit()">OK</button>
+            </div>
+        </form>
+    </div>
+</div>

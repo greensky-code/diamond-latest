@@ -1,0 +1,251 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+    <title>Authorization/Claim Detail Linking and Pricing - Overview</title>
+    <!--(Meta)==========================================================-->
+    <meta name="copyright"
+          value="© Copyright 2002 Health Systems Design Corp., a wholly owned subsidiary of Perot Systems Corporation. All rights reserved"/>
+    <meta content="Overview.htt" name="template"/>
+    <meta content="RoboHELP by eHelp Corporation - www.ehelp.com" name="generator"/>
+    <meta content="0.1" name="generator-major-version"/>
+    <meta content="1" name="generator-minor-version"/>
+    <meta content="kadov" name="filetype"/>
+    <meta content="1" name="filetype-version"/>
+    <meta content="1" name="page-count"/>
+    <meta content="1480" name="layout-height"/>
+    <meta content="678" name="layout-width"/>
+    <!--(Links)=========================================================-->
+    <!--(Scripts)=======================================================-->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+</head>
+<body>
+
+<div class="calibreMeta">
+    <div class="calibreMetaTitle">
+
+
+        <h1>
+            <a href="../bj5if-qozss.html">DIAMOND 950 Help
+            </a>
+        </h1>
+
+
+    </div>
+    <div class="calibreMetaAuthor">
+        Unknown
+
+    </div>
+</div>
+
+<div class="calibreMain">
+
+    <div class="calibreEbookContent">
+
+        <div class="calibreEbNavTop">
+
+            <a href="../bj5if-qozss.html" class="calibreAPrev">previous page
+            </a>
+
+
+            <a href="Setting_Up_Authorization_Claim_Detail_Linking_and_Pricing.htm" class="calibreANext">next page
+            </a>
+
+        </div>
+
+
+        <h1 class="calibre1">Authorization/Claim Detail Linking and Pricing - Overview</h1>
+
+        <p class="text">You can use authorization/claim detail linking and pricing
+            to perform the following actions, based on rules you define by line of
+            business/authorization type/effective date combination:</p>
+
+        <ul class="calibre2">
+
+            <li class="kadov-p-cbullet"><p class="bullet">Match submitted claim detail
+                procedure/revenue codes to ranges of authorized codes on a matching authorization’s
+                procedure detail records</p></li>
+
+            <li class="kadov-p-cbullet"><p class="bullet">Price matching claim detail
+                lines using:</p></li>
+
+            <li class="kadov-p-cbulletlvl"><p class="bulletlvl">The Auth Price from
+                the matching authorization procedure detail record</p></li>
+
+            <li class="kadov-p-cbulletlvl"><p class="bulletlvl">The Auth Procedure
+                from the matching authorization procedure detail record</p></li>
+
+            <li class="kadov-p-cbulletlvl"><p class="bulletlvl">Standard DIAMOND
+                provider pricing logic</p></li>
+
+            <li class="kadov-p-cbullet"><p class="bullet">Hold or deny matching claim
+                detail lines based on the application of an authorization/claim detail
+                linking and pricing rule</p></li>
+
+            <li class="kadov-p-cbullet"><p class="bullet">Assign specific allowed,
+                hold, and deny reason codes to matching claim detail lines when applying
+                an authorization/claim detail linking and pricing action</p></li>
+        </ul>
+
+        <p class="text">DIAMOND performs Authorization/Claim Detail Linking and Pricing
+            for online and DIAMOND Data Service (DDS) API transactions.</p>
+
+        <h2 class="calibre3">Setup</h2>
+
+        <p class="text">You set up rules to perform this logic using the following
+            DIAMOND keywords:</p>
+
+        <ul class="calibre2">
+
+            <li class="kadov-p-cbullet"><p class="bullet">PRCRA (Authorization Procedure
+                Ranges)</p></li>
+        </ul>
+
+        <p class="bulletcont">Use keyword PRCRA to define sets of procedure code
+            ranges to be used during authorization/claim detail linking. After you
+            define a PRCRA range set, you can use it as a procedure code match criterion
+            when you build CDAPL (Claim Detail Authorization Procedure Link) link
+            rules. </p>
+
+        <p class="bulletcont">The PRCRA range set is used to determine if submitted
+            claim procedure codes that do not exactly match the authorized procedure
+            code should be considered authorized. For more information, see <a
+                    href="Auth.chm::/PRCRA_Authorization_Procedure_Ranges.htm">PRCRA,
+                Authorization Procedure Ranges</a>.</p>
+
+        <ul class="calibre2">
+
+            <li class="kadov-p-cbullet"><p class="bullet">CDAPR (Claims Detail Authorization
+                Procedure Rules)</p></li>
+        </ul>
+
+        <p class="bulletcont">Use keyword CDAPR to define authorization procedure
+            detail match criteria rules based on the authorized procedure amount,
+            authorized procedure status, and whether the submitted procedure code
+            and authorized procedure code are an exact match, in range, or out of
+            range. </p>
+
+        <p class="bulletcont">After you define CDAPR rules, you can use these rules
+            as authorization detail match criteria when building CDAPL (Claim Detail
+            Authorization Procedure Link) rules. For more information, see <a
+                    href="CDAPR_Claims_Detail_Authorization_Procedure_Rules.htm">CDAPR,
+                Claims Detail Authorization Procedure Rules</a>.</p>
+
+        <ul class="calibre2">
+
+            <li class="kadov-p-cbullet"><p class="bullet">CDAPL (Claims Detail Authorization
+                Procedure Link)</p></li>
+        </ul>
+
+        <p class="bulletcont">Use keyword CDAPL to define rules for performing authorization/claim
+            detail linking and pricing. You define CDAPL rules for a specific line
+            of business, authorization type and effective date combination. </p>
+
+        <p class="bulletcont">When you enter a claim that has a matching authorization
+            and also matches a CDAPL rule line of business/authorization type/effective
+            date combination, DIAMOND searches for the matching authorization procedure
+            details. DIAMOND then applies the CDAPL rules to the claim detail line
+            and matching authorization to determine what action to take on each claim
+            detail line. For more information, see <a href="CDAPL_Claims_Detail_Authorization_Procedure_Link_1.htm">CDAPL,
+                Claims Detail Authorization Procedure Link</a>.</p>
+
+        <h3 class="calibre4">Enabling Authorization/Claim Matching</h3>
+
+        <p class="text">A claim must match an authorization at the header level in
+            order for authorization/claim detail linking and pricing logic to be performed.
+            Thus you must enable authorization/claim matching in order to use this
+            logic. To learn how to enable and use DIAMOND authorization/claim matching
+            logic, see <a href="Authorization_Claim_Links_How_DIAMOND_Thinks.htm">Authorization
+                Claim Links, How DIAMOND Thinks</a>.</p>
+
+        <h3 class="calibre4">Additional Setup Information</h3>
+
+        <p class="text">For more information on setting up this logic, see <a
+                href="Setting_Up_Authorization_Claim_Detail_Linking_and_Pricing.htm">Setting
+            Up Authorization/Claim Detail Linking and Pricing</a>.</p>
+
+        <h2 class="calibre3">Pay Actions</h2>
+
+        <p class="text">CDAPL Pay Actions specify how to price a claim detail line
+            that satisfies the CDAPL criteria and also whether the line is held or
+            denied. Available Pay Actions include:</p>
+
+        <ul class="calibre2">
+
+            <li class="kadov-p-cbullet"><p class="bullet">1 - Price with Standard Provider
+                Pricing. </p></li>
+
+            <li class="kadov-p-cbullet"><p class="bullet">2 - Price with Authorized
+                Price</p></li>
+
+            <li class="kadov-p-cbullet"><p class="bullet">3 - Price with Authorized
+                Procedure</p></li>
+
+            <li class="kadov-p-cbullet"><p class="bullet">4 - Price and Deny with Standard
+                Provider</p></li>
+
+            <li class="kadov-p-cbullet"><p class="bullet">5 - Price and Deny with Authorized
+                Price</p></li>
+
+            <li class="kadov-p-cbullet"><p class="bullet">6 - Price and Deny with Authorized
+                Procedure</p></li>
+
+            <li class="kadov-p-cbullet"><p class="bullet">7 - Price and Hold with Standard
+                Provider Pricing </p></li>
+
+            <li class="kadov-p-cbullet"><p class="bullet">8 - Price and Hold with Authorized
+                Price</p></li>
+
+            <li class="kadov-p-cbullet"><p class="bullet">9 - Price and Hold with Authorized
+                Procedure</p></li>
+        </ul>
+
+        <p class="text">For more information on Authorization/Claim Detail Linking
+            and Pricing processing logic, see <a
+                    href="Authorization_Claim_Detail_Linking_and_Pricing_How_DIAMOND_Thinks.htm">Authorization/Claim
+                Detail Linking and Pricing, How DIAMOND Thinks</a>.</p>
+
+        <h2 class="calibre3">APC Pricing and Authorization/Claim Detail Linking and Pricing</h2>
+
+        <p class="text"><span class="calibre5">Warning!</span> <!--kadov_tag{{<spaces>}}--> 
+            <!--kadov_tag{{</spaces>}}--> Ambulatory
+            Payment Classification (APC) pricing can override other pricing on claim
+            detail lines. Do not use both APC pricing and authorization/claim detail
+            linking and pricing.</p>
+
+        <h2 class="calibre3">Third Party Claim Audit Tools and Authorization/Claim Detail Linking
+            and Pricing</h2>
+
+        <p class="text"><span class="calibre5">Warning!</span> <!--kadov_tag{{<spaces>}}--> 
+            <!--kadov_tag{{</spaces>}}--> Third
+            party claim audit tools override authorization/claim detail linking and
+            pricing. Do not use both third party claim audit tools and authorization/claim
+            detail linking and pricing. For more information on third party claim
+            audit tools that interface with DIAMOND, see <a
+                    href="Interface.chm::/Claim_Auditing_-_How_DIAMOND_Thinks.htm">Claim
+                Auditing - How DIAMOND Thinks</a>.</p>
+
+
+    </div>
+
+
+    <div class="calibreEbNav">
+
+        <a href="../bj5if-qozss.html" class="calibreAPrev">previous page
+        </a>
+
+
+        <a href="../bj5if-qozss.html" class="calibreAHome">start
+        </a>
+
+
+        <a href="Setting_Up_Authorization_Claim_Detail_Linking_and_Pricing.htm" class="calibreANext">next page
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+</html>

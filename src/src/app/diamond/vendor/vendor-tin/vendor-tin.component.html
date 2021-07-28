@@ -1,0 +1,186 @@
+<!-- Copyright (c) 2020 . All Rights Reserved. -->
+<div class="container-fluid">
+    <div class="card-block">
+        <div class="row form-title">
+            <h2 class="col-md-6 card-label-admin">Vendor TIN</h2>
+        </div>
+        <button type="button" *ngIf="showIcon" class="modal-close close" aria-label="Close" (click)="modalClose()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+        <app-pop-up-message #popUpMesssage (buttonclickEvent)="popUpButtonHandler($event)"  [(popupMessage)] = "popUpMessage"></app-pop-up-message>
+
+        <div class="row mt-3 mb-3">
+            <menu-bar [menus]="menu" (onMenuClick)="onMenuItemClick($event)"></menu-bar>
+        </div>
+
+        <form [formGroup]="vendorTINForm" novalidate>
+            <div class="row">
+                <!-- Textbox with label of Vendor ID -->
+
+                 <div class="col-md-6  mb-3" [ngClass]="{'has-danger': formValidation.isValidField('irsTaxId') }">
+                    <label class="col-form-label" for="irsTaxId" i18n>Vendor TIN: </label>
+                    <input type="text" id="irsTaxId" #irsTaxId class="form-control" name="irsTaxId" formControlName="irsTaxId" [readonly]="isReadOnly" (keydown)="onLookupFieldChange($event)" size="9" maxlength="9"/>
+
+                    <small class="text-danger" *ngIf="formValidation.isValidField('irsTaxId')">
+                      {{ formValidation.errorMessage('irsTaxId') }}
+                    </small>
+                 </div>
+                <div *ngIf="showVendorTINFields">
+                    <div class="col-md-6  mb-3" *ngIf="vendorTINForm.controls['entityName'].value">
+                        <label class="col-form-label" for="entityName" i18n>&nbsp;</label>
+                        <input type="text" readonly id="entityName" formControlName="entityName" class="form-control"/>
+                    </div>
+                </div>
+
+            </div>
+            <ng-container *ngIf="showVendorTINFields">
+                <div class="form-group row">
+                    <div class="col-md-6 " [ngClass]="{'has-danger': formValidation.isValidField('taxEntityName') }">
+                        <label class="col-form-label" for="taxEntityName" i18n>Name: </label>
+                        <input type="text" id="taxEntityName" #taxEntityName  class="form-control" name="taxEntityName" formControlName="taxEntityName" maxlength="40"/>
+                        <small class="text-danger" *ngIf="formValidation.isValidField('taxEntityName')">
+                            {{ formValidation.errorMessage('taxEntityName') }}
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-md-6 " [ngClass]="{'has-danger': formValidation.isValidField('address1') }">
+                        <label class="col-form-label" for="address1" i18n>Address 1: </label>
+                        <input type="text" id="address1"   class="form-control" name="address1" formControlName="address1" maxlength="40" [fieldLevelSec]="'ADDRESS1'" [params]="{secColDetails: secColDetails, isEditState: editVendonTIN}"/>
+                        <small class="text-danger" *ngIf="formValidation.isValidField('address1')">
+                            {{ formValidation.errorMessage('address1') }}
+                        </small>
+                    </div>
+                    <div class="col-md-6 " [ngClass]="{'has-danger': formValidation.isValidField('phone') }">
+                        <label class="col-form-label" for="phone" i18n>Phone :</label>
+                        <input type="text" id="phone"   class="form-control" name="phone" formControlName="phone" maxlength="20" [fieldLevelSec]="'phone'" [params]="{secColDetails: secColDetails, isEditState: editVendonTIN}"/>
+                        <small class="text-danger" *ngIf="formValidation.isValidField('phone')">
+                            {{ formValidation.errorMessage('phone') }}
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-md-6 " [ngClass]="{'has-danger': formValidation.isValidField('address2') }">
+                        <label class="col-form-label" for="address2" i18n>Address 2:</label>
+                        <input type="text" id="address2" class="form-control" name="address1" formControlName="address2" maxlength="40" [fieldLevelSec]="'ADDRESS2'" [params]="{secColDetails: secColDetails, isEditState: editVendonTIN}"/>
+                        <small class="text-danger" *ngIf="formValidation.isValidField('address2')">
+                            {{ formValidation.errorMessage('address2') }}
+                        </small>
+                    </div>
+                    <div class="col-md-6 " [ngClass]="{'has-danger': formValidation.isValidField('ext') }">
+                        <label class="col-form-label" for="ext" i18n>Ext No:</label>
+                        <input type="text" id="ext"  class="form-control" name="ext" formControlName="ext" maxlength="10" [fieldLevelSec]="'ext'" [params]="{secColDetails: secColDetails, isEditState: editVendonTIN}"/>
+                        <small class="text-danger" *ngIf="formValidation.isValidField('ext')">
+                            {{ formValidation.errorMessage('ext') }}
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-md-6 " [ngClass]="{'has-danger': formValidation.isValidField('city') }">
+                        <label class="col-form-label" for="city" i18n>City :</label>
+                        <input type="text" id="city"  class="form-control" name="city" formControlName="city" maxlength="30" [fieldLevelSec]="'CITY'" [params]="{secColDetails: secColDetails, isEditState: editVendonTIN}"/>
+                        <small class="text-danger" *ngIf="formValidation.isValidField('city')">
+                            {{ formValidation.errorMessage('city') }}
+                        </small>
+                    </div>
+                    <div class="col-md-6 " [ngClass]="{'has-danger': formValidation.isValidField('fax') }">
+                        <label class="col-form-label" for="fax" i18n>Fax No:</label>
+                        <input type="text" id="fax"  class="form-control" name="fax" formControlName="fax" maxlength="20" [fieldLevelSec]="'fax'" [params]="{secColDetails: secColDetails, isEditState: editVendonTIN}"/>
+                        <small class="text-danger" *ngIf="formValidation.isValidField('fax')">
+                            {{ formValidation.errorMessage('fax') }}
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-md-4 " [ngClass]="{'has-danger': formValidation.isValidField('state') }">
+                        <label class="col-form-label" for="state" i18n>State :</label>
+                        <input type="text" id="state"  class="form-control" name="state" formControlName="state" maxlength="6" [fieldLevelSec]="'state'" [params]="{secColDetails: secColDetails, isEditState: editVendonTIN}"/>
+                        <small class="text-danger" *ngIf="formValidation.isValidField('state')">
+                            {{ formValidation.errorMessage('state') }}
+                        </small>
+                    </div>
+                    <div class="col-md-4 " [ngClass]="{'has-danger': formValidation.isValidField('zipCode') }">
+                        <label class="col-form-label" for="zipCode" i18n>ZIP Code:</label>
+                        <input type="text" id="zipCode" #zip (keydown)="onChangeZipCode($event, zip.value)"  class="form-control" name="zipCode" formControlName="zipCode" maxlength="15" [fieldLevelSec]="'zipCode'" [params]="{secColDetails: secColDetails, isEditState: editVendonTIN}"/>
+                        <small class="text-danger" *ngIf="formValidation.isValidField('zipCode') && vendorTINForm.get('zipCode').errors.pattern">
+                            Zip Code Must be Numeric
+                        </small>
+                        <small class="text-danger" *ngIf="formValidation.isValidField('zipCode') && vendorTINForm.get('zipCode').errors.ZipValidator">
+                            Zip Code Must be 0,5 or 9 digits
+                        </small>
+                    </div>
+                    <div class="col-md-4 " [ngClass]="{'has-danger': formValidation.isValidField('vendor1099Flag') }">
+                        <label class="col-form-label clr-blue" for="vendor1099Flag" i18n>Vendor 1099 Flag:</label>
+                        <select id="vendor1099Flag"  class="form-control" name="vendor1099Flag" formControlName="vendor1099Flag" [fieldLevelSec]="'vendor1099Flag'" [params]="{secColDetails: secColDetails, isEditState: editVendonTIN}">
+                            <option *ngFor="let code of systemCodes" [ngValue]="code.systemCode">{{code.systemCodeDesc2}}</option>
+                        </select>
+                        <small class="text-danger" *ngIf="formValidation.isValidField('vendor1099Flag')">
+                            {{ formValidation.errorMessage('vendor1099Flag') }}
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-md-4 " [ngClass]="{'has-danger': formValidation.isValidField('county') }">
+                        <label class="col-form-label" for="county" i18n>County :</label>
+                        <input type="text" id="county"  class="form-control" name="county" formControlName="county" maxlength="5" [fieldLevelSec]="'county'" [params]="{secColDetails: secColDetails, isEditState: editVendonTIN}"/>
+                        <small class="text-danger" *ngIf="formValidation.isValidField('county')">
+                            {{ formValidation.errorMessage('county') }}
+                        </small>
+                    </div>
+                    <div class="col-md-4 " [ngClass]="{'has-danger': formValidation.isValidField('country') }">
+                        <label class="col-form-label" for="country" i18n>Country:</label>
+                        <input type="text" id="country"  class="form-control" name="country" formControlName="country" maxlength="20" [fieldLevelSec]="'country'" [params]="{secColDetails: secColDetails, isEditState: editVendonTIN}"/>
+                        <small class="text-danger" *ngIf="formValidation.isValidField('country')">
+                            {{ formValidation.errorMessage('country') }}
+                        </small>
+                    </div>
+                    <div class="col-md-4 " [ngClass]="{'has-danger': formValidation.isValidField('wcVendorNumber') }">
+                        <label class="col-form-label" for="wcVendorNumber" i18n>WC Vndr No:</label>
+                        <input type="text" id="wcVendorNumber"  class="form-control" name="wcVendorNumber" formControlName="wcVendorNumber" [fieldLevelSec]="'wcVendorNumber'" [params]="{secColDetails: secColDetails, isEditState: editVendonTIN}"/>
+                        <small class="text-danger" *ngIf="formValidation.isValidField('wcVendorNumber')">
+                            {{ formValidation.errorMessage('wcVendorNumber') }}
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-md-6 " [ngClass]="{'has-danger': formValidation.isValidField('contact') }">
+                        <label class="col-form-label" for="contact" i18n>Contact Name:</label>
+                        <input type="text" id="contact"  class="form-control" name="contact" formControlName="contact" maxlength="40" [fieldLevelSec]="'contact'" [params]="{secColDetails: secColDetails, isEditState: editVendonTIN}"/>
+                        <small class="text-danger" *ngIf="formValidation.isValidField('contact')">
+                            {{ formValidation.errorMessage('contact') }}
+                        </small>
+                    </div>
+                    <div class="col-md-6 " [ngClass]="{'has-danger': formValidation.isValidField('w9') }">
+                        <label class="col-form-label" for="w9" i18n>W9 :</label>
+                        <input type="text" id="w9"  class="form-control" name="w9" formControlName="w9"/>
+                        <small class="text-danger" *ngIf="formValidation.isValidField('w9')">
+                            {{ formValidation.errorMessage('w9') }}
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-md-6 " [ngClass]="{'has-danger': formValidation.isValidField('title') }">
+                        <label class="col-form-label" for="title" i18n>Title :</label>
+                        <select id="title"  class="form-control" name="title" formControlName="title" [fieldLevelSec]="'title'" [params]="{secColDetails: secColDetails, isEditState: editVendonTIN}">
+                            <option *ngFor="let title of titles" [ngValue]="title.contactTitle">{{title.contactTitle}}</option>
+                        </select>
+                        <small class="text-danger" *ngIf="formValidation.isValidField('title')">
+                            {{ formValidation.errorMessage('title') }}
+                        </small>
+                    </div>
+                    <div class="col-md-6 " [ngClass]="{'has-danger': formValidation.isValidField('userDefinedDate') }">
+                        <app-datepicker [formGroup]="vendorTINForm"
+                                        [formValidation]="formValidation"
+                                        [field]="'userDefinedDate'" [labelText]="'User Defined Date :'"></app-datepicker>
+                    </div>
+
+                </div>
+            </ng-container>
+        </form>
+    </div>
+</div>
+<ng-keyboard-shortcuts [shortcuts]="shortcuts"></ng-keyboard-shortcuts>
+<ng-keyboard-shortcuts-help [key]="'f1'" [closeKey]="'escape'" [title]="'Hotkeys Help'"></ng-keyboard-shortcuts-help>

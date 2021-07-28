@@ -1,0 +1,582 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+    <title>Medical Definitions, How DIAMOND Thinks</title>
+    <!--(Meta)==========================================================-->
+    <meta name="copyright"
+          value="© Copyright 2002 Health Systems Design Corp., a wholly owned subsidiary of Perot Systems Corporation. All rights reserved"/>
+    <meta content="RoboHELP by eHelp Corporation - www.ehelp.com" name="generator"/>
+    <meta content="0.1" name="generator-major-version"/>
+    <meta content="1" name="generator-minor-version"/>
+    <meta content="kadov" name="filetype"/>
+    <meta content="1" name="filetype-version"/>
+    <meta content="1" name="page-count"/>
+    <meta content="2406" name="layout-height"/>
+    <meta content="678" name="layout-width"/>
+    <!--(Links)=========================================================-->
+    <!--(Scripts)=======================================================-->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+</head>
+<body>
+
+<div class="calibreMeta">
+    <div class="calibreMetaTitle">
+
+
+        <h1>
+            <a (click)="gotoCustomePage($event)" href="../26by7-w03j3.html">DIAMOND 950C/S Help
+            </a>
+        </h1>
+
+
+    </div>
+    <div class="calibreMetaAuthor">
+        Unknown
+
+    </div>
+</div>
+
+<div class="calibreMain">
+
+    <div class="calibreEbookContent">
+
+        <div class="calibreEbNavTop">
+
+            <a (click)="gotoCustomePage($event)"
+               href="Adjudicating_Institutional_Claims_Using_Benefit_Period_BRULEs.htm" class="calibreAPrev">previous
+                page
+            </a>
+
+
+            <a (click)="gotoCustomePage($event)" href="BENEF_Benefit_Packages.htm" class="calibreANext">next page
+            </a>
+
+        </div>
+
+
+        <h4 class="calibre1">Medical Definitions, How DIAMOND Thinks</h4>
+
+        <p class="text">This topic provides processing logic information about:</p>
+
+        <p class="text"><a (click)="gotoCustomePage($event)"
+                           href="#Medical_Definitions_How_DIAMOND_Thinks_About_Medical_Definitions_MID">About
+            Medical Definitions</a></p>
+
+        <p class="text"><a (click)="gotoCustomePage($event)" href="#MedDefs_HDT_Making_Changes_to_the_MEDEF_File_MID">Making
+            Changes to the MEDEF File</a></p>
+
+        <p class="text"><a (click)="gotoCustomePage($event)" href="#MedDefs_HDT_Alternate_and_Global_Searches_MID">Medical
+            Definitions &amp; Exceptional Circumstances</a></p>
+
+        <p class="text"><a (click)="gotoCustomePage($event)" href="#MedDefs_HDT_Global_Search_Setup_MID">Global Search
+            Setup</a></p>
+
+        <p class="text"><a (click)="gotoCustomePage($event)" href="#MedDefs_HDT_Global_Search_Order_Examples_MID">Global
+            Search Order Examples</a></p>
+
+        <p class="text"><a (click)="gotoCustomePage($event)" href="#MedDefs_HDT_Using_a_Default_Medical_Definition_MID">Using
+            a Default Medical Definition</a></p>
+
+        <p class="text"><a (click)="gotoCustomePage($event)"
+                           href="#Medical_Definitions_How_DIAMOND_Thinks_Using_Diagnosis_Codes_as_Determinants_MID">Using
+            Diagnosis Codes as Determinants</a></p>
+
+        <h2 class="calibre1"><a (click)="gotoCustomePage($event)"
+                                name="Medical_Definitions_How_DIAMOND_Thinks_About_Medical_Definitions_MID"></a>About
+            Medical Definitions</h2>
+
+        <p class="text">Use keyword MEDEF (Medical Definitions) to define categories
+            of medical services such as office visits, lab tests, or surgeries, called
+            medical definitions, using one or more claim characteristics or determinants.
+            For example, a combination of the procedure rendered and the place of
+            service can define an office visit. Surgeries may be defined by the procedure
+            alone. Chiropractic services may be defined by the diagnosis plus the
+            type and specialty of the provider.</p>
+
+        <p class="text">The medical definition code assigned to a claim detail line
+            drives the claim adjudication process, capitation processing for stoploss
+            and deduction pools, general ledger claim expense accounts, and is handy
+            for reporting.</p>
+
+        <p class="text">Medical definition codes are first defined in keyword MEDLU
+            (Medical Definition Lookup). Then, for each medical definition code entered
+            in keyword MEDLU, a set of determinants and the appropriate determinant
+            values are defined in keyword keyword MEDEF. The maximum number of Medical
+            Definition codes you can assign in MEDLU is 9,999. The maximum range of
+            order numbers you can assign to a Medical Definition in MEDEF is 9,999.
+            The maximum allowed combinations of Medical Definition Codes and Order
+            Numbers is 99,999.</p>
+
+        <h2 class="calibre5"><a (click)="gotoCustomePage($event)"
+                                name="MedDefs_HDT_Making_Changes_to_the_MEDEF_File_MID"></a>Making
+            Changes to the MEDEF File</h2>
+
+        <p class="text">Because a snapshot is created of the medical definitions
+            at the time each user logs on to the system, changes made during the production
+            day are not recognized by a user’s session until he or she logs off and
+            logs on again. Since changes to the medical definitions should be thoroughly
+            tested before they are moved into production, we recommend against making
+            ad hoc changes to these rules. However, be advised of this feature and
+            institute processes to make sure medical definition assignment changes
+            are rolled into the production environment in a predictable and controlled
+            fashion.</p>
+
+        <h2 class="calibre5"><a (click)="gotoCustomePage($event)"
+                                name="MedDefs_HDT_Alternate_and_Global_Searches_MID"></a>Universal
+            Medical Definitions and Exceptional Circumstances: Alternate and Global
+            Searches</h2>
+
+        <p class="text">In most cases, you will find that medical definitions are
+            applicable for all claims, such as, an office visit is an office visit.
+            In some cases, however, you may find it useful to have certain medical
+            definitions apply in very specific or exceptional circumstances, such
+            as, a service that is defined according to provider status differently
+            for different lines of business.</p>
+
+        <p class="text">You can define medical definitions so that they apply to
+            all claims, and also allows you to set certain claim situations apart
+            for special handling. These features are called Global Search and Alternate
+            Search. Global Search, for medical definitions, which apply across the
+            board, is simple to set up, simply click to select the <span class="calibre4">Include
+ in Global Search</span> check box on each medical definition that so applies.</p>
+
+        <p class="text">Exception medical definitions require a multi-step set-up
+            process. You establish alternate search criteria (such as line of business
+            or plan) and then link each alternate search criterion to a specific medical
+            definition and its determinants defined in keyword MEDEF.</p>
+
+        <h3 class="calibre2">Alternate Search Set Up</h3>
+
+        <ul class="calibre6">
+
+            <li class="kadov-p-cbullet"><p class="bullet">Use keyword MEDCO (Alternate
+                Search Columns) to define alternate search criteria that may be applied
+                to one or more medical definitions.</p></li>
+
+            <li class="kadov-p-cbullet"><p class="bullet">Use keyword MEDOR (Alternate
+                Search Order) to define sequential Alternate Search rules by linking an
+                alternate search criterion defined in MEDCO to each exceptional medical
+                definition in MEDEF. </p></li>
+
+            <li class="kadov-p-cbullet"><p class="bullet">DIAMOND applies alternate
+                search rules in numerical order as follows:</p></li>
+        </ul>
+
+        <p class="numbered-list-indent">1. By MEDOR priority</p>
+
+        <p class="numbered-list-indent">2. Within MEDOR priority, by MEDOR search
+            order. Each unique MEDOR priority + search order links to a specific MEDEF
+            order.</p>
+
+        <p class="numbered-list-indent">3. Within MEDEF order, by MEDEF search
+            sequence.</p>
+
+        <h3 class="calibre2">Using Both Alternate and Global Medical Definitions</h3>
+
+        <p class="text">When an Alternate Search rule is applied, the MEDCO criterion
+            must be satisfied before the MEDEF rule and its determinants are applied.
+            All Alternate Search rules are applied in sequential order (according
+            to MEDOR) prior to applying all Global Search rules in sequential order
+            (according to MEDEF Assigning Order and Search Sequence Number). A single
+            MEDEF rule may be part of an Alternate Search rule and marked "Include
+            In Global Search" and applied in the Global Search.</p>
+
+        <h2 class="calibre5"><a (click)="gotoCustomePage($event)" name="MedDefs_HDT_Global_Search_Setup_MID"></a>Global
+            Search Setup</h2>
+
+        <p class="text">For Global Search medical definition rules, the following
+            outlines how Order and Search Sequence numbers are defined in MEDEF to
+            establish the sequence order of application.</p>
+
+        <p class="text">In MEDEF, each medical definition code is assigned an Order,
+            which</p>
+
+        <ul class="calibre6">
+
+            <li class="kadov-p-cbullet"><p class="bullet">Determines <span class="calibre8">DIAMOND</span>’s
+                order of Global Search medical definition evaluation during claims processing
+                and,</p></li>
+
+            <li class="kadov-p-cbullet"><p class="bullet">Groups multiple determinants
+                within each medical definition code.</p></li>
+        </ul>
+
+        <p class="text">The methodology used to assign order numbers is critical.
+            Within each claim type (Dental Services, Institutional, or Professional
+            Services) DIAMOND searches for the MEDEF record for the lowest Order which
+            is flagged "Include in Global Search" and evaluates the determinants
+            associated with the medical definition code. If corresponding values in
+            the claim line match the determinant and determinant values, DIAMOND assigns
+            that medical definition to the claim detail line and stops searching.
+            If a match is not found, DIAMOND proceeds to the next lowest Order flagged
+            "Include in Global Search."</p>
+
+        <p class="text">Therefore, the most specific medical definition codes should
+            have the lowest Order numbers, so that more general definitions are not
+            found and assigned to the claim line when a more specific medical definition
+            is more accurate.</p>
+
+        <h2 class="calibre5"><a (click)="gotoCustomePage($event)"
+                                name="MedDefs_HDT_Global_Search_Order_Examples_MID"></a>Global Search
+            Order Examples</h2>
+
+        <p class="text">Here are some examples of how order affects the medical definition
+            assigned to the claim line during a global search.</p>
+
+        <p class="text">Assume two different medical definitions; cardiology office
+            visits and general office visits. Both use place of service as a determinant
+            (i.e., office). Cardiology office visits are also defined by the provider’s
+            specialty, cardiology.</p>
+
+        <p class="text">If these two definitions are ordered as shown in figure 1.,
+            DIAMOND will never assign the cardiology office visit medical definition,
+            because it will always find a match on general office visit first.</p>
+
+        <h3 class="calibre2">Figure 1.</h3>
+
+        <!--(Table)=========================================================-->
+        <table cellspacing="0" x-use-null-cells="" class="calibre9">
+
+            <tbody class="calibre10">
+            <tr valign="top" class="calibre11">
+                <td width="66px" class="calibre63">
+                    <p class="tableheading">Med Def</p></td>
+                <td width="132px" class="calibre64">
+                    <p class="tableheading">Description</p></td>
+                <td width="55px" class="calibre65">
+                    <p class="tableheading">Order</p></td>
+                <td width="42px" class="calibre66">
+                    <p class="tableheading"> </p></td>
+                <td width="112px" class="calibre67">
+                    <p class="tableheading">Determinant</p></td>
+                <td width="132px" class="calibre64">
+                    <p class="tableheading">Determinant Value</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre11">
+                <td width="66px" class="calibre68">
+                    <p class="tabletext">3100</p></td>
+                <td width="132px" class="calibre69">
+                    <p class="tabletext">General Office</p></td>
+                <td width="55px" class="calibre70">
+                    <p class="tabletext"><span class="calibre38">1010</span></p></td>
+                <td width="42px" class="calibre71">
+                    <p class="tabletext"> </p></td>
+                <td width="112px" class="calibre72">
+                    <p class="tabletext">Place of Service</p></td>
+                <td width="132px" class="calibre69">
+                    <p class="tabletext">11</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre11">
+                <td width="66px" class="calibre73">
+                    <p class="tabletext">3200</p></td>
+                <td width="132px" class="calibre74">
+                    <p class="tabletext">Cardiology</p></td>
+                <td width="55px" class="calibre75">
+                    <p class="tabletext"><span class="calibre38">2010</span></p></td>
+                <td width="42px" class="calibre76">
+                    <p class="tabletext"> </p></td>
+                <td width="112px" class="calibre77">
+                    <p class="tabletext">Place of Service</p></td>
+                <td width="132px" class="calibre74">
+                    <p class="tabletext">11</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre11">
+                <td width="66px" class="calibre68">
+                    <p class="tabletext"> </p></td>
+                <td width="132px" class="calibre69">
+                    <p class="tabletext"> </p></td>
+                <td width="55px" class="calibre70">
+                    <p class="tabletext"><span class="calibre38">2010</span></p></td>
+                <td width="42px" class="calibre71">
+                    <p class="tabletext"> </p></td>
+                <td width="112px" class="calibre72">
+                    <p class="tabletext">Provider Specialty</p></td>
+                <td width="132px" class="calibre69">
+                    <p class="tabletext">CAR</p></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <p class="text">If these two definitions are ordered as shown in figure 2,
+            cardiology office visit will be encountered first, and thus will be matched
+            when the provider’s specialty is cardiology.</p>
+
+        <h3 class="calibre2">Figure 2.</h3>
+
+        <!--(Table)=========================================================-->
+        <table cellspacing="0" width="540" x-use-null-cells="" class="calibre78">
+
+            <tbody class="calibre10">
+            <tr valign="top" class="calibre11">
+                <td width="66px" class="calibre63">
+                    <p class="tableheading">Med Def</p></td>
+                <td width="132px" class="calibre64">
+                    <p class="tableheading">Description</p></td>
+                <td width="55px" class="calibre65">
+                    <p class="tableheading">Order</p></td>
+                <td width="42px" class="calibre66">
+                    <p class="tableheading"> </p></td>
+                <td width="112px" class="calibre67">
+                    <p class="tableheading">Determinant</p></td>
+                <td width="132px" class="calibre64">
+                    <p class="tableheading">Determinant Value</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre11">
+                <td width="66px" class="calibre73">
+                    <p class="tabletext">3200</p></td>
+                <td width="132px" class="calibre74">
+                    <p class="tabletext">Cardiology</p></td>
+                <td width="55px" class="calibre75">
+                    <p class="tabletext"><span class="calibre38">1010</span></p></td>
+                <td width="42px" class="calibre76">
+                    <p class="tabletext"> </p></td>
+                <td width="112px" class="calibre77">
+                    <p class="tabletext">Place of Service</p></td>
+                <td width="132px" class="calibre74">
+                    <p class="tabletext">11</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre11">
+                <td width="66px" class="calibre68">
+                    <p class="tabletext"> </p></td>
+                <td width="132px" class="calibre69">
+                    <p class="tabletext"> </p></td>
+                <td width="55px" class="calibre70">
+                    <p class="tabletext"><span class="calibre38">1010</span></p></td>
+                <td width="42px" class="calibre71">
+                    <p class="tabletext"> </p></td>
+                <td width="112px" class="calibre72">
+                    <p class="tabletext">Provider Specialty</p></td>
+                <td width="132px" class="calibre69">
+                    <p class="tabletext">CAR</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre11">
+                <td width="66px" class="calibre68">
+                    <p class="tabletext">3100</p></td>
+                <td width="132px" class="calibre69">
+                    <p class="tabletext">General Office</p></td>
+                <td width="55px" class="calibre70">
+                    <p class="tabletext"><span class="calibre38">2010</span></p></td>
+                <td width="42px" class="calibre71">
+                    <p class="tabletext"> </p></td>
+                <td width="112px" class="calibre72">
+                    <p class="tabletext">Place of Service</p></td>
+                <td width="132px" class="calibre69">
+                    <p class="tabletext">11</p></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <p class="text">DIAMOND uses search sequence numbers within order numbers
+            to specify multiple determinants for each medical definition code. In
+            our example, the medical definition for cardiology would contain two search
+            sequence numbers: Place of Service would be search sequence number 10,
+            Provider Specialty would be search sequence number 20 as shown in figure
+            3.</p>
+
+        <h3 class="calibre2">Figure 3.</h3>
+
+        <!--(Table)=========================================================-->
+        <table cellspacing="0" width="540" x-use-null-cells="" class="calibre78">
+
+            <tbody class="calibre10">
+            <tr valign="top" class="calibre11">
+                <td width="66px" class="calibre63">
+                    <p class="tableheading">Med Def</p></td>
+                <td width="132px" class="calibre64">
+                    <p class="tableheading">Description</p></td>
+                <td width="55px" class="calibre65">
+                    <p class="tableheading">Order</p></td>
+                <td width="42px" class="calibre66">
+                    <p class="tableheading"><span class="calibre38">Seq</span></p></td>
+                <td width="112px" class="calibre67">
+                    <p class="tableheading">Determinant</p></td>
+                <td width="132px" class="calibre64">
+                    <p class="tableheading">Determinant Value</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre11">
+                <td width="66px" class="calibre73">
+                    <p class="tabletext">3200</p></td>
+                <td width="132px" class="calibre74">
+                    <p class="tabletext">Cardiology</p></td>
+                <td width="55px" class="calibre75">
+                    <p class="tabletext">1010</p></td>
+                <td width="42px" class="calibre76">
+                    <p class="tabletext"><span class="calibre38">10</span></p></td>
+                <td width="112px" class="calibre77">
+                    <p class="tabletext">Place of Service</p></td>
+                <td width="132px" class="calibre74">
+                    <p class="tabletext">11</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre11">
+                <td width="66px" class="calibre68">
+                    <p class="tabletext"> </p></td>
+                <td width="132px" class="calibre69">
+                    <p class="tabletext"> </p></td>
+                <td width="55px" class="calibre70">
+                    <p class="tabletext">1010</p></td>
+                <td width="42px" class="calibre71">
+                    <p class="tabletext"><span class="calibre38">20</span></p></td>
+                <td width="112px" class="calibre72">
+                    <p class="tabletext">Provider Specialty</p></td>
+                <td width="132px" class="calibre69">
+                    <p class="tabletext">CAR</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre11">
+                <td width="66px" class="calibre68">
+                    <p class="tabletext">3100</p></td>
+                <td width="132px" class="calibre69">
+                    <p class="tabletext">General Office</p></td>
+                <td width="55px" class="calibre70">
+                    <p class="tabletext">2010</p></td>
+                <td width="42px" class="calibre71">
+                    <p class="tabletext"><span class="calibre38">10</span></p></td>
+                <td width="112px" class="calibre72">
+                    <p class="tabletext">Place of Service</p></td>
+                <td width="132px" class="calibre69">
+                    <p class="tabletext">11</p></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <p class="text">Additional determinant values may be necessary to accurately
+            define a medical definition. If additional determinant values are added
+            to our Cardiology example, DIAMOND’s evaluation logic (or vs. and) would
+            work correctly if setup as in figure 4.</p>
+
+        <h3 class="calibre2">Figure 4.</h3>
+
+        <!--(Table)=========================================================-->
+        <table cellspacing="0" width="540" x-use-null-cells="" class="calibre78">
+
+            <tbody class="calibre10">
+            <tr valign="top" class="calibre11">
+                <td width="66px" class="calibre63">
+                    <p class="tableheading">Med Def</p></td>
+                <td width="114px" class="calibre12">
+                    <p class="tableheading">Description</p></td>
+                <td width="57px" class="calibre79">
+                    <p class="tableheading">Order</p></td>
+                <td width="38px" class="calibre80">
+                    <p class="tableheading">Seq</p></td>
+                <td width="132px" class="calibre64">
+                    <p class="tableheading">Determinant</p></td>
+                <td width="132px" class="calibre64">
+                    <p class="tableheading">Determinant Value</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre11">
+                <td width="66px" class="calibre73">
+                    <p class="tabletext">3200</p></td>
+                <td width="114px" class="calibre40">
+                    <p class="tabletext">Cardiology</p></td>
+                <td width="57px" class="calibre81">
+                    <p class="tabletext">1010</p></td>
+                <td width="38px" class="calibre82">
+                    <p class="tabletext">10</p></td>
+                <td width="132px" class="calibre74">
+                    <p class="tabletext">Place of Service</p></td>
+                <td width="132px" class="calibre74">
+                    <p class="tabletext">11 <span class="calibre38">or</span> 17 <span class="calibre38">or</span> 19
+                        <span class="calibre38">or</span>
+                        21 <span class="calibre38">or</span> 27 <span class="calibre38">or</span>
+                        29</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre11">
+                <td width="66px" class="calibre68">
+                    <p class="tabletext"> </p></td>
+                <td width="114px" class="calibre15">
+                    <p class="tabletext"> </p></td>
+                <td width="57px" class="calibre83">
+                    <p class="tabletext">1010</p></td>
+                <td width="38px" class="calibre84">
+                    <p class="tabletext">20</p></td>
+                <td width="132px" class="calibre69">
+                    <p class="tabletext">Provider Specialty</p></td>
+                <td width="132px" class="calibre69">
+                    <p class="tabletext">and CAR</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre11">
+                <td width="66px" class="calibre68">
+                    <p class="tabletext">3100</p></td>
+                <td width="114px" class="calibre15">
+                    <p class="tabletext">General Office</p></td>
+                <td width="57px" class="calibre83">
+                    <p class="tabletext">2010</p></td>
+                <td width="38px" class="calibre84">
+                    <p class="tabletext">10</p></td>
+                <td width="132px" class="calibre69">
+                    <p class="tabletext">Place of Service</p></td>
+                <td width="132px" class="calibre69">
+                    <p class="tabletext">11</p></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <h2 class="calibre5"><a (click)="gotoCustomePage($event)"
+                                name="MedDefs_HDT_Using_a_Default_Medical_Definition_MID"></a>Using
+            a Default Medical Definition</h2>
+
+        <p class="text">We recommend you create a "default" medical definition
+            as the last, and therefore most general, medical definition in your processing
+            sequence. This default medical definition code should be something that
+            will stand out, such as "9999." If this code appears on a claim
+            detail line, you can research why DIAMOND assigned this medical definition
+            instead of a more specific medical definition, most commonly due to keying
+            errors or errors in the submitted claim.</p>
+
+        <h2 class="calibre5"><a (click)="gotoCustomePage($event)"
+                                name="Medical_Definitions_How_DIAMOND_Thinks_Using_Diagnosis_Codes_as_Determinants_MID"></a>Using
+            Diagnosis Codes as Determinants</h2>
+
+        <p class="text">If you want to use a diagnosis code as a determinant when
+            creating a medical definition in keyword MEDEF, then it may be convenient
+            to use DIANGOSIS_CODE_MASTER as the determinant table and DIAGNOSIS_CODE
+            as the determinant. Typically, when you enter a claim, you enter the diagnosis
+            codes in the <span class="calibre4">Dx 1</span>, <span class="calibre4">Dx
+ 2</span>, <span class="calibre4">Dx 3</span>, or <span class="calibre4">Dx
+ 4</span> boxes on the header window. Then, when you enter a claim detail
+            line on the detail window, you can use the <span class="calibre4">Dx
+ Ptr </span>boxes to point to the diagnosis code on the header window that
+            you want to become the "primary" diagnosis code for the claim
+            detail line. That way, the primary diagnosis code on the claim detail
+            line is what is used as the medical definition determinant value.</p>
+
+
+    </div>
+
+
+
+
+    <div class="calibreEbNav">
+
+        <a (click)="gotoCustomePage($event)" href="Adjudicating_Institutional_Claims_Using_Benefit_Period_BRULEs.htm"
+           class="calibreAPrev">previous page
+        </a>
+
+
+        <a (click)="gotoCustomePage($event)" href="../26by7-w03j3.html" class="calibreAHome">start
+        </a>
+
+
+        <a (click)="gotoCustomePage($event)" href="BENEF_Benefit_Packages.htm" class="calibreANext">next page
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+</html>

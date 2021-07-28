@@ -1,0 +1,91 @@
+<div class="container-fluid">
+    <div class="card-block">
+        <h2 class="form-title card-label-admin">Lookup</h2>
+        <button (click)="activeModal.dismiss()" *ngIf="showIcon" aria-label="Close" class="modal-close close"
+                type="button">
+            <span aria-hidden="true">&times;</span>
+        </button>
+
+        <div class="row ml-1 searchbox-buttons">
+            <div class="col-sm-12">
+        <div class="row ml-1 searchbox-buttons">
+            <div class="mr-1">
+                <button (click)="submit()" [disabled]="rowSelected == null || !isSearch" class="button">Ok</button>
+            </div>
+
+            <div class=" mr-1">
+                <button (click)="searchData()" *ngIf="!isSearch" class="button">Search</button>
+                <button (click)="resetData()" *ngIf="isSearch" class="button">Query</button>
+            </div>
+            <div class=" mr-1">
+                <button (click)="resetData()" [disabled]="isSearch" class="button">Reset</button>
+            </div>
+            <div class=" mr-1">
+                <button (click)="hideModal()" class="button">Cancel</button>
+            </div>
+
+            <div class=" mr-1">
+                <button (click)="defaultGrid()" [disabled]="isSearch" class="button">Default</button>
+            </div>
+
+            <div class=" mr-1">
+                <button (click)="customizeGrid()" [disabled]="!this.selectedItems || (this.selectedItems && this.selectedItems.length == 0) || isSearch" class="button">Custom</button>
+            </div>
+
+            <div class="mr-1 width-17">
+                <ng-multiselect-dropdown
+                        [placeholder]="'columns'"
+                        [settings]="dropdownSettings"
+                        [data]="searchModel.columnDefs"
+                        [(ngModel)]="selectedItems"
+                >
+                </ng-multiselect-dropdown>
+            </div>
+        </div>
+
+        <div class="row ml-2">
+            <div class="form-group d-flex align-items-center d-inline-block">
+                <!-- checkbox with label of Match All Cases -->
+                <div class="selectContainer ">
+                    <input (change)="isMatchAllChecked($event)" id="change-password" style="height: 20px; width: 20px"
+                           type="checkbox">
+                </div>
+                <label class=" pr-0 pl-2 pr-5 col-form-label" for="change-password" i18n>
+                    <b>Match All Cases</b>
+                </label>
+                <div *ngIf="searchModel.isMatchAllContracts" class="selectContainer ">
+                    <input (change)="isMatchAllContractsChecked($event)" id="matchAllContracts" style="height: 20px; width: 20px"
+                           type="checkbox">
+                </div>
+                <label *ngIf="searchModel.isMatchAllContracts" class=" pr-0 pl-2 col-form-label" for="matchAllContracts"
+                       i18n>
+                    <b>Match All Contracts</b>
+                </label>
+            </div>
+        </div>
+
+        <div class="row ml-0 mr-0">
+            <!-- DataGrid with Name of DataGrid -->
+            <ag-grid-angular #agGrid (gridReady)="onGridReady($event)"
+                             (keydown.enter)="submitSearchOnEnterKey()"
+                             (selectionChanged)="selectionChanged()"
+                             [gridOptions]="dataGridGridOptions"
+                             [paginationPageSize]="paginationPageSize"
+                             [pagination]="true"
+                             [rowSelection]="rowSelection"
+                             [showToolPanel]="false"
+                             (cellDoubleClicked)="openRecordOnDoubleClicked()"
+
+                             (cellValueChanged)="onCellValueChanged($event)"
+                             [enableFilter]="false"
+                             [enableSorting]="true"
+                             [floatingFilter]="false"
+                             [stopEditingWhenGridLosesFocus]="true"
+                             class="ag-theme-fresh customClass row d-block pl-4"
+                             style="width: 100%; height: 300px;">
+            </ag-grid-angular>
+        </div>
+            </div>
+        </div>
+    </div>
+</div>

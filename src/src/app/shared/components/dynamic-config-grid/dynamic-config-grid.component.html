@@ -1,0 +1,262 @@
+<form [formGroup]="form">
+    <div class="card">
+
+        <h5 class="m-0 p-2 dmnd-background border-bottom" *ngIf="title"> {{title}}</h5>
+
+        <div class="row dmnd-background ml-0 w-100 font-weight-bold" *ngIf="prevState && prevState.length > 0">
+            <ng-container *ngFor="let formField of prevState[0].formFields; let index = index">
+                <div *ngIf="formField.type != 'hidden'" (click)="headerClick(formField, $event)"
+                     class="dynamic-field p-0 form-input col{{formField.size? formField.size: '-md-2' }} {{formField.class}}">
+                    <label [ngClass]="formField.required? 'required-field-label': ''"
+                           for="field" i18n>{{ formField.label }}</label>
+                </div>
+            </ng-container>
+        </div>
+        <div *ngFor="let field of t.controls; let i = index" class="list-group-flush"
+             [ngClass]="isShowRecord(i)? 'list-group': ''">
+            <div class="dmnd-background p-0" [ngClass]="isShowRecord(i)? 'list-group-item': ''">
+                <div [formGroup]="field" class="form-row m-0">
+                    <div class="row w-100 m-0" *ngIf="prevState && prevState.length > 0  && isShowRecord(i) ">
+
+
+                        <ng-container
+                                *ngFor="let formField of prevState[i] && prevState[i].formFields; let index = index">
+                            <ng-container *ngIf="!formField.hideField">
+
+
+                                <div (click)="fieldClick(formField,i, $event, field)" class="dynamic-field p-0 form-input col{{formField.size? formField.size: '-md-2' }} {{formField.class}}"
+                                     *ngIf="formField.type === 'checkbox'">
+
+                                    <input  (change)="onFieldChange(formField,i, $event, field)" style="height: 20px; width: 20px" type="checkbox"
+                                           formControlName="{{formField.name}}">
+                                </div>
+
+                                <div (click)="fieldClick(formField,i, $event, field)" class="dynamic-field p-0 form-input col{{formField.size? formField.size: '-md-2' }} {{formField.class}}" *ngIf="formField.type === 'checkboxWithText'">
+
+                                    <input *ngIf="!formField.hideSingleField" style="height: 17px;width: 17px;vertical-align: middle;" type="checkbox" formControlName="{{formField.name}}"> <span *ngIf="!formField.hideSingleField" style="
+                                        font-size: 13px;
+                                        font-weight: 700;
+                                        vertical-align: middle;
+                                        margin-left: 3px;
+                                    ">{{formField.text}}</span>
+                                </div>
+
+
+                                <div (click)="fieldClick(formField,i, $event, field)" class="dynamic-field p-0 form-input col{{formField.size? formField.size: '-md-2' }} {{formField.class}}"
+                                     *ngIf="formField.type === 'text' || formField.type === 'email'">
+
+                                    <input (change)="onFieldChange(formField,i, $event, field)" type="text" (keydown)="openLookup($event, formField ,field, i)"
+                                           id="{{formField.name + i + 'text'}}"
+                                           (blur)="onFormValueChanges(formField ,field, i)"
+                                           [ngStyle]="{'border-right': index !== (config.length-1)? '0': ''} "
+                                           class="form-control"
+                                           [readonly]="formField.disabled"
+                                           formControlName="{{formField.name }}"/>
+                                    <small class="text-danger"
+                                           *ngIf=" submitted && getFieldErrors(field, formField.name, i)">
+                                        {{ getErrorMessage(field, formField.name, i)}}
+                                    </small>
+                                </div>
+
+
+                                <div (click)="fieldClick(formField,i, $event, field)" class="dynamic-field p-0 form-input col{{formField.size? formField.size: '-md-2' }} {{formField.class}}"
+                                     *ngIf="formField.type === 'number'">
+
+                                    <input type="number" (change)="onFieldChange(formField,i, $event, field)"
+                                           id="{{formField.name + i + 'num'}}"
+                                           (blur)="onFormValueChanges($event ,field, i)"
+                                           [readonly]="formField.disabled"
+                                           [ngStyle]="{'border-right': index !== (config.length-1)? '0': ''} "
+                                           class="form-control" id="field" formControlName="{{formField.name }}"
+                                    />
+                                    <small class="text-danger"
+                                           *ngIf=" submitted && getFieldErrors(field, formField.name, i)">
+                                        {{ getErrorMessage(field, formField.name, i)}}
+                                    </small>
+                                </div>
+
+
+                                <!--============================================-----------------------  Date Picker        ---------------------------------------------------------->
+
+                                <div (click)="fieldClick(formField,i, $event, field)" class="dynamic-field p-0 form-input col{{formField.size? formField.size: '-md-2' }} {{formField.class}}"
+                                     *ngIf="formField.type === 'date'">
+                                    <div class="input-group" [ngClass]="formField.disabled ? 'divDeepDisabled':''">
+                                        <input class="form-control" angular-mydatepicker name="date"
+                                               id="{{formField.name + i + 'date'}}"
+                                               (dateChanged)="onFieldChange(formField,i, $event, field, $event)"
+                                               (click)="holdDateId.toggleCalendar()"
+                                               formControlName="{{formField.name }}" [options]="datePickerConfig"
+                                               [readonly]="formField.disabled"
+                                               #holdDateId="angular-mydatepicker"
+                                        />
+                                        <div class="input-group-append">
+                                            <button type="button" class="btn btn-secondary"
+                                                    (click)="holdDateId.toggleCalendar()" [disabled]="formField.disabled">
+                                                <fa-icon [icon]="['far', 'calendar']"></fa-icon>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <small class="text-danger"
+                                           *ngIf=" submitted && getFieldErrors(field, formField.name, i)">
+                                        {{ getErrorMessage(field, formField.name, i)}}
+                                    </small>
+                                </div>
+
+                                 <!--============================================-----------------------  DropDown        ---------------------------------------------------------->
+
+                                <div (click)="fieldClick(formField,i, $event, field)" class="dynamic-field p-0 form-input col{{formField.size? formField.size: '-md-2' }} {{formField.class}}" 
+                                *ngIf="formField.type === 'dropdown'">
+                                    <div class="input-group" [ngClass]="formField.disabled ? 'divDeepDisabled':''">
+                                        <select class="form-control" id="{{formField.name + i + 'dropdown'}}" formControlName="{{formField.name}}" [disabled]="formField.disabled" [readonly]="formField.disabled">
+                                            <option *ngFor="let option of  formField.options" [value]="option.value">{{option.key}}</option>
+                                        </select>
+                                        <small class="text-danger" *ngIf=" submitted && getFieldErrors(field, formField.name, i)">
+                                            {{ getErrorMessage(field, formField.name, i)}}
+                                        </small>
+                                    </div>
+                                </div>
+
+                                <!--------------------------       NGB   Dropdown ------------------------------->
+                                <div (click)="fieldClick(formField,i, $event, field)" class="p-0 col{{formField.size? formField.size: '-md-2' }} {{formField.class}}"
+                                     *ngIf="formField.type === 'select'">
+
+                                    <div class="input-group" #myDrop="ngbDropdown" ngbDropdown [ngClass]="formField.disabled ? 'divDeepDisabled':''">
+                                        <input ngbDropdownToggle type="text" class="form-control"
+                                               id="{{formField.name + i + 'select'}}"
+                                               formControlName="{{formField.name.replace(i + '', 'Hidden' + i)  }}" [readonly]="formField.disabled">
+                                        <div class="input-group-append" role="group">
+                                            <button ngbDropdownToggle class="btn border" [disabled]="formField.disabled"></button>
+                                        </div>
+                                        <div ngbDropdownMenu aria-labelledby="dropdown" class="max-dropdown-height">
+                                            <button ngbDropdownItem value="{{option.value}}"
+                                                    (click)="handleDropdownClick(field, formField, i, option)"
+                                                    *ngFor="let option of  formField.options">{{option.key}}
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                    <small class="text-danger"
+                                           *ngIf=" submitted && getFieldErrors(field, formField.name, i)">
+                                        {{ getErrorMessage(field, formField.name, i)}}
+                                    </small>
+                                </div>
+
+
+                                <!--------------------------       NGB   Dropdown With Description ------------------------------->
+                                <div (click)="fieldClick(formField,i, $event, field)" class="p-0 col{{formField.size? formField.size: '-md-2' }} {{formField.class}}"
+                                     *ngIf="formField.type === 'DescSelect'">
+
+                                    <div class="input-group" #myDrop="ngbDropdown" ngbDropdown [ngClass]="formField.disabled ? 'divDeepDisabled':''">
+                                        <input ngbDropdownToggle type="text" class="form-control"
+                                               id="{{formField.name + i + 'selectDesc'}}" [value]="formField.value"
+                                               formControlName="{{formField.name  }}" [disabled]="formField.disabled" [readonly]="formField.disabled">
+                                        <div class="input-group-append" role="group">
+                                            <button ngbDropdownToggle class="btn border" [disabled]="formField.disabled"></button>
+                                        </div>
+                                        <div ngbDropdownMenu aria-labelledby="dropdown" class="max-dropdown-height">
+                                            <button ngbDropdownItem value="{{option.value}}"
+                                                    (click)="field.controls[formField.name].patchValue(option.key); onFieldChange(formField,i, $event, field)"
+                                                    *ngFor="let option of  formField.options">{{option.key}}
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                    <small class="text-danger"
+                                           *ngIf=" submitted && getFieldErrors(field, formField.name, i)">
+                                        {{ getErrorMessage(field, formField.name, i)}}
+                                    </small>
+                                </div>
+
+                                <!--------------------------          radio button ------------------------------->
+                                <div (click)="fieldClick(formField,i, $event, field)" class="p-0 col{{formField.size? formField.size: '-md-2' }} {{formField.class}}"
+                                     *ngIf="formField.type === 'radioButton'">
+                                    <div class="input-group">
+                                        <button ngbDropdownItem value="{{option.value}}"
+                                                (click)="field.controls[formField.name].patchValue(option.value); onFormValueChanges(formField ,field, i, option.value)"
+                                                *ngFor="let option of  formField.options;">
+
+                                            <input type="radio" style="height: 15px; width: 15px"
+                                                   id="{{formField.name + i + 'radioButton'}}" [value]="option.value"
+                                                   formControlName="{{formField.name  }}">
+
+                                            {{option.key}}
+                                        </button>
+
+                                    </div>
+
+                                </div>
+
+                                <!--------------------------          Dropdown ------------------------------->
+
+                                <div (click)="fieldClick(formField,i, $event, field)" class="p-0 col{{formField.size? formField.size: '-md-2' }} {{formField.class}}"
+                                     *ngIf="formField.type === 'action'">
+                                    <input type="text" class="d-none" formControlName="{{formField.name }}">
+                                    <a (click)="onFieldChange(formField,i, $event, field, '')"
+                                       id="{{formField.name + i + 'action'}}"
+                                       [ngStyle]="{'border-right': index !== (config.length-1)? '0': ''} "
+                                       class="form-control font-weight-bold border-0 color-red pl-4 cursor-pointer">
+                                        <u> {{formField.value}}</u>
+                                    </a>
+
+                                </div>
+
+
+                                <!--------------------------  hidden ------------------------------->
+
+                                <ng-container *ngIf="formField.type === 'hidden'">
+
+                                    <input type="hidden" id="{{formField.name + i + 'hidden'}}"
+                                           formControlName="{{formField.name }}"/>
+                                </ng-container>
+                            </ng-container>
+                        </ng-container>
+
+
+                        <button *ngIf="isFormEditable && showRemoveButton" style="border: 0"
+                                [disabled]="prevState.length <= i" class="close-button" [ngbTooltip]="'Remove Record'"
+                                placement="right" (click)="removeRecord(i)">
+                            <fa-icon [icon]="faTrash"></fa-icon>
+                        </button>
+
+                        <div class="row w-100 justify-content-center row-button">
+                            <a class="mr-4 save-button " (click)="onSubmit()" *ngIf="prevState[i] && prevState[i].showSaveButton">
+                                <fa-icon style="color: #118503" [icon]="faSave"></fa-icon>
+                                Save
+                            </a>
+
+                            <a class="mr-2 cancel-button " (click)="resetRecord(i, $event, field)"
+                               *ngIf="prevState[i] && prevState[i].showCancelButton">
+                                <fa-icon [icon]="faCancel"></fa-icon>
+                                Cancel
+                            </a>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="card-footer dmnd-background" *ngIf="isFormEditable">
+            <button type="button" class="button mr-1 fa-rotate-level-down" *ngIf="showAddNewline"
+                    (click)="addNewRow(getConfigCopy(),false, isAllowAddNewRow)">
+                <fa-icon [icon]="faLevel"></fa-icon>
+                Add New
+            </button>
+            <button *ngIf="showSubmitButton" type="button" class="button mr-1 fa-rotate-level-down"
+                    (click)="onSubmit()">
+                <fa-icon [icon]="faSave"></fa-icon>
+                {{submitBtnText}}
+            </button>
+
+            <button *ngIf="showResetButton" type="button" class="button mr-2 " (click)="resetForm(true)">
+                <fa-icon [icon]="faWindowRestore"></fa-icon>
+                {{restoreBtnText}}
+            </button>
+
+        </div>
+    </div>
+</form>
+
+<ng-keyboard-shortcuts [shortcuts]="shortcuts"></ng-keyboard-shortcuts>
+<ng-keyboard-shortcuts-help [key]="'f2'" [closeKey]="'escape'" [title]="'Hotkeys Help'"></ng-keyboard-shortcuts-help>

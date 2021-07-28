@@ -1,0 +1,74 @@
+<!-- Copyright (c) 2020 . All Rights Reserved. -->
+<div class="container-fluid">
+    <div class="card-block">
+        <form [formGroup]="ruleCopyForm" novalidate>
+            <h2 class="form-title card-label-admin">Rule Copy</h2>
+            <button type="button" *ngIf="showIcon" class="close" aria-label="Close"
+                    (click)="activeModal.dismiss('Cross click')">
+                <span aria-hidden="true">&times;</span>
+            </button>
+
+            <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+            <app-pop-up-message #popUpMesssage (buttonclickEvent)="popUpButtonHandler($event)"
+                                [popupMessage]="popUpMessage"></app-pop-up-message>
+
+            <div class="row">
+                <div class="col-md-9">
+
+                    <div class="form-group mt-1 row">
+                        <!-- Textbox with label of Rule Id -->
+                        <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('ruleId') }">
+                            <label class="col-form-label" for="ruleId" i18n>Rule Id</label>
+                            <input type="text" id="ruleId" class="form-control"
+                                   formControlName="ruleId"/>
+                            <small class="text-danger" *ngIf="formValidation.isValidField('ruleId')">
+                                {{ formValidation.errorMessage('ruleId') }}
+                            </small>
+                        </div>
+
+                        <!-- Textbox with label of Effective Date -->
+
+
+                        <div class="form-group col-md-6">
+                            <app-datepicker [isRequired]="true" [formGroup]="ruleCopyForm"
+                                            [formValidation]="formValidation"
+                                            [field]="'effectiveDate'" [labelText]="'Effective Date'"
+                                            (onDateChanged)="validateEffectiveDate($event)"></app-datepicker>
+                        </div>
+In
+
+                        <!-- Button with label of OK -->
+                    </div>
+
+
+                    <div class="form-group row mt-1">
+                        <!-- DynamicText with label of Term Date -->
+
+                        <div class="form-group col-md-6">
+                            <app-datepicker [formGroup]="ruleCopyForm" [formValidation]="formValidation"
+                                            [field]="'termDate'"
+                                            [labelText]="'Term Date'"
+                                            (onDateChanged)="validateTermDate($event)"></app-datepicker>
+                        </div>
+
+
+                        <!-- DynamicText with label of Term Reason -->
+                        <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('termReason') }">
+                            <label class="col-form-label" for="termReason" i18n>Term Reason</label>
+                            <input type="text" id="termReason"
+                                   formControlName="termReason" class="form-control"/>
+                        </div>
+
+
+                    </div>
+                </div>
+
+                <div class="col-md offset-1">
+                    <button type="button" id="ok" name="ok" (click)="onOkButtonClick()" class="button">OK</button>
+                </div>
+            </div>
+
+
+        </form>
+    </div>
+</div>

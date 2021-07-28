@@ -1,0 +1,559 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+    <title>Lesser of Multiple Fee Schedule Calculations - Overview</title>
+    <!--(Meta)==========================================================-->
+    <meta content="About.htt" name="template"/>
+    <meta content="RoboHELP by eHelp Corporation - www.ehelp.com" name="generator"/>
+    <meta content="0.1" name="generator-major-version"/>
+    <meta content="1" name="generator-minor-version"/>
+    <meta content="kadov" name="filetype"/>
+    <meta content="1" name="filetype-version"/>
+    <meta content="1" name="page-count"/>
+    <meta content="1826" name="layout-height"/>
+    <meta content="889" name="layout-width"/>
+    <!--(Links)=========================================================-->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+</head>
+<body>
+
+<div class="calibreMeta">
+    <div class="calibreMetaTitle">
+
+
+        <h1>
+            <a href="../2nlvj-mfnql.html">DIAMOND 950 Help
+            </a>
+        </h1>
+
+
+    </div>
+    <div class="calibreMetaAuthor">
+        Unknown
+
+    </div>
+</div>
+
+<div class="calibreMain">
+
+    <div class="calibreEbookContent">
+
+        <div class="calibreEbNavTop">
+
+            <a href="Customizing_for_Alternate_Languages.htm" class="calibreAPrev">previous page
+            </a>
+
+
+            <a href="Adding_a_G_L_Reference_Code_for_Administrative_Fees.htm" class="calibreANext">next page
+            </a>
+
+        </div>
+
+
+        <h1 class="calibre1"><!--kadov_tag{{<variable name=title
+						x-format=default
+						x-value="Lesser of Multiple Fee Schedule Calculations - Overview">}}-->Lesser
+            of Multiple Fee Schedule Calculations - Overview<!--kadov_tag{{</variable>}}-->
+        </h1>
+
+        <h2 class="calibre21">Lesser of Multiple Fee Schedules</h2>
+
+        <p class="step-comment-noline">When pricing for the Lesser of Multiple Fee Schedules
+            calculation method, the DIAMOND system attempts to find a match on the
+            Procedure Code and/or Modifier and Price Region for all price schedules
+            associated with the group record and the provider contract. If the system
+            finds a matching price schedule, it then calculates the allowed amount
+            for that price schedule by multiplying the price by the Percent Allowed
+            specified, stores the resulting value for later use, then moves on to
+            the next price schedule. Once all price schedules have been checked and
+            calculated, the system determines the lowest allowed amount of all possible
+            amounts calculated and applies that amount as the Allowed Amount.</p>
+
+        <p class="step-comment-noline">For all calculation methods other than Lesser of Multiple
+            Fee Schedules, the DIAMOND system evaluates price schedules until the
+            first match is found. Once DIAMOND locates a match, it uses the information
+            from that fee schedule to price.</p>
+
+        <h2 class="calibre20">Examples</h2>
+
+        <p class="calibre22"><!--kadov_tag{{<spaces>}}--> <!--kadov_tag{{</spaces>}}--></p>
+
+        <h3 class="calibre2">Scenario 1 for Lesser of Multiple Fee Schedules calculation method</h3>
+
+        <p class="step-comment-noline">For this example, the Primary Price Search field on
+            Line Of Business is set to Provider. <!--kadov_tag{{<spaces>}}--> <!--kadov_tag{{</spaces>}}--></p>
+
+        <p class="step-comment-noline"> </p>
+
+        <!--(Table)=========================================================-->
+        <table cellspacing="0" width="500" x-use-null-cells="" class="calibre115">
+            <colgroup class="calibre19">
+                <col class="calibre116"/>
+                <col class="calibre117"/>
+                <col class="calibre118"/>
+                <col class="calibre119"/>
+                <col class="calibre118"/>
+
+            </colgroup>
+            <tbody class="calibre10">
+            <tr valign="top" class="calibre11">
+                <td width="110px" class="">
+                    <p class="tableheading">Field </p></td>
+                <td width="95px" class="">
+                    <p class="tableheading1">Field Value on provider Contract</p></td>
+                <td width="140px" class="">
+                    <p class="tableheading">Field Value on Group Contract</p></td>
+                <td width="95px" class="">
+                    <p class="tableheading">Resulting Pricing Schema</p></td>
+                <td width="140px" class="">
+                    <p class="tableheading">Comments</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre7">
+                <td width="100px" class="calibre33">
+                    <p class="tbl-text">Price Rule 1 </p>
+                    <p class="tbl-text"> </p></td>
+                <td width="73px" class="calibre34">
+                    <p class="tbl-text">PR2 <!--kadov_tag{{<spaces>}}--> <!--kadov_tag{{</spaces>}}--></p></td>
+                <td width="80px" class="calibre35">
+                    <p class="tbl-text">&lt;blank&gt;</p></td>
+                <td width="100px" class="calibre33">
+                    <p class="tbl-text">PR2 </p></td>
+                <td width="239px" class="calibre36">
+                    <p class="tbl-text">The price rule from the provider contract is used for
+                        pricing.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre7">
+                <td width="100px" class="calibre33">
+                    <p class="tbl-text">Pct. Allowed <!--kadov_tag{{<spaces>}}--> <!--kadov_tag{{</spaces>}}--></p>
+                    <p class="tbl-text"> </p></td>
+                <td width="73px" class="calibre34">
+                    <p class="tbl-text">100%</p></td>
+                <td width="80px" class="calibre35">
+                    <p class="tbl-text">90% <!--kadov_tag{{<spaces>}}--> <!--kadov_tag{{</spaces>}}--></p></td>
+                <td width="100px" class="calibre33">
+                    <p class="tbl-text">90%</p></td>
+                <td width="239px" class="calibre36">
+                    <p class="tbl-text">The percent allowed from the group contract is used.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre7">
+                <td width="100px" class="calibre33">
+                    <p class="tbl-text">Pricing Region </p></td>
+                <td width="73px" class="calibre34">
+                    <p class="tbl-text">RG1 </p></td>
+                <td width="80px" class="calibre35">
+                    <p class="tbl-text">RG2 </p></td>
+                <td width="100px" class="calibre33">
+                    <p class="tbl-text">RG2 </p></td>
+                <td width="239px" class="calibre36">
+                    <p class="tbl-text">The Pricing Region from the group contract is used.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre7">
+                <td width="100px" class="calibre33">
+                    <p class="tbl-text">Price Sched (1) </p></td>
+                <td width="73px" class="calibre34">
+                    <p class="tbl-text">PS1 </p></td>
+                <td width="80px" class="calibre35">
+                    <p class="tbl-text">PS2 </p></td>
+                <td width="100px" class="calibre33">
+                    <p class="tbl-text">PS2 </p></td>
+                <td width="239px" class="calibre36">
+                    <p class="tbl-text">Price Sched (1) from the Group contract is used since
+                        Group overrides Provider (based on Primary Price Search value on the LOB).</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre7">
+                <td colspan="1" rowspan="1" width="100px" class="calibre33">
+                    <p class="tbl-text">Price Sched Pct Allowed (1) <!--kadov_tag{{<spaces>}}--> 
+                        <!--kadov_tag{{</spaces>}}--></p></td>
+                <td colspan="1" rowspan="1" width="73px" class="calibre34">
+                    <p class="tbl-text">100%</p></td>
+                <td colspan="1" rowspan="1" width="80px" class="calibre35">
+                    <p class="tbl-text">N/A </p></td>
+                <td colspan="1" rowspan="1" width="100px" class="calibre33">
+                    <p class="tbl-text">N/A (defaults to 100%) </p></td>
+                <td colspan="1" rowspan="1" width="239px" class="calibre36">
+                    <p class="tbl-text">Since the Price Schedule from the Group Contract was
+                        used and there is no Price Schedule Percent Allowed on the Group Contract,
+                        there will be no Price Schedule Percent Allowed in this case.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre7">
+                <td colspan="1" rowspan="1" width="100px" class="calibre33">
+                    <p class="tbl-text">Price Sched (2) </p>
+                    <p class="tbl-text"> </p></td>
+                <td colspan="1" rowspan="1" width="73px" class="calibre34">
+                    <p class="tbl-text">PS3 </p></td>
+                <td colspan="1" rowspan="1" width="80px" class="calibre35">
+                    <p class="tbl-text">&lt;blank&gt; </p></td>
+                <td colspan="1" rowspan="1" width="100px" class="calibre33">
+                    <p class="tbl-text">PS3 </p></td>
+                <td colspan="1" rowspan="1" width="239px" class="calibre36">
+                    <p class="tbl-text">Price Sched (2) from provider contract is used.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre7">
+                <td colspan="1" rowspan="1" width="100px" class="calibre33">
+                    <p class="tbl-text">Price Sched Pct Allowed (2) <!--kadov_tag{{<spaces>}}-->  
+                        <!--kadov_tag{{</spaces>}}--></p></td>
+                <td colspan="1" rowspan="1" width="73px" class="calibre34">
+                    <p class="tbl-text">105% </p></td>
+                <td colspan="1" rowspan="1" width="80px" class="calibre35">
+                    <p class="tbl-text">N/A</p></td>
+                <td colspan="1" rowspan="1" width="100px" class="calibre33">
+                    <p class="tbl-text">105%</p></td>
+                <td colspan="1" rowspan="1" width="239px" class="calibre36">
+                    <p class="tbl-text">Since the Price Schedule from the Provider Contract was
+                        used and there is an associated Price Schedule Percent Allowed on the
+                        Provider Contract, there will be an additional Price Schedule Percent
+                        Allowed in this case.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre7">
+                <td colspan="1" rowspan="1" width="100px" class="calibre33">
+                    <p class="tbl-text">Price Sched (3) </p></td>
+                <td colspan="1" rowspan="1" width="73px" class="calibre34">
+                    <p class="tbl-text">PS4 </p></td>
+                <td colspan="1" rowspan="1" width="80px" class="calibre35">
+                    <p class="tbl-text">N/A </p></td>
+                <td colspan="1" rowspan="1" width="100px" class="calibre33">
+                    <p class="tbl-text">PS4 </p></td>
+                <td colspan="1" rowspan="6" width="239px" class="calibre36">
+                    <p class="tbl-text">A group contract can only have 2 associated price schedules,
+                        therefore, <!--kadov_tag{{<spaces>}}--> <!--kadov_tag{{</spaces>}}--> price
+                        schedules 3 and above associated with the provider contract are always
+                        added to the price schema when Lesser of Multiple Fee Schedules calculation
+                        method is used.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre7">
+                <td colspan="1" rowspan="1" width="100px" class="calibre33">
+                    <p class="tbl-text">Price Sched Pct Allowed (3) <!--kadov_tag{{<spaces>}}--> 
+                        <!--kadov_tag{{</spaces>}}--></p></td>
+                <td colspan="1" rowspan="1" width="73px" class="calibre34">
+                    <p class="tbl-text">90% </p></td>
+                <td colspan="1" rowspan="1" width="80px" class="calibre35">
+                    <p class="tbl-text">N/A </p></td>
+                <td colspan="1" rowspan="1" width="100px" class="calibre33">
+                    <p class="tbl-text">90%</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre7">
+                <td colspan="1" rowspan="1" width="100px" class="calibre33">
+                    <p class="tbl-text">Price Sched (4) </p></td>
+                <td colspan="1" rowspan="1" width="73px" class="calibre34">
+                    <p class="tbl-text">PS5 </p></td>
+                <td colspan="1" rowspan="1" width="80px" class="calibre35">
+                    <p class="tbl-text">N/A </p></td>
+                <td colspan="1" rowspan="1" width="100px" class="calibre33">
+                    <p class="tbl-text">PS5 </p></td>
+            </tr>
+
+            <tr valign="top" class="calibre7">
+                <td colspan="1" rowspan="1" width="100px" class="calibre33">
+                    <p class="tbl-text">Price Sched Pct Allowed (4) </p></td>
+                <td colspan="1" rowspan="1" width="73px" class="calibre34">
+                    <p class="tbl-text">110% </p></td>
+                <td colspan="1" rowspan="1" width="80px" class="calibre35">
+                    <p class="tbl-text">N/A </p></td>
+                <td colspan="1" rowspan="1" width="100px" class="calibre33">
+                    <p class="tbl-text">110%</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre7">
+                <td colspan="1" rowspan="1" width="100px" class="calibre33">
+                    <p class="tbl-text">Price Sched (5) </p></td>
+                <td colspan="1" rowspan="1" width="73px" class="calibre34">
+                    <p class="tbl-text">PS6 </p></td>
+                <td colspan="1" rowspan="1" width="80px" class="calibre35">
+                    <p class="tbl-text">N/A </p></td>
+                <td colspan="1" rowspan="1" width="100px" class="calibre33">
+                    <p class="tbl-text">PS6 </p></td>
+            </tr>
+
+            <tr valign="top" class="calibre7">
+                <td colspan="1" rowspan="1" width="100px" class="calibre33">
+                    <p class="tbl-text">Price Sched Pct Allowed (5) </p></td>
+                <td colspan="1" rowspan="1" width="73px" class="calibre34">
+                    <p class="tbl-text">75% </p></td>
+                <td colspan="1" rowspan="1" width="80px" class="calibre35">
+                    <p class="tbl-text">N/A </p></td>
+                <td colspan="1" rowspan="1" width="100px" class="calibre33">
+                    <p class="tbl-text">75% </p></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <p class="step-comment-noline"> </p>
+
+        <p class="calibre22"> </p>
+
+        <h3 class="calibre2">Scenario 2 for Lesser of Multiple Fee Schedules calculation method</h3>
+
+        <p class="step-comment-noline">For this example, the Primary Price Search field on
+            Line Of Business is set to Group. <!--kadov_tag{{<spaces>}}--> <!--kadov_tag{{</spaces>}}--></p>
+
+        <p class="calibre22"> </p>
+
+        <!--(Table)=========================================================-->
+        <td_null/>
+        <td_null/>
+        <td_null/>
+        <td_null/>
+        <td_null/>
+        <table cellspacing="0" width="619" x-use-null-cells="" class="calibre23">
+            <colgroup class="calibre24">
+                <col class="calibre25"/>
+                <col class="calibre26"/>
+                <col class="calibre27"/>
+                <col class="calibre25"/>
+                <col class="calibre28"/>
+
+            </colgroup>
+            <tbody class="calibre6">
+            <tr valign="top" class="calibre7">
+                <td width="100px" class="calibre29">
+                    <p class="tableheading">Field </p></td>
+                <td width="73px" class="calibre30">
+                    <p class="tableheading">Field Value on provider Contract</p></td>
+                <td width="80px" class="calibre31">
+                    <p class="tableheading">Field Value on Group Contract</p></td>
+                <td width="100px" class="calibre29">
+                    <p class="tableheading">Resulting Pricing Schema</p></td>
+                <td width="239px" class="calibre32">
+                    <p class="tableheading">Comments</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre7">
+                <td width="100px" class="calibre33">
+                    <p class="tbl-text">Price Rule 1 </p>
+                    <p class="tbl-text"> </p>
+                    <p class="tbl-text"> </p></td>
+                <td width="73px" class="calibre34">
+                    <p class="tbl-text">PR2 <!--kadov_tag{{<spaces>}}--> <!--kadov_tag{{</spaces>}}--></p></td>
+                <td width="80px" class="calibre35">
+                    <p class="tbl-text">&lt;blank&gt;</p></td>
+                <td width="100px" class="calibre33">
+                    <p class="tbl-text">PR2 </p></td>
+                <td width="239px" class="calibre36">
+                    <p class="calibre37">The price rule from the provider contract is
+                        used for pricing.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre7">
+                <td width="100px" class="calibre33">
+                    <p class="tbl-text">Pct. Allowed <!--kadov_tag{{<spaces>}}--> <!--kadov_tag{{</spaces>}}--></p>
+                    <p class="tbl-text"> </p></td>
+                <td width="73px" class="calibre34">
+                    <p class="tbl-text">100% </p></td>
+                <td width="80px" class="calibre35">
+                    <p class="tbl-text">90%</p></td>
+                <td width="100px" class="calibre33">
+                    <p class="tbl-text">100% </p></td>
+                <td width="239px" class="calibre36">
+                    <p class="calibre38">The percent allowed from the provider contract is used.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre7">
+                <td width="100px" class="calibre33">
+                    <p class="tbl-text">Pricing Region </p>
+                    <p class="tbl-text"> </p></td>
+                <td width="73px" class="calibre34">
+                    <p class="tbl-text">&lt;blank&gt; </p></td>
+                <td width="80px" class="calibre35">
+                    <p class="tbl-text">RG2 </p></td>
+                <td width="100px" class="calibre33">
+                    <p class="tbl-text">RG2 </p></td>
+                <td width="239px" class="calibre36">
+                    <p class="calibre38">The Pricing Region from the group contract is used.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre7">
+                <td width="100px" class="calibre33">
+                    <p class="tbl-text">Price Sched (1) </p>
+                    <p class="tbl-text"> </p></td>
+                <td width="73px" class="calibre34">
+                    <p class="tbl-text">PS1 </p></td>
+                <td width="80px" class="calibre35">
+                    <p class="tbl-text">PS2 </p></td>
+                <td width="100px" class="calibre33">
+                    <p class="tbl-text">PS1 </p></td>
+                <td width="239px" class="calibre36">
+                    <p class="calibre38">Price Schedule (1) from the Provider contract is used since Provider
+                        overrides Group (based on Primary Price Search value on the LOB).</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre7">
+                <td colspan="1" rowspan="1" width="100px" class="calibre33">
+                    <p class="tbl-text">Price Sched Pct Allowed (1) <!--kadov_tag{{<spaces>}}--> 
+                        <!--kadov_tag{{</spaces>}}--></p>
+                    <p class="tbl-text"> </p></td>
+                <td colspan="1" rowspan="1" width="73px" class="calibre34">
+                    <p class="tbl-text">100% </p></td>
+                <td colspan="1" rowspan="1" width="80px" class="calibre35">
+                    <p class="tbl-text">N/A </p></td>
+                <td colspan="1" rowspan="1" width="100px" class="calibre33">
+                    <p class="tbl-text">100%</p></td>
+                <td colspan="1" rowspan="1" width="239px" class="calibre36">
+                    <p class="calibre38">Since the Price Schedule from the Provider Contract was used and there
+                        is an associated Price Schedule Percent Allowed on the Provider Contract,
+                        there will be an additional Price Schedule Percent Allowed in this case.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre7">
+                <td colspan="1" rowspan="1" width="100px" class="calibre33">
+                    <p class="tbl-text">Price Sched (2) </p></td>
+                <td colspan="1" rowspan="1" width="73px" class="calibre34">
+                    <p class="tbl-text">PS3 </p></td>
+                <td colspan="1" rowspan="1" width="80px" class="calibre35">
+                    <p class="tbl-text">&lt;blank&gt; </p></td>
+                <td colspan="1" rowspan="1" width="100px" class="calibre33">
+                    <p class="tbl-text">PS3 </p></td>
+                <td colspan="1" rowspan="1" width="239px" class="calibre36">
+                    <p class="calibre38">Price Schedule (2) from provider contract is used.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre7">
+                <td colspan="1" rowspan="1" width="100px" class="calibre33">
+                    <p class="tbl-text">Price Sched Pct Allowed (2) </p></td>
+                <td colspan="1" rowspan="1" width="73px" class="calibre34">
+                    <p class="tbl-text">105% <!--kadov_tag{{<spaces>}}--> <!--kadov_tag{{</spaces>}}--></p></td>
+                <td colspan="1" rowspan="1" width="80px" class="calibre35">
+                    <p class="tbl-text">N/A </p></td>
+                <td colspan="1" rowspan="1" width="100px" class="calibre33">
+                    <p class="tbl-text">105%</p></td>
+                <td colspan="1" rowspan="1" width="239px" class="calibre36">
+                    <p class="calibre38">Since the Price Schedule from the Provider Contract was used and there
+                        is an associated Price Schedule Percent Allowed on the Provider Contract,
+                        there will be an additional Price Schedule Percent Allowed in this case.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre7">
+                <td colspan="1" rowspan="1" width="100px" class="calibre33">
+                    <p class="tbl-text">Price Sched (3) </p></td>
+                <td colspan="1" rowspan="1" width="73px" class="calibre34">
+                    <p class="tbl-text">PS4 </p></td>
+                <td colspan="1" rowspan="1" width="80px" class="calibre35">
+                    <p class="tbl-text">N/A </p></td>
+                <td colspan="1" rowspan="1" width="100px" class="calibre33">
+                    <p class="tbl-text">PS4 </p></td>
+                <td colspan="1" rowspan="6" width="239px" class="calibre36">
+                    <p class="calibre38">A group contract can only have 2 associated price schedules, therefore,
+                        <!--kadov_tag{{<spaces>}}--> <!--kadov_tag{{</spaces>}}--> price schedules
+                        3 and above associated with the provider contract are always added to
+                        the price schema when Lesser of Multiple Fee Schedules calculation method
+                        is used.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre7">
+                <td colspan="1" rowspan="1" width="100px" class="calibre33">
+                    <p class="tbl-text">Price Sched Pct Allowed (3) </p></td>
+                <td colspan="1" rowspan="1" width="73px" class="calibre34">
+                    <p class="tbl-text">90% </p></td>
+                <td colspan="1" rowspan="1" width="80px" class="calibre35">
+                    <p class="tbl-text">N/A </p></td>
+                <td colspan="1" rowspan="1" width="100px" class="calibre33">
+                    <p class="tbl-text">90% </p></td>
+            </tr>
+
+            <tr valign="top" class="calibre7">
+                <td colspan="1" rowspan="1" width="100px" class="calibre33">
+                    <p class="tbl-text">Price Sched (4) </p></td>
+                <td colspan="1" rowspan="1" width="73px" class="calibre34">
+                    <p class="tbl-text">PS5 </p></td>
+                <td colspan="1" rowspan="1" width="80px" class="calibre35">
+                    <p class="tbl-text">N/A </p></td>
+                <td colspan="1" rowspan="1" width="100px" class="calibre33">
+                    <p class="tbl-text">PS5 </p></td>
+            </tr>
+
+            <tr valign="top" class="calibre7">
+                <td colspan="1" rowspan="1" width="100px" class="calibre33">
+                    <p class="tbl-text">Price Sched Pct Allowed (4) </p></td>
+                <td colspan="1" rowspan="1" width="73px" class="calibre34">
+                    <p class="tbl-text">110% </p></td>
+                <td colspan="1" rowspan="1" width="80px" class="calibre35">
+                    <p class="tbl-text">N/A </p></td>
+                <td colspan="1" rowspan="1" width="100px" class="calibre33">
+                    <p class="tbl-text">110% </p></td>
+            </tr>
+
+            <tr valign="top" class="calibre7">
+                <td colspan="1" rowspan="1" width="100px" class="calibre33">
+                    <p class="tbl-text">Price Sched (5) </p>
+                    <p class="tbl-text"> </p></td>
+                <td colspan="1" rowspan="1" width="73px" class="calibre34">
+                    <p class="tbl-text">PS6 </p></td>
+                <td colspan="1" rowspan="1" width="80px" class="calibre35">
+                    <p class="tbl-text">N/A </p></td>
+                <td colspan="1" rowspan="1" width="100px" class="calibre33">
+                    <p class="tbl-text">PS6 </p></td>
+            </tr>
+
+            <tr valign="top" class="calibre7">
+                <td colspan="1" rowspan="1" width="100px" class="calibre33">
+                    <p class="tbl-text">Price Sched Pct Allowed (5) </p>
+                    <p class="tbl-text"> </p></td>
+                <td colspan="1" rowspan="1" width="73px" class="calibre34">
+                    <p class="tbl-text">75% </p></td>
+                <td colspan="1" rowspan="1" width="80px" class="calibre35">
+                    <p class="tbl-text">N/A </p></td>
+                <td colspan="1" rowspan="1" width="100px" class="calibre33">
+                    <p class="tbl-text">75% </p></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <p class="calibre22"> </p>
+
+        <p class="calibre22"> </p>
+
+        <p class="calibre22"> </p>
+
+        <p class="calibre22"> </p>
+
+        <p class="calibre22"> </p>
+
+        <p class="calibre22"> </p>
+
+        <p class="calibre22"> </p>
+
+        <p class="calibre22"> </p>
+
+        <p class="calibre22"> </p>
+
+        <p class="calibre22"> </p>
+
+        <p class="calibre22"> </p>
+
+        <p class="calibre22"> </p>
+
+        <p class="calibre38"> </p>
+
+
+    </div>
+
+    <div class="calibreEbNav">
+
+        <a href="Customizing_for_Alternate_Languages.htm" class="calibreAPrev">previous page
+        </a>
+
+
+        <a href="../2nlvj-mfnql.html" class="calibreAHome">start
+        </a>
+
+
+        <a href="Adding_a_G_L_Reference_Code_for_Administrative_Fees.htm" class="calibreANext">next page
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,84 @@
+<!-- Copyright (c) 2020 . All Rights Reserved. -->
+<div class="container-fluid">
+    <div class="card-block">
+
+        <div class="row form-title">
+            <h2 class="col-md-4  card-label-admin">Group Panel</h2>
+            <div class="col-md"><b class="readonly-label">View Only</b></div>
+        </div>
+            <button type="button" *ngIf="showIcon" class="modal-close close" aria-label="Close" (click)="modalClose()">
+                <span aria-hidden="true">&times;</span>
+            </button>
+
+            <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+            <app-pop-up-message #popUpMesssage (buttonclickEvent)="popUpButtonHandler($event)"  [(popupMessage)] = "popUpMessage"></app-pop-up-message>
+
+        <ng-template #loaderTemplate let-loaderValue="value">
+            <div class="row justify-content-center mt-4" *ngIf="loaderValue">
+                <div class="spinner-border text-success" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>
+            </div>
+        </ng-template>
+
+        <ng-container *ngTemplateOutlet="loaderTemplate;context:{value: secProgress }"></ng-container>
+
+        <ng-container
+            *appWinSelect="{secWin: secWin, userTemplateId: userTemplateId, secModuleId: memberModuleId}">
+
+            <div class="row mt-3">
+                <menu-bar [menus]="menu" (onMenuClick)="onMenuItemClick($event)"></menu-bar>
+            </div>
+
+            <form [formGroup]="groupPanelForm" novalidate *ngIf="!secProgress">
+            <div class="form-group row">
+            </div>
+
+            <div class="form-group row" style="margin: 10px 0px;">
+                <!-- Textbox with label of Group ID -->
+                                    <label class="col-form-label" for="groupId" i18n>Group ID</label>
+                 <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('groupId') }">
+                     <input type="text" id="groupId"
+                            (keydown)="onLookupEvent($event)"
+                            (change)="onChangeGroupId($event)"   class="form-control" formControlName="groupId"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('groupId')">
+                      {{ formValidation.errorMessage('groupId') }}
+                     </small>
+                 </div>
+
+                <div class="col-md-4">
+                    <span style="color:blue; vertical-align: middle;" *ngIf="ShortName">{{this.ShortName}}</span>
+                </div>
+
+            </div>
+
+            <div class="form-group row">
+            </div>
+            <div class="col-md-12 mt-3 p-0">
+                <dynamic-form [isSaveForm]="saveForm"
+                              #dynamicFormComponent
+                              [isAddNewRow]="isAddNewRow"
+                              [prevState]="groupPanelState"
+                              [title]="''"
+                              [config]="groupPanelFormConfig"
+                              (formValueChanged)="dynamicFormValueChange()"
+                              (formSubmitted)="saveGroupPanel($event)"></dynamic-form>
+            </div>
+                        <!-- DataGrid with Name of DataGrid -->
+                    <!-- <ag-grid-angular #agGrid class="ag-theme-fresh" [gridOptions]="dataGridGridOptions"
+                    style="width: 100%; height: 300px;"
+                    [enableSorting]="true"
+                    [enableFilter]="true"
+                    [floatingFilter]="true"
+                    [pagination]="true"
+                    [showToolPanel]="true">
+                    </ag-grid-angular>
+             -->
+            <div class="form-group row">
+            </div>
+        </form>
+        </ng-container>
+    </div>
+</div>
+<ng-keyboard-shortcuts [shortcuts]="shortcuts"></ng-keyboard-shortcuts>
+<ng-keyboard-shortcuts-help [key]="'f2'" [closeKey]="'escape'" [title]="'Hotkeys Help'"></ng-keyboard-shortcuts-help>

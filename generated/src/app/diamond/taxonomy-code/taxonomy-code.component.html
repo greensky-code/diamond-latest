@@ -1,0 +1,49 @@
+<!-- Copyright (c) 2020 . All Rights Reserved. -->
+<div class="container-fluid">
+    <div class="card-block">
+        <form [formGroup]="taxonomyCodeForm" novalidate>
+            <h2 class="form-title card-label-admin">Taxonomy Code</h2>
+            <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+            <app-pop-up-message #popUpMesssage (buttonclickEvent)="popUpButtonHandler($event)"  [(popupMessage)] = "popUpMessage"></app-pop-up-message>
+                        
+            <div class="form-group row">
+                <!-- DynamicText with label of Taxonomy Code -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('taxonomyCode') }">
+                     <label class="col-form-label" for="taxonomyCode" i18n>Taxonomy Code</label>
+                     <input type="text"  [fieldLevelSec]="''" params]=""  readonly id="taxonomyCode" formControlName="taxonomyCode" class="form-control"/>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of Type -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('type') }">
+                     <label class="col-form-label" for="type" i18n>Type</label>
+                     <input type="text" id="type"  [fieldLevelSec]="''" params]=""   class="form-control" formControlName="type"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('type')">
+                      {{ formValidation.errorMessage('type') }}
+                     </small>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of Description -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('description') }">
+                     <label class="col-form-label" for="description" i18n>Description</label>
+                     <input type="text" id="description"  [fieldLevelSec]="''" params]=""   class="form-control" formControlName="description"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('description')">
+                      {{ formValidation.errorMessage('description') }}
+                     </small>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+            </div>
+        </form>
+    </div>
+</div>

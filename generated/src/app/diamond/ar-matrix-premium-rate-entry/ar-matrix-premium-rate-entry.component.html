@@ -1,0 +1,103 @@
+<!-- Copyright (c) 2021 . All Rights Reserved. -->
+<div class="container-fluid">
+    <div class="card-block">
+        <form [formGroup]="arMatrixPremiumRateEntryForm" novalidate>
+            <h2 class="form-title card-label-admin">Ar Matrix Premium Rate Entry</h2>
+            <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+            <app-pop-up-message #popUpMesssage (buttonclickEvent)="popUpButtonHandler($event)"  [(popupMessage)] = "popUpMessage"></app-pop-up-message>
+                        
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+                <!-- DynamicText with label of Matrix Definition -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('matrixDefinition') }">
+                     <label class="col-form-label" for="matrixDefinition" i18n>Matrix Definition</label>
+                     <input type="text"  [fieldLevelSec]="'Matrix Description'" params]="Premium Matrix Header"  readonly id="matrixDefinition" formControlName="matrixDefinition" class="form-control"/>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of Matrix Description -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('matrixDescription') }">
+                     <label class="col-form-label" for="matrixDescription" i18n>Matrix Description</label>
+                     <input type="text" id="matrixDescription"  [fieldLevelSec]="'Matrix Determinant'" params]="Premium Matrix Header"   class="form-control" formControlName="matrixDescription"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('matrixDescription')">
+                      {{ formValidation.errorMessage('matrixDescription') }}
+                     </small>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- DynamicText with label of Matrix Calc Method -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('matrixCalcMethod') }">
+                     <label class="col-form-label" for="matrixCalcMethod" i18n>Matrix Calc Method</label>
+                     <input type="text"  [fieldLevelSec]="'Matrix Calc Method'" params]="Premium Matrix Header"  readonly id="matrixCalcMethod" formControlName="matrixCalcMethod" class="form-control"/>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- DynamicText with label of Matrix Determinant -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('matrixDeterminant') }">
+                     <label class="col-form-label" for="matrixDeterminant" i18n>Matrix Determinant</label>
+                     <input type="text"  [fieldLevelSec]="'Matrix Def'" params]="Premium Matrix Header"  readonly id="matrixDeterminant" formControlName="matrixDeterminant" class="form-control"/>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+                <!-- DynamicText with label of Amount -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('amount') }">
+                     <label class="col-form-label" for="amount" i18n>Amount</label>
+                     <input type="text"  [fieldLevelSec]="''" params]=""  readonly id="amount" formControlName="amount" class="form-control"/>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of <65 -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('65') }">
+                     <label class="col-form-label" for="65" i18n><65</label>
+                     <input type="text" id="65"  [fieldLevelSec]="''" params]=""   class="form-control" formControlName="65"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('65')">
+                      {{ formValidation.errorMessage('65') }}
+                     </small>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of 65-69 -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('69') }">
+                     <label class="col-form-label" for="69" i18n>65-69</label>
+                     <input type="text" id="69"  [fieldLevelSec]="''" params]=""   class="form-control" formControlName="69"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('69')">
+                      {{ formValidation.errorMessage('69') }}
+                     </small>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of 70+ -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('') }">
+                     <label class="col-form-label" for="" i18n>70+</label>
+                     <input type="text" id=""  [fieldLevelSec]="''" params]=""   class="form-control" formControlName=""/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('')">
+                      {{ formValidation.errorMessage('') }}
+                     </small>
+                 </div>
+            
+            </div>
+        </form>
+    </div>
+</div>

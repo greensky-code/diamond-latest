@@ -1,0 +1,158 @@
+<!-- Copyright (c) 2021 . All Rights Reserved. -->
+<div class="container-fluid">
+    <div class="card-block">
+        <form [formGroup]="cignaAddressForm" novalidate>
+            <h2 class="form-title card-label-admin">Cigna Address</h2>
+            <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+            <app-pop-up-message #popUpMesssage (buttonclickEvent)="popUpButtonHandler($event)"  [(popupMessage)] = "popUpMessage"></app-pop-up-message>
+                        
+            <div class="form-group row">
+                <!-- DynamicText with Name of DynamicText001 -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('dynamicText001') }">
+                     <label class="col-form-label" for="dynamicText001" i18n>&nbsp;</label>
+                     <input type="text"  [fieldLevelSec]="''" params]=""  readonly id="dynamicText001" formControlName="dynamicText001" class="form-control"/>
+                 </div>
+            
+                <!-- DynamicText with Name of DynamicText002 -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('dynamicText002') }">
+                     <label class="col-form-label" for="dynamicText002" i18n>&nbsp;</label>
+                     <input type="text"  [fieldLevelSec]="''" params]=""  readonly id="dynamicText002" formControlName="dynamicText002" class="form-control"/>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- DynamicText with Name of DynamicText003 -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('dynamicText003') }">
+                     <label class="col-form-label" for="dynamicText003" i18n>&nbsp;</label>
+                     <input type="text"  [fieldLevelSec]="''" params]=""  readonly id="dynamicText003" formControlName="dynamicText003" class="form-control"/>
+                 </div>
+            
+                <!-- DynamicText with Name of DynamicText004 -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('dynamicText004') }">
+                     <label class="col-form-label" for="dynamicText004" i18n>&nbsp;</label>
+                     <input type="text"  [fieldLevelSec]="''" params]=""  readonly id="dynamicText004" formControlName="dynamicText004" class="form-control"/>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+                <!-- DynamicText with label of Home Currency -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('homeCurrency') }">
+                     <label class="col-form-label" for="homeCurrency" i18n>Home Currency</label>
+                     <input type="text"  [fieldLevelSec]="''" params]=""  readonly id="homeCurrency" formControlName="homeCurrency" class="form-control"/>
+                 </div>
+            
+                <!-- DynamicText with label of Home Payment Amount -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('homePaymentAmount') }">
+                     <label class="col-form-label" for="homePaymentAmount" i18n>Home Payment Amount</label>
+                     <input type="text"  [fieldLevelSec]="''" params]=""  readonly id="homePaymentAmount" formControlName="homePaymentAmount" class="form-control"/>
+                 </div>
+            
+                <!-- DynamicText with label of Average Local Claim Rate -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('averageLocalClaimRate') }">
+                     <label class="col-form-label" for="averageLocalClaimRate" i18n>Average Local Claim Rate</label>
+                     <input type="text"  [fieldLevelSec]="''" params]=""  readonly id="averageLocalClaimRate" formControlName="averageLocalClaimRate" class="form-control"/>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- DropdownList with label of Local Currency -->
+                <div class="selectContainer col-md-2 " [ngClass]="{'has-danger': formValidation.isValidField('localCurrency') }">
+                    <label class="col-form-label" for="localCurrency" i18n>Local Currency</label>
+                    <select class="form-control" id="local_currency"  [fieldLevelSec]="''" params]=""  name="Local Currency" formControlName="localCurrency">
+                        <option value="">Please Select</option>
+                    </select>
+                </div>
+            
+                <!-- DropdownList with Name of DropdownList001 -->
+                <div class="selectContainer col-md-2 " [ngClass]="{'has-danger': formValidation.isValidField('dropdownList001') }">
+                    <label class="col-form-label" for="dropdownList001" i18n>&nbsp;</label>
+                    <select class="form-control" id="dropdownlist001"  [fieldLevelSec]="''" params]=""  name="DropdownList001" formControlName="dropdownList001">
+                        <option value="">Please Select</option>
+                    </select>
+                </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- DropdownList with label of Euro Clearing House Country -->
+                <div class="selectContainer col-md-2 " [ngClass]="{'has-danger': formValidation.isValidField('euroClearingHouseCountry') }">
+                    <label class="col-form-label" for="euroClearingHouseCountry" i18n>Euro Clearing House Country</label>
+                    <select class="form-control" id="euro_clearing_house_country"  [fieldLevelSec]="''" params]=""  name="Euro Clearing House Country" formControlName="euroClearingHouseCountry">
+                        <option value="">Please Select</option>
+                    </select>
+                </div>
+            
+                <!-- DropdownList with Name of DropdownList002 -->
+                <div class="selectContainer col-md-2 " [ngClass]="{'has-danger': formValidation.isValidField('dropdownList002') }">
+                    <label class="col-form-label" for="dropdownList002" i18n>&nbsp;</label>
+                    <select class="form-control" id="dropdownlist002"  [fieldLevelSec]="''" params]=""  name="DropdownList002" formControlName="dropdownList002">
+                        <option value="">Please Select</option>
+                    </select>
+                </div>
+            
+                <!-- DynamicText with label of Payment Type -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('paymentType') }">
+                     <label class="col-form-label" for="paymentType" i18n>Payment Type</label>
+                     <input type="text"  [fieldLevelSec]="''" params]=""  readonly id="paymentType" formControlName="paymentType" class="form-control"/>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+            </div>
+            
+                        <!-- DataGrid with Name of DataGrid -->
+                    <button (click)="dataGridGridOptionsExportCsv()">Export</button>
+                    <ag-grid-angular #agGrid class="ag-theme-fresh" [gridOptions]="dataGridGridOptions"
+                    style="width: 100%; height: 300px;"
+                    [enableSorting]="true"
+                    [enableFilter]="true"
+                    [floatingFilter]="true"
+                    [pagination]="true"
+                    [showToolPanel]="true">
+                    </ag-grid-angular>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+                <div class="col-md-2 form-control-static mb-0" i18n>
+                    The following Lines are included in this transaction
+                </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Button with label of View History -->
+                <div class="col-md-2">
+                    <button type="button" id="viewHistory" name="viewHistory" class="btn btn-small btn-primary">View History</button>
+                
+                
+                </div>
+            
+            </div>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+                <!-- Button with label of Cancel -->
+                <div class="col-md-2">
+                    <button type="button" id="cancel" name="cancel" class="btn btn-small btn-primary">Cancel</button>
+                
+                
+                </div>
+            
+            </div>
+        </form>
+    </div>
+</div>

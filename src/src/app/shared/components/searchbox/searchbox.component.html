@@ -1,0 +1,89 @@
+<div class="container-fluid">
+    <div class="card-block">
+        <h2 class="form-title card-label-admin">Lookup</h2>
+        <button (click)="activeModal.dismiss()" *ngIf="showIcon" aria-label="Close" class="modal-close close"
+                type="button">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <div class="row searchbox-buttons">
+            <div class="col-sm-12">
+        <div class="row ml-1 searchbox-buttons">
+            <div>
+                <button (click)="submit()" [disabled]="rowSelected == null || !isSearch" aria-label="Close"
+                        class="button">Ok
+                </button>
+            </div>
+
+            <div>
+                <button (click)="searchData()" *ngIf="!isSearch" class="button">Search</button>
+                <button (click)="resetData()" *ngIf="isSearch" class="button">Query</button>
+            </div>
+            <div>
+                <button (click)="resetData()" [disabled]="isSearch" class="button">Reset</button>
+            </div>
+            <div>
+                <button (click)="hideModal()" class="button">Cancel</button>
+            </div>
+
+            <div>
+                <button (click)="defaultGrid()" [disabled]="isSearch" class="button">Default</button>
+            </div>
+
+            <div>
+                <button (click)="customizeGrid()" [disabled]="!this.selectedItems || (this.selectedItems && this.selectedItems.length == 0) || isSearch" class="button">Custom</button>
+            </div>
+
+            <div class="col-3 pl-1">
+
+                <ng-multiselect-dropdown class="multi-select-button"
+                        [placeholder]="'columns'"
+                        [settings]="dropdownSettings"
+                        [data]="searchModel.columnDefs"
+                        [(ngModel)]="selectedItems">
+                </ng-multiselect-dropdown>
+            </div>
+        </div>
+
+        <div class="row ml-2">
+            <div class="form-group d-flex align-items-center d-inline-block">
+                <!-- checkbox with label of Match All Cases -->
+                <div class="selectContainer ">
+                    <input (change)="isMatchAllChecked($event)" id="change-password" style="height: 20px; width: 20px"
+                           type="checkbox">
+                </div>
+                <label class=" pr-0 pl-2 pr-5 col-form-label" for="change-password" i18n>
+                    <b>Match All Cases</b>
+                </label>
+                <div *ngIf="searchModel.isMatchAllContracts" class="selectContainer ">
+                    <input (change)="isMatchAllContractsChecked($event)" id="matchAllContracts" style="height: 20px; width: 20px"
+                           type="checkbox">
+                </div>
+                <label *ngIf="searchModel.isMatchAllContracts" class=" pr-0 pl-2 col-form-label" for="matchAllContracts"
+                       i18n>
+                    <b>Match All Contracts</b>
+                </label>
+            </div>
+        </div>
+
+        <div>
+            <div class="row ml-0 mr-0 mb-3">
+                <!-- DataGrid with Name of DataGrid -->
+                <ag-grid-angular #agGrid (cellValueChanged)="onCellValueChanged($event)" (keydown.enter)="submitSearchOnEnterKey()"
+                                 (selectionChanged)="selectionChanged()"
+                                 [enableFilter]="false"
+                                 [enableSorting]="true"
+                                 [floatingFilter]="false"
+                                 [gridOptions]="dataGridGridOptions"
+                                 [paginationPageSize]="paginationPageSize"
+                                 [pagination]="isPagination"
+                                 [rowSelection]="rowSelection"
+                                 [showToolPanel]="false"
+                                 [stopEditingWhenGridLosesFocus]="true"
+                                 (cellDoubleClicked)="openRecordOnDoubleClicked()"
+                                 class="ag-theme-fresh"
+                                 style="width: 100%; height: 300px;">
+                </ag-grid-angular>
+            </div>
+        </div>
+    </div>
+</div>

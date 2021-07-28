@@ -1,0 +1,144 @@
+<!-- Copyright (c) 2021 . All Rights Reserved. -->
+<div class="container-fluid">
+    <div class="card-block">
+        <h2 class="form-title card-label-admin">Clear Void Stop Update</h2>
+        <button type="button" class="close" aria-label="Close" (click)="modalClose()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+        <app-pop-up-message #popUpMesssage (buttonclickEvent)="popUpButtonHandler($event)" [(popupMessage)]="popUpMessage"></app-pop-up-message>
+        <div class="row mt-3">
+            <menu-bar [menus]="menu" (onMenuClick)="onMenuItemClick($event)"></menu-bar>
+        </div>
+        <div class="form-group row">
+        </div>
+        <!-- DataGrid with Name of DataGrid -->
+        <!-- <button (click)="dataGridGridOptionsExportCsv()">Export</button> -->
+        <ag-grid-angular #agGrid class="ag-theme-fresh"
+            [gridOptions]="dataGridGridOptions"
+            style="width: 100%; height: 300px;"
+            [enableSorting]="true"
+            [enableFilter]="true"
+            [floatingFilter]="true"
+            [pagination]="true"
+            [showToolPanel]="true"
+            [rowSelection]="rowSelection"
+            (rowClicked)="onSelectionChange($event)"
+            (selectionChanged)="onGridSelectionChange($event)">
+        </ag-grid-angular>
+
+        <form [formGroup]="clearVoidStopUpdateForm" novalidate>
+            <div class="form-group row">
+                <!-- DynamicText with label of Job Id -->
+                <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('jobId') }">
+                    <label class="col-form-label required-field-label" for="jobId" i18n>Job Id</label>
+                    <input type="text" [fieldLevelSec]="''" (keydown)="findJob($event)" id="jobId"
+                        formControlName="jobId" class="form-control" />
+                </div>
+
+                <!-- DynamicText with label of Req User -->
+                <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('reqUser') }">
+                    <label class="col-form-label" for="reqUser" i18n>Req User</label>
+                    <input type="text" [fieldLevelSec]="''" id="reqUser" formControlName="reqUser" class="form-control" readonly/>
+                </div>
+
+                <!-- DynamicText with label of Run Date -->
+                <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('runDate') }">
+                    <app-datepicker [formGroup]="clearVoidStopUpdateForm"
+                                    [readonly]="true"
+                                    [disabled]="true"
+                                    [formValidation]="formValidation" [field]="'runDate' "
+                                    [labelText]="'Run Date'" class=""></app-datepicker>
+                </div>
+
+            </div>
+
+            <div class="form-group row">
+            </div>
+
+            <div class="form-group row">
+                <div class="col-md-2 form-control-static mb-0 required-field-label" i18n>
+                    <i>Next Action</i>
+                </div>
+
+            </div>
+
+            <div class="form-group row">
+                <div class="col-md-2 form-control-static mb-0 required-field-label" i18n>
+                    Action
+                </div>
+
+                <!-- RadioButton with label of e  -->
+                <div class="col-md-2" [ngClass]="{'has-error': displayMessage.eRb }">
+                    <input type="radio" formControlName="action" [fieldLevelSec]="''" value="R"/>&nbsp;
+                    <label class="col-form-label" for="action" i18n>Run</label>
+                </div>
+
+                <!-- RadioButton with label of nt  -->
+                <div class="col-md-2" [ngClass]="{'has-error': displayMessage.ntRb }">
+                    <input type="radio" formControlName="action" [fieldLevelSec]="''" value="P"/>&nbsp;
+                    <label class="col-form-label" for="action" i18n>Post </label>
+                </div>
+
+                <!-- RadioButton with label of cel  -->
+                <div class="col-md-2" [ngClass]="{'has-error': displayMessage.celRb }">
+                    <input type="radio" formControlName="action" [fieldLevelSec]="''" value="C"/>&nbsp;
+                    <label class="col-form-label" for="action" i18n>Cancel </label>
+                </div>
+
+            </div>
+
+            <div class="form-group row">
+                <!-- DynamicText with label of Status -->
+                <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('status') }">
+                    <label class="col-form-label" for="status" i18n>Status</label>
+                    <input type="text" [fieldLevelSec]="''" id="status" formControlName="status" class="form-control" readonly/>
+                </div>
+
+            </div>
+
+            <div class="form-group row">
+            </div>
+
+            <div class="form-group row">
+                <div class="col-md-2 form-control-static mb-0 required-field-label" i18n>
+                    <i>Run Options</i>
+                </div>
+
+            </div>
+
+            <div class="form-group row">
+                <!-- RadioButtonGroup with label of Request Type -->
+                <div class="col-md-2 form-control-static mb-0 required-field-label" i18n>
+                    Request Type:
+                </div>
+                <!--  with label of Immediate -->
+                <div class="col-md-2" [ngClass]="{'has-error': displayMessage.immediate001 }">
+                    <input class="p1" type="radio" value="I" [fieldLevelSec]="" formControlName="daemonrequest"/>&nbsp;
+                    <label class="col-form-label" for="daemonrequest" i18n>Immediate</label>
+                </div>
+                <!--  with label of Deferred -->
+                <div class="col-md-2" [ngClass]="{'has-error': displayMessage.deferred001 }">
+                    <input class="p1" type="radio" value="D" [fieldLevelSec]="" formControlName="daemonrequest"/>&nbsp;
+                    <label class="col-form-label" for="daemonrequest" i18n>Deferred</label>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <!-- Textbox with label of Comments -->
+                <div class="col-md-8" [ngClass]="{'has-danger': formValidation.isValidField('comments') }">
+                    <label class="col-form-label" for="comments" i18n>Comments</label>
+                    <input type="text" id="comments" [fieldLevelSec]="'Comments'" class="form-control"
+                        formControlName="comments" />
+                    <small class="text-danger" *ngIf="formValidation.isValidField('comments')">
+                        {{ formValidation.errorMessage('comments') }}
+                    </small>
+                </div>
+
+            </div>
+        </form>
+    </div>
+</div>
+
+<ng-keyboard-shortcuts [shortcuts]="shortcuts"></ng-keyboard-shortcuts>
+<ng-keyboard-shortcuts-help [key]="'f2'" [closeKey]="'escape'" [title]="'Hotkeys Help'"></ng-keyboard-shortcuts-help>

@@ -1,0 +1,950 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+    <title>COBHS Field Definitions</title>
+    <!--(Meta)==========================================================-->
+    <meta name="copyright"
+          value="© Copyright 2002 Health Systems Design Corp., a wholly owned subsidiary of Perot Systems Corporation. All rights reserved"/>
+    <meta content="RoboHELP by eHelp Corporation - www.ehelp.com" name="generator"/>
+    <meta content="0.1" name="generator-major-version"/>
+    <meta content="1" name="generator-minor-version"/>
+    <meta content="kadov" name="filetype"/>
+    <meta content="1" name="filetype-version"/>
+    <meta content="1" name="page-count"/>
+    <meta content="6121" name="layout-height"/>
+    <meta content="551" name="layout-width"/>
+    <!--(Links)=========================================================-->
+    <!--(Scripts)=======================================================-->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+</head>
+<body>
+
+<div class="calibreMeta">
+    <div class="calibreMetaTitle">
+
+
+        <h1>
+            <a href="../ib0gc-jzzjl.html">DIAMOND 950 Help
+            </a>
+        </h1>
+
+
+    </div>
+    <div class="calibreMetaAuthor">
+        Unknown
+
+    </div>
+</div>
+
+<div class="calibreMain">
+
+    <div class="calibreEbookContent">
+
+        <div class="calibreEbNavTop">
+
+            <a href="COBHS_Field_Map.htm" class="calibreAPrev">previous page
+            </a>
+
+
+            <a href="COBHS_Functions_on_Menu_Bar.htm" class="calibreANext">next page
+            </a>
+
+        </div>
+
+
+        <!--(Table)=========================================================-->
+        <table cellspacing="0" width="530" x-use-null-cells="" class="calibre125">
+
+            <tbody class="calibre3">
+            <tr valign="top" class="calibre4">
+                <td width="427px" class="calibre126">
+                    <p class="tbl-header-nonscroll"><span class="calibre127"><span class="calibre128">COBHS Field Definitions</span></span>
+                    </p>
+                    <p class="tbl-header-nonscroll">Field Name  Req Description Source Comments</p></td>
+                <td width="103px" class="calibre129">
+                    <p class="legend"><img alt="image\FieldDef_Legend_shg.gif" border="0" height="53"
+                                           src="assets/help/FieldDef_Legend_shg.gif" width="97" class="calibre130"/></p></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <!--(Table)=========================================================-->
+        <table cellspacing="0" width="530" x-use-null-cells="" class="calibre125">
+            <colgroup class="calibre25">
+                <col class="calibre131"/>
+                <col class="calibre131"/>
+                <col class="calibre131"/>
+                <col class="calibre131"/>
+                <col class="calibre131"/>
+
+            </colgroup>
+            <tbody class="calibre3">
+            <tr valign="top" class="calibre4">
+                <td width="98px" class="calibre132">
+                    <p class="tbl-r-label"><a name="COBHS_Benef_Coord_FIELD"></a>Benef
+                        Coord</p></td>
+                <td width="14px" class="calibre133">
+                    <p class="tbl-text">R</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Flag which indicates whether
+                        the other carrier coordinates benefits</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Selected with check box</p></td>
+                <td width="206px" class="calibre135">
+                    <p class="tbl-text">This field is enabled when
+                        the Other Carrier’s Carrier Type (from CARCD) = Commercial, Other or any
+                        other type which is not Medicare.</p>
+                    <p class="tbl-text-noline">If the Carrier Type is any value other than Medicare,
+                        DIAMOND selects this checkbox. You can override this selection. </p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="98px" class="calibre132">
+                    <p class="tbl-r-label"><a name="COBHS_Carrier_FIELD"></a>Carrier</p></td>
+                <td width="14px" class="calibre133">
+                    <p class="tbl-text">R</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">A code representing the other
+                        carrier.</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Selected from predefined
+                        list</p></td>
+                <td width="206px" class="calibre135">
+                    <p class="tbl-text">Carrier codes are maintained
+                        in keyword CARCD (Carrier).</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="98px" class="calibre132">
+                    <p class="tbl-r-label"><a name="COBHS_Case_No_FIELD"></a>Case
+                        No</p></td>
+                <td width="14px" class="calibre133">
+                    <p class="tbl-text">O</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">An identifier assigned external
+                        to DIAMOND to a medical case. Example: Many Third Party Liability (TPL)
+                        cases are assigned a case number by the TPL carrier.</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Manually entered</p></td>
+                <td width="206px" class="calibre135">
+                    <p class="tbl-text">This field is enabled when
+                        the Other Carrier’s Carrier Type (from CARCD) = Commercial, Other or any
+                        other type which is not Medicare.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="98px" class="calibre132">
+                    <p class="tbl-r-label"><a name="COBHS_COB_Order_FIELD"></a>COB
+                        Order</p></td>
+                <td width="14px" class="calibre133">
+                    <p class="tbl-text">R</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">A code representing the coordination
+                        of benefits status of this other coverage in relation to the DIAMOND coverage.
+                    </p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Selected from predefined
+                        list</p></td>
+                <td width="206px" class="calibre135">
+                    <p class="tbl-list-hdr">Valid values:</p>
+                    <p class="tbl-list">O Other</p>
+                    <p class="tbl-list">P Primary</p>
+                    <p class="tbl-list">S Secondary</p>
+                    <p class="tbl-list">T Tertiary</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="98px" class="calibre132">
+                    <p class="tbl-r-label"><a name="COBHS_Coverage_Eff_Date_FIELD"></a>Coverage
+                        Eff Date</p></td>
+                <td width="14px" class="calibre133">
+                    <p class="tbl-text">R</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">The effective date of the
+                        member’s other coverage.</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Manually entered.</p></td>
+                <td width="206px" class="calibre135">
+                    <p class="tbl-text"> </p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="98px" class="calibre132">
+                    <p class="tbl-r-label"><a name="COBHS_Coverage_Type_FIELD"></a>Coverage
+                        Type</p></td>
+                <td width="14px" class="calibre133">
+                    <p class="tbl-text">O</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Type of other carrier coverage</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Selected from predefined
+                        list</p></td>
+                <td width="206px" class="calibre135">
+                    <p class="tbl-text">Valid values are maintained
+                        in keyword CODES (System Codes Maintenance).</p>
+                    <p class="tbl-list-hdr-noline">Predefined valid values:</p>
+                    <p class="tbl-list-txt">Medical</p>
+                    <p class="tbl-list-txt">Dental</p>
+                    <p class="tbl-list-txt">Vision</p>
+                    <p class="tbl-list-txt">Workers Compensation</p>
+                    <p class="tbl-list-txt">Third Party Liability</p>
+                    <p class="tbl-text-noline">This field is enabled when the Other Carrier’s
+                        Carrier Type (from CARCD) = Commercial, Other or any other type which
+                        is not Medicare.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="98px" class="calibre132">
+                    <p class="tbl-r-label"><a name="COBHS_Date_1-3_(Commercial_coverage_information_section)_FIELD"></a>Date
+                        1-3 (Commercial coverage information section)</p></td>
+                <td width="14px" class="calibre133">
+                    <p class="tbl-text">O</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Other dates associated with
+                        this other commercial coverage record</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Manually entered</p></td>
+                <td width="206px" class="calibre135">
+                    <p class="tbl-text">This field is enabled when
+                        the Other Carrier’s Carrier Type (from CARCD) = Commercial, Other or any
+                        other type which is not Medicare.</p>
+                    <p class="tbl-text-noline">Each Date can be used in tandem with the Type
+                        field next to it.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="98px" class="calibre132">
+                    <p class="tbl-r-label"><a name="COBHS_Date_1-3_(Medicare_information_section)_FIELD"></a>Date
+                        1-3 (Medicare information section)</p></td>
+                <td width="14px" class="calibre133">
+                    <p class="tbl-text">O</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Other dates associated with
+                        this other Medicare coverage record</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Manually entered</p></td>
+                <td width="206px" class="calibre135">
+                    <p class="tbl-text">This field is enabled when
+                        the Other Carrier’s Carrier Type (from CARCD) = Medicare.</p>
+                    <p class="tbl-text-noline">Each Date can be used in tandem with the Type
+                        field next to it.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="98px" class="calibre132">
+                    <p class="tbl-r-label"><a name="COBHS_Dep_Determ_Rule_FIELD"></a>Dep
+                        Determ Rule</p></td>
+                <td width="14px" class="calibre133">
+                    <p class="tbl-text">O</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Dependent Determination Rule
+                        or policy applied by the other carrier. Defines the COB order for dependent
+                        children. </p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Select from predefined list</p></td>
+                <td width="206px" class="calibre135">
+                    <p class="tbl-list-hdr">Valid values:</p>
+                    <p class="tbl-list">B Birthday</p>
+                    <p class="tbl-list">G Gender</p>
+                    <p class="tbl-list">O Other</p>
+                    <p class="tbl-list">N None</p>
+                    <p class="tbl-text-noline">This field is enabled when the Other Carrier’s
+                        Carrier Type (from CARCD) = Commercial, Other or any other type which
+                        is not Medicare. The value entered is not used by DIAMOND (informational
+                        only) unless you enter Other and link to a COB Order (COBOR) record. See
+                        COBOR&gt;About COBOR for more information.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="98px" class="calibre132">
+                    <p class="tbl-r-label"><a
+                            name="COBHS_Diag_Code_(Commercial_coverage_information_section)_FIELD"></a>Diag
+                        Code (Commercial coverage information section)</p></td>
+                <td width="14px" class="calibre133">
+                    <p class="tbl-text">O</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Diagnosis code pertaining
+                        to the COBHS record. For example, a Third Party Liability case may be
+                        for a Diagnosis code of 818.0, a fractured arm.</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Manually entered</p></td>
+                <td width="206px" class="calibre135">
+                    <p class="tbl-text">You can type up to 30 alphanumeric
+                        characters, however, only 7 characters will display.</p>
+                    <p class="tbl-text-noline">Diagnosis codes are maintained in keyword DIAGN
+                        (Diagnosis Code).</p>
+                    <p class="tbl-text-noline">This field is enabled when the Other Carrier’s
+                        Carrier Type (from CARCD) = Commercial, Other or any other type which
+                        is not Medicare.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="98px" class="calibre132">
+                    <p class="tbl-r-label"><a name="COBHS_Diag_Code_(Medicare_information_section)_FIELD"></a>Diag
+                        Code (Medicare information section)</p></td>
+                <td width="14px" class="calibre133">
+                    <p class="tbl-text-1char">O</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Diagnosis code associated
+                        with this Medicare other coverage record.</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Manually entered</p></td>
+                <td width="206px" class="calibre135">
+                    <p class="tbl-text">You can type up to 30 alphanumeric
+                        characters, however, only 7 characters will display.</p>
+                    <p class="tbl-text-noline">Diagnosis codes are maintained in keyword DIAGN.</p>
+                    <p class="tbl-text-noline">This field is enabled when the Other Carrier’s
+                        Carrier Type (from CARCD) = Medicare.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="98px" class="calibre132">
+                    <p class="tbl-r-label"><a name="COBHS_DIAMOND_ID_FIELD"></a>DIAMOND
+                        ID</p></td>
+                <td width="14px" class="calibre133">
+                    <p class="tbl-text">O</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Unique Identifying Number</p>
+                    <p class="tbl-text-noline">There is one identifier for every instance of
+                        a person in the Member Master records</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Manually entered</p></td>
+                <td width="206px" class="calibre135">
+                    <p class="tbl-text">A DIAMOND ID enables dual
+                        coverage in DIAMOND.</p>
+                    <p class="tbl-text-noline">If this person has more than one insurance coverage
+                        (Member Master record) in DIAMOND, the other instances of the person appear
+                        in a popup and the appropriate one can be selected from the list.</p>
+                    <p class="tbl-text-noline">For more information, see <a href="Dual_Coverage_How_DIAMOND_Thinks.htm">Dual
+                        Coverage, How DIAMOND Thinks</a>.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="98px" class="calibre132">
+                    <p class="tbl-r-label"><a name="COBHS_DOB_FIELD"></a>DOB</p></td>
+                <td width="14px" class="calibre133">
+                    <p class="tbl-text">O</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Other carrier coverage Subscriber’s
+                        date of birth</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Manually entered</p></td>
+                <td width="206px" class="calibre135">
+                    <p class="tbl-text">This field is enabled when
+                        the Other Carrier’s Carrier Type (from CARCD) = Commercial, Other or any
+                        other type which is not Medicare.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="98px" class="calibre132">
+                    <p class="tbl-r-label"><a name="COBHS_Employer_Group_FIELD"></a>Employer
+                        Group</p></td>
+                <td width="14px" class="calibre133">
+                    <p class="tbl-text">O</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Other carrier coverage employer
+                        group identifier (name/number)</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Manually entered</p></td>
+                <td width="206px" class="calibre135">
+                    <p class="tbl-text">This field is enabled when
+                        the Other Carrier’s Carrier Type (from CARCD) = Commercial, Other or any
+                        other type which is not Medicare.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="98px" class="calibre132">
+                    <p class="tbl-r-label"><a name="COBHS_Entitlement_FIELD"></a>Entitlement</p></td>
+                <td width="14px" class="calibre133">
+                    <p class="tbl-text">C</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Medicare coverage entitlement</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Selected from predefined
+                        list</p></td>
+                <td width="206px" class="calibre135">
+                    <p class="tbl-text">Required if Carrier Type
+                        = Medicare.</p>
+                    <p class="tbl-text-noline">Entitlement codes are maintained in CODES. Predefined
+                        valid values include:</p>
+                    <p class="tbl-list">A  Part A</p>
+                    <p class="tbl-list">AB  Both Part A and Part B</p>
+                    <p class="tbl-list">B  Part B</p>
+                    <p class="tbl-list">DAB Disabled with Part A &amp; Part B</p>
+                    <p class="tbl-list">DB  Disabled with Part B only</p>
+                    <p class="tbl-list">RAB Renal with Part A &amp; Part B</p>
+                    <p class="tbl-list">RB  Renal with Part B only</p>
+                    <p class="tbl-list">H  Hospice</p>
+                    <p class="tbl-list">I  Institutionalization</p>
+                    <p class="tbl-list">U  Unknown</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="98px" class="calibre132">
+                    <p class="tbl-r-label"><a name="COBHS_Facility_FIELD"></a>Facility</p></td>
+                <td width="14px" class="calibre133">
+                    <p class="tbl-text-1char">O</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">User specified Facility associated
+                        with this Medicare other coverage record.</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Manually entered</p></td>
+                <td width="206px" class="calibre135">
+                    <p class="tbl-text">Not related to the Facility
+                        field on institutional or professional services claims. For example, the
+                        COBHS Facility may be the name of a related Hospice facility.</p>
+                    <p class="tbl-text-noline">This field is enabled when the Other Carrier’s
+                        Carrier Type (from CARCD) = Medicare.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="98px" class="calibre132">
+                    <p class="tbl-r-label"><a name="COBHS_First_Name_FIELD"></a>First
+                        Name</p></td>
+                <td width="14px" class="calibre133">
+                    <p class="tbl-text">O</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Other carrier coverage Subscriber’s
+                        first name</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Manually entered</p></td>
+                <td width="206px" class="calibre135">
+                    <p class="tbl-text">This field is enabled when
+                        the Other Carrier’s Carrier Type (from CARCD) = Commercial, Other or any
+                        other type which is not Medicare.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="98px" class="calibre132">
+                    <p class="tbl-r-label"><a name="COBHS_Gender_FIELD"></a>Gender</p></td>
+                <td width="14px" class="calibre133">
+                    <p class="tbl-text">O</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Other carrier coverage Subscriber’s
+                        gender</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Selected from predefined
+                        list</p></td>
+                <td width="206px" class="calibre135">
+                    <p class="tbl-list-hdr">Valid values:</p>
+                    <p class="tbl-list">M Male</p>
+                    <p class="tbl-list">F Female</p>
+                    <p class="tbl-list">U Unknown</p>
+                    <p class="tbl-text-noline">This field is enabled when the Other Carrier’s
+                        Carrier Type (from CARCD) = Commercial, Other or any other type which
+                        is not Medicare.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="98px" class="calibre132">
+                    <p class="tbl-r-label"><a name="COBHS_Last_Name_FIELD"></a>Last
+                        Name</p></td>
+                <td width="14px" class="calibre133">
+                    <p class="tbl-text">O</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Other carrier coverage Subscriber’s
+                        last name</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Manually entered</p></td>
+                <td width="206px" class="calibre135">
+                    <p class="tbl-text">This field is enabled when
+                        the Other Carrier’s Carrier Type (from CARCD) = Commercial, Other or any
+                        other type which is not Medicare.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="98px" class="calibre132">
+                    <p class="tbl-r-label"><a name="COBHS_Name_FIELD"></a>Name</p></td>
+                <td width="14px" class="calibre133">
+                    <p class="tbl-text">D</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">The short name of the carrier.</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Displayed.</p></td>
+                <td width="206px" class="calibre135">
+                    <p class="tbl-text"> </p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="98px" class="calibre132">
+                    <p class="tbl-r-label"><a name="COBHS_Oth_Carrier_Sub_ID_FIELD"></a>Oth
+                        Carrier Sub ID</p></td>
+                <td width="14px" class="calibre133">
+                    <p class="tbl-text">O</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Other carrier coverage Subscriber
+                        ID</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Manually entered</p></td>
+                <td width="206px" class="calibre135">
+                    <p class="tbl-text">This field is enabled when
+                        the Other Carrier’s Carrier Type (from CARCD) = Commercial, Other or any
+                        other type which is not Medicare.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="98px" class="calibre132">
+                    <p class="tbl-r-label"><a name="COBHS_Other_Family_Coverage_FIELD"></a>Other
+                        Family Coverage</p></td>
+                <td width="14px" class="calibre133">
+                    <p class="tbl-text">R</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Indicator of how the coverage
+                        information entered in this record pertains to other family members.</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Selected from predefined
+                        list</p></td>
+                <td width="206px" class="calibre135">
+                    <p class="tbl-list-hdr">Valid values are:</p>
+                    <p class="tbl-list">All - All family members also covered</p>
+                    <p class="tbl-list">Exclude - Certain family members are excluded from this
+                        coverage</p>
+                    <p class="tbl-list">Include - Certain family members are included in this
+                        coverage</p>
+                    <p class="tbl-list">None - No other family members are covered</p>
+                    <p class="tbl-text-noline">The default is None. If the entry is either Exclude
+                        or Include, Person Number is required.</p>
+                    <p class="tbl-text-noline">Warning: Automatic COB Order of Liability (COBOR)
+                        assignment may give unreliable results if you use Relationship as a determinant
+                        in COBOR and select All, Include or Exclude here. If you want to use Relationship
+                        as a determinant in COBOR rules, instead select None here and create separate
+                        individual COBHS records for dependents. </p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="98px" class="calibre132">
+                    <p class="tbl-r-label"><a name="COBHS_P_N_(3_occurrences)_FIELD"></a>P/N
+                        (3 occurrences)</p></td>
+                <td width="14px" class="calibre133">
+                    <p class="tbl-text">C</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">The person numbers of the
+                        other family members who are either Included or Excluded according to
+                        the entry in Other Fam Cov above.</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Manually entered.</p></td>
+                <td width="206px" class="calibre135">
+                    <p class="tbl-text">P/N is required if Other
+                        Fam Cov above is either E or I; it is not used if A or N.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="98px" class="calibre132">
+                    <p class="tbl-r-label"><a name="COBHS_Payment_Policy_FIELD"></a>Payment
+                        Policy</p></td>
+                <td width="14px" class="calibre133">
+                    <p class="tbl-text">O</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">COB payment policy for this
+                        commercial other carrier</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Selected from predefined
+                        list</p></td>
+                <td width="206px" class="calibre135">
+                    <p class="tbl-text">This field is enabled when
+                        the Other Carrier’s Carrier Type (from CARCD) = Commercial, Other or any
+                        other type which is not Medicare.</p>
+                    <p class="tbl-text-noline">Informational field only – no associated processing
+                        logic. You can use Payment Policy as a COB Hold/Deny determinant.</p>
+                    <p class="tbl-text-noline">Payment Policy codes are maintained in keyword
+                        CODES with system code type COBPYMT.</p>
+                    <p class="tbl-list-hdr-noline">Predefined valid values:</p>
+                    <p class="tbl-list">Pay &amp; Pursue - The Other Carrier pays claims for
+                        this group and then pursues potential payment recovery from another payor
+                        if appropriate.</p>
+                    <p class="tbl-list">Pursue &amp; Pay - The Other Carrier holds or denies
+                        claims for this group and then pursues potential recovery from another
+                        payor. When a payment for a claim is received from another payor or it
+                        is determined that an another payor payment does not exist, the Other
+                        Carrier normally releases the hold or deny conditions for the claim and
+                        pays it.</p>
+                    <p class="tbl-list">Modified Pursue &amp; Pay - For their subscribers, the
+                        Other Carrier applies the Pay and Pursue process. For dependents, the
+                        Pursue and Pay process.</p>
+                    <p class="tbl-list">None - No formal policy exists for COB payments.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="98px" class="calibre132">
+                    <p class="tbl-r-label"><a name="COBHS_Plan_Type_FIELD"></a>Plan
+                        Type</p></td>
+                <td width="14px" class="calibre133">
+                    <p class="tbl-text">O</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Other carrier coverage plan
+                        type</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Select from predefined list</p></td>
+                <td width="206px" class="calibre135">
+                    <p class="tbl-text">Valid values are maintained
+                        in keyword CODES.</p>
+                    <p class="tbl-list-hdr-noline">Predefined valid values:</p>
+                    <p class="tbl-list-txt">Group</p>
+                    <p class="tbl-list-txt">Individual</p>
+                    <p class="tbl-text-noline">This field is enabled when the Other Carrier’s
+                        Carrier Type (from CARCD) = Commercial, Other or any other type which
+                        is not Medicare.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="98px" class="calibre132">
+                    <p class="tbl-r-label"><a name="COBHS_Policy_No._FIELD"></a>Policy
+                        No.</p></td>
+                <td width="14px" class="calibre133">
+                    <p class="tbl-text">O</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">The member’s policy number
+                        with the other carrier.</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Manually entered.</p></td>
+                <td width="206px" class="calibre135">
+                    <p class="tbl-text"> </p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="98px" class="calibre132">
+                    <p class="tbl-r-label"><a name="COBHS_PreCert_Reqd_FIELD"></a>PreCert
+                        Reqd</p></td>
+                <td width="14px" class="calibre133">
+                    <p class="tbl-text">R</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Indicates whether a pre-certification
+                        of services is required by the member’s other coverage</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Selected with check box</p></td>
+                <td width="206px" class="calibre135">
+                    <p class="tbl-text">This field is enabled when
+                        the Other Carrier’s Carrier Type (from CARCD) = Commercial, Other or any
+                        other type which is not Medicare.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="98px" class="calibre132">
+                    <p class="tbl-r-label"><a name="COBHS_Product_Type_FIELD"></a>Product
+                        Type</p></td>
+                <td width="14px" class="calibre133">
+                    <p class="tbl-text">O</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Type of health insurance
+                        product</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Select from predefined list</p></td>
+                <td width="206px" class="calibre135">
+                    <p class="tbl-text">Valid values are maintained
+                        in keyword CODES.</p>
+                    <p class="tbl-list-hdr-noline">Predefined valid values:</p>
+                    <p class="tbl-list-txt">HMO</p>
+                    <p class="tbl-list-txt">PPO</p>
+                    <p class="tbl-list-txt">Point of Service</p>
+                    <p class="tbl-list-txt">Indemnity </p>
+                    <p class="tbl-text-noline">This field is enabled when the Other Carrier’s
+                        Carrier Type (from CARCD) = Commercial, Other or any other type which
+                        is not Medicare.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="98px" class="calibre132">
+                    <p class="tbl-r-label"><a name="COBHS_Relationship_FIELD"></a>Relationship</p></td>
+                <td width="14px" class="calibre133">
+                    <p class="tbl-text">O</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Other Carrier Subscriber’s
+                        relationship to the DIAMOND member on the COBHS record.</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Selected from predefined
+                        list</p></td>
+                <td width="206px" class="calibre135">
+                    <p class="tbl-list-hdr">Valid values:</p>
+                    <p class="tbl-list">A Aunt/Uncle</p>
+                    <p class="tbl-list">B Brother/ Sister</p>
+                    <p class="tbl-list">C Child</p>
+                    <p class="tbl-list">D Stepchild</p>
+                    <p class="tbl-list">F Friend</p>
+                    <p class="tbl-list">G Grandchild</p>
+                    <p class="tbl-list">H Head of household</p>
+                    <p class="tbl-list">I Brother/ Sister-in-law</p>
+                    <p class="tbl-list">J Foster Child</p>
+                    <p class="tbl-list">K Parent-in-law</p>
+                    <p class="tbl-list">M Step-parent</p>
+                    <p class="tbl-list">N Grandparent</p>
+                    <p class="tbl-list">O Other</p>
+                    <p class="tbl-list">P Parent</p>
+                    <p class="tbl-list">R Boy/ Girlfriend</p>
+                    <p class="tbl-list">S Spouse</p>
+                    <p class="tbl-list">T Cousin</p>
+                    <p class="tbl-list">U Guardian</p>
+                    <p class="tbl-list">X Niece/ Nephew </p>
+                    <p class="tbl-text-noline">This field is enabled when the Other Carrier’s
+                        Carrier Type (from CARCD) = Commercial, Other or any other type which
+                        is not Medicare.</p>
+                    <p class="tbl-text-noline">Warning: Automatic COB Order of Liability (COBOR)
+                        assignment may give unreliable results if you use Relationship as a determinant
+                        in COBOR and select All, Include or Exclude in the COBHS - Other Family
+                        Coverage field. If you want to use Relationship as a determinant in COBOR
+                        rules, instead select None in the COBHS - Other Family Coverage field
+                        and create separate individual COBHS records for dependents.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="98px" class="calibre132">
+                    <p class="tbl-r-label"><a name="COBHS_Sec_Dep_Rule_FIELD"></a>Sec
+                        Dep Rule</p></td>
+                <td width="14px" class="calibre133">
+                    <p class="tbl-text">C</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Allows for more detailed
+                        description of the Dependent Determination rule when the Birthday Rule
+                        or Gender Rule does not apply.</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Selected from predefined
+                        list</p></td>
+                <td width="206px" class="calibre135">
+                    <p class="tbl-text">Required if Dependent Determination
+                        Rule = Other.</p>
+                    <p class="tbl-text-noline">Valid values are maintained in CODES with system
+                        code type SECDEPRULE.</p>
+                    <p class="tbl-list-hdr-noline">Predefined valid values:</p>
+                    <p class="tbl-list-txt">Court Order </p>
+                    <p class="tbl-list-txt">Divorce Decree</p>
+                    <p class="tbl-text-noline">This field is enabled when the Other Carrier’s
+                        Carrier Type (from CARCD) = Commercial, Other or any other type which
+                        is not Medicare.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="98px" class="calibre132">
+                    <p class="tbl-r-label"><a name="COBHS_Status_FIELD"></a>Status</p></td>
+                <td width="14px" class="calibre133">
+                    <p class="tbl-text">O</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Status of the member’s enrollment
+                        in the Medicare Entitlement program.</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Selected from predefined
+                        list</p></td>
+                <td width="206px" class="calibre135">
+                    <p class="tbl-text">Valid values are maintained
+                        in keyword CODES with system code type COBSTATUS.</p>
+                    <p class="tbl-list-hdr-noline">Predefined valid values include:</p>
+                    <p class="tbl-list-txt">A - Approved</p>
+                    <p class="tbl-list-txt">P - Pending</p>
+                    <p class="tbl-text-noline">This field is enabled when the Other Carrier’s
+                        Carrier Type (from CARCD) = Medicare.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="98px" class="calibre132">
+                    <p class="tbl-r-label"><a name="COBHS_Subscriber_ID_FIELD"></a>Subscriber
+                        ID</p></td>
+                <td width="14px" class="calibre133">
+                    <p class="tbl-text">R</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">The subscriber identification
+                        number of the member for whom the COB information is being entered.</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Selected from predefined
+                        list</p></td>
+                <td width="206px" class="calibre135">
+                    <p class="tbl-text">F5 lookup is available.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="98px" class="calibre132">
+                    <p class="tbl-r-label"><a name="COBHS_Term_Date_FIELD"></a>Term
+                        Date</p></td>
+                <td width="14px" class="calibre133">
+                    <p class="tbl-text">O</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">If any, the end date of the
+                        member’s other coverage.</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Manually entered.</p></td>
+                <td width="206px" class="calibre135">
+                    <p class="tbl-text"> </p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="98px" class="calibre132">
+                    <p class="tbl-r-label"><a name="COBHS_Term_Reason_FIELD"></a>Term
+                        Reason</p></td>
+                <td width="14px" class="calibre133">
+                    <p class="tbl-text">C</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">If there is a termination
+                        date, a code explaining that date.</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Manually selected.</p></td>
+                <td width="206px" class="calibre135">
+                    <p class="tbl-text">Termination codes are maintained
+                        in keyword REASN (Reason) with a type of TM.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="98px" class="calibre132">
+                    <p class="tbl-r-label"><a
+                            name="COBHS_Type_(1-3)_(Commercial_coverage_information_section)_FIELD"></a>Type
+                        (1-3) (Commercial coverage information section)</p></td>
+                <td width="14px" class="calibre133">
+                    <p class="tbl-text">O</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Types of other dates associated
+                        with this other commercial coverage record</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Selected from predefined
+                        list</p></td>
+                <td width="206px" class="calibre135">
+                    <p class="tbl-list-hdr">Type values are maintained
+                        in keyword CODES.</p>
+                    <p class="tbl-list-hdr-noline">Predefined valid values:</p>
+                    <p class="tbl-list-txt">Dialysis date</p>
+                    <p class="tbl-list-txt">Discharge date </p>
+                    <p class="tbl-list-txt">Injury Date</p>
+                    <p class="tbl-list-txt">Institution Admit date </p>
+                    <p class="tbl-list-txt">Transplant date</p>
+                    <p class="tbl-text-noline">This field is enabled when the Other Carrier’s
+                        Carrier Type (from CARCD) = Commercial, Other or any other type which
+                        is not Medicare.</p>
+                    <p class="tbl-text-noline">Type can be used in tandem with the Date field
+                        next to it.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="98px" class="calibre132">
+                    <p class="tbl-r-label"><a name="COBHS_Type_(1-3)_(Medicare_information_section)_FIELD"></a>Type
+                        (1-3) (Medicare information section)</p></td>
+                <td width="14px" class="calibre133">
+                    <p class="tbl-text">O</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Types of other dates associated
+                        with this other Medicare coverage record</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Selected from predefined
+                        list</p></td>
+                <td width="206px" class="calibre135">
+                    <p class="tbl-list-hdr">Type values are maintained
+                        in keyword CODES.</p>
+                    <p class="tbl-list-hdr-noline">Predefined valid values:</p>
+                    <p class="tbl-list-txt">Dialysis date</p>
+                    <p class="tbl-list-txt">Discharge date </p>
+                    <p class="tbl-list-txt">Injury Date</p>
+                    <p class="tbl-list-txt">Institution Admit date </p>
+                    <p class="tbl-list-txt">Transplant date</p>
+                    <p class="tbl-text-noline">This field is enabled when the Other Carrier’s
+                        Carrier Type (from CARCD) = Medicare.</p>
+                    <p class="tbl-text-noline">Type can be used in tandem with the Date field
+                        next to it.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td colspan="1" rowspan="1" width="98px" class="calibre132">
+                    <p class="tbl-r-label"><a name="UserDate_1"></a>UserDate
+                        1</p></td>
+                <td colspan="1" rowspan="1" width="14px" class="calibre133">
+                    <p class="tbl-text">O</p></td>
+                <td colspan="1" rowspan="1" width="105px" class="calibre134">
+                    <p class="tbl-text">Optional date field defined
+                        during implementation of DIAMOND.</p></td>
+                <td colspan="1" rowspan="1" width="105px" class="calibre134">
+                    <p class="tbl-text">Manually entered</p></td>
+                <td colspan="1" rowspan="1" width="206px" class="calibre135">
+                    <p class="tbl-text">The label for this field
+                        is maintained using keyword UDTXT (User Defined Fields).</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td colspan="1" rowspan="1" width="98px" class="calibre132">
+                    <p class="tbl-r-label"><a name="UserDate_2"></a>UserDate
+                        2</p></td>
+                <td colspan="1" rowspan="1" width="14px" class="calibre133">
+                    <p class="tbl-text">O</p></td>
+                <td colspan="1" rowspan="1" width="105px" class="calibre134">
+                    <p class="tbl-text">Optional date field defined
+                        during implementation of DIAMOND.</p></td>
+                <td colspan="1" rowspan="1" width="105px" class="calibre134">
+                    <p class="tbl-text">Manually entered</p></td>
+                <td colspan="1" rowspan="1" width="206px" class="calibre135">
+                    <p class="tbl-text">The label for this field
+                        is maintained using keyword UDTXT (User Defined Fields).</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="98px" class="calibre132">
+                    <p class="tbl-r-label"><a name="COBHS_User_Def_1-2_FIELD"></a>User
+                        Def 1-2</p></td>
+                <td width="14px" class="calibre133">
+                    <p class="tbl-text">C</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Conditionally required field
+                        defined during implementation of DIAMOND.</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Manually entered</p></td>
+                <td width="206px" class="calibre135">
+                    <p class="tbl-text">Labels and validation for
+                        these fields are maintained using keyword UDTXT (User Defined Fields).</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="98px" class="calibre132">
+                    <p class="tbl-r-label"><a name="COBHS_User_Def_3-5_FIELD"></a>User
+                        Def 3-5</p></td>
+                <td width="14px" class="calibre133">
+                    <p class="tbl-text-1char">C</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Conditionally required field
+                        defined during implementation of DIAMOND.</p></td>
+                <td width="105px" class="calibre134">
+                    <p class="tbl-text">Manually entered</p></td>
+                <td width="206px" class="calibre135">
+                    <p class="tbl-text">Labels and validation for
+                        these fields are maintained in keyword UDTXT.</p>
+                    <p class="tbl-text-noline">These fields are enabled when the Other Carrier’s
+                        Carrier Type (from CARCD) = Medicare.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td colspan="1" rowspan="1" width="98px" class="calibre132">
+                    <p class="tbl-r-label"><a name="Working_Aged"></a>Working
+                        Aged </p></td>
+                <td colspan="1" rowspan="1" width="14px" class="calibre133">
+                    <p class="tbl-text-1char">O</p></td>
+                <td colspan="1" rowspan="1" width="105px" class="calibre134">
+                    <p class="tbl-text">Indicator of whether the
+                        other carrier details information is for a working aged member, spouse,
+                        or domestic partner.</p></td>
+                <td colspan="1" rowspan="1" width="105px" class="calibre134">
+                    <p class="tbl-text">Selected with check box</p></td>
+                <td colspan="1" rowspan="1" width="206px" class="calibre135">
+                    <p class="tbl-text"> </p></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <p class="body-text"> </p>
+
+
+    </div>
+
+
+
+
+    <div class="calibreEbNav">
+
+        <a href="COBHS_Field_Map.htm" class="calibreAPrev">previous page
+        </a>
+
+
+        <a href="../ib0gc-jzzjl.html" class="calibreAHome">start
+        </a>
+
+
+        <a href="COBHS_Functions_on_Menu_Bar.htm" class="calibreANext">next page
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,18 @@
+<div class="container-fluid">
+    <div class="card-block">
+        <div class="row form-title">
+            <h2 class="col-md-6 card-label-admin"> {{title}} HISTORY</h2>
+        </div>
+        <button (click)="closeModal()" *ngIf="showIcon" aria-label="Close"
+                class="modal-close close" type="button">
+            <span aria-hidden="true">&times;</span>
+        </button>
+
+<div class="row w-100 ml-0 pt-1 pb-1" style="background: lightblue">
+    <ag-grid-angular #agGrid class="ag-theme-fresh" [gridOptions]="dataGridGridOptions" style="width: 100%; height: 300px;" [enableSorting]="true" [enableFilter]="true" [floatingFilter]="true"
+    [pagination]="true" [showToolPanel]="true" (gridReady)="onGridReady($event)" [columnDefs]="columnsDef" >
+ </ag-grid-angular>
+
+</div>
+</div>
+</div>

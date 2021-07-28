@@ -1,0 +1,206 @@
+<!-- Copyright (c) 2020 . All Rights Reserved. -->
+<div class="container-fluid">
+    <div class="card-block">
+        <form [formGroup]="benefitAccumulatorBaseValuesForm" novalidate>
+            <h2 class="form-title card-label-admin">Benefit Accumulator Base Values</h2>
+            <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+            <app-pop-up-message #popUpMesssage (buttonclickEvent)="popUpButtonHandler($event)"  [(popupMessage)] = "popUpMessage"></app-pop-up-message>
+                        
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+                <!-- Button with label of Select Mbr -->
+                <div class="col-md-2">
+                    <button type="button" id="selectMbr" name="selectMbr" class="btn btn-small btn-primary">Select Mbr</button>
+                
+                
+                </div>
+            
+            </div>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+                <div class="col-md-2 form-control-static mb-0" i18n>
+                    Member Eligibility
+                </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- DynamicText with label of Subscriber ID -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('subscriberId') }">
+                     <label class="col-form-label" for="subscriberId" i18n>Subscriber ID</label>
+                     <input type="text" readonly id="subscriberId" formControlName="subscriberId" class="form-control"/>
+                 </div>
+            
+                <!-- DynamicText with label of Person No -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('personNo') }">
+                     <label class="col-form-label" for="personNo" i18n>Person No</label>
+                     <input type="text" readonly id="personNo" formControlName="personNo" class="form-control"/>
+                 </div>
+            
+                <!-- DynamicText with Name of DynamicText001 -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('dynamicText001') }">
+                     <label class="col-form-label" for="dynamicText001" i18n>&nbsp;</label>
+                     <input type="text" readonly id="dynamicText001" formControlName="dynamicText001" class="form-control"/>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of Effective Date -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('effectiveDate') }">
+                     <label class="col-form-label" for="effectiveDate" i18n>Effective Date</label>
+                     <div class="input-group">
+                    <input id="effectiveDate" class="form-control" angular-mydatepicker name="effectiveDate" (click)="effectiveDateId.toggleCalendar()"
+                    formControlName="effectiveDate"[options]="datePickerConfig" #effectiveDateId="angular-mydatepicker"/>
+                    <div class="input-group-append">
+                        <button type="button" class="btn btn-secondary" (click)="effectiveDateId.clearDate()">
+                          <i class="fa fa-close"></i>
+                        </button>
+                      </div>
+                      <div class="input-group-append">
+                        <button type="button" class="btn btn-secondary" (click)="effectiveDateId.toggleCalendar()">
+                          <i class="fa fa-calendar-o"></i>
+                        </button>
+                      </div>
+                    </div>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('effectiveDate')">
+                      {{ formValidation.errorMessage('effectiveDate') }}
+                     </small>
+                 </div>
+            
+                <!-- Textbox with label of Term Date -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('termDate') }">
+                     <label class="col-form-label" for="termDate" i18n>Term Date</label>
+                     <div class="input-group">
+                    <input id="termDate" class="form-control" angular-mydatepicker name="termDate" (click)="termDateId.toggleCalendar()"
+                    formControlName="termDate"[options]="datePickerConfig" #termDateId="angular-mydatepicker"/>
+                    <div class="input-group-append">
+                        <button type="button" class="btn btn-secondary" (click)="termDateId.clearDate()">
+                          <i class="fa fa-close"></i>
+                        </button>
+                      </div>
+                      <div class="input-group-append">
+                        <button type="button" class="btn btn-secondary" (click)="termDateId.toggleCalendar()">
+                          <i class="fa fa-calendar-o"></i>
+                        </button>
+                      </div>
+                    </div>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('termDate')">
+                      {{ formValidation.errorMessage('termDate') }}
+                     </small>
+                 </div>
+            
+                <!-- DynamicText with label of Elig Status -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('eligStatus') }">
+                     <label class="col-form-label" for="eligStatus" i18n>Elig Status</label>
+                     <input type="text" readonly id="eligStatus" formControlName="eligStatus" class="form-control"/>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- DynamicText with label of Group ID -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('groupId') }">
+                     <label class="col-form-label" for="groupId" i18n>Group ID</label>
+                     <input type="text" readonly id="groupId" formControlName="groupId" class="form-control"/>
+                 </div>
+            
+                <!-- DynamicText with Name of DynamicText002 -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('dynamicText002') }">
+                     <label class="col-form-label" for="dynamicText002" i18n>&nbsp;</label>
+                     <input type="text" readonly id="dynamicText002" formControlName="dynamicText002" class="form-control"/>
+                 </div>
+            
+                <!-- DynamicText with label of Plan Code -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('planCode') }">
+                     <label class="col-form-label" for="planCode" i18n>Plan Code</label>
+                     <input type="text" readonly id="planCode" formControlName="planCode" class="form-control"/>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- DynamicText with label of Benefit Pkg ID -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('benefitPkgId') }">
+                     <label class="col-form-label" for="benefitPkgId" i18n>Benefit Pkg ID</label>
+                     <input type="text" readonly id="benefitPkgId" formControlName="benefitPkgId" class="form-control"/>
+                 </div>
+            
+                <!-- DynamicText with Name of DynamicText003 -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('dynamicText003') }">
+                     <label class="col-form-label" for="dynamicText003" i18n>&nbsp;</label>
+                     <input type="text" readonly id="dynamicText003" formControlName="dynamicText003" class="form-control"/>
+                 </div>
+            
+                <!-- DynamicText with label of Relationship Code -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('relationshipCode') }">
+                     <label class="col-form-label" for="relationshipCode" i18n>Relationship Code</label>
+                     <input type="text" readonly id="relationshipCode" formControlName="relationshipCode" class="form-control"/>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- DynamicText with label of Riders -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('riders') }">
+                     <label class="col-form-label" for="riders" i18n>Riders</label>
+                     <input type="text" readonly id="riders" formControlName="riders" class="form-control"/>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+                <div class="col-md-2 form-control-static mb-0" i18n>
+                    Benefit Detail
+                </div>
+            
+            </div>
+            
+                        <!-- DataGrid with Name of DataGrid001 -->
+                    <button (click)="dataGrid001GridOptionsExportCsv()">Export</button>
+                    <ag-grid-angular #agGrid class="ag-theme-fresh" [gridOptions]="dataGrid001GridOptions"
+                    style="width: 100%; height: 300px;"
+                    [enableSorting]="true"
+                    [enableFilter]="true"
+                    [floatingFilter]="true"
+                    [pagination]="true"
+                    [showToolPanel]="true">
+                    </ag-grid-angular>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+                <div class="col-md-2 form-control-static mb-0" i18n>
+                    Accumulated Base Values
+                </div>
+            
+            </div>
+            
+                        <!-- DataGrid with Name of DataGrid002 -->
+                    <button (click)="dataGrid002GridOptionsExportCsv()">Export</button>
+                    <ag-grid-angular #agGrid class="ag-theme-fresh" [gridOptions]="dataGrid002GridOptions"
+                    style="width: 100%; height: 300px;"
+                    [enableSorting]="true"
+                    [enableFilter]="true"
+                    [floatingFilter]="true"
+                    [pagination]="true"
+                    [showToolPanel]="true">
+                    </ag-grid-angular>
+            
+            <div class="form-group row">
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,248 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+    <title>Pricing DRGs With an External Pricer</title>
+    <!--(Meta)==========================================================-->
+    <meta name="copyright"
+          value="© Copyright 2002 Health Systems Design Corp., a wholly owned subsidiary of Perot Systems Corporation. All rights reserved"/>
+    <meta content="RoboHELP by eHelp Corporation - www.ehelp.com" name="generator"/>
+    <meta content="0.1" name="generator-major-version"/>
+    <meta content="1" name="generator-minor-version"/>
+    <meta content="kadov" name="filetype"/>
+    <meta content="1" name="filetype-version"/>
+    <meta content="1" name="page-count"/>
+    <meta content="1037" name="layout-height"/>
+    <meta content="889" name="layout-width"/>
+    <!--(Links)=========================================================-->
+    <!--(Scripts)=======================================================-->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+</head>
+<body>
+
+<div class="calibreMeta">
+    <div class="calibreMetaTitle">
+
+
+        <h1>
+            <a href="../9r5qt-dn4su.html">DIAMOND 950 Help
+            </a>
+        </h1>
+
+
+    </div>
+    <div class="calibreMetaAuthor">
+        Unknown
+
+    </div>
+</div>
+
+<div class="calibreMain">
+
+    <div class="calibreEbookContent">
+
+        <div class="calibreEbNavTop">
+
+            <a href="Pricing_with_ASC_Case_Rates.htm" class="calibreAPrev">previous page
+            </a>
+
+
+            <a href="Pricing_DRGs_Without_an_External_Pricer.htm" class="calibreANext">next page
+            </a>
+
+        </div>
+
+
+        <h4 class="calibre1">Pricing DRGs With an External Pricer</h4>
+
+        <!--(Table)=========================================================-->
+        <table cellspacing="0" width="500" x-use-null-cells="" class="calibre172">
+
+            <tbody class="">
+            <tr valign="top" class="">
+                <td width="120px" class="">
+                    <p class="map-links"><a
+                            href="Pricing_DRGs_With_an_External_Pricer.htm#Pricing_DRGs_With_an_External_Grouper_Restrictions_MID"><img
+                            alt="image\assets/help/MidTopic_shg.gif" border="0" height="10" src="assets/help/MidTopic_shg.gif" width="18"
+                            class=""/></a> Restrictions</p></td>
+                <td width="127px" class="">
+                    <p class="map-links"><a
+                            href="Pricing_DRGs_With_an_External_Pricer.htm#Pricing_DRGs_With_an_External_Grouper_Instructions_MID"><img
+                            alt="image\assets/help/MidTopic_shg.gif" border="0" height="10" src="assets/help/MidTopic_shg.gif" width="18"
+                            class=""/></a> Instructions</p></td>
+                <td width="234px" class="">
+                    <p class="map-links"><a
+                            href="Pricing_DRGs_With_an_External_Pricer.htm#Pricing_DRGs_With_an_External_Grouper_Frequently_Asked_Questions_MID"><img
+                            alt="image\assets/help/MidTopic_shg.gif" border="0" height="10" src="assets/help/MidTopic_shg.gif" width="18"
+                            class=""/></a> Frequently Asked Questions</p></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <p class="body-text">You can use external pricing software to price institutional
+            claims at the whole claim level using Diagnosis-Related Groups (DRGs).
+            For external pricing, DIAMOND uses the HSS EASYGroup<span class="1">Ô</span>
+            2000 Optimizer.</p>
+
+        <p class="doc-level2"><a name="Pricing_DRGs_With_an_External_Grouper_Restrictions_MID"></a>Restrictions</p>
+
+        <p class="body-text">To use an HSS external pricer, you must first have a
+            DRG code. You can accept the submitted DRG on the claim, enter a valid
+            DRG, or call an external DRG grouper to determine the DRG. For more information
+            on using an external grouper, see <a href="Grouping_DRGs_with_an_External_Grouper.htm">Grouping
+                DRGs with an External Grouper</a>.</p>
+
+        <p class="doc-level2"><a name="Pricing_DRGs_With_an_External_Grouper_Instructions_MID"></a>Instructions</p>
+
+        <!--(Table)=========================================================-->
+        <table cellspacing="0" width="526" x-use-null-cells="" class="calibre172">
+
+            <tbody class="">
+            <tr valign="top" class="">
+                <td width="250px" class="">
+                    <p class="tbl-header1">Step</p></td>
+                <td width="276px" class="">
+                    <p class="tbl-header1">Comment</p></td>
+            </tr>
+
+            <tr valign="top" class="">
+                <td width="250px" class="">
+                    <p class="step1">1.  Before setting
+                        up DRG contracts, analyze precisely how the contracts work and what they
+                        mean.</p></td>
+                <td width="276px" class="">
+                    <p class="step-comment1"> </p></td>
+            </tr>
+
+            <tr valign="top" class="">
+                <td width="250px" class="">
+                    <p class="step2">2. In keyword PDTER
+                        (Price Determinant Maintenance), add price determinants that define the
+                        characteristics of a claim to be priced using DRGs.</p></td>
+                <td width="276px" class="">
+                    <p class="step-comment1">Keyword PRULW (Whole Claim
+                        Price Rule) records are selected using price determinants defined in keyword
+                        PDTER.</p></td>
+            </tr>
+
+            <tr valign="top" class="">
+                <td width="250px" class="">
+                    <p class="step2">3. In keyword PRULE
+                        (Price Rule), add a price rule. Be sure to select the <span class="">Use
+ External DRG Pricer</span> check box.</p></td>
+                <td width="276px" class="">
+                    <p class="step-comment1">In most cases, there will
+                        be a separate price rule record for each institutional provider; in other
+                        words, it is rare that more than one hospital will share the same contractual
+                        requirements for claims pricing. </p></td>
+            </tr>
+
+            <tr valign="top" class="">
+                <td width="250px" class="">
+                    <p class="step2">4. If there are institutional
+                        services to be priced at the procedure or revenue code level and not included
+                        in the DRG rate, add records in keyword PRULD (Price Rule Detail) to define
+                        those ‘carved out’ procedures or revenue codes.</p></td>
+                <td width="276px" class="">
+                    <p class="step-comment1"> </p></td>
+            </tr>
+
+            <tr valign="top" class="">
+                <td width="250px" class="">
+                    <p class="step2">5. To define the specific
+                        procedure codes and/or revenue codes to which records in keyword PRULD
+                        apply, add PRULS (Price Rule Detail Selection) records as needed.</p></td>
+                <td width="276px" class="">
+                    <p class="step-comment1">DIAMOND reads keyword PRULD
+                        records in level+sequence order. If there is more than one keyword PRULD
+                        record, there may be no need to add a keyword PRULS record for the last
+                        keyword PRULD record read. By the point that last record is evaluated,
+                        all specific exceptions will have been defined as part of the ‘earlier’
+                        keyword PRULD records. In other words, the last rule read is the fall
+                        through, or all else, rule.</p></td>
+            </tr>
+
+            <tr valign="top" class="">
+                <td width="250px" class="">
+                    <p class="step2">6. Add a PRULW record
+                        with a <span class="">Calc</span> <span class="">Method</span>
+                        of <span class="">04 – DRG</span>. This calculates the
+                        base allowed amount.</p></td>
+                <td width="276px" class="">
+                    <p class="step-comment1">No Base Rule Stop Logic applies
+                        to DRG rules.</p></td>
+            </tr>
+
+            <tr valign="top" class="">
+                <td width="250px" class="">
+                    <p class="step2">7.  In keyword PROVC,
+                        add contract records as necessary for institutional providers. Include
+                        using the <span class="">DRG/APC Information</span>
+                        command on the <span class="">Special</span> menu to
+                        enter the required DRG data, including:</p>
+                    <ul class="calibre24">
+
+                        <li class="kadov-p-cstep--bullet"><p class="step--bullet"><span class="">Facility
+ Number</span></p></li>
+
+                        <li class="kadov-p-cstep--bullet"><p class="step--bullet"><span
+                                class="">Paysource</span></p></li>
+                    </ul>
+                </td>
+                <td width="276px" class="">
+                    <p class="step-comment1"> </p></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <p class="doc-level2"><a name="Pricing_DRGs_With_an_External_Grouper_Frequently_Asked_Questions_MID"></a>Frequently
+            Asked Questions</p>
+
+        <ul class="calibre24">
+
+            <li class="kadov-p-cfaq"><p class="faq">Where can I get background
+                information about DRG grouper and pricer functionality and how the HSS
+                Optimizer works?</p></li>
+        </ul>
+
+        <p class="faq-ans">See <a href="DRG_Grouping_and_Pricing_How_DIAMOND_Thinks.htm">DRG
+            Grouping and Pricing, How DIAMOND Thinks</a><span class="calibre22"><span class="calibre23">. </span></span>
+        </p>
+
+        <ul class="calibre24">
+
+            <li class="kadov-p-cfaq"><p class="faq">How do I price DRGs without
+                an external pricer?</p></li>
+        </ul>
+
+        <p class="faq-ans">If it suits your business requirements, you can have DIAMOND
+            price DRGs without using an external pricer. You can accept the submitted
+            DRG on the claim, enter a valid DRG, or call an external DRG grouper to
+            determine the DRG, and then have DIAMOND whole claim price the claim.
+            See <a href="Pricing_DRGs_Without_an_External_Pricer.htm">Pricing DRGs
+                Without an External Pricer</a> for more information.</p>
+
+
+    </div>
+
+
+    <div class="calibreEbNav">
+
+        <a href="Pricing_with_ASC_Case_Rates.htm" class="calibreAPrev">previous page
+        </a>
+
+
+        <a href="../9r5qt-dn4su.html" class="calibreAHome">start
+        </a>
+
+
+        <a href="Pricing_DRGs_Without_an_External_Pricer.htm" class="calibreANext">next page
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+</html>

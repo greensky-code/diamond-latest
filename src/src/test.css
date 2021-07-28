@@ -1,0 +1,2656 @@
+/*
+ * Application specific LESS file. LESS is a dynamic style sheet language that
+ * compiled into a css file. LESS addresses several maintainability problems
+ * with css. A good online course on less is: "A Better CSS: LESS and SASS" on
+ * pluralsight.com.
+ *
+ * All css syntax is valid LESS syntax. LESS adds additional or alternative syntax
+ * that is easier to use than standard css.
+ *
+ * The color problem - can't name colors. Allows you to define standard, reusable
+ * colors and other elements so that they can be changed in one place.
+ *
+ * The Duplication Problem - duplicate values in the same rule. You often have to
+ * define different elements with the same value in the same role for several browsers.
+ * Put repeatable sets of code and put into one place.
+ *
+ * The Cascading Problem -
+ * e.g. #form input[type=textbox], #form  textarea
+ * Have to change the names of all instances of the rule name if the name "form" is
+ * changed.
+ *
+ * The Calculation Problem -
+ * Can't do calculations in the css.
+ * e.g. font-size: html.font-size + 8px where html.font-size is 14x.
+ *
+ * The Importing Problem
+ * For performance, would like to make efficient css for you by combining them into one so that
+ * you get smart caching of the css and better performance.
+ */
+div {
+  border: 0px solid red;
+}
+
+/* Need for cursor pointer to work correctly in angular-bootstrap. Suggested by angular-bootstrap*/
+.nav,
+.pagination,
+.carousel,
+.panel-title a {
+  cursor: pointer;
+}
+
+/* Needed for the blue gradient color for accordian and panels as form headers */
+.panel-default > .panel-heading {
+  background-color: #337ab7;
+  color: white;
+  cursor: pointer;
+}
+
+.panel-heading a {
+  background-color: #337ab7;
+  font-family: arial;
+  color: white;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.app_sub_nav_text {
+  font-size: 12px;
+}
+
+.app-header {
+  font-family: Arial;
+  border-bottom: 1px solid white;
+}
+
+/* Wrap content of a grid-ui header */
+.ui-grid-header-cell .ui-grid-cell-contents {
+  height: 48px;
+  white-space: normal;
+  -ms-text-overflow: clip;
+  text-overflow: clip;
+  overflow: visible;
+}
+
+table, th, td {
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 5px;
+}
+
+.tab-content {
+  border-left: 1px solid #ddd;
+  border-right: 1px solid #ddd;
+  padding: 10px;
+}
+
+.navbar {
+  padding-top: 10px;
+  padding-bottom: 20px;
+  background-color: white;
+}
+
+/* Set the width and height of Ag-grid */
+.ag-fresh {
+  width: 100%;
+  height: 300px;
+}
+
+benefit-help .help-menu, member-help .help-menu, pricing-help .help-menu {
+  min-height: 65rem;
+  max-height: 65rem;
+  overflow: scroll;
+  overflow-x: hidden;
+  background-color: #f5f3e9;
+}
+
+benefit-help .body-text, member-help .body-text, pricing-help .body-text {
+  display: block;
+  font-family: Verdana, sans-serif;
+  font-size: 0.70588em;
+  margin-bottom: 2pt;
+  margin-left: 0;
+  margin-right: 0;
+  margin-top: 4pt;
+  text-align: left;
+}
+
+benefit-help .body-text-block, member-help .body-text-block, pricing-help .body-text-block {
+  display: block;
+  font-family: Verdana, sans-serif;
+  font-size: 0.70588em;
+  margin: 4pt 72pt 2pt 36pt;
+  text-align: left;
+}
+
+benefit-help .body-text1, member-help .body-text1, pricing-help .body-text1 {
+  display: block;
+  font-family: Verdana, sans-serif;
+  font-size: 0.70588em;
+  margin: 0;
+  text-align: left;
+}
+
+benefit-help .bullet, member-help .bullet, pricing-help .bullet {
+  display: block;
+  font-family: Verdana, sans-serif;
+  font-size: 1em;
+  list-style: disc outside none;
+  text-align: left;
+  x-next-class: Bullet;
+  x-next-type: P;
+}
+
+benefit-help .bulletlvl, member-help .bulletlvl, pricing-help .bulletlvl {
+  display: block;
+  font-family: Verdana, sans-serif;
+  font-size: 0.70588em;
+  list-style: disc outside none;
+  margin: 9pt 0 9pt -4pt;
+  text-align: left;
+  x-next-class: BulletLvl2;
+  x-next-type: P;
+}
+
+benefit-help .calibre, member-help .calibre, pricing-help .calibre {
+  display: block;
+  font-size: 1.41667em;
+  line-height: 1.2;
+  margin: 0 5pt;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+benefit-help .calibre1, member-help .calibre1, pricing-help .calibre1 {
+  color: #800000;
+  display: block;
+  font-family: Verdana, sans-serif;
+  font-size: 0.79412em;
+  font-weight: bold;
+  line-height: 1.2;
+  margin: 9pt 0 7pt;
+  page-break-before: always;
+  text-align: left;
+  x-next-class: Text;
+  x-next-type: P;
+}
+
+benefit-help .calibre2, member-help .calibre2, pricing-help .calibre2 {
+  display: block;
+  font-family: Verdana, sans-serif;
+  font-size: 0.70588em;
+  font-weight: bold;
+  margin: 9pt 0 6pt;
+  text-align: left;
+  x-next-class: Text;
+  x-next-type: P;
+}
+
+benefit-help .calibre3, member-help .calibre3, pricing-help .calibre3 {
+  display: block;
+  list-style: decimal outside none;
+  margin: 1em 0;
+}
+
+benefit-help .calibre4, member-help .calibre4, pricing-help .calibre4 {
+  font-weight: bold;
+}
+
+benefit-help .calibre5, member-help .calibre5, pricing-help .calibre5 {
+  display: block;
+  font-family: Verdana, sans-serif;
+  font-size: 0.79412em;
+  font-weight: bold;
+  line-height: 1.2;
+  margin: 18pt 0 6pt;
+  page-break-before: always;
+  text-align: left;
+  x-next-class: Text;
+  x-next-type: P;
+}
+
+benefit-help .calibre6, member-help .calibre6, pricing-help .calibre6 {
+  display: block;
+  list-style-type: disc;
+  margin: 1em 0;
+}
+
+benefit-help .calibre7, member-help .calibre7, pricing-help .calibre7 {
+  text-transform: capitalize;
+}
+
+benefit-help .calibre8, member-help .calibre8, pricing-help .calibre8 {
+  font-variant: small-caps;
+}
+
+benefit-help .calibre9, member-help .calibre9, pricing-help .calibre9 {
+  border-collapse: separate;
+  border-spacing: 0;
+  display: table;
+  margin-bottom: 0;
+  margin-top: 0;
+  text-indent: 0;
+}
+
+benefit-help .calibre10, member-help .calibre10, pricing-help .calibre10 {
+  display: table-row-group;
+  vertical-align: middle;
+}
+
+benefit-help .calibre11, member-help .calibre11, pricing-help .calibre11 {
+  display: table-row;
+  vertical-align: inherit;
+  x-cell-content-align: top;
+}
+
+benefit-help .calibre12, member-help .calibre12, pricing-help .calibre12 {
+  background-color: #C0C0C0;
+  border-bottom-color: #000;
+  border-bottom-style: Solid;
+  border-bottom-width: 1px;
+  display: table-cell;
+  padding: 1px;
+  text-align: inherit;
+  vertical-align: inherit;
+  width: 114px;
+}
+
+benefit-help .calibre13, member-help .calibre13, pricing-help .calibre13 {
+  background-color: #C0C0C0;
+  border-bottom-color: #000;
+  border-bottom-style: Solid;
+  border-bottom-width: 1px;
+  display: table-cell;
+  padding: 1px;
+  text-align: inherit;
+  vertical-align: inherit;
+  width: 120px;
+}
+
+benefit-help .calibre14, member-help .calibre14, pricing-help .calibre14 {
+  background-color: #C0C0C0;
+  border-bottom-color: #000;
+  border-bottom-style: Solid;
+  border-bottom-width: 1px;
+  display: table-cell;
+  padding: 1px;
+  text-align: inherit;
+  vertical-align: inherit;
+  width: 300px;
+}
+
+benefit-help .calibre15, member-help .calibre15, pricing-help .calibre15 {
+  border-bottom-color: #000;
+  border-bottom-style: Solid;
+  border-bottom-width: 1px;
+  display: table-cell;
+  padding: 1px;
+  text-align: inherit;
+  vertical-align: inherit;
+}
+
+benefit-help .calibre16, member-help .calibre16, pricing-help .calibre16 {
+  border-bottom-color: #000;
+  border-bottom-style: Solid;
+  border-bottom-width: 1px;
+  display: table-cell;
+  padding: 1px;
+  text-align: inherit;
+  vertical-align: inherit;
+  width: 120px;
+}
+
+benefit-help .calibre17, member-help .calibre17, pricing-help .calibre17 {
+  border-bottom-color: #000;
+  border-bottom-style: Solid;
+  border-bottom-width: 1px;
+  display: table-cell;
+  padding: 1px;
+  text-align: inherit;
+  vertical-align: inherit;
+  width: 300px;
+}
+
+benefit-help .calibre18, member-help .calibre18, pricing-help .calibre18 {
+  border-collapse: separate;
+  border-spacing: 0;
+  display: table;
+  margin-bottom: 0;
+  margin-top: 0;
+  text-indent: 0;
+  width: 396px;
+}
+
+benefit-help .calibre19, member-help .calibre19, pricing-help .calibre19 {
+  display: table-column-group;
+}
+
+benefit-help .calibre20, member-help .calibre20, pricing-help .calibre20 {
+  display: table-column;
+  width: 130px;
+}
+
+benefit-help .calibre21, member-help .calibre21, pricing-help .calibre21 {
+  display: table-column;
+  width: 150px;
+}
+
+benefit-help .calibre22, member-help .calibre22, pricing-help .calibre22 {
+  display: table-column;
+}
+
+benefit-help .calibre23, member-help .calibre23, pricing-help .calibre23 {
+  background-color: #C0C0C0;
+  border-bottom-color: #000;
+  border-bottom-style: Solid;
+  border-bottom-width: 1px;
+  display: table-cell;
+  padding: 1px;
+  text-align: inherit;
+  vertical-align: inherit;
+  width: 130px;
+}
+
+benefit-help .calibre24, member-help .calibre24, pricing-help .calibre24 {
+  background-color: #C0C0C0;
+  border-bottom-color: #000;
+  border-bottom-style: Solid;
+  border-bottom-width: 1px;
+  display: table-cell;
+  padding: 1px;
+  text-align: inherit;
+  vertical-align: inherit;
+  width: 150px;
+}
+
+benefit-help .calibre25, member-help .calibre25, pricing-help .calibre25 {
+  background-color: #C0C0C0;
+  border-bottom-color: #000;
+  border-bottom-style: Solid;
+  border-bottom-width: 1px;
+  display: table-cell;
+  padding: 1px;
+  text-align: inherit;
+  vertical-align: inherit;
+  width: 108px;
+}
+
+benefit-help .calibre26, member-help .calibre26, pricing-help .calibre26 {
+  border-bottom-color: #000;
+  border-bottom-style: Solid;
+  border-bottom-width: 1px;
+  display: table-cell;
+  padding: 1px;
+  text-align: inherit;
+  vertical-align: inherit;
+  width: 130px;
+}
+
+benefit-help .calibre27, member-help .calibre27, pricing-help .calibre27 {
+  border-bottom-color: #000;
+  border-bottom-style: Solid;
+  border-bottom-width: 1px;
+  display: table-cell;
+  padding: 1px;
+  text-align: inherit;
+  vertical-align: inherit;
+  width: 150px;
+}
+
+benefit-help .calibre28, member-help .calibre28, pricing-help .calibre28 {
+  border-bottom-color: #000;
+  border-bottom-style: Solid;
+  border-bottom-width: 1px;
+  display: table-cell;
+  padding: 1px;
+  text-align: inherit;
+  vertical-align: inherit;
+  width: 108px;
+}
+
+benefit-help .calibre29, member-help .calibre29, pricing-help .calibre29 {
+  display: table-column;
+  width: 127px;
+}
+
+benefit-help .calibre30, member-help .calibre30, pricing-help .calibre30 {
+  display: table-column;
+  width: 153px;
+}
+
+benefit-help .calibre31, member-help .calibre31, pricing-help .calibre31 {
+  background-color: #C0C0C0;
+  border-bottom-color: #000;
+  border-bottom-style: Solid;
+  border-bottom-width: 1px;
+  display: table-cell;
+  padding: 1px;
+  text-align: inherit;
+  vertical-align: inherit;
+  width: 127px;
+}
+
+benefit-help .calibre32, member-help .calibre32, pricing-help .calibre32 {
+  background-color: #C0C0C0;
+  border-bottom-color: #000;
+  border-bottom-style: Solid;
+  border-bottom-width: 1px;
+  display: table-cell;
+  padding: 1px;
+  text-align: inherit;
+  vertical-align: inherit;
+  width: 153px;
+}
+
+benefit-help .calibre33, member-help .calibre33, pricing-help .calibre33 {
+  border-bottom-color: #000;
+  border-bottom-style: Solid;
+  border-bottom-width: 1px;
+  display: table-cell;
+  padding: 1px;
+  text-align: inherit;
+  vertical-align: inherit;
+  width: 127px;
+}
+
+benefit-help .calibre34, member-help .calibre34, pricing-help .calibre34 {
+  border-bottom-color: #000;
+  border-bottom-style: Solid;
+  border-bottom-width: 1px;
+  display: table-cell;
+  padding: 1px;
+  text-align: inherit;
+  vertical-align: inherit;
+  width: 153px;
+}
+
+benefit-help .calibre35, member-help .calibre35, pricing-help .calibre35 {
+  border-collapse: separate;
+  border-spacing: 0;
+  display: table;
+  margin-bottom: 0;
+  margin-top: 0;
+  text-indent: 0;
+  width: 270px;
+}
+
+benefit-help .calibre36, member-help .calibre36, pricing-help .calibre36 {
+  background-color: #C0C0C0;
+  border-bottom-color: #000;
+  border-bottom-style: Solid;
+  border-bottom-width: 1px;
+  display: table-cell;
+  padding: 1px;
+  text-align: inherit;
+  vertical-align: inherit;
+  width: 156px;
+}
+
+benefit-help .calibre37, member-help .calibre37, pricing-help .calibre37 {
+  border-bottom-color: #000;
+  border-bottom-style: Solid;
+  border-bottom-width: 1px;
+  display: table-cell;
+  padding: 1px;
+  text-align: inherit;
+  vertical-align: inherit;
+  width: 156px;
+}
+
+benefit-help .calibre38, member-help .calibre38, pricing-help .calibre38 {
+  font-style: italic;
+}
+
+benefit-help .calibre39, member-help .calibre39, pricing-help .calibre39 {
+  display: table-cell;
+  padding: 1px;
+  text-align: inherit;
+  vertical-align: inherit;
+  width: 156px;
+}
+
+benefit-help .calibre40, member-help .calibre40, pricing-help .calibre40 {
+  display: table-cell;
+  padding: 1px;
+  text-align: inherit;
+  vertical-align: inherit;
+  width: 114px;
+}
+
+benefit-help .calibre41, member-help .calibre41, pricing-help .calibre41 {
+  border-collapse: separate;
+  border-spacing: 0;
+  display: table;
+  margin-bottom: 0;
+  margin-top: 0;
+  text-indent: 0;
+  width: 402px;
+}
+
+benefit-help .calibre42, member-help .calibre42, pricing-help .calibre42 {
+  background-color: #C0C0C0;
+  border-bottom-color: #000;
+  border-bottom-style: Solid;
+  border-bottom-width: 1px;
+  display: table-cell;
+  padding: 1px;
+  text-align: inherit;
+  vertical-align: inherit;
+  width: 180px;
+}
+
+benefit-help .calibre43, member-help .calibre43, pricing-help .calibre43 {
+  border-bottom-color: #000;
+  border-bottom-style: Solid;
+  border-bottom-width: 1px;
+  display: table-cell;
+  padding: 1px;
+  text-align: inherit;
+  vertical-align: inherit;
+  width: 180px;
+}
+
+benefit-help .calibre44, member-help .calibre44, pricing-help .calibre44 {
+  border-collapse: separate;
+  border-spacing: 0;
+  display: table;
+  margin-bottom: 0;
+  margin-top: 0;
+  text-indent: 0;
+  width: 438px;
+}
+
+benefit-help .calibre45, member-help .calibre45, pricing-help .calibre45 {
+  background-color: #C0C0C0;
+  border-bottom-color: #000;
+  border-bottom-style: Solid;
+  border-bottom-width: 1px;
+  display: table-cell;
+  padding: 1px;
+  text-align: inherit;
+  vertical-align: inherit;
+  width: 138px;
+}
+
+benefit-help .calibre46, member-help .calibre46, pricing-help .calibre46 {
+  background-color: #C0C0C0;
+  border-bottom-color: #000;
+  border-bottom-style: Solid;
+  border-bottom-width: 1px;
+  display: table-cell;
+  padding: 1px;
+  text-align: inherit;
+  vertical-align: inherit;
+  width: 144px;
+}
+
+benefit-help .calibre47, member-help .calibre47, pricing-help .calibre47 {
+  border-bottom-color: #000;
+  border-bottom-style: Solid;
+  border-bottom-width: 1px;
+  display: table-cell;
+  padding: 1px;
+  text-align: inherit;
+  vertical-align: inherit;
+  width: 138px;
+}
+
+benefit-help .calibre48, member-help .calibre48, pricing-help .calibre48 {
+  border-bottom-color: #000;
+  border-bottom-style: Solid;
+  border-bottom-width: 1px;
+  display: table-cell;
+  padding-bottom: 1px;
+  padding-left: 1px;
+  padding-right: 1px;
+  padding-top: 1px;
+  text-align: inherit;
+  vertical-align: inherit;
+  width: 144px;
+}
+
+benefit-help .calibre49, member-help .calibre49, pricing-help .calibre49 {
+  vertical-align: super;
+}
+
+benefit-help .calibre50, member-help .calibre50, pricing-help .calibre50 {
+  font-family: Symbol;
+}
+
+benefit-help .calibre51, member-help .calibre51, pricing-help .calibre51 {
+  border-collapse: separate;
+  border-spacing: 0;
+  display: table;
+  margin-bottom: 0;
+  margin-top: 0;
+  text-indent: 0;
+  width: 384px;
+}
+
+benefit-help .calibre52, member-help .calibre52, pricing-help .calibre52 {
+  background-color: #C0C0C0;
+  border-bottom-color: #000;
+  border-bottom-style: Solid;
+  border-bottom-width: 1px;
+  display: table-cell;
+  padding-bottom: 1px;
+  padding-left: 1px;
+  padding-right: 1px;
+  padding-top: 1px;
+  text-align: inherit;
+  vertical-align: inherit;
+  width: 90px;
+}
+
+benefit-help .calibre53, member-help .calibre53, pricing-help .calibre53 {
+  border-bottom-color: #000;
+  border-bottom-style: Solid;
+  border-bottom-width: 1px;
+  display: table-cell;
+  padding-bottom: 1px;
+  padding-left: 1px;
+  padding-right: 1px;
+  padding-top: 1px;
+  text-align: inherit;
+  vertical-align: inherit;
+  width: 90px;
+}
+
+benefit-help .calibre54, member-help .calibre54, pricing-help .calibre54 {
+  border-collapse: separate;
+  border-spacing: 0;
+  display: table;
+  margin-bottom: 0;
+  margin-top: 0;
+  text-indent: 0;
+  width: 492px;
+}
+
+benefit-help .calibre55, member-help .calibre55, pricing-help .calibre55 {
+  background-color: #C0C0C0;
+  border-bottom-color: #000;
+  border-bottom-style: Solid;
+  border-bottom-width: 1px;
+  display: table-cell;
+  padding-bottom: 1px;
+  padding-left: 1px;
+  padding-right: 1px;
+  padding-top: 1px;
+  text-align: inherit;
+  vertical-align: inherit;
+  width: 60px;
+}
+
+benefit-help .calibre56, member-help .calibre56, pricing-help .calibre56 {
+  background-color: #C0C0C0;
+  border-bottom-color: #000;
+  border-bottom-style: Solid;
+  border-bottom-width: 1px;
+  display: table-cell;
+  padding-bottom: 1px;
+  padding-left: 1px;
+  padding-right: 1px;
+  padding-top: 1px;
+  text-align: inherit;
+  vertical-align: inherit;
+  width: 47px;
+}
+
+benefit-help .calibre57, member-help .calibre57, pricing-help .calibre57 {
+  background-color: #C0C0C0;
+  border-bottom-color: #000;
+  border-bottom-style: Solid;
+  border-bottom-width: 1px;
+  display: table-cell;
+  padding-bottom: 1px;
+  padding-left: 1px;
+  padding-right: 1px;
+  padding-top: 1px;
+  text-align: inherit;
+  vertical-align: inherit;
+  width: 324px;
+}
+
+benefit-help .calibre58, member-help .calibre58, pricing-help .calibre58 {
+  border-bottom-color: #000;
+  border-bottom-style: Solid;
+  border-bottom-width: 1px;
+  display: table-cell;
+  padding-bottom: 1px;
+  padding-left: 1px;
+  padding-right: 1px;
+  padding-top: 1px;
+  text-align: inherit;
+  vertical-align: inherit;
+  width: 60px;
+}
+
+benefit-help .calibre59, member-help .calibre59, pricing-help .calibre59 {
+  border-bottom-color: #000;
+  border-bottom-style: Solid;
+  border-bottom-width: 1px;
+  display: table-cell;
+  padding-bottom: 1px;
+  padding-left: 1px;
+  padding-right: 1px;
+  padding-top: 1px;
+  text-align: inherit;
+  vertical-align: inherit;
+  width: 47px;
+}
+
+benefit-help .calibre60, member-help .calibre60, pricing-help .calibre60 {
+  border-bottom-color: #000;
+  border-bottom-style: Solid;
+  border-bottom-width: 1px;
+  display: table-cell;
+  padding-bottom: 1px;
+  padding-left: 1px;
+  padding-right: 1px;
+  padding-top: 1px;
+  text-align: inherit;
+  vertical-align: inherit;
+  width: 324px;
+}
+
+benefit-help .calibre61, member-help .calibre61, pricing-help .calibre61 {
+  border-collapse: separate;
+  border-spacing: 0;
+  display: table;
+  margin-bottom: 0;
+  margin-top: 0;
+  text-indent: 0;
+  width: 444px;
+}
+
+benefit-help .calibre62, member-help .calibre62, pricing-help .calibre62 {
+  color: #800000;
+  display: block;
+  font-family: Verdana;
+  font-size: 0.79412em;
+  font-weight: bold;
+  line-height: 1.2;
+  margin-bottom: 4pt;
+  margin-left: 0;
+  margin-right: 0;
+  margin-top: 4pt;
+  text-align: left;
+}
+
+benefit-help .calibre63, member-help .calibre63, pricing-help .calibre63 {
+  background-color: #C0C0C0;
+  border-bottom-color: #000;
+  border-bottom-style: Solid;
+  border-bottom-width: 1px;
+  display: table-cell;
+  padding-bottom: 1px;
+  padding-left: 1px;
+  padding-right: 1px;
+  padding-top: 1px;
+  text-align: inherit;
+  vertical-align: inherit;
+  width: 66px;
+}
+
+benefit-help .calibre64, member-help .calibre64, pricing-help .calibre64 {
+  background-color: #C0C0C0;
+  border-bottom-color: #000;
+  border-bottom-style: Solid;
+  border-bottom-width: 1px;
+  display: table-cell;
+  padding-bottom: 1px;
+  padding-left: 1px;
+  padding-right: 1px;
+  padding-top: 1px;
+  text-align: inherit;
+  vertical-align: inherit;
+  width: 132px;
+}
+
+benefit-help .calibre65, member-help .calibre65, pricing-help .calibre65 {
+  background-color: #C0C0C0;
+  border-bottom-color: #000;
+  border-bottom-style: Solid;
+  border-bottom-width: 1px;
+  display: table-cell;
+  padding-bottom: 1px;
+  padding-left: 1px;
+  padding-right: 1px;
+  padding-top: 1px;
+  text-align: inherit;
+  vertical-align: inherit;
+  width: 55px;
+}
+
+benefit-help .calibre66, member-help .calibre66, pricing-help .calibre66 {
+  background-color: #C0C0C0;
+  border-bottom-color: #000;
+  border-bottom-style: Solid;
+  border-bottom-width: 1px;
+  display: table-cell;
+  padding-bottom: 1px;
+  padding-left: 1px;
+  padding-right: 1px;
+  padding-top: 1px;
+  text-align: inherit;
+  vertical-align: inherit;
+  width: 42px;
+}
+
+benefit-help .calibre67, member-help .calibre67, pricing-help .calibre67 {
+  background-color: #C0C0C0;
+  border-bottom-color: #000;
+  border-bottom-style: Solid;
+  border-bottom-width: 1px;
+  display: table-cell;
+  padding-bottom: 1px;
+  padding-left: 1px;
+  padding-right: 1px;
+  padding-top: 1px;
+  text-align: inherit;
+  vertical-align: inherit;
+  width: 112px;
+}
+
+benefit-help .calibre68, member-help .calibre68, pricing-help .calibre68 {
+  border-bottom-color: #000;
+  border-bottom-style: Solid;
+  border-bottom-width: 1px;
+  display: table-cell;
+  padding-bottom: 1px;
+  padding-left: 1px;
+  padding-right: 1px;
+  padding-top: 1px;
+  text-align: inherit;
+  vertical-align: inherit;
+  width: 66px;
+}
+
+benefit-help .calibre69, member-help .calibre69, pricing-help .calibre69 {
+  border-bottom-color: #000;
+  border-bottom-style: Solid;
+  border-bottom-width: 1px;
+  display: table-cell;
+  padding-bottom: 1px;
+  padding-left: 1px;
+  padding-right: 1px;
+  padding-top: 1px;
+  text-align: inherit;
+  vertical-align: inherit;
+  width: 132px;
+}
+
+benefit-help .calibre70, member-help .calibre70, pricing-help .calibre70 {
+  border-bottom-color: #000;
+  border-bottom-style: Solid;
+  border-bottom-width: 1px;
+  display: table-cell;
+  padding-bottom: 1px;
+  padding-left: 1px;
+  padding-right: 1px;
+  padding-top: 1px;
+  text-align: inherit;
+  vertical-align: inherit;
+  width: 55px;
+}
+
+benefit-help .calibre71, member-help .calibre71, pricing-help .calibre71 {
+  border-bottom-color: #000;
+  border-bottom-style: Solid;
+  border-bottom-width: 1px;
+  display: table-cell;
+  padding-bottom: 1px;
+  padding-left: 1px;
+  padding-right: 1px;
+  padding-top: 1px;
+  text-align: inherit;
+  vertical-align: inherit;
+  width: 42px;
+}
+
+benefit-help .calibre72, member-help .calibre72, pricing-help .calibre72 {
+  border-bottom-color: #000;
+  border-bottom-style: Solid;
+  border-bottom-width: 1px;
+  display: table-cell;
+  padding-bottom: 1px;
+  padding-left: 1px;
+  padding-right: 1px;
+  padding-top: 1px;
+  text-align: inherit;
+  vertical-align: inherit;
+  width: 112px;
+}
+
+benefit-help .calibre73, member-help .calibre73, pricing-help .calibre73 {
+  display: table-cell;
+  padding-bottom: 1px;
+  padding-left: 1px;
+  padding-right: 1px;
+  padding-top: 1px;
+  text-align: inherit;
+  vertical-align: inherit;
+  width: 66px;
+}
+
+benefit-help .calibre74, member-help .calibre74, pricing-help .calibre74 {
+  display: table-cell;
+  padding-bottom: 1px;
+  padding-left: 1px;
+  padding-right: 1px;
+  padding-top: 1px;
+  text-align: inherit;
+  vertical-align: inherit;
+  width: 132px;
+}
+
+benefit-help .calibre75, member-help .calibre75, pricing-help .calibre75 {
+  display: table-cell;
+  padding-bottom: 1px;
+  padding-left: 1px;
+  padding-right: 1px;
+  padding-top: 1px;
+  text-align: inherit;
+  vertical-align: inherit;
+  width: 55px;
+}
+
+benefit-help .calibre76, member-help .calibre76, pricing-help .calibre76 {
+  display: table-cell;
+  padding-bottom: 1px;
+  padding-left: 1px;
+  padding-right: 1px;
+  padding-top: 1px;
+  text-align: inherit;
+  vertical-align: inherit;
+  width: 42px;
+}
+
+benefit-help .calibre77, member-help .calibre77, pricing-help .calibre77 {
+  display: table-cell;
+  padding-bottom: 1px;
+  padding-left: 1px;
+  padding-right: 1px;
+  padding-top: 1px;
+  text-align: inherit;
+  vertical-align: inherit;
+  width: 112px;
+}
+
+benefit-help .calibre78, member-help .calibre78, pricing-help .calibre78 {
+  border-collapse: separate;
+  border-spacing: 0;
+  display: table;
+  margin-bottom: 0;
+  margin-top: 0;
+  text-indent: 0;
+  width: 540px;
+}
+
+benefit-help .calibre79, member-help .calibre79, pricing-help .calibre79 {
+  background-color: #C0C0C0;
+  border-bottom-color: #000;
+  border-bottom-style: Solid;
+  border-bottom-width: 1px;
+  display: table-cell;
+  padding-bottom: 1px;
+  padding-left: 1px;
+  padding-right: 1px;
+  padding-top: 1px;
+  text-align: inherit;
+  vertical-align: inherit;
+  width: 57px;
+}
+
+benefit-help .calibre80, member-help .calibre80, pricing-help .calibre80 {
+  background-color: #C0C0C0;
+  border-bottom-color: #000;
+  border-bottom-style: Solid;
+  border-bottom-width: 1px;
+  display: table-cell;
+  padding-bottom: 1px;
+  padding-left: 1px;
+  padding-right: 1px;
+  padding-top: 1px;
+  text-align: inherit;
+  vertical-align: inherit;
+  width: 38px;
+}
+
+benefit-help .calibre81, member-help .calibre81, pricing-help .calibre81 {
+  display: table-cell;
+  padding-bottom: 1px;
+  padding-left: 1px;
+  padding-right: 1px;
+  padding-top: 1px;
+  text-align: inherit;
+  vertical-align: inherit;
+  width: 57px;
+}
+
+benefit-help .calibre82, member-help .calibre82, pricing-help .calibre82 {
+  display: table-cell;
+  padding-bottom: 1px;
+  padding-left: 1px;
+  padding-right: 1px;
+  padding-top: 1px;
+  text-align: inherit;
+  vertical-align: inherit;
+  width: 38px;
+}
+
+benefit-help .calibre83, member-help .calibre83, pricing-help .calibre83 {
+  border-bottom-color: #000;
+  border-bottom-style: Solid;
+  border-bottom-width: 1px;
+  display: table-cell;
+  padding-bottom: 1px;
+  padding-left: 1px;
+  padding-right: 1px;
+  padding-top: 1px;
+  text-align: inherit;
+  vertical-align: inherit;
+  width: 57px;
+}
+
+benefit-help .calibre84, member-help .calibre84, pricing-help .calibre84 {
+  border-bottom-color: #000;
+  border-bottom-style: Solid;
+  border-bottom-width: 1px;
+  display: table-cell;
+  padding-bottom: 1px;
+  padding-left: 1px;
+  padding-right: 1px;
+  padding-top: 1px;
+  text-align: inherit;
+  vertical-align: inherit;
+  width: 38px;
+}
+
+benefit-help .calibre85, member-help .calibre85, pricing-help .calibre85 {
+  border-collapse: separate;
+  border-spacing: 0;
+  display: table;
+  margin-bottom: 0;
+  margin-top: 0;
+  text-indent: 0;
+  width: 500px;
+}
+
+benefit-help .calibre86, member-help .calibre86, pricing-help .calibre86 {
+  display: table-column;
+  width: 35px;
+}
+
+benefit-help .calibre87, member-help .calibre87, pricing-help .calibre87 {
+  display: table-column;
+  width: 465px;
+}
+
+benefit-help .calibre88, member-help .calibre88, pricing-help .calibre88 {
+  background-color: #C0C0C0;
+  display: table-cell;
+  padding-bottom: 1px;
+  padding-left: 1px;
+  padding-right: 1px;
+  padding-top: 1px;
+  text-align: inherit;
+  vertical-align: inherit;
+  width: 35px;
+}
+
+benefit-help .calibre89, member-help .calibre89, pricing-help .calibre89 {
+  border-bottom-style: none;
+  border-left-style: none;
+  border-right-style: none;
+  border-top-style: none;
+  height: 24px;
+  width: 30px;
+}
+
+benefit-help .calibre90, member-help .calibre90, pricing-help .calibre90 {
+  background-color: #C0C0C0;
+  display: table-cell;
+  padding-bottom: 1px;
+  padding-left: 1px;
+  padding-right: 1px;
+  padding-top: 1px;
+  text-align: inherit;
+  vertical-align: inherit;
+  width: 465px;
+}
+
+benefit-help .calibre91, member-help .calibre91, pricing-help .calibre91 {
+  display: table-cell;
+  padding-bottom: 1px;
+  padding-left: 2px;
+  padding-right: 2px;
+  padding-top: 1px;
+  text-align: inherit;
+  vertical-align: inherit;
+}
+
+benefit-help .calibre92, member-help .calibre92, pricing-help .calibre92 {
+  border-bottom-style: none;
+  border-left-style: none;
+  border-right-style: none;
+  border-top-style: none;
+}
+
+benefit-help .calibre93, member-help .calibre93, pricing-help .calibre93 {
+  border-collapse: separate;
+  border-spacing: 0;
+  display: table;
+  margin-bottom: 0;
+  margin-left: 14.4pt;
+  margin-top: 0;
+  text-indent: 0;
+  width: 514px;
+}
+
+benefit-help .calibre94, member-help .calibre94, pricing-help .calibre94 {
+  display: table-column;
+  width: 34.316%;
+}
+
+benefit-help .calibre95, member-help .calibre95, pricing-help .calibre95 {
+  display: table-column;
+  width: 29.691%;
+}
+
+benefit-help .calibre96, member-help .calibre96, pricing-help .calibre96 {
+  display: table-column;
+  width: 35.993%;
+}
+
+benefit-help .calibre97, member-help .calibre97, pricing-help .calibre97 {
+  padding-bottom: 1px;
+  padding-left: 1px;
+  padding-right: 1px;
+  padding-top: 1px;
+  text-align: inherit;
+  vertical-align: inherit;
+}
+
+benefit-help .calibre98, member-help .calibre98, pricing-help .calibre98 {
+  border-collapse: separate;
+  border-spacing: 0;
+  display: table;
+  margin-bottom: 0;
+  margin-left: 14.4pt;
+  margin-top: 0;
+  text-indent: 0;
+}
+
+benefit-help .calibre99, member-help .calibre99, pricing-help .calibre99 {
+  display: table-column;
+  width: 173px;
+}
+
+benefit-help .calibre100, member-help .calibre100, pricing-help .calibre100 {
+  display: table-column;
+  width: 117px;
+}
+
+benefit-help .calibre101, member-help .calibre101, pricing-help .calibre101 {
+  display: table-column;
+  width: 152px;
+}
+
+benefit-help .calibre102, member-help .calibre102, pricing-help .calibre102 {
+  display: table-column;
+  width: 115px;
+}
+
+benefit-help .calibre103, member-help .calibre103, pricing-help .calibre103 {
+  display: table-column;
+  width: 199px;
+}
+
+benefit-help .calibre104, member-help .calibre104, pricing-help .calibre104 {
+  display: table-column;
+  width: 158px;
+}
+
+benefit-help .calibre105, member-help .calibre105, pricing-help .calibre105 {
+  display: table-column;
+  width: 81px;
+}
+
+benefit-help .calibre106, member-help .calibre106, pricing-help .calibre106 {
+  display: table-column;
+  width: 172px;
+}
+
+benefit-help .calibre107, member-help .calibre107, pricing-help .calibre107 {
+  display: table-column;
+  width: 159px;
+}
+
+benefit-help .calibre108, member-help .calibre108, pricing-help .calibre108 {
+  display: table-column;
+  width: 109px;
+}
+
+benefit-help .calibre109, member-help .calibre109, pricing-help .calibre109 {
+  border-collapse: separate;
+  border-spacing: 0;
+  display: table;
+  margin-bottom: 0;
+  margin-top: 0;
+  text-indent: 0;
+  width: 500px;
+  x-cell-content-align: top;
+}
+
+benefit-help .calibre110, member-help .calibre110, pricing-help .calibre110 {
+  display: table-column;
+  width: 70%;
+}
+
+benefit-help .calibre111, member-help .calibre111, pricing-help .calibre111 {
+  display: table-column;
+  width: 30%;
+}
+
+benefit-help .calibre112, member-help .calibre112, pricing-help .calibre112 {
+  background-color: #C0C0C0;
+  border-bottom-style: None;
+  border-left-style: None;
+  border-right-style: None;
+  border-top-style: None;
+  display: table-cell;
+  padding-bottom: 1px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 1px;
+  text-align: inherit;
+  vertical-align: inherit;
+  width: 70%;
+}
+
+benefit-help .calibre113, member-help .calibre113, pricing-help .calibre113 {
+  background-color: #C0C0C0;
+  border-bottom-style: None;
+  border-right-style: None;
+  border-top-style: None;
+  display: table-cell;
+  padding-bottom: 1px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 1px;
+  text-align: inherit;
+  vertical-align: inherit;
+  width: 30%;
+}
+
+benefit-help .calibre114, member-help .calibre114, pricing-help .calibre114 {
+  border-bottom-color: currentColor;
+  border-bottom-style: none;
+  border-bottom-width: medium;
+  border-left-color: currentColor;
+  border-left-style: none;
+  border-left-width: medium;
+  border-right-color: currentColor;
+  border-right-style: none;
+  border-right-width: medium;
+  border-top-color: currentColor;
+  border-top-style: none;
+  border-top-width: medium;
+  float: none;
+  height: 53px;
+  width: 97px;
+}
+
+benefit-help .calibre115, member-help .calibre115, pricing-help .calibre115 {
+  border-collapse: separate;
+  border-spacing: 0;
+  display: table;
+  margin-bottom: 0;
+  margin-top: 0;
+  text-indent: 0;
+  width: 500px;
+  x-cell-content-align: Top;
+}
+
+benefit-help .calibre116, member-help .calibre116, pricing-help .calibre116 {
+  display: table-column;
+  width: 110px;
+}
+
+benefit-help .calibre117, member-help .calibre117, pricing-help .calibre117 {
+  display: table-column;
+  width: 15px;
+}
+
+benefit-help .calibre118, member-help .calibre118, pricing-help .calibre118 {
+  display: table-column;
+  width: 140px;
+}
+
+benefit-help .calibre119, member-help .calibre119, pricing-help .calibre119 {
+  display: table-column;
+  width: 95px;
+}
+
+benefit-help .calibre120, member-help .calibre120, pricing-help .calibre120 {
+  background-color: #C0C0C0;
+  border-bottom-color: #000;
+  border-bottom-style: Solid;
+  border-bottom-width: 1px;
+  display: table-cell;
+  padding-bottom: 1px;
+  padding-left: 2px;
+  padding-right: 2px;
+  padding-top: 1px;
+  text-align: inherit;
+  vertical-align: bottom;
+  width: 110px;
+  x-cell-content-align: bottom;
+}
+
+benefit-help .calibre121, member-help .calibre121, pricing-help .calibre121 {
+  background-color: #C0C0C0;
+  border-bottom-color: #000;
+  border-bottom-style: Solid;
+  border-bottom-width: 1px;
+  display: table-cell;
+  padding-bottom: 1px;
+  padding-left: 1px;
+  padding-right: 1px;
+  padding-top: 1px;
+  text-align: inherit;
+  vertical-align: bottom;
+  width: 15px;
+  x-cell-content-align: bottom;
+}
+
+benefit-help .calibre122, member-help .calibre122, pricing-help .calibre122 {
+  background-color: #C0C0C0;
+  border-bottom-color: #000;
+  border-bottom-style: Solid;
+  border-bottom-width: 1px;
+  display: table-cell;
+  padding-bottom: 1px;
+  padding-left: 2px;
+  padding-right: 2px;
+  padding-top: 1px;
+  text-align: inherit;
+  vertical-align: bottom;
+  width: 140px;
+  x-cell-content-align: bottom;
+}
+
+benefit-help .calibre123, member-help .calibre123, pricing-help .calibre123 {
+  background-color: #C0C0C0;
+  border-bottom-color: #000;
+  border-bottom-style: Solid;
+  border-bottom-width: 1px;
+  display: table-cell;
+  padding-bottom: 1px;
+  padding-left: 2px;
+  padding-right: 2px;
+  padding-top: 1px;
+  text-align: inherit;
+  vertical-align: bottom;
+  width: 95px;
+  x-cell-content-align: bottom;
+}
+
+benefit-help .calibre124, member-help .calibre124, pricing-help .calibre124 {
+  border-bottom-color: #000;
+  border-bottom-style: Solid;
+  border-bottom-width: 1px;
+  display: table-cell;
+  padding-bottom: 1px;
+  padding-left: 2px;
+  padding-right: 2px;
+  padding-top: 1px;
+  text-align: inherit;
+  vertical-align: inherit;
+  width: 110px;
+}
+
+benefit-help .calibre125, member-help .calibre125, pricing-help .calibre125 {
+  border-bottom-color: #000;
+  border-bottom-style: Solid;
+  border-bottom-width: 1px;
+  display: table-cell;
+  padding-bottom: 1px;
+  padding-left: 1px;
+  padding-right: 1px;
+  padding-top: 1px;
+  text-align: inherit;
+  vertical-align: inherit;
+  width: 15px;
+}
+
+benefit-help .calibre126, member-help .calibre126, pricing-help .calibre126 {
+  border-bottom-color: #000;
+  border-bottom-style: Solid;
+  border-bottom-width: 1px;
+  display: table-cell;
+  padding-bottom: 1px;
+  padding-left: 2px;
+  padding-right: 2px;
+  padding-top: 1px;
+  text-align: inherit;
+  vertical-align: inherit;
+  width: 140px;
+}
+
+benefit-help .calibre127, member-help .calibre127, pricing-help .calibre127 {
+  border-bottom-color: #000;
+  border-bottom-style: Solid;
+  border-bottom-width: 1px;
+  display: table-cell;
+  padding-bottom: 1px;
+  padding-left: 2px;
+  padding-right: 2px;
+  padding-top: 1px;
+  text-align: inherit;
+  vertical-align: inherit;
+  width: 95px;
+}
+
+benefit-help .calibre128, member-help .calibre128, pricing-help .calibre128 {
+  background-color: #C0C0C0;
+  border-bottom-color: #c0c0c0;
+  border-bottom-style: Solid;
+  border-bottom-width: 1px;
+  border-collapse: separate;
+  border-left-color: #c0c0c0;
+  border-left-style: Solid;
+  border-left-width: 1px;
+  border-right-color: #c0c0c0;
+  border-right-style: Solid;
+  border-right-width: 1px;
+  border-spacing: 0;
+  border-top-color: #c0c0c0;
+  border-top-style: Solid;
+  border-top-width: 1px;
+  display: table;
+  margin-bottom: 0;
+  margin-top: 0;
+  text-indent: 0;
+  width: 500px;
+  x-cell-content-align: top;
+}
+
+benefit-help .calibre129, member-help .calibre129, pricing-help .calibre129 {
+  display: table-column;
+  width: 350px;
+}
+
+benefit-help .calibre130, member-help .calibre130, pricing-help .calibre130 {
+  border-bottom-style: none;
+  border-left-style: none;
+  border-right-style: none;
+  border-top-style: none;
+  display: table-cell;
+  padding-bottom: 1px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 1px;
+  text-align: inherit;
+  vertical-align: inherit;
+  width: 350px;
+}
+
+benefit-help .calibre131, member-help .calibre131, pricing-help .calibre131 {
+  border-bottom-style: none;
+  border-right-style: none;
+  border-top-style: none;
+  display: table-cell;
+  padding-bottom: 1px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 1px;
+  text-align: inherit;
+  vertical-align: inherit;
+  width: 150px;
+}
+
+benefit-help .calibre132, member-help .calibre132, pricing-help .calibre132 {
+  display: block;
+  font-family: Verdana;
+  font-size: 0.70588em;
+  margin-bottom: 0;
+  margin-left: 0;
+  margin-right: 0;
+  margin-top: 0;
+  text-align: right;
+}
+
+benefit-help .calibre133, member-help .calibre133, pricing-help .calibre133 {
+  border-bottom-color: currentColor;
+  border-bottom-style: none;
+  border-bottom-width: medium;
+  border-left-color: currentColor;
+  border-left-style: none;
+  border-left-width: medium;
+  border-right-color: currentColor;
+  border-right-style: none;
+  border-right-width: medium;
+  border-top-color: currentColor;
+  border-top-style: none;
+  border-top-width: medium;
+  float: none;
+  height: 59px;
+  width: 117px;
+}
+
+benefit-help .calibre134, member-help .calibre134, pricing-help .calibre134 {
+  display: table-column;
+  width: 25px;
+}
+
+benefit-help .calibre135, member-help .calibre135, pricing-help .calibre135 {
+  display: table-column;
+  width: 345px;
+}
+
+benefit-help .calibre136, member-help .calibre136, pricing-help .calibre136 {
+  border-bottom-color: #000;
+  border-bottom-style: Solid;
+  border-bottom-width: 1px;
+  border-top-color: #000;
+  border-top-style: Solid;
+  border-top-width: 1px;
+  display: table-cell;
+  padding-bottom: 1px;
+  padding-left: 2px;
+  padding-right: 2px;
+  padding-top: 1px;
+  text-align: inherit;
+  vertical-align: inherit;
+  width: 130px;
+}
+
+benefit-help .calibre137, member-help .calibre137, pricing-help .calibre137 {
+  border-bottom-color: #000;
+  border-bottom-style: Solid;
+  border-bottom-width: 1px;
+  border-top-color: #000;
+  border-top-style: Solid;
+  border-top-width: 1px;
+  display: table-cell;
+  padding-bottom: 1px;
+  padding-left: 1px;
+  padding-right: 1px;
+  padding-top: 1px;
+  text-align: inherit;
+  vertical-align: inherit;
+  width: 25px;
+}
+
+benefit-help .calibre138, member-help .calibre138, pricing-help .calibre138 {
+  border-bottom-color: #000;
+  border-bottom-style: Solid;
+  border-bottom-width: 1px;
+  border-top-color: #000;
+  border-top-style: Solid;
+  border-top-width: 1px;
+  display: table-cell;
+  padding-bottom: 1px;
+  padding-left: 2px;
+  padding-right: 2px;
+  padding-top: 1px;
+  text-align: inherit;
+  vertical-align: inherit;
+  width: 345px;
+}
+
+benefit-help .calibre139, member-help .calibre139, pricing-help .calibre139 {
+  border-bottom-color: #000;
+  border-bottom-style: Solid;
+  border-bottom-width: 1px;
+  display: table-cell;
+  padding-bottom: 1px;
+  padding-left: 2px;
+  padding-right: 2px;
+  padding-top: 1px;
+  text-align: inherit;
+  vertical-align: inherit;
+  width: 130px;
+}
+
+benefit-help .calibre140, member-help .calibre140, pricing-help .calibre140 {
+  border-bottom-color: #000;
+  border-bottom-style: Solid;
+  border-bottom-width: 1px;
+  display: table-cell;
+  padding-bottom: 1px;
+  padding-left: 1px;
+  padding-right: 1px;
+  padding-top: 1px;
+  text-align: inherit;
+  vertical-align: inherit;
+  width: 25px;
+}
+
+benefit-help .calibre141, member-help .calibre141, pricing-help .calibre141 {
+  border-bottom-color: #000;
+  border-bottom-style: Solid;
+  border-bottom-width: 1px;
+  display: table-cell;
+  padding-bottom: 1px;
+  padding-left: 2px;
+  padding-right: 2px;
+  padding-top: 1px;
+  text-align: inherit;
+  vertical-align: inherit;
+  width: 345px;
+}
+
+benefit-help .calibre142, member-help .calibre142, pricing-help .calibre142 {
+  color: #800000;
+  display: block;
+  font-family: Verdana, sans-serif;
+  font-size: 0.79412em;
+  font-weight: bold;
+  line-height: 1.2;
+  margin-bottom: 7pt;
+  margin-left: 0;
+  margin-right: 0;
+  margin-top: 9pt;
+  text-align: left;
+  x-next-class: Text;
+  x-next-type: P;
+}
+
+benefit-help .calibre143, member-help .calibre143, pricing-help .calibre143 {
+  background-color: Transparent;
+  color: #00f;
+  display: block;
+  font-family: Verdana;
+  font-size: 0.70588em;
+  margin-bottom: 0;
+  margin-left: 0;
+  margin-right: 0;
+  margin-top: 0;
+  text-align: left;
+}
+
+benefit-help .calibre144, member-help .calibre144, pricing-help .calibre144 {
+  display: table-column;
+  width: 176px;
+}
+
+benefit-help .calibre145, member-help .calibre145, pricing-help .calibre145 {
+  display: table-column;
+  width: 116px;
+}
+
+benefit-help .calibre146, member-help .calibre146, pricing-help .calibre146 {
+  display: table-cell;
+  padding-bottom: 1px;
+  padding-left: 1px;
+  padding-right: 1px;
+  padding-top: 1px;
+  text-align: inherit;
+  vertical-align: inherit;
+  width: 150px;
+}
+
+benefit-help .calibre147, member-help .calibre147, pricing-help .calibre147 {
+  border-collapse: separate;
+  border-spacing: 0;
+  display: table;
+  margin-bottom: 0;
+  margin-left: 14.4pt;
+  margin-top: 0;
+  text-indent: 0;
+  width: 525px;
+}
+
+benefit-help .calibre148, member-help .calibre148, pricing-help .calibre148 {
+  display: table-column;
+  width: 34.161%;
+}
+
+benefit-help .calibre149, member-help .calibre149, pricing-help .calibre149 {
+  display: table-column;
+  width: 34.791%;
+}
+
+benefit-help .calibre150, member-help .calibre150, pricing-help .calibre150 {
+  display: table-column;
+  width: 31.048%;
+}
+
+benefit-help .calibre151, member-help .calibre151, pricing-help .calibre151 {
+  border-collapse: separate;
+  border-spacing: 0;
+  display: table;
+  margin-bottom: 0;
+  margin-left: 2.15pt;
+  margin-top: 0;
+  text-indent: 0;
+  width: 509px;
+}
+
+benefit-help .calibre152, member-help .calibre152, pricing-help .calibre152 {
+  display: table-cell;
+  padding-bottom: 1px;
+  padding-left: 1px;
+  padding-right: 1px;
+  padding-top: 1px;
+  text-align: inherit;
+  vertical-align: inherit;
+  width: 122px;
+}
+
+benefit-help .calibre153, member-help .calibre153, pricing-help .calibre153 {
+  display: table-cell;
+  padding-bottom: 1px;
+  padding-left: 1px;
+  padding-right: 1px;
+  padding-top: 1px;
+  text-align: inherit;
+  vertical-align: inherit;
+  width: 15px;
+}
+
+benefit-help .calibre154, member-help .calibre154, pricing-help .calibre154 {
+  display: table-cell;
+  padding-bottom: 1px;
+  padding-left: 1px;
+  padding-right: 1px;
+  padding-top: 1px;
+  text-align: inherit;
+  vertical-align: inherit;
+  width: 371px;
+}
+
+benefit-help .calibre155, member-help .calibre155, pricing-help .calibre155 {
+  border-collapse: separate;
+  border-spacing: 0;
+  display: table;
+  margin-bottom: 0;
+  margin-left: 14.4pt;
+  margin-top: 0;
+  text-indent: 0;
+  width: 420px;
+}
+
+benefit-help .calibre156, member-help .calibre156, pricing-help .calibre156 {
+  display: table-cell;
+  padding-bottom: 1px;
+  padding-left: 1px;
+  padding-right: 1px;
+  padding-top: 1px;
+  text-align: inherit;
+  vertical-align: inherit;
+  width: 126px;
+}
+
+benefit-help .calibre157, member-help .calibre157, pricing-help .calibre157 {
+  display: table-cell;
+  padding-bottom: 1px;
+  padding-left: 1px;
+  padding-right: 1px;
+  padding-top: 1px;
+  text-align: inherit;
+  vertical-align: inherit;
+  width: 138px;
+}
+
+benefit-help .calibre158, member-help .calibre158, pricing-help .calibre158 {
+  border-collapse: separate;
+  border-spacing: 0;
+  display: table;
+  margin-bottom: 0;
+  margin-left: 14.4pt;
+  margin-top: 0;
+  text-indent: 0;
+  width: 282px;
+}
+
+benefit-help .calibre159, member-help .calibre159, pricing-help .calibre159 {
+  border-collapse: separate;
+  border-spacing: 0;
+  display: table;
+  margin-bottom: 0;
+  margin-left: 14.2pt;
+  margin-top: 0;
+  text-indent: 0;
+  width: 450px;
+}
+
+benefit-help .calibre160, member-help .calibre160, pricing-help .calibre160 {
+  display: table-cell;
+  padding-bottom: 1px;
+  padding-left: 1px;
+  padding-right: 1px;
+  padding-top: 1px;
+  text-align: inherit;
+  vertical-align: inherit;
+  width: 141px;
+}
+
+benefit-help .calibre161, member-help .calibre161, pricing-help .calibre161 {
+  border-collapse: separate;
+  border-spacing: 0;
+  display: table;
+  margin-bottom: 0;
+  margin-left: 14.2pt;
+  margin-top: 0;
+  text-indent: 0;
+  width: 264px;
+}
+
+benefit-help .calibre162, member-help .calibre162, pricing-help .calibre162 {
+  border-collapse: separate;
+  border-spacing: 0;
+  display: table;
+  margin-bottom: 0;
+  margin-left: 14.2pt;
+  margin-top: 0;
+  text-indent: 0;
+  width: 141px;
+}
+
+benefit-help .calibre163, member-help .calibre163, pricing-help .calibre163 {
+  border-collapse: separate;
+  border-spacing: 0;
+  display: table;
+  margin-bottom: 0;
+  margin-left: 14.4pt;
+  margin-top: 0;
+  text-indent: 0;
+  width: 186px;
+}
+
+benefit-help .calibre164, member-help .calibre164, pricing-help .calibre164 {
+  display: table-cell;
+  padding-bottom: 1px;
+  padding-left: 1px;
+  padding-right: 1px;
+  padding-top: 1px;
+  text-align: inherit;
+  vertical-align: inherit;
+  width: 186px;
+}
+
+benefit-help .calibre165, member-help .calibre165, pricing-help .calibre165 {
+  border-collapse: separate;
+  border-spacing: 0;
+  display: table;
+  margin-bottom: 0;
+  margin-left: 14.4pt;
+  margin-top: 0;
+  text-indent: 0;
+  width: 264px;
+}
+
+benefit-help .calibre166, member-help .calibre166, pricing-help .calibre166 {
+  display: table-cell;
+  padding-bottom: 1px;
+  padding-left: 1px;
+  padding-right: 1px;
+  padding-top: 1px;
+  text-align: inherit;
+  vertical-align: inherit;
+  width: 142px;
+}
+
+benefit-help .calibre167, member-help .calibre167, pricing-help .calibre167 {
+  border-collapse: separate;
+  border-spacing: 0;
+  display: table;
+  margin-bottom: 0;
+  margin-left: 14.4pt;
+  margin-top: 0;
+  text-indent: 0;
+  width: 342px;
+}
+
+benefit-help .calibre168, member-help .calibre168, pricing-help .calibre168 {
+  display: table-cell;
+  padding-bottom: 1px;
+  padding-left: 1px;
+  padding-right: 1px;
+  padding-top: 1px;
+  text-align: inherit;
+  vertical-align: inherit;
+  width: 199px;
+}
+
+benefit-help .calibre169, member-help .calibre169, pricing-help .calibre169 {
+  border-collapse: separate;
+  border-spacing: 0;
+  display: table;
+  margin-bottom: 0;
+  margin-left: 14.4pt;
+  margin-top: 0;
+  text-indent: 0;
+  width: 387px;
+}
+
+benefit-help .calibre170, member-help .calibre170, pricing-help .calibre170 {
+  border-collapse: separate;
+  border-spacing: 0;
+  display: table;
+  margin-bottom: 0;
+  margin-left: 14.4pt;
+  margin-top: 0;
+  text-indent: 0;
+  width: 280px;
+}
+
+benefit-help .calibre171, member-help .calibre171, pricing-help .calibre171 {
+  display: table-cell;
+  padding-bottom: 1px;
+  padding-left: 1px;
+  padding-right: 1px;
+  padding-top: 1px;
+  text-align: inherit;
+  vertical-align: inherit;
+  width: 130px;
+}
+
+benefit-help .calibre172, member-help .calibre172, pricing-help .calibre172 {
+  border-collapse: separate;
+  border-spacing: 0;
+  display: table;
+  margin-bottom: 0;
+  margin-top: 0;
+  text-indent: 0;
+  width: 594px;
+  x-cell-content-align: Bottom;
+}
+
+benefit-help .calibre173, member-help .calibre173, pricing-help .calibre173 {
+  display: table-column;
+  width: 21.314%;
+}
+
+benefit-help .calibre174, member-help .calibre174, pricing-help .calibre174 {
+  display: table-column;
+  width: 12.626%;
+}
+
+benefit-help .calibre175, member-help .calibre175, pricing-help .calibre175 {
+  display: table-column;
+  width: 14.225%;
+}
+
+benefit-help .calibre176, member-help .calibre176, pricing-help .calibre176 {
+  display: table-column;
+  width: 13.706%;
+}
+
+benefit-help .calibre177, member-help .calibre177, pricing-help .calibre177 {
+  display: table-column;
+  width: 18.6%;
+}
+
+benefit-help .calibre178, member-help .calibre178, pricing-help .calibre178 {
+  display: table-column;
+  width: 19.528%;
+}
+
+benefit-help .calibre179, member-help .calibre179, pricing-help .calibre179 {
+  background-color: #C0C0C0;
+  border-bottom-color: #000;
+  border-bottom-style: Solid;
+  border-bottom-width: 1px;
+  display: table-cell;
+  padding-bottom: 1px;
+  padding-left: 1px;
+  padding-right: 1px;
+  padding-top: 1px;
+  text-align: inherit;
+  vertical-align: inherit;
+  width: 21.314%;
+}
+
+benefit-help .calibre180, member-help .calibre180, pricing-help .calibre180 {
+  background-color: #C0C0C0;
+  border-bottom-color: #000;
+  border-bottom-style: Solid;
+  border-bottom-width: 1px;
+  display: table-cell;
+  padding-bottom: 1px;
+  padding-left: 1px;
+  padding-right: 1px;
+  padding-top: 1px;
+  text-align: inherit;
+  vertical-align: inherit;
+  width: 12.626%;
+}
+
+benefit-help .calibre181, member-help .calibre181, pricing-help .calibre181 {
+  background-color: #C0C0C0;
+  border-bottom-color: #000;
+  border-bottom-style: Solid;
+  border-bottom-width: 1px;
+  display: table-cell;
+  padding-bottom: 1px;
+  padding-left: 1px;
+  padding-right: 1px;
+  padding-top: 1px;
+  text-align: inherit;
+  vertical-align: inherit;
+  width: 14.225%;
+}
+
+benefit-help .calibre182, member-help .calibre182, pricing-help .calibre182 {
+  background-color: #C0C0C0;
+  border-bottom-color: #000;
+  border-bottom-style: Solid;
+  border-bottom-width: 1px;
+  display: table-cell;
+  padding-bottom: 1px;
+  padding-left: 1px;
+  padding-right: 1px;
+  padding-top: 1px;
+  text-align: inherit;
+  vertical-align: inherit;
+  width: 13.706%;
+}
+
+benefit-help .calibre183, member-help .calibre183, pricing-help .calibre183 {
+  background-color: #C0C0C0;
+  border-bottom-color: #000;
+  border-bottom-style: Solid;
+  border-bottom-width: 1px;
+  display: table-cell;
+  padding-bottom: 1px;
+  padding-left: 1px;
+  padding-right: 1px;
+  padding-top: 1px;
+  text-align: inherit;
+  vertical-align: inherit;
+  width: 18.6%;
+}
+
+benefit-help .calibre184, member-help .calibre184, pricing-help .calibre184 {
+  background-color: #C0C0C0;
+  border-bottom-color: #000;
+  border-bottom-style: Solid;
+  border-bottom-width: 1px;
+  display: table-cell;
+  padding-bottom: 1px;
+  padding-left: 1px;
+  padding-right: 1px;
+  padding-top: 1px;
+  text-align: inherit;
+  vertical-align: inherit;
+  width: 19.528%;
+}
+
+benefit-help .calibre185, member-help .calibre185, pricing-help .calibre185 {
+  border-bottom-color: #000;
+  border-bottom-style: Solid;
+  border-bottom-width: 1px;
+  display: table-cell;
+  padding-bottom: 1px;
+  padding-left: 1px;
+  padding-right: 1px;
+  padding-top: 1px;
+  text-align: inherit;
+  vertical-align: inherit;
+  width: 21.314%;
+}
+
+benefit-help .calibre186, member-help .calibre186, pricing-help .calibre186 {
+  border-bottom-color: #000;
+  border-bottom-style: Solid;
+  border-bottom-width: 1px;
+  display: table-cell;
+  padding-bottom: 1px;
+  padding-left: 1px;
+  padding-right: 1px;
+  padding-top: 1px;
+  text-align: inherit;
+  vertical-align: inherit;
+  width: 12.626%;
+}
+
+benefit-help .calibre187, member-help .calibre187, pricing-help .calibre187 {
+  border-bottom-color: #000;
+  border-bottom-style: Solid;
+  border-bottom-width: 1px;
+  display: table-cell;
+  padding-bottom: 1px;
+  padding-left: 1px;
+  padding-right: 1px;
+  padding-top: 1px;
+  text-align: inherit;
+  vertical-align: inherit;
+  width: 14.225%;
+}
+
+benefit-help .calibre188, member-help .calibre188, pricing-help .calibre188 {
+  border-bottom-color: #000;
+  border-bottom-style: Solid;
+  border-bottom-width: 1px;
+  display: table-cell;
+  padding-bottom: 1px;
+  padding-left: 1px;
+  padding-right: 1px;
+  padding-top: 1px;
+  text-align: inherit;
+  vertical-align: inherit;
+  width: 13.706%;
+}
+
+benefit-help .calibre189, member-help .calibre189, pricing-help .calibre189 {
+  border-bottom-color: #000;
+  border-bottom-style: Solid;
+  border-bottom-width: 1px;
+  display: table-cell;
+  padding-bottom: 1px;
+  padding-left: 1px;
+  padding-right: 1px;
+  padding-top: 1px;
+  text-align: inherit;
+  vertical-align: inherit;
+  width: 18.6%;
+}
+
+benefit-help .calibre190, member-help .calibre190, pricing-help .calibre190 {
+  border-bottom-color: #000;
+  border-bottom-style: Solid;
+  border-bottom-width: 1px;
+  display: table-cell;
+  padding-bottom: 1px;
+  padding-left: 1px;
+  padding-right: 1px;
+  padding-top: 1px;
+  text-align: inherit;
+  vertical-align: inherit;
+  width: 19.528%;
+}
+
+benefit-help .example-hdr-hdt, member-help .example-hdr-hdt, pricing-help .example-hdr-hdt {
+  display: block;
+  font-family: Verdana;
+  font-size: 0.79412em;
+  font-style: italic;
+  line-height: 1.2;
+  margin-bottom: 3pt;
+  margin-left: 0;
+  margin-right: 0;
+  margin-top: 4pt;
+  text-align: left;
+}
+
+benefit-help .f1-header, member-help .f1-header, pricing-help .f1-header {
+  display: block;
+  font-family: Verdana;
+  font-size: 0.79412em;
+  line-height: 1.2;
+  margin-bottom: 2pt;
+  margin-left: 0;
+  margin-right: 0;
+  margin-top: 4pt;
+  text-align: left;
+}
+
+benefit-help .f1-link, member-help .f1-link, pricing-help .f1-link {
+  display: block;
+  font-family: Verdana;
+  font-size: 0.70588em;
+  margin-bottom: 2pt;
+  margin-left: 10.8pt;
+  margin-right: 0;
+  margin-top: 0;
+  text-align: left;
+  text-indent: -10.8pt;
+}
+
+benefit-help .f1-link1, member-help .f1-link1, pricing-help .f1-link1 {
+  display: block;
+  font-family: Verdana;
+  font-size: 0.70588em;
+  font-weight: normal;
+  margin-bottom: 2pt;
+  margin-left: 10.8pt;
+  margin-right: 0;
+  margin-top: 0;
+  text-align: left;
+  text-indent: -10.8pt;
+}
+
+benefit-help .f1-logo-topic, member-help .f1-logo-topic, pricing-help .f1-logo-topic {
+  display: block;
+  font-family: Verdana;
+  font-size: 0.52941em;
+  line-height: 1.2;
+  margin-bottom: 0;
+  margin-left: 0;
+  margin-right: 0;
+  margin-top: 0;
+  text-align: left;
+}
+
+benefit-help .f1-logo-topic1, member-help .f1-logo-topic1, pricing-help .f1-logo-topic1 {
+  display: block;
+  font-family: Verdana;
+  font-size: 0.52941em;
+  margin-bottom: 0;
+  margin-left: 0;
+  margin-right: 0;
+  margin-top: 0;
+  text-align: left;
+}
+
+benefit-help .heading, member-help .heading, pricing-help .heading {
+  color: #800000;
+  display: block;
+  font-family: Verdana;
+  font-size: 0.79412em;
+  font-weight: bold;
+  line-height: 1.2;
+  margin-bottom: 0;
+  margin-left: 0;
+  margin-right: 0;
+  margin-top: 0;
+  text-align: left;
+}
+
+benefit-help .heading1, member-help .heading1, pricing-help .heading1 {
+  color: #800000;
+  display: block;
+  font-family: Verdana;
+  font-size: 0.79412em;
+  font-weight: bold;
+  line-height: 1.2;
+  margin-bottom: 2pt;
+  margin-left: 0;
+  margin-right: 0;
+  margin-top: 0;
+  text-align: left;
+}
+
+benefit-help .kadov-p-cbullet, member-help .kadov-p-cbullet, pricing-help .kadov-p-cbullet {
+  display: list-item;
+  font-family: Verdana, sans-serif;
+  font-size: 0.70588em;
+  list-style-image: none;
+  list-style-position: outside;
+  list-style-type: disc;
+}
+
+benefit-help .kadov-p-cstep, member-help .kadov-p-cstep, pricing-help .kadov-p-cstep {
+  display: list-item;
+  font-family: Verdana, sans-serif;
+  font-size: 0.70588em;
+  list-style-image: none;
+  list-style-position: outside;
+  list-style-type: decimal;
+}
+
+benefit-help .kadov-p-cstepbullet, member-help .kadov-p-cstepbullet, pricing-help .kadov-p-cstepbullet {
+  display: list-item;
+  list-style-image: none;
+  list-style-position: outside;
+  list-style-type: disc;
+}
+
+benefit-help .map-head, member-help .map-head, pricing-help .map-head {
+  display: block;
+  font-family: Verdana;
+  font-size: 0.79412em;
+  font-weight: bold;
+  line-height: 1.2;
+  margin-bottom: 4pt;
+  margin-left: 18pt;
+  margin-right: 0;
+  margin-top: 8pt;
+  text-align: left;
+}
+
+benefit-help .map-text, member-help .map-text, pricing-help .map-text {
+  display: block;
+  font-family: Verdana;
+  font-size: 0.70588em;
+  margin-bottom: 0;
+  margin-left: 18pt;
+  margin-right: 0;
+  margin-top: 0;
+  text-align: left;
+}
+
+benefit-help .numbered-list-indent, member-help .numbered-list-indent, pricing-help .numbered-list-indent {
+  display: block;
+  font-family: Verdana;
+  font-size: 0.70588em;
+  margin-bottom: 2pt;
+  margin-left: 27pt;
+  margin-right: 0;
+  margin-top: 4pt;
+  text-align: left;
+  text-indent: -12.6pt;
+}
+
+benefit-help .step, member-help .step, pricing-help .step {
+  display: block;
+  font-family: Verdana, sans-serif;
+  font-size: 1em;
+  list-style-image: none;
+  list-style-position: outside;
+  list-style-type: decimal;
+  margin-bottom: 9pt;
+  margin-right: 0;
+  margin-top: 9pt;
+  text-align: left;
+  x-next-class: Step;
+  x-next-type: P;
+}
+
+benefit-help .stepbullet, member-help .stepbullet, pricing-help .stepbullet {
+  display: block;
+  font-family: Verdana;
+  font-size: 0.70588em;
+  list-style-image: none;
+  list-style-position: outside;
+  list-style-type: disc;
+  margin-bottom: 9pt;
+  margin-left: 4pt;
+  margin-right: 0;
+  margin-top: 9pt;
+  text-align: left;
+  x-next-class: StepBullet;
+  x-next-type: P;
+}
+
+benefit-help .tableboldtext, member-help .tableboldtext, pricing-help .tableboldtext {
+  display: block;
+  font-family: Verdana;
+  font-size: 0.70588em;
+  font-style: normal;
+  font-weight: bold;
+  margin-bottom: 3pt;
+  margin-left: 0;
+  margin-right: 0;
+  margin-top: 3pt;
+  text-align: left;
+}
+
+benefit-help .tablebullet, member-help .tablebullet, pricing-help .tablebullet {
+  display: block;
+  font-family: Verdana;
+  font-size: 0.70588em;
+  list-style-image: none;
+  list-style-position: outside;
+  list-style-type: disc;
+  margin-bottom: 2.5pt;
+  margin-right: 0;
+  margin-top: 2.5pt;
+  text-align: left;
+  x-next-class: TableBullet;
+  x-next-type: P;
+}
+
+benefit-help .tablebullet1, member-help .tablebullet1, pricing-help .tablebullet1 {
+  display: block;
+  font-family: Verdana;
+  font-size: 0.70588em;
+  font-weight: normal;
+  list-style-image: none;
+  list-style-position: outside;
+  list-style-type: disc;
+  margin-bottom: 2.5pt;
+  margin-right: 0;
+  margin-top: 2.5pt;
+  text-align: left;
+  x-next-class: TableBullet;
+  x-next-type: P;
+}
+
+benefit-help .tableheading, member-help .tableheading, pricing-help .tableheading {
+  display: block;
+  font-family: Verdana;
+  font-size: 0.70588em;
+  font-style: normal;
+  font-weight: bold;
+  margin-bottom: 4.5pt;
+  margin-left: 0;
+  margin-right: 0;
+  margin-top: 4.5pt;
+  text-align: left;
+}
+
+benefit-help .tableheading1, member-help .tableheading1, pricing-help .tableheading1 {
+  display: block;
+  font-family: Verdana;
+  font-size: 0.70588em;
+  font-style: normal;
+  font-weight: bold;
+  margin-bottom: 4.5pt;
+  margin-left: 0;
+  margin-right: 0;
+  margin-top: 4.5pt;
+  text-align: center;
+}
+
+benefit-help .tabletext, member-help .tabletext, pricing-help .tabletext {
+  display: block;
+  font-family: Verdana;
+  font-size: 0.70588em;
+  margin-bottom: 3pt;
+  margin-left: 0;
+  margin-right: 0;
+  margin-top: 3pt;
+  text-align: left;
+  x-next-class: TableText;
+  x-next-type: P;
+}
+
+benefit-help .tabletext1, member-help .tabletext1, pricing-help .tabletext1 {
+  display: block;
+  font-family: Verdana;
+  font-size: 0.70588em;
+  margin-bottom: 3pt;
+  margin-left: 0;
+  margin-right: 0;
+  margin-top: 3pt;
+  text-align: center;
+  x-next-class: TableText;
+  x-next-type: P;
+}
+
+benefit-help .tabletext2, member-help .tabletext2, pricing-help .tabletext2 {
+  background-color: Transparent;
+  display: block;
+  font-family: Verdana;
+  font-size: 0.70588em;
+  margin-bottom: 3pt;
+  margin-left: 0;
+  margin-right: 0;
+  margin-top: 3pt;
+  text-align: left;
+  x-next-class: TableText;
+  x-next-type: P;
+}
+
+benefit-help .tbl-header-nonscroll, member-help .tbl-header-nonscroll, pricing-help .tbl-header-nonscroll {
+  color: #000;
+  display: block;
+  font-family: Verdana;
+  font-size: 0.70588em;
+  font-weight: bold;
+  margin-bottom: 2pt;
+  margin-left: 0;
+  margin-right: 0;
+  margin-top: 3pt;
+  text-align: left;
+}
+
+benefit-help .tbl-list, member-help .tbl-list, pricing-help .tbl-list {
+  display: block;
+  font-family: Verdana;
+  font-size: 0.70588em;
+  margin-bottom: 3pt;
+  margin-left: 21.6pt;
+  margin-right: 0;
+  margin-top: 1pt;
+  text-align: left;
+  text-indent: -14.4pt;
+}
+
+benefit-help .tbl-r-label, member-help .tbl-r-label, pricing-help .tbl-r-label {
+  border-top-color: #000;
+  border-top-style: solid;
+  border-top-width: 0.5pt;
+  display: block;
+  font-family: Verdana;
+  font-size: 0.70588em;
+  font-weight: bold;
+  margin-bottom: 2pt;
+  margin-left: 0;
+  margin-right: 0;
+  margin-top: 1pt;
+  text-align: left;
+}
+
+benefit-help .tbl-text, member-help .tbl-text, pricing-help .tbl-text {
+  background-color: Transparent;
+  display: block;
+  font-family: Verdana;
+  font-size: 0.70588em;
+  margin-bottom: 5pt;
+  margin-left: 0;
+  margin-right: 0;
+  margin-top: 1pt;
+  text-align: left;
+}
+
+benefit-help .tbl-text-1char, member-help .tbl-text-1char, pricing-help .tbl-text-1char {
+  border-top-color: #000;
+  border-top-style: solid;
+  border-top-width: 0.5pt;
+  display: block;
+  font-family: Verdana;
+  font-size: 0.70588em;
+  margin-bottom: 5pt;
+  margin-left: 0;
+  margin-right: 0;
+  margin-top: 1pt;
+  text-align: left;
+}
+
+benefit-help .tbl-text-noline, member-help .tbl-text-noline, pricing-help .tbl-text-noline {
+  display: block;
+  font-family: Verdana;
+  font-size: 0.70588em;
+  margin-bottom: 5pt;
+  margin-left: 0;
+  margin-right: 0;
+  margin-top: 0;
+  text-align: left;
+}
+
+benefit-help .tbl-text1, member-help .tbl-text1, pricing-help .tbl-text1 {
+  display: block;
+  font-family: Verdana;
+  font-size: 0.70588em;
+  margin-bottom: 5pt;
+  margin-left: 0;
+  margin-right: 0;
+  margin-top: 1pt;
+  text-align: left;
+}
+
+benefit-help .text, member-help .text, pricing-help .text {
+  display: block;
+  font-family: Verdana, sans-serif;
+  font-size: 0.70588em;
+  margin-bottom: 4.5pt;
+  margin-left: 0;
+  margin-right: 0;
+  margin-top: 4.5pt;
+  text-align: left;
+  x-next-class: Text;
+  x-next-type: P;
+}
+
+benefit-help .writerscomments, member-help .writerscomments, pricing-help .writerscomments {
+  color: #ff0080;
+  display: block;
+  font-family: "Times New Roman", serif;
+  font-size: 1em;
+  font-weight: Bold;
+  line-height: 1.2;
+  margin-bottom: 18pt;
+  margin-left: 54pt;
+  margin-right: 0;
+  margin-top: 18pt;
+  text-align: left;
+  text-decoration: none;
+  x-text-overline: Off;
+  x-text-underline: Off;
+}
+
+benefit-help body, member-help body, pricing-help body {
+  margin: 0px;
+  padding: 0.5em;
+  background-color: #F6F3E9;
+  font-size: 12px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+benefit-help .calibreMeta, member-help .calibreMeta, pricing-help .calibreMeta {
+  background-color: #39322B;
+  color: white;
+  padding: 10px;
+}
+
+benefit-help .calibreMeta a, benefit-help .calibreEbNav a, benefit-help .calibreEbNavTop a, benefit-help .calibreToc a, member-help .calibreMeta a, member-help .calibreEbNav a, member-help .calibreEbNavTop a, member-help .calibreToc a, pricing-help .calibreMeta a, pricing-help .calibreEbNav a, pricing-help .calibreEbNavTop a, pricing-help .calibreToc a {
+  color: white;
+}
+
+benefit-help .calibreMeta h1, member-help .calibreMeta h1, pricing-help .calibreMeta h1 {
+  margin: 0px;
+  font-size: 18px;
+  background-color: #39322B;
+}
+
+benefit-help .calibreEbookContent, member-help .calibreEbookContent, pricing-help .calibreEbookContent {
+  padding: 20px;
+  float: left;
+  width: 100%;
+}
+
+benefit-help .calibreEbNav, benefit-help .calibreEbNavTop, member-help .calibreEbNav, member-help .calibreEbNavTop, pricing-help .calibreEbNav, pricing-help .calibreEbNavTop {
+  clear: both;
+  background-color: #39322B;
+  color: white;
+  padding: 10px;
+  text-align: center;
+}
+
+benefit-help .calibreEbNavTop, member-help .calibreEbNavTop, pricing-help .calibreEbNavTop {
+  margin-bottom: 20px;
+}
+
+benefit-help .calibreEbNav a, benefit-help .calibreEbNavTop a, member-help .calibreEbNav a, member-help .calibreEbNavTop a, pricing-help .calibreEbNav a, pricing-help .calibreEbNavTop a {
+  padding: 0px 5px;
+}
+
+benefit-help .calibreTocIndex, member-help .calibreTocIndex, pricing-help .calibreTocIndex {
+  line-height: 18px;
+}
+
+benefit-help .calibreToc, member-help .calibreToc, pricing-help .calibreToc {
+  float: left;
+  margin: 20px;
+  width: 300px;
+  background-color: #39322B;
+  color: white;
+  padding: 10px;
+}
+
+@page {
+  benefit-help, member-help, pricing-help {
+    margin-bottom: 5pt;
+    margin-top: 5pt;
+  }
+}
+/*# sourceMappingURL=test.css.map */

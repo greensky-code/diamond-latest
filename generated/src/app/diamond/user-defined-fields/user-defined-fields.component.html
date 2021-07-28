@@ -1,0 +1,133 @@
+<!-- Copyright (c) 2021 . All Rights Reserved. -->
+<div class="container-fluid">
+    <div class="card-block">
+        <form [formGroup]="userDefinedFieldsForm" novalidate>
+            <h2 class="form-title card-label-admin">User Defined Fields</h2>
+            <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+            <app-pop-up-message #popUpMesssage (buttonclickEvent)="popUpButtonHandler($event)"  [(popupMessage)] = "popUpMessage"></app-pop-up-message>
+                        
+            <div class="form-group row">
+            </div>
+            
+                        <!-- DataGrid with Name of DataGrid001 -->
+                    <button (click)="dataGrid001GridOptionsExportCsv()">Export</button>
+                    <ag-grid-angular #agGrid class="ag-theme-fresh" [gridOptions]="dataGrid001GridOptions"
+                    style="width: 100%; height: 300px;"
+                    [enableSorting]="true"
+                    [enableFilter]="true"
+                    [floatingFilter]="true"
+                    [pagination]="true"
+                    [showToolPanel]="true">
+                    </ag-grid-angular>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+                <!-- DynamicText with label of Language ID -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('languageId') }">
+                     <label class="col-form-label" for="languageId" i18n>Language ID</label>
+                     <input type="text"  [fieldLevelSec]="'Language Id'" params]="User Defined Text"  readonly id="languageId" formControlName="languageId" class="form-control"/>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of User Defined Text -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('userDefinedText') }">
+                     <label class="col-form-label" for="userDefinedText" i18n>User Defined Text</label>
+                     <input type="text" id="userDefinedText"  [fieldLevelSec]="'User Define Text'" params]="User Defined Text"   class="form-control" formControlName="userDefinedText"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('userDefinedText')">
+                      {{ formValidation.errorMessage('userDefinedText') }}
+                     </small>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Checkbox with label of User Defined Required -->
+                <div class="" [ngClass]="{'has-error': displayMessage.userDefinedRequired }">
+                    <div class="checkbox col-md-12">
+                      <input id="userDefinedRequired"  [fieldLevelSec]="'User Define Required'" params]="User Defined Text"  value="userDefinedRequired" formControlName="userDefinedRequired" type="checkbox">
+                        <label class="checkbox">
+                            User Defined Required
+                         </label>
+                    </div>
+                    <span class="help-block" *ngIf="displayMessage.userDefinedRequired">
+                        {{ displayMessage.userDefinedRequired  }}
+                     </span>
+                </div>
+            
+                <!-- Checkbox with label of User Defined Validate -->
+                <div class="" [ngClass]="{'has-error': displayMessage.userDefinedValidate }">
+                    <div class="checkbox col-md-12">
+                      <input id="userDefinedValidate"  [fieldLevelSec]="'User Define Validate Flag'" params]="User Defined Text"  value="userDefinedValidate" formControlName="userDefinedValidate" type="checkbox">
+                        <label class="checkbox">
+                            User Defined Validate
+                         </label>
+                    </div>
+                    <span class="help-block" *ngIf="displayMessage.userDefinedValidate">
+                        {{ displayMessage.userDefinedValidate  }}
+                     </span>
+                </div>
+            
+            </div>
+            
+            <div class="form-group row">
+            </div>
+            
+                        <!-- DataGrid with Name of DataGrid002 -->
+                    <button (click)="dataGrid002GridOptionsExportCsv()">Export</button>
+                    <ag-grid-angular #agGrid class="ag-theme-fresh" [gridOptions]="dataGrid002GridOptions"
+                    style="width: 100%; height: 300px;"
+                    [enableSorting]="true"
+                    [enableFilter]="true"
+                    [floatingFilter]="true"
+                    [pagination]="true"
+                    [showToolPanel]="true">
+                    </ag-grid-angular>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of Thru Valid Code -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('thruValidCode') }">
+                     <label class="col-form-label" for="thruValidCode" i18n>Thru Valid Code</label>
+                     <input type="text" id="thruValidCode"  [fieldLevelSec]="''" params]=""   class="form-control" formControlName="thruValidCode"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('thruValidCode')">
+                      {{ formValidation.errorMessage('thruValidCode') }}
+                     </small>
+                 </div>
+            
+                <!-- Textbox with label of Short Description -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('shortDescription') }">
+                     <label class="col-form-label" for="shortDescription" i18n>Short Description</label>
+                     <input type="text" id="shortDescription"  [fieldLevelSec]="''" params]=""   class="form-control" formControlName="shortDescription"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('shortDescription')">
+                      {{ formValidation.errorMessage('shortDescription') }}
+                     </small>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of Long Description -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('longDescription') }">
+                     <label class="col-form-label" for="longDescription" i18n>Long Description</label>
+                     <input type="text" id="longDescription"  [fieldLevelSec]="''" params]=""   class="form-control" formControlName="longDescription"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('longDescription')">
+                      {{ formValidation.errorMessage('longDescription') }}
+                     </small>
+                 </div>
+            
+            </div>
+        </form>
+    </div>
+</div>

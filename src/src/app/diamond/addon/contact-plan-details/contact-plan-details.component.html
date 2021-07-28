@@ -1,0 +1,343 @@
+<!-- Copyright (c) 2021 . All Rights Reserved. -->
+<div class="container-fluid">
+    <div class="card-block">
+
+        <nav ngbNav #nav="ngbNav" class="nav-tabs" [(activeId)]="activeTab">
+            <ng-container [ngbNavItem]="1">
+                <a ngbNavLink (click)="activeTabChange(1)">Plan Details</a>
+                <ng-template ngbNavContent>
+
+
+                    <form [formGroup]="planDetailForm" novalidate (submit)="savePlanDetails()">
+
+                        <div class="form-group row">
+                            <div class="col-md-12 d-md-flex"
+                                [ngClass]="{'has-danger': formValidation.isValidField('phaadPrdCd') }">
+                                <label class="col-form-label col-md-3 text-md-right font-weight-bold" for="phaadPrdCd"
+                                    i18n>HAAD Product Count:</label>
+                                <select class="form-control col-md-8" id="phaadPrdCd" name="HAAD Product Count"
+                                    formControlName="phaadPrdCd" [fieldLevelSec]="''" params="">
+                                    <option [value]="bt['CODE_1']" *ngFor="let bt of haadProductCounts; let i = index"
+                                        [selected]="bt['CODE_1'] === planDetailForm.value.phaadPrdCd">
+                                        {{bt['CODE_DESC']}}
+                                    </option>
+                                </select>
+                                <small class="text-danger" *ngIf="formValidation.isValidField('phaadPrdCd')">
+                                    {{ formValidation.errorMessage('phaadPrdCd') }}
+                                </small>
+
+                            </div>
+
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-md-12 d-md-flex"
+                                [ngClass]="{'has-danger': formValidation.isValidField('phaadPolicyHolderType') }">
+                                <label class="col-form-label col-md-3 text-md-right font-weight-bold"
+                                    for="phaadPolicyHolderType" i18n>HAAD Contract Policy Holder Type:</label>
+                                <select class="form-control col-md-8" id="phaadPolicyHolderType"
+                                    name="HAAD Contract Policy Holder Type" formControlName="phaadPolicyHolderType"
+                                    [fieldLevelSec]="''" params="">
+                                    <option [value]="bt['CODE_1']"
+                                        *ngFor="let bt of haadContractPolicyHolderTypes; let i = index"
+                                        [selected]="bt['CODE_1'] === planDetailForm.value.phaadPolicyHolderType">
+                                        {{bt['CODE_DESC']}}
+                                    </option>
+                                </select>
+                                <small class="text-danger" *ngIf="formValidation.isValidField('phaadPolicyHolderType')">
+                                    {{ formValidation.errorMessage('phaadPolicyHolderType') }}
+                                </small>
+
+                            </div>
+
+                        </div>
+
+                        <div class="form-group row">
+                            <!-- Textbox with label of Bill Type -->
+                            <div class="col-md-12 d-md-flex"
+                                [ngClass]="{'has-danger': formValidation.isValidField('pdhaPrdCd') }">
+                                <label class="col-form-label col-md-3 text-md-right font-weight-bold" for="pdhaPrdCd"
+                                    i18n>DHA Product Code:</label>
+                                <select class="form-control col-md-8" id="pdhaPrdCd" name="DHA Product Code"
+                                    formControlName="pdhaPrdCd" [fieldLevelSec]="''" params="">
+                                    <option [value]="bt['CODE_1']" *ngFor="let bt of dhaProductCodes; let i = index"
+                                        [selected]="bt['CODE_1'] === planDetailForm.value.pdhaPrdCd">
+                                        {{bt['CODE_DESC']}}
+                                    </option>
+                                </select>
+                                <small class="text-danger" *ngIf="formValidation.isValidField('pdhaPrdCd')">
+                                    {{ formValidation.errorMessage('pdhaPrdCd') }}
+                                </small>
+
+                            </div>
+
+                        </div>
+
+                        <div class="form-group row">
+                            <!-- Textbox with label of Short Name -->
+                            <div class="col-md-12 d-md-flex"
+                                [ngClass]="{'has-danger': formValidation.isValidField('potherUaePrdCd') }">
+                                <label class="col-form-label col-md-3 text-md-right font-weight-bold"
+                                    for="potherUaePrdCd" i18n>Other UAE Product Code:</label>
+                                <input type="text" id="potherUaePrdCd" [fieldLevelSec]="'Other UAE Product Code'"
+                                    params="Pmb Ar Customer Master" class="form-control col-md-4"
+                                    formControlName="potherUaePrdCd" />
+                                <small class="text-danger" *ngIf="formValidation.isValidField('potherUaePrdCd')">
+                                    {{ formValidation.errorMessage('potherUaePrdCd') }}
+                                </small>
+                            </div>
+
+                        </div>
+
+                        <div class="form-group row">
+                            <!-- Textbox with label of Customer Name 1 -->
+                            <div class="col-md-12 d-md-flex"
+                                [ngClass]="{'has-danger': formValidation.isValidField('pdubaiEntityId') }">
+                                <label class="col-form-label col-md-3 text-md-right font-weight-bold"
+                                    for="pdubaiEntityId" i18n>Dubai Entity Id:</label>
+                                <input type="text" id="pdubaiEntityId" [fieldLevelSec]="'Dubai Entity Id'"
+                                    params="Pmb Ar Customer Master" class="form-control col-md-4"
+                                    formControlName="pdubaiEntityId" />
+                                <small class="text-danger" *ngIf="formValidation.isValidField('pdubaiEntityId')">
+                                    {{ formValidation.errorMessage('pdubaiEntityId') }}
+                                </small>
+                            </div>
+
+                        </div>
+
+                        <div class="form-group row">
+                            <!-- Textbox with label of Bill Type -->
+                            <div class="col-md-12 d-md-flex"
+                                [ngClass]="{'has-danger': formValidation.isValidField('pclientDubaiWorkLocCode') }">
+                                <label class="col-form-label col-md-3 text-md-right font-weight-bold"
+                                    for="pclientDubaiWorkLocCode" i18n>Client Dubai Work Location Code:</label>
+                                <select class="form-control col-md-8" id="pclientDubaiWorkLocCode"
+                                    name="Client Dubai Work Location Code" formControlName="pclientDubaiWorkLocCode"
+                                    [fieldLevelSec]="''" params="">
+                                    <option [value]="bt['CODE_1']"
+                                        *ngFor="let bt of clientDubaiWorkLocationCodes; let i = index"
+                                        [selected]="bt['CODE_1'] === planDetailForm.value.pclientDubaiWorkLocCode">
+                                        {{bt['CODE_DESC']}}
+                                    </option>
+                                </select>
+                                <small class="text-danger"
+                                    *ngIf="formValidation.isValidField('pclientDubaiWorkLocCode')">
+                                    {{ formValidation.errorMessage('pclientDubaiWorkLocCode') }}
+                                </small>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="form-group row">
+                            <!-- Textbox with label of Bill Type -->
+                            <div class="col-md-12 d-md-flex"
+                                [ngClass]="{'has-danger': formValidation.isValidField('pphotoIndicator') }">
+                                <label class="col-form-label col-md-3 text-md-right font-weight-bold"
+                                    for="pphotoIndicator" i18n>Photo Id Card Indicator:</label>
+                                <select class="form-control col-md-8" id="pphotoIndicator"
+                                    name="Photo Id Card Indicator" formControlName="pphotoIndicator"
+                                    [fieldLevelSec]="''" params="">
+                                    <option [value]="bt['CODE_1']"
+                                        *ngFor="let bt of photoIdCardIndicators; let i = index"
+                                        [selected]="bt['CODE_1'] === planDetailForm.value.pphotoIndicator">
+                                        {{bt['CODE_DESC']}}
+                                    </option>
+                                </select>
+                                <small class="text-danger" *ngIf="formValidation.isValidField('pphotoIndicator')">
+                                    {{ formValidation.errorMessage('pphotoIndicator') }}
+                                </small>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="form-group row">
+                            <!-- Textbox with label of Bill Type -->
+                            <div class="col-md-12 d-md-flex"
+                                [ngClass]="{'has-danger': formValidation.isValidField('pnetworkTierClassification') }">
+                                <label class="col-form-label col-md-3 text-md-right font-weight-bold"
+                                    for="pnetworkTierClassification" i18n>Network Tier Classification:</label>
+                                <select class="form-control col-md-8" name="Network Tier Classification"
+                                    formControlName="pnetworkTierClassification" [fieldLevelSec]="''" params="">
+                                    <option [value]="bt['CODE_1']"
+                                        *ngFor="let bt of networkTierClassifications; let i = index"
+                                        [selected]="bt['CODE_1'] === planDetailForm.value.pnetworkTierClassification">
+                                        {{bt['CODE_DESC']}}
+                                    </option>
+                                </select>
+                                <small class="text-danger"
+                                    *ngIf="formValidation.isValidField('pnetworkTierClassification')">
+                                    {{ formValidation.errorMessage('pnetworkTierClassification') }}
+                                </small>
+
+                            </div>
+
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-md-12 d-md-flex"
+                                [ngClass]="{'has-danger': formValidation.isValidField('pnetworkEffectiveDate') }">
+                                <label class="col-form-label col-md-3 text-md-right font-weight-bold"
+                                    for="pnetworkEffectiveDate" i18n>Network Effective Date:</label>
+                                <app-datepicker [isRequired]="false" [formGroup]="planDetailForm" class=" col-md-4"
+                                    [formValidation]="formValidation" [field]="'pnetworkEffectiveDate'"
+                                    [showLabel]="'false'" [fieldLevelSec]="''" id="pnetworkEffectiveDate">
+                                </app-datepicker>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-md-12 d-md-flex"
+                                [ngClass]="{'has-danger': formValidation.isValidField('pnetworkTermDate') }">
+                                <label class="col-form-label col-md-3 text-md-right font-weight-bold"
+                                    for="pnetworkTermDate" i18n>Network Term Date:</label>
+                                <app-datepicker [isRequired]="false" [formGroup]="planDetailForm" class=" col-md-4"
+                                    [formValidation]="formValidation" [field]="'pnetworkTermDate'" [showLabel]="'false'"
+                                    [fieldLevelSec]="''" id="pnetworkTermDate"></app-datepicker>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group row">
+                            <!-- Textbox with label of Bill Type -->
+                            <div class="col-md-12 d-md-flex"
+                                [ngClass]="{'has-danger': formValidation.isValidField('pqbokGblPlanInd') }">
+                                <label class="col-form-label col-md-3 text-md-right font-weight-bold"
+                                    for="pqbokGblPlanInd" i18n>Global Plan In QBOK:</label>
+                                <select class="form-control col-md-8" id="pqbokGblPlanInd" name="Global Plan In QBOK"
+                                    formControlName="pqbokGblPlanInd" [fieldLevelSec]="''" params="">
+                                    <option [value]="bt['CODE_1']" *ngFor="let bt of globalPlanInQBOKs; let i = index"
+                                        [selected]="bt['CODE_1'] === planDetailForm.value.pqbokGblPlanInd">
+                                        {{bt['CODE_DESC']}}
+                                    </option>
+                                </select>
+                                <small class="text-danger" *ngIf="formValidation.isValidField('pqbokGblPlanInd')">
+                                    {{ formValidation.errorMessage('pqbokGblPlanInd') }}
+                                </small>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="form-group row">
+                            <!-- Textbox with label of Bill Type -->
+                            <div class="col-md-12 d-md-flex"
+                                [ngClass]="{'has-danger': formValidation.isValidField('puaeGblPlanInd') }">
+                                <label class="col-form-label col-md-3 text-md-right font-weight-bold"
+                                    for="puaeGblPlanInd" i18n>Global Plan In UAE:</label>
+                                <select class="form-control col-md-8" id="puaeGblPlanInd" name="Global Plan In UAE"
+                                    formControlName="puaeGblPlanInd" [fieldLevelSec]="''" params="">
+                                    <option [value]="bt['CODE_1']" *ngFor="let bt of globalPlanInUAEs; let i = index"
+                                        [selected]="bt['CODE_1'] === planDetailForm.value.puaeGblPlanInd">
+                                        {{bt['CODE_DESC']}}
+                                    </option>
+                                </select>
+                                <small class="text-danger" *ngIf="formValidation.isValidField('puaeGblPlanInd')">
+                                    {{ formValidation.errorMessage('puaeGblPlanInd') }}
+                                </small>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="form-group row">
+                            <!-- Textbox with label of Bill Type -->
+                            <div class="col-md-12 d-md-flex"
+                                [ngClass]="{'has-danger': formValidation.isValidField('pnetworkTierClassification') }">
+                                <label class="col-form-label col-md-3 text-md-right font-weight-bold"
+                                    for="pnetworkTierClassification" i18n>UAE Effective Date:</label>
+                                <app-datepicker [isRequired]="false" [formGroup]="planDetailForm" class=" col-md-3"
+                                    [formValidation]="formValidation"  [field]="'puaeEffDate'" [showLabel]="'false'"
+                                    [fieldLevelSec]="''" id="puaeEffDate"></app-datepicker>
+
+                                <label class="col-form-label col-md-3 text-md-right font-weight-bold"
+                                    for="pnetworkTierClassification" i18n>UAE Term Date:</label>
+                                <app-datepicker [isRequired]="false" [formGroup]="planDetailForm" class=" col-md-3"
+                                    [formValidation]="formValidation"  [field]="'puaeTermDate'" [showLabel]="'false'"
+                                    [fieldLevelSec]="''" id="puaeTermDate" ></app-datepicker>
+                            </div>
+
+                        </div>
+
+
+                        <div class="form-group row">
+                            <!-- Textbox with label of Bill Type -->
+                            <div class="col-md-12 d-md-flex"
+                                >
+                                <label class="col-form-label col-md-3 text-md-right font-weight-bold"
+                                    for="pqbokEffDate" i18n>QBOK Effective Date:</label>
+                                <app-datepicker [isRequired]="false" [formGroup]="planDetailForm" class=" col-md-3"
+                                    [formValidation]="formValidation"  [field]="'pqbokEffDate'" [showLabel]="'false'"
+                                    [fieldLevelSec]="''" id="pqbokEffDate" ></app-datepicker>
+
+                                <label class="col-form-label col-md-3 text-md-right font-weight-bold"
+                                    for="pqbokTermDate" i18n>QBOK Term Date:</label>
+                                <app-datepicker [isRequired]="false" [formGroup]="planDetailForm" class=" col-md-3"
+                                    [formValidation]="formValidation"  [field]="'pqbokTermDate'" [showLabel]="'false'"
+                                    [fieldLevelSec]="''" id="pqbokTermDate" ></app-datepicker>
+                            </div>
+
+                        </div>
+
+                        <div class="form-group row col-md-12">
+                            <div class="col-md-3"></div>
+
+                            <!-- Button with label of Save Changes -->
+                            <div class="col-md-2" style="float: left">
+                                <button type="button" class="btn btn-warning" aria-label="Reset All"
+                                    (click)="this.resetForm()">
+                                    Reset All
+                                </button>
+                            </div>
+                            <div class="col-md-2" style="float: left">
+                                <button class="btn btn-small btn-primary" type="submit">Save Changes
+                                </button>
+                            </div>
+                            <div class="col-md-2" style="float: left">
+                                <button type="button" class="btn btn-danger" aria-label="Close"
+                                    (click)="this.closeForm()">
+                                    Close
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </ng-template>
+            </ng-container>
+
+            <ng-container [ngbNavItem]="2" >
+                <a ngbNavLink (click)="activeTabChange(2)">Tax Details</a>
+                <ng-template ngbNavContent>
+
+                    <form [formGroup]="pricingPartnerDetailForm" novalidate>
+                        <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+                        <app-pop-up-message #popUpMesssage (buttonclickEvent)="popUpButtonHandler($event)"
+                            [popupMessage]="popUpMessage"></app-pop-up-message>
+
+
+                        <div class="form-group row">
+                            <div class="col-md-12 mt-3 mt-2 p-0">
+                                <dmnd-dynamic-config-grid #dynamicConfig [prevState]="pricingPartnerDetailsFormState"
+                                    [isAllowAddNewRow]="isAllowAddNewRow"
+                                    [isResetForm]="resetInlineGrid" [title]="''" [showRemoveButton]="false" [isSaveForm]="saveInlineGrid"
+                                    [config]="pricingPartnerDetailsConfig" [displayCheckBox]="false"
+                                    (onNewRowAdded)="onNewRowAdded($event)" 
+                                    (formSubmitted)="saveForm($event)" (onChangeFields)="formFieldValueChanged($event)" submitBtnText="Save Changes"></dmnd-dynamic-config-grid>
+                            </div>
+
+                        </div>
+
+                    </form>
+
+                </ng-template>
+            </ng-container>
+        </nav>
+
+        <div [ngbNavOutlet]="nav" class="mt-2"></div>
+
+    </div>
+</div>

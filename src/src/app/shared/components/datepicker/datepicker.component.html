@@ -1,0 +1,39 @@
+<label [for]="field" i18n class="col-form-label pt-0" [ngClass]="isBoldText?'font-weight-bold':null" [class.clr-blue]="isRequired" *ngIf="!showLabel || showLabel === 'true'">{{labelText}}</label>
+<div class="input-group" *ngIf="formGroup && formValidation"  [formGroup]="formGroup" [ngClass]="{'has-danger': formValidation.isValidField('userDate3') }">
+    <input opened="true" [id]="field" class="form-control" angular-mydatepicker [name]="field" *ngIf="disabled"
+           [formControlName]="field" [options]="datePickerConfig" tabindex={{tabIndex}}
+           disabled
+           #dtpicker="angular-mydatepicker" (dateChanged)="onCalenderDateChanged($event)"/>
+ <div *ngIf="!disabled" class="d-inline-flex w-100">
+     <input opened="true" [id]="field" class="form-control" angular-mydatepicker [name]="field"
+            #mydatePickerElf
+            (keydown)="inputValueChange($event)"
+            [tabindex]="tabIndex"
+            [formControlName]="field" [options]="datePickerConfig"
+            #dtpicker="angular-mydatepicker" (dateChanged)="onCalenderDateChanged($event)"/>
+     <div class="input-group-append" *ngIf="showClearButton">
+         <button type="button" class="btn btn-secondary" *ngIf="!commonService.isFieldEmptyAndNull(formGroup, field)"
+                 (click)="dtpicker.clearDate()">
+             <fa-icon [icon]="['far', 'window-close']"></fa-icon>
+         </button>
+     </div>
+     <div class="input-group-append" >
+         <button type="button" class="btn btn-secondary" (click)="dtpicker.toggleCalendar()">
+             <fa-icon [icon]="['far', 'calendar']"></fa-icon>
+         </button>
+     </div>
+
+ </div>
+
+    <ng-template #readonly>
+        <div class="input-group-append">
+            <button type="button" class="btn btn-secondary">
+                <fa-icon [icon]="['far', 'calendar']"></fa-icon>
+            </button>
+        </div>
+    </ng-template>
+
+</div>
+<small class="text-danger" *ngIf="formValidation && formValidation.isValidField(field)">
+    {{ formValidation.errorMessage(field) }}
+</small>

@@ -1,0 +1,293 @@
+<!-- Copyright (c) 2020 . All Rights Reserved. -->
+
+<div class="container-fluid">
+    <div class="card-block">
+        <form [formGroup]="idCardPrintForm" novalidate>
+            <div class="row form-title">
+                <h2 class="col-md-4 card-label-admin">Id Card Print</h2>
+                <div class="col-md"><b class="readonly-label">View Only</b></div>
+            </div>
+            <div class="modal-header">
+                <button type="button" *ngIf="showIcon" class="close" aria-label="Close"
+                        (click)="closeModal()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="row mb-4 mt-2">
+                <menu-bar [menus]="menu" (onMenuClick)="onMenuItemClick($event)"></menu-bar>
+
+            </div>
+
+            <!-- DataGrid with Name of DataGrid -->
+            <ag-grid-angular #agGrid class="ag-theme-fresh"
+                             [gridOptions]="dataGridGridOptions" style="width: 100%; height: 300px;"
+                             [enableSorting]="false"
+                             [enableFilter]="true"
+                             [floatingFilter]="false"
+                             [pagination]="false"
+                             (selectionChanged)="GridOneSelection()"
+                             [showToolPanel]="false"
+                             [rowSelection]="rowSelection">
+            </ag-grid-angular>
+
+
+            <div class="form-group row mt-3">
+                <label class="label-broken col-md-4 text-primary text-right">
+                    <span>
+                        <b><i>Job Setup</i></b>
+                    </span>
+                </label>
+                <label class="col-md-8 label-broken"><span></span></label>
+            </div>
+
+            <div class="form-group row">
+                <!-- Textbox with label of Job ID -->
+                <div class="col-md-4" [ngClass]="{'hasf-danger': formValidation.isValidField('jobId') }">
+                    <label class="col-form-label clr-blue" for="jobId" i18n>Job ID</label>
+                    <input type="text" id="jobId" class="form-control" formControlName="jobId"/>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('jobId')">
+                        {{ formValidation.errorMessage('jobId') }}
+                    </small>
+                </div>
+
+
+                <!-- Textbox with label of Request User -->
+                <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('requestUser') }">
+                    <label class="col-form-label" for="requestUser" i18n>Request User</label>
+                    <input type="text" id="requestUser" class="form-control text-primary" formControlName="requestUser"/>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('requestUser')">
+                        {{ formValidation.errorMessage('requestUser') }}
+                    </small>
+                </div>
+
+                <!-- Textbox with label of Date -->
+                <div class="col-md-4">
+                    <app-datepicker [formGroup]="idCardPrintForm" [formValidation]="formValidation"
+                                    [field]="'requestDate'" [isRequired]="true" [disabled]="dateDisabled"  [labelText]="'Date'"></app-datepicker>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-md-8" [ngClass]="{'has-danger': formValidation.isValidField('idCardTemplate') }">
+                    <label class="col-form-label clr-blue" for="idCardTemplate" i18n>ID Card Template</label>
+                    <input type="text" id="idCardTemplate" class="form-control" formControlName="idCardTemplate"/>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('idCardTemplate')">
+                        {{ formValidation.errorMessage('idCardTemplate') }}
+                    </small>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <!-- Textbox with label of Oder Type -->
+
+                <div class="col-md-4">
+                    <label class="required-field-label clr-blue" for="orderType" i18n>Order Type</label>
+                    <div class="selectContainer "
+                         [ngClass]="{'required-field': formValidation.isValidField('orderType') }">
+                        <select class="form-control" id="orderType" #level name="orderType" formControlName="orderType">
+                            <option [value]="level.dddwDtlPrimaryKey.dataVal"
+                                    *ngFor="let level of orderTypeDropdown; let i = index"
+                                    [selected]="!idCardPrintForm.value.level? (level.dddwDtlPrimaryKey.displayVal === 'All'):
+                         (level.dddwDtlPrimaryKey.dataVal === idCardPrintForm.value.level) ">
+                                {{level.dddwDtlPrimaryKey.displayVal}}
+                            </option>
+                        </select>
+                    </div>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('orderType')">
+                        {{ formValidation.errorMessage('orderType') }}
+                    </small>
+                </div>
+
+                <!-- Textbox with label of Narrative -->
+                <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('narrative') }">
+                    <label class="col-form-label" for="narrative" i18n>Narrative</label>
+                    <input type="text" id="narrative" class="form-control" formControlName="narrative"/>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('narrative')">
+                        {{ formValidation.errorMessage('narrative') }}
+                    </small>
+                </div>
+
+            </div>
+
+            <div class="form-group row">
+                <!-- Textbox with label of Effective Date From -->
+                <div class="col-md-4">
+                    <app-datepicker [formGroup]="idCardPrintForm" [formValidation]="formValidation"
+                                    [disabled]="effDateDisabled"
+                                    [field]="'effectiveDateFrom'" [labelText]="'Effective Date From'"></app-datepicker>
+                </div>
+
+                <!-- Textbox with label of Effective Date Through -->
+                <div class="col-md-4">
+                    <app-datepicker [formGroup]="idCardPrintForm" [formValidation]="formValidation"
+                                    [field]="'effectiveDateThrough'"
+                                    [disabled]="thruDateDisabled"
+                                    [labelText]="'Effective Date Through'"></app-datepicker>
+                </div>
+
+            </div>
+
+            <div class="form-group row mt-3">
+                <label class="label-broken col-md-4 text-primary text-right">
+                    <span>
+                        <b><i>Include Cards by</i></b>
+                    </span>
+                </label>
+                <label class="col-md-8 label-broken"><span></span></label>
+            </div>
+
+            <div class="form-group row">
+                <!-- Textbox with label of Group -->
+                <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('group') }">
+                    <label class="col-form-label" for="group" i18n>Group</label>
+                    <input type="text" id="group" class="form-control text-primary" formControlName="group"/>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('group')">
+                        {{ formValidation.errorMessage('group') }}
+                    </small>
+                </div>
+
+                <!-- Textbox with label of IPA -->
+                <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('ipa') }">
+                    <label class="col-form-label" for="ipa" i18n>IPA</label>
+                    <input type="text" id="ipa" class="form-control text-primary" formControlName="ipa"/>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('ipa')">
+                        {{ formValidation.errorMessage('ipa') }}
+                    </small>
+                </div>
+
+                <!-- Textbox with label of LOB -->
+                <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('lob') }">
+                    <label class="col-form-label" for="lob" i18n>LOB</label>
+                    <input type="text" id="lob" class="form-control text-primary" formControlName="lob"/>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('lob')">
+                        {{ formValidation.errorMessage('lob') }}
+                    </small>
+                </div>
+
+                <!-- Textbox with label of Plan -->
+                <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('plan') }">
+                    <label class="col-form-label" for="plan" i18n>Plan</label>
+                    <input type="text" id="plan" class="form-control text-primary" formControlName="plan"/>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('plan')">
+                        {{ formValidation.errorMessage('plan') }}
+                    </small>
+                </div>
+
+                <!-- Textbox with label of Panel -->
+                <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('panel') }">
+                    <label class="col-form-label" for="panel" i18n>Panel</label>
+                    <input type="text" id="panel" class="form-control text-primary" formControlName="panel"/>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('panel')">
+                        {{ formValidation.errorMessage('panel') }}
+                    </small>
+                </div>
+
+            </div>
+
+            <div class="form-group row mt-3">
+                <label class="label-broken col-md-4 text-primary text-right">
+                    <span>
+                        <b><i>next action by</i></b>
+                    </span>
+                </label>
+                <label class="col-md-8 label-broken"><span></span></label>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-md-2 clr-blue">
+                    Action:
+                </div>
+                <!-- RadioButtonGroup with label of Action -->
+                <div class="col-md-2" [ngClass]="{'has-error': displayMessage.action }">
+                    <input id="run001" type="radio" value="r" name="action" formControlName="action"/>
+                    <label class="ml-1 col-form-label" for="run001" i18n>Run</label>
+
+                </div>
+
+                <!-- RadioButton with label of Post -->
+                <div class="col-md-2" [ngClass]="{'has-error': displayMessage.post }">
+                    <input id="post" type="radio" value="p" formControlName="action" name="action"/>
+                    <label class="ml-1 col-form-label" for="post" i18n>Post</label>
+                </div>
+
+                <!-- RadioButton with label of Cancel -->
+                <div class="col-md-2" [ngClass]="{'has-error': displayMessage.cancel }">
+                    <input id="cancel" type="radio" value="c" formControlName="action" name="action"/>
+                    <label class="ml-1 col-form-label" for="cancel" i18n>Cancel</label>
+                </div>
+
+            </div>
+
+            <div class="form-group row">
+                <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('statusLbpos') }">
+                    <label class="col-form-label" for="statusLbpos" i18n>Status: </label>
+                    <input type="text" id="statusLbpos" class="form-control text-primary" formControlName="statusLbpos" disabled/>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('statusLbpos')">
+                        {{ formValidation.errorMessage('statusLbpos') }}
+                    </small>
+                </div>
+            </div>
+
+            <div class="form-group row mt-3">
+                <label class="label-broken col-md-4 text-primary text-right">
+                    <span>
+                        <b><i>run options:</i></b>
+                    </span>
+                </label>
+                <label class="col-md-8 label-broken"><span></span></label>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-md-2 clr-blue">
+                    Request Type:
+                </div>
+                <!-- RadioButtonGroup with label of Action -->
+                <div class="col-md-2" [ngClass]="{'has-error': displayMessage.requestType }">
+                    <input id="immediate001" type="radio" name="requestType"
+                           value="I" formControlName="requestType"/>
+                    <label class="col-form-label ml-1" for="immediate001" i18n>Immediate</label>
+                </div>
+
+                <!-- RadioButton with label of Post -->
+                <div class="col-md-2" [ngClass]="{'has-error': displayMessage.requestType }">
+                    <input id="deffered" type="radio" name="requestType" formControlName="requestType" value="D"/>
+                    <label class="col-form-label ml-1" for="deffered" i18n>Deffered</label>
+
+                </div>
+
+            </div>
+            <div class="form-group row">
+                <!-- Checkbox with label of Reprint Request -->
+                <label class="col-md-2">
+                    Request Reprint
+                </label>
+                <div class="col-md print-request-checkbox" [ngClass]="{'has-error': displayMessage.reprintRequest }">
+                    <div class="print-request-checkbox">
+                        <input id="reprintRequest" value="r" formControlName="reprintRequest"
+                               type="checkbox">
+                    </div>
+                    <span class="help-block" *ngIf="displayMessage.reprintRequest">
+                        {{ displayMessage.reprintRequest  }}
+                     </span>
+                </div>
+
+            </div>
+
+            <div class="form-group row">
+                <div class="col-md-8" [ngClass]="{'has-danger': formValidation.isValidField('comments') }">
+                    <label class="col-form-label" for="comments" i18n>Comments</label>
+                    <input type="text" id="comments" class="form-control" formControlName="comments"/>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('comments')">
+                        {{ formValidation.errorMessage('comments') }}
+                    </small>
+                </div>
+            </div>
+
+        </form>
+
+
+    </div>
+</div>
+
+<ng-keyboard-shortcuts [shortcuts]="shortcuts"></ng-keyboard-shortcuts>
+<ng-keyboard-shortcuts-help [key]="'f2'" [closeKey]="'escape'" [title]="'Hotkeys Help'"></ng-keyboard-shortcuts-help>

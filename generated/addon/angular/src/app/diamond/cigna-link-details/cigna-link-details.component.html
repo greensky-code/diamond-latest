@@ -1,0 +1,45 @@
+<!-- Copyright (c) 2021 . All Rights Reserved. -->
+<div class="container-fluid">
+    <div class="card-block">
+        <form [formGroup]="cignaLinkDetailsForm" novalidate>
+            <h2 class="form-title card-label-admin">Cigna Link Details</h2>
+            <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+            <app-pop-up-message #popUpMesssage (buttonclickEvent)="popUpButtonHandler($event)"  [(popupMessage)] = "popUpMessage"></app-pop-up-message>
+                        
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+                <!-- DynamicText with label of Group Number -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('groupNumber') }">
+                     <label class="col-form-label" for="groupNumber" i18n>Group Number</label>
+                     <input type="text"  [fieldLevelSec]="''" params]=""  readonly id="groupNumber" formControlName="groupNumber" class="form-control"/>
+                 </div>
+            
+                <!-- DynamicText with label of Group Name -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('groupName') }">
+                     <label class="col-form-label" for="groupName" i18n>Group Name</label>
+                     <input type="text"  [fieldLevelSec]="''" params]=""  readonly id="groupName" formControlName="groupName" class="form-control"/>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+            </div>
+            
+                        <!-- DataGrid with Name of DataGrid -->
+                    <button (click)="dataGridGridOptionsExportCsv()">Export</button>
+                    <ag-grid-angular #agGrid class="ag-theme-fresh" [gridOptions]="dataGridGridOptions"
+                    style="width: 100%; height: 300px;"
+                    [enableSorting]="true"
+                    [enableFilter]="true"
+                    [floatingFilter]="true"
+                    [pagination]="true"
+                    [showToolPanel]="true">
+                    </ag-grid-angular>
+            
+            <div class="form-group row">
+            </div>
+        </form>
+    </div>
+</div>

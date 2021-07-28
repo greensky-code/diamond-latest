@@ -1,0 +1,637 @@
+<!-- Copyright (c) 2020 . All Rights Reserved. -->
+<div class="container-fluid">
+    <div class="card-block">
+        <form [formGroup]="benefitPackageUserFieldsForm" novalidate>
+            <h2 class="form-title card-label-admin">Benefit Package User Fields</h2>
+            <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+            <app-pop-up-message #popUpMesssage (buttonclickEvent)="popUpButtonHandler($event)"  [(popupMessage)] = "popUpMessage"></app-pop-up-message>
+                        
+            <div class="form-group row">
+                <!-- DropdownList with label of WomPrev 8/2012 -->
+                <div class="selectContainer col-md-2 " [ngClass]="{'has-danger': formValidation.isValidField('womprev82012') }">
+                    <label class="col-form-label" for="womprev82012" i18n>WomPrev 8/2012</label>
+                    <select class="form-control" id="womprev_8/2012" name="WomPrev 8/2012" formControlName="womprev82012">
+                        <option value="">Please Select</option>
+                    </select>
+                </div>
+            
+                <!-- Textbox with label of WoPV Eff Dt -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('wopvEffDt') }">
+                     <label class="col-form-label" for="wopvEffDt" i18n>WoPV Eff Dt</label>
+                     <div class="input-group">
+                    <input id="wopvEffDt" class="form-control" angular-mydatepicker name="wopvEffDt" (click)="wopvEffDtId.toggleCalendar()"
+                    formControlName="wopvEffDt"[options]="datePickerConfig" #wopvEffDtId="angular-mydatepicker"/>
+                    <div class="input-group-append">
+                        <button type="button" class="btn btn-secondary" (click)="wopvEffDtId.clearDate()">
+                          <i class="fa fa-close"></i>
+                        </button>
+                      </div>
+                      <div class="input-group-append">
+                        <button type="button" class="btn btn-secondary" (click)="wopvEffDtId.toggleCalendar()">
+                          <i class="fa fa-calendar-o"></i>
+                        </button>
+                      </div>
+                    </div>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('wopvEffDt')">
+                      {{ formValidation.errorMessage('wopvEffDt') }}
+                     </small>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <div class="col-md-2 form-control-static mb-0" i18n>
+                    CLME Network
+                </div>
+            
+                <!-- Textbox with Name of Textbox -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('textbox') }">
+                     <label class="col-form-label" for="textbox" i18n>&nbsp;</label>
+                     <input type="text" id="textbox"  class="form-control" formControlName="textbox"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('textbox')">
+                      {{ formValidation.errorMessage('textbox') }}
+                     </small>
+                 </div>
+            
+                <!-- Textbox with label of CLME Eff Dt -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('clmeEffDt') }">
+                     <label class="col-form-label" for="clmeEffDt" i18n>CLME Eff Dt</label>
+                     <div class="input-group">
+                    <input id="clmeEffDt" class="form-control" angular-mydatepicker name="clmeEffDt" (click)="clmeEffDtId.toggleCalendar()"
+                    formControlName="clmeEffDt"[options]="datePickerConfig" #clmeEffDtId="angular-mydatepicker"/>
+                    <div class="input-group-append">
+                        <button type="button" class="btn btn-secondary" (click)="clmeEffDtId.clearDate()">
+                          <i class="fa fa-close"></i>
+                        </button>
+                      </div>
+                      <div class="input-group-append">
+                        <button type="button" class="btn btn-secondary" (click)="clmeEffDtId.toggleCalendar()">
+                          <i class="fa fa-calendar-o"></i>
+                        </button>
+                      </div>
+                    </div>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('clmeEffDt')">
+                      {{ formValidation.errorMessage('clmeEffDt') }}
+                     </small>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of User Defined 5 -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('userDefined5') }">
+                     <label class="col-form-label" for="userDefined5" i18n>User Defined 5</label>
+                     <input type="text" id="userDefined5"  class="form-control" formControlName="userDefined5"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('userDefined5')">
+                      {{ formValidation.errorMessage('userDefined5') }}
+                     </small>
+                 </div>
+            
+                <!-- Textbox with label of CLME TEM Dt -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('clmeTemDt') }">
+                     <label class="col-form-label" for="clmeTemDt" i18n>CLME TEM Dt</label>
+                     <div class="input-group">
+                    <input id="clmeTemDt" class="form-control" angular-mydatepicker name="clmeTemDt" (click)="clmeTemDtId.toggleCalendar()"
+                    formControlName="clmeTemDt"[options]="datePickerConfig" #clmeTemDtId="angular-mydatepicker"/>
+                    <div class="input-group-append">
+                        <button type="button" class="btn btn-secondary" (click)="clmeTemDtId.clearDate()">
+                          <i class="fa fa-close"></i>
+                        </button>
+                      </div>
+                      <div class="input-group-append">
+                        <button type="button" class="btn btn-secondary" (click)="clmeTemDtId.toggleCalendar()">
+                          <i class="fa fa-calendar-o"></i>
+                        </button>
+                      </div>
+                    </div>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('clmeTemDt')">
+                      {{ formValidation.errorMessage('clmeTemDt') }}
+                     </small>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of User Defined 6 -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('userDefined6') }">
+                     <label class="col-form-label" for="userDefined6" i18n>User Defined 6</label>
+                     <input type="text" id="userDefined6"  class="form-control" formControlName="userDefined6"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('userDefined6')">
+                      {{ formValidation.errorMessage('userDefined6') }}
+                     </small>
+                 </div>
+            
+                <!-- Textbox with label of User Date 6 -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('userDate6') }">
+                     <label class="col-form-label" for="userDate6" i18n>User Date 6</label>
+                     <div class="input-group">
+                    <input id="userDate6" class="form-control" angular-mydatepicker name="userDate6" (click)="userDate6Id.toggleCalendar()"
+                    formControlName="userDate6"[options]="datePickerConfig" #userDate6Id="angular-mydatepicker"/>
+                    <div class="input-group-append">
+                        <button type="button" class="btn btn-secondary" (click)="userDate6Id.clearDate()">
+                          <i class="fa fa-close"></i>
+                        </button>
+                      </div>
+                      <div class="input-group-append">
+                        <button type="button" class="btn btn-secondary" (click)="userDate6Id.toggleCalendar()">
+                          <i class="fa fa-calendar-o"></i>
+                        </button>
+                      </div>
+                    </div>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('userDate6')">
+                      {{ formValidation.errorMessage('userDate6') }}
+                     </small>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of User Defined 7 -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('userDefined7') }">
+                     <label class="col-form-label" for="userDefined7" i18n>User Defined 7</label>
+                     <input type="text" id="userDefined7"  class="form-control" formControlName="userDefined7"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('userDefined7')">
+                      {{ formValidation.errorMessage('userDefined7') }}
+                     </small>
+                 </div>
+            
+                <!-- Textbox with label of User Date 7 -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('userDate7') }">
+                     <label class="col-form-label" for="userDate7" i18n>User Date 7</label>
+                     <div class="input-group">
+                    <input id="userDate7" class="form-control" angular-mydatepicker name="userDate7" (click)="userDate7Id.toggleCalendar()"
+                    formControlName="userDate7"[options]="datePickerConfig" #userDate7Id="angular-mydatepicker"/>
+                    <div class="input-group-append">
+                        <button type="button" class="btn btn-secondary" (click)="userDate7Id.clearDate()">
+                          <i class="fa fa-close"></i>
+                        </button>
+                      </div>
+                      <div class="input-group-append">
+                        <button type="button" class="btn btn-secondary" (click)="userDate7Id.toggleCalendar()">
+                          <i class="fa fa-calendar-o"></i>
+                        </button>
+                      </div>
+                    </div>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('userDate7')">
+                      {{ formValidation.errorMessage('userDate7') }}
+                     </small>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of User Defined 8 -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('userDefined8') }">
+                     <label class="col-form-label" for="userDefined8" i18n>User Defined 8</label>
+                     <input type="text" id="userDefined8"  class="form-control" formControlName="userDefined8"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('userDefined8')">
+                      {{ formValidation.errorMessage('userDefined8') }}
+                     </small>
+                 </div>
+            
+                <!-- Textbox with label of User Date 8 -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('userDate8') }">
+                     <label class="col-form-label" for="userDate8" i18n>User Date 8</label>
+                     <div class="input-group">
+                    <input id="userDate8" class="form-control" angular-mydatepicker name="userDate8" (click)="userDate8Id.toggleCalendar()"
+                    formControlName="userDate8"[options]="datePickerConfig" #userDate8Id="angular-mydatepicker"/>
+                    <div class="input-group-append">
+                        <button type="button" class="btn btn-secondary" (click)="userDate8Id.clearDate()">
+                          <i class="fa fa-close"></i>
+                        </button>
+                      </div>
+                      <div class="input-group-append">
+                        <button type="button" class="btn btn-secondary" (click)="userDate8Id.toggleCalendar()">
+                          <i class="fa fa-calendar-o"></i>
+                        </button>
+                      </div>
+                    </div>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('userDate8')">
+                      {{ formValidation.errorMessage('userDate8') }}
+                     </small>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of User Defined 9 -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('userDefined9') }">
+                     <label class="col-form-label" for="userDefined9" i18n>User Defined 9</label>
+                     <input type="text" id="userDefined9"  class="form-control" formControlName="userDefined9"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('userDefined9')">
+                      {{ formValidation.errorMessage('userDefined9') }}
+                     </small>
+                 </div>
+            
+                <!-- Textbox with label of User Date 9 -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('userDate9') }">
+                     <label class="col-form-label" for="userDate9" i18n>User Date 9</label>
+                     <div class="input-group">
+                    <input id="userDate9" class="form-control" angular-mydatepicker name="userDate9" (click)="userDate9Id.toggleCalendar()"
+                    formControlName="userDate9"[options]="datePickerConfig" #userDate9Id="angular-mydatepicker"/>
+                    <div class="input-group-append">
+                        <button type="button" class="btn btn-secondary" (click)="userDate9Id.clearDate()">
+                          <i class="fa fa-close"></i>
+                        </button>
+                      </div>
+                      <div class="input-group-append">
+                        <button type="button" class="btn btn-secondary" (click)="userDate9Id.toggleCalendar()">
+                          <i class="fa fa-calendar-o"></i>
+                        </button>
+                      </div>
+                    </div>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('userDate9')">
+                      {{ formValidation.errorMessage('userDate9') }}
+                     </small>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of User Defined 10 -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('userDefined10') }">
+                     <label class="col-form-label" for="userDefined10" i18n>User Defined 10</label>
+                     <input type="text" id="userDefined10"  class="form-control" formControlName="userDefined10"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('userDefined10')">
+                      {{ formValidation.errorMessage('userDefined10') }}
+                     </small>
+                 </div>
+            
+                <!-- Textbox with label of User Date 10 -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('userDate10') }">
+                     <label class="col-form-label" for="userDate10" i18n>User Date 10</label>
+                     <div class="input-group">
+                    <input id="userDate10" class="form-control" angular-mydatepicker name="userDate10" (click)="userDate10Id.toggleCalendar()"
+                    formControlName="userDate10"[options]="datePickerConfig" #userDate10Id="angular-mydatepicker"/>
+                    <div class="input-group-append">
+                        <button type="button" class="btn btn-secondary" (click)="userDate10Id.clearDate()">
+                          <i class="fa fa-close"></i>
+                        </button>
+                      </div>
+                      <div class="input-group-append">
+                        <button type="button" class="btn btn-secondary" (click)="userDate10Id.toggleCalendar()">
+                          <i class="fa fa-calendar-o"></i>
+                        </button>
+                      </div>
+                    </div>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('userDate10')">
+                      {{ formValidation.errorMessage('userDate10') }}
+                     </small>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of User Defined 11 -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('userDefined11') }">
+                     <label class="col-form-label" for="userDefined11" i18n>User Defined 11</label>
+                     <input type="text" id="userDefined11"  class="form-control" formControlName="userDefined11"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('userDefined11')">
+                      {{ formValidation.errorMessage('userDefined11') }}
+                     </small>
+                 </div>
+            
+                <!-- Textbox with label of User Date 11 -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('userDate11') }">
+                     <label class="col-form-label" for="userDate11" i18n>User Date 11</label>
+                     <div class="input-group">
+                    <input id="userDate11" class="form-control" angular-mydatepicker name="userDate11" (click)="userDate11Id.toggleCalendar()"
+                    formControlName="userDate11"[options]="datePickerConfig" #userDate11Id="angular-mydatepicker"/>
+                    <div class="input-group-append">
+                        <button type="button" class="btn btn-secondary" (click)="userDate11Id.clearDate()">
+                          <i class="fa fa-close"></i>
+                        </button>
+                      </div>
+                      <div class="input-group-append">
+                        <button type="button" class="btn btn-secondary" (click)="userDate11Id.toggleCalendar()">
+                          <i class="fa fa-calendar-o"></i>
+                        </button>
+                      </div>
+                    </div>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('userDate11')">
+                      {{ formValidation.errorMessage('userDate11') }}
+                     </small>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of User Defined 12 -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('userDefined12') }">
+                     <label class="col-form-label" for="userDefined12" i18n>User Defined 12</label>
+                     <input type="text" id="userDefined12"  class="form-control" formControlName="userDefined12"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('userDefined12')">
+                      {{ formValidation.errorMessage('userDefined12') }}
+                     </small>
+                 </div>
+            
+                <!-- Textbox with label of User Date 12 -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('userDate12') }">
+                     <label class="col-form-label" for="userDate12" i18n>User Date 12</label>
+                     <div class="input-group">
+                    <input id="userDate12" class="form-control" angular-mydatepicker name="userDate12" (click)="userDate12Id.toggleCalendar()"
+                    formControlName="userDate12"[options]="datePickerConfig" #userDate12Id="angular-mydatepicker"/>
+                    <div class="input-group-append">
+                        <button type="button" class="btn btn-secondary" (click)="userDate12Id.clearDate()">
+                          <i class="fa fa-close"></i>
+                        </button>
+                      </div>
+                      <div class="input-group-append">
+                        <button type="button" class="btn btn-secondary" (click)="userDate12Id.toggleCalendar()">
+                          <i class="fa fa-calendar-o"></i>
+                        </button>
+                      </div>
+                    </div>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('userDate12')">
+                      {{ formValidation.errorMessage('userDate12') }}
+                     </small>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of User Defined 13 -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('userDefined13') }">
+                     <label class="col-form-label" for="userDefined13" i18n>User Defined 13</label>
+                     <input type="text" id="userDefined13"  class="form-control" formControlName="userDefined13"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('userDefined13')">
+                      {{ formValidation.errorMessage('userDefined13') }}
+                     </small>
+                 </div>
+            
+                <!-- Textbox with label of User Date 13 -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('userDate13') }">
+                     <label class="col-form-label" for="userDate13" i18n>User Date 13</label>
+                     <div class="input-group">
+                    <input id="userDate13" class="form-control" angular-mydatepicker name="userDate13" (click)="userDate13Id.toggleCalendar()"
+                    formControlName="userDate13"[options]="datePickerConfig" #userDate13Id="angular-mydatepicker"/>
+                    <div class="input-group-append">
+                        <button type="button" class="btn btn-secondary" (click)="userDate13Id.clearDate()">
+                          <i class="fa fa-close"></i>
+                        </button>
+                      </div>
+                      <div class="input-group-append">
+                        <button type="button" class="btn btn-secondary" (click)="userDate13Id.toggleCalendar()">
+                          <i class="fa fa-calendar-o"></i>
+                        </button>
+                      </div>
+                    </div>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('userDate13')">
+                      {{ formValidation.errorMessage('userDate13') }}
+                     </small>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of User Defined 14 -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('userDefined14') }">
+                     <label class="col-form-label" for="userDefined14" i18n>User Defined 14</label>
+                     <input type="text" id="userDefined14"  class="form-control" formControlName="userDefined14"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('userDefined14')">
+                      {{ formValidation.errorMessage('userDefined14') }}
+                     </small>
+                 </div>
+            
+                <!-- Textbox with label of User Date 14 -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('userDate14') }">
+                     <label class="col-form-label" for="userDate14" i18n>User Date 14</label>
+                     <div class="input-group">
+                    <input id="userDate14" class="form-control" angular-mydatepicker name="userDate14" (click)="userDate14Id.toggleCalendar()"
+                    formControlName="userDate14"[options]="datePickerConfig" #userDate14Id="angular-mydatepicker"/>
+                    <div class="input-group-append">
+                        <button type="button" class="btn btn-secondary" (click)="userDate14Id.clearDate()">
+                          <i class="fa fa-close"></i>
+                        </button>
+                      </div>
+                      <div class="input-group-append">
+                        <button type="button" class="btn btn-secondary" (click)="userDate14Id.toggleCalendar()">
+                          <i class="fa fa-calendar-o"></i>
+                        </button>
+                      </div>
+                    </div>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('userDate14')">
+                      {{ formValidation.errorMessage('userDate14') }}
+                     </small>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of User Defined 15 -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('userDefined15') }">
+                     <label class="col-form-label" for="userDefined15" i18n>User Defined 15</label>
+                     <input type="text" id="userDefined15"  class="form-control" formControlName="userDefined15"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('userDefined15')">
+                      {{ formValidation.errorMessage('userDefined15') }}
+                     </small>
+                 </div>
+            
+                <!-- Textbox with label of User Date 15 -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('userDate15') }">
+                     <label class="col-form-label" for="userDate15" i18n>User Date 15</label>
+                     <div class="input-group">
+                    <input id="userDate15" class="form-control" angular-mydatepicker name="userDate15" (click)="userDate15Id.toggleCalendar()"
+                    formControlName="userDate15"[options]="datePickerConfig" #userDate15Id="angular-mydatepicker"/>
+                    <div class="input-group-append">
+                        <button type="button" class="btn btn-secondary" (click)="userDate15Id.clearDate()">
+                          <i class="fa fa-close"></i>
+                        </button>
+                      </div>
+                      <div class="input-group-append">
+                        <button type="button" class="btn btn-secondary" (click)="userDate15Id.toggleCalendar()">
+                          <i class="fa fa-calendar-o"></i>
+                        </button>
+                      </div>
+                    </div>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('userDate15')">
+                      {{ formValidation.errorMessage('userDate15') }}
+                     </small>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of User Defined 16 -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('userDefined16') }">
+                     <label class="col-form-label" for="userDefined16" i18n>User Defined 16</label>
+                     <input type="text" id="userDefined16"  class="form-control" formControlName="userDefined16"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('userDefined16')">
+                      {{ formValidation.errorMessage('userDefined16') }}
+                     </small>
+                 </div>
+            
+                <!-- Textbox with label of User Date 16 -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('userDate16') }">
+                     <label class="col-form-label" for="userDate16" i18n>User Date 16</label>
+                     <div class="input-group">
+                    <input id="userDate16" class="form-control" angular-mydatepicker name="userDate16" (click)="userDate16Id.toggleCalendar()"
+                    formControlName="userDate16"[options]="datePickerConfig" #userDate16Id="angular-mydatepicker"/>
+                    <div class="input-group-append">
+                        <button type="button" class="btn btn-secondary" (click)="userDate16Id.clearDate()">
+                          <i class="fa fa-close"></i>
+                        </button>
+                      </div>
+                      <div class="input-group-append">
+                        <button type="button" class="btn btn-secondary" (click)="userDate16Id.toggleCalendar()">
+                          <i class="fa fa-calendar-o"></i>
+                        </button>
+                      </div>
+                    </div>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('userDate16')">
+                      {{ formValidation.errorMessage('userDate16') }}
+                     </small>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of User Defined 17 -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('userDefined17') }">
+                     <label class="col-form-label" for="userDefined17" i18n>User Defined 17</label>
+                     <input type="text" id="userDefined17"  class="form-control" formControlName="userDefined17"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('userDefined17')">
+                      {{ formValidation.errorMessage('userDefined17') }}
+                     </small>
+                 </div>
+            
+                <!-- Textbox with label of User Date 17 -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('userDate17') }">
+                     <label class="col-form-label" for="userDate17" i18n>User Date 17</label>
+                     <div class="input-group">
+                    <input id="userDate17" class="form-control" angular-mydatepicker name="userDate17" (click)="userDate17Id.toggleCalendar()"
+                    formControlName="userDate17"[options]="datePickerConfig" #userDate17Id="angular-mydatepicker"/>
+                    <div class="input-group-append">
+                        <button type="button" class="btn btn-secondary" (click)="userDate17Id.clearDate()">
+                          <i class="fa fa-close"></i>
+                        </button>
+                      </div>
+                      <div class="input-group-append">
+                        <button type="button" class="btn btn-secondary" (click)="userDate17Id.toggleCalendar()">
+                          <i class="fa fa-calendar-o"></i>
+                        </button>
+                      </div>
+                    </div>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('userDate17')">
+                      {{ formValidation.errorMessage('userDate17') }}
+                     </small>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of User Defined 18 -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('userDefined18') }">
+                     <label class="col-form-label" for="userDefined18" i18n>User Defined 18</label>
+                     <input type="text" id="userDefined18"  class="form-control" formControlName="userDefined18"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('userDefined18')">
+                      {{ formValidation.errorMessage('userDefined18') }}
+                     </small>
+                 </div>
+            
+                <!-- Textbox with label of User Date 18 -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('userDate18') }">
+                     <label class="col-form-label" for="userDate18" i18n>User Date 18</label>
+                     <div class="input-group">
+                    <input id="userDate18" class="form-control" angular-mydatepicker name="userDate18" (click)="userDate18Id.toggleCalendar()"
+                    formControlName="userDate18"[options]="datePickerConfig" #userDate18Id="angular-mydatepicker"/>
+                    <div class="input-group-append">
+                        <button type="button" class="btn btn-secondary" (click)="userDate18Id.clearDate()">
+                          <i class="fa fa-close"></i>
+                        </button>
+                      </div>
+                      <div class="input-group-append">
+                        <button type="button" class="btn btn-secondary" (click)="userDate18Id.toggleCalendar()">
+                          <i class="fa fa-calendar-o"></i>
+                        </button>
+                      </div>
+                    </div>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('userDate18')">
+                      {{ formValidation.errorMessage('userDate18') }}
+                     </small>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of User Defined 19 -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('userDefined19') }">
+                     <label class="col-form-label" for="userDefined19" i18n>User Defined 19</label>
+                     <input type="text" id="userDefined19"  class="form-control" formControlName="userDefined19"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('userDefined19')">
+                      {{ formValidation.errorMessage('userDefined19') }}
+                     </small>
+                 </div>
+            
+                <!-- Textbox with label of User Date 19 -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('userDate19') }">
+                     <label class="col-form-label" for="userDate19" i18n>User Date 19</label>
+                     <div class="input-group">
+                    <input id="userDate19" class="form-control" angular-mydatepicker name="userDate19" (click)="userDate19Id.toggleCalendar()"
+                    formControlName="userDate19"[options]="datePickerConfig" #userDate19Id="angular-mydatepicker"/>
+                    <div class="input-group-append">
+                        <button type="button" class="btn btn-secondary" (click)="userDate19Id.clearDate()">
+                          <i class="fa fa-close"></i>
+                        </button>
+                      </div>
+                      <div class="input-group-append">
+                        <button type="button" class="btn btn-secondary" (click)="userDate19Id.toggleCalendar()">
+                          <i class="fa fa-calendar-o"></i>
+                        </button>
+                      </div>
+                    </div>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('userDate19')">
+                      {{ formValidation.errorMessage('userDate19') }}
+                     </small>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of User Defined 20 -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('userDefined20') }">
+                     <label class="col-form-label" for="userDefined20" i18n>User Defined 20</label>
+                     <input type="text" id="userDefined20"  class="form-control" formControlName="userDefined20"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('userDefined20')">
+                      {{ formValidation.errorMessage('userDefined20') }}
+                     </small>
+                 </div>
+            
+                <!-- Textbox with label of User Date 20 -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('userDate20') }">
+                     <label class="col-form-label" for="userDate20" i18n>User Date 20</label>
+                     <div class="input-group">
+                    <input id="userDate20" class="form-control" angular-mydatepicker name="userDate20" (click)="userDate20Id.toggleCalendar()"
+                    formControlName="userDate20"[options]="datePickerConfig" #userDate20Id="angular-mydatepicker"/>
+                    <div class="input-group-append">
+                        <button type="button" class="btn btn-secondary" (click)="userDate20Id.clearDate()">
+                          <i class="fa fa-close"></i>
+                        </button>
+                      </div>
+                      <div class="input-group-append">
+                        <button type="button" class="btn btn-secondary" (click)="userDate20Id.toggleCalendar()">
+                          <i class="fa fa-calendar-o"></i>
+                        </button>
+                      </div>
+                    </div>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('userDate20')">
+                      {{ formValidation.errorMessage('userDate20') }}
+                     </small>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+            </div>
+        </form>
+    </div>
+</div>

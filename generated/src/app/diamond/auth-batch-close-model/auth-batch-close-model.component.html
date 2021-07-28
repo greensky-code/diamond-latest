@@ -1,0 +1,111 @@
+<!-- Copyright (c) 2021 . All Rights Reserved. -->
+<div class="container-fluid">
+    <div class="card-block">
+        <form [formGroup]="authBatchCloseModelForm" novalidate>
+            <h2 class="form-title card-label-admin">Auth Batch Close Model</h2>
+            <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+            <app-pop-up-message #popUpMesssage (buttonclickEvent)="popUpButtonHandler($event)"  [(popupMessage)] = "popUpMessage"></app-pop-up-message>
+                        
+            <div class="form-group row">
+            </div>
+            
+                        <!-- DataGrid with Name of DataGrid001 -->
+                    <button (click)="dataGrid001GridOptionsExportCsv()">Export</button>
+                    <ag-grid-angular #agGrid class="ag-theme-fresh" [gridOptions]="dataGrid001GridOptions"
+                    style="width: 100%; height: 300px;"
+                    [enableSorting]="true"
+                    [enableFilter]="true"
+                    [floatingFilter]="true"
+                    [pagination]="true"
+                    [showToolPanel]="true">
+                    </ag-grid-angular>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+                <!-- DynamicText with label of Auth Close Model ID -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('authCloseModelId') }">
+                     <label class="col-form-label" for="authCloseModelId" i18n>Auth Close Model ID</label>
+                     <input type="text"  [fieldLevelSec]="''" params]=""  readonly id="authCloseModelId" formControlName="authCloseModelId" class="form-control"/>
+                 </div>
+            
+                <!-- Textbox with label of Description -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('description') }">
+                     <label class="col-form-label" for="description" i18n>Description</label>
+                     <input type="text" id="description"  [fieldLevelSec]="''" params]=""   class="form-control" formControlName="description"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('description')">
+                      {{ formValidation.errorMessage('description') }}
+                     </small>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+                <div class="col-md-2 form-control-static mb-0" i18n>
+                    Include Auths By
+                </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- DynamicText with label of Overall Auth Status -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('overallAuthStatus') }">
+                     <label class="col-form-label" for="overallAuthStatus" i18n>Overall Auth Status</label>
+                     <input type="text"  [fieldLevelSec]="''" params]=""  readonly id="overallAuthStatus" formControlName="overallAuthStatus" class="form-control"/>
+                 </div>
+            
+                <!-- DynamicText with label of Line of Bus -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('lineOfBus') }">
+                     <label class="col-form-label" for="lineOfBus" i18n>Line of Bus</label>
+                     <input type="text"  [fieldLevelSec]="''" params]=""  readonly id="lineOfBus" formControlName="lineOfBus" class="form-control"/>
+                 </div>
+            
+                <!-- DynamicText with label of Auth Type -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('authType') }">
+                     <label class="col-form-label" for="authType" i18n>Auth Type</label>
+                     <input type="text"  [fieldLevelSec]="''" params]=""  readonly id="authType" formControlName="authType" class="form-control"/>
+                 </div>
+            
+                <!-- DynamicText with label of Procedure -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('procedure') }">
+                     <label class="col-form-label" for="procedure" i18n>Procedure</label>
+                     <input type="text"  [fieldLevelSec]="''" params]=""  readonly id="procedure" formControlName="procedure" class="form-control"/>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+            </div>
+            
+                        <!-- DataGrid with Name of DataGrid002 -->
+                    <button (click)="dataGrid002GridOptionsExportCsv()">Export</button>
+                    <ag-grid-angular #agGrid class="ag-theme-fresh" [gridOptions]="dataGrid002GridOptions"
+                    style="width: 100%; height: 300px;"
+                    [enableSorting]="true"
+                    [enableFilter]="true"
+                    [floatingFilter]="true"
+                    [pagination]="true"
+                    [showToolPanel]="true">
+                    </ag-grid-angular>
+            
+            <div class="form-group row">
+            </div>
+        </form>
+    </div>
+</div>

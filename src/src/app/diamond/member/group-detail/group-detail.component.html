@@ -1,0 +1,585 @@
+<!-- Copyright (c) 2020 . All Rights Reserved. -->
+<div class="container-fluid">
+    <div class="card-block">
+        <form [formGroup]="groupDetailIdForm" novalidate>
+            <div class="modal-header">
+                <note-priority-header-display title="Group Detail" [seqSourceId]="seqSourceId"
+                                              [noteWinId]="windowId"></note-priority-header-display>
+                <button type="button" *ngIf="showIcon" class="modal-close close" aria-label="Close"
+                        (click)="modalClose()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="row">
+                <menu-bar [menus]="menu" (onMenuClick)="onMenuItemClick($event)"></menu-bar>
+            </div>
+            <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+            <app-pop-up-message #popUpMesssage (buttonclickEvent)="popupMessageHandler($event)"
+                                [(popupMessage)]="popUpMessage"></app-pop-up-message>
+
+            <div class="form-group row" style="margin: 10px 0px;">
+                <!-- Textbox with label of Group ID -->
+                <label class=" col-form-label" for="groupId" i18n>Group ID</label>
+                <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('groupId') }">
+
+                    <input type="text" id="groupId" class="form-control" formControlName="groupId"
+                           (keydown)="onLookupFieldChange($event)"/>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('groupId')">
+                        {{ formValidation.errorMessage('groupId') }}
+                    </small>
+                </div>
+                <div class="col-md-4">
+                    <span style="color:blue; vertical-align: middle;" *ngIf="ShortName">{{this.ShortName}}</span>
+                </div>
+            </div>
+        </form>
+
+        <!-- DataGrid with Name of DataGrid -->
+        <!--<button class="button mb-2" (click)="dataGridGridOptionsExportCsv()">Export</button>-->
+        <ag-grid-angular #agGrid class="ag-theme-fresh" [gridOptions]="dataGridGridOptions"
+                         style="width: 100%; height: 300px;" [enableSorting]="true" [enableFilter]="true"
+                         [floatingFilter]="true"
+                         [pagination]="true" [showToolPanel]="true" (selectionChanged)="onSelectionChanged($event)">
+        </ag-grid-angular>
+
+        <form [formGroup]="groupDetailForm" novalidate #fieldForm>
+            <div class="mt-2" *ngIf="showDetForm">
+                <div class="form-group row">
+
+                    <!-- DropdownList with label of RCT Type -->
+
+                    <div class="col-md-3">
+                        <label class="required-field-label" for="rctType" i18n>Rcd Type </label>
+                        <div class="selectContainer"
+                             [ngClass]="{'required-field': formValidation.isValidField('rctType') }">
+
+                            <div class="input-group">
+                                <input type="text" id="rctTypeCode" class="form-control" name="rctTypeCode"
+                                       formControlName="rctTypeCode" *ngIf="!rcTypeStatus" readonly/>
+                                <select id="rctType" class="form-control" name="rctType" #rctType
+                                        formControlName="rctType" (change)="changeRectType($event)"
+                                        *ngIf="rcTypeStatus">
+                                    <option *ngFor="let value of dddwDtls; let i = index"
+                                            [value]="value.dddwDtlPrimaryKey.dataVal">{{value.dddwDtlPrimaryKey.displayVal}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Textbox with label of Plan/Rider -->
+                    <div class="col-md-3">
+                        <label for="planrider" class="clr-blue" i18n>Plan/Rider </label>
+                        <div class="selectContainer "
+                             [ngClass]="{'required-field': formValidation.isValidField('planrider') }">
+                            <select class="form-control" id="planrider" name="planrider" *ngIf="showPlan"
+                                    formControlName="planrider">
+                                <option value="">-Select-</option>
+                                <option *ngFor="let codes of PlanCode"
+                                        [value]="codes.planCode">{{codes.planCode}}&nbsp;&nbsp;{{codes.description}}</option>
+                            </select>
+
+                            <select class="form-control" id="planrider" name="planrider" *ngIf="!showPlan"
+                                    formControlName="planrider">
+                                <option value="">-Select-</option>
+                                <option *ngFor="let rider of riderMasters"
+                                        [value]="rider.riderCode">{{rider.riderCode}}&nbsp;&nbsp;{{rider.description}}</option>
+                            </select>
+
+                        </div>
+                        <small class="text-danger" *ngIf="formValidation.isValidField('planrider')">
+                            {{ formValidation.errorMessage('planrider') }}
+                        </small>
+                    </div>
+
+                    <!-- Textbox with label of EffDate -->
+
+                    <div class="col-md-3">
+                        <app-datepicker [formGroup]="groupDetailForm" [isRequired]="true"
+                                        [formValidation]="formValidation" [field]="'effDate'"
+                                        [labelText]="'Eff Date'"></app-datepicker>
+                    </div>
+
+
+                    <!-- Textbox with label of EndDate -->
+
+                    <div class="col-md-3">
+                        <app-datepicker [formGroup]="groupDetailForm" [formValidation]="formValidation"
+                                        [field]="'endDate'" [labelText]="'EndDate'"></app-datepicker>
+                    </div>
+
+                </div>
+                <!--      Specifications-->
+                <div class="form-group row">
+                    <div class="col-md-12 form-control-static mb-0" i18n>
+                        <h3 class="card-border"><span class="line-center">Specifications</span></h3>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <!-- Textbox with label of PB CompCode -->
+                    <div class="col-md-3">
+                        <!-- <app-datepicker [formGroup]="groupDetailForm" [formValidation]="formValidation" [field]="'pbCompcode'" [labelText]="'PB CompCode'"></app-datepicker> -->
+                        <label for="pbCompcode" i18n class="clr-blue">PB CompCode </label>
+                        <div class="selectContainer "
+                             [ngClass]="{'has-danger': formValidation.isValidField('pbCompcode') }">
+                            <select class="form-control" id="pbCompcode" name="pbCompcode"
+                                    (change)="pbCompCodeKeyEvent($event)"
+                                    formControlName="pbCompcode">
+                                <option value="">-Select-</option>
+                                <option *ngFor="let companyMaster of companyMasters"
+                                        [value]="companyMaster.companyCode">{{companyMaster.companyCode}}
+                                    &nbsp;&nbsp;&nbsp; {{companyMaster.description}}</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Textbox with label of PB GLRef -->
+                    <div class="col-md-3">
+                        <label for="pbGlref" class="clr-blue" i18n>PB GLRef </label>
+                        <div [ngClass]="{'has-danger': formValidation.isValidField('pbGlref') }">
+                            <select class="form-control" id="pbGlref" name="pbGlref"
+                                    formControlName="pbGlref">
+                                <option value="">-Select-</option>
+                                <option *ngFor="let ref of generalRef"
+                                        [value]="ref.generalLedgerReferencePrimaryKey.glRefCode">
+                                    {{ref.generalLedgerReferencePrimaryKey.glRefCode}}&nbsp;{{ref.description ? ref.description : ''}}
+                                </option>
+                            </select>
+                            <small class="text-danger" *ngIf="formValidation.isValidField('pbGlref')">
+                                {{ formValidation.errorMessage('pbGlref') }}
+                            </small>
+                        </div>
+                    </div>
+
+                    <!-- Textbox with label of Benefit Pkg -->
+
+                    <div class="col-md-3">
+                        <label for="benefitPkg" class="clr-blue" i18n>Benefit Pkg </label>
+                        <div [ngClass]="{'has-danger': formValidation.isValidField('benefitPkg') }">
+                            <select class="form-control" id="benefitPkg" name="benefitPkg"
+                                    formControlName="benefitPkg">
+                                <option value="">-Select-</option>
+                                <option *ngFor="let benefitPackageMaster of benefitPackageMasters"
+                                        [value]="benefitPackageMaster.benefitPackageId">
+                                    {{benefitPackageMaster.benefitPackageId}} &nbsp; {{benefitPackageMaster.shortDescription}}
+                                </option>
+                            </select>
+                            <small class="text-danger" *ngIf="formValidation.isValidField('benefitPkg')">
+                                {{ formValidation.errorMessage('benefitPkg') }}
+                            </small>
+                        </div>
+                    </div>
+
+                    <!-- Textbox with label of LOB -->
+
+                    <div class="col-md-3">
+                        <label for="lob" class="clr-blue" i18n>LOB </label>
+                        <div [ngClass]="{'has-danger': formValidation.isValidField('lob') }">
+                            <select class="form-control" id="lob" name="lob"
+                                    formControlName="lob">
+                                <option value="">-Select-</option>
+                                <option *ngFor="let lineOfBusinessMaster of lineOfBusinessMasters"
+                                        [value]="lineOfBusinessMaster.lineOfBusiness">
+                                    {{lineOfBusinessMaster.lineOfBusiness}} &nbsp; {{lineOfBusinessMaster.description}}
+                                </option>
+                            </select>
+                            <small class="text-danger" *ngIf="formValidation.isValidField('lob')">
+                                {{ formValidation.errorMessage('lob') }}
+                            </small>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-md-12 form-control-static mb-0" i18n>
+                        <h3 class="card-border"><span class="line-center">COB Processing</span></h3>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <!-- Textbox with label of Prof COB Calc -->
+
+                    <div class="col-md-4">
+                        <label for="profCobCalc" i18n>Prof COB Calc </label>
+                        <div [ngClass]="{'has-danger': formValidation.isValidField('profCobCalc') }">
+
+                            <select class="form-control" id="profCobCalc" name="profCobCalc"
+                                    formControlName="profCobCalc">
+                                <option value="">-Select-</option>
+                                <option *ngFor="let dddwDtl of dddwDtls2"
+                                        [value]="dddwDtl.dddwDtlPrimaryKey.dataVal">{{dddwDtl.dddwDtlPrimaryKey.displayVal}}</option>
+                            </select>
+
+                            <small class="text-danger" *ngIf="formValidation.isValidField('profCobCalc')">
+                                {{ formValidation.errorMessage('profCobCalc') }}
+                            </small>
+                        </div>
+                    </div>
+
+                    <!-- Textbox with label of Inst COB Calc -->
+
+                    <div class="col-md-4">
+                        <label for="instCobCalc" i18n>Inst COB Calc</label>
+                        <div [ngClass]="{'has-danger': formValidation.isValidField('instCobCalc') }">
+
+                            <select class="form-control" id="instCobCalc" name="instCobCalc"
+                                    formControlName="instCobCalc">
+                                <option value="">-Select-</option>
+                                <option *ngFor="let dddwDtl of dddwDtls2"
+                                        [value]="dddwDtl.dddwDtlPrimaryKey.dataVal">{{dddwDtl.dddwDtlPrimaryKey.displayVal}}</option>
+                            </select>
+
+                            <small class="text-danger" *ngIf="formValidation.isValidField('instCobCalc')">
+                                {{ formValidation.errorMessage('instCobCalc') }}
+                            </small>
+                        </div>
+                    </div>
+
+                    <!-- Textbox with label of Dependent Determination Rule -->
+                    <div class="col-md-4">
+                        <label for="dependentDeterminationRule" i18n>Dependent Determination Rule </label>
+                        <div [ngClass]="{'has-danger': formValidation.isValidField('dependentDeterminationRule') }">
+                            <select class="form-control" id="dependentDeterminationRule"
+                                    name="dependentDeterminationRule" formControlName="dependentDeterminationRule">
+                                <option value="">-Select-</option>
+                                <option *ngFor="let dddwDtl of dddwDtls3"
+                                        [value]="dddwDtl.dddwDtlPrimaryKey.dataVal">{{dddwDtl.dddwDtlPrimaryKey.displayVal}}</option>
+                            </select>
+                            <small class="text-danger"
+                                   *ngIf="formValidation.isValidField('dependentDeterminationRule')">
+                                {{ formValidation.errorMessage('dependentDeterminationRule') }}
+                            </small>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="form-group row">
+                    <!-- Textbox with label of Dentl COB Calc -->
+
+                    <div class="col-md-4">
+                        <label for="dentlCobCalc" i18n>Dentl COB Calc </label>
+                        <div [ngClass]="{'has-danger': formValidation.isValidField('dentlCobCalc') }">
+                            <select class="form-control" id="dentlCobCalc" name="dentlCobCalc"
+                                    formControlName="dentlCobCalc">
+                                <option value="">-Select-</option>
+                                <option *ngFor="let dddwDtl of dddwDtls4"
+                                        [value]="dddwDtl.dddwDtlPrimaryKey.dataVal">{{dddwDtl.dddwDtlPrimaryKey.displayVal}}</option>
+                            </select>
+                            <small class="text-danger" *ngIf="formValidation.isValidField('dentlCobCalc')">
+                                {{ formValidation.errorMessage('dentlCobCalc') }}
+                            </small>
+                        </div>
+                    </div>
+
+                    <!-- Textbox with label of Payment Policy -->
+                    <div class="col-md-4">
+                        <label for="paymentPolicy" i18n>Payment Policy </label>
+                        <div [ngClass]="{'has-danger': formValidation.isValidField('paymentPolicy') }">
+                            <select class="form-control" id="paymentPolicy" name="paymentPolicy"
+                                    formControlName="paymentPolicy">
+                                <option value="">Please Select</option>
+                                <option *ngFor="let systemCode of systemCodes2"
+                                        [value]="systemCode.systemCode">{{systemCode.systemCode}}
+                                    &nbsp; {{systemCode.systemCodeDesc1}} &nbsp; {{systemCode.systemCodeDesc2}}</option>
+                            </select>
+
+                            <small class="text-danger" *ngIf="formValidation.isValidField('paymentPolicy')">
+                                {{ formValidation.errorMessage('paymentPolicy') }}
+                            </small>
+                        </div>
+                    </div>
+
+                    <!-- Textbox with label of Exclude Capitated Claims -->
+
+                    <div class="col-md-4">
+                        <label for="excludeCapitatedClaims" i18n>Exclude Capitated Claims </label>
+                        <div [ngClass]="{'has-danger': formValidation.isValidField('excludeCapitatedClaims') }">
+                            <select class="form-control" id="excludeCapitatedClaims" name="excludeCapitatedClaims"
+                                    formControlName="excludeCapitatedClaims">
+                                <option value="">-Select-</option>
+                                <option *ngFor="let dddwDtl of dddwDtls6"
+                                        [value]="dddwDtl.dddwDtlPrimaryKey.dataVal">{{dddwDtl.dddwDtlPrimaryKey.displayVal}}</option>
+                            </select>
+
+                            <small class="text-danger" *ngIf="formValidation.isValidField('excludeCapitatedClaims')">
+                                {{ formValidation.errorMessage('excludeCapitatedClaims') }}
+                            </small>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-md-12 form-control-static mb-0" i18n>
+                        <h3 class="card-border"><span class="line-center">Claims Pricing</span></h3>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <!-- Textbox with label of Price Rule 1 -->
+                    <div class="col-md-3">
+                        <label for="priceRule1" i18n>Price Rule 1</label>
+                        <div [ngClass]="{'has-danger': formValidation.isValidField('priceRule1') }">
+                            <div>
+                                <select id="priceRule1" name="priceRule1" class="form-control"
+                                        formControlName="priceRule1">
+                                    <option value="">-Select-</option>
+                                    <option *ngFor="let rule of priceRules" [value]="rule.priceRule">{{rule.priceRule}}
+                                        &nbsp;&nbsp;&nbsp; {{rule.description}}</option>
+                                </select>
+                            </div>
+
+                            <small class="text-danger" *ngIf="formValidation.isValidField('priceRule1')">
+                                {{ formValidation.errorMessage('priceRule1') }}
+                            </small>
+                        </div>
+                    </div>
+
+                    <!-- Textbox with label of Price Schedule 1 -->
+                    <div class="col-md-3">
+                        <label for="priceSchedule1" i18n>Price Schedule 1 </label>
+                        <div [ngClass]="{'has-danger': formValidation.isValidField('priceSchedule1') }">
+
+
+                            <div>
+                                <select id="priceSchedule1" name="priceSchedule1" class="form-control"
+                                        formControlName="priceSchedule1">
+                                    <option value="">-Select-</option>
+                                    <option *ngFor="let schedule of priceSchedules"
+                                            [value]="schedule.priceSchedule">{{schedule.priceSchedule}} &nbsp;&nbsp;&nbsp; {{schedule.description}}</option>
+                                </select>
+                            </div>
+
+                            <small class="text-danger" *ngIf="formValidation.isValidField('priceSchedule1')">
+                                {{ formValidation.errorMessage('priceSchedule1') }}
+                            </small>
+                        </div>
+                    </div>
+
+                    <!-- Textbox with label of Pct Billed -->
+
+
+                    <div class="col-md-3">
+                        <label for="pctBilled" i18n>Pct Billed</label>
+                        <div [ngClass]="{'has-danger': formValidation.isValidField('pctBilled') }">
+
+                            <input type="text" id="pctBilled" class="form-control" formControlName="pctBilled"/>
+                            <small class="text-danger" *ngIf="formValidation.isValidField('pctBilled')">
+                                {{ formValidation.errorMessage('pctBilled') }}
+                            </small>
+                        </div>
+                    </div>
+
+                    <!-- Textbox with label of Group Req -->
+                    <div class="col-md-3">
+                        <label for="groupReq" class="clr-blue" i18n>Group Req </label>
+                        <div [ngClass]="{'has-danger': formValidation.isValidField('groupReq') }">
+                            <select class="form-control" id="groupReq" name="groupReq"
+                                    formControlName="groupReq">
+                                <option value="">-Select-</option>
+                                <option *ngFor="let dddwDtl of dddwDtls5"
+                                        [value]="dddwDtl.dddwDtlPrimaryKey.dataVal">
+                                    {{dddwDtl.dddwDtlPrimaryKey.displayVal}}</option>
+                            </select>
+                            <small class="text-danger" *ngIf="formValidation.isValidField('groupReq')">
+                                {{ formValidation.errorMessage('groupReq') }}
+                            </small>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="form-group row">
+                    <!-- Textbox with label of Price Schedule 2 -->
+
+                    <div class="col-md-3">&nbsp;&nbsp;&nbsp;&nbsp;</div>
+                    <div class="col-md-3">
+                        <label for="priceSchedule2" i18n>Price Schedule 2 </label>
+                        <div [ngClass]="{'has-danger': formValidation.isValidField('priceSchedule2') }">
+                            <div>
+                                <select id="priceSchedule2" name="priceSchedule2" class="form-control"
+                                        formControlName="priceSchedule2">
+                                    <option value="">-Select-</option>
+                                    <option *ngFor="let schedule of priceSchedules"
+                                            [value]="schedule.priceSchedule">{{schedule.priceSchedule}} &nbsp;&nbsp;&nbsp; {{schedule.description}}</option>
+                                </select>
+                            </div>
+
+                            <small class="text-danger" *ngIf="formValidation.isValidField('priceSchedule2')">
+                                {{ formValidation.errorMessage('priceSchedule2') }}
+                            </small>
+                        </div>
+                    </div>
+
+                    <!-- Textbox with label of Pct Allwd -->
+                    <div class="col-md-3">
+                        <label for="pctAllwd" i18n>Pct Allwd </label>
+                        <div [ngClass]="{'has-danger': formValidation.isValidField('pctAllwd') }">
+
+                            <input type="text" id="pctAllwd" class="form-control" formControlName="pctAllwd"/>
+                            <small class="text-danger" *ngIf="formValidation.isValidField('pctAllwd')">
+                                {{ formValidation.errorMessage('pctAllwd') }}
+                            </small>
+                        </div>
+                    </div>
+
+
+                    <div class="col-md-3">
+                        <label for="geographicRegion" i18n>Geo Region </label>
+                        <div>
+                            <select id="geographicRegion" name="geographicRegion" class="form-control"
+                                    formControlName="geographicRegion">
+                                <option>-Select-</option>
+                                <option *ngFor="let geo of GeoRegion"
+                                        [value]="geo.regionMasterPrimaryKey.regionCode">{{geo.regionMasterPrimaryKey.regionCode}}
+                                    &nbsp;&nbsp; {{geo.description}}</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- <div class="col-md-2 form-control-static mb-0" i18n>
+                              Geo Region
+                          </div> -->
+
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-md-12 form-control-static mb-0" i18n>
+                        <h3 class="card-border"><span class="line-center">Pre Existing Conditions</span></h3>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <!-- Textbox with label of Exclusion Type -->
+
+
+                    <div class="col-md-4">
+                        <label for="exclusionType" i18n>Exclusion Type </label>
+                        <div [ngClass]="{'has-danger': formValidation.isValidField('exclusionType') }">
+                            <select class="form-control" id="exclusionType" name="exclusionType"
+                                    formControlName="exclusionType">
+                                <option value="">-Select-</option>
+                                <option *ngFor="let dddwDtl of dddwDtls7"
+                                        [value]="dddwDtl.dddwDtlPrimaryKey.dataVal">{{dddwDtl.dddwDtlPrimaryKey.displayVal}}</option>
+                            </select>
+
+                            <small class="text-danger" *ngIf="formValidation.isValidField('exclusionType')">
+                                {{ formValidation.errorMessage('exclusionType') }}
+                            </small>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 pt-4">
+                        <div class="checkbox form-control-static mb-0" i18n>
+                            <input id="applyPcp" value="1" formControlName="applyPcp" type="checkbox">
+                            <label class="checkbox">
+                                Apply PEC to PCP
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Textbox with label of Reason -->
+                    <div class="col-md-4">
+                        <label for="reason" i18n>Reason </label>
+                        <div [ngClass]="{'has-danger': formValidation.isValidField('reason') }">
+                            <select id="reason" class="form-control" name="reason" formControlName="reason">
+                                <option value="">-Select-</option>
+                                <option *ngFor="let code of reasonCodes;" [value]="code.reasonCode">{{code.reasonCode}}
+                                    - {{code.description}}</option>
+                            </select>
+                            <small class="text-danger" *ngIf="formValidation.isValidField('reason')">
+                                {{ formValidation.errorMessage('reason') }}
+                            </small>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="form-group row">
+                    <!-- Textbox with label of Exclusion Period -->
+
+                    <div class="col-md-4">
+                        <label for="exclusionPeriod" i18n>Exclusion Period </label>
+                        <div [ngClass]="{'has-danger': formValidation.isValidField('exclusionPeriod') }">
+
+                            <input type="text" id="exclusionPeriod" class="form-control"
+                                   formControlName="exclusionPeriod"/>
+                            <small class="text-danger" *ngIf="formValidation.isValidField('exclusionPeriod')">
+                                {{ formValidation.errorMessage('exclusionPeriod') }}
+                            </small>
+                        </div>
+
+                    </div>
+
+                    <!-- Textbox with label of Exclude Capitated Claim Lines -->
+
+                    <div class="col-md-4">
+                        <label for="excludeCapitatedClaimLines" i18n>Exclude Capitated Claim Lines</label>
+                        <div [ngClass]="{'has-danger': formValidation.isValidField('excludeCapitatedClaimLines') }">
+                            <select class="form-control" id="excludeCapitatedClaimLines"
+                                    name="excludeCapitatedClaimLines" formControlName="excludeCapitatedClaimLines">
+                                <option value="">-Select-</option>
+                                <option *ngFor="let dddwDtl of dddwDtls6"
+                                        [value]="dddwDtl.dddwDtlPrimaryKey.dataVal">{{dddwDtl.dddwDtlPrimaryKey.displayVal}}</option>
+                            </select>
+                            <small class="text-danger"
+                                   *ngIf="formValidation.isValidField('excludeCapitatedClaimLines')">
+                                {{ formValidation.errorMessage('excludeCapitatedClaimLines') }}
+                            </small>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-md-12 form-control-static mb-0" i18n>
+                        <h3 class="card-border"><span class="line-center">Other</span></h3>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <!-- Textbox with label of Special Processing -->
+
+                    <div class="col-md-4">
+                        <label for="specialProcessing" i18n>Special Processing </label>
+                        <div [ngClass]="{'has-danger': formValidation.isValidField('specialProcessing') }">
+
+                            <input type="text" id="specialProcessing" class="form-control"
+                                   formControlName="specialProcessing"/>
+                            <small class="text-danger" *ngIf="formValidation.isValidField('specialProcessing')">
+                                {{ formValidation.errorMessage('specialProcessing') }}
+                            </small>
+                        </div>
+                    </div>
+
+                    <!-- Textbox with label of Claim Filing Indicator -->
+                    <div class="col-md-4">
+                        <label for="claimFilingIndicator" class="clr-blue" i18n>Claim Filing Indicator </label>
+                        <div [ngClass]="{'has-danger': formValidation.isValidField('claimFilingIndicator') }">
+                            <div class="selectContainer "
+                                 [ngClass]="{'has-danger': formValidation.isValidField('claimFilingIndicator') }">
+                                <select class="form-control" id="claimFilingIndicator" name="claimFilingIndicator"
+                                        formControlName="claimFilingIndicator">
+                                    <option value="">Please Select</option>
+                                    <option *ngFor="let systemCode of systemCodes"
+                                            [value]="systemCode.systemCode">{{systemCode.systemCode}}
+                                        &nbsp; {{systemCode.systemCodeDesc1}}
+                                        &nbsp; {{systemCode.systemCodeDesc2}}</option>
+                                </select>
+                            </div>
+                            <small class="text-danger" *ngIf="formValidation.isValidField('claimFilingIndicator')">
+                                {{ formValidation.errorMessage('claimFilingIndicator') }}
+                            </small>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </form>
+        <!-- <button type="submit" class="button" (click)="onSubmit()">Submit</button> -->
+    </div>
+</div>
+<ng-keyboard-shortcuts [shortcuts]="shortcuts"></ng-keyboard-shortcuts>
+<ng-keyboard-shortcuts-help [key]="'f2'" [closeKey]="'escape'" [title]="'Hotkeys Help'"></ng-keyboard-shortcuts-help>

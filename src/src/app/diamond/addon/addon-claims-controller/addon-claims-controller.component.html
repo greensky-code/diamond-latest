@@ -1,0 +1,33 @@
+<!-- Copyright (c) 2021 . All Rights Reserved. -->
+<div class="container-fluid">
+    <div class="card-block">
+        <h2 class="form-title card-label-admin">Claims Addons</h2>
+        <button type="button" class="close" aria-label="Close"
+                (click)="ngbActiveModal.dismiss()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <table width="100%" cellspacing="0" cellpadding="5" bgcolor="#000000" *ngIf="entityHeader">
+            <tr>
+                <td width="50%" align="center" nowrap><font color="white" face="verdana,arial,helvetica" size="2"><strong>{{entityHeader.entityName}}<br>{{entityHeader.subscriberID}}-{{entityHeader.personNo}}</strong></font></td>
+                <td width="50%" align="center" nowrap><font color="white" face="verdana,arial,helvetica" size="2"><strong>{{entityHeader.groupName}}<br>{{entityHeader.groupID}}</strong></font></td>
+            </tr>	
+            <tr>
+                <td colspan="2" align="center" bgcolor="#ffffff" nowrap>
+                    <font color="#000000" face="verdana,arial,helvetica" size="2">
+                        <strong>Claim Number:</strong>&nbsp;{{profsvcClaimHeader.seqClaimId}}&nbsp;&nbsp;
+                        <strong>Image Number:</strong>&nbsp;{{profsvcClaimHeader.userDefined2}} &nbsp;
+                        <strong>Incurred Country :</strong>{{profsvcClaimHeader.userDefined1}}
+                    </font>
+                </td>
+            </tr>
+        </table>
+
+        <div>
+            
+                
+                <localcurrencyconversion
+                [seqClaimId]="profsvcClaimHeader.seqClaimId" >
+            </localcurrencyconversion>
+        </div>
+    </div>
+</div>

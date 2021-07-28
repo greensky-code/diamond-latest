@@ -1,0 +1,124 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+    <title>EOBs and RAs, How DIAMOND Thinks</title>
+    <!--(Meta)==========================================================-->
+    <meta name="copyright" value="© Copyright 2002 Health Systems Design Corp., a wholly owned subsidiary of Perot Systems Corporation. All rights reserved"/>
+    <meta content="About.htt" name="template"/>
+    <meta content="RoboHELP by eHelp Corporation - www.ehelp.com" name="generator"/>
+    <meta content="0.1" name="generator-major-version"/>
+    <meta content="1" name="generator-minor-version"/>
+    <meta content="kadov" name="filetype"/>
+    <meta content="1" name="filetype-version"/>
+    <meta content="1" name="page-count"/>
+    <meta content="455" name="layout-height"/>
+    <meta content="675" name="layout-width"/>
+    <!--(Links)=========================================================-->
+    <!--(Scripts)=======================================================-->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+
+
+
+
+</head>
+<body>
+
+<div class="calibreMeta">
+  <div class="calibreMetaTitle">
+
+
+
+    <h1>
+      <a href="../4xeqt-va1vo.html">DIAMOND 950 Help
+</a>
+    </h1>
+
+
+
+  </div>
+  <div class="calibreMetaAuthor">
+    Unknown
+
+  </div>
+</div>
+
+<div class="calibreMain">
+
+  <div class="calibreEbookContent">
+
+      <div class="calibreEbNavTop">
+
+          <a href="EOBs_and_RAs_-_Overview.htm" class="calibreAPrev">previous page
+</a>
+
+
+
+          <a href="Calculating_a_Check_Print_Job_for_Administrative_Fees.htm" class="calibreANext">next page
+</a>
+
+      </div>
+
+
+
+
+<h1 class="calibre3">EOBs and RAs, How DIAMOND Thinks</h1>
+
+<p class="text">An EOB (Explanation of Benefits) is a report that goes to
+ a subscriber explaining what has and has not been reimbursed on behalf
+ of a member.</p>
+
+<p class="text">An RA (Remittance Advices) is a report that goes to a provider
+ explaining what has and has not been reimbursed.</p>
+
+<p class="text">RAs are controlled by the provider’s contract record used
+ to process the claim. This record, PROVC, includes an indicator of whether
+ or not this provider receives remittance advices. EOBs are controlled
+ by the member’s eligibility record, which has a line of business code.
+ This code ties back to a LINBS record which includes a rule for whether
+ or not EOBs are printed under this line of business.</p>
+
+<p class="text">If the member is ineligible, the parameter record DFLTPRINTSTAT
+ controls the RA and EOB printing. The rules for printing these reports
+ are established separately for online professional service claims and
+ for institutional service claims. Electronically processed claims (using
+ the EDI functions) do not reference these rules; rather, claims for ineligible
+ members are considered exceptions and printed out for external handling.</p>
+
+<p class="text">In the absence of entries in DFLTPRINTSTAT, neither EOBs
+ nor RAs are printed.</p>
+
+<p class="text">Because RAs are based on a file created in keyword CKPRT,
+ they are printed for vendors with an A/P balance equal to zero or greater
+ dollars ($0.00+).</p>
+
+
+
+
+
+
+  </div>
+
+
+
+
+  <div class="calibreEbNav">
+
+      <a href="EOBs_and_RAs_-_Overview.htm" class="calibreAPrev">previous page
+</a>
+
+
+    <a href="../4xeqt-va1vo.html" class="calibreAHome">start
+</a>
+
+
+      <a href="Calculating_a_Check_Print_Job_for_Administrative_Fees.htm" class="calibreANext">next page
+</a>
+
+  </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,222 @@
+<!-- Copyright (c) 2021 . All Rights Reserved. -->
+<div class="container-fluid">
+    <div class="card-block">
+        <form [formGroup]="pcpJobSetupForm" novalidate>
+            <h2 class="form-title card-label-admin">Pcp Job Setup</h2>
+            <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+            <app-pop-up-message #popUpMesssage (buttonclickEvent)="popUpButtonHandler($event)"  [(popupMessage)] = "popUpMessage"></app-pop-up-message>
+                        
+            <div class="form-group row">
+            </div>
+            
+                        <!-- DataGrid with Name of DataGrid -->
+                    <button (click)="dataGridGridOptionsExportCsv()">Export</button>
+                    <ag-grid-angular #agGrid class="ag-theme-fresh" [gridOptions]="dataGridGridOptions"
+                    style="width: 100%; height: 300px;"
+                    [enableSorting]="true"
+                    [enableFilter]="true"
+                    [floatingFilter]="true"
+                    [pagination]="true"
+                    [showToolPanel]="true">
+                    </ag-grid-angular>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+                <div class="col-md-2 form-control-static mb-0" i18n>
+                    Job Setup
+                </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of Job ID -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('jobId') }">
+                     <label class="col-form-label" for="jobId" i18n>Job ID</label>
+                     <input type="text" id="jobId"  [fieldLevelSec]="'Job Id'" params]="Pcpaa Job Request"   class="form-control" formControlName="jobId"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('jobId')">
+                      {{ formValidation.errorMessage('jobId') }}
+                     </small>
+                 </div>
+            
+                <!-- DynamicText with label of Request User -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('requestUser') }">
+                     <label class="col-form-label" for="requestUser" i18n>Request User</label>
+                     <input type="text"  [fieldLevelSec]="'Request User'" params]="Pcpaa Job Request"  readonly id="requestUser" formControlName="requestUser" class="form-control"/>
+                 </div>
+            
+                <!-- DynamicText with label of Request Date -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('requestDate') }">
+                     <label class="col-form-label" for="requestDate" i18n>Request Date</label>
+                     <input type="text"  [fieldLevelSec]="'Request Date'" params]="Pcpaa Job Request"  readonly id="requestDate" formControlName="requestDate" class="form-control"/>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of Line of Business -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('lineOfBusiness') }">
+                     <label class="col-form-label" for="lineOfBusiness" i18n>Line of Business</label>
+                     <input type="text" id="lineOfBusiness"  [fieldLevelSec]="'Insert Process'" params]="Pcpaa Job Request"   class="form-control" formControlName="lineOfBusiness"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('lineOfBusiness')">
+                      {{ formValidation.errorMessage('lineOfBusiness') }}
+                     </small>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+                <div class="col-md-2 form-control-static mb-0" i18n>
+                    Member Selection Criteria
+                </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of Insert Date From -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('insertDateFrom') }">
+                     <label class="col-form-label" for="insertDateFrom" i18n>Insert Date From</label>
+                     <div class="input-group">
+                    <input id="insertDateFrom"  [fieldLevelSec]="'Insert Date From'" params]="Pcpaa Job Request"  class="form-control" angular-mydatepicker name="insertDateFrom" (click)="insertDateFromId.toggleCalendar()"
+                    formControlName="insertDateFrom"[options]="datePickerConfig" #insertDateFromId="angular-mydatepicker"/>
+                    <div class="input-group-append">
+                        <button type="button" class="btn btn-secondary" (click)="insertDateFromId.clearDate()">
+                          <i class="fa fa-close"></i>
+                        </button>
+                      </div>
+                      <div class="input-group-append">
+                        <button type="button" class="btn btn-secondary" (click)="insertDateFromId.toggleCalendar()">
+                          <i class="fa fa-calendar-o"></i>
+                        </button>
+                      </div>
+                    </div>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('insertDateFrom')">
+                      {{ formValidation.errorMessage('insertDateFrom') }}
+                     </small>
+                 </div>
+            
+                <!-- Textbox with label of Insert Process -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('insertProcess') }">
+                     <label class="col-form-label" for="insertProcess" i18n>Insert Process</label>
+                     <input type="text" id="insertProcess"  [fieldLevelSec]="'Insert By Process'" params]="Pcpaa Job Request"   class="form-control" formControlName="insertProcess"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('insertProcess')">
+                      {{ formValidation.errorMessage('insertProcess') }}
+                     </small>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of Insert Date Thru -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('insertDateThru') }">
+                     <label class="col-form-label" for="insertDateThru" i18n>Insert Date Thru</label>
+                     <div class="input-group">
+                    <input id="insertDateThru"  [fieldLevelSec]="'Insert Date Thru'" params]="Pcpaa Job Request"  class="form-control" angular-mydatepicker name="insertDateThru" (click)="insertDateThruId.toggleCalendar()"
+                    formControlName="insertDateThru"[options]="datePickerConfig" #insertDateThruId="angular-mydatepicker"/>
+                    <div class="input-group-append">
+                        <button type="button" class="btn btn-secondary" (click)="insertDateThruId.clearDate()">
+                          <i class="fa fa-close"></i>
+                        </button>
+                      </div>
+                      <div class="input-group-append">
+                        <button type="button" class="btn btn-secondary" (click)="insertDateThruId.toggleCalendar()">
+                          <i class="fa fa-calendar-o"></i>
+                        </button>
+                      </div>
+                    </div>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('insertDateThru')">
+                      {{ formValidation.errorMessage('insertDateThru') }}
+                     </small>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+                <div class="col-md-2 form-control-static mb-0" i18n>
+                    Next Action
+                </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <div class="col-md-2 form-control-static mb-0" i18n>
+                    Action
+                </div>
+            
+                <!-- RadioButtonGroup with Name of RadioButtonGroup 2638 -->
+                <div class="form-inline">
+                    <!--  with label of Run -->
+                <div class="" [ngClass]="{'has-error': displayMessage.run001 }">
+                    <label class="col-form-label" for="run001" i18n>Run</label>
+                    <input type="radio" value="Run"  [fieldLevelSec]="" params]=""  formControlName="radiobuttongroup2638" />
+                </div>
+                    <!--  with label of Cancel -->
+                <div class="" [ngClass]="{'has-error': displayMessage.cancel001 }">
+                    <label class="col-form-label" for="cancel001" i18n>Cancel</label>
+                    <input type="radio" value="Cancel"  [fieldLevelSec]="" params]=""  formControlName="radiobuttongroup2638" />
+                </div>
+                </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- DynamicText with label of Status -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('status') }">
+                     <label class="col-form-label" for="status" i18n>Status</label>
+                     <input type="text"  [fieldLevelSec]="'Status'" params]="Pcpaa Job Request"  readonly id="status" formControlName="status" class="form-control"/>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <div class="col-md-2 form-control-static mb-0" i18n>
+                    Run Options
+                </div>
+            
+            </div>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+                <!-- RadioButtonGroup with label of Request Type -->
+                <div class="form-inline">
+                    <!--  with label of Immediate -->
+                <div class="" [ngClass]="{'has-error': displayMessage.immediate001 }">
+                    <label class="col-form-label" for="immediate001" i18n>Immediate</label>
+                    <input type="radio" value="Immediate"  [fieldLevelSec]="" params]=""  formControlName="radiobuttongroup1008" />
+                </div>
+                </div>
+            
+                <!-- RadioButton with label of Deferred -->
+                <div class="col-md-2" [ngClass]="{'has-error': displayMessage.deferred }">
+                    <label class="col-form-label" for="deferred" i18n>Deferred</label>
+                    <input type="radio"  formControlName="deferred"  [fieldLevelSec]="''" params]=""  value="Deferred"/>
+                </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of Comments -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('comments') }">
+                     <label class="col-form-label" for="comments" i18n>Comments</label>
+                     <input type="text" id="comments"  [fieldLevelSec]="'Comments'" params]="Pcpaa Job Request"   class="form-control" formControlName="comments"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('comments')">
+                      {{ formValidation.errorMessage('comments') }}
+                     </small>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+            </div>
+        </form>
+    </div>
+</div>

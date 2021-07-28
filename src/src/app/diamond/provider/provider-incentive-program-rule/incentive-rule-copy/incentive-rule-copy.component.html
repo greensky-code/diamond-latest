@@ -1,0 +1,100 @@
+<!-- Copyright (c) 2020 . All Rights Reserved. -->
+<div class="container-fluid">
+    <div class="card-block">
+        <form [formGroup]="incentiveProgramRuleCopyForm" novalidate>
+            <h2 class="form-title card-label-admin">Rule Copy</h2>
+            <button type="button" *ngIf="showIcon" class="modal-close close" aria-label="Close"
+                    (click)="activeModal.dismiss('Cross click')">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+            <app-pop-up-message #popUpMesssage (buttonclickEvent)="popUpButtonHandler($event)"
+                                [(popupMessage)]="popUpMessage"></app-pop-up-message>
+
+
+            <div class="form-group row">
+                <!-- Textbox with label of ID -->
+                <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('id') }">
+                    <label class="col-form-label clr-blue" for="id" i18n>ID</label>
+                    <input type="text" id="id" class="form-control" formControlName="id"/>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('id')">
+                        {{ formValidation.errorMessage('id') }}
+                    </small>
+                </div>
+
+            </div>
+
+            <div class="form-group row">
+                <!-- Textbox with label of Line Of Bus -->
+                <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('lineOfBus') }">
+                    <label class="col-form-label clr-blue" for="lineOfBus" i18n>Line Of Bus</label>
+                    <input type="text" id="lineOfBus" class="form-control" (keydown)="lookupLOB($event)"
+                           formControlName="lineOfBus"/>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('lineOfBus')">
+                        {{ formValidation.errorMessage('lineOfBus') }}
+                    </small>
+                </div>
+
+                <!-- DynamicText with label of IPA -->
+                <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('ipa') }">
+                    <label class="col-form-label" for="ipa" i18n>IPA</label>
+                    <input type="text" id="ipa" formControlName="ipa"
+                           class="form-control" (keydown)="lookupIPA($event)" />
+                    <small class="text-danger" *ngIf="formValidation.isValidField('ipa')">
+                        {{ formValidation.errorMessage('ipa') }}
+                    </small>
+                </div>
+
+                <!-- DynamicText with label of Panel -->
+                <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('panel') }">
+                    <label class="col-form-label" for="panel" i18n>Panel</label>
+                    <input type="text" id="panel" formControlName="panel"
+                           class="form-control" (keydown)="lookupPanel($event)" />
+                    <small class="text-danger" *ngIf="formValidation.isValidField('panel')">
+                        {{ formValidation.errorMessage('panel') }}
+                    </small>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <!-- Textbox with label of Effective Date -->
+                <div class="col-md-4">
+                    <app-datepicker [isRequired]="true" [formGroup]="incentiveProgramRuleCopyForm"
+                                    [formValidation]="formValidation"
+                                    [field]="'effectiveDate'" [labelText]="'Effective Date'"></app-datepicker>
+                </div>
+
+                <!-- Textbox with label of Term Date -->
+                <div class="col-md-4">
+                    <app-datepicker [formGroup]="incentiveProgramRuleCopyForm"
+                                    [formValidation]="formValidation"
+                                    [field]="'termDate'" [labelText]="'Term Date'"></app-datepicker>
+                </div>
+
+                <!-- DynamicText with label of Term Reason -->
+                <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('termReason') }">
+                    <label class="col-form-label" for="termReason" i18n>Term Reason</label>
+                    <input (keydown)="onReasonLookupFieldChange($event)" type="text" id="termReason" formControlName="termReason"
+                           class="form-control"/>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('termReason')">
+                        {{ formValidation.errorMessage('termReason') }}
+                    </small>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <!-- Button with label of Save -->
+                <div class="col-md-1">
+                    <label class="diamond-blank-space">&nbsp;</label>
+                    <button type="button" id="save" name="save" (click)="onClickOk()" class="btn btn-small btn-primary">Ok</button>
+                </div>
+
+                <!-- Button with label of Cancel -->
+                <div class="col-md-1">
+                    <label class="diamond-blank-space">&nbsp;</label>
+                    <button type="button" id="cancel" name="cancel" class="btn btn-small btn-primary" (click)="backToScreen()">Cancel</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

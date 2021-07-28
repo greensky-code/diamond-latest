@@ -1,0 +1,349 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+    <title>Display Member Benefits, How DIAMOND Thinks</title>
+    <!--(Meta)==========================================================-->
+    <meta name="copyright"
+          value="© Copyright 2002 Health Systems Design Corp., a wholly owned subsidiary of Perot Systems Corporation. All rights reserved"/>
+    <meta content="RoboHELP by eHelp Corporation - www.ehelp.com" name="generator"/>
+    <meta content="0.1" name="generator-major-version"/>
+    <meta content="1" name="generator-minor-version"/>
+    <meta content="kadov" name="filetype"/>
+    <meta content="1" name="filetype-version"/>
+    <meta content="1" name="page-count"/>
+    <meta content="1927" name="layout-height"/>
+    <meta content="657" name="layout-width"/>
+    <!--(Links)=========================================================-->
+    <!--(Scripts)=======================================================-->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+</head>
+<body>
+
+<div class="calibreMeta">
+    <div class="calibreMetaTitle">
+
+
+        <h1>
+            <a href="../ib0gc-jzzjl.html">DIAMOND 950 Help
+            </a>
+        </h1>
+
+
+    </div>
+    <div class="calibreMetaAuthor">
+        Unknown
+
+    </div>
+</div>
+
+<div class="calibreMain">
+
+    <div class="calibreEbookContent">
+
+        <div class="calibreEbNavTop">
+
+            <a href="Automatic_Subscriber_ID_Generation_How_DIAMOND_Thinks.htm" class="calibreAPrev">previous page
+            </a>
+
+
+            <a href="Manually_Adjusted_Benefit_Accumulators_How_DIAMOND_Thinks.htm" class="calibreANext">next page
+            </a>
+
+        </div>
+
+
+        <h4 class="calibre1">Benefit Accumulators, How DIAMOND Thinks</h4>
+
+        <!--(Table)=========================================================-->
+        <table cellspacing="0" width="528" x-use-null-cells="" class="calibre18">
+
+            <tbody class="calibre3">
+            <tr valign="top" class="calibre4">
+                <td width="528px" class="calibre19">
+                    <p class="map-links"><a
+                            href="Display_Member_Benefits_How_DIAMOND_Thinks.htm#DispMemBene_HOT_MemBeneDispOvw_MID"><img
+                            alt="image\assets/help/MidTopic_shg.gif" border="0" height="10" src="assets/help/MidTopic_shg.gif" width="18"
+                            class=""/></a> Using Keyword DSPBN - Overview</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="528px" class="calibre19">
+                    <p class="map-links"><a
+                            href="Display_Member_Benefits_How_DIAMOND_Thinks.htm#DispMemBene_HOT_AcumDispNonRenew_MID"><img
+                            alt="image\assets/help/MidTopic_shg.gif" border="0" height="10" src="assets/help/MidTopic_shg.gif" width="18"
+                            class=""/></a> Non-Renewable Benefits</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="528px" class="calibre19">
+                    <p class="map-links"><a
+                            href="Display_Member_Benefits_How_DIAMOND_Thinks.htm#DispMemBene_HOT_AccumDispRenew_MID"><img
+                            alt="image\assets/help/MidTopic_shg.gif" border="0" height="10" src="assets/help/MidTopic_shg.gif" width="18"
+                            class=""/></a> Renewable Benefits</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="528px" class="calibre19">
+                    <p class="map-links"><a
+                            href="Display_Member_Benefits_How_DIAMOND_Thinks.htm#DispMemBene_HOT_BenefDetDisp_MID"><img
+                            alt="image\assets/help/MidTopic_shg.gif" border="0" height="10" src="assets/help/MidTopic_shg.gif" width="18"
+                            class=""/></a> Displaying Benefit Detail</p></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <p class="doc-level"><a name="DispMemBene_HOT_MemBeneDispOvw_MID"></a>Using
+            Keyword DSPBN - Overview</p>
+
+        <p class="body-text">Use keyword DSPBN (Display Benefits Accumulators) to
+            display a member’s benefit information and current benefit status as of
+            a specific date, including the member’s benefit rule IDs, benefit rule
+            limits, expended benefit amounts, and remaining benefit amounts. </p>
+
+        <p class="body-text">You select a specific benefit rule ID to display all
+            of the member’s claims that have been processed against the benefit rule.
+            You can also drill down to display the fields associated with a claim
+            detail line.</p>
+
+        <p class="body-text">An accumulator file tracks a member’s deductibles, maximums,
+            and limits. A member’s copayment and coinsurance amounts will be accumulated
+            only if there are out-of-pocket maximums, deductibles, or limits associated
+            with them. Denied and held claims are not accumulated. Accumulator file
+            values are expressed in either dollars (for example, deductibles) or numeric
+            value (for example, quantity). The accumulator file contains one record
+            per claim detail line, per benefit rule applied to that detail line. For
+            example, if a claim detail line has a deductible amount of $100 and an
+            out-of-pocket expense total of $500, then two benefit accumulator records
+            are added to the accumulator file: one for the deductible rule ($100),
+            and one for the out-of-pocket expense rule ($500).</p>
+
+        <p class="body-text">When a claim is adjudicated, DIAMOND "sums up"
+            a member’s appropriate claim benefit accumulator records based on certain
+            parameters in the corresponding benefit rule (BRULE); such as, time frame,
+            carryover, all groups, and member/family.</p>
+
+        <p class="body-text">A members benefit history varies depending on the benefit
+            rule. For example:</p>
+
+        <ul class="calibre15">
+
+            <li class="kadov-p-cbullet-list-h"><p class="bullet-list-h">Lifetime
+                Maximum Rule</p></li>
+        </ul>
+
+        <p class="body-text-block">All accumulated records for this rule are included
+            in the benefit history calculation.</p>
+
+        <ul class="calibre15">
+
+            <li class="kadov-p-cbullet-list-h"><p class="bullet-list-h">Annual Family
+                Deductible Rule</p></li>
+        </ul>
+
+        <p class="body-text-block">Accumulated records for all family members for
+            the current<span class="calibre20"> year</span> are included
+            in the benefit history calculation.</p>
+
+        <ul class="calibre15">
+
+            <li class="kadov-p-cbullet-list-h"><p class="bullet-list-h">Copayment
+                Rule</p></li>
+        </ul>
+
+        <p class="body-text-block">Accumulated records based on specific BRULE attributes
+            are included in the benefit history calculation; such as, Med Defs, Reason
+            Code, Time Frame + No. Years/Days, Carryover + No. Years/Days, Member/Family,
+            and Other Med Defs.</p>
+
+        <p class="doc-level"><a name="DispMemBene_HOT_AcumDispNonRenew_MID"></a>Non-Renewable
+            Benefits</p>
+
+        <p class="body-text">The date you enter in the As of Date box in keyword
+            DSPBN is the ending date for the non-renewable benefit accumulated amounts
+            displayed in the Benefits Accumulated As Of focus box (Accum Amt). Non-renewable
+            benefit rule "limits" (BRULE - Time Frame) dictate DIAMOND’s
+            As of Date search logic as outlined below:</p>
+
+        <!--(Table)=========================================================-->
+        <table cellspacing="0" width="510" x-use-null-cells="" class="calibre21">
+
+            <tbody class="calibre3">
+            <tr valign="top" class="calibre4">
+                <td width="186px" class="calibre22">
+                    <p class="tbl-header">Limits (BRULE-Time Frame)</p></td>
+                <td width="324px" class="calibre23">
+                    <p class="tbl-header">As of Date Search Logic (DSPBN-As of Date)</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="186px" class="calibre22">
+                    <p class="tbl-text">Calendar Year</p></td>
+                <td width="324px" class="calibre23">
+                    <p class="tbl-text">Member benefits from January
+                        1 of the current year through the date you entered in the As of Date box
+                        accumulate and display.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="186px" class="calibre22">
+                    <p class="tbl-text">Contract Year</p></td>
+                <td width="324px" class="calibre23">
+                    <p class="tbl-text">If a benefit start date exists
+                        on the member’s eligibility record (see MEMBR &gt; Ben Start Date, MELIG
+                        &gt; Ben Start Date), member benefits from the benefit start date through
+                        the date you entered in the As of Date box accumulate and display.</p>
+                    <p class="tbl-text-noline">If a benefit start date does not exist on the
+                        member’s eligibility record, DIAMOND accumulates and displays member benefits
+                        from the member’s associated group contract effective date (see GRUPC
+                        &gt; Effective Date) through the date you entered in the As of Date box.</p>
+                    <p class="tbl-text-noline">See benefit rule (BRULE Type 00, Time Frame, Contract
+                        Yr.) user documentation for additional information.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="186px" class="calibre22">
+                    <p class="tbl-text">Elapsed Days or Years</p></td>
+                <td width="324px" class="calibre23">
+                    <p class="tbl-text">DIAMOND calculates a benefits
+                        accumulation start date by subtracting the BRULE &gt; Elapsed Days or
+                        Years from the date you entered in the As of Date box. DIAMOND then accumulates
+                        and displays member benefits from the calculated date through the date
+                        you entered in the As of Date box.</p>
+                    <p class="tbl-text-noline">For example: As of Date = 6/30/95. BRULE = 90
+                        elapsed days. DIAMOND subtracts 90 days from 6/30/95 and arrives at a
+                        benefits accumulation start date of 4/1/95. DIAMOND accumulates and displays
+                        member benefits from 4/1/95 through 6/30/95.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="186px" class="calibre22">
+                    <p class="tbl-text">Carryover</p></td>
+                <td width="324px" class="calibre23">
+                    <p class="tbl-text">DIAMOND calculates the limit
+                        method and subtracts the number of carryover days or years to arrive at
+                        a benefits accumulation start date. DIAMOND then accumulates and displays
+                        member benefits from the calculated date through the date you entered
+                        in the As of Date box.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre4">
+                <td width="186px" class="calibre22">
+                    <p class="tbl-text">Lifetime</p></td>
+                <td width="324px" class="calibre23">
+                    <p class="tbl-text">All member benefits through
+                        the date you entered in the As of Date box accumulate and display.</p></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <p class="body-text1"> </p>
+
+        <p class="tip-note-warning">Note</p>
+
+        <p class="body-text">If any claims are not displayed (included) due to security
+            reasons, An informational "Some claims may not display due to security
+            privileges" message displays. For more information about security,
+            see Users (SUSER) user documentation.</p>
+
+        <p class="doc-level"><a name="DispMemBene_HOT_AccumDispRenew_MID"></a>Renewable
+            Benefits</p>
+
+        <p class="body-text">As with non-renewable benefits, the As of Date you enter
+            in keyword DSPBN is the ending date for the renewable benefit accumulated
+            amounts displayed in the Benefits Accumulated As Of focus box (Accum Amt).
+            Although the As of Date search logic is the same as for non-renewable
+            benefits, DIAMOND calculates the "renewal period" (based on
+            the as of date entered). Only the benefit amounts that have accumulated
+            during the benefit renewal period display. However, DIAMOND displays all
+            of the claim detail lines (in the Benefit Detail focus box) that are associated
+            with the renewable benefit based on the As of Date and the BRULE-Time
+            Frame. As a result, the claim detail lines displayed in the DSPBN - Benefit
+            Detail focus box (for the renewable benefit) may not total up to the amount
+            displayed in the Benefits Accumulated As Of focus box.</p>
+
+        <p class="body-text">For example:</p>
+
+        <p class="body-text-block">BRULE-Time Frame = Calendar Year (1)</p>
+
+        <p class="body-text-block">BRULE-Renewal = Elapsed Days (30 - From Discharge
+            Date)</p>
+
+        <p class="body-text-block">DSPBN-As of Date = 4/1/00</p>
+
+        <p class="body-text-block">Any benefit amounts incurred from 3/2/00 - 3/31/00
+            accumulate and display the total in the Benefits Accumulated As Of focus
+            box (Accum Amt).</p>
+
+        <p class="body-text-block">DIAMOND displays all benefit claim detail lines/amounts
+            incurred from 1/1/00 - 4/1/00 in the Benefit Detail focus box.</p>
+
+        <p class="body-text">See <a href="Benefits/Benefit_Rules_and_Packages_Benefit_Renewal_Periods_MID.htm">Benefit
+            Rules and Packages - Benefit Renewal Periods</a> for benefit renewal information.</p>
+
+        <p class="doc-level"><a name="DispMemBene_HOT_BenefDetDisp_MID"></a>Displaying
+            Benefit Detail</p>
+
+        <p class="body-text">All claim detail lines associated with the benefit rule
+            ID selected in the Benefits Accumulated As Of focus box display, based
+            on the As of Date entered and the BRULE-Time Frame.</p>
+
+        <p class="body-text">If necessary, you can drill down to the data fields
+            associated with a displayed claim detail line. Select the desired claim
+            detail line in this focus box, and click the Select Clm button. Claim
+            header and claim detail line data for the selected claim line displays.</p>
+
+        <p class="body-text">Click the Pat Liab button or select Special menu&gt;
+            Patient Liabilities to view underlying </p>
+
+        <ul class="calibre15">
+
+            <li class="kadov-p-cbullet-text-block"><p class="bullet-text-block">Copay</p></li>
+
+            <li class="kadov-p-cbullet-text-block"><p class="bullet-text-block">Coinsurance</p></li>
+
+            <li class="kadov-p-cbullet-text-block"><p class="bullet-text-block">Limits
+                (Not Covered)</p></li>
+
+            <li class="kadov-p-cbullet-text-block"><p class="bullet-text-block">Deductible</p></li>
+
+            <li class="kadov-p-cbullet-text-block"><p class="bullet-text-block">Exclusions
+                (Not Covered)</p></li>
+        </ul>
+
+        <p class="body-text">Benefit rules/amounts for claim detail lines having
+            more than <span class="calibre20">one</span> benefit rule of
+            the same benefit rule type; that is, DSPBN Claim Display window fields
+            Not Cov Rsn, Copay Rsn, Co-ins Rsn and/or Deduct Rsn are filled with asterisks.</p>
+
+        <p class="tip-note-warning">Important</p>
+
+        <p class="body-text">You cannot view the processing messages associated with
+            a claim from DSPBN - Select Claim. Use PSCLM, INCLM, or DNCLM to view
+            processing messages.</p>
+
+
+    </div>
+
+
+
+    <div class="calibreEbNav">
+
+        <a href="Automatic_Subscriber_ID_Generation_How_DIAMOND_Thinks.htm" class="calibreAPrev">previous page
+        </a>
+
+
+        <a href="../ib0gc-jzzjl.html" class="calibreAHome">start
+        </a>
+
+
+        <a href="Manually_Adjusted_Benefit_Accumulators_How_DIAMOND_Thinks.htm" class="calibreANext">next page
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+</html>

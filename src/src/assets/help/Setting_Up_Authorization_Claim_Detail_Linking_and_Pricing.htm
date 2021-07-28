@@ -1,0 +1,252 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+    <title>Setting Up Authorization/Claim Detail Linking and Pricing</title>
+    <!--(Meta)==========================================================-->
+    <meta name="copyright"
+          value="© Copyright 2002 Health Systems Design Corp., a wholly owned subsidiary of Perot Systems Corporation. All rights reserved"/>
+    <meta content="RoboHELP by eHelp Corporation - www.ehelp.com" name="generator"/>
+    <meta content="0.1" name="generator-major-version"/>
+    <meta content="1" name="generator-minor-version"/>
+    <meta content="kadov" name="filetype"/>
+    <meta content="1" name="filetype-version"/>
+    <meta content="1" name="page-count"/>
+    <meta content="1532" name="layout-height"/>
+    <meta content="625" name="layout-width"/>
+    <!--(Links)=========================================================-->
+    <!--(Scripts)=======================================================-->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+</head>
+<body>
+
+<div class="calibreMeta">
+    <div class="calibreMetaTitle">
+
+
+        <h1>
+            <a href="../bj5if-qozss.html">DIAMOND 950 Help
+            </a>
+        </h1>
+
+
+    </div>
+    <div class="calibreMetaAuthor">
+        Unknown
+
+    </div>
+</div>
+
+<div class="calibreMain">
+
+    <div class="calibreEbookContent">
+
+        <div class="calibreEbNavTop">
+
+            <a href="Authorization_Claim_Detail_Linking_and_Pricing_Overview.htm" class="calibreAPrev">previous page
+            </a>
+
+
+            <a href="Authorization_Claim_Detail_Linking_and_Pricing_How_DIAMOND_Thinks.htm" class="calibreANext">next
+                page
+            </a>
+
+        </div>
+
+
+        <h1 class="calibre1">Setting Up Authorization/Claim Detail Linking and Pricing</h1>
+
+        <!--(Table)=========================================================-->
+        <table cellspacing="0" width="480" x-use-null-cells="" class="calibre172">
+
+            <tbody class="calibre8">
+            <tr valign="top" class="calibre9">
+                <td width="120px" class="">
+                    <p class="map-links"><a
+                            href="Setting_Up_Authorization_Claim_Detail_Linking_and_Pricing.htm#Setting_Up_Auth_Claim_Detail_Linking_and_Pricing_Restrictions_TSK_MID"><img
+                            alt="image\assets/help/MidTopic_shg.gif" border="0" height="10" src="assets/help/MidTopic_shg.gif" width="18"
+                            class=""/></a> Restrictions</p></td>
+                <td width="126px" class="">
+                    <p class="map-links"><a
+                            href="Setting_Up_Authorization_Claim_Detail_Linking_and_Pricing.htm#Setting_Up_Auth_Claim_Detail_Linking_and_Pricing_Instructions_TSK_MID"><img
+                            alt="image\assets/help/MidTopic_shg.gif" border="0" height="10" src="assets/help/MidTopic_shg.gif" width="18"
+                            class=""/></a> Instructions</p></td>
+                <td width="234px" class="">
+                    <p class="map-links"><a
+                            href="Setting_Up_Authorization_Claim_Detail_Linking_and_Pricing.htm#Setting_Up_Auth_Claim_Detail_Linking_and_Pricing_FAQs_TSK_MID"><img
+                            alt="image\assets/help/MidTopic_shg.gif" border="0" height="10" src="assets/help/MidTopic_shg.gif" width="18"
+                            class=""/></a> Frequently Asked Questions</p></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <p class="doc-level"><a name="Setting_Up_Auth_Claim_Detail_Linking_and_Pricing_Restrictions_TSK_MID"></a>Restrictions
+        </p>
+
+        <p class="body-text">A claim must match an authorization at the header level
+            in order for authorization/claim detail linking and pricing to be performed.
+            Thus, you must enable authorization/claim match logic to use this functionality.
+            To learn how to enable and use DIAMOND authorization/claim matching logic,
+            see <a href="Authorization_Claim_Links_How_DIAMOND_Thinks.htm">Authorization
+                Claim Links, How DIAMOND Thinks</a>.</p>
+
+        <p class="doc-level"><a name="Setting_Up_Auth_Claim_Detail_Linking_and_Pricing_Instructions_TSK_MID"></a>Instructions
+        </p>
+
+        <!--(Table)=========================================================-->
+        <table cellspacing="0" width="526" x-use-null-cells="" class="">
+
+            <tbody class="calibre8">
+            <tr valign="top" class="calibre9">
+                <td width="250px" class="calibre15">
+                    <p class="tbl-header">Step</p></td>
+                <td width="276px" class="calibre16">
+                    <p class="tbl-header">Comment</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre9">
+                <td width="250px" class="calibre17">
+                    <p class="step">1. Use keyword PRCRA
+                        (Authorization Procedure Ranges) to define sets of procedure codes to
+                        be used during authorization/claim detail linking. </p></td>
+                <td width="276px" class="calibre18">
+                    <p class="step-comment">After you define a PRCRA
+                        set, you can use it as a procedure code match criterion when you build
+                        CDAPL (Claim Detail Authorization Procedure Link) link rules. The PRCRA
+                        set is used to determine if submitted claim procedure codes that do not
+                        match the authorized procedure code should be considered authorized.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre9">
+                <td width="250px" class="calibre17">
+                    <p class="step">2. Use keyword CDAPR
+                        (Claims Detail Authorization Procedure Rules) to define authorization
+                        detail match criteria rules based on:</p>
+                    <ul class="calibre2">
+
+                        <li class="kadov-p-cstep--bullet"><p class="step--bullet">Authorized procedure
+                            amount</p></li>
+
+                        <li class="kadov-p-cstep--bullet"><p class="step--bullet">Authorized procedure
+                            status</p></li>
+
+                        <li class="kadov-p-cstep--bullet"><p class="step--bullet">Whether the submitted
+                            procedure code and authorized procedure code are an exact match, in range,
+                            or out of range.</p></li>
+                    </ul>
+                </td>
+                <td width="276px" class="calibre18">
+                    <p class="step-comment">After you define CDAPR rules,
+                        you can use these rules as authorization detail match criteria when building
+                        CDAPL rules.</p>
+                    <p class="body-text">For examples of CDAPR rules, see Authorization/Claim
+                        Detail Linking and Pricing, How DIAMOND Thinks, section Examples of Claims
+                        Detail Authorization Procedure Rules.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre9">
+                <td width="250px" class="calibre17">
+                    <p class="step">3.  Use keyword CDAPL
+                        (Claim Detail Authorization Procedure Link) to define rules for performing
+                        authorization/claim detail linking and pricing.</p></td>
+                <td width="276px" class="calibre18">
+                    <p class="step-comment">You define CDAPL rules for
+                        a specific line of business, authorization type and effective date combination.
+                        When you enter a claim that has a matching header authorization and also
+                        matches a CDAPL rule line of business/authorization type/effective date
+                        combination, DIAMOND searches for the matching authorization procedure
+                        details. DIAMOND then applies the CDAPL rules to the claim and matching
+                        authorization to determine what action to take on each claim detail line.</p>
+                    <p class="body-text">When you enter a CDAPL rule, DIAMOND initiates
+                        a default processing rule for the CDAPL rule with a Process Order of 9999.
+                        DIAMOND uses this rule if during evaluation none of the prior processing
+                        rules can be applied based on the criteria defined in CDAPR. You should
+                        complete the fields and save this processing rule in order to provide
+                        a "graceful landing" for this evaluation process.</p>
+                    <p class="body-text">When CADPL rules are evaluated, DIAMOND reviews
+                        the CADPR Rule ID to determine whether:</p>
+                    <ul type="disc" class="calibre19">
+
+                        <li class="kadov-p-cstep-comment-noline"><p class="step-comment-noline">An
+                            exact match between claim procedure and authorization procedure is required</p></li>
+
+                        <li class="kadov-p-cstep-comment-noline"><p class="step-comment-noline">A
+                            match within a range of procedure codes</p></li>
+
+                        <li class="kadov-p-cstep-comment-noline"><p class="step-comment-noline">A
+                            possible match with an out of range procedure</p></li>
+                    </ul>
+                    <p class="body-text">If an exact match is required and this criteria
+                        is met, DIAMOND determines whether a price is provided for the authorized
+                        procedure and the authorization status. If there is an assigned dollar
+                        amount (greater than 0$) on the PRCDR table and the status is a match,
+                        the DIAMOND will perform the pay action. In this case, DIAMOND will not
+                        evaluate the procedure ranges.</p>
+                    <p class="body-text"> </p></td>
+            </tr>
+
+            <tr valign="top" class="calibre9">
+                <td width="250px" class="calibre17">
+                    <p class="step">4. If you use Whole
+                        Claim Pricing, use system parameter CDAPLWCPSYSG to define the system
+                        generated procedure code used when the following apply:</p>
+                    <ul class="calibre2">
+
+                        <li class="kadov-p-cstep--bullet"><p class="step--bullet">The claim line
+                            is Whole Claim Priced (WCP)</p></li>
+
+                        <li class="kadov-p-cstep--bullet"><p class="step--bullet">An additional
+                            adjustment is required to balance the claim total payable</p></li>
+
+                        <li class="kadov-p-cstep--bullet"><p class="step--bullet">A Claim Detail
+                            Authorization Procedure Link (CDAPL) rule is used with a <span class="calibre5">Pay
+ Action</span> of Price Using the Auth Price </p></li>
+                    </ul>
+                </td>
+                <td width="276px" class="calibre18">
+                    <p class="step-comment"> </p></td>
+            </tr>
+
+            <tr valign="top" class="calibre9">
+                <td width="250px" class="calibre17">
+                    <p class="step">5.  Use keyword PROCD
+                        (Procedure Codes) to flag procedure code records for inclusion in Institutional
+                        claims authorization/claim detail linking and pricing. Flag each appropriate
+                        procedure code record for inclusion by selecting the PROCD check box <span class="calibre5">Inst. Auth Detail Link</span>.
+                    </p></td>
+                <td width="276px" class="calibre18">
+                    <p class="step-comment"> </p></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <p class="body-text1"> </p>
+
+        <p class="doc-level"><a name="Setting_Up_Auth_Claim_Detail_Linking_and_Pricing_FAQs_TSK_MID"></a>Frequently
+            Asked Questions</p>
+
+        <p class="body-text">None.</p>
+
+
+    </div>
+
+    <div class="calibreEbNav">
+
+        <a href="Authorization_Claim_Detail_Linking_and_Pricing_Overview.htm" class="calibreAPrev">previous page
+        </a>
+
+
+        <a href="../bj5if-qozss.html" class="calibreAHome">start
+        </a>
+
+
+        <a href="Authorization_Claim_Detail_Linking_and_Pricing_How_DIAMOND_Thinks.htm" class="calibreANext">next page
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!-- Copyright (c) 2020 . All Rights Reserved. -->
+<div class="container-fluid">
+    <div class="card-block">
+        <form [formGroup]="ruleCopyForm" novalidate>
+            <h2 class="form-title card-label-admin">Rule Copy</h2>
+            <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+            <app-pop-up-message #popUpMesssage (buttonclickEvent)="popUpButtonHandler($event)"  [(popupMessage)] = "popUpMessage"></app-pop-up-message>
+                        
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of Rule Id -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('ruleId') }">
+                     <label class="col-form-label" for="ruleId" i18n>Rule Id</label>
+                     <input type="text" id="ruleId"  [fieldLevelSec]="''" params]=""   class="form-control" formControlName="ruleId"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('ruleId')">
+                      {{ formValidation.errorMessage('ruleId') }}
+                     </small>
+                 </div>
+            
+                <!-- Textbox with label of Effective Date -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('effectiveDate') }">
+                     <label class="col-form-label" for="effectiveDate" i18n>Effective Date</label>
+                     <div class="input-group">
+                    <input id="effectiveDate"  [fieldLevelSec]="''" params]=""  class="form-control" angular-mydatepicker name="effectiveDate" (click)="effectiveDateId.toggleCalendar()"
+                    formControlName="effectiveDate"[options]="datePickerConfig" #effectiveDateId="angular-mydatepicker"/>
+                    <div class="input-group-append">
+                        <button type="button" class="btn btn-secondary" (click)="effectiveDateId.clearDate()">
+                          <i class="fa fa-close"></i>
+                        </button>
+                      </div>
+                      <div class="input-group-append">
+                        <button type="button" class="btn btn-secondary" (click)="effectiveDateId.toggleCalendar()">
+                          <i class="fa fa-calendar-o"></i>
+                        </button>
+                      </div>
+                    </div>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('effectiveDate')">
+                      {{ formValidation.errorMessage('effectiveDate') }}
+                     </small>
+                 </div>
+            
+                <!-- Button with label of OK -->
+                <div class="col-md-2">
+                    <button type="button" id="ok" name="ok" class="btn btn-small btn-primary">OK</button>
+                
+                
+                </div>
+            
+            </div>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+                <!-- DynamicText with label of Term Date -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('termDate') }">
+                     <label class="col-form-label" for="termDate" i18n>Term Date</label>
+                     <input type="text"  [fieldLevelSec]="''" params]=""  readonly id="termDate" formControlName="termDate" class="form-control"/>
+                 </div>
+            
+                <!-- DynamicText with label of Term Reason -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('termReason') }">
+                     <label class="col-form-label" for="termReason" i18n>Term Reason</label>
+                     <input type="text"  [fieldLevelSec]="''" params]=""  readonly id="termReason" formControlName="termReason" class="form-control"/>
+                 </div>
+            
+                <!-- Button with label of Cancel -->
+                <div class="col-md-2">
+                    <button type="button" id="cancel" name="cancel" class="btn btn-small btn-primary">Cancel</button>
+                
+                
+                </div>
+            
+            </div>
+        </form>
+    </div>
+</div>

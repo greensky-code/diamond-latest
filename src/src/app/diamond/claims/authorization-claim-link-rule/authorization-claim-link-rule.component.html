@@ -1,0 +1,430 @@
+<!-- Copyright (c) 2021 . All Rights Reserved. -->
+<div class="container-fluid">
+    <div class="card-block">
+        <div class="row form-title">
+            <h2 class="col-md-6 card-label-admin">Authorization Claim Link Rule</h2>
+        </div>
+        <button type="button" *ngIf="showIcon" class="modal-close close" aria-label="Close"
+                (click)="closeModal()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+        <app-pop-up-message #popUpMesssage (buttonclickEvent)="popUpButtonHandler($event)"
+                            [popupMessage]="popUpMessage"></app-pop-up-message>
+
+        <ng-template #loaderTemplate let-loaderValue="value">
+            <div class="row justify-content-center mt-4" *ngIf="loaderValue">
+                <div class="spinner-border text-success" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>
+            </div>
+        </ng-template>
+        <ng-container *ngTemplateOutlet="loaderTemplate;context:{value: secProgress }"></ng-container>
+
+        <ng-container *appWinSelect="{secWin: secWin, userTemplateId: userTemplateId, secModuleId: memberModuleId}">
+            <div class="row mt-3 mb-3">
+                <menu-bar [menus]="menu" (onMenuClick)="onMenuItemClick($event)"></menu-bar>
+            </div>
+
+            <form [formGroup]="authorizationClaimLinkRuleForm" novalidate>
+                <!-- DataGrid with Name of DataGrid -->
+                <!-- <button (click)="dataGridGridOptionsExportCsv()">Export</button> -->
+                <ag-grid-angular #agGrid [gridOptions]="dataGridGridOptions" [enableFilter]="false"
+                                 [enableSorting]="true"
+                                 [floatingFilter]="true"
+                                 [pagination]="true"
+                                 [showToolPanel]="true"
+                                 class="ag-theme-fresh"
+                                 (rowClicked)="onRowClicked($event.data)"
+                                 (rowDataChanged)="onReady($event)"
+                                 (onSelectionChanged)="onSelectionChanged()"
+                                 style="width: 100%; height: 300px;">
+                </ag-grid-angular>
+
+                <div class="form-group row">
+                </div>
+                <div class="form-group row">
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-md-2">
+                        <label class="col-form-label label-a-right required-field-label" i18n>Line Of Business:</label>
+                    </div>
+                    <!-- Textbox with label of Line Of Business -->
+                    <div [ngClass]="{'has-danger': formValidation.isValidField('lineOfBusiness') }" class="col-md-2">
+                        <select #lobSelect (change)='changeLineOfBusiness(lobSelect.value)' class="form-control"[formGroup]="authorizationClaimLinkRuleForm" formControlName="lineOfBusiness" id="lineOfBusiness"
+                                name="lineOfBusiness">
+                            <option *ngFor="let lineOfBusiness of lineOfBusinesses"
+                                    [value]="lineOfBusiness.key">{{lineOfBusiness.key}}</option>
+                        </select>
+                        <small *ngIf="formValidation.isValidField('lineOfBusiness')" class="text-danger">
+                            {{ formValidation.errorMessage('lineOfBusiness') }}
+                        </small>
+                    </div>
+                    <div class="col-md-2" >
+                        <label>{{authorizationClaimLinkRuleForm.controls.dynamicText.value}}</label>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-md-2">
+                        <label class="col-form-label label-a-right required-field-label" i18n>Auth Type:</label>
+                    </div>
+                    <!-- Textbox with label of Auth Type -->
+                    <div [ngClass]="{'has-danger': formValidation.isValidField('seqAuthType') }" class="col-md-2">
+                        <select #satSelect (change)='changeSeqAuthType(satSelect.value)' class="form-control" [formGroup]="authorizationClaimLinkRuleForm" formControlName="seqAuthType" id="seqAuthType"
+                                name="seqAuthType">
+                            <option *ngFor="let seqAuthType of seqAuthTypes"
+                                    [value]="seqAuthType.key">{{seqAuthType.value}}</option>
+                        </select>
+                        <small *ngIf="formValidation.isValidField('seqAuthType')" class="text-danger">
+                            {{ formValidation.errorMessage('seqAuthType') }}
+                        </small>
+                    </div>
+                    <div class="col-md-2" >
+                        <label>{{authorizationClaimLinkRuleForm.controls.description.value}}</label>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-md-6">
+                    </div>
+                    <div class="col-md-3 text-center font-weight-bold required-field-label">
+                        Action
+                    </div>
+
+                    <div class="col-md-3 text-center font-weight-bold">
+                        Reason
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-md-12 center-line font-italic" i18n>
+                        <span class="required-field-label">date rules</span>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-md-6">
+                        <label class="col-form-label label-a-right" i18n>Authorization is Expired:</label>
+                    </div>
+                    <!-- DropdownList with label of Authorization is Expired -->
+                    <div [ngClass]="{'has-danger': formValidation.isValidField('authExpiredStatus') }"
+                         class="col-md-3">
+                        <select #aieSelect (change)='changeAction(aieSelect.value,"authExpiredStatus",true)' class="form-control" formControlName="authExpiredStatus" id="authExpiredStatus"
+                                name="authExpiredStatus">
+                            <option *ngFor="let authorizationAction of authorizationActions"
+                                    [value]="authorizationAction.dddwDtlPrimaryKey.dataVal">{{authorizationAction.dddwDtlPrimaryKey.displayVal}}</option>
+                        </select>
+                        <small *ngIf="formValidation.isValidField('authExpiredStatus')" class="text-danger">
+                            {{ formValidation.errorMessage('authExpiredStatus') }}
+                        </small>
+                    </div>
+                    <!-- DynamicText with label of Authorization is Expired reason -->
+                    <div [ngClass]="{'has-danger': formValidation.isValidField('authExpiredReason') }"
+                         class="col-md-3">
+                        <select  class="form-control" formControlName="authExpiredReason" id="authExpiredReason"
+                                name="authExpiredReason">
+                            <option *ngFor="let authorizationReason of authorizationReasons"
+                                    [value]="authorizationReason.key">{{authorizationReason.key}} {{authorizationReason.value}}</option>
+                        </select>
+                        <small *ngIf="formValidation.isValidField('authExpiredReason')" class="text-danger">
+                            {{ formValidation.errorMessage('authExpiredReason') }}
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-md-6">
+                        <label class="col-form-label label-a-right" i18n>Claim Date Outsde Authorization Date:</label>
+                    </div>
+                    <!-- DropdownList with label of Claim Date Outsde Authorization Date -->
+                    <div [ngClass]="{'has-danger': formValidation.isValidField('authDateStatus') }"
+                         class="col-md-3">
+                        <select #claimSelect (change)='changeAction(claimSelect.value,"authDateStatus",true)' class="form-control" formControlName="authDateStatus" id="authDateStatus"
+                                name="authDateStatus">
+                            <option *ngFor="let authorizationAction of authorizationActions"
+                                     [value]="authorizationAction.dddwDtlPrimaryKey.dataVal">{{authorizationAction.dddwDtlPrimaryKey.displayVal}}</option>
+                        </select>
+                        <small *ngIf="formValidation.isValidField('authDateStatus')" class="text-danger">
+                            {{ formValidation.errorMessage('authDateStatus') }}
+                        </small>
+                    </div>
+                    <!-- DynamicText with label of Claim Date Outsde Authorization Date Reason -->
+                    <div [ngClass]="{'has-danger': formValidation.isValidField('authDateReason') }"
+                         class="col-md-3">
+                        <select  class="form-control" formControlName="authDateReason" id="authDateReason"
+                                name="authDateReason">
+                            <option *ngFor="let authorizationReason of authorizationReasons"
+                                    [value]="authorizationReason.key">{{authorizationReason.key}} {{authorizationReason.value}}</option>
+                        </select>
+                        <small *ngIf="formValidation.isValidField('authDateReason')" class="text-danger">
+                            {{ formValidation.errorMessage('authDateReason') }}
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-md-12 center-line font-italic" i18n>
+                        <span class="required-field-label">status rules</span>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-md-6">
+                        <label class="col-form-label label-a-right" i18n>Authorization is Closed:</label>
+                    </div>
+                    <!-- DropdownList with label of Authorization is Closed -->
+                    <div [ngClass]="{'has-danger': formValidation.isValidField('authClosedStatus') }" class="col-md-3">
+                        <select #authcloseSelect (change)='changeAction(authcloseSelect.value,"authClosedStatus",true)' class="form-control" formControlName="authClosedStatus" id="authClosedStatus"
+                                name="authClosedStatus">
+                            <option *ngFor="let authorizationAction of authorizationActions"
+                                    [value]="authorizationAction.dddwDtlPrimaryKey.dataVal">{{authorizationAction.dddwDtlPrimaryKey.displayVal}}</option>
+                        </select>
+                        <small *ngIf="formValidation.isValidField('authClosedStatus')" class="text-danger">
+                            {{ formValidation.errorMessage('authClosedStatus') }}
+                        </small>
+                    </div>
+                    <!-- DynamicText with label of Authorization is Closed Reason -->
+                    <div [ngClass]="{'has-danger': formValidation.isValidField('authClosedReason') }"
+                         class="col-md-3">
+                        <select  class="form-control" formControlName="authClosedReason" id="authClosedReason"
+                                name="authClosedReason">
+                            <option *ngFor="let authorizationReason of authorizationReasons"
+                                    [value]="authorizationReason.key">{{authorizationReason.key}} {{authorizationReason.value}}</option>
+                        </select>
+                        <small *ngIf="formValidation.isValidField('authClosedReason')" class="text-danger">
+                            {{ formValidation.errorMessage('authClosedReason') }}
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-md-6">
+                        <label class="col-form-label label-a-right" i18n>Authorization is New:</label>
+                    </div>
+                    <!-- DropdownList with label of Authorization is New -->
+                    <div [ngClass]="{'has-danger': formValidation.isValidField('authNewStatus') }" class="col-md-3">
+                        <select #authnewSelect (change)='changeAction(authnewSelect.value,"authNewStatus",true)' class="form-control" formControlName="authNewStatus" id="authNewStatus"
+                                name="authNewStatus">
+                            <option *ngFor="let authorizationAction of authorizationActions"
+                                    [value]="authorizationAction.dddwDtlPrimaryKey.dataVal">{{authorizationAction.dddwDtlPrimaryKey.displayVal}}</option>
+                        </select>
+                        <small *ngIf="formValidation.isValidField('authNewStatus')" class="text-danger">
+                            {{ formValidation.errorMessage('authNewStatus') }}
+                        </small>
+                    </div>
+                    <!-- DynamicText with label of Authorization is New Reason -->
+                    <div [ngClass]="{'has-danger': formValidation.isValidField('authNewReason') }"
+                         class="col-md-3">
+                        <select  class="form-control" formControlName="authNewReason" id="authNewReason"
+                                name="authNewReason">
+                            <option *ngFor="let authorizationReason of authorizationReasons"
+                                    [value]="authorizationReason.key">{{authorizationReason.key}} {{authorizationReason.value}}</option>
+                        </select>
+                        <small *ngIf="formValidation.isValidField('authNewReason')" class="text-danger">
+                            {{ formValidation.errorMessage('authNewReason') }}
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-md-6">
+                        <label class="col-form-label label-a-right" i18n>Authorization is Held:</label>
+                    </div>
+                    <!-- DropdownList with label of Authorization is Held -->
+                    <div [ngClass]="{'has-danger': formValidation.isValidField('authHeldStatus') }" class="col-md-3">
+                        <select #authheldSelect (change)='changeAction(authheldSelect.value,"authHeldStatus",true)' class="form-control" formControlName="authHeldStatus" id="authHeldStatus"
+                                name="authHeldStatus">
+                            <option *ngFor="let authorizationAction of authorizationActions"
+                                    [value]="authorizationAction.dddwDtlPrimaryKey.dataVal">{{authorizationAction.dddwDtlPrimaryKey.displayVal}}</option>
+                        </select>
+                        <small *ngIf="formValidation.isValidField('authHeldStatus')" class="text-danger">
+                            {{ formValidation.errorMessage('authHeldStatus') }}
+                        </small>
+                    </div>
+                    <!-- DynamicText with label of Authorization is Held Reason -->
+                    <div [ngClass]="{'has-danger': formValidation.isValidField('authHeldReason') }"
+                         class="col-md-3">
+                        <select  class="form-control" formControlName="authHeldReason" id="authHeldReason"
+                                name="authHeldReason">
+                            <option *ngFor="let authorizationReason of authorizationReasons"
+                                    [value]="authorizationReason.key">{{authorizationReason.key}} {{authorizationReason.value}}</option>
+                        </select>
+                        <small *ngIf="formValidation.isValidField('authHeldReason')" class="text-danger">
+                            {{ formValidation.errorMessage('authHeldReason') }}
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-md-6">
+                        <label class="col-form-label label-a-right" i18n>Authorization is Denied:</label>
+                    </div>
+                    <!-- DropdownList with label of Authorization is Denied -->
+                    <div [ngClass]="{'has-danger': formValidation.isValidField('authDeniedStatus') }" class="col-md-3">
+                        <select #authdeniSelect (change)='changeAction(authdeniSelect.value,"authDeniedStatus",true)' class="form-control" formControlName="authDeniedStatus" id="authDeniedStatus"
+                                name="authDeniedStatus">
+                            <option *ngFor="let authorizationAction of authorizationActions"
+                                    [value]="authorizationAction.dddwDtlPrimaryKey.dataVal">{{authorizationAction.dddwDtlPrimaryKey.displayVal}}</option>
+                        </select>
+                        <small *ngIf="formValidation.isValidField('authDeniedStatus')" class="text-danger">
+                            {{ formValidation.errorMessage('authDeniedStatus') }}
+                        </small>
+                    </div>
+                    <!-- DynamicText with label of Authorization is Denied Reason -->
+                    <div [ngClass]="{'has-danger': formValidation.isValidField('authDeniedReason') }"
+                         class="col-md-3">
+                        <select  class="form-control" formControlName="authDeniedReason" id="authDeniedReason"
+                                name="authDeniedReason">
+                            <option *ngFor="let authorizationReason of authorizationReasons"
+                                    [value]="authorizationReason.key">{{authorizationReason.key}} {{authorizationReason.value}}</option>
+                        </select>
+                        <small *ngIf="formValidation.isValidField('authDeniedReason')" class="text-danger">
+                            {{ formValidation.errorMessage('authDeniedReason') }}
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-md-12 center-line font-italic" i18n>
+                        <span class="required-field-label">condition rules</span>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-md-6">
+                        <label class="col-form-label label-a-right" i18n>Authorization Visits/Days Exceeded:</label>
+                    </div>
+                    <!-- DropdownList with label of Authorization Visits/Days Exceeded -->
+                    <div [ngClass]="{'has-danger': formValidation.isValidField('authQuantityExceededStatus') }"
+                         class="col-md-3">
+                        <select #authdaySelect (change)='changeAction(authdaySelect.value,"authQuantityExceededStatus",true)' class="form-control" formControlName="authQuantityExceededStatus"
+                                id="authQuantityExceededStatus" name="authQuantityExceededStatus">
+                            <option *ngFor="let authorizationAction of authorizationActions"
+                                    [value]="authorizationAction.dddwDtlPrimaryKey.dataVal">{{authorizationAction.dddwDtlPrimaryKey.displayVal}}</option>
+                        </select>
+                        <small *ngIf="formValidation.isValidField('authQuantityExceededStatus')" class="text-danger">
+                            {{ formValidation.errorMessage('authQuantityExceededStatus') }}
+                        </small>
+                    </div>
+                    <!-- DynamicText with label of Authorization Visits/Days Exceeded Reason -->
+                    <div [ngClass]="{'has-danger': formValidation.isValidField('authQuantityExceededReason') }"
+                         class="col-md-3">
+                        <select  class="form-control" formControlName="authQuantityExceededReason" id="authQuantityExceededReason"
+                                name="authQuantityExceededReason">
+                            <option *ngFor="let authorizationReason of authorizationReasons"
+                                    [value]="authorizationReason.key">{{authorizationReason.key}} {{authorizationReason.value}}</option>
+                        </select>
+                        <small *ngIf="formValidation.isValidField('authQuantityExceededReason')" class="text-danger">
+                            {{ formValidation.errorMessage('authQuantityExceededReason') }}
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-md-6">
+                        <label class="col-form-label label-a-right" i18n>Authorization Cost Exceeded:</label>
+                    </div>
+                    <!-- DropdownList with label of Authorization Cost Exceeded -->
+                    <div [ngClass]="{'has-danger': formValidation.isValidField('authCostExceededStatus') }"
+                         class="col-md-3">
+                        <select #authcostSelect (change)='changeAction(authcostSelect.value,"authCostExceededStatus",true)' class="form-control" formControlName="authCostExceededStatus" id="authCostExceededStatus"
+                                name="authCostExceededStatus">
+                            <option *ngFor="let authorizationAction of authorizationActions"
+                                    [value]="authorizationAction.dddwDtlPrimaryKey.dataVal">{{authorizationAction.dddwDtlPrimaryKey.displayVal}}</option>
+                        </select>
+                        <small *ngIf="formValidation.isValidField('authCostExceededStatus')" class="text-danger">
+                            {{ formValidation.errorMessage('authCostExceededStatus') }}
+                        </small>
+                    </div>
+                    <!-- DynamicText with label of Authorization Cost Exceeded Reason -->
+                    <div [ngClass]="{'has-danger': formValidation.isValidField('authCostExceededReason') }"
+                         class="col-md-3">
+                        <select  class="form-control" formControlName="authCostExceededReason" id="authCostExceededReason"
+                                name="authCostExceededReason">
+                            <option *ngFor="let authorizationReason of authorizationReasons"
+                                    [value]="authorizationReason.key">{{authorizationReason.key}} {{authorizationReason.value}}</option>
+                        </select>
+                        <small *ngIf="formValidation.isValidField('authCostExceededReason')" class="text-danger">
+                            {{ formValidation.errorMessage('authCostExceededReason') }}
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-md-6">
+                        <label class="col-form-label label-a-right" i18n>Authorization 2nd Opinion Exceeded Required:</label>
+                    </div>
+                    <!-- DropdownList with label of Authorization 2nd Opinion Exceeded Required -->
+                    <div [ngClass]="{'has-danger': formValidation.isValidField('authSecOpReqStatus') }"
+                         class="col-md-3">
+                        <select #secopSelect (change)='changeAction(secopSelect.value,"authSecOpReqStatus",true)' class="form-control" formControlName="authSecOpReqStatus"
+                                id="authSecOpReqStatus" name="authSecOpReqStatus">
+                            <option *ngFor="let authorizationAction of authorizationActions"
+                                    [value]="authorizationAction.dddwDtlPrimaryKey.dataVal">{{authorizationAction.dddwDtlPrimaryKey.displayVal}}</option>
+                        </select>
+                        <small *ngIf="formValidation.isValidField('authSecOpReqStatus')" class="text-danger">
+                            {{ formValidation.errorMessage('authSecOpReqStatus') }}
+                        </small>
+                    </div>
+                    <!-- DynamicText with label of Authorization 2nd Opinion Exceeded Required Reason -->
+                    <div [ngClass]="{'has-danger': formValidation.isValidField('authSecOpReqReason') }"
+                         class="col-md-3">
+                        <select  class="form-control" formControlName="authSecOpReqReason" id="authSecOpReqReason"
+                                name="authSecOpReqReason">
+                            <option *ngFor="let authorizationReason of authorizationReasons"
+                                    [value]="authorizationReason.key">{{authorizationReason.key}} {{authorizationReason.value}}</option>
+                        </select>
+                        <small *ngIf="formValidation.isValidField('authSecOpReqReason')" class="text-danger">
+                            {{ formValidation.errorMessage('authSecOpReqReason') }}
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-md-6">
+                        <label class="col-form-label label-a-right" i18n>Group or Plan on Claim Does not Match Auth:</label>
+                    </div>
+                    <!-- DropdownList with label of Group or Plan on Claim Does not Match Auth -->
+                    <div [ngClass]="{'has-danger': formValidation.isValidField('authGroupPlanStatus') }"
+                         class="col-md-3">
+                        <select #grpPlanSelect (change)='changeAction(grpPlanSelect.value,"authGroupPlanStatus",true)' class="form-control" formControlName="authGroupPlanStatus" id="authGroupPlanStatus"
+                                name="authGroupPlanStatus">
+                            <option *ngFor="let authorizationAction of authorizationActions"
+                                    [value]="authorizationAction.dddwDtlPrimaryKey.dataVal">{{authorizationAction.dddwDtlPrimaryKey.displayVal}}</option>
+                        </select>
+                        <small *ngIf="formValidation.isValidField('authGroupPlanStatus')" class="text-danger">
+                            {{ formValidation.errorMessage('authGroupPlanStatus') }}
+                        </small>
+                    </div>
+                    <!-- DynamicText with label of Group or Plan on Claim Does not Match Auth Reason -->
+                    <div [ngClass]="{'has-danger': formValidation.isValidField('authGroupPlanReason') }"
+                         class="col-md-3">
+                        <select  class="form-control" formControlName="authGroupPlanReason" id="authGroupPlanReason"
+                                name="authGroupPlanReason">
+                            <option *ngFor="let authorizationReason of authorizationReasons"
+                                    [value]="authorizationReason.key">{{authorizationReason.key}} {{authorizationReason.value}}</option>
+                        </select>
+                        <small *ngIf="formValidation.isValidField('authGroupPlanReason')" class="text-danger">
+                            {{ formValidation.errorMessage('authGroupPlanReason') }}
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                </div>
+
+            </form>
+        </ng-container>
+    </div>
+</div>
+
+<ng-keyboard-shortcuts [shortcuts]="shortcuts"></ng-keyboard-shortcuts>
+<ng-keyboard-shortcuts-help [key]="'f2'" [closeKey]="'escape'" [title]="'Hotkeys Help'"></ng-keyboard-shortcuts-help>

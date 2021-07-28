@@ -1,0 +1,123 @@
+<!-- Copyright (c) 2020 . All Rights Reserved. -->
+<div class="container-fluid">
+    <div class="card-block">
+        <form [formGroup]="memberBillingForm" novalidate>
+            <h2 class="form-title card-label-admin">Member Billing</h2>
+            <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+            <app-pop-up-message #popUpMesssage (buttonclickEvent)="popUpButtonHandler($event)"  [(popupMessage)] = "popUpMessage"></app-pop-up-message>
+                        
+            <div class="form-group row">
+                <!-- Textbox with label of DIAMOND ID -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('diamondId') }">
+                     <label class="col-form-label" for="diamondId" i18n>DIAMOND ID</label>
+                     <input type="text" id="diamondId"  class="form-control" formControlName="diamondId"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('diamondId')">
+                      {{ formValidation.errorMessage('diamondId') }}
+                     </small>
+                 </div>
+            
+                <!-- Textbox with label of Subscriber ID -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('subscriberId') }">
+                     <label class="col-form-label" for="subscriberId" i18n>Subscriber ID</label>
+                     <input type="text" id="subscriberId"  class="form-control" formControlName="subscriberId"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('subscriberId')">
+                      {{ formValidation.errorMessage('subscriberId') }}
+                     </small>
+                 </div>
+            
+            </div>
+            
+                        <!-- DataGrid with Name of DataGrid001 -->
+                    <button (click)="dataGrid001GridOptionsExportCsv()">Export</button>
+                    <ag-grid-angular #agGrid class="ag-theme-fresh" [gridOptions]="dataGrid001GridOptions"
+                    style="width: 100%; height: 300px;"
+                    [enableSorting]="true"
+                    [enableFilter]="true"
+                    [floatingFilter]="true"
+                    [pagination]="true"
+                    [showToolPanel]="true">
+                    </ag-grid-angular>
+            
+                        <!-- DataGrid with Name of DataGrid002 -->
+                    <button (click)="dataGrid002GridOptionsExportCsv()">Export</button>
+                    <ag-grid-angular #agGrid class="ag-theme-fresh" [gridOptions]="dataGrid002GridOptions"
+                    style="width: 100%; height: 300px;"
+                    [enableSorting]="true"
+                    [enableFilter]="true"
+                    [floatingFilter]="true"
+                    [pagination]="true"
+                    [showToolPanel]="true">
+                    </ag-grid-angular>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of Billing Begin -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('billingBegin') }">
+                     <label class="col-form-label" for="billingBegin" i18n>Billing Begin</label>
+                     <input type="text" id="billingBegin"  class="form-control" formControlName="billingBegin"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('billingBegin')">
+                      {{ formValidation.errorMessage('billingBegin') }}
+                     </small>
+                 </div>
+            
+                <!-- DynamicText with label of Billed Through -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('billedThrough') }">
+                     <label class="col-form-label" for="billedThrough" i18n>Billed Through</label>
+                     <input type="text" readonly id="billedThrough" formControlName="billedThrough" class="form-control"/>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Checkbox with label of Use EFT -->
+                <div class="" [ngClass]="{'has-error': displayMessage.useEft }">
+                    <div class="checkbox col-md-12">
+                      <input id="useEft" value="useEft" formControlName="useEft" type="checkbox">
+                        <label class="checkbox">
+                            Use EFT
+                         </label>
+                    </div>
+                    <span class="help-block" *ngIf="displayMessage.useEft">
+                        {{ displayMessage.useEft  }}
+                     </span>
+                </div>
+            
+                <!-- DynamicText with label of Paid Through -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('paidThrough') }">
+                     <label class="col-form-label" for="paidThrough" i18n>Paid Through</label>
+                     <input type="text" readonly id="paidThrough" formControlName="paidThrough" class="form-control"/>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of Ovr. Code -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('ovrCode') }">
+                     <label class="col-form-label" for="ovrCode" i18n>Ovr. Code</label>
+                     <input type="text" id="ovrCode"  class="form-control" formControlName="ovrCode"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('ovrCode')">
+                      {{ formValidation.errorMessage('ovrCode') }}
+                     </small>
+                 </div>
+            
+                <!-- Textbox with label of Ovr. Amount -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('ovrAmount') }">
+                     <label class="col-form-label" for="ovrAmount" i18n>Ovr. Amount</label>
+                     <input type="text" id="ovrAmount"  class="form-control" formControlName="ovrAmount"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('ovrAmount')">
+                      {{ formValidation.errorMessage('ovrAmount') }}
+                     </small>
+                 </div>
+            
+                <!-- Textbox with label of Ovr. Step -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('ovrStep') }">
+                     <label class="col-form-label" for="ovrStep" i18n>Ovr. Step</label>
+                     <input type="text" id="ovrStep"  class="form-control" formControlName="ovrStep"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('ovrStep')">
+                      {{ formValidation.errorMessage('ovrStep') }}
+                     </small>
+                 </div>
+            
+            </div>
+        </form>
+    </div>
+</div>

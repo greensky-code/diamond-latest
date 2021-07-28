@@ -1,0 +1,96 @@
+/*
+ * Application specific LESS file. LESS is a dynamic style sheet language that
+ * compiled into a css file. LESS addresses several maintainability problems
+ * with css. A good online course on less is: "A Better CSS: LESS and SASS" on
+ * pluralsight.com.
+ *
+ * All css syntax is valid LESS syntax. LESS adds additional or alternative syntax
+ * that is easier to use than standard css.
+ *
+ * The color problem - can't name colors. Allows you to define standard, reusable
+ * colors and other elements so that they can be changed in one place.
+ *
+ * The Duplication Problem - duplicate values in the same rule. You often have to
+ * define different elements with the same value in the same role for several browsers.
+ * Put repeatable sets of code and put into one place.
+ *
+ * The Cascading Problem -
+ * e.g. #form input[type=textbox], #form  textarea
+ * Have to change the names of all instances of the rule name if the name "form" is
+ * changed.
+ *
+ * The Calculation Problem -
+ * Can't do calculations in the css.
+ * e.g. font-size: html.font-size + 8px where html.font-size is 14x.
+ *
+ * The Importing Problem
+ * For performance, would like to make efficient css for you by combining them into one so that
+ * you get smart caching of the css and better performance.
+ */
+div {
+    border: 0px solid red;
+}
+
+/* Need for cursor pointer to work correctly in angular-bootstrap. Suggested by angular-bootstrap*/
+.nav,
+.pagination,
+.carousel,
+.panel-title a {
+    cursor: pointer;
+}
+
+/* Needed for the blue gradient color for accordian and panels as form headers */
+.panel-default > .panel-heading {
+    background-color: #337ab7;
+    color: white;
+    cursor: pointer;
+}
+.panel-heading a {
+    background-color: #337ab7;
+    font-family: arial;
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+}
+.app_sub_nav_text {
+    font-size: 12px;
+}
+.app-header {
+    font-family: Arial;
+    border-bottom: 1px solid white;
+}
+
+/* Wrap content of a grid-ui header */
+.ui-grid-header-cell .ui-grid-cell-contents {
+    height: 48px;
+    white-space: normal;
+    -ms-text-overflow: clip;
+    -o-text-overflow: clip;
+    text-overflow: clip;
+    overflow: visible;
+}
+
+table, th, td {
+    border-collapse: collapse;
+}
+th, td {
+    padding: 5px;
+}
+
+.tab-content {
+    border-left: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+    padding: 10px;
+}
+
+.navbar {
+    padding-top: 10px;
+    padding-bottom: 20px;
+    background-color: white;
+}
+
+/* Set the width and height of Ag-grid */
+.ag-fresh {
+  width: 100%;
+  height: 300px;
+}

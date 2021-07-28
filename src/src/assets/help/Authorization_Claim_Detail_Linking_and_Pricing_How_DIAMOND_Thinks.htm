@@ -1,0 +1,2803 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+    <title>Authorization/Claim Detail Linking and Pricing, How DIAMOND Thinks</title>
+    <!--(Meta)==========================================================-->
+    <meta name="copyright"
+          value="© Copyright 2002 Health Systems Design Corp., a wholly owned subsidiary of Perot Systems Corporation. All rights reserved"/>
+    <meta content="About.htt" name="template"/>
+    <meta content="RoboHELP by eHelp Corporation - www.ehelp.com" name="generator"/>
+    <meta content="0.1" name="generator-major-version"/>
+    <meta content="1" name="generator-minor-version"/>
+    <meta content="kadov" name="filetype"/>
+    <meta content="1" name="filetype-version"/>
+    <meta content="1" name="page-count"/>
+    <meta content="12228" name="layout-height"/>
+    <meta content="715" name="layout-width"/>
+    <!--(Links)=========================================================-->
+    <!--(Scripts)=======================================================-->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+</head>
+<body>
+
+<div class="calibreMeta">
+    <div class="calibreMetaTitle">
+
+
+        <h1>
+            <a href="../bj5if-qozss.html">DIAMOND 950 Help
+            </a>
+        </h1>
+
+
+    </div>
+    <div class="calibreMetaAuthor">
+        Unknown
+
+    </div>
+</div>
+
+<div class="calibreMain">
+
+    <div class="calibreEbookContent">
+
+        <div class="calibreEbNavTop">
+
+            <a href="Setting_Up_Authorization_Claim_Detail_Linking_and_Pricing.htm" class="calibreAPrev">previous page
+            </a>
+
+
+            <a href="Authorization_Claim_Links_How_DIAMOND_Thinks.htm" class="calibreANext">next page
+            </a>
+
+        </div>
+
+
+        <h4 class="calibre6">Authorization/Claim Detail Linking and Pricing, How DIAMOND Thinks</h4>
+
+        <p class="text">This topic provides processing logic information about:</p>
+
+        <p class="text"><a href="#A/CDetLinkPrice_HDT_Introduction_MID">Introduction</a></p>
+
+        <p class="text"><a href="#A/CDetLinkPrice_HDT_ProcessingLogic_MID">Processing
+            Logic</a></p>
+
+        <p class="text"><a href="#A/CDetLinkPrice_HDT_CDAPLPayActions_MID">CDAPL
+            Pay Actions</a></p>
+
+        <p class="text"><a href="#A/CDetLinkPrice_HDT_Inst_Claims_WCP_Pricing_and_Spec_Processing_MID">Institutional
+            Claims - Whole Claim Pricing and Special Processing</a></p>
+
+        <p class="text"><a href="#A/CDetLinkPrice_HDT_Exs_of_Claim_Det_Auth_Proc_Rules_MID">Examples
+            of Claim Detail Authorization Procedure Rules</a></p>
+
+        <p class="text"><a href="#A/CDetLinkPrice_HDT_Tie_Breakers_MID">Tie Breakers</a></p>
+
+        <p class="text"><a href="#A/CDetLinkPrice_HDT_APC_Pricing_and_A/C_Det_Link_Price_MID">APC
+            Pricing and Authorization/Claim Detail Linking and Pricing</a></p>
+
+        <p class="text"><a href="#A/CDetLinkPrice_HDT_Third_Party_Claim_Audit_Tools_and_Auth/Claim_Det_Link_Price_MID">Third
+            Party Claim Audit Tools and Authorization/Claim Detail Linking and Pricing</a></p>
+
+        <h2 class="calibre3"><a name="A_CDetLinkPrice_HDT_Introduction_MID"></a>Introduction</h2>
+
+        <p class="text">You can use authorization/claim detail linking and pricing
+            to perform the following actions, based on rules you define by line of
+            business (LOB) /authorization type/effective date combination:</p>
+
+        <ul class="calibre2">
+
+            <li class="kadov-p-cbullet"><p class="bullet">Match submitted claim detail
+                procedure/revenue codes to ranges of authorized codes on a matching authorization’s
+                keyword PRCDR (Authorization Procedures) authorization procedure detail
+                records</p></li>
+
+            <li class="kadov-p-cbullet"><p class="bullet">Price matching claim detail
+                lines using:</p></li>
+
+            <li class="kadov-p-cbulletlvl"><p class="bulletlvl">The Auth Price from
+                the matching authorization procedure detail record</p></li>
+
+            <li class="kadov-p-cbulletlvl"><p class="bulletlvl">The Auth Procedure
+                from the matching authorization procedure detail record</p></li>
+
+            <li class="kadov-p-cbulletlvl"><p class="bulletlvl">Standard DIAMOND
+                provider pricing logic</p></li>
+
+            <li class="kadov-p-cbullet"><p class="bullet">Hold or deny matching claim
+                detail lines based on the application of an authorization/claim detail
+                linking and pricing rule</p></li>
+
+            <li class="kadov-p-cbullet"><p class="bullet">Assign specific allowed,
+                hold, and deny reason codes to matching claim detail lines when applying
+                an authorization/claim detail linking and pricing action</p></li>
+        </ul>
+
+        <p class="text">DIAMOND performs authorization/claim detail linking and pricing
+            for online and DIAMOND Data Service (DDS) API transactions.</p>
+
+        <h2 class="calibre3"><a name="A_CDetLinkPrice_HDT_ProcessingLogic_MID"></a>Processing Logic</h2>
+
+        <p class="text">Authorization/claim detail linking and pricing processing
+            logic includes:</p>
+
+        <ul class="calibre2">
+
+            <li class="kadov-p-cbullet"><p class="bullet"><a
+                    href="Authorization_Claim_Detail_Linking_and_Pricing_How_DIAMOND_Thinks.htm#A_CDetLinkPrice_HDT_Finding_and_Using_a_Matching_Authorization_MID">Finding
+                and Using a Matching Authorization</a></p></li>
+
+            <li class="kadov-p-cbullet"><p class="bullet"><a
+                    href="Authorization_Claim_Detail_Linking_and_Pricing_How_DIAMOND_Thinks.htm#A_CDetLinkPrice_HDT_Handling_Multiple_Matching_Authorizations_MID">Handling
+                Multiple Matching Authorizations</a></p></li>
+
+            <li class="kadov-p-cbullet"><p class="bullet"><a
+                    href="Authorization_Claim_Detail_Linking_and_Pricing_How_DIAMOND_Thinks.htm#A_CDetLinkPrice_HDT_Including_Institutional_Claims_Procedure_Code_Records_HDT">Including
+                Institutional Claims Procedure Code Records</a></p></li>
+
+            <li class="kadov-p-cbullet"><p class="bullet"><a
+                    href="Authorization_Claim_Detail_Linking_and_Pricing_How_DIAMOND_Thinks.htm#A_CDetLinkPrice_HDT_Performing_Authorization_Claim_Detail_Linking_and_Pricing_MID">Performing
+                Authorization/Claim Detail Linking and Pricing</a></p></li>
+
+            <li class="kadov-p-cbullet"><p class="bullet"><a
+                    href="Authorization_Claim_Detail_Linking_and_Pricing_How_DIAMOND_Thinks.htm#A_CDetLinkPrice_HDT_Authorization_Overall_Status_Override_MID">Authorization
+                Overall Status Override</a></p></li>
+
+            <li class="kadov-p-cbullet"><p class="bullet"><a
+                    href="Authorization_Claim_Detail_Linking_and_Pricing_How_DIAMOND_Thinks.htm#A_CDetLinkPrice_HDT_Special_Menu_Command_Pricing_and_Adjudication_MID">Special
+                Menu Command Pricing and Adjudication</a></p></li>
+        </ul>
+
+        <h3 class="calibre4"><a name="A_CDetLinkPrice_HDT_Finding_and_Using_a_Matching_Authorization_MID"></a>Finding
+            and Using a Matching Authorization</h3>
+
+        <p class="text">In order to perform authorization/claim detail linking and
+            pricing for a claim, you need an authorization that matches the claim.
+            DIAMOND can find a matching authorization during automatic authorization/claim
+            matching logic or you can specify one.</p>
+
+        <p class="text">DIAMOND performs automatic authorization/claim matching logic
+            during claim header processing. This logic includes automatic matching
+            using either keyword MCHRL (Authorization/Claim Match Rules) match rules
+            or, for covering providers, hard coded match logic. You can also manually
+            select a matching authorization when entering or updating a claim header.
+            See <a href="Authorization_Claim_Links_How_DIAMOND_Thinks.htm">Authorization
+                Claim Links, How DIAMOND Thinks</a> and <a
+                    href="Auth.chm::/MCHRL_Authorization_Claims_Matching_Rules.htm">MCHRL,
+                Authorization/Claims Matching Rules</a> for more information on automatic
+            and manual authorization/claim matching.</p>
+
+        <p class="text">If a matching authorization is found or selected, DIAMOND
+            searches for a keyword CDAPL (Claim Detail Auth Proc Link) rule that matches
+            the claim’s LOB/Auth Type/Effective date range combination. If a matching
+            CDAPL rule is found, DIAMOND performs authorization/claim detail linking
+            and pricing when processing the claim detail lines. DIAMOND only evaluates
+            the authorization procedure detail records of the matching authorization
+            on the claim header for linking at the claim detail level.</p>
+
+        <p class="body-text">When CADPL rules are evaluated, DIAMOND reviews
+            the CADPR Rule ID to determine whether:</p>
+
+        <ul type="disc" class="calibre19">
+
+            <li class="kadov-p-cstep-comment-noline"><p class="step-comment-noline">An
+                exact match between claim procedure and authorization procedure is required</p></li>
+
+            <li class="kadov-p-cstep-comment-noline"><p class="step-comment-noline">A
+                match within a range of procedure codes</p></li>
+
+            <li class="kadov-p-cstep-comment-noline"><p class="step-comment-noline">A
+                possible match with an out of range procedure</p></li>
+        </ul>
+
+        <p class="body-text">If an exact match is required and this criteria
+            is met, DIAMOND determines whether a price is provided for the authorized
+            procedure and the authorization status. If there is an assigned dollar
+            amount (greater than 0$) on the PRCDR table and the status is a match,
+            the DIAMOND will perform the pay action. In this case, DIAMOND will not
+            evaluate that the procedure ranges.</p>
+
+        <h3 class="calibre4"><a name="A_CDetLinkPrice_HDT_Handling_Multiple_Matching_Authorizations_MID"></a>Handling
+            Multiple Matching Authorizations</h3>
+
+        <p class="text">If the claim header matches two or more authorizations and
+            you select one as the matching authorization, DIAMOND performs authorization/claim
+            detail linking and pricing using that selected authorization. However,
+            it is possible that none of the procedure codes on the selected authorization’s
+            procedure detail records match the procedure codes on any of the claim
+            detail lines. </p>
+
+        <p class="text">When this happens, DIAMOND issues a warning message indicating
+            no procedure code matches were found using the authorization selected
+            on the claim header. You then have the option to go back to the header
+            and use Special menu command Authorization Match/Waive, option Reapply
+            Match to choose another authorization. Then you can re-price the claim
+            using Special menu command Pricing and Adjudication to perform authorization/claim
+            detail linking and pricing using the newly selected authorization.</p>
+
+        <p class="text"><span class="calibre5">Tip</span> <!--kadov_tag{{<spaces>}}--> <!--kadov_tag{{</spaces>}}--> You
+            define procedure matching criteria using keyword CDAPR (Claim Detail Auth
+            Proc Rules). You then include the Rule ID of the desired CDAPR rule on
+            the CDAPL processing rule.</p>
+
+        <h3 class="calibre4"><a
+                name="A_CDetLinkPrice_HDT_Including_Institutional_Claims_Procedure_Code_Records_HDT"></a>Including
+            Institutional Claims Procedure Code Records</h3>
+
+        <p class="text">For institutional claims, you must flag the procedure code
+            records to include in authorization/claim detail linking and pricing.
+            To flag a procedure code record for inclusion, use keyword PROCD (Procedure
+            Codes) and select the Inst. Auth Detail Link check box.</p>
+
+        <h3 class="calibre4"><a
+                name="A_CDetLinkPrice_HDT_Performing_Authorization_Claim_Detail_Linking_and_Pricing_MID"></a>Performing
+            Authorization/Claim Detail Linking and Pricing</h3>
+
+        <p class="text">Authorization/claim detail linking and pricing logic proceeds
+            as follows:</p>
+
+        <ol class="calibre20">
+
+            <li class="kadov-p-cstep"><p class="step1">When a matching authorization
+                has been found and you enter or update a claim detail line, DIAMOND searches
+                for a matching CDAPL rule. To match, the CDAPL rule LOB/Auth Type/effective
+                date range combination must match the claim header, claim detail line,
+                and the matching authorization as follows:</p></li>
+
+            <li class="kadov-p-cbulletlvl"><p class="stepbullet">The CDAPL LOB must
+                match the member’s LOB on the claim header</p></li>
+
+            <li class="kadov-p-cbulletlvl"><p class="stepbullet">The CDAPL Auth Type
+                must match the Auth Type of the matching authorization on the claim header</p></li>
+
+            <li class="kadov-p-cbulletlvl"><p class="stepbullet">The CDAPL effective
+                date range must include the from Date on the claim detail line </p></li>
+
+            <li class="kadov-p-cbulletlvl"><p class="stepbullet">The CDAPL effective
+                date range must also include the Request or Admit date and the Expire
+                or Discharge date (both determined by parameter <a href="System.chm::/PARAM_DUPAUTHRULE2_FIELD.htm">DUPAUTHRULE2</a>)
+                on the matching authorization</p></li>
+        </ol>
+
+        <ol start="2" class="calibre20">
+
+            <li class="kadov-p-cstep"><p class="step1">If a matching CDAPL rule is not
+                found, DIAMOND uses standard pricing logic to price the claim. If a matching
+                CDAPL rule is found, authorization/claim detail linking and pricing proceeds
+                for that claim detail line using the CDAPL rule’s processing rules as
+                follows.</p></li>
+
+            <li class="kadov-p-cstep"><p class="step1">DIAMOND evaluates the first and
+                next processing rule on the CDAPL rule in order. Each CDAPL rule includes
+                one or more processing rules. The Process Order on each processing rule
+                determines the order of processing.</p></li>
+        </ol>
+
+        <p class="stepcont">DIAMOND searches through the processing rules until a
+            rule is found whose effective date range matches the claim detail line
+            and the matching authorization, as follows:</p>
+
+        <ul class="calibre2">
+
+            <li class="kadov-p-cbulletlvl"><p class="stepbullet">The processing rule’s
+                effective date range must include the from Date on the claim detail line
+            </p></li>
+
+            <li class="kadov-p-cbulletlvl"><p class="stepbullet">The processing rule’s
+                effective date range must also include the Request or Admit date and the
+                Expire or Discharge date (both determined by parameter <a
+                        href="System.chm::/PARAM_DUPAUTHRULE2_FIELD.htm">DUPAUTHRULE2</a>)
+                on the matching authorization</p></li>
+        </ul>
+
+        <p class="stepcont"><span class="calibre5">Tip</span> <!--kadov_tag{{<spaces>}}--> <!--kadov_tag{{</spaces>}}-->
+            If
+            the processing rule does not include an Effective Date or Term Date, the
+            rule is effective for the CDAPL rule effective date range. </p>
+
+        <p class="stepcont">If an applicable rule is found, it is applied as follows
+            and no further processing rules are evaluated. If no prior applicable
+            rule is found, DIAMOND applies the default processing rule you defined
+            to provide a graceful landing.</p>
+
+        <ol start="4" class="calibre21">
+
+            <li class="kadov-p-cstep"><p class="step1">If an applicable CDAPL processing
+                rule is found, DIAMOND searches for PRCDR authorization procedure details
+                that match the submitted procedures on the claim detail lines. The procedures
+                must match in accord with the CDAPL processing rule procedure match criteria.</p></li>
+        </ol>
+
+        <p class="stepcont">CDAPL processing rule procedure match criteria include:</p>
+
+        <ul class="calibre2">
+
+            <li class="kadov-p-cbulletlvl"><p class="stepbullet">CDAPR rule criteria</p></li>
+
+            <li class="kadov-p-cbulletlvl"><p class="stepbullet">Include all (PRCRA)
+                range rows processing</p></li>
+
+            <li class="kadov-p-cbulletlvl"><p class="stepbullet">Match on details
+                for Inpatient Stay</p></li>
+        </ul>
+
+        <p class="stepcont">CDAPL processing rule procedure match criteria are applied
+            as follows.</p>
+
+        <p class="stepcont">CDAPR rule criteria:</p>
+
+        <ul class="calibre2">
+
+            <li class="kadov-p-cbulletlvl"><p class="stepbullet">CDAPL processing
+                rule field Rule ID identifies the applicable CDAPR rule. CDAPR rule criteria
+                include: Submt vs Auth Proc Code, Price on Auth Proc, and Auth Proc Status.
+                These match criteria are applied as follows.</p></li>
+
+            <li class="kadov-p-cbulletlvl"><p class="stepbullet">Submt vs Auth Proc
+                Code: The submitted procedure code on the claim detail line must match
+                the procedure code on the authorization procedure record. The type of
+                match is defined by the Submt vs Auth Proc Code value. </p></li>
+        </ul>
+
+        <p class="stepcont">Submt vs Auth Proc Code valid values are: E - Exact match,
+            I - In-range or O - Out of range. If the value is I - In-range or O -
+            Out of range, DIAMOND uses the PRCRA range record identified by the CDAPL
+            processing rule field Range ID in its evaluation. The Range ID corresponds
+            to the PRCRA Auth Proc Range ID. If no Range ID is entered, DIAMOND assumes
+            the procedure code match must be an exact match, regardless of the Submt
+            vs Auth Proc Code field value.</p>
+
+        <ul class="calibre2">
+
+            <li class="kadov-p-cbulletlvl"><p class="stepbullet">Price on Auth Proc:
+                If this check box is selected, the authorization procedure detail record
+                must have an Auth Amount greater than $0.00 to match. If the check box
+                is clear, the authorization procedure detail record can have any Auth
+                Amount - equal to zero, greater than zero, or less than zero - and still
+                match.</p></li>
+
+            <li class="kadov-p-cbulletlvl"><p class="stepbullet">Auth Proc Status:
+                To match, the authorization procedure detail record must have an authorization
+                Status that matches the Auth Proc Status.</p></li>
+        </ul>
+
+        <p class="stepcont">Include all (PRCRA) range rows processing:</p>
+
+        <ul class="calibre2">
+
+            <li class="kadov-p-cbulletlvl"><p class="stepbullet">If the processing
+                rule’s Incld all Rng rows check box is selected, the submitted procedure
+                code and authorized procedure code must also fall within the same range
+                row of the PCRA procedure ranges to be considered a match.</p></li>
+        </ul>
+
+        <p class="stepcont">Match on details for Inpatient Stay:</p>
+
+        <ul class="calibre2">
+
+            <li class="kadov-p-cbulletlvl"><p class="stepbullet">The CDAPL Match on
+                details for Inpatient Stay check box specifies whether to search for matching
+                authorization procedure detail records for both institutional and professional
+                services claims matching an institutional stay authorization.</p></li>
+        </ul>
+
+        <p class="stepcont">If this check box is selected, DIAMOND searches for matching
+            authorization procedure details for both institutional and professional
+            services claims matching an inpatient stay authorization. For this to
+            occur for professional services claims, the Facility ID on the professional
+            services claim must match the Provider ID on the matching institutional
+            stay authorization.</p>
+
+        <p class="stepcont">If the check box is clear, DIAMOND only searches for
+            matching authorization procedure details for institutional claims matching
+            an inpatient stay authorization. No search is done for professional services
+            claims matching the inpatient stay authorization.</p>
+
+        <ol start="5" class="calibre21">
+
+            <li class="kadov-p-cstep"><p class="step1">If the procedure on a claim line
+                matches an authorization procedure record based on the processing rule’s
+                procedure match criteria, DIAMOND checks if the authorized quantity and
+                authorized amount available for the procedure are sufficient to cover
+                the quantity and amount of the claim detail line, as follows.</p></li>
+        </ol>
+
+        <p class="stepcont"><span class="calibre5">Note</span> <!--kadov_tag{{<spaces>}}--> 
+            <!--kadov_tag{{</spaces>}}--> The
+            PRCDR fields Actual Qty and Actual Amt reflect the quantity or amount
+            already used by linked claim detail lines. These fields are updated whenever
+            you process an additional linked claim detail line. </p>
+
+        <p class="stepcont">Further, if a claim line is deleted or reversed, the
+            PRCDR Actual Qty and Actual Amt fields are updated as well, decreasing
+            by the quantity or allowed amount of the claim line. This additional quantity
+            or amount is then available for use on other claims that link to these
+            authorization procedure detail records. A claim line can be paid and reversed
+            using, for example, PSCLM command Reverse Line or keyword CVSUP (Clear,
+            Void, Stop, Update).</p>
+
+        <p class="stepcont"><span class="calibre5">Warning!</span> <!--kadov_tag{{<spaces>}}--> 
+            <!--kadov_tag{{</spaces>}}--> DIAMOND
+            updates PRCDR fields Actual Qty and Actual Amt as described above only
+            as long when the status on both the authorization header and the PRCDR
+            record is open.</p>
+
+        <ul class="calibre2">
+
+            <li class="kadov-p-cbulletlvl"><p class="stepbullet">DIAMOND calculates
+                the available authorized quantity for the matching PRCDR authorization
+                procedure record as the PRCDR Auth Qty (the total authorized quantity)
+                minus the PRCDR Actual Qty (the quantity used by other claim detail lines
+                to-date).</p></li>
+
+            <li class="kadov-p-cbulletlvl"><p class="stepbullet">DIAMOND compares
+                the available authorized quantity to the claim detail line quantity and
+                takes the following action:</p></li>
+
+            <li class="kadov-p-cbulletlvl"><p class="stepbullet">If the claim detail
+                line quantity is less than or equal to the available authorized quantity,
+                DIAMOND increases the PRCDR Actual Qty by the amount of the claim detail
+                line quantity.</p></li>
+
+            <li class="kadov-p-cbulletlvl"><p class="stepbullet">If the claim detail
+                line quantity is greater than the available authorized quantity, DIAMOND
+                applies the hold or deny Action and Reason code from the CDAPL rule’s
+                Exceed Auth Detail Days/Visits fields to the claim line.</p></li>
+
+            <li class="kadov-p-cbulletlvl"><p class="stepbullet">DIAMOND calculates
+                the available authorized amount for the matching PRCDR authorization procedure
+                record as the PRCDR Auth Amt (the total authorized amount) minus the PRCDR
+                Actual Amt (the amount used by other claim detail lines to-date).</p></li>
+
+            <li class="kadov-p-cbulletlvl"><p class="stepbullet">DIAMOND compares
+                the available authorized amount to the claim detail line amount and takes
+                the following action:</p></li>
+
+            <li class="kadov-p-cbulletlvl"><p class="stepbullet">If the claim detail
+                line amount is less than or equal to the available authorized amount,
+                DIAMOND increases the PRCDR Actual Amt by the amount of the claim detail
+                line amount.</p></li>
+
+            <li class="kadov-p-cbulletlvl"><p class="stepbullet">If the claim detail
+                line amount is greater than the available authorized amount, DIAMOND applies
+                the hold or deny Action and Reason code from the CDAPL rule’s Exceed Auth
+                Detail Amount fields to the claim line.</p></li>
+        </ul>
+
+        <ol start="6" class="calibre20">
+
+            <li class="kadov-p-cstep"><p class="step1">If multiple matching authorization
+                procedure detail records are found, DIAMOND uses the CDAPL fields Tie-Breaker
+                on Auth Price and Tie-Breaker on Auth Proc to select a single authorization
+                detail for further processing.</p></li>
+
+            <li class="kadov-p-cbulletlvl"><p class="stepbullet">Tie-Breaker on Auth
+                Price specifies which of two or more matching in-range priced procedure
+                codes to use to price the claim detail line, either the highest or lowest
+                based on price.</p></li>
+
+            <li class="kadov-p-cbulletlvl"><p class="stepbullet">Tie-Breaker on Auth
+                Proc specifies which of two or more matching in-range priced procedure
+                codes to use to price the claim detail line, either the highest order
+                or lowest order procedure code.</p></li>
+        </ol>
+
+        <ol start="7" class="calibre20">
+
+            <li class="kadov-p-cstep"><p class="step1">Once a single authorization detail
+                record that matches the processing rule is found or determined by tie-breaker,
+                DIAMOND applies the Pay Action on the rule to the claim detail line. Depending
+                on the Pay Action, DIAMOND also assigns reason codes using the values
+                in the processing rule fields Allowed Reason and Hld/Dny Reason. For more
+                information on Pay Actions and subsequent processing, see the sections
+                <a href="Authorization_Claim_Detail_Linking_and_Pricing_How_DIAMOND_Thinks.htm#A_CDetLinkPrice_HDT_CDAPLPayActions_MID">CDAPL
+                    Pay Actions</a> and <a
+                        href="Authorization_Claim_Detail_Linking_and_Pricing_How_DIAMOND_Thinks.htm#A_CDetLinkPrice_HDT_Inst_Claims_WCP_Pricing_and_Spec_Processing_MID">Institutional
+                    Claims - Whole Claim Pricing and Special Processing</a>.</p></li>
+        </ol>
+
+        <p class="stepcont">In applying the Pay Actions that use the authorization
+            price, DIAMOND processes a claim detail line submitted with a modifier
+            1 code and/or modifier 2 code in a special manner.</p>
+
+        <ul class="calibre2">
+
+            <li class="kadov-p-cbulletlvl"><p class="stepbullet">When a claim detail
+                line is submitted with a modifier 1 and/or modifier 2 code, DIAMOND cannot
+                price the detail line with submitted modifiers when the Pay Action uses
+                the authorization price. So instead DIAMOND uses the matching Authorization
+                detail price as the allowed amount on the claim detail line. DIAMOND also
+                applies the action and reason code from the CDAPL rule fields Auth Price
+                used with Submt Modifier - Action and Auth Price used with Submt Modifier
+                - Reason to the claim detail line. </p></li>
+
+            <li class="kadov-p-cbulletlvl"><p class="stepbullet">If you hold or deny
+                a claim using these fields, you can then review the claim line to ensure
+                that the authorization priced line is correct without applying the submitted
+                modifier code(s).</p></li>
+        </ul>
+
+        <h3 class="calibre4"><a name="A_CDetLinkPrice_HDT_Authorization_Overall_Status_Override_MID"></a>Authorization
+            Overall Status Override</h3>
+
+        <p class="text">The Overall Status on the authorization master overrides
+            the processing of the authorization claim detail linking. If the matching
+            authorization’s status is held or deny, the whole claim is held or denied
+            based on the action defined in the keyword ARULE.</p>
+
+        <p class="text">If the matching authorization’s Overall Status is Deny, all
+            of the claim lines deny also. The status on the PRCDR record is not evaluated
+            when the authorization master status is denied.</p>
+
+        <p class="text">If the matching authorization’s Overall Status is Held, depending
+            on the action defined in the keyword ARULE, the claim is held at the header
+            level. The PRCDR records are still processed and evaluated, but the claim
+            is put on hold until this hold is released.</p>
+
+        <h3 class="calibre4"><a name="A_CDetLinkPrice_HDT_Special_Menu_Command_Pricing_and_Adjudication_MID"></a>Special
+            Menu Command Pricing and Adjudication</h3>
+
+        <p class="text">The authorization claim detail linking and pricing process
+            is included in the existing Special menu command Pricing and Adjudication.
+            When you select an option that includes pricing, DIAMOND automatically
+            performs authorization/claim detail linking and pricing.</p>
+
+        <p class="text"><span class="calibre5">Warning!</span> <!--kadov_tag{{<spaces>}}--> 
+            <!--kadov_tag{{</spaces>}}--> If
+            a claim line was previously manually priced and you re-price using Special
+            menu command Pricing and Adjudication, DIAMOND performs authorization/claim
+            detail linking and pricing and overrides the manual price.</p>
+
+        <h2 class="calibre3"><a name="A_CDetLinkPrice_HDT_CDAPLPayActions_MID"></a>CDAPL Pay Actions</h2>
+
+        <p class="text">The authorization/claim detail linking and pricing process
+            includes the following CDAPL Pay Actions:</p>
+
+        <ul class="calibre2">
+
+            <li class="kadov-p-cbullet"><p class="bullet">1 - Price with Standard Provider
+                Pricing</p></li>
+        </ul>
+
+        <p class="bulletcont">Price the claim detail line using standard provider
+            pricing and apply the allowed reason code from the applicable price rule.</p>
+
+        <ul class="calibre2">
+
+            <li class="kadov-p-cbullet"><p class="bullet">2 - Price with Authorized
+                Price</p></li>
+        </ul>
+
+        <p class="bulletcont">If there is a price on the matching authorization PRCDR
+            detail record, use that price to override the allowed amount on the claim
+            detail line and use the CDAPL rule allowed reason code.</p>
+
+        <ul class="calibre2">
+
+            <li class="kadov-p-cbullet"><p class="bullet">3 - Price with Authorized
+                Procedure</p></li>
+        </ul>
+
+        <p class="bulletcont">If there is not a price on the matching authorization
+            PRCDR detail record, price the PRCDR procedure code and use that price
+            to override the allowed amount on the detail claim line. Apply the allowed
+            reason code from the allowed reason table.</p>
+
+        <p class="bulletcont"><span class="calibre5">Note</span> <!--kadov_tag{{<spaces>}}--> 
+            <!--kadov_tag{{</spaces>}}--> For
+            this option, DIAMOND prices the claim using the authorized PRCDR procedure
+            code. However, DIAMOND still uses the submitted procedure code on the
+            claim detail line to assign a medical definition. The adjudication process
+            takes place starting with the allowed amount on the claim detail line.</p>
+
+        <ul class="calibre2">
+
+            <li class="kadov-p-cbullet"><p class="bullet">4 - Price and Deny with Standard
+                Provider Pricing</p></li>
+        </ul>
+
+        <p class="bulletcont">If the procedure Status on the PRCDR record is Deny,
+            deny the detail claim line with the standard provider pricing allowed
+            amount and allowed reason code and use the deny reason code in the CDAPL
+            rule Hld/Dny Reason field.</p>
+
+        <ul class="calibre2">
+
+            <li class="kadov-p-cbullet"><p class="bullet">5 - Price and Deny with Authorized
+                Price</p></li>
+        </ul>
+
+        <p class="bulletcont">If the procedure Status on the PRCDR record is Deny,
+            and there is a price on the authorization, use that price to override
+            the allowed amount on the claim detail line and use the allowed reason
+            code from the CDAPL rule Allowed Reason field. Deny the claim detail line
+            and use the deny reason code in the CDAPL Hld/Dny Reason field.</p>
+
+        <ul class="calibre2">
+
+            <li class="kadov-p-cbullet"><p class="bullet">6 - Price and Deny with Authorized
+                Procedure</p></li>
+        </ul>
+
+        <p class="bulletcont">If the procedure Status on the PRCDR record is deny,
+            and there is not a price on the authorization, price the procedure code
+            on the auth and use that price to override the allowed amount on the detail
+            claim line. Apply the allowed reason code from the allowed reason table.
+            Deny the claim detail line with the reason code in the CDAPL rule Hld/Dny
+            Reason field. </p>
+
+        <p class="bulletcont"><span class="calibre5">Note </span><!--kadov_tag{{<spaces>}}--> 
+            <!--kadov_tag{{</spaces>}}--> DIAMOND
+            prices the claim using the authorized procedure code and uses this amount
+            as the allowed amount on the claim line detail. However, DIAMOND still
+            uses the submitted procedure code on the claim detail line to assign a
+            medical definition. The adjudication process starts from the Allowed Amount
+            on the claim detail line.</p>
+
+        <ul class="calibre2">
+
+            <li class="kadov-p-cbullet"><p class="bullet">7 - Price and Hold with Standard
+                Provider Pricing </p></li>
+        </ul>
+
+        <p class="bulletcont">If the procedure Status on the PRCDR record is hold,
+            hold the claim detail line with the standard provider pricing allowed
+            amount and allowed reason code, and apply the hold reason code from the
+            CDAPL rule Hld/Dny field.</p>
+
+        <ul class="calibre2">
+
+            <li class="kadov-p-cbullet"><p class="bullet">8 - Price and Hold with Authorized
+                Price</p></li>
+        </ul>
+
+        <p class="bulletcont">If the procedure Status on the PRCDR record is hold,
+            and there is a price on the authorization, use that price to override
+            the allowed amount on the claim detail line and use the allowed reason
+            code from the CDAPL rule Allowed Reason field. Hold the claim detail line,
+            and use the hold reason code from the CDAPL rule Hld/Dny Reason field.</p>
+
+        <ul class="calibre2">
+
+            <li class="kadov-p-cbullet"><p class="bullet">9 - Price and Hold with Authorized
+                Procedure</p></li>
+        </ul>
+
+        <p class="bulletcont">If the procedure Status on the PRCDR record is hold,
+            and there is not a price on the authorization, price the procedure code
+            on the authorization and use that price to override the allowed amount
+            on the claim detail line. Apply the allowed reason code from the CDAPL
+            rule Allowed Reason field. Hold the claim detail line with the reason
+            code from the CDAPL rule Hld/Dny Reason field.</p>
+
+        <p class="bulletcont">Note that DIAMOND prices the claim using the authorized
+            procedure code and uses this amount as the allowed amount on the claim
+            detail line. However, DIAMOND will still uses the submitted procedure
+            code on the claim detail line to assign a medical definition. The adjudication
+            process starts from the allowed amount on the claim detail line.</p>
+
+        <h2 class="calibre3"><a name="A_CDetLinkPrice_HDT_Inst_Claims_WCP_Pricing_and_Spec_Processing_MID"></a>Institutional
+            Claims - Whole Claim Pricing and Special Processing</h2>
+
+        <p class="text">Authorization/Claim Detail Linking and Pricing for institutional
+            claims proceeds as described in the <a
+                    href="Authorization_Claim_Detail_Linking_and_Pricing_How_DIAMOND_Thinks.htm#A_CDetLinkPrice_HDT_ProcessingLogic_MID">Processing
+                Logic</a> section, except when the claim is being whole claim priced.
+            Special processing for whole claim pricing is detailed in <a
+                    href="Authorization_Claim_Detail_Linking_and_Pricing_How_DIAMOND_Thinks.htm#A_CDetLinkPrice_Performing_Authorization_Claim_Detail_Linking_and_Pricing_for_Whole_claim_Priced_Claims_MID">Performing
+                Authorization/Claim Detail Linking and Pricing for Whole Claim Priced
+                Claims</a>.</p>
+
+        <p class="text">For inpatient institutional claims, the only services that
+            typically need an authorization are level of care (UB92 bed day codes)
+            and carve outs. Other ancillary codes on institutional claims do not need
+            to be specifically authorized, so you can choose to not include them in
+            the authorization procedure code records.</p>
+
+        <p class="text">For outpatient institutional claims, one or more of the procedures
+            can require an authorization at the detail level.</p>
+
+        <p class="text">Only appropriately flagged procedure code records are included
+            in Institutional claims authorization/claim detail linking and pricing.
+            Flag the appropriate procedure code records for inclusion using PROCD
+            check box Inst. Auth Detail Link.</p>
+
+        <h3 class="calibre4"><a
+                name="A_CDetLinkPrice_Performing_Authorization_Claim_Detail_Linking_and_Pricing_for_Whole_claim_Priced_Claims_MID"></a>Performing
+            Authorization/Claim Detail Linking and Pricing for Whole Claim Priced
+            Claims</h3>
+
+        <p class="text">When the claim is being whole claim priced, DIAMOND performs
+            different authorization/claim detail linking and pricing logic. In addition
+            the specific differences depend on the CPAPL rule Pay Action.</p>
+
+        <ul class="calibre2">
+
+            <li class="kadov-p-cbullet"><p class="bullet">When the CDAPL rule Pay action
+                is Price with the Standard DIAMOND pricing, DIAMOND performs standard
+                pricing and adjudication. </p></li>
+
+            <li class="kadov-p-cbullet"><p class="bullet">When the CDAPL rule Pay Action
+                is Price with Authorized Price, DIAMOND performs the following logic:</p></li>
+        </ul>
+
+        <ol start="1" class="calibre20">
+
+            <li class="kadov-p-cstep"><p class="step1">If the PROCD record for the procedure
+                code on the claim detail line has the flag Include In Detail Auth Link
+                as Y, and the procedure code is an exact match or within the procedure
+                code range of the PRCDR record based upon the criteria specified on the
+                CDAPR rule, DIAMOND inserts the Auth Amt from the PRCDR record into the
+                Auth Price column on the claim detail table.</p></li>
+
+            <li class="kadov-p-cstep"><p class="step1">DIAMOND continues to price and
+                adjudicate the claim detail line using standard DIAMOND Whole Claim Pricing
+                rules, applying the claim status of I - Informational.</p></li>
+
+            <li class="kadov-p-cbulletlvl"><p class="stepbullet">Once all the claim
+                detail lines have been entered, you perform Whole Claim pricing (Ctrl
+                F8, or through the DDS API transaction) and DIAMOND continues to generate
+                the applicable Whole Claim Pricing system generated line(s) of base line(s),
+                cap and outlier lines.</p></li>
+
+            <li class="kadov-p-cbulletlvl"><p class="stepbullet">As part of Whole
+                Claim pricing, DIAMOND evaluates any Authorization Price that resulted
+                from a claim detail authorization detail record match as follows.</p></li>
+
+            <li class="kadov-p-cbulletlvl"><p class="stepbullet">If there are one
+                or more amounts in the Auth Price column for each of the informational
+                detail lines associated with the Whole Claim Priced claim, DIAMOND sums
+                the Auth Price columns for all the Informational lines for that specific
+                claim to calculate a Temporary Auth Price sum.</p></li>
+
+            <li class="kadov-p-cbulletlvl"><p class="stepbullet">When there is an
+                amount in the Temporary Auth Price sum DIAMOND performs a second calculation.
+                DIAMOND sums the system generated lines allowed amounts to calculate a
+                Temporary Sys Gen totals amount. This Temporary Sys Gen total will include
+                the applicable system generated lines including the base lines, cap and
+                outlier lines. </p></li>
+
+            <li class="kadov-p-cbulletlvl"><p class="stepbullet">DIAMOND then compares
+                the Temporary Auth Price Sum to the Temporary Sys Gen sum to determine
+                if additional processing is required. </p></li>
+        </ol>
+
+        <p class="stepbulletcont">If the Temporary Auth Price Sum is equal to the
+            Temporary Sys Gen Sum, then DIAMOND performs no additional processing
+            and the standard DIAMOND WCP pricing remains.</p>
+
+        <p class="stepbulletcont">If the Temporary Auth Price Sum is less than the
+            Temporary Sys Gen Sum DIAMOND generates an adjustment claim detail line.
+            This adjustment claim detail amount is a negative adjustment line that
+            DIAMOND generates to ensure that the Grand Total Sum of the Allowed Amounts
+            equals the Temporary Auth Price Sum. You establish the system generated
+            code used for this adjustment line using system parameter of CDAPLWCPSYSG
+            (Claim Detail authorization procedure link whole claim price system generated
+            code). You must also configure the CDAPLWCPSYSG code within the DIAMOND
+            support files.</p>
+
+        <p class="stepbulletcont">If the Temporary Auth Price Sum is greater than
+            the Temporary Sys Gen Sum, DIAMOND also generates an adjustment claim
+            detail. The adjustment claim line detail amount in this case is a positive
+            amount that DIAMOND generates to ensure that the Grand Total Sum of the
+            Allowed Amounts from the equal the Temporary Auth Price Sum. You again
+            establish the system generated code used for this adjustment line using
+            system parameter of CDAPLWCPSYSG. You must also configure the CDAPLWCPSYSG
+            code within the DIAMOND support files.</p>
+
+        <ol start="3" class="calibre21">
+
+            <li class="kadov-p-cstep"><p class="step1">When a CDAPL system generated
+                adjustment line is created, DIAMOND also assigns an internal system revenue
+                code. DIAMOND uses this internal system revenue code any outgoing HIPAA
+                transaction set instead of the internally defined DIAMOND system generated
+                code.</p></li>
+
+            <li class="kadov-p-cbulletlvl"><p class="stepbullet">System-generated
+                codes (sysgen) are user-defined codes used only for whole claim pricing
+                in DIAMOND. You define these codes using keyword PROCD (Procedure Code
+                master) and enter them into a PRULW record to be the system-generated
+                code for the payable line when Whole Claim Pricing (WCP) has completed.</p></li>
+
+            <li class="kadov-p-cbulletlvl"><p class="stepbullet">In order to be HIPAA
+                compliant, The CDAPL adjustment line inherits the highest sys rev code
+                that has already been assigned to the base line(s) for each specific claim.
+                This is also the same sys rev code used on any cap or outlier line during
+                the Whole Claim pricing process.</p></li>
+        </ol>
+
+        <h3 class="calibre4">Example</h3>
+
+        <h3 class="calibre4">PRCDR setup</h3>
+
+        <!--(Table)=========================================================-->
+        <table cellspacing="0" width="360" x-use-null-cells="" class="calibre22">
+
+            <tbody class="calibre8">
+            <tr valign="top" class="calibre9">
+                <td width="209px" class="calibre23">
+                    <p class="tableheading">Proc code</p></td>
+                <td width="42px" class="calibre24">
+                    <p class="tableheading">Qty</p></td>
+                <td width="108px" class="calibre25">
+                    <p class="tableheading">Auth Amt</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre9">
+                <td width="209px" class="calibre26">
+                    <p class="tabletext">120</p></td>
+                <td width="42px" class="calibre27">
+                    <p class="tabletext">4</p></td>
+                <td width="108px" class="calibre28">
+                    <p class="tabletext">3000.00</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre9">
+                <td width="209px" class="calibre26">
+                    <p class="tabletext">220</p></td>
+                <td width="42px" class="calibre27">
+                    <p class="tabletext">2</p></td>
+                <td width="108px" class="calibre28">
+                    <p class="tabletext">Blank  </p></td>
+            </tr>
+
+            <tr valign="top" class="calibre9">
+                <td width="209px" class="calibre26">
+                    <p class="tabletext">450</p></td>
+                <td width="42px" class="calibre27">
+                    <p class="tabletext">1</p></td>
+                <td width="108px" class="calibre28">
+                    <p class="tabletext">Blank  </p></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <h3 class="calibre4">PROCD Setup</h3>
+
+        <p class="body-text1"> </p>
+
+        <!--(Table)=========================================================-->
+        <table cellspacing="0" width="444" x-use-null-cells="" class="calibre29">
+
+            <tbody class="calibre8">
+            <tr valign="top" class="calibre9">
+                <td width="120px" class="calibre30">
+                    <p class="tableheading">Proc code</p></td>
+                <td width="84px" class="calibre31">
+                    <p class="tableheading">Count as day flag</p></td>
+                <td width="240px" class="calibre32">
+                    <p class="tableheading">INCLM req detail auth link flag</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre9">
+                <td width="120px" class="calibre33">
+                    <p class="tabletext">120</p></td>
+                <td width="84px" class="calibre34">
+                    <p class="tabletext">Y</p></td>
+                <td width="240px" class="calibre35">
+                    <p class="tabletext">Y</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre9">
+                <td width="120px" class="calibre33">
+                    <p class="tabletext">220</p></td>
+                <td width="84px" class="calibre34">
+                    <p class="tabletext">Y</p></td>
+                <td width="240px" class="calibre35">
+                    <p class="tabletext">Y</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre9">
+                <td width="120px" class="calibre33">
+                    <p class="tabletext">450</p></td>
+                <td width="84px" class="calibre34">
+                    <p class="tabletext">N</p></td>
+                <td width="240px" class="calibre35">
+                    <p class="tabletext">Y</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre9">
+                <td width="120px" class="calibre33">
+                    <p class="tabletext">SYSG1</p></td>
+                <td width="84px" class="calibre34">
+                    <p class="tabletext">Y</p></td>
+                <td width="240px" class="calibre35">
+                    <p class="tabletext">Y</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre9">
+                <td width="120px" class="calibre33">
+                    <p class="tabletext">SYSG2</p></td>
+                <td width="84px" class="calibre34">
+                    <p class="tabletext">Y</p></td>
+                <td width="240px" class="calibre35">
+                    <p class="tabletext">Y</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre9">
+                <td width="120px" class="calibre33">
+                    <p class="tabletext">300</p></td>
+                <td width="84px" class="calibre34">
+                    <p class="tabletext">N</p></td>
+                <td width="240px" class="calibre35">
+                    <p class="tabletext">N</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre9">
+                <td width="120px" class="calibre33">
+                    <p class="tabletext">700</p></td>
+                <td width="84px" class="calibre34">
+                    <p class="tabletext">N</p></td>
+                <td width="240px" class="calibre35">
+                    <p class="tabletext">N</p></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <h3 class="calibre4">System Parameter CDAPLWCPSYSG Setup</h3>
+
+        <p class="text">Parameter 1 = CDAPL Procedure code.</p>
+
+        <h3 class="calibre4">PROCP setup</h3>
+
+        <!--(Table)=========================================================-->
+        <table cellspacing="0" width="205" x-use-null-cells="" class="calibre36">
+
+            <tbody class="calibre8">
+            <tr valign="top" class="calibre9">
+                <td width="96px" class="calibre37">
+                    <p class="tableheading">Proc code</p></td>
+                <td width="108px" class="calibre38">
+                    <p class="tableheading">Allowed amt</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre9">
+                <td width="96px" class="calibre39">
+                    <p class="tabletext">SYSG1</p></td>
+                <td width="108px" class="calibre28">
+                    <p class="tabletext">1900.00</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre9">
+                <td width="96px" class="calibre39">
+                    <p class="tabletext">SYSG2</p></td>
+                <td width="108px" class="calibre28">
+                    <p class="tabletext">2000.00</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre9">
+                <td width="96px" class="calibre39">
+                    <p class="tabletext">SYSG3</p></td>
+                <td width="108px" class="calibre28">
+                    <p class="tabletext">1800.00</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre9">
+                <td width="96px" class="calibre39">
+                    <p class="tabletext">450</p></td>
+                <td width="108px" class="calibre28">
+                    <p class="tabletext">250.00</p></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <h3 class="calibre4">INCLM claim – normal whole claim priced claim</h3>
+
+        <!--(Table)=========================================================-->
+        <table cellspacing="0" width="582" x-use-null-cells="" class="calibre40">
+
+            <tbody class="calibre8">
+            <tr valign="top" class="calibre9">
+                <td width="47px" class="calibre41">
+                    <p class="tableheading">Line #</p></td>
+                <td width="55px" class="calibre42">
+                    <p class="tableheading">Proc</p></td>
+                <td width="38px" class="calibre43">
+                    <p class="tableheading">Qty</p></td>
+                <td width="70px" class="calibre44">
+                    <p class="tableheading">Blld Amt</p></td>
+                <td width="57px" class="calibre45">
+                    <p class="tableheading">Allwd Amt</p></td>
+                <td width="42px" class="calibre46">
+                    <p class="tableheading">Clm Stat</p></td>
+                <td width="59px" class="calibre47">
+                    <p class="tableheading">Net Amt</p></td>
+                <td width="56px" class="calibre48">
+                    <p class="tableheading">Auth Price</p></td>
+                <td width="55px" class="calibre42">
+                    <p class="tableheading">Sys Rev Code</p></td>
+                <td width="98px" class="calibre49">
+                    <p class="tableheading">Comment</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre9">
+                <td width="47px" class="calibre50">
+                    <p class="tabletext">001</p></td>
+                <td width="55px" class="calibre51">
+                    <p class="tabletext">120</p></td>
+                <td width="38px" class="calibre52">
+                    <p class="tabletext">4</p></td>
+                <td width="70px" class="calibre53">
+                    <p class="tabletext">2000.00</p></td>
+                <td width="57px" class="calibre54">
+                    <p class="tabletext"> </p></td>
+                <td width="42px" class="calibre27">
+                    <p class="tabletext">I</p></td>
+                <td width="59px" class="calibre55">
+                    <p class="tabletext"> </p></td>
+                <td width="56px" class="calibre56">
+                    <p class="tabletext"> </p></td>
+                <td width="55px" class="calibre51">
+                    <p class="tabletext"> </p></td>
+                <td width="98px" class="calibre57">
+                    <p class="tabletext">Bed day</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre9">
+                <td width="47px" class="calibre50">
+                    <p class="tabletext">002</p></td>
+                <td width="55px" class="calibre51">
+                    <p class="tabletext">220</p></td>
+                <td width="38px" class="calibre52">
+                    <p class="tabletext">2</p></td>
+                <td width="70px" class="calibre53">
+                    <p class="tabletext">2500.00</p></td>
+                <td width="57px" class="calibre54">
+                    <p class="tabletext"> </p></td>
+                <td width="42px" class="calibre27">
+                    <p class="tabletext">I</p></td>
+                <td width="59px" class="calibre55">
+                    <p class="tabletext"> </p></td>
+                <td width="56px" class="calibre56">
+                    <p class="tabletext"> </p></td>
+                <td width="55px" class="calibre51">
+                    <p class="tabletext"> </p></td>
+                <td width="98px" class="calibre57">
+                    <p class="tabletext">Bed day</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre9">
+                <td width="47px" class="calibre50">
+                    <p class="tabletext">003</p></td>
+                <td width="55px" class="calibre51">
+                    <p class="tabletext">300</p></td>
+                <td width="38px" class="calibre52">
+                    <p class="tabletext">1</p></td>
+                <td width="70px" class="calibre53">
+                    <p class="tabletext">10.00</p></td>
+                <td width="57px" class="calibre54">
+                    <p class="tabletext"> </p></td>
+                <td width="42px" class="calibre27">
+                    <p class="tabletext">I</p></td>
+                <td width="59px" class="calibre55">
+                    <p class="tabletext"> </p></td>
+                <td width="56px" class="calibre56">
+                    <p class="tabletext"> </p></td>
+                <td width="55px" class="calibre51">
+                    <p class="tabletext"> </p></td>
+                <td width="98px" class="calibre57">
+                    <p class="tabletext">Ancillary proc</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre9">
+                <td width="47px" class="calibre50">
+                    <p class="tabletext">004</p></td>
+                <td width="55px" class="calibre51">
+                    <p class="tabletext">450</p></td>
+                <td width="38px" class="calibre52">
+                    <p class="tabletext">1</p></td>
+                <td width="70px" class="calibre53">
+                    <p class="tabletext">350.00</p></td>
+                <td width="57px" class="calibre54">
+                    <p class="tabletext">350.00</p></td>
+                <td width="42px" class="calibre27">
+                    <p class="tabletext">P</p></td>
+                <td width="59px" class="calibre55">
+                    <p class="tabletext">350.00</p></td>
+                <td width="56px" class="calibre56">
+                    <p class="tabletext"> </p></td>
+                <td width="55px" class="calibre51">
+                    <p class="tabletext"> </p></td>
+                <td width="98px" class="calibre57">
+                    <p class="tabletext">Carve out proc</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre9">
+                <td width="47px" class="calibre50">
+                    <p class="tabletext">005</p></td>
+                <td width="55px" class="calibre51">
+                    <p class="tabletext">700</p></td>
+                <td width="38px" class="calibre52">
+                    <p class="tabletext">1</p></td>
+                <td width="70px" class="calibre53">
+                    <p class="tabletext">25.00</p></td>
+                <td width="57px" class="calibre54">
+                    <p class="tabletext"> </p></td>
+                <td width="42px" class="calibre27">
+                    <p class="tabletext">I</p></td>
+                <td width="59px" class="calibre55">
+                    <p class="tabletext"> </p></td>
+                <td width="56px" class="calibre56">
+                    <p class="tabletext"> </p></td>
+                <td width="55px" class="calibre51">
+                    <p class="tabletext"> </p></td>
+                <td width="98px" class="calibre57">
+                    <p class="tabletext">Ancillary proc</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre9">
+                <td width="47px" class="calibre50">
+                    <p class="tabletext">Ctrl-F8</p></td>
+                <td width="55px" class="calibre51">
+                    <p class="tabletext"> </p></td>
+                <td width="38px" class="calibre52">
+                    <p class="tabletext"> </p></td>
+                <td width="70px" class="calibre53">
+                    <p class="tabletext"> </p></td>
+                <td width="57px" class="calibre54">
+                    <p class="tabletext"> </p></td>
+                <td width="42px" class="calibre27">
+                    <p class="tabletext"> </p></td>
+                <td width="59px" class="calibre55">
+                    <p class="tabletext"> </p></td>
+                <td width="56px" class="calibre56">
+                    <p class="tabletext"> </p></td>
+                <td width="55px" class="calibre51">
+                    <p class="tabletext"> </p></td>
+                <td width="98px" class="calibre57">
+                    <p class="tabletext">Call to invoke Whole Claim Pricing</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre9">
+                <td width="47px" class="calibre50">
+                    <p class="tabletext">006</p></td>
+                <td width="55px" class="calibre51">
+                    <p class="tabletext">SYSG1</p></td>
+                <td width="38px" class="calibre52">
+                    <p class="tabletext">4</p></td>
+                <td width="70px" class="calibre53">
+                    <p class="tabletext"> </p></td>
+                <td width="57px" class="calibre54">
+                    <p class="tabletext">1900.00</p></td>
+                <td width="42px" class="calibre27">
+                    <p class="tabletext">P</p></td>
+                <td width="59px" class="calibre55">
+                    <p class="tabletext">1900.00</p></td>
+                <td width="56px" class="calibre56">
+                    <p class="tabletext"> </p></td>
+                <td width="55px" class="calibre51">
+                    <p class="tabletext">120</p></td>
+                <td width="98px" class="calibre57">
+                    <p class="tabletext"> </p></td>
+            </tr>
+
+            <tr valign="top" class="calibre9">
+                <td width="47px" class="calibre50">
+                    <p class="tabletext">007</p></td>
+                <td width="55px" class="calibre51">
+                    <p class="tabletext">SYSG2</p></td>
+                <td width="38px" class="calibre52">
+                    <p class="tabletext">2</p></td>
+                <td width="70px" class="calibre53">
+                    <p class="tabletext"> </p></td>
+                <td width="57px" class="calibre54">
+                    <p class="tabletext">2000.00</p></td>
+                <td width="42px" class="calibre27">
+                    <p class="tabletext">P</p></td>
+                <td width="59px" class="calibre55">
+                    <p class="tabletext">2000.00</p></td>
+                <td width="56px" class="calibre56">
+                    <p class="tabletext"> </p></td>
+                <td width="55px" class="calibre51">
+                    <p class="tabletext">220</p></td>
+                <td width="98px" class="calibre57">
+                    <p class="tabletext"> </p></td>
+            </tr>
+
+            <tr valign="top" class="calibre9">
+                <td width="47px" class="calibre50">
+                    <p class="tabletext">Total All Lines</p></td>
+                <td width="55px" class="calibre51">
+                    <p class="tabletext"> </p></td>
+                <td width="38px" class="calibre52">
+                    <p class="tabletext"> </p></td>
+                <td width="70px" class="calibre53">
+                    <p class="tabletext"> </p></td>
+                <td width="57px" class="calibre54">
+                    <p class="tabletext"> </p></td>
+                <td width="42px" class="calibre27">
+                    <p class="tabletext"> </p></td>
+                <td width="59px" class="calibre55">
+                    <p class="tabletext">4250.00</p></td>
+                <td width="56px" class="calibre56">
+                    <p class="tabletext"> </p></td>
+                <td width="55px" class="calibre51">
+                    <p class="tabletext"> </p></td>
+                <td width="98px" class="calibre57">
+                    <p class="tabletext"> </p></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <h3 class="calibre4">INCLM claim – same claim with pricing from authorized price</h3>
+
+        <!--(Table)=========================================================-->
+        <!--begin!kadov{{-->
+        <div class="calibre58"><!--}}end!kadov-->
+            <table cellspacing="0" width="586" x-use-null-cells="" class="calibre59">
+
+                <tbody class="calibre8">
+                <tr valign="top" class="calibre9">
+                    <td width="47px" class="calibre41">
+                        <p class="tableheading">Line #</p></td>
+                    <td width="55px" class="calibre42">
+                        <p class="tableheading">Proc</p></td>
+                    <td width="38px" class="calibre43">
+                        <p class="tableheading">Qty</p></td>
+                    <td width="70px" class="calibre44">
+                        <p class="tableheading">Blld Amt</p></td>
+                    <td width="57px" class="calibre45">
+                        <p class="tableheading">Allwd Amt</p></td>
+                    <td width="42px" class="calibre46">
+                        <p class="tableheading">Clm Stat</p></td>
+                    <td width="59px" class="calibre47">
+                        <p class="tableheading">Net Amt</p></td>
+                    <td width="56px" class="calibre48">
+                        <p class="tableheading">Auth Price</p></td>
+                    <td width="55px" class="calibre42">
+                        <p class="tableheading">Sys Rev Code</p></td>
+                    <td width="103px" class="calibre60">
+                        <p class="tableheading">Comment</p></td>
+                </tr>
+
+                <tr valign="top" class="calibre9">
+                    <td width="47px" class="calibre50">
+                        <p class="tabletext">001</p></td>
+                    <td width="55px" class="calibre51">
+                        <p class="tabletext">120</p></td>
+                    <td width="38px" class="calibre52">
+                        <p class="tabletext">4</p></td>
+                    <td width="70px" class="calibre53">
+                        <p class="tabletext">2000.00</p></td>
+                    <td width="57px" class="calibre54">
+                        <p class="tabletext"> </p></td>
+                    <td width="42px" class="calibre27">
+                        <p class="tabletext">I</p></td>
+                    <td width="59px" class="calibre55">
+                        <p class="tabletext"> </p></td>
+                    <td width="56px" class="calibre56">
+                        <p class="tabletext">3000.00</p></td>
+                    <td width="55px" class="calibre51">
+                        <p class="tabletext"> </p></td>
+                    <td width="103px" class="calibre61">
+                        <p class="tabletext">Bed day</p></td>
+                </tr>
+
+                <tr valign="top" class="calibre9">
+                    <td width="47px" class="calibre50">
+                        <p class="tabletext">002</p></td>
+                    <td width="55px" class="calibre51">
+                        <p class="tabletext">220</p></td>
+                    <td width="38px" class="calibre52">
+                        <p class="tabletext">2</p></td>
+                    <td width="70px" class="calibre53">
+                        <p class="tabletext">2500.00</p></td>
+                    <td width="57px" class="calibre54">
+                        <p class="tabletext"> </p></td>
+                    <td width="42px" class="calibre27">
+                        <p class="tabletext">I</p></td>
+                    <td width="59px" class="calibre55">
+                        <p class="tabletext"> </p></td>
+                    <td width="56px" class="calibre56">
+                        <p class="tabletext">5000.00</p></td>
+                    <td width="55px" class="calibre51">
+                        <p class="tabletext"> </p></td>
+                    <td width="103px" class="calibre61">
+                        <p class="tabletext">Bed day</p></td>
+                </tr>
+
+                <tr valign="top" class="calibre9">
+                    <td width="47px" class="calibre50">
+                        <p class="tabletext">003</p></td>
+                    <td width="55px" class="calibre51">
+                        <p class="tabletext">300</p></td>
+                    <td width="38px" class="calibre52">
+                        <p class="tabletext">1</p></td>
+                    <td width="70px" class="calibre53">
+                        <p class="tabletext">10.00</p></td>
+                    <td width="57px" class="calibre54">
+                        <p class="tabletext"> </p></td>
+                    <td width="42px" class="calibre27">
+                        <p class="tabletext">I</p></td>
+                    <td width="59px" class="calibre55">
+                        <p class="tabletext"> </p></td>
+                    <td width="56px" class="calibre56">
+                        <p class="tabletext"> </p></td>
+                    <td width="55px" class="calibre51">
+                        <p class="tabletext"> </p></td>
+                    <td width="103px" class="calibre61">
+                        <p class="tabletext">Ancillary proc</p></td>
+                </tr>
+
+                <tr valign="top" class="calibre9">
+                    <td width="47px" class="calibre50">
+                        <p class="tabletext">004</p></td>
+                    <td width="55px" class="calibre51">
+                        <p class="tabletext">450</p></td>
+                    <td width="38px" class="calibre52">
+                        <p class="tabletext">1</p></td>
+                    <td width="70px" class="calibre53">
+                        <p class="tabletext">350.00</p></td>
+                    <td width="57px" class="calibre54">
+                        <p class="tabletext">350.00</p></td>
+                    <td width="42px" class="calibre27">
+                        <p class="tabletext">P</p></td>
+                    <td width="59px" class="calibre55">
+                        <p class="tabletext">350.00</p></td>
+                    <td width="56px" class="calibre56">
+                        <p class="tabletext"> </p></td>
+                    <td width="55px" class="calibre51">
+                        <p class="tabletext"> </p></td>
+                    <td width="103px" class="calibre61">
+                        <p class="tabletext">Carve out proc</p></td>
+                </tr>
+
+                <tr valign="top" class="calibre9">
+                    <td width="47px" class="calibre50">
+                        <p class="tabletext">005</p></td>
+                    <td width="55px" class="calibre51">
+                        <p class="tabletext">700</p></td>
+                    <td width="38px" class="calibre52">
+                        <p class="tabletext">1</p></td>
+                    <td width="70px" class="calibre53">
+                        <p class="tabletext">25.00</p></td>
+                    <td width="57px" class="calibre54">
+                        <p class="tabletext"> </p></td>
+                    <td width="42px" class="calibre27">
+                        <p class="tabletext">I</p></td>
+                    <td width="59px" class="calibre55">
+                        <p class="tabletext"> </p></td>
+                    <td width="56px" class="calibre56">
+                        <p class="tabletext"> </p></td>
+                    <td width="55px" class="calibre51">
+                        <p class="tabletext"> </p></td>
+                    <td width="103px" class="calibre61">
+                        <p class="tabletext">Ancillary proc</p></td>
+                </tr>
+
+                <tr valign="top" class="calibre9">
+                    <td width="47px" class="calibre50">
+                        <p class="tabletext">Ctrl-F8</p></td>
+                    <td width="55px" class="calibre51">
+                        <p class="tabletext"> </p></td>
+                    <td width="38px" class="calibre52">
+                        <p class="tabletext"> </p></td>
+                    <td width="70px" class="calibre53">
+                        <p class="tabletext"> </p></td>
+                    <td width="57px" class="calibre54">
+                        <p class="tabletext"> </p></td>
+                    <td width="42px" class="calibre27">
+                        <p class="tabletext"> </p></td>
+                    <td width="59px" class="calibre55">
+                        <p class="tabletext"> </p></td>
+                    <td width="56px" class="calibre56">
+                        <p class="tabletext"> </p></td>
+                    <td width="55px" class="calibre51">
+                        <p class="tabletext"> </p></td>
+                    <td width="103px" class="calibre61">
+                        <p class="tabletext">Call to invoke Whole Claim Pricing</p></td>
+                </tr>
+
+                <tr valign="top" class="calibre9">
+                    <td width="47px" class="calibre50">
+                        <p class="tabletext">006</p></td>
+                    <td width="55px" class="calibre51">
+                        <p class="tabletext">SYSG1</p></td>
+                    <td width="38px" class="calibre52">
+                        <p class="tabletext">4</p></td>
+                    <td width="70px" class="calibre53">
+                        <p class="tabletext"> </p></td>
+                    <td width="57px" class="calibre54">
+                        <p class="tabletext">1900.00</p></td>
+                    <td width="42px" class="calibre27">
+                        <p class="tabletext">P</p></td>
+                    <td width="59px" class="calibre55">
+                        <p class="tabletext">1900.00</p></td>
+                    <td width="56px" class="calibre56">
+                        <p class="tabletext"> </p></td>
+                    <td width="55px" class="calibre51">
+                        <p class="tabletext">120</p></td>
+                    <td width="103px" class="calibre61">
+                        <p class="tabletext"> </p></td>
+                </tr>
+
+                <tr valign="top" class="calibre9">
+                    <td width="47px" class="calibre50">
+                        <p class="tabletext">007</p></td>
+                    <td width="55px" class="calibre51">
+                        <p class="tabletext">SYSG2</p></td>
+                    <td width="38px" class="calibre52">
+                        <p class="tabletext">2</p></td>
+                    <td width="70px" class="calibre53">
+                        <p class="tabletext"> </p></td>
+                    <td width="57px" class="calibre54">
+                        <p class="tabletext">2000.00</p></td>
+                    <td width="42px" class="calibre27">
+                        <p class="tabletext">P</p></td>
+                    <td width="59px" class="calibre55">
+                        <p class="tabletext">2000.00</p></td>
+                    <td width="56px" class="calibre56">
+                        <p class="tabletext"> </p></td>
+                    <td width="55px" class="calibre51">
+                        <p class="tabletext">220</p></td>
+                    <td width="103px" class="calibre61">
+                        <p class="tabletext"> </p></td>
+                </tr>
+
+                <tr valign="top" class="calibre9">
+                    <td width="47px" class="calibre50">
+                        <p class="tabletext">008</p></td>
+                    <td width="55px" class="calibre51">
+                        <p class="tabletext">CDAPL</p></td>
+                    <td width="38px" class="calibre52">
+                        <p class="tabletext">1</p></td>
+                    <td width="70px" class="calibre53">
+                        <p class="tabletext"> </p></td>
+                    <td width="57px" class="calibre54">
+                        <p class="tabletext">4100.00</p></td>
+                    <td width="42px" class="calibre27">
+                        <p class="tabletext">P</p></td>
+                    <td width="59px" class="calibre55">
+                        <p class="tabletext">4100.00</p></td>
+                    <td width="56px" class="calibre56">
+                        <p class="tabletext"> </p></td>
+                    <td width="55px" class="calibre51">
+                        <p class="tabletext">220</p></td>
+                    <td width="103px" class="calibre61">
+                        <p class="tabletext">8000.00 – 1900.00 – 2000.00 = 4100.00 positive adjustment
+                        </p></td>
+                </tr>
+
+                <tr valign="top" class="calibre9">
+                    <td width="47px" class="calibre50">
+                        <p class="tabletext">Total All Lines</p></td>
+                    <td width="55px" class="calibre51">
+                        <p class="tabletext"> </p></td>
+                    <td width="38px" class="calibre52">
+                        <p class="tabletext"> </p></td>
+                    <td width="70px" class="calibre53">
+                        <p class="tabletext"> </p></td>
+                    <td width="57px" class="calibre54">
+                        <p class="tabletext"> </p></td>
+                    <td width="42px" class="calibre27">
+                        <p class="tabletext"> </p></td>
+                    <td width="59px" class="calibre55">
+                        <p class="tabletext">8350.00</p></td>
+                    <td width="56px" class="calibre56">
+                        <p class="tabletext"> </p></td>
+                    <td width="55px" class="calibre51">
+                        <p class="tabletext"> </p></td>
+                    <td width="103px" class="calibre61">
+                        <p class="tabletext"> </p></td>
+                </tr>
+                </tbody>
+            </table>
+            <!--begin!kadov{{--></div><!--}}end!kadov-->
+        <ul class="calibre2">
+
+            <li class="kadov-p-cbulletlvl"><p class="stepbullet">When the CDAPL rule
+                <span class="calibre5">Pay Action</span> is <span class="calibre5">Price
+ with Authorized Procedure Code </span>and the claim is being whole claim
+                priced, DIAMOND performs the following logic:</p></li>
+        </ul>
+
+        <ol start="4" class="calibre20">
+
+            <li class="kadov-p-cstep"><p class="step1">If the PROCD record for the procedure
+                code on the claim detail line has the flag Include In Detail Auth Link
+                as Y, and is an exact match or within the procedure code range of the
+                PRCDR record, DIAMOND uses the procedure code from the PRCDR record in
+                whole claim pricing to determine the system generated line.</p></li>
+        </ol>
+
+        <h3 class="calibre4">Example</h3>
+
+        <h3 class="calibre4">PRCDR setup</h3>
+
+        <!--(Table)=========================================================-->
+        <table cellspacing="0" width="312" x-use-null-cells="" class="calibre62">
+
+            <tbody class="calibre8">
+            <tr valign="top" class="calibre9">
+                <td width="120px" class="calibre30">
+                    <p class="tableheading">Proc code</p></td>
+                <td width="84px" class="calibre31">
+                    <p class="tableheading">Qty</p></td>
+                <td width="108px" class="calibre25">
+                    <p class="tableheading">Auth Amt</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre9">
+                <td width="120px" class="calibre33">
+                    <p class="tabletext">120</p></td>
+                <td width="84px" class="calibre34">
+                    <p class="tabletext">4</p></td>
+                <td width="108px" class="calibre28">
+                    <p class="tabletext">Blank </p></td>
+            </tr>
+
+            <tr valign="top" class="calibre9">
+                <td width="120px" class="calibre33">
+                    <p class="tabletext">220</p></td>
+                <td width="84px" class="calibre34">
+                    <p class="tabletext">2</p></td>
+                <td width="108px" class="calibre28">
+                    <p class="tabletext">Blank  </p></td>
+            </tr>
+
+            <tr valign="top" class="calibre9">
+                <td width="120px" class="calibre33">
+                    <p class="tabletext">450</p></td>
+                <td width="84px" class="calibre34">
+                    <p class="tabletext">1</p></td>
+                <td width="108px" class="calibre28">
+                    <p class="tabletext">Blank  </p></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <h3 class="calibre4">PROCP setup</h3>
+
+        <!--(Table)=========================================================-->
+        <table cellspacing="0" width="205" x-use-null-cells="" class="calibre36">
+
+            <tbody class="calibre8">
+            <tr valign="top" class="calibre9">
+                <td width="96px" class="calibre63">
+                    <p class="tableheading">Proc code</p></td>
+                <td width="108px" class="calibre25">
+                    <p class="tableheading">Allowed amt</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre9">
+                <td width="96px" class="calibre39">
+                    <p class="tabletext">SYSGEN1</p></td>
+                <td width="108px" class="calibre28">
+                    <p class="tabletext">1900.00</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre9">
+                <td width="96px" class="calibre39">
+                    <p class="tabletext">SYSGEN2</p></td>
+                <td width="108px" class="calibre28">
+                    <p class="tabletext">2000.00</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre9">
+                <td width="96px" class="calibre39">
+                    <p class="tabletext">SYSGEN3</p></td>
+                <td width="108px" class="calibre28">
+                    <p class="tabletext">1800.00</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre9">
+                <td width="96px" class="calibre39">
+                    <p class="tabletext">450</p></td>
+                <td width="108px" class="calibre28">
+                    <p class="tabletext">250.00</p></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <h3 class="calibre4">PROCD setup</h3>
+
+        <!--(Table)=========================================================-->
+        <table cellspacing="0" width="499" x-use-null-cells="" class="calibre64">
+
+            <tbody class="calibre8">
+            <tr valign="top" class="calibre9">
+                <td width="159px" class="calibre65">
+                    <p class="tableheading">Proc code</p></td>
+                <td width="92px" class="calibre66">
+                    <p class="tableheading">Count as day flag</p></td>
+                <td width="247px" class="calibre67">
+                    <p class="tableheading">INCLM req detail auth link flag</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre9">
+                <td width="159px" class="calibre68">
+                    <p class="tabletext">120</p></td>
+                <td width="92px" class="calibre69">
+                    <p class="tabletext">Y</p></td>
+                <td width="247px" class="calibre70">
+                    <p class="tabletext">Y</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre9">
+                <td width="159px" class="calibre68">
+                    <p class="tabletext">220</p></td>
+                <td width="92px" class="calibre69">
+                    <p class="tabletext">Y</p></td>
+                <td width="247px" class="calibre70">
+                    <p class="tabletext">Y</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre9">
+                <td width="159px" class="calibre68">
+                    <p class="tabletext">450</p></td>
+                <td width="92px" class="calibre69">
+                    <p class="tabletext">N</p></td>
+                <td width="247px" class="calibre70">
+                    <p class="tabletext">Y</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre9">
+                <td width="159px" class="calibre68">
+                    <p class="tabletext">SYSGEN1</p></td>
+                <td width="92px" class="calibre69">
+                    <p class="tabletext">Y</p></td>
+                <td width="247px" class="calibre70">
+                    <p class="tabletext">Y</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre9">
+                <td width="159px" class="calibre68">
+                    <p class="tabletext">SYSGEN2</p></td>
+                <td width="92px" class="calibre69">
+                    <p class="tabletext">Y</p></td>
+                <td width="247px" class="calibre70">
+                    <p class="tabletext">Y</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre9">
+                <td width="159px" class="calibre68">
+                    <p class="tabletext">SYSGEN3</p></td>
+                <td width="92px" class="calibre69">
+                    <p class="tabletext">Y</p></td>
+                <td width="247px" class="calibre70">
+                    <p class="tabletext">Y</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre9">
+                <td width="159px" class="calibre68">
+                    <p class="tabletext">300</p></td>
+                <td width="92px" class="calibre69">
+                    <p class="tabletext">N</p></td>
+                <td width="247px" class="calibre70">
+                    <p class="tabletext">N</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre9">
+                <td width="159px" class="calibre68">
+                    <p class="tabletext">700</p></td>
+                <td width="92px" class="calibre69">
+                    <p class="tabletext">N</p></td>
+                <td width="247px" class="calibre70">
+                    <p class="tabletext">N</p></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <h3 class="calibre4">INCLM claim – Normal whole claim priced claim</h3>
+
+        <!--(Table)=========================================================-->
+        <table cellspacing="0" width="540" x-use-null-cells="" class="calibre71">
+
+            <tbody class="calibre8">
+            <tr valign="top" class="calibre9">
+                <td width="57px" class="calibre45">
+                    <p class="tableheading">Line #</p></td>
+                <td width="82px" class="calibre72">
+                    <p class="tableheading">Proc</p></td>
+                <td width="62px" class="calibre73">
+                    <p class="tableheading">Qty</p></td>
+                <td width="74px" class="calibre74">
+                    <p class="tableheading">Blld amt</p></td>
+                <td width="74px" class="calibre74">
+                    <p class="tableheading">Allwd amt</p></td>
+                <td width="69px" class="calibre75">
+                    <p class="tableheading">Clm stat</p></td>
+                <td width="118px" class="calibre76">
+                    <p class="tableheading">Comment</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre9">
+                <td width="57px" class="calibre77">
+                    <p class="tabletext">001</p></td>
+                <td width="82px" class="calibre78">
+                    <p class="tabletext">120</p></td>
+                <td width="62px" class="calibre79">
+                    <p class="tabletext">4</p></td>
+                <td width="74px" class="calibre80">
+                    <p class="tabletext">2000.00</p></td>
+                <td width="74px" class="calibre80">
+                    <p class="tabletext"> </p></td>
+                <td width="69px" class="calibre81">
+                    <p class="tabletext">I</p></td>
+                <td width="118px" class="calibre82">
+                    <p class="tabletext">Bed day</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre9">
+                <td width="57px" class="calibre77">
+                    <p class="tabletext">002</p></td>
+                <td width="82px" class="calibre78">
+                    <p class="tabletext">220</p></td>
+                <td width="62px" class="calibre79">
+                    <p class="tabletext">2</p></td>
+                <td width="74px" class="calibre80">
+                    <p class="tabletext">2500.00</p></td>
+                <td width="74px" class="calibre80">
+                    <p class="tabletext"> </p></td>
+                <td width="69px" class="calibre81">
+                    <p class="tabletext">I</p></td>
+                <td width="118px" class="calibre82">
+                    <p class="tabletext">Bed day</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre9">
+                <td width="57px" class="calibre77">
+                    <p class="tabletext">003</p></td>
+                <td width="82px" class="calibre78">
+                    <p class="tabletext">300</p></td>
+                <td width="62px" class="calibre79">
+                    <p class="tabletext">1</p></td>
+                <td width="74px" class="calibre80">
+                    <p class="tabletext">10.00</p></td>
+                <td width="74px" class="calibre80">
+                    <p class="tabletext"> </p></td>
+                <td width="69px" class="calibre81">
+                    <p class="tabletext">I</p></td>
+                <td width="118px" class="calibre82">
+                    <p class="tabletext">Ancillary proc</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre9">
+                <td width="57px" class="calibre77">
+                    <p class="tabletext">004</p></td>
+                <td width="82px" class="calibre78">
+                    <p class="tabletext">450</p></td>
+                <td width="62px" class="calibre79">
+                    <p class="tabletext">1</p></td>
+                <td width="74px" class="calibre80">
+                    <p class="tabletext">350.00</p></td>
+                <td width="74px" class="calibre80">
+                    <p class="tabletext">350.00</p></td>
+                <td width="69px" class="calibre81">
+                    <p class="tabletext">P</p></td>
+                <td width="118px" class="calibre82">
+                    <p class="tabletext">Carve out</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre9">
+                <td width="57px" class="calibre77">
+                    <p class="tabletext">005</p></td>
+                <td width="82px" class="calibre78">
+                    <p class="tabletext">700</p></td>
+                <td width="62px" class="calibre79">
+                    <p class="tabletext">1</p></td>
+                <td width="74px" class="calibre80">
+                    <p class="tabletext">25.00</p></td>
+                <td width="74px" class="calibre80">
+                    <p class="tabletext"> </p></td>
+                <td width="69px" class="calibre81">
+                    <p class="tabletext">I</p></td>
+                <td width="118px" class="calibre82">
+                    <p class="tabletext">Ancillary proc</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre9">
+                <td width="57px" class="calibre77">
+                    <p class="tabletext">Ctrl-F8</p></td>
+                <td width="82px" class="calibre78">
+                    <p class="tabletext"> </p></td>
+                <td width="62px" class="calibre79">
+                    <p class="tabletext"> </p></td>
+                <td width="74px" class="calibre80">
+                    <p class="tabletext"> </p></td>
+                <td width="74px" class="calibre80">
+                    <p class="tabletext"> </p></td>
+                <td width="69px" class="calibre81">
+                    <p class="tabletext"> </p></td>
+                <td width="118px" class="calibre82">
+                    <p class="tabletext"> </p></td>
+            </tr>
+
+            <tr valign="top" class="calibre9">
+                <td width="57px" class="calibre77">
+                    <p class="tabletext">006</p></td>
+                <td width="82px" class="calibre78">
+                    <p class="tabletext">SYSGEN1</p></td>
+                <td width="62px" class="calibre79">
+                    <p class="tabletext">4</p></td>
+                <td width="74px" class="calibre80">
+                    <p class="tabletext"> </p></td>
+                <td width="74px" class="calibre80">
+                    <p class="tabletext">1900.00</p></td>
+                <td width="69px" class="calibre81">
+                    <p class="tabletext"> </p></td>
+                <td width="118px" class="calibre82">
+                    <p class="tabletext"> </p></td>
+            </tr>
+
+            <tr valign="top" class="calibre9">
+                <td width="57px" class="calibre77">
+                    <p class="tabletext">007</p></td>
+                <td width="82px" class="calibre78">
+                    <p class="tabletext">SYSGEN2</p></td>
+                <td width="62px" class="calibre79">
+                    <p class="tabletext">2</p></td>
+                <td width="74px" class="calibre80">
+                    <p class="tabletext"> </p></td>
+                <td width="74px" class="calibre80">
+                    <p class="tabletext">2000.00</p></td>
+                <td width="69px" class="calibre81">
+                    <p class="tabletext"> </p></td>
+                <td width="118px" class="calibre82">
+                    <p class="tabletext"> </p></td>
+            </tr>
+
+            <tr valign="top" class="calibre9">
+                <td width="57px" class="calibre77">
+                    <p class="tabletext">Total of lines</p></td>
+                <td width="82px" class="calibre78">
+                    <p class="tabletext"> </p></td>
+                <td width="62px" class="calibre79">
+                    <p class="tabletext"> </p></td>
+                <td width="74px" class="calibre80">
+                    <p class="tabletext"> </p></td>
+                <td width="74px" class="calibre80">
+                    <p class="tabletext">$4250.00</p></td>
+                <td width="69px" class="calibre81">
+                    <p class="tabletext"> </p></td>
+                <td width="118px" class="calibre82">
+                    <p class="tabletext"> </p></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <h3 class="calibre4">INCLM claim – same claim with pricing from authorized procedure</h3>
+
+        <!--(Table)=========================================================-->
+        <table cellspacing="0" width="582" x-use-null-cells="" class="calibre40">
+
+            <tbody class="calibre8">
+            <tr valign="top" class="calibre9">
+                <td width="49px" class="calibre83">
+                    <p class="tableheading">Line #</p></td>
+                <td width="81px" class="calibre84">
+                    <p class="tableheading">Proc</p></td>
+                <td width="52px" class="calibre85">
+                    <p class="tableheading">Qty</p></td>
+                <td width="70px" class="calibre44">
+                    <p class="tableheading">Blld amt</p></td>
+                <td width="70px" class="calibre44">
+                    <p class="tableheading">Allwd amt</p></td>
+                <td width="55px" class="calibre42">
+                    <p class="tableheading">Clm stat</p></td>
+                <td width="79px" class="calibre86">
+                    <p class="tableheading">Net amt</p></td>
+                <td width="123px" class="calibre87">
+                    <p class="tableheading">Comment</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre9">
+                <td width="49px" class="calibre88">
+                    <p class="tabletext">001</p></td>
+                <td width="81px" class="calibre89">
+                    <p class="tabletext">130</p></td>
+                <td width="52px" class="calibre90">
+                    <p class="tabletext">4</p></td>
+                <td width="70px" class="calibre53">
+                    <p class="tabletext">2000.00</p></td>
+                <td width="70px" class="calibre53">
+                    <p class="tabletext"> </p></td>
+                <td width="55px" class="calibre51">
+                    <p class="tabletext">I</p></td>
+                <td width="79px" class="calibre91">
+                    <p class="tabletext"> </p></td>
+                <td width="123px" class="calibre92">
+                    <p class="tabletext">Proc 120 is substituted for 130 for pricing</p>
+                    <p class="tabletext">Bed day</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre9">
+                <td width="49px" class="calibre88">
+                    <p class="tabletext">002</p></td>
+                <td width="81px" class="calibre89">
+                    <p class="tabletext">220</p></td>
+                <td width="52px" class="calibre90">
+                    <p class="tabletext">2</p></td>
+                <td width="70px" class="calibre53">
+                    <p class="tabletext">2500.00</p></td>
+                <td width="70px" class="calibre53">
+                    <p class="tabletext"> </p></td>
+                <td width="55px" class="calibre51">
+                    <p class="tabletext">I</p></td>
+                <td width="79px" class="calibre91">
+                    <p class="tabletext"> </p></td>
+                <td width="123px" class="calibre92">
+                    <p class="tabletext">Bed day</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre9">
+                <td width="49px" class="calibre88">
+                    <p class="tabletext">003</p></td>
+                <td width="81px" class="calibre89">
+                    <p class="tabletext">300</p></td>
+                <td width="52px" class="calibre90">
+                    <p class="tabletext">1</p></td>
+                <td width="70px" class="calibre53">
+                    <p class="tabletext">10.00</p></td>
+                <td width="70px" class="calibre53">
+                    <p class="tabletext"> </p></td>
+                <td width="55px" class="calibre51">
+                    <p class="tabletext">I</p></td>
+                <td width="79px" class="calibre91">
+                    <p class="tabletext"> </p></td>
+                <td width="123px" class="calibre92">
+                    <p class="tabletext">Ancillary proc</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre9">
+                <td width="49px" class="calibre88">
+                    <p class="tabletext">004</p></td>
+                <td width="81px" class="calibre89">
+                    <p class="tabletext">450</p></td>
+                <td width="52px" class="calibre90">
+                    <p class="tabletext">1</p></td>
+                <td width="70px" class="calibre53">
+                    <p class="tabletext">350.00</p></td>
+                <td width="70px" class="calibre53">
+                    <p class="tabletext">350.00</p></td>
+                <td width="55px" class="calibre51">
+                    <p class="tabletext">P</p></td>
+                <td width="79px" class="calibre91">
+                    <p class="tabletext"> </p></td>
+                <td width="123px" class="calibre92">
+                    <p class="tabletext">Carve out</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre9">
+                <td width="49px" class="calibre88">
+                    <p class="tabletext">005</p></td>
+                <td width="81px" class="calibre89">
+                    <p class="tabletext">700</p></td>
+                <td width="52px" class="calibre90">
+                    <p class="tabletext">1</p></td>
+                <td width="70px" class="calibre53">
+                    <p class="tabletext">25.00</p></td>
+                <td width="70px" class="calibre53">
+                    <p class="tabletext"> </p></td>
+                <td width="55px" class="calibre51">
+                    <p class="tabletext">I</p></td>
+                <td width="79px" class="calibre91">
+                    <p class="tabletext"> </p></td>
+                <td width="123px" class="calibre92">
+                    <p class="tabletext">Ancillary proc</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre9">
+                <td width="49px" class="calibre88">
+                    <p class="tabletext">Ctrl-F8</p></td>
+                <td width="81px" class="calibre89">
+                    <p class="tabletext"> </p></td>
+                <td width="52px" class="calibre90">
+                    <p class="tabletext"> </p></td>
+                <td width="70px" class="calibre53">
+                    <p class="tabletext"> </p></td>
+                <td width="70px" class="calibre53">
+                    <p class="tabletext"> </p></td>
+                <td width="55px" class="calibre51">
+                    <p class="tabletext"> </p></td>
+                <td width="79px" class="calibre91">
+                    <p class="tabletext"> </p></td>
+                <td width="123px" class="calibre92">
+                    <p class="tabletext"> </p></td>
+            </tr>
+
+            <tr valign="top" class="calibre9">
+                <td width="49px" class="calibre88">
+                    <p class="tabletext">006</p></td>
+                <td width="81px" class="calibre89">
+                    <p class="tabletext">SYSGEN3</p></td>
+                <td width="52px" class="calibre90">
+                    <p class="tabletext">4</p></td>
+                <td width="70px" class="calibre53">
+                    <p class="tabletext"> </p></td>
+                <td width="70px" class="calibre53">
+                    <p class="tabletext">1800.00</p></td>
+                <td width="55px" class="calibre51">
+                    <p class="tabletext"> </p></td>
+                <td width="79px" class="calibre91">
+                    <p class="tabletext"> </p></td>
+                <td width="123px" class="calibre92">
+                    <p class="tabletext">Result of WCP with proc 120 </p></td>
+            </tr>
+
+            <tr valign="top" class="calibre9">
+                <td width="49px" class="calibre88">
+                    <p class="tabletext">007</p></td>
+                <td width="81px" class="calibre89">
+                    <p class="tabletext">SYSGEN2</p></td>
+                <td width="52px" class="calibre90">
+                    <p class="tabletext">2</p></td>
+                <td width="70px" class="calibre53">
+                    <p class="tabletext"> </p></td>
+                <td width="70px" class="calibre53">
+                    <p class="tabletext">2000.00</p></td>
+                <td width="55px" class="calibre51">
+                    <p class="tabletext"> </p></td>
+                <td width="79px" class="calibre91">
+                    <p class="tabletext">$4150.00</p></td>
+                <td width="123px" class="calibre92">
+                    <p class="tabletext"> </p></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <h2 class="calibre3"><a name="A_CDetLinkPrice_HDT_Exs_of_Claim_Det_Auth_Proc_Rules_MID"></a>Examples
+            of Claim Detail Authorization Procedure Rules</h2>
+
+        <p class="text">The following table presents examples of rules you can build
+            using keyword CDAPR (Claim Detail Authorization Procedure Rules). You
+            include CDAPR rules as evaluation criteria in the application of CDAPL
+            (Claims Detail Authorization Procedure Link) rules for authorization/claim
+            detail linking and pricing. </p>
+
+        <!--(Table)=========================================================-->
+        <table cellspacing="0" x-use-null-cells="" class="calibre93">
+
+            <tbody class="calibre8">
+            <tr valign="top" class="calibre9">
+                <td width="87px" class="calibre94">
+                    <p class="tableheading">CDAPR field - Rule ID</p></td>
+                <td width="112px" class="calibre95">
+                    <p class="tableheading">CDAPR field - Submt vs Auth Proc Code</p></td>
+                <td width="95px" class="calibre96">
+                    <p class="tableheading">CDAPR field - Price on Auth Proc</p></td>
+                <td width="96px" class="calibre97">
+                    <p class="tableheading">CDAPR field - Auth Proc Status</p></td>
+                <td width="184px" class="calibre98">
+                    <p class="tableheading">Requirements</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre9">
+                <td width="87px" class="calibre99">
+                    <p class="tabletext">123</p></td>
+                <td width="112px" class="calibre100">
+                    <p class="tabletext">EXACT</p></td>
+                <td width="95px" class="calibre101">
+                    <p class="tabletext">N</p></td>
+                <td width="96px" class="calibre102">
+                    <p class="tabletext">OP</p></td>
+                <td width="184px" class="calibre103">
+                    <p class="tabletext">To satisfy this CDAPR rule, the following must be true:</p>
+                    <ul class="calibre2">
+
+                        <li class="kadov-p-cbulletlvl"><p class="tablebullet">The submitted procedure
+                            code must be an exact match to the authorized procedure code</p></li>
+
+                        <li class="kadov-p-cbulletlvl"><p class="tablebullet">An Auth Amt greater
+                            than zero may or may not exist on the matching authorization PRCDR record</p></li>
+
+                        <li class="kadov-p-cbulletlvl"><p class="tablebullet">The Status on the
+                            matching PRCDR record must be OP (Open).</p></li>
+                    </ul>
+                </td>
+            </tr>
+
+            <tr valign="top" class="calibre9">
+                <td width="87px" class="calibre99">
+                    <p class="tabletext">124</p></td>
+                <td width="112px" class="calibre100">
+                    <p class="tabletext">EXACT</p></td>
+                <td width="95px" class="calibre101">
+                    <p class="tabletext">Y</p></td>
+                <td width="96px" class="calibre102">
+                    <p class="tabletext">OP</p></td>
+                <td width="184px" class="calibre103">
+                    <p class="tabletext">To satisfy this CDAPR rule, the following must be true:</p>
+                    <ul class="calibre2">
+
+                        <li class="kadov-p-cbulletlvl"><p class="tablebullet">The submitted procedure
+                            code must be an exact match to the authorized procedure code</p></li>
+
+                        <li class="kadov-p-cbulletlvl"><p class="tablebullet">An Auth Amt greater
+                            than zero must exist on the matching authorization PRCDR record</p></li>
+
+                        <li class="kadov-p-cbulletlvl"><p class="tablebullet">The Status on the
+                            matching PRCDR record must be OP (Open).</p></li>
+                    </ul>
+                </td>
+            </tr>
+
+            <tr valign="top" class="calibre9">
+                <td width="87px" class="calibre99">
+                    <p class="tabletext">125</p></td>
+                <td width="112px" class="calibre100">
+                    <p class="tabletext">INRANGE</p></td>
+                <td width="95px" class="calibre101">
+                    <p class="tabletext">N</p></td>
+                <td width="96px" class="calibre102">
+                    <p class="tabletext">DN</p></td>
+                <td width="184px" class="calibre103">
+                    <p class="tabletext">To satisfy this CDAPR rule, the following must be true:</p>
+                    <ul class="calibre2">
+
+                        <li class="kadov-p-cbulletlvl"><p class="tablebullet">The submitted procedure
+                            code must be within the PRCRA range specified on the CDAPL rule</p></li>
+
+                        <li class="kadov-p-cbulletlvl"><p class="tablebullet">An Auth Amt greater
+                            than zero may or may not exist on the matching authorization PRCDR record</p></li>
+
+                        <li class="kadov-p-cbulletlvl"><p class="tablebullet">The Status on the
+                            matching PRCDR record must be DN (Denied).</p></li>
+                    </ul>
+                </td>
+            </tr>
+
+            <tr valign="top" class="calibre9">
+                <td width="87px" class="calibre99">
+                    <p class="tabletext">127</p></td>
+                <td width="112px" class="calibre100">
+                    <p class="tabletext">OUTRANGE</p></td>
+                <td width="95px" class="calibre101">
+                    <p class="tabletext">Y</p></td>
+                <td width="96px" class="calibre102">
+                    <p class="tabletext">OP</p></td>
+                <td width="184px" class="calibre103">
+                    <p class="tabletext">To satisfy this CDAPR rule, the following must be true:</p>
+                    <ul class="calibre2">
+
+                        <li class="kadov-p-cbulletlvl"><p class="tablebullet">The submitted procedure
+                            code must be outside the PRCRA range specified on the CDAPL rule</p></li>
+
+                        <li class="kadov-p-cbulletlvl"><p class="tablebullet">An Auth Amt greater
+                            than zero must exist on the matching authorization PRCDR record</p></li>
+
+                        <li class="kadov-p-cbulletlvl"><p class="tablebullet">The Status on the
+                            matching PRCDR record must be OP (Open).</p></li>
+                    </ul>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <h2 class="calibre3"><a name="A_CDetLinkPrice_HDT_Tie_Breakers_MID"></a>Tie Breakers</h2>
+
+        <p class="text">DIAMOND uses a Tie Breaker rule when a CDAPL rule successfully
+            matches more than one PRCDR authorization detail record of a matching
+            authorization. This can occur when the CDAPL rule includes a CDAPR rule
+            that uses a Submt vs Auth Proc Code value of I - In Range and the procedure
+            code on more than one PRCDR authorization detail record falls within the
+            PRCRA range included on the CDAPL rule.</p>
+
+        <p class="text">The two CDAPL tiebreaker options are:</p>
+
+        <ul class="calibre2">
+
+            <li class="kadov-p-cbullet"><p class="bullet">Tie-Breaker on Auth Price</p></li>
+
+            <li class="kadov-p-cbullet"><p class="bullet">Tie-Breaker on Auth Proc</p></li>
+        </ul>
+
+        <h3 class="calibre4">Tie-Breaker on Auth Price</h3>
+
+        <p class="text">DIAMOND uses the CDAPLTie-Breaker on Auth Price field when:</p>
+
+        <ul class="calibre2">
+
+            <li class="kadov-p-cbullet"><p class="bullet">The Pay Action specified
+                on CDAPL for the applied CDAPR is set to Price with Authorized Price,
+                Price and Deny with Authorized Price, or Price and Hold with Authorized
+                Price</p></li>
+
+            <li class="kadov-p-cbullet"><p class="bullet">DIAMOND finds two or more
+                priced authorization procedure records that are in the range for the submitted
+                procedure code.</p></li>
+        </ul>
+
+        <p class="text">DIAMOND applies the CDAPLTie-Breaker on Auth Price field
+            value to determine a single matching PRCDR authorization procedure detail
+            for further processing. Valid values are:</p>
+
+        <ul class="calibre2">
+
+            <li class="kadov-p-cbullet"><p class="bullet">H - Use Highest Auth Price</p></li>
+
+            <li class="kadov-p-cbullet"><p class="bullet">L - Use Lowest Auth Price</p></li>
+        </ul>
+
+        <p class="text">DIAMOND uses the CDAPLTie-Breaker on Auth Proc field when:</p>
+
+        <ul class="calibre2">
+
+            <li class="kadov-p-cbullet"><p class="bullet">The Pay Action specified
+                on CDAPL for the applied CDAPR is set to Price with Authorized Procedure,
+                Price and Deny with Authorized Procedure, or Price and Hold with Authorized
+                Procedure</p></li>
+
+            <li class="kadov-p-cbullet"><p class="bullet">DIAMOND finds two or more
+                authorization procedure records are located that are in the range for
+                the submitted procedure code.</p></li>
+        </ul>
+
+        <p class="text">DIAMOND applies the CDAPLTie-Breaker on Auth Procedure field
+            value to determine a single matching PRCDR authorization procedure detail
+            for further processing. Valid values are:</p>
+
+        <ul class="calibre2">
+
+            <li class="kadov-p-cbullet"><p class="bullet">H - Use Highest Order Auth
+                Procedure</p></li>
+
+            <li class="kadov-p-cbullet"><p class="bullet">L - Use Lowest Order Auth
+                Procedure</p></li>
+        </ul>
+
+        <h2 class="calibre3">Examples of CDAPL Tie-Breakers</h2>
+
+        <p class="text">The following display sample set-up and processing for the
+            use of CDAPL tie-breakers.</p>
+
+        <h3 class="calibre4">CDAPR</h3>
+
+        <!--(Table)=========================================================-->
+        <table cellspacing="0" width="576" x-use-null-cells="" class="calibre104">
+
+            <tbody class="calibre8">
+            <tr valign="top" class="calibre9">
+                <td width="36px" class="calibre105">
+                    <p class="tableheading">#</p></td>
+                <td width="84px" class="calibre31">
+                    <p class="tableheading">CDAPR ID </p></td>
+                <td width="192px" class="calibre106">
+                    <p class="tableheading">Submit vs Auth Proc Code </p></td>
+                <td width="132px" class="calibre107">
+                    <p class="tableheading">Price on Auth Proc</p></td>
+                <td width="132px" class="calibre107">
+                    <p class="tableheading">Auth Proc Status </p></td>
+            </tr>
+
+            <tr valign="top" class="calibre9">
+                <td width="36px" class="calibre108">
+                    <p class="tabletext">1</p></td>
+                <td width="84px" class="calibre34">
+                    <p class="tabletext">12345</p></td>
+                <td width="192px" class="calibre109">
+                    <p class="tabletext">In Range </p></td>
+                <td width="132px" class="calibre110">
+                    <p class="tabletext">Y</p></td>
+                <td width="132px" class="calibre110">
+                    <p class="tabletext">Open </p></td>
+            </tr>
+
+            <tr valign="top" class="calibre9">
+                <td width="36px" class="calibre108">
+                    <p class="tabletext">2</p></td>
+                <td width="84px" class="calibre34">
+                    <p class="tabletext">55555</p></td>
+                <td width="192px" class="calibre109">
+                    <p class="tabletext">Exact </p></td>
+                <td width="132px" class="calibre110">
+                    <p class="tabletext">N</p></td>
+                <td width="132px" class="calibre110">
+                    <p class="tabletext">Open </p></td>
+            </tr>
+
+            <tr valign="top" class="calibre9">
+                <td width="36px" class="calibre108">
+                    <p class="tabletext">3</p></td>
+                <td width="84px" class="calibre34">
+                    <p class="tabletext">77777</p></td>
+                <td width="192px" class="calibre109">
+                    <p class="tabletext">In Range </p></td>
+                <td width="132px" class="calibre110">
+                    <p class="tabletext">N</p></td>
+                <td width="132px" class="calibre110">
+                    <p class="tabletext">Open </p></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <h3 class="calibre4">PRCRA</h3>
+
+        <!--(Table)=========================================================-->
+        <table cellspacing="0" width="360" x-use-null-cells="" class="calibre111">
+
+            <tbody class="calibre8">
+            <tr valign="top" class="calibre9">
+                <td width="36px" class="calibre105">
+                    <p class="tableheading">#</p></td>
+                <td width="84px" class="calibre31">
+                    <p class="tableheading">CDAPR ID </p></td>
+                <td width="108px" class="calibre25">
+                    <p class="tableheading">From Range </p></td>
+                <td width="132px" class="calibre107">
+                    <p class="tableheading">Thru Range </p></td>
+            </tr>
+
+            <tr valign="top" class="calibre9">
+                <td width="36px" class="calibre108">
+                    <p class="tabletext">1</p></td>
+                <td width="84px" class="calibre34">
+                    <p class="tabletext">12345</p></td>
+                <td width="108px" class="calibre28">
+                    <p class="tabletext">81000</p></td>
+                <td width="132px" class="calibre110">
+                    <p class="tabletext">82000</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre9">
+                <td width="36px" class="calibre108">
+                    <p class="tabletext"> </p></td>
+                <td width="84px" class="calibre34">
+                    <p class="tabletext"> </p></td>
+                <td width="108px" class="calibre28">
+                    <p class="tabletext">83500</p></td>
+                <td width="132px" class="calibre110">
+                    <p class="tabletext">84000</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre9">
+                <td width="36px" class="calibre108">
+                    <p class="tabletext"> </p></td>
+                <td width="84px" class="calibre34">
+                    <p class="tabletext"> </p></td>
+                <td width="108px" class="calibre28">
+                    <p class="tabletext">87000</p></td>
+                <td width="132px" class="calibre110">
+                    <p class="tabletext">89999</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre9">
+                <td width="36px" class="calibre108">
+                    <p class="tabletext">2</p></td>
+                <td width="84px" class="calibre34">
+                    <p class="tabletext">55555</p></td>
+                <td width="108px" class="calibre28">
+                    <p class="tabletext">50000</p></td>
+                <td width="132px" class="calibre110">
+                    <p class="tabletext">59999</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre9">
+                <td width="36px" class="calibre108">
+                    <p class="tabletext">3</p></td>
+                <td width="84px" class="calibre34">
+                    <p class="tabletext">77777</p></td>
+                <td width="108px" class="calibre28">
+                    <p class="tabletext">90010</p></td>
+                <td width="132px" class="calibre110">
+                    <p class="tabletext">91000</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre9">
+                <td width="36px" class="calibre108">
+                    <p class="tabletext"> </p></td>
+                <td width="84px" class="calibre34">
+                    <p class="tabletext"> </p></td>
+                <td width="108px" class="calibre28">
+                    <p class="tabletext">93000</p></td>
+                <td width="132px" class="calibre110">
+                    <p class="tabletext">93500</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre9">
+                <td width="36px" class="calibre108">
+                    <p class="tabletext"> </p></td>
+                <td width="84px" class="calibre34">
+                    <p class="tabletext"> </p></td>
+                <td width="108px" class="calibre28">
+                    <p class="tabletext">95000</p></td>
+                <td width="132px" class="calibre110">
+                    <p class="tabletext">99999</p></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <h3 class="calibre4">CDAPL</h3>
+
+        <!--(Table)=========================================================-->
+        <table cellspacing="0" x-use-null-cells="" class="calibre112">
+
+            <tbody class="calibre8">
+            <tr valign="top" class="calibre9">
+                <td width="34px" class="calibre113">
+                    <p class="tableheading">#</p></td>
+                <td width="49px" class="calibre114">
+                    <p class="tableheading">LOB </p></td>
+                <td width="48px" class="calibre115">
+                    <p class="tableheading">Auth Type </p></td>
+                <td width="60px" class="calibre116">
+                    <p class="tableheading">Effect Date </p></td>
+                <td width="72px" class="calibre117">
+                    <p class="tableheading">Term Date </p></td>
+                <td width="96px" class="calibre97">
+                    <p class="tableheading">Auth Proc Range ID (CDAPR ID) </p></td>
+                <td width="66px" class="calibre118">
+                    <p class="tableheading">Incl all Range rows </p></td>
+                <td width="66px" class="calibre118">
+                    <p class="tableheading">Tie Breaker on Price </p></td>
+                <td width="84px" class="calibre31">
+                    <p class="tableheading">Tie Breaker on Procedure </p></td>
+            </tr>
+
+            <tr valign="top" class="calibre9">
+                <td width="34px" class="calibre119">
+                    <p class="tabletext">A</p></td>
+                <td width="49px" class="calibre120">
+                    <p class="tabletext">AMC</p></td>
+                <td width="48px" class="calibre121">
+                    <p class="tabletext">ALL</p></td>
+                <td width="60px" class="calibre122">
+                    <p class="tabletext">1/1/2000</p></td>
+                <td width="72px" class="calibre123">
+                    <p class="tabletext">12/31/2000</p></td>
+                <td width="96px" class="calibre102">
+                    <p class="tabletext">12345</p></td>
+                <td width="66px" class="calibre124">
+                    <p class="tabletext">Y</p></td>
+                <td width="66px" class="calibre124">
+                    <p class="tabletext">Lowest</p></td>
+                <td width="84px" class="calibre34">
+                    <p class="tabletext">Lowest</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre9">
+                <td width="34px" class="calibre119">
+                    <p class="tabletext">B</p></td>
+                <td width="49px" class="calibre120">
+                    <p class="tabletext">AMC</p></td>
+                <td width="48px" class="calibre121">
+                    <p class="tabletext"><span class="calibre125">ALL</span></p></td>
+                <td width="60px" class="calibre122">
+                    <p class="tabletext">1/1/2000</p></td>
+                <td width="72px" class="calibre123">
+                    <p class="tabletext">12/31/2000</p></td>
+                <td width="96px" class="calibre102">
+                    <p class="tabletext">77777</p></td>
+                <td width="66px" class="calibre124">
+                    <p class="tabletext">Y</p></td>
+                <td width="66px" class="calibre124">
+                    <p class="tabletext">Lowest</p></td>
+                <td width="84px" class="calibre34">
+                    <p class="tabletext">Lowest</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre9">
+                <td width="34px" class="calibre119">
+                    <p class="tabletext">C</p></td>
+                <td width="49px" class="calibre120">
+                    <p class="tabletext">AMC</p></td>
+                <td width="48px" class="calibre121">
+                    <p class="tabletext"><span class="calibre125">ALL</span></p></td>
+                <td width="60px" class="calibre122">
+                    <p class="tabletext">1/1/2001</p></td>
+                <td width="72px" class="calibre123">
+                    <p class="tabletext"> </p></td>
+                <td width="96px" class="calibre102">
+                    <p class="tabletext">12345</p></td>
+                <td width="66px" class="calibre124">
+                    <p class="tabletext">Y</p></td>
+                <td width="66px" class="calibre124">
+                    <p class="tabletext">Highest</p></td>
+                <td width="84px" class="calibre34">
+                    <p class="tabletext">Highest</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre9">
+                <td width="34px" class="calibre119">
+                    <p class="tabletext">D</p></td>
+                <td width="49px" class="calibre120">
+                    <p class="tabletext">AMC</p></td>
+                <td width="48px" class="calibre121">
+                    <p class="tabletext"><span class="calibre125">ALL</span></p></td>
+                <td width="60px" class="calibre122">
+                    <p class="tabletext">1/1/2001</p></td>
+                <td width="72px" class="calibre123">
+                    <p class="tabletext"> </p></td>
+                <td width="96px" class="calibre102">
+                    <p class="tabletext">77777</p></td>
+                <td width="66px" class="calibre124">
+                    <p class="tabletext">Y</p></td>
+                <td width="66px" class="calibre124">
+                    <p class="tabletext">Highest </p></td>
+                <td width="84px" class="calibre34">
+                    <p class="tabletext">Highest </p></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <h3 class="calibre4">PRCDR / Auth Detail Procedures </h3>
+
+        <!--(Table)=========================================================-->
+        <table cellspacing="0" width="432" x-use-null-cells="" class="calibre126">
+
+            <tbody class="calibre8">
+            <tr valign="top" class="calibre9">
+                <td width="48px" class="calibre127">
+                    <p class="tableheading">#</p></td>
+                <td width="72px" class="calibre117">
+                    <p class="tableheading">Auth # </p></td>
+                <td width="72px" class="calibre117">
+                    <p class="tableheading">Auth Type </p></td>
+                <td width="120px" class="calibre128">
+                    <p class="tableheading">Procedure Code </p></td>
+                <td width="120px" class="calibre128">
+                    <p class="tableheading">Price </p></td>
+            </tr>
+
+            <tr valign="top" class="calibre9">
+                <td width="48px" class="calibre129">
+                    <p class="tabletext">1A</p></td>
+                <td width="72px" class="calibre123">
+                    <p class="tabletext">8888</p></td>
+                <td width="72px" class="calibre123">
+                    <p class="tabletext">ALL</p></td>
+                <td width="120px" class="calibre130">
+                    <p class="tabletext">81005</p></td>
+                <td width="120px" class="calibre130">
+                    <p class="tabletext">100.00</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre9">
+                <td width="48px" class="calibre129">
+                    <p class="tabletext">1B</p></td>
+                <td width="72px" class="calibre123">
+                    <p class="tabletext">8888</p></td>
+                <td width="72px" class="calibre123">
+                    <p class="tabletext">ALL</p></td>
+                <td width="120px" class="calibre130">
+                    <p class="tabletext">83505</p></td>
+                <td width="120px" class="calibre130">
+                    <p class="tabletext">250.00</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre9">
+                <td width="48px" class="calibre129">
+                    <p class="tabletext">1C</p></td>
+                <td width="72px" class="calibre123">
+                    <p class="tabletext">8888</p></td>
+                <td width="72px" class="calibre123">
+                    <p class="tabletext">ALL</p></td>
+                <td width="120px" class="calibre130">
+                    <p class="tabletext">83530</p></td>
+                <td width="120px" class="calibre130">
+                    <p class="tabletext">300.00</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre9">
+                <td width="48px" class="calibre129">
+                    <p class="tabletext">2A</p></td>
+                <td width="72px" class="calibre123">
+                    <p class="tabletext">321</p></td>
+                <td width="72px" class="calibre123">
+                    <p class="tabletext">ALL</p></td>
+                <td width="120px" class="calibre130">
+                    <p class="tabletext">82005</p></td>
+                <td width="120px" class="calibre130">
+                    <p class="tabletext">135.00</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre9">
+                <td width="48px" class="calibre129">
+                    <p class="tabletext">2B</p></td>
+                <td width="72px" class="calibre123">
+                    <p class="tabletext">321</p></td>
+                <td width="72px" class="calibre123">
+                    <p class="tabletext">ALL</p></td>
+                <td width="120px" class="calibre130">
+                    <p class="tabletext">83890</p></td>
+                <td width="120px" class="calibre130">
+                    <p class="tabletext"> </p></td>
+            </tr>
+
+            <tr valign="top" class="calibre9">
+                <td width="48px" class="calibre129">
+                    <p class="tabletext">2C</p></td>
+                <td width="72px" class="calibre123">
+                    <p class="tabletext">321</p></td>
+                <td width="72px" class="calibre123">
+                    <p class="tabletext">ALL</p></td>
+                <td width="120px" class="calibre130">
+                    <p class="tabletext">89000</p></td>
+                <td width="120px" class="calibre130">
+                    <p class="tabletext">200.00</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre9">
+                <td width="48px" class="calibre129">
+                    <p class="tabletext">3A</p></td>
+                <td width="72px" class="calibre123">
+                    <p class="tabletext">456</p></td>
+                <td width="72px" class="calibre123">
+                    <p class="tabletext">ALL</p></td>
+                <td width="120px" class="calibre130">
+                    <p class="tabletext">90088</p></td>
+                <td width="120px" class="calibre130">
+                    <p class="tabletext">150.00</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre9">
+                <td width="48px" class="calibre129">
+                    <p class="tabletext">3B</p></td>
+                <td width="72px" class="calibre123">
+                    <p class="tabletext">456</p></td>
+                <td width="72px" class="calibre123">
+                    <p class="tabletext">ALL</p></td>
+                <td width="120px" class="calibre130">
+                    <p class="tabletext">93150</p></td>
+                <td width="120px" class="calibre130">
+                    <p class="tabletext"> </p></td>
+            </tr>
+
+            <tr valign="top" class="calibre9">
+                <td width="48px" class="calibre129">
+                    <p class="tabletext">3C</p></td>
+                <td width="72px" class="calibre123">
+                    <p class="tabletext">456</p></td>
+                <td width="72px" class="calibre123">
+                    <p class="tabletext">ALL</p></td>
+                <td width="120px" class="calibre130">
+                    <p class="tabletext">93450</p></td>
+                <td width="120px" class="calibre130">
+                    <p class="tabletext">225.00</p></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <h3 class="calibre4">PSCLM / INCLM Claim </h3>
+
+        <!--(Table)=========================================================-->
+        <td_null>
+            <td_null>
+                <td_null>
+                    <td_null/>
+                </td_null>
+            </td_null>
+        </td_null>
+        <td_null>
+            <td_null>
+                <td_null>
+                </td_null>
+            </td_null>
+        </td_null>
+        <table cellspacing="0" width="684" x-use-null-cells="" class="calibre131">
+            <colgroup class="calibre132">
+                <col class="calibre133"/>
+                <col class="calibre134"/>
+                <col class="calibre135"/>
+                <col class="calibre136"/>
+                <col class="calibre137"/>
+                <col class="calibre138"/>
+                <col class="calibre139"/>
+                <col class="calibre140"/>
+
+            </colgroup>
+            <tbody class="calibre8">
+            <tr valign="top" class="calibre9">
+                <td rowspan="2" width="60px" class="calibre141">
+                    <p class="tableheading">Claim # </p></td>
+                <td rowspan="2" width="39px" class="calibre142">
+                    <p class="tableheading">LOB</p></td>
+                <td rowspan="2" width="56px" class="calibre48">
+                    <p class="tableheading">Header Auth # </p></td>
+                <td colspan="5" width="495px" class="calibre143">
+                    <p class="tableheading">Claim Detail Information</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre9">
+                <td width="67px" class="calibre144">
+                    <p class="tableheading">  </p>
+                    <p class="tableheading"> </p>
+                    <p class="tableheading"> </p></td>
+                <td width="65px" class="calibre145">
+                    <p class="tableheading">From Date of Service </p></td>
+                <td width="80px" class="calibre146">
+                    <p class="tableheading">Submitted Proc Code </p></td>
+                <td width="131px" class="calibre147">
+                    <p class="tableheading">Billed Amount </p></td>
+                <td width="152px" class="calibre148">
+                    <p class="tableheading">Comments </p></td>
+            </tr>
+
+            <tr valign="top" class="calibre9">
+                <td width="60px" class="calibre149">
+                    <p class="tabletext">123</p></td>
+                <td width="39px" class="calibre150">
+                    <p class="tabletext">AMC</p></td>
+                <td width="56px" class="calibre56">
+                    <p class="tabletext">8888</p></td>
+                <td width="67px" class="calibre151">
+                    <p class="tabletext">6-15-2000</p></td>
+                <td width="65px" class="calibre152">
+                    <p class="tabletext">83520</p></td>
+                <td width="80px" class="calibre153">
+                    <p class="tabletext">400.00</p></td>
+                <td width="131px" class="calibre154">
+                    <p class="tabletext">Matches on CDAPL # A using an CDAPR of 12345 which also
+                        defines that the Auth Price must apply to the claim line. The Submitted
+                        Proc Code is in the Range of the PRCRA of 12345 of the 83500 thru 84000
+                        so then this range of proc codes is reviewed on the Auth Details (PRCDR)
+                        Both PRCDR lines of 1B and 1C could be used. Tie Breaker Rule indicates
+                        for Price use the Lowest </p></td>
+                <td width="152px" class="calibre155">
+                    <p class="tabletext">Lowest Price on the 2 possible PRCDR Auth detail lines
+                        is $250.00</p>
+                    <p class="tabletext"> </p></td>
+            </tr>
+
+            <tr valign="top" class="calibre9">
+                <td width="60px" class="calibre149">
+                    <p class="tabletext">234</p></td>
+                <td width="39px" class="calibre150">
+                    <p class="tabletext">AMC</p></td>
+                <td width="56px" class="calibre56">
+                    <p class="tabletext">456</p></td>
+                <td width="67px" class="calibre151">
+                    <p class="tabletext">3-15-2001</p></td>
+                <td width="65px" class="calibre152">
+                    <p class="tabletext">93200</p></td>
+                <td width="80px" class="calibre153">
+                    <p class="tabletext">300.00</p></td>
+                <td width="131px" class="calibre154">
+                    <p class="tabletext">Matches on CDAPL # D using an CDAPR of 77777 which also
+                        defines that the Claim is not priced using the Auth Price. The Submitted
+                        Proc Code is in the Range of the PRCRA of 77777 in the 93000 thru 93500,
+                        so then this range of proc codes is reviewed on the Auth Details (PRCDR).
+                        The PRCDR auth detail lines of 3A, 3B, 3C all could be used. Tie Breaker
+                        Rule indicates for Procedure to use the Highest value. </p></td>
+                <td width="152px" class="calibre155">
+                    <p class="tabletext">Highest Procedure code on the 3 PRCDR Auth Detail lines
+                        is </p>
+                    <p class="tabletext">93450. This procedure code is then used to call DIAMOND
+                        standard pricing process for the claim detail line to determine the allowed
+                        amount. </p></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <h2 class="calibre3"><a name="A_CDetLinkPrice_HDT_APC_Pricing_and_A_C_Det_Link_Price_MID"></a>APC
+            Pricing and Authorization/Claim Detail Linking and Pricing</h2>
+
+        <p class="text">Ambulatory Payment Classification (APC) pricing can override
+            other pricing on claim detail lines. Do not use both APC pricing and authorization/claim
+            detail linking and pricing.</p>
+
+        <h2 class="calibre3"><a
+                name="A_CDetLinkPrice_HDT_Third_Party_Claim_Audit_Tools_and_Auth_Claim_Det_Link_Price_MID"></a>Third
+            Party Claim Audit Tools and Authorization/Claim Detail Linking and Pricing</h2>
+
+        <p class="text">Third party claim audit tools override pricing resulting
+            from authorization/claim detail linking and pricing logic. Do not use
+            both third party claim audit tools and authorization/claim detail linking
+            and pricing. For more information on third party claim auditing tools
+            that interface with DIAMOND, see <a href="Interface.chm::/Claim_Auditing_-_How_DIAMOND_Thinks.htm">Claim
+                Auditing - How DIAMOND Thinks</a>.</p>
+
+
+    </div>
+
+    <div class="calibreEbNav">
+
+        <a href="Setting_Up_Authorization_Claim_Detail_Linking_and_Pricing.htm" class="calibreAPrev">previous page
+        </a>
+
+
+        <a href="../bj5if-qozss.html" class="calibreAHome">start
+        </a>
+
+
+        <a href="Authorization_Claim_Links_How_DIAMOND_Thinks.htm" class="calibreANext">next page
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+</html>

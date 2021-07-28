@@ -1,0 +1,234 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+    <!-- $MVD$:fontset("Courier New","Courier New") -->
+    <title>Heads Down Claims NSF Claims Processing Example</title>
+    <meta content="RoboHelp by eHelp Corporation www.ehelp.com" name="generator"/>
+    <meta name="copyright"
+          value="© Copyright 2002 Health Systems Design Corp., a wholly owned subsidiary of Perot Systems Corporation. All rights reserved"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+</head>
+<body>
+
+<div class="calibreMeta">
+    <div class="calibreMetaTitle">
+
+
+        <h1>
+            <a href="../bj5if-qozss.html">DIAMOND 950 Help
+            </a>
+        </h1>
+
+
+    </div>
+    <div class="calibreMetaAuthor">
+        Unknown
+
+    </div>
+</div>
+
+<div class="calibreMain">
+
+    <div class="calibreEbookContent">
+
+        <div class="calibreEbNavTop">
+
+            <a href="Heads_Down_Claims_Processing_Examples.htm" class="calibreAPrev">previous page
+            </a>
+
+
+            <a href="Add_Record_Menu_Function.htm" class="calibreANext">next page
+            </a>
+
+        </div>
+
+
+        <h4 class="calibre1">Heads Down Claims NSF Claims Processing Example</h4>
+        <table cellpadding="1" cellspacing="0" width="565" class="calibre172">
+            <tbody class="">
+            <tr valign="top" class="">
+                <td width="252" class="">
+                    <p class="map-links"><a
+                            href="Heads_Down_Claims_NSF_Claims_Processing_Example.htm#HDC_Receiving_NSF_Claims_MID"><img
+                            alt="image\assets/help/MidTopic_shg.gif" border="0" src="assets/help/MidTopic_shg.gif"
+                            usemap="#AreaMap0" class=""/>
+                    </a> Receiving NSF Claims
+                    </p>
+                </td>
+                <td width="313" class="">
+                    <p class="map-links"><a
+                            href="Heads_Down_Claims_NSF_Claims_Processing_Example.htm#HDC_Running_the_IDE_Script_for_NSF_Claims_MID"><img
+                            alt="image\assets/help/MidTopic_shg.gif" border="0" src="assets/help/MidTopic_shg.gif"
+                            usemap="#AreaMap1" class=""/>
+                    </a> Running the IDE Script for NSF Claims
+                    </p>
+                </td>
+            </tr>
+            <tr valign="top" class="">
+                <td width="252" class="">
+                    <p class="map-links"><a
+                            href="Heads_Down_Claims_NSF_Claims_Processing_Example.htm#HDC_Processing_NSF_Claims_MID"><img
+                            alt="image\assets/help/MidTopic_shg.gif" border="0" src="assets/help/MidTopic_shg.gif"
+                            usemap="#AreaMap2" class=""/>
+                    </a> Processing NSF Claims
+                    </p>
+                </td>
+                <td width="313" class="">
+                    <p class="map-links"><a
+                            href="Heads_Down_Claims_Processing_Examples.htm#HDC_Running_Claims_Batch_MID"><img
+                            alt="image\assets/help/MidTopic_shg.gif" border="0" src="assets/help/MidTopic_shg.gif"
+                            usemap="#AreaMap3" class=""/>
+                    </a> Running Claims Batch
+                    </p>
+                </td>
+            </tr>
+            <tr valign="top" class="">
+                <td width="252" class="">
+                    <p class="map-links"><a href="Heads_Down_Claims_Processing_Examples.htm#HDC_Connecting_to_Host_MID"><img
+                            alt="image\assets/help/MidTopic_shg.gif" border="0" src="assets/help/MidTopic_shg.gif"
+                            usemap="#AreaMap4" class=""/>
+                    </a> Connecting to Host
+                    </p>
+                </td>
+                <td width="313" class="">
+                    <p class="map-links"><a
+                            href="Heads_Down_Claims_NSF_Claims_Processing_Example.htm#HDC_Processing_Schematic_for_NSF_Claims_MID"><img
+                            alt="image\assets/help/MidTopic_shg.gif" border="0" src="assets/help/MidTopic_shg.gif"
+                            usemap="#AreaMap5" class=""/>
+                    </a> Processing Schematic for NSF Claims
+                    </p>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <p class="doc-level"><a name="HDC_Receiving_NSF_Claims_MID"></a>Receiving NSF Claims</p>
+        <p class="body-text">Clearinghouses and/or partners may submit claims to your organization using the National
+            Standard Format (NSF). You must use third-party software, Sterling® for example, to re-format NSF claim
+            files before the file is processed through the IDE module. This process re-maps the NSF fields and creates a
+            DIAMOND readable IDE module input file (&lt;filename&gt;.dat).</p>
+        <p class="body-text">Each claim within the NSF file must have a unique claim number. If possible, it is
+            recommended that all claims received from a specific source, over a period of time, have unique claim
+            numbers.</p>
+        <p class="doc-level"><a name="HDC_Processing_NSF_Claims_MID"></a>Processing NSF Claims</p>
+        <p class="body-text">The UNIX directories, necessary to process NSF claims and run the Intelligent Data Enhancer
+            (IDE), are created when you install the current release of DIAMOND.</p>
+        <table cellpadding="1" cellspacing="0" width="526" class="calibre172">
+            <tbody class="">
+            <tr valign="top" class="">
+                <td width="250" class="">
+                    <p class="tbl-header">Step</p></td>
+                <td width="276" class="">
+                    <p class="tbl-header">Comment</p></td>
+            </tr>
+            <tr valign="top" class="">
+                <td width="250" class="">
+                    <p class="step2">1. Process the NSF claims file using third-party software to create a re-mapped
+                        claims file (&lt;filename&gt;.dat).</p></td>
+                <td width="276" class="">
+                    <p class="step-comment1"> </p></td>
+            </tr>
+            <tr valign="top" class="">
+                <td width="250" class="">
+                    <p class="step2">2. If necessary, move (FTP) the re-mapped &lt;filename&gt;.dat claims file to a
+                        UNIX directory containing the IDE script (ideexec.sh) and the NSF control file
+                        (psclmnsf.ctl).</p></td>
+                <td width="276" class="">
+                    <p class="step-comment1">When you run the IDE script, &lt;filename&gt;.dat, ideexec.sh, and
+                        psclmnsf.ctl must be in the same UNIX directory.</p></td>
+            </tr>
+            <tr valign="top" class="">
+                <td width="250" class="">
+                    <p class="step2">3. </p></td>
+                <td width="276" class="">
+                    <p class="step-comment1"> </p></td>
+            </tr>
+            </tbody>
+        </table>
+        <p class="doc-level"><a name="HDC_Running_the_IDE_Script_for_NSF_Claims_MID"></a>Running the IDE Script for NSF
+            Claims</p>
+        <p class="body-text">You must run the IDE script from within the directory in which it is stored. In addition,
+            the &lt;filename&gt;.dat and hdsdwn.ctl files must be in the same directory as the IDE script
+            (ideexec.sh).</p>
+        <table cellpadding="1" cellspacing="0" width="526" class="calibre172">
+            <tbody class="">
+            <tr valign="top" class="">
+                <td width="250" class="">
+                    <p class="tbl-header">Step</p></td>
+                <td width="276" class="">
+                    <p class="tbl-header">Comment</p></td>
+            </tr>
+            <tr valign="top" class="">
+                <td width="250" class="">
+                    <p class="step2">1. To run the IDE script from the host</p></td>
+                <td width="276" class="">
+                    <p class="step-comment1">Enter = ideexec.sh</p></td>
+            </tr>
+            <tr valign="top" class="">
+                <td width="250" class="">
+                    <p class="step2">2. Prompt = username:</p></td>
+                <td width="276" class="">
+                    <p class="step-comment1">Enter = &lt;DIAMOND 950CS username&gt;</p></td>
+            </tr>
+            <tr valign="top" class="">
+                <td width="250" class="">
+                    <p class="step2">3. Prompt = password:</p></td>
+                <td width="276" class="">
+                    <p class="step-comment1">Enter = &lt;DIAMOND 950CS password&gt;</p></td>
+            </tr>
+            <tr valign="top" class="">
+                <td width="250" class="">
+                    <p class="step2">4. Select the NSF control file (psclmnsf.ctl).</p></td>
+                <td width="276" class="">
+                    <p class="step-comment1"> </p></td>
+            </tr>
+            <tr valign="top" class="">
+                <td width="250" class="">
+                    <p class="step2">5. Enter the name of the claims text file.</p></td>
+                <td width="276" class="">
+                    <p class="step-comment1">Enter = &lt;filename&gt;.dat</p>
+                    <p class="body-text">Enter the &lt;filename&gt; only. Do not enter a full path.</p></td>
+            </tr>
+            <tr valign="top" class="">
+                <td width="250" class="">
+                    <p class="step2">6. A "script completion" message is displayed. </p></td>
+                <td width="276" class="">
+                    <p class="step-comment1">The output of the IDE script is a new data file named D_&lt;filename&gt;
+                        (where &lt;filename&gt; is the same as the &lt;filename&gt;.dat claims text file). The D_&lt;filename&gt;
+                        file is the source (input) file for DIAMOND’s Claims Batch Process.</p>
+                    <p class="body-text">You must process each D_&lt;filename&gt; file completely through DIAMOND’s
+                        Claims Batch Process. You cannot concatenate separate D_&lt;filename&gt; files and attempt to
+                        use the concatenated file as the source (input) for the Claims Batch Process.</p></td>
+            </tr>
+            </tbody>
+        </table>
+        <p class="doc-level"><a name="HDC_Processing_Schematic_for_NSF_Claims_MID"></a>Processing Schematic for NSF
+            Claims</p>
+        <p class="body-text"><img alt="image\HDC_NSFprocsch_shg.gif" border="0" src="assets/help/HDC_NSFprocsch_shg.gif"
+                                  usemap="#AreaMap6" class=""/>
+        </p>
+
+
+    </div>
+
+
+    <div class="calibreEbNav">
+
+        <a href="Heads_Down_Claims_Processing_Examples.htm" class="calibreAPrev">previous page
+        </a>
+
+
+        <a href="../bj5if-qozss.html" class="calibreAHome">start
+        </a>
+
+
+        <a href="Add_Record_Menu_Function.htm" class="calibreANext">next page
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!-- Copyright (c) 2021 . All Rights Reserved. -->
+<div class="container-fluid">
+    <ng-template #loaderTemplate let-loaderValue="value">
+        <div class="row justify-content-center mt-4" *ngIf="loaderValue">
+            <div class="spinner-border text-success" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+        </div>
+    </ng-template>
+
+    <ng-container *ngTemplateOutlet="loaderTemplate; context:{value: secProgress }"></ng-container>
+    <div class="card-block" *ngIf="!secProgress">
+        <!--        <h2 class="form-title card-label-admin">Pricing Partner Detail</h2>-->
+        <!--        <button type="button" *ngIf="showIcon" class="close" aria-label="Close"-->
+        <!--                (click)="ngbActiveModal.dismiss()">-->
+        <!--            <span aria-hidden="true">&times;</span>-->
+        <!--        </button>-->
+
+        <form [formGroup]="addonContactForm" novalidate>
+            <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+            <app-pop-up-message #popUpMesssage (buttonclickEvent)="popUpButtonHandler($event)"
+                                [popupMessage]="popUpMessage"></app-pop-up-message>
+
+
+            <div class="form-group row">
+                <div class="col-md-12 mt-3 mt-2 p-0">
+                    <app-dynamic-config-grid-nested
+                            id="addonContactFormDynamicGrid"
+                            [prevState]="pricingPartnerDetailsFormState" [isResetForm]="resetInlineGrid"
+                            [title]="''" [showRemoveButton]="false"
+                            (onChangeFields)="formFieldValueChanged($event)"
+                            [config]="pricingPartnerDetailsConfig" [displayCheckBox]="false"
+                            (formSubmitted)="saveForm($event)"
+                            (onRestoreClick)="resetAllClick()"
+                            [submitBtnText]="submitButtonText"
+                            [showResetButton]="showResetButton"
+                            [restoreBtnText]="restoreBtnText"
+                    ></app-dynamic-config-grid-nested>
+                </div>
+
+            </div>
+
+        </form>
+    </div>
+</div>
+<ng-keyboard-shortcuts [shortcuts]="shortcuts"></ng-keyboard-shortcuts>

@@ -1,0 +1,194 @@
+<!-- Copyright (c) 2021 . All Rights Reserved. -->
+<div class="container-fluid">
+    <div class="card-block">
+        <form [formGroup]="claimDisplayTotalsForm" novalidate>
+            <h2 class="form-title card-label-admin">Claim Display Totals</h2>
+            <button type="button" *ngIf="showIcon" class="modal-close close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+            <app-pop-up-message #popUpMesssage (buttonclickEvent)="popUpButtonHandler($event)"  [(popupMessage)] = "popUpMessage"></app-pop-up-message>
+                        
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+                <div class="col-md-2 form-control-static mb-0" i18n>
+                    Claim Display Totals
+                </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- DynamicText with label of Claim Number -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('claimNumber') }">
+                     <label class="col-form-label" for="claimNumber" i18n>Claim Number</label>
+                     <input type="text"  [fieldLevelSec]="'Line Number'"  readonly id="claimNumber" formControlName="claimNumber" class="form-control"/>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- DynamicText with label of Number of lines -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('numberOfLines') }">
+                     <label class="col-form-label" for="numberOfLines" i18n>Number of lines</label>
+                     <input type="text"  [fieldLevelSec]="''"  readonly id="numberOfLines" formControlName="numberOfLines" class="form-control"/>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+                <!-- DynamicText with label of Total Billed -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('totalBilled') }">
+                     <label class="col-form-label" for="totalBilled" i18n>Total Billed</label>
+                     <input type="text"  [fieldLevelSec]="'Total Units'"  readonly id="totalBilled" formControlName="totalBilled" class="form-control"/>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- DynamicText with label of Total OC ALlowed -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('totalOcAllowed') }">
+                     <label class="col-form-label" for="totalOcAllowed" i18n>Total OC ALlowed</label>
+                     <input type="text"  [fieldLevelSec]="'Oc Allowed Amt'"  readonly id="totalOcAllowed" formControlName="totalOcAllowed" class="form-control"/>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- DynamicText with label of Total OC Paid -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('totalOcPaid') }">
+                     <label class="col-form-label" for="totalOcPaid" i18n>Total OC Paid</label>
+                     <input type="text"  [fieldLevelSec]="''"  readonly id="totalOcPaid" formControlName="totalOcPaid" class="form-control"/>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- DynamicText with label of Total Allowed -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('totalAllowed') }">
+                     <label class="col-form-label" for="totalAllowed" i18n>Total Allowed</label>
+                     <input type="text"  [fieldLevelSec]="'Allowed Amt'"  readonly id="totalAllowed" formControlName="totalAllowed" class="form-control"/>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- DynamicText with label of Total Not Covered -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('totalNotCovered') }">
+                     <label class="col-form-label" for="totalNotCovered" i18n>Total Not Covered</label>
+                     <input type="text"  [fieldLevelSec]="'Not Covered Amt'"  readonly id="totalNotCovered" formControlName="totalNotCovered" class="form-control"/>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- DynamicText with label of Total Copay -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('totalCopay') }">
+                     <label class="col-form-label" for="totalCopay" i18n>Total Copay</label>
+                     <input type="text"  [fieldLevelSec]="''"  readonly id="totalCopay" formControlName="totalCopay" class="form-control"/>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- DynamicText with label of Total Consurance -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('totalConsurance') }">
+                     <label class="col-form-label" for="totalConsurance" i18n>Total Consurance</label>
+                     <input type="text"  [fieldLevelSec]="''"  readonly id="totalConsurance" formControlName="totalConsurance" class="form-control"/>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- DynamicText with label of Total Deductible -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('totalDeductible') }">
+                     <label class="col-form-label" for="totalDeductible" i18n>Total Deductible</label>
+                     <input type="text"  [fieldLevelSec]="'Deductible Amt'" readonly id="totalDeductible" formControlName="totalDeductible" class="form-control"/>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- DynamicText with label of Total WithHold -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('totalWithhold') }">
+                     <label class="col-form-label" for="totalWithhold" i18n>Total WithHold</label>
+                     <input type="text"  [fieldLevelSec]="'Withhold Amt'" readonly id="totalWithhold" formControlName="totalWithhold" class="form-control"/>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- DynamicText with label of Total Net -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('totalNet') }">
+                     <label class="col-form-label" for="totalNet" i18n>Total Net</label>
+                     <input type="text"  [fieldLevelSec]="'Anes Total Time'"  readonly id="totalNet" formControlName="totalNet" class="form-control"/>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of Total COB Pt -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('totalCobPt') }">
+                     <label class="col-form-label" for="totalCobPt" i18n>Total COB Pt</label>
+                     <input type="text" readonly id="totalCobPt"  [fieldLevelSec]="'Detail Svc Date'"   class="form-control" formControlName="totalCobPt"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('totalCobPt')">
+                      {{ formValidation.errorMessage('totalCobPt') }}
+                     </small>
+                 </div>
+            
+            </div>
+
+            <div class="form-group row">
+                <!-- DynamicText with label of Total Interest -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('tBillMinusAllow') }">
+                     <label class="col-form-label" for="tBillMinusAllow" i18n>Total Interest</label>
+                     <input type="text"  [fieldLevelSec]="'Total Bill Minus Amt'"  readonly id="tBillMinusAllow" formControlName="tBillMinusAllow" class="form-control"/>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- DynamicText with label of Total Interest -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('totalInterest') }">
+                     <label class="col-form-label" for="totalInterest" i18n>Total Interest</label>
+                     <input type="text"  [fieldLevelSec]="'Interest Amt'"  readonly id="totalInterest" formControlName="totalInterest" class="form-control"/>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- DynamicText with label of Total Penalty -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('totalPenalty') }">
+                     <label class="col-form-label" for="totalPenalty" i18n>Total Penalty</label>
+                     <input type="text"  [fieldLevelSec]="'Penalty Amt'"  readonly id="totalPenalty" formControlName="totalPenalty" class="form-control"/>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- DynamicText with label of Total Discount -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('totalDiscount') }">
+                     <label class="col-form-label" for="totalDiscount" i18n>Total Discount</label>
+                     <input type="text"  [fieldLevelSec]="'Discount Amt'" readonly id="totalDiscount" formControlName="totalDiscount" class="form-control"/>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- DynamicText with label of Total Paid Net -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('totalPaidNet') }">
+                     <label class="col-form-label" for="totalPaidNet" i18n>Total Paid Net</label>
+                     <input type="text"  [fieldLevelSec]="'Paid Net Amt'"  readonly id="totalPaidNet" formControlName="totalPaidNet" class="form-control"/>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+            </div>
+        </form>
+    </div>
+</div>

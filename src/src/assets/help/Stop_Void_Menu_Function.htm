@@ -1,0 +1,266 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+    <title>CHECK Stop/Void Menu Command</title>
+    <!--(Meta)==========================================================-->
+    <meta name="copyright" value="© Copyright 2002 Health Systems Design Corp., a wholly owned subsidiary of Perot Systems Corporation. All rights reserved"/>
+    <meta content="Field Definitions.htt" name="template"/>
+    <meta content="RoboHELP by eHelp Corporation - www.ehelp.com" name="generator"/>
+    <meta content="0.1" name="generator-major-version"/>
+    <meta content="1" name="generator-minor-version"/>
+    <meta content="kadov" name="filetype"/>
+    <meta content="1" name="filetype-version"/>
+    <meta content="1" name="page-count"/>
+    <meta content="1966" name="layout-height"/>
+    <meta content="678" name="layout-width"/>
+    <!--(Links)=========================================================-->
+    <!--(Scripts)=======================================================-->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+   <link href="assets/help/stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="assets/help/page_styles.css" rel="stylesheet" type="text/css"/>
+
+  
+
+
+<link href="assets/help/calibreHtmlOutBasicCss.css" type="text/css" rel="stylesheet" />
+
+</head>
+<body>
+
+<div class="calibreMeta">
+  <div class="calibreMetaTitle">
+  
+  
+    
+    <h1>
+      <a href="../4xeqt-va1vo.html">DIAMOND 950 Help
+</a>
+    </h1>
+    
+    
+  
+  </div>
+  <div class="calibreMetaAuthor">
+    Unknown
+
+  </div>
+</div>
+
+<div class="calibreMain">
+
+  <div class="calibreEbookContent">
+    
+      <div class="calibreEbNavTop">
+        
+          <a href="Clear_Menu_Function.htm" class="calibreAPrev">previous page
+</a>
+        
+
+        
+          <a href="CKPRT_Check_Print.htm" class="calibreANext">next page
+</a>
+        
+      </div>
+    
+
+    
+
+<!--(Table)=========================================================-->
+<table cellspacing="0" width="500" x-use-null-cells="" class="calibre72">
+<colgroup class="calibre19"><col class="calibre73"/>
+<col class="calibre74"/>
+
+</colgroup><tbody class="calibre22"><tr valign="top" class="calibre23">
+<td width="70%" class="calibre75">
+<h4 class="calibre13">CHECK Stop/Void Menu Command Field Definitions</h4></td>
+<td width="30%" class="calibre76">
+<p class="calibre30"><img border="0" height="53" src="assets/help/Field_definitions_Req_legend.gif" width="97" x-maintain-ratio="TRUE" class="calibre77"/></p></td></tr>
+</tbody></table>
+
+<!--(Table)=========================================================-->
+<table cellspacing="0" width="500" x-use-null-cells="" class="calibre78">
+<colgroup class="calibre19"><col class="calibre79"/>
+<col class="calibre80"/>
+<col class="calibre81"/>
+<col class="calibre82"/>
+<col class="calibre81"/>
+
+</colgroup><tbody class="calibre22"><tr valign="top" class="calibre23">
+<td width="110px" class="calibre147">
+<p class="tableheading">Field Name</p></td>
+<td width="15px" class="calibre148">
+<p class="tableheading">Req</p></td>
+<td width="140px" class="calibre149">
+<p class="tableheading">Description</p></td>
+<td width="95px" class="calibre150">
+<p class="tableheading">Source</p></td>
+<td width="140px" class="calibre149">
+<p class="tableheading">Comments</p></td></tr>
+
+<tr valign="top" class="calibre23">
+<td width="110px" class="calibre87">
+<p class="tableboldtext">Action</p></td>
+<td width="15px" class="calibre88">
+<p class="tabletext1">R</p></td>
+<td width="140px" class="calibre89">
+<p class="tabletext1">The status change made when CVSUP Action, Post, is selected.</p>
+<p class="tabletext1">After selection of an action, prior to running CVSUP, 
+ an interim status of "In Process" is shown for the check number 
+ affected.</p></td>
+<td width="95px" class="calibre90">
+<p class="tabletext1">Selected from predefined list. Depending on the initial 
+ status of the check, different options available.</p></td>
+<td width="140px" class="calibre89">
+<p class="tabletext1">Valid values are:</p>
+<ul class="calibre6">
+	
+	<li class="kadov-p-ctablebullet"><p class="tablebullet">Reissue</p></li>
+</ul>
+<p class="tablebulletcont">Initial status must be "Stop Confirmed" 
+ or "Voided." Changes status to "Reissued" and removes 
+ claim detail payment data and accounts payable transactions associated 
+ with the check. The status, reason and date associated with the check 
+ prior to reissue are written to PSCLM, INCLM, or DNCLM notes.</p>
+<ul class="calibre6">
+	
+	<li class="kadov-p-ctablebullet"><p class="tablebullet">Reverse</p></li>
+</ul>
+<p class="tablebulletcont">Initial status must be "Stop Confirmed or 
+ "Voided." Changes status to "Reversed" and creates 
+ offsetting claim detail payment data and accounts payable transactions. 
+ </p>
+<ul class="calibre6">
+	
+	<li class="kadov-p-ctablebullet"><p class="tablebullet">Stop Requested</p></li>
+</ul>
+<p class="tablebulletcont">Available for checks whose status is "Posted." 
+ Changes check status to "Stop Requested."</p>
+<ul class="calibre6">
+	
+	<li class="kadov-p-ctablebullet"><p class="tablebullet">Stop Confirmed</p></li>
+</ul>
+<p class="tablebulletcont">Initial status must be "Stop Requested." 
+ Changes check status to "Stop Confirmed."</p>
+<ul class="calibre6">
+	
+	<li class="kadov-p-ctablebullet"><p class="tablebullet">Stop/Reissue</p></li>
+</ul>
+<p class="tablebulletcont">Initial status must be "Stop Requested." 
+ Combines "Stop Confirmed" and "Reissue." Removes claim 
+ detail payment data and accounts payable transactions. The status, reason 
+ and date associated with the check prior to stop and reissue are written 
+ to PSCLM, INCLM, or DNCLM notes.</p>
+<ul class="calibre6">
+	
+	<li class="kadov-p-cstepbullet"><p class="tablebullet1">Stop/Reverse</p></li>
+</ul>
+<p class="tablebulletcont">Initial status must be "Stop Requested." 
+ Combines "Stop Confirmed" and "Reverse." Creates offsetting 
+ claim detail payment data and accounts payable transactions. </p>
+<ul class="calibre6">
+	
+	<li class="kadov-p-ctablebullet"><p class="tablebullet">Void</p></li>
+</ul>
+<p class="tablebulletcont">Available for checks whose status is "Posted." 
+ Changes check status to "Void."</p>
+<ul class="calibre6">
+	
+	<li class="kadov-p-cstepbullet"><p class="tablebullet"><span class="calibre9">Void/Reissue</span></p></li>
+</ul>
+<p class="tablebulletcont">Initial status must be "Posted." Combines 
+ "Void" and "Reissue." Removes claim detail payment 
+ data and accounts payable transactions. The status, reason, and date associated 
+ with the check prior to void and reissue are written to PSCLM, INCLM, 
+ or DNCLM notes.</p>
+<ul class="calibre6">
+	
+	<li class="kadov-p-cstepbullet"><p class="tablebullet"><span class="calibre9">Void/Reverse</span></p></li>
+</ul>
+<p class="tablebulletcont">Initial status must be "Posted." Combines 
+ "Void" and "Reverse." Creates offsetting claim detail 
+ payment data and accounts payable transactions.</p></td></tr>
+
+<tr valign="top" class="calibre23">
+<td width="110px" class="calibre87">
+<p class="tableboldtext">Date</p></td>
+<td width="15px" class="calibre88">
+<p class="tabletext1">R</p></td>
+<td width="140px" class="calibre89">
+<p class="tabletext1">Effective date of the status change.</p></td>
+<td width="95px" class="calibre90">
+<p class="tabletext1">System generated, may be manually overridden.</p></td>
+<td width="140px" class="calibre89">
+<p class="tabletext1"> </p></td></tr>
+
+<tr valign="top" class="calibre23">
+<td width="110px" class="calibre87">
+<p class="tableboldtext">From (Check)</p></td>
+<td width="15px" class="calibre88">
+<p class="tabletext1">O</p></td>
+<td width="140px" class="calibre89">
+<p class="tabletext1">Beginning check number for the range requiring status 
+ update.</p></td>
+<td width="95px" class="calibre90">
+<p class="tabletext1">System generated, may be manually overridden.</p></td>
+<td width="140px" class="calibre89">
+<p class="tabletext1"> </p></td></tr>
+
+<tr valign="top" class="calibre23">
+<td width="110px" class="calibre87">
+<p class="tableboldtext">Reason</p></td>
+<td width="15px" class="calibre88">
+<p class="tabletext1">R</p></td>
+<td width="140px" class="calibre89">
+<p class="tabletext1">The source or reason for the status change.</p></td>
+<td width="95px" class="calibre90">
+<p class="tabletext1">Selected from predefined list</p></td>
+<td width="140px" class="calibre89">
+<p class="tabletext1">Reason codes are maintained in keyword REASN, with a 
+ type CK.</p></td></tr>
+
+<tr valign="top" class="calibre23">
+<td colspan="1" rowspan="1" width="110px" class="calibre87">
+<p class="tableboldtext">To (Check)</p></td>
+<td colspan="1" rowspan="1" width="15px" class="calibre88">
+<p class="tabletext1">O</p></td>
+<td colspan="1" rowspan="1" width="140px" class="calibre89">
+<p class="tabletext1">Ending check number for the range requiring status update.</p></td>
+<td colspan="1" rowspan="1" width="95px" class="calibre90">
+<p class="tabletext1">System generated, may be manually overridden.</p></td>
+<td colspan="1" rowspan="1" width="140px" class="calibre89">
+<p class="tabletext1"> </p></td></tr>
+</tbody></table>
+
+<p class="calibre30"> </p>
+
+
+
+
+
+
+  </div>
+
+  
+ 
+  
+
+  <div class="calibreEbNav">
+    
+      <a href="Clear_Menu_Function.htm" class="calibreAPrev">previous page
+</a>
+    
+
+    <a href="../4xeqt-va1vo.html" class="calibreAHome">start
+</a>
+
+    
+      <a href="CKPRT_Check_Print.htm" class="calibreANext">next page
+</a>
+    
+  </div>
+
+</div>
+
+</body>
+</html>

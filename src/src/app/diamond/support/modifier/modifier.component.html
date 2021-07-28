@@ -1,0 +1,146 @@
+<!-- Copyright (c) 2021 . All Rights Reserved. -->
+<div class="container-fluid">
+    <div class="card-block">
+        <h2 class="form-title card-label-admin">Modifier</h2>
+        <button type="button" *ngIf="showIcon" class="modal-close close" aria-label="Close" (click)="closeModal()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+        <app-pop-up-message #popUpMesssage (buttonclickEvent)="popUpButtonHandler($event)"
+                            [popupMessage]="popUpMessage"></app-pop-up-message>
+
+        <ng-template #loaderTemplate let-loaderValue="value">
+            <div class="row justify-content-center mt-4" *ngIf="loaderValue">
+                <div class="spinner-border text-success" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>
+            </div>
+        </ng-template>
+
+        <ng-container *ngTemplateOutlet="loaderTemplate;context:{value: secProgress }"></ng-container>
+
+        <ng-container *appWinSelect="{secWin: secWin, userTemplateId: userTemplateId, secModuleId: memberModuleId}">
+
+            <div class="row mt-3">
+                <menu-bar [menus]="menu" (onMenuClick)="onMenuItemClick($event)"></menu-bar>
+            </div>
+
+            <form [formGroup]="modifierForm"  class="mt-4" novalidate>
+                <div class="form-group row">
+                </div>
+
+                <div class="form-group row">
+                    <!-- Textbox with label of Modifier ID -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('modifierId') }">
+                        <label class="col-form-label" for="modifierId" i18n>Modifier ID</label>
+                        <input type="text" id="modifierId" maxlength="2" (keydown)="onKeyDownModifierId($event);"
+                               class="form-control all-uppercase"
+                               formControlName="modifierId"/>
+                        <small class="text-danger" *ngIf="formValidation.isValidField('modifierId')">
+                            {{ formValidation.errorMessage('modifierId') }}
+                        </small>
+                    </div>
+                    <div *ngIf="showModifierMasterFields" class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('description1') }">
+                        <label class="col-form-label text-white" i18n>Description</label>
+                        <input type="hidden"  class="form-control" formControlName="description1" disabled/>
+                    </div>
+                </div>
+
+                <ng-container *ngIf="showModifierMasterFields">
+
+                    <div class="form-group row">
+                    </div>
+                    <div class="form-group row">
+                        <!-- Textbox with label of Description -->
+                        <div class="col-md-8" [ngClass]="{'has-danger': formValidation.isValidField('description') }">
+                            <label class="col-form-label clr-blue" for="description" i18n>Description</label>
+                            <input type="text" id="description" class="form-control" formControlName="description" #descriptionEl/>
+                            <small class="text-danger" *ngIf="formValidation.isValidField('description')">
+                                {{ formValidation.errorMessage('description') }}
+                            </small>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <!-- Checkbox with label of Anesthesia -->
+                        <div class="col-md-12" [ngClass]="{'has-error': displayMessage.anesthesia }">
+                            <div class="checkbox col-md-12">
+                                <input id="anesthesia" value="anesthesia" formControlName="anesthesia" type="checkbox">
+                                <label class="checkbox">
+                                    Anesthesia
+                                </label>
+                            </div>
+                            <span class="help-block" *ngIf="displayMessage.anesthesia">
+                            {{ displayMessage.anesthesia }}
+                        </span>
+                        </div>
+
+                        <!-- Checkbox with label of Informational Only -->
+                        <div class="col-md-12" [ngClass]="{'has-error': displayMessage.informationalOnly }">
+                            <div class="checkbox col-md-12">
+                                <input id="informationalOnly" value="informationalOnly"
+                                       formControlName="informationalOnly"
+                                       type="checkbox" checked="informationalOnly">
+                                <label class="checkbox">
+                                    Informational Only
+                                </label>
+                            </div>
+                            <span class="help-block" *ngIf="displayMessage.informationalOnly">
+                            {{ displayMessage.informationalOnly }}
+                        </span>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <!-- Textbox with label of User Defined 1 -->
+                        <div class="col-md-12" [ngClass]="{'has-danger': formValidation.isValidField('userDefined1') }">
+                            <label class="col-form-label" for="userDefined1" i18n>User Defined 1</label>
+                            <input type="text" id="userDefined1" class="form-control" formControlName="userDefined1"/>
+                            <small class="text-danger" *ngIf="formValidation.isValidField('userDefined1')">
+                                {{ formValidation.errorMessage('userDefined1') }}
+                            </small>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <!-- Textbox with label of User Defined 2 -->
+                        <div class="col-md-12" [ngClass]="{'has-danger': formValidation.isValidField('userDefined2') }">
+                            <label class="col-form-label" for="userDefined2" i18n>User Defined 2</label>
+                            <input type="text" id="userDefined2" class="form-control" formControlName="userDefined2"/>
+                            <small class="text-danger" *ngIf="formValidation.isValidField('userDefined2')">
+                                {{ formValidation.errorMessage('userDefined2') }}
+                            </small>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <!-- Textbox with label of User Defined 3 -->
+                        <div class="col-md-12" [ngClass]="{'has-danger': formValidation.isValidField('userDefined3') }">
+                            <label class="col-form-label" for="userDefined3" i18n>User Defined 3</label>
+                            <input type="text" id="userDefined3" class="form-control" formControlName="userDefined3"/>
+                            <small class="text-danger" *ngIf="formValidation.isValidField('userDefined3')">
+                                {{ formValidation.errorMessage('userDefined3') }}
+                            </small>
+                        </div>
+
+                    </div>
+
+                    <div class="form-group row">
+                        <!-- Textbox with label of User Defined 4 -->
+                        <div class="col-md-12" [ngClass]="{'has-danger': formValidation.isValidField('userDefined4') }">
+                            <label class="col-form-label" for="userDefined4" i18n>User Defined 4</label>
+                            <input type="text" id="userDefined4" class="form-control" formControlName="userDefined4"/>
+                            <small class="text-danger" *ngIf="formValidation.isValidField('userDefined4')">
+                                {{ formValidation.errorMessage('userDefined4') }}
+                            </small>
+                        </div>
+                    </div>
+
+                </ng-container>
+            </form>
+        </ng-container>
+    </div>
+</div>
+
+<ng-keyboard-shortcuts [shortcuts]="shortcuts"></ng-keyboard-shortcuts>
+<ng-keyboard-shortcuts-help [key]="'f2'" [closeKey]="'escape'" [title]="'Hotkeys Help'"></ng-keyboard-shortcuts-help>

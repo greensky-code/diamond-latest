@@ -1,0 +1,88 @@
+<!-- Copyright (c) 2021 . All Rights Reserved. -->
+<div class="container-fluid">
+    <div class="card-block">
+        <div class="row form-title">
+            <h2 class="col-md-6 card-label-admin">Change Header</h2>
+        </div>
+        <button type="button" *ngIf="showIcon" class="modal-close close" aria-label="Close"
+                (click)="activeModal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+        <app-pop-up-message #popUpMesssage (buttonclickEvent)="popUpButtonHandler($event)"
+                            [popupMessage] = "popUpMessage"></app-pop-up-message>
+
+        <ng-template #loaderTemplate let-loaderValue = "value"  >
+            <div class="row justify-content-center mt-4" *ngIf="loaderValue">
+                <div class="spinner-border text-success" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>
+            </div>
+        </ng-template>
+        <ng-container *ngTemplateOutlet="loaderTemplate;context:{value: secProgress }"></ng-container>
+
+        <ng-container *appWinSelect="{secWin: secWin, userTemplateId: userTemplateId}">
+
+            <form [formGroup]="changeHeaderForm" novalidate *ngIf="!secProgress">
+                <div class="form-group row">
+                     <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('svcDate') }">
+                         <label class="col-form-label" for="svcDate" i18n>Svc Date</label>
+                         <input type="text"  [fieldLevelSec]="''" [params]="{secColDetails: secColDetails}"  readonly id="svcDate" formControlName="svcDate" class="form-control text-primary"/>
+                     </div>
+
+                    <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('thruDate') }">
+                        <label class="col-form-label text-white" for="thruDate" i18n>Thru Date</label>
+                        <input type="text"  [fieldLevelSec]="''" [params]="{secColDetails: secColDetails}"  readonly id="thruDate" formControlName="thruDate" class="form-control text-primary"/>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('memberId') }">
+                        <label class="col-form-label" for="memberId" i18n>Member ID</label>
+                        <input type="text"  [fieldLevelSec]="''" [params]="{secColDetails: secColDetails}"  readonly id="memberId" formControlName="memberId" class="form-control text-primary"/>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('provider') }">
+                        <label class="col-form-label" for="provider" i18n>Provider</label>
+                        <input type="text"  [fieldLevelSec]="''" [params]="{secColDetails: secColDetails}"  readonly id="provider" formControlName="provider" class="form-control text-primary"/>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('address') }">
+                        <label class="col-form-label" for="address" i18n>Address</label>
+                        <input type="text"  [fieldLevelSec]="''" [params]="{secColDetails: secColDetails}"  readonly id="address" formControlName="address" class="form-control text-primary"/>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('zip') }">
+                        <label class="col-form-label" for="zip" i18n>Zip</label>
+                        <input type="text"  [fieldLevelSec]="''" [params]="{secColDetails: secColDetails}"  readonly id="zip" formControlName="zip" class="form-control text-primary"/>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('vendor') }">
+                        <label class="col-form-label" for="vendor" i18n>Vendor</label>
+                        <input type="text"  [fieldLevelSec]="''" [params]="{secColDetails: secColDetails}"  readonly id="vendor" formControlName="vendor" class="form-control text-primary"/>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('addr') }">
+                        <label class="col-form-label" for="provider" i18n>Addr</label>
+                        <input type="text"  [fieldLevelSec]="''" [params]="{secColDetails: secColDetails}"  readonly id="addr" formControlName="addr" class="form-control text-primary"/>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-md-8">
+                        <button type="button" id="cancel" name="cancel" class="btn ml-2 float-right btn-small btn-primary"
+                                (click)="activeModal.dismiss('Cross click')">Cancel</button>
+                        <button type="button" id="ok" name="ok" class="btn float-right btn-small btn-primary"
+                        >OK</button>
+                    </div>
+    
+                </div>
+            </form>
+        </ng-container>
+    </div>
+</div>
+<ng-keyboard-shortcuts [shortcuts]="shortcuts" [disabled]="isChildModalOpen"></ng-keyboard-shortcuts>
+<ng-keyboard-shortcuts-help [key]="'f1'" [closeKey]="'escape'" [title]="'Hotkeys Help'"></ng-keyboard-shortcuts-help>

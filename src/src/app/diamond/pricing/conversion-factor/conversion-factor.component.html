@@ -1,0 +1,128 @@
+<!-- Copyright (c) 2020 . All Rights Reserved. -->
+<div class="container-fluid">
+    <div class="card-block">
+        <form [formGroup]="conversionFactorForm" novalidate>
+            <h2 class="form-title card-label-admin">Conversion Factor</h2>
+            <button type="button" *ngIf="showIcon" class="close" aria-label="Close" (click)="modalClose()">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+            <app-pop-up-message #popUpMesssage (buttonclickEvent)="popUpButtonHandler($event)"  [popupMessage] = "popUpMessage"></app-pop-up-message>
+
+            <div class="form-group row">
+            </div>
+
+            <div class="row mt-3">
+                <menu-bar [menus]="menu" (onMenuClick)="onMenuItemClick($event)"></menu-bar>
+            </div>
+
+            <!-- DataGrid with Name of DataGrid001 -->
+            <ag-grid-angular #agGrid class="ag-theme-fresh" [gridOptions]="dataGrid001GridOptions"
+                             style="width: 100%; height: 300px;"
+                             (rowSelected)="onRowSelectedGrid001($event)"
+                             [enableSorting]="true"
+                             [enableFilter]="false"
+                             [floatingFilter]="false"
+                             [pagination]="true"
+                             [showToolPanel]="true">
+            </ag-grid-angular>
+
+            <div class="form-group row">
+            </div>
+
+            <div class="form-group row">
+                <!-- Textbox with label of Price Schedule -->
+                 <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('priceSchedule') }">
+                     <label class="col-form-label" for="priceSchedule" i18n>Price Schedule</label>
+                     <select class="form-control" id="priceSchedule" name="priceSchedule" formControlName="priceSchedule">
+                         <option [value]="priceSchedule.priceSchedule"
+                                 *ngFor="let priceSchedule of priceSchedules">{{priceSchedule.priceSchedule}} {{priceSchedule.description}}</option>
+                     </select>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('priceSchedule')">
+                      {{ formValidation.errorMessage('priceSchedule') }}
+                     </small>
+                 </div>
+
+                <!-- Textbox with label of Price Region -->
+                 <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('priceRegion') }">
+                     <label class="col-form-label" for="priceRegion" i18n>Price Region</label>
+                     <select class="form-control" id="priceRegion" name="priceRegion" formControlName="priceRegion">
+                         <option [value]="priceRegion.regionMasterPrimaryKey.regionCode"
+                                 *ngFor="let priceRegion of priceRegions">{{priceRegion.regionMasterPrimaryKey.regionCode}} {{priceRegion.description}}</option>
+                     </select>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('priceRegion')">
+                      {{ formValidation.errorMessage('priceRegion') }}
+                     </small>
+                 </div>
+
+                <!-- Textbox with label of Effective Date -->
+                <div class="col-md-3">
+                    <app-datepicker [formGroup]="conversionFactorForm" [formValidation]="formValidation"
+                                    [field]="'effectiveDate'" [labelText]="'Effective Date'"></app-datepicker>
+                </div>
+
+                <!-- Textbox with label of Scale Type -->
+                <div class="col-md-3" [ngClass]="{'has-danger': formValidation.isValidField('scaleType') }">
+                    <label class="col-form-label" for="scaleType" i18n>Scale Type</label>
+                    <select class="form-control" id="scaleType" name="scaleType" formControlName="scaleType">
+                        <option [value]="scaleType.rvuScaleType"
+                                *ngFor="let scaleType of scaleTypes">{{scaleType.rvuScaleType}} {{scaleType.description}}</option>
+                    </select>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('scaleType')">
+                        {{ formValidation.errorMessage('scaleType') }}
+                    </small>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-md-12" [ngClass]="{'has-danger': formValidation.isValidField('description') }">
+                    <label class="col-form-label" for="description" i18n>Description</label>
+                    <input type="text" id="description"  class="form-control" formControlName="description"/>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('description')">
+                        {{ formValidation.errorMessage('description') }}
+                    </small>
+                </div>
+            </div>
+
+            <div class="form-group row">
+            </div>
+
+            <hr/>
+
+            <div class="form-group row">
+
+                <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('convFactorId') }">
+                    <label class="col-form-label" for="convFactorId" i18n>Conv Factor ID</label>
+                    <select class="form-control" id="convFactorId" name="convFactorId" formControlName="convFactorId">
+                        <option [value]="convFactorId.convFactorId"
+                                *ngFor="let convFactorId of convFactorIds">{{convFactorId.convFactorId}} {{convFactorId.description}}</option>
+                    </select>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('convFactorId')">
+                        {{ formValidation.errorMessage('convFactorId') }}
+                    </small>
+                </div>
+
+                <div class="col-md-4"
+                     [ngClass]="{'has-danger': formValidation.isValidField('convFactorName') }">
+                    <label class="col-form-label" for="convFactorName" i18n>&nbsp;</label>
+                    <input type="text" disabled  id="convFactorName" formControlName="convFactorName"
+                           class="form-control"/>
+                </div>
+
+                <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('factor') }">
+                    <label class="col-form-label" for="factor" i18n>Factor</label>
+                    <input type="number" id="factor" class="form-control" formControlName="factor"/>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('factor')">
+                        {{ formValidation.errorMessage('factor') }}
+                    </small>
+                </div>
+            </div>
+
+            <div class="form-group row">
+            </div>
+        </form>
+    </div>
+</div>
+
+<ng-keyboard-shortcuts [shortcuts]="shortcuts"></ng-keyboard-shortcuts>
+<ng-keyboard-shortcuts-help [key]="'f2'" [closeKey]="'escape'" [title]="'Hotkeys Help'"></ng-keyboard-shortcuts-help>

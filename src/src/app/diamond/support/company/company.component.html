@@ -1,0 +1,302 @@
+<!-- Copyright (c) 2021 . All Rights Reserved. -->
+<div class="container-fluid">
+    <div class="card-block">
+        <form [formGroup]="companyForm" novalidate>
+            <h2 class="form-title card-label-admin">Company</h2>
+            <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+            <app-pop-up-message #popUpMesssage (buttonclickEvent)="popUpButtonHandler($event)"  [(popupMessage)] = "popUpMessage"></app-pop-up-message>
+            <button type="button" *ngIf="showIcon" class="close" aria-label="Close" (click)="modalClose()">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <div class="row mt-3 mb-3">
+                <menu-bar [menus]="menu" (onMenuClick)="onMenuItemClick($event)"></menu-bar>
+            </div>
+            <div class="form-group row">
+            </div>
+            <ag-grid-angular #agGrid class="ag-theme-fresh" [gridOptions]="dataGridGridOptions"
+                             style="width: 100%; height: 300px;"
+                             [enableSorting]="true"
+                             [enableFilter]="true"
+                             [floatingFilter]="true"
+                             rowSelection="single"
+                             [pagination]="true"
+                             [showToolPanel]="true"
+                             (selectionChanged)="onChangeGrid()">
+            </ag-grid-angular>
+            <div class="form-group row">
+            </div>
+
+            <div class="form-group row">
+                <!-- Textbox with label of Company Code -->
+                <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('companyCode') }">
+                    <label class="col-form-label text-primary" for="companyCode" i18n>Company Code</label>
+                    <input type="text" id="companyCode"  [readonly]="isReadOnly"
+                           (keydown)="companyCodeKeyDown($event)"
+                           class="form-control" formControlName="companyCode"/>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('companyCode')">
+                        {{ formValidation.errorMessage('companyCode') }}
+                    </small>
+                </div>
+
+                <!-- Textbox with label of Description -->
+                <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('description') }">
+                    <label class="col-form-label text-primary" for="description" i18n>Description</label>
+                    <input type="text" id="description" (keydown)="descriptionKeyDown($event)"    class="form-control" formControlName="description"/>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('description')">
+                        {{ formValidation.errorMessage('description') }}
+                    </small>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <!-- Textbox with label of Tax Rep Entity -->
+                <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('taxRepEntity') }">
+                    <label class="col-form-label" for="taxRepEntity" i18n>Tax Rep Entity</label>
+                    <div [ngClass]="{'has-danger': formValidation.isValidField('taxRepEntity') }">
+                        <select (change)="validateIRSTaxId($event)" #taxRepEntity id="taxRepEntity" class="form-control" formControlName="taxRepEntity">
+                            <option [value]="c.key" *ngFor="let c of taxReportingEntities;">{{c.key}} - {{c.value}}</option>
+                        </select>
+                        <small class="text-danger" *ngIf="formValidation.isValidField('taxRepEntity')">
+                            {{ formValidation.errorMessage('taxRepEntity') }}
+                        </small>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group row">
+            </div>
+
+            <div class="form-group row">
+                <div class="col-md-2 form-control-static mb-0" i18n>
+                    <h4 class="required-field-label"> <u>Address</u></h4>
+                </div>
+
+            </div>
+
+            <div class="form-group row">
+            </div>
+
+            <div class="form-group row">
+                <!-- Textbox with label of Name -->
+                <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('name') }">
+                    <label class="col-form-label" for="name" i18n>Name</label>
+                    <input type="text" id="name"     class="form-control" formControlName="name"/>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('name')">
+                        {{ formValidation.errorMessage('name') }}
+                    </small>
+                </div>
+
+            </div>
+
+            <div class="form-group row">
+                <!-- Textbox with label of Address 1 -->
+                <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('address1') }">
+                    <label class="col-form-label" for="address1" i18n>Address 1</label>
+                    <input type="text" id="address1"   class="form-control" formControlName="address1"/>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('address1')">
+                        {{ formValidation.errorMessage('address1') }}
+                    </small>
+                </div>
+
+            </div>
+
+            <div class="form-group row">
+                <!-- Textbox with label of Address 2 -->
+                <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('address2') }">
+                    <label class="col-form-label" for="address2" i18n>Address 2</label>
+                    <input type="text" id="address2"   class="form-control" formControlName="address2"/>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('address2')">
+                        {{ formValidation.errorMessage('address2') }}
+                    </small>
+                </div>
+
+            </div>
+
+            <div class="form-group row">
+                <!-- Textbox with label of City -->
+                <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('city') }">
+                    <label class="col-form-label" for="city" i18n>City</label>
+                    <input type="text" id="city"    class="form-control" formControlName="city"/>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('city')">
+                        {{ formValidation.errorMessage('city') }}
+                    </small>
+                </div>
+
+            </div>
+
+            <div class="form-group row">
+                <!-- Textbox with label of State -->
+                <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('state') }">
+                    <label class="col-form-label" for="state" i18n>State</label>
+                    <input type="text" id="state"     class="form-control" formControlName="state"/>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('state')">
+                        {{ formValidation.errorMessage('state') }}
+                    </small>
+                </div>
+
+                <!-- Textbox with label of Phone -->
+                <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('phone') }">
+                    <label class="col-form-label" for="phone" i18n>Phone</label>
+                    <input type="text" id="phone"   class="form-control" formControlName="phone"/>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('phone') && companyForm.get('phone').errors.pattern">
+                        Phone Number Must be Numeric
+                    </small>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('phone') && companyForm.get('phone').errors.phoneValidator">
+                        Phone Number Must be 0,7 or 10 digits
+                    </small>
+                </div>
+
+            </div>
+
+            <div class="form-group row">
+                <!-- Textbox with label of Country -->
+                <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('country') }">
+                    <label  class="col-form-label" for="country" i18n>Country </label>
+                    <div [ngClass]="{'has-danger': formValidation.isValidField('country') }">
+                        <select id="country" class="form-control" formControlName="country">
+                            <option [value]="c.key" *ngFor="let c of countries;">{{c.key}}</option>
+                        </select>
+                        <small class="text-danger" *ngIf="formValidation.isValidField('country')">
+                            {{ formValidation.errorMessage('country') }}
+                        </small>
+                    </div>
+                </div>
+
+                <!-- Textbox with label of Fax -->
+                <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('fax') }">
+                    <label class="col-form-label" for="fax" i18n>Fax</label>
+                    <input type="text" id="fax"     class="form-control" formControlName="fax"/>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('fax') && companyForm.get('fax').errors.pattern">
+                        Fax Number Must be Numeric
+                    </small>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('fax') && companyForm.get('fax').errors.FaxValidator">
+                        Fax Number Must be 0,7 or 9 digits
+                    </small>
+                </div>
+
+            </div>
+
+            <div class="form-group row">
+                <!-- Textbox with label of Zip -->
+                <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('zip') }">
+                    <label class="col-form-label" for="zip" i18n>Zip</label>
+                    <input type="text" id="zip"  class="form-control" formControlName="zip"/>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('zip') && companyForm.get('zip').errors.pattern">
+                        Zip Code Must be Numeric
+                    </small>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('zip') && companyForm.get('zip').errors.ZipValidator">
+                        Zip Code Must be 0,5 or 9 digits
+                    </small>
+                </div>
+
+            </div>
+
+            <div class="form-group row">
+            </div>
+
+            <div class="form-group row">
+                <div class="col-md-7 form-control-static mb-0" i18n>
+                    <h4 class="required-field-label"><u>Bank Accounts</u></h4>
+                </div>
+
+            </div>
+
+            <div class="form-group row">
+            </div>
+
+            <div class="form-group row">
+                <!-- Textbox with label of Medical Payable -->
+                <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('medicalPayable') }">
+                    <label class="col-form-label" for="medicalPayable" i18n>Medical Payable</label>
+                    <select id="medicalPayable" class="form-control" formControlName="medicalPayable">
+                        <option [value]="code.bankAccountCode" *ngFor="let code of bankAccts;">{{code.bankAccountCode}}</option>
+                    </select>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('medicalPayable')">
+                        {{ formValidation.errorMessage('medicalPayable') }}
+                    </small>
+                </div>
+
+                <!-- Textbox with label of Manual Med Pay Acct -->
+                <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('manualMedPayAcct') }">
+                    <label class="col-form-label" for="manualMedPayAcct" i18n>Manual Med Pay Acct</label>
+                    <select id="manualMedPayAcct" class="form-control" formControlName="manualMedPayAcct">
+                        <option [value]="code.bankAccountCode" *ngFor="let code of bankAccts;">{{code.bankAccountCode}}</option>
+                    </select>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('manualMedPayAcct')">
+                        {{ formValidation.errorMessage('manualMedPayAcct') }}
+                    </small>
+                </div>
+
+                <!-- Textbox with label of Vend Min Check -->
+                <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('vendMinCheck') }">
+                    <label class="col-form-label" for="vendMinCheck" i18n>Vend Min Check</label>
+                    <input  type="number" min="0" max="10" step="0.25" (change)="validateVendorMin($event)" id="vendMinCheck"    class="form-control" formControlName="vendMinCheck"/>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('vendMinCheck')">
+                        {{ formValidation.errorMessage('vendMinCheck') }}
+                    </small>
+                </div>
+
+            </div>
+
+            <div class="form-group row">
+                <!-- Textbox with label of Capitaled Payable -->
+                <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('capitaledPayable') }">
+                    <label class="col-form-label" for="capitaledPayable" i18n>Capitaled Payable</label>
+                    <select id="capitaledPayable" class="form-control" formControlName="capitaledPayable">
+                        <option [value]="code.bankAccountCode" *ngFor="let code of bankAccts;">{{code.bankAccountCode}}</option>
+                    </select>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('capitaledPayable')">
+                        {{ formValidation.errorMessage('capitaledPayable') }}
+                    </small>
+                </div>
+
+                <!-- Textbox with label of Manual Cap Pay Acct -->
+                <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('manualCapPayAcct') }">
+                    <label class="col-form-label" for="manualCapPayAcct" i18n>Manual Cap Pay Acct</label>
+                    <select  id="manualCapPayAcct" class="form-control" formControlName="manualCapPayAcct">
+                        <option [value]="code.bankAccountCode" *ngFor="let code of bankAccts;">{{code.bankAccountCode}}</option>
+                    </select>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('manualCapPayAcct')">
+                        {{ formValidation.errorMessage('manualCapPayAcct') }}
+                    </small>
+                </div>
+
+                <!-- Textbox with label of Sub/Dep Min Check -->
+                <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('subdepMinCheck') }">
+                    <label class="col-form-label" for="subdepMinCheck" i18n>Sub/Dep Min Check</label>
+                    <input (change)="validateSubMin($event)" type="number" min="0" max="10" step="0.25" value="0.00" id="subdepMinCheck"    class="form-control" formControlName="subdepMinCheck"/>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('subdepMinCheck')">
+                        {{ formValidation.errorMessage('subdepMinCheck') }}
+                    </small>
+                </div>
+
+            </div>
+
+            <div class="form-group row">
+                <!-- Textbox with label of ACH EFT Acct# -->
+                <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('achEftAcct') }">
+                    <label class="col-form-label" for="achEftAcct" i18n>ACH EFT Acct#</label>
+                    <input type="text" id="achEftAcct" class="form-control" formControlName="achEftAcct"/>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('achEftAcct')">
+                        {{ formValidation.errorMessage('achEftAcct') }}
+                    </small>
+                </div>
+
+                <!-- Textbox with label of Agent Commis. Acct -->
+                <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('agentCommisAcct') }">
+                    <label class="col-form-label" for="agentCommisAcct" i18n>Agent Commis. Acct</label>
+                    <select id="agentCommisAcct" class="form-control" formControlName="agentCommisAcct">
+                        <option [value]="code.bankAccountCode" *ngFor="let code of bankAccts;">{{code.bankAccountCode}}</option>
+                    </select>
+                    <small class="text-danger" *ngIf="formValidation.isValidField('agentCommisAcct')">
+                        {{ formValidation.errorMessage('agentCommisAcct') }}
+                    </small>
+                </div>
+
+            </div>
+        </form>
+    </div>
+</div>
+
+<ng-keyboard-shortcuts [shortcuts]="shortcuts"></ng-keyboard-shortcuts>
+<ng-keyboard-shortcuts-help [key]="'f2'" [closeKey]="'escape'" [title]="'Hotkeys Help'"></ng-keyboard-shortcuts-help>

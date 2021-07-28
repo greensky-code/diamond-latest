@@ -1,0 +1,169 @@
+<!-- Copyright (c) 2021 . All Rights Reserved. -->
+<div class="container-fluid">
+    <div class="card-block">
+        <h2 class="form-title card-label-admin">Provider Address Information</h2>
+        <button type="button" class="close" aria-label="Close"
+                (click)="ngbActiveModal.dismiss()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div>
+        <form [formGroup]="addressForm" novalidate class="form-group">
+            <div class="p-4 main">
+                <div class="content1">
+                    <div class="header">
+                        This is a WorldLink payment, specify the provider address information
+                    </div>
+                    <div class="description p-3 row">
+                        <div class="col-sm-8 pull-left">
+                            <div class="col-sm-12 row pb-3 pt-3">
+                                <div class="col-sm-4">
+                                    <label>Provider Name:</label>
+                                </div>
+                                <div class="col-sm-8"  [ngClass]="{'has-danger': formValidation.isValidField('payeeName') }">
+                                    <input type="text" class="form-control" name="payeeName" [fieldLevelSec]="''" [params]="" id="payeeName"
+                                           formControlName="payeeName" />
+                                    <small class="text-danger" *ngIf=" formValidation.isValidField('payeeName')">
+                                        {{ formValidation.errorMessage('payeeName') }}
+                                    </small>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 row address-content">
+                                <div class="col-sm-4">
+                                    <label>Address:</label>
+                                </div>
+                                <div class="col-sm-8">
+                                    <div [ngClass]="{'has-danger': formValidation.isValidField('addressLine1') }">
+                                        <input type="text" class="form-control" name="addressLine1" [fieldLevelSec]="''" [params]="" id="addressLine1"
+                                               formControlName="addressLine1" />
+                                        <small class="text-danger" *ngIf=" formValidation.isValidField('addressLine1')">
+                                            {{ formValidation.errorMessage('addressLine1') }}
+                                        </small>
+                                    </div>
+                                    <div [ngClass]="{'has-danger': formValidation.isValidField('addressLine2') }">
+                                        <input type="text" class="form-control" name="addressLine2" [fieldLevelSec]="''" [params]="" id="addressLine2"
+                                               formControlName="addressLine2" />
+                                        <small class="text-danger" *ngIf=" formValidation.isValidField('addressLine2')">
+                                            {{ formValidation.errorMessage('addressLine2') }}
+                                        </small>
+                                    </div>
+                                    <div [ngClass]="{'has-danger': formValidation.isValidField('addressLine3') }">
+                                        <input type="text" class="form-control" name="addressLine3" [fieldLevelSec]="''" [params]="" id="addressLine3"
+                                               formControlName="addressLine3" />
+                                        <small class="text-danger" *ngIf=" formValidation.isValidField('addressLine3')">
+                                            {{ formValidation.errorMessage('addressLine3') }}
+                                        </small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 row pt-3">
+                                <div class="col-sm-4">
+                                    <label>Bank Name:</label>
+                                </div>
+                                <div class="col-sm-8" [ngClass]="{'has-danger': formValidation.isValidField('bankName') }">
+                                    <input type="text" class="form-control" name="bankName" [fieldLevelSec]="''" [params]="" id="bankName"
+                                           formControlName="bankName" />
+                                    <small class="text-danger" *ngIf=" formValidation.isValidField('bankName')">
+                                        {{ formValidation.errorMessage('bankName') }}
+                                    </small>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 row pb-3">
+                                <div class="col-sm-4">
+                                    <label>Routing Number:</label>
+                                </div>
+                                <div class="col-sm-8" [ngClass]="{'has-danger': formValidation.isValidField('routingNum') }">
+                                    <input type="text" class="form-control" name="routingNum" [fieldLevelSec]="''" [params]="" id="routingNum"
+                                           formControlName="routingNum" />
+                                    <small class="text-danger" *ngIf=" formValidation.isValidField('routingNum')">
+                                        {{ formValidation.errorMessage('routingNum') }}
+                                    </small>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 row">
+                                <div class="col-sm-4">
+                                    <label>&nbsp;&nbsp;</label>
+                                </div>
+                                <div class="col-sm-8" [ngClass]="{'has-danger': formValidation.isValidField('country') }">
+                                    <label>What country is this Worldlink payment going to?</label><br/>
+                                    <div class="selectContainer "
+                                         [ngClass]="{'required-field':  formValidation.isValidField('country') }">
+
+                                        <div class="input-group" #myDrop="ngbDropdown" ngbDropdown>
+                                            <input ngbDropdownToggle type="text" class="form-control" id="country"
+                                                   [value]="addressForm.value.country"
+                                                   formControlName="country">
+                                            <div class="input-group-append" role="group">
+                                                <button ngbDropdownToggle class="btn border"></button>
+                                            </div>
+                                            <div ngbDropdownMenu aria-labelledby="dropdown" class="max-dropdown-height">
+                                                <ng-container *ngFor="let value of countries; let i = index">
+                                                    <button ngbDropdownItem value="{{value.countryDesc}}"
+                                                            (click)="setFieldValue('country', value.countryDesc); setFieldValue('countryCode', value.countryCode);"
+                                                            *ngIf="ignoreCountries.indexOf(value.countryCode) < 0">
+                                                        {{value.countryDesc}}
+                                                    </button>
+                                                </ng-container>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <small class="text-danger" *ngIf="formValidation.isValidField('country')">
+                                        {{ formValidation.errorMessage('country') }}
+                                    </small>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 row pt-3">
+                                <div class="col-sm-4">
+                                    <label>Notes:</label>
+                                </div>
+                                <div class="col-sm-8" [ngClass]="{'has-danger': formValidation.isValidField('commentDesc') }">
+                                    <textarea rows="4" cols="10" class="form-control" name="commentDesc" [fieldLevelSec]="''" [params]="" id="commentDesc"
+                                              formControlName="commentDesc"></textarea>
+                                    <small class="text-danger" *ngIf=" formValidation.isValidField('commentDesc')">
+                                        {{ formValidation.errorMessage('commentDesc') }}
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4 pull-right">
+                            <div class="col-sm-12">&nbsp;&nbsp;&nbsp;&nbsp;</div><br/>
+                            <div class="col-sm-12">&nbsp;&nbsp;&nbsp;&nbsp;</div><br/>
+                            <div class="col-sm-12">&nbsp;&nbsp;&nbsp;&nbsp;</div>
+                            <div class="col-sm-12 row">
+                                <div class="col-sm-6">
+                                    <label>Is this a bank address?</label>
+                                </div>
+                                <div class="col-sm-6">
+                                    <select class="form-control" name="bankAddrFlg" [fieldLevelSec]="''" [params]="" id="bankAddrFlg"
+                                            formControlName="bankAddrFlg" (change)="onChangeIsBankAddress($event.target.value, true)">
+                                        <option value="Y">Yes</option>
+                                        <option value="N">No</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-12">&nbsp;&nbsp;&nbsp;&nbsp;</div><br/>
+                            <div class="col-sm-12">&nbsp;&nbsp;&nbsp;&nbsp;</div><br/>
+                            <div class="col-sm-12 row">
+                                <div class="col-sm-6">
+                                    <label>IBAN/Bank Account #1:</label>
+                                </div>
+                                <div class="col-sm-6" [ngClass]="{'has-danger': formValidation.isValidField('accountNum') }">
+                                    <input type="text" class="form-control" name="accountNum" [fieldLevelSec]="''" [params]="" id="accountNum"
+                                           formControlName="accountNum" />
+                                    <small class="text-danger" *ngIf=" formValidation.isValidField('accountNum')">
+                                        {{ formValidation.errorMessage('accountNum') }}
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center">
+                <div class="text-center pt-2">
+                    <input type="button" class="btn btn-default submit-btn" value="Continue" (click)="onSubmit()" />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

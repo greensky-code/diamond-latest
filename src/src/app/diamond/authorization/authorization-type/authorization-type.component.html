@@ -1,0 +1,171 @@
+<!-- Copyright (c) 2021 . All Rights Reserved. -->
+<div class="container-fluid">
+    <div class="card-block">
+        <h2 class="form-title card-label-admin">Authorization Type</h2>
+        <button type="button" *ngIf="showIcon" class="modal-close close" aria-label="Close"
+                (click)="modalClose()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+        <app-pop-up-message #popUpMesssage (buttonclickEvent)="popUpButtonHandler($event)"
+                            [(popupMessage)]="popUpMessage"></app-pop-up-message>
+
+        <ng-template #loaderTemplate let-loaderValue="value">
+            <div class="row justify-content-center mt-4" *ngIf="loaderValue">
+                <div class="spinner-border text-success" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>
+            </div>
+        </ng-template>
+
+        <ng-container *ngTemplateOutlet="loaderTemplate;context:{value: secProgress }"></ng-container>
+
+        <ng-container *appWinSelect="{secWin: secWin, userTemplateId: userTemplateId, secModuleId: memberModuleId}">
+
+            <div class="row mt-3">
+                <menu-bar [menus]="menu" (onMenuClick)="onMenuItemClick($event)"></menu-bar>
+            </div>
+            <form [formGroup]="authorizationTypeForm" novalidate>
+
+                <ag-grid-angular #agGrid class="ag-theme-fresh" [gridOptions]="dataGrid001GridOptions"
+                                 style="width: 100%; height: 300px;"
+                                 [enableSorting]="true"
+                                 [enableFilter]="true"
+                                 [floatingFilter]="true"
+                                 (rowSelected)="onRowSelectedGrid001($event)"
+                                 [pagination]="true"
+                                 rowSelection="single"
+                                 [showToolPanel]="true">
+                </ag-grid-angular>
+
+                <div class="form-group row">
+                </div>
+
+                <div class="form-group row">
+                    <!-- DynamicText with label of Auth Type -->
+                    <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('authType') }">
+                        <label class="col-form-label text-primary" for="authType" i18n>Auth Type</label>
+                        <input type="text" id="authType" formControlName="authType" class="form-control"
+                               oninput="this.value = this.value.toUpperCase()" #authTypeId
+                               (blur)="authTypeValueChange($event, authTypeId.value)"
+                               maxlength="3"/>
+                        <small class="text-danger" *ngIf="formValidation.isValidField('authType')">
+                            {{ formValidation.errorMessage('description') }}
+                        </small>
+                    </div>
+
+                    <!-- Textbox with label of Description -->
+                    <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('description') }">
+                        <label class="col-form-label" for="description" i18n>Description</label>
+                        <input type="text" id="description"
+                               oninput="this.value = this.value" #description
+                               (blur)="authTypeValueChange($event, description.value)"
+                               class="form-control" formControlName="description"/>
+                        <small class="text-danger" *ngIf="formValidation.isValidField('description')">
+                            {{ formValidation.errorMessage('description') }}
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-md-3" [ngClass]="{'has-error': displayMessage.memberReinstatedOverride }">
+                        <div class="checkbox col-md-12">
+                            <input id="memberReinstatedOverride"
+                                   oninput="this.value = this.value" #memberReinstatedOverride
+                                   (blur)="authTypeValueChange($event, memberReinstatedOverride.value)"
+                                   value="memberReinstatedOverride" formControlName="memberReinstatedOverride" type="checkbox">
+                            <label class="checkbox">
+                                Req Next Review Date
+                            </label>
+                        </div>
+                        <span class="help-block" *ngIf="displayMessage.memberReinstatedOverride">
+                        {{ displayMessage.memberReinstatedOverride  }}
+                     </span>
+                    </div>
+
+                    <!-- Checkbox with Name of Checkbox002 -->
+                    <div class="col-md-3" [ngClass]="{'has-error': displayMessage.familyAffiliationOverride }">
+                        <div class="checkbox col-md-12">
+                            <input id="familyAffiliationOverride"
+                                   oninput="this.value = this.value" #familyAffiliationOverride
+                                   (blur)="authTypeValueChange($event, familyAffiliationOverride.value)"
+                                   value="familyAffiliationOverride" formControlName="familyAffiliationOverride" type="checkbox">
+                            <label class="checkbox">
+                                Allow Non Sys Subs ID
+                            </label>
+                        </div>
+                        <span class="help-block" *ngIf="displayMessage.familyAffiliationOverride">
+                        {{ displayMessage.familyAffiliationOverride  }}
+                     </span>
+                    </div>
+
+                    <!-- Checkbox with label of Auto Update Auth End Date -->
+                    <div class="col-md-3" [ngClass]="{'has-error': displayMessage.autoUpdateAuthEndDate }">
+                        <div class="checkbox col-md-12">
+                            <input id="autoUpdateAuthEndDate" value="autoUpdateAuthEndDate"
+                                   oninput="this.value = this.value" #autoUpdateAuthEndDate
+                                   (blur)="authTypeValueChange($event, autoUpdateAuthEndDate.value)"
+                                   formControlName="familyAffiliationOverride" type="checkbox">
+                            <label class="checkbox">
+                                Auto Update Auth End Date
+                            </label>
+                        </div>
+                        <span class="help-block" *ngIf="displayMessage.autoUpdateAuthEndDate">
+                        {{ displayMessage.autoUpdateAuthEndDate  }}
+                     </span>
+                    </div>
+
+                    <!-- Checkbox with label of Use Quantity Match  -->
+                    <div class="col-md-3" [ngClass]="{'has-error': displayMessage.memberReinstatedEvaluate }">
+                        <div class="checkbox col-md-12">
+                            <input id="memberReinstatedEvaluate" value="memberReinstatedEvaluate"
+                                   oninput="this.value = this.value" #memberReinstatedEvaluate
+                                   (blur)="authTypeValueChange($event, memberReinstatedEvaluate.value)"
+                                   formControlName="memberReinstatedEvaluate" type="checkbox">
+                            <label class="checkbox">
+                                Use Quantity Match
+                            </label>
+                        </div>
+                        <span class="help-block" *ngIf="displayMessage.memberReinstatedEvaluate">
+                        {{ displayMessage.memberReinstatedEvaluate  }}
+                     </span>
+                    </div>
+                </div>
+
+
+                <div class="form-group row">
+                </div>
+
+                <ag-grid-angular #agGrid class="ag-theme-fresh" [gridOptions]="dataGrid002GridOptions"
+                                 style="width: 100%; height: 250px;"
+                                 [enableSorting]="true"
+                                 [enableFilter]="true"
+                                 [floatingFilter]="true"
+                                 [pagination]="true"
+                                 (cellClicked)="onGridReady($event)"
+                                 (gridReady)="valueGridReady($event)"
+                                 (cellValueChanged)="tableValueChanged($event)"
+                                 [showToolPanel]="true">
+                </ag-grid-angular>
+                <div class="card-footer dmnd-background" *ngIf="authTypeMaster != undefined">
+                    <button type="button" class="button mr-1 fa-rotate-level-down" (click)="addNewRow($event)"
+                            [ngbTooltip]="'Add new Line (ctrl + n)'">
+                        <fa-icon [icon]="faLevel"></fa-icon>
+                        Add new line
+                    </button>
+
+                    <button *ngIf="showSubmitButton" type="button" class="button mr-1 fa-rotate-level-down"
+                            (click)="onSubmitAuthTypeDetails()">
+                        Submit
+                    </button>
+                </div>
+
+                <div class="form-group row">
+                </div>
+            </form>
+        </ng-container>
+
+    </div>
+</div>
+
+<ng-keyboard-shortcuts [shortcuts]="shortcuts"></ng-keyboard-shortcuts>
+<ng-keyboard-shortcuts-help [key]="'f1'" [closeKey]="'escape'" [title]="'Hotkeys Help'"></ng-keyboard-shortcuts-help>

@@ -1,0 +1,27 @@
+<div class="modal-header">
+    <h6 class="modal-title">Save Template</h6>
+</div>
+<div class="modal-body">
+        <form [formGroup]="pmpTemplateIdForm" novalidate>
+            <div class="row">
+                <!-- Textbox with label of Job ID -->
+                <div class="form-group col-md-4">
+                    <label class="col-form-label" for="jobId" i18n>Template ID</label>
+                    <input type="text" id="jobId" readonly class="form-control" formControlName="jobId"/>
+                </div>
+                <div class="form-group col-md-4">
+                    <label class="col-form-label" for="comments" i18n>Comments</label>
+                    <input type="text" id="comments" readonly class="form-control" formControlName="comments"/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-8">
+                    <textarea id="otherComments" readonly class="form-control" formControlName="otherComments"></textarea>
+                </div>
+            </div>
+        </form>
+</div>
+<div class="modal-footer" >
+    <button type="button"  (click)="save()" class="button" data-dismiss="modal" >OK</button>
+    <button type="button"  (click)="cancel()" class="button" data-dismiss="modal" >Cancel</button>
+</div>

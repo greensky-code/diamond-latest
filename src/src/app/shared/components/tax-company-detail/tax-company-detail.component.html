@@ -1,0 +1,30 @@
+<div class="container-fluid">
+    <div class="card-block">
+
+        <h2 class="form-title card-label-admin">TRENT Company List</h2>
+        <button type="button" class="modal-close close" aria-label="Close"
+                (click)="activeModal.dismiss()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    <div class="row ml-2 searchbox-buttons">
+        List of companies with IRS Tax {{taxId}}
+    </div>
+
+    <div>
+        <div  class="row ml-0 mr-0 mb-3">
+            <!-- DataGrid with Name of DataGrid -->
+            <ag-grid-angular #agGrid class="ag-theme-fresh" [gridOptions]="dataGridGridOptions"
+                             style="width: 100%; height: 300px;"
+                             [enableSorting]="true"
+                             [enableFilter]="false"
+                             [floatingFilter]="false"
+                             [pagination]="isPagination"
+                             [paginationPageSize]="paginationPageSize"
+                            [showToolPanel]="false">
+            </ag-grid-angular>
+        </div>
+    </div>
+    <button type="button" (click)="activeModal.dismiss()"
+            class="button" data-dismiss="modal" style="text-transform:capitalize">OK</button>
+</div>
+</div>

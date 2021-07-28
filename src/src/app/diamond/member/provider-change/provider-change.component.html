@@ -1,0 +1,205 @@
+<!-- Copyright (c) 2020 . All Rights Reserved. -->
+<div class="container-fluid pb-2 pt-2">
+    <div class="card-block">
+        <form [formGroup]="providerChangeForm" novalidate>
+            <h2 class="form-title card-label-admin">Provider Change</h2>
+            <button type="button" *ngIf="showIcon" class="modal-close close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+            <app-pop-up-message #popUpMesssage (buttonclickEvent)="popUpButtonHandler($event)"  [(popupMessage)] = "popUpMessage"></app-pop-up-message>
+              
+            <div class="form-group row">
+                <div class="col-md-3 text-center form-control-static  mb-0" i18n>
+                    <b>New</b>
+                </div>
+            
+                <div class="col-md-3 text-center form-control-static mb-0" i18n>
+                   <b>Current</b>
+                </div>
+            
+                <!-- Button with label of OK -->
+             
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of Effective Date -->
+                 <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('effectiveDate') }">
+                    <app-datepicker [formGroup]="providerChangeForm" [formValidation]="formValidation" [field]="'effectiveDate'" [labelText]="'Effective Date'"></app-datepicker>
+                 </div>
+            
+                <!-- Textbox with label of Current Effective Date -->
+                 <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('currentEffectiveDate') }">
+                     <app-datepicker [formGroup]="providerChangeForm" [formValidation]="formValidation" [field]="'currentEffectiveDate'" [labelText]="'Current Effective Date'"></app-datepicker>
+                 </div>
+            
+                <!-- Button with label of Cancel -->
+               
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of Term Date -->
+                 <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('termDate') }">
+                     <app-datepicker [formGroup]="providerChangeForm" [formValidation]="formValidation" [field]="'termDate'" [labelText]="'Term Date'"></app-datepicker>
+                 </div>
+            
+                <!-- Textbox with label of Current Term Date -->
+                 <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('currentTermDate') }">
+                     <app-datepicker [formGroup]="providerChangeForm" [formValidation]="formValidation" [field]="'currentTermDate'" [labelText]="'Current Term Date'"></app-datepicker>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of Term Reason -->
+                 <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('termReason') }">
+                     <label class="col-form-label" for="termReason" i18n>Term Reason</label>
+                     <input type="text" id="termReason"  class="form-control" formControlName="termReason"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('termReason')">
+                      {{ formValidation.errorMessage('termReason') }}
+                     </small>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of PCP Chng Rsn -->
+                 <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('pcpChngRsn') }">
+                     <label class="col-form-label" for="pcpChngRsn" i18n>PCP Chng Rsn</label>
+                     <input type="text" id="pcpChngRsn"  class="form-control" formControlName="pcpChngRsn"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('pcpChngRsn')">
+                      {{ formValidation.errorMessage('pcpChngRsn') }}
+                     </small>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of Panel -->
+                 <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('panel') }">
+                     <label class="col-form-label" for="panel" i18n>Panel</label>
+                     <input type="text" id="panel"  class="form-control" formControlName="panel"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('panel')">
+                      {{ formValidation.errorMessage('panel') }}
+                     </small>
+                 </div>
+            
+                <!-- Textbox with label of Current Panel -->
+                 <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('currentPanel') }">
+                     <label class="col-form-label" for="currentPanel" i18n>Current Panel</label>
+                     <input type="text" id="currentPanel"  class="form-control" formControlName="currentPanel"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('currentPanel')">
+                      {{ formValidation.errorMessage('currentPanel') }}
+                     </small>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of IPA -->
+                 <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('ipa') }">
+                     <label class="col-form-label" for="ipa" i18n>IPA</label>
+                     <input type="text" id="ipa"  class="form-control" formControlName="ipa"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('ipa')">
+                      {{ formValidation.errorMessage('ipa') }}
+                     </small>
+                 </div>
+            
+                <!-- Textbox with label of Current IPA -->
+                 <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('currentIpa') }">
+                     <label class="col-form-label" for="currentIpa" i18n>Current IPA</label>
+                     <input type="text" id="currentIpa"  class="form-control" formControlName="currentIpa"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('currentIpa')">
+                      {{ formValidation.errorMessage('currentIpa') }}
+                     </small>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of PCP ID -->
+                 <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('pcpId') }">
+                     <label class="col-form-label" for="pcpId" i18n>PCP ID</label>
+                     <input type="text" id="pcpId"  class="form-control" formControlName="pcpId"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('pcpId')">
+                      {{ formValidation.errorMessage('pcpId') }}
+                     </small>
+                 </div>
+            
+                <!-- Textbox with label of Current PCP ID -->
+                 <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('currentPcpId') }">
+                     <label class="col-form-label" for="currentPcpId" i18n>Current PCP ID</label>
+                     <input type="text" id="currentPcpId"  class="form-control" formControlName="currentPcpId"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('currentPcpId')">
+                      {{ formValidation.errorMessage('currentPcpId') }}
+                     </small>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of Site -->
+                 <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('site') }">
+                     <label class="col-form-label" for="site" i18n>Site</label>
+                     <input type="text" id="site"  class="form-control" formControlName="site"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('site')">
+                      {{ formValidation.errorMessage('site') }}
+                     </small>
+                 </div>
+            
+                <!-- Textbox with label of Current Site -->
+                 <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('currentSite') }">
+                     <label class="col-form-label" for="currentSite" i18n>Current Site</label>
+                     <input type="text" id="currentSite"  class="form-control" formControlName="currentSite"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('currentSite')">
+                      {{ formValidation.errorMessage('currentSite') }}
+                     </small>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of Prov2 -->
+                 <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('prov2') }">
+                     <label class="col-form-label" for="prov2" i18n>Prov2</label>
+                     <input type="text" id="prov2"  class="form-control" formControlName="prov2"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('prov2')">
+                      {{ formValidation.errorMessage('prov2') }}
+                     </small>
+                 </div>
+            
+                <!-- Textbox with label of Current Prov2 -->
+                 <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('currentProv2') }">
+                     <label class="col-form-label" for="currentProv2" i18n>Current Prov2</label>
+                     <input type="text" id="currentProv2"  class="form-control" formControlName="currentProv2"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('currentProv2')">
+                      {{ formValidation.errorMessage('currentProv2') }}
+                     </small>
+                 </div>
+            
+
+              
+            </div>
+            <div class="row">
+                <div class="col-md-8">
+                    <button type="button" id="cancel" name="cancel" class="float-right ml-2 btn btn-small btn-primary" (click)="goToPageList()">Cancel</button>
+
+                    <button type="button" id="ok" name="ok" class="float-right btn btn-small btn-primary" (click)="submit()">OK</button>
+                    
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<ng-keyboard-shortcuts [shortcuts]="shortcuts" ></ng-keyboard-shortcuts>
+<ng-keyboard-shortcuts-help [key]="'f1'" [closeKey]="'escape'" [title]="'Hotkeys Help'"></ng-keyboard-shortcuts-help>

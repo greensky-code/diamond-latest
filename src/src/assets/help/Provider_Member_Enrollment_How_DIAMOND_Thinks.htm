@@ -1,0 +1,663 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+    <title>Provider/Member Enrollment, How DIAMOND Thinks</title>
+    <!--(Meta)==========================================================-->
+    <meta name="copyright"
+          value="© Copyright 2002 Health Systems Design Corp., a wholly owned subsidiary of Perot Systems Corporation. All rights reserved"/>
+    <meta content="RoboHELP by eHelp Corporation - www.ehelp.com" name="generator"/>
+    <meta content="0.1" name="generator-major-version"/>
+    <meta content="1" name="generator-minor-version"/>
+    <meta content="kadov" name="filetype"/>
+    <meta content="1" name="filetype-version"/>
+    <meta content="1" name="page-count"/>
+    <meta content="2451" name="layout-height"/>
+    <meta content="644" name="layout-width"/>
+    <!--(Links)=========================================================-->
+    <!--(Scripts)=======================================================-->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+</head>
+<body>
+
+<div class="calibreMeta">
+    <div class="calibreMetaTitle">
+
+
+        <h1>
+            <a href="../bai44-9x3eu.html">DIAMOND 950C/S Help
+            </a>
+        </h1>
+
+
+    </div>
+    <div class="calibreMetaAuthor">
+        Unknown
+
+    </div>
+</div>
+
+<div class="calibreMain">
+
+    <div class="calibreEbookContent">
+
+        <div class="calibreEbNavTop">
+
+            <a href="Building_Provider_Enrollment_Rules_TSK.htm" class="calibreAPrev">previous page
+            </a>
+
+
+            <a href="Provider_Contracts_How_DIAMOND_Thinks.htm" class="calibreANext">next page
+            </a>
+
+        </div>
+
+
+        <h4 class="calibre1">Provider/Member Enrollment, How DIAMOND Thinks</h4>
+
+        <!--(Table)=========================================================-->
+        <table cellspacing="0" width="612" x-use-null-cells="" class="calibre172">
+
+            <tbody class="calibre11">
+            <tr valign="top" class="">
+                <td width="288px" class="">
+                    <p class="map-links"><a
+                            href="Provider_Member_Enrollment_How_DIAMOND_Thinks.htm#_Member_PCP_Assignment_Considerations_HDT_MID"><img
+                            alt="image\assets/help/MidTopic_shg.gif" border="0" height="10" src="assets/help/MidTopic_shg.gif" width="18"
+                            class=""/></a> Member/PCP Assignment Considerations</p></td>
+                <td width="324px" class="">
+                    <p class="map-links"><a
+                            href="Provider_Member_Enrollment_How_DIAMOND_Thinks.htm#Provider_Member_Enrollment_Utility_-_PROVE_Record_Creation_HDT_MID"><img
+                            alt="image\assets/help/MidTopic_shg.gif" border="0" height="10" src="assets/help/MidTopic_shg.gif" width="18"
+                            class=""/></a> Enrollment Utility Record Creation</p></td>
+            </tr>
+
+            <tr valign="top" class="">
+                <td width="288px" class="">
+                    <p class="map-links"><a
+                            href="Provider_Member_Enrollment_How_DIAMOND_Thinks.htm#Provider_Member_Enrollment_Utility_-_Background_HDT_MID"><img
+                            alt="image\assets/help/MidTopic_shg.gif" border="0" height="10" src="assets/help/MidTopic_shg.gif" width="18"
+                            class=""/></a> Enrollment Utility Background</p></td>
+                <td width="324px" class="">
+                    <p class="map-links"><a
+                            href="Provider_Member_Enrollment_How_DIAMOND_Thinks.htm#Provider_Member_Enrollment_Utility_-_PROVE_Record_Layout_HDT_MID"><img
+                            alt="image\assets/help/MidTopic_shg.gif" border="0" height="10" src="assets/help/MidTopic_shg.gif" width="18"
+                            class=""/></a> Enrollment Utility Record Layout</p></td>
+            </tr>
+
+            <tr valign="top" class="">
+                <td width="288px" class="">
+                    <p class="map-links"><a
+                            href="Provider_Member_Enrollment_How_DIAMOND_Thinks.htm#Provider_Member_Enrollment_Utility_-_Overview_HDT_MID"><img
+                            alt="image\assets/help/MidTopic_shg.gif" border="0" height="10" src="assets/help/MidTopic_shg.gif" width="18"
+                            class=""/></a> Enrollment Utility Overview</p></td>
+                <td width="324px" class="calibre73">
+                    <p class="map-links"> </p></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <p class="doc-level"><a name="_Member_PCP_Assignment_Considerations_HDT_MID"></a>Member/PCP
+            Assignment Considerations</p>
+
+        <p class="body-text">If you have activated DIAMOND’s provider/member enrollment
+            functionality, the following apply to both member online and member batch
+            processing (except where noted):</p>
+
+        <ul class="calibre9">
+
+            <li class="kadov-p-cbullet-list-h2"><p class="bullet-list-h2">DIAMOND performs
+                automated provider enrollment rule evaluation when you select a PCP for
+                the member (using MEMBR &gt; PCP ID).</p></li>
+
+            <li class="kadov-p-cbullet-list-h2"><p class="bullet-list-h2">DIAMOND also
+                performs provider enrollment rule evaluation when you use MEMBR &gt; Special
+                menu &gt; Add Dependent, Terminate/Unterminate, Reinstate, Provider Change,
+                or Modify Existing Provider.</p></li>
+
+            <li class="kadov-p-cbullet-list-h2"><p class="bullet-list-h2">DIAMOND’s
+                provider/member enrollment functionality does not include provider changes
+                made using the Member Eligibility window (MELIG); that is, MELIG provider
+                changes are <span class="calibre64">not</span> validated against
+                PROVE records. In most cases you should <span class="calibre64">not</span>
+                use MELIG to make changes in member eligibility. See the MELIG user documentation
+                for additional information.</p></li>
+
+            <li class="kadov-p-cbullet-list-h2"><p class="bullet-list-h2">If there
+                are no enrollment rules for the PCP ID selected as of the member’s effective
+                date (MEMBR &gt; Eff Date), DIAMOND only performs a provider contract
+                search to verify the existence of a provider contract.</p></li>
+
+            <li class="kadov-p-cbullet-list-h2"><p class="bullet-list-h2">DIAMOND does
+                not perform provider enrollment rule evaluation for the provider ID you
+                enter in the MEMBR &gt; Prov2 field.</p></li>
+
+            <li class="kadov-p-cbullet-list-h2"><p class="bullet-list-h2">The MEMBR
+                &gt; Eff Date is evaluated against the provider’s enrollment rules effective
+                dates (PROVE &gt; Effective Date, Term Date) for new member enrollments
+                and for MEMBR, Special menu &gt; Add Dependent, Terminate/Unterminate,
+                Reinstate, Provider Change, or Modify Existing Provider actions.</p></li>
+
+            <li class="kadov-p-cbullet-list-h2"><p class="bullet-list-h2">If the MEMBR
+                &gt; Eff Date is not within the PROVE &gt; Effective Date, Term Date (for
+                example, the rule has expired), DIAMOND only performs a provider contract
+                search to verify the existence of a provider contract.</p></li>
+
+            <li class="kadov-p-cbullet-list-h2"><p class="bullet-list-h2">During online
+                member enrollment, if a provider has multiple enrollment rules (rules
+                for different addresses), DIAMOND prompts the operator to select the appropriate
+                enrollment rule (based on provider address).</p></li>
+
+            <li class="kadov-p-cbullet-list-h2"><p class="bullet-list-h2">During member
+                batch processing, if a provider has multiple PROVE records for different
+                addresses, DIAMOND evaluates the rule associated with the provider’s "primary
+                address."</p></li>
+
+            <li class="kadov-p-cbullet-list-h2"><p class="bullet-list-h2">DIAMOND performs
+                the following enrollment rule validations before assigning a PCP to a
+                member -</p></li>
+        </ul>
+
+        <p class="body-text-block">The provider accepts new patients (PROVE &gt;
+            Accepts New Patients box is checked).</p>
+
+        <p class="body-text-block">The provider has not reached the enrollment limit
+            (PROVE &gt; Enrollment Limit). The provider enrollment limit and member
+            count toward the enrollment limit are evaluated as of the effective date
+            of the requested change.</p>
+
+        <p class="body-text-block">The provider accepts patients of the member’s
+            gender (PROVE &gt; Gender).</p>
+
+        <p class="body-text-block">The member’s calculated age (as of the current
+            system date) is within the provider’s acceptable age range (PROVE &gt;
+            Age From/Age Through).</p>
+
+        <ul class="calibre9">
+
+            <li class="kadov-p-cbullet-list-h2"><p class="bullet-list-h2">If any of
+                the enrollment rules do not pass validation and there are no override
+                edits (PROVE, Special menu &gt; Override Enrollment Edits), DIAMOND displays
+                an appropriate error message and the PCP is not assigned to the member.</p></li>
+
+            <li class="kadov-p-cbullet-list-h2"><p class="bullet-list-h2">If any of
+                the enrollment rules do not pass validation and there are applicable override
+                edits (PROVE, Special menu &gt; Override Enrollment Edits), DIAMOND displays
+                an appropriate warning message that the PCP will be assigned to the member
+                because of the override.</p></li>
+
+            <li class="kadov-p-cbullet-list-h2"><p class="bullet-list-h2">If all enrollment
+                rules pass validation, DIAMOND assigns the PCP to the member’s eligibility
+                record (MELIG) and the PROVE &gt; Current Enrollment count is incremented
+                as of the effective date of the change.</p></li>
+        </ul>
+
+        <p class="doc-level"><a name="Provider_Member_Enrollment_Utility_-_Background_HDT_MID"></a>Provider/Member
+            Enrollment Utility - Background</p>
+
+        <p class="body-text">To begin using DIAMOND’s automated provider/member enrollment
+            functionality, we strongly urge you to activate the PROVENOROL parameter
+            and run the Provider/Member Enrollment Utility scripts as outlined in
+            the D950C/S R5.1 Software Installation Guide.</p>
+
+        <p class="body-text">After you run this utility, each time you assign a PCP
+            to a member, DIAMOND evaluates the provider’s enrollment rule(s) (PROVE)
+            to determine if the provider will accept the member being assigned. DIAMOND
+            also updates the provider’s PROVE &gt; Current Enrollment counts as members
+            are assigned to the provider and as specific changes are made to member/provider
+            records.</p>
+
+        <p class="doc-level"><a name="Provider_Member_Enrollment_Utility_-_Overview_HDT_MID"></a>Provider/Member
+            Enrollment Utility - Overview</p>
+
+        <p class="body-text">When you activate the PROVENROL parameter and run the
+            Provider-Member Enrollment Utility scripts, DIAMOND:</p>
+
+        <ul class="calibre9">
+
+            <li class="kadov-p-cbullet-list-h2"><p class="bullet-list-h2">Creates a
+                generic PROVE record based on the PROVE record creation criteria selected
+                (see Provider/Member Enrollment Utility section PROVE Record Creation
+                for details).</p></li>
+
+            <li class="kadov-p-cbullet-list-h2"><p class="bullet-list-h2">Associates
+                each eligible member, who has an existing, assigned PCP, with a PROVE
+                record.</p></li>
+
+            <li class="kadov-p-cbullet-list-h2"><p class="bullet-list-h2">Increments
+                the associated provider’s enrollment count (PROVE &gt; Current Enrollment)
+                in all appropriate PROVE records. This includes enrollment count updates
+                for retroactive member/provider assignments.</p></li>
+        </ul>
+
+        <p class="body-text">After you run the utility, DIAMOND updates the associated
+            provider enrollment count as you make specific changes to member/provider
+            records; for example, member adds, terminations, unterminations, or reinstatements.</p>
+
+        <p class="body-text">We strongly urge you to keep the PROVENROL parameter
+            activated after running the utility. If you manually change the PROVENROL
+            parameter back to ‘N’ after you have run the utility, DIAMOND stops evaluating
+            provider enrollment rules as you assign PCPs to members; however, DIAMOND
+            does perform a provider contract search to verify the existence of a provider
+            contract. Since provider enrollment rules are no longer evaluated, DIAMOND
+            does not update the associated provider enrollment counts. As a result,
+            these counts may not be correct.</p>
+
+        <p class="doc-level"><a name="Provider_Member_Enrollment_Utility_-_PROVE_Record_Creation_HDT_MID"></a>Provider/Member
+            Enrollment Utility, PROVE Record Creation</p>
+
+        <p class="body-text">When you run the utility for the first time, there are
+            no existing PROVE records in the PROV_ENROLLMENT_RULES table. DIAMOND
+            prompts you to select one of the following enrollment rule record creation
+            criteria:</p>
+
+        <ul class="calibre9">
+
+            <li class="kadov-p-cbullet-list-h2"><p class="bullet-list-h2">LOB + Provider
+                Address</p></li>
+
+            <li class="kadov-p-cbullet-list-h2"><p class="bullet-list-h2">LOB + IPA
+                + Provider Address</p></li>
+
+            <li class="kadov-p-cbullet-list-h2"><p class="bullet-list-h2">LOB + IPA
+                + Panel + Provider Address</p></li>
+
+            <li class="kadov-p-cbullet-list-h2"><p class="bullet-list-h2">LOB + Panel
+                + Provider Address</p></li>
+        </ul>
+
+        <p class="body-text">After you select the criteria, the utility creates a
+            generic PROVE record (based on the PROVE record creation criteria selected)
+            for PCPs who do not have at least one PROVE criteria based record for
+            a provider contract record. The utility associates the PROVE record with
+            the provider’s primary address. If the provider does not have a primary
+            address, the utility does not create a PROVE record.</p>
+
+        <p class="body-text">The utility then associates each eligible member, who
+            has an existing, assigned PCP, with the corresponding provider enrollment
+            rule record and increments the record’s enrollment count. That is, the
+            PROVE seq_enrollment_rule ID is added to the member’s membership eligibility
+            history record. The utility does not enforce or evaluate enrollment rules
+            during this process since the provider was previously assigned to the
+            member.</p>
+
+        <p class="body-text">As an example, assume you have run the utility four
+            times (once for each possible PROVE selection criteria combination) and
+            the utility subsequently created five generic enrollment rule records
+            for provider John Jones based on his existing provider contract records:</p>
+
+        <!--(Table)=========================================================-->
+        <table cellspacing="0" width="408" x-use-null-cells="" class="calibre74">
+
+            <tbody class="calibre11">
+            <tr valign="top" class="calibre12">
+                <td width="144px" class="calibre75">
+                    <p class="tbl-header"><span class="calibre76">ProviderJohn Jones</span></p></td>
+                <td width="52px" class="calibre77">
+                    <p class="tbl-header"><span class="calibre76">LOB</span></p></td>
+                <td width="55px" class="calibre78">
+                    <p class="tbl-header"><span class="calibre76">IPA</span></p></td>
+                <td width="60px" class="calibre79">
+                    <p class="tbl-header"><span class="calibre76">Panel</span></p></td>
+                <td width="96px" class="calibre80">
+                    <p class="tbl-header"><span class="calibre76">Address</span></p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="144px" class="calibre75">
+                    <p class="tbl-text">PROVE Record 1</p></td>
+                <td width="52px" class="calibre77">
+                    <p class="tbl-text">ABC</p></td>
+                <td width="55px" class="calibre78">
+                    <p class="tbl-text">XYZ</p></td>
+                <td width="60px" class="calibre79">
+                    <p class="tbl-text">M1</p></td>
+                <td width="96px" class="calibre80">
+                    <p class="tbl-text">111 Alpha St.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="144px" class="calibre75">
+                    <p class="tbl-text">PROVE Record 2</p></td>
+                <td width="52px" class="calibre77">
+                    <p class="tbl-text">ABC</p></td>
+                <td width="55px" class="calibre78">
+                    <p class="tbl-text"> </p></td>
+                <td width="60px" class="calibre79">
+                    <p class="tbl-text"> </p></td>
+                <td width="96px" class="calibre80">
+                    <p class="tbl-text">222 Beta St.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="144px" class="calibre75">
+                    <p class="tbl-text">PROVE Record 3</p></td>
+                <td width="52px" class="calibre77">
+                    <p class="tbl-text">DEF</p></td>
+                <td width="55px" class="calibre78">
+                    <p class="tbl-text"> </p></td>
+                <td width="60px" class="calibre79">
+                    <p class="tbl-text">P2</p></td>
+                <td width="96px" class="calibre80">
+                    <p class="tbl-text">111 Alpha St.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="144px" class="calibre75">
+                    <p class="tbl-text">PROVE Record 4</p></td>
+                <td width="52px" class="calibre77">
+                    <p class="tbl-text">DEF</p></td>
+                <td width="55px" class="calibre78">
+                    <p class="tbl-text">UVW</p></td>
+                <td width="60px" class="calibre79">
+                    <p class="tbl-text"> </p></td>
+                <td width="96px" class="calibre80">
+                    <p class="tbl-text">111 Alpha St.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="144px" class="calibre75">
+                    <p class="tbl-text">PROVE Record 5 </p></td>
+                <td width="52px" class="calibre77">
+                    <p class="tbl-text">DEF</p></td>
+                <td width="55px" class="calibre78">
+                    <p class="tbl-text"> </p></td>
+                <td width="60px" class="calibre79">
+                    <p class="tbl-text"> </p></td>
+                <td width="96px" class="calibre80">
+                    <p class="tbl-text">111 Alpha St.</p></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <p class="body-text">When the utility processes the following members, already
+            assigned to provider Jones’ various contracts, DIAMOND increments the
+            following enrollment rule record counts:</p>
+
+        <!--(Table)=========================================================-->
+        <table cellspacing="0" width="552" x-use-null-cells="" class="calibre81">
+
+            <tbody class="calibre11">
+            <tr valign="top" class="calibre12">
+                <td width="84px" class="calibre82">
+                    <p class="tbl-header"><span class="calibre76">Member</span></p></td>
+                <td width="52px" class="calibre77">
+                    <p class="tbl-header"><span class="calibre76">LOB</span></p></td>
+                <td width="55px" class="calibre78">
+                    <p class="tbl-header"><span class="calibre76">IPA</span></p></td>
+                <td width="60px" class="calibre79">
+                    <p class="tbl-header"><span class="calibre76">Panel</span></p></td>
+                <td width="96px" class="calibre80">
+                    <p class="tbl-header"><span class="calibre76">Address</span></p></td>
+                <td width="204px" class="calibre83">
+                    <p class="tbl-header">Increment Enrollment Count On</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="84px" class="calibre82">
+                    <p class="tbl-text">Margaret</p></td>
+                <td width="52px" class="calibre77">
+                    <p class="tbl-text">ABC</p></td>
+                <td width="55px" class="calibre78">
+                    <p class="tbl-text">XYZ</p></td>
+                <td width="60px" class="calibre79">
+                    <p class="tbl-text">M1</p></td>
+                <td width="96px" class="calibre80">
+                    <p class="tbl-text">111 Alpha St.</p></td>
+                <td width="204px" class="calibre83">
+                    <p class="tbl-text">PROVE Record 1</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="84px" class="calibre82">
+                    <p class="tbl-text">Diane</p></td>
+                <td width="52px" class="calibre77">
+                    <p class="tbl-text">ABC</p></td>
+                <td width="55px" class="calibre78">
+                    <p class="tbl-text"> </p></td>
+                <td width="60px" class="calibre79">
+                    <p class="tbl-text"> </p></td>
+                <td width="96px" class="calibre80">
+                    <p class="tbl-text">222 Beta St.</p></td>
+                <td width="204px" class="calibre83">
+                    <p class="tbl-text">PROVE Record 2</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="84px" class="calibre82">
+                    <p class="tbl-text">Bob</p></td>
+                <td width="52px" class="calibre77">
+                    <p class="tbl-text">DEF</p></td>
+                <td width="55px" class="calibre78">
+                    <p class="tbl-text"> </p></td>
+                <td width="60px" class="calibre79">
+                    <p class="tbl-text">P2</p></td>
+                <td width="96px" class="calibre80">
+                    <p class="tbl-text">111 Alpha St.</p></td>
+                <td width="204px" class="calibre83">
+                    <p class="tbl-text">PROVE Record 3</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="84px" class="calibre82">
+                    <p class="tbl-text">John</p></td>
+                <td width="52px" class="calibre77">
+                    <p class="tbl-text">DEF</p></td>
+                <td width="55px" class="calibre78">
+                    <p class="tbl-text">UVW</p></td>
+                <td width="60px" class="calibre79">
+                    <p class="tbl-text"> </p></td>
+                <td width="96px" class="calibre80">
+                    <p class="tbl-text">111 Alpha St.</p></td>
+                <td width="204px" class="calibre83">
+                    <p class="tbl-text">PROVE Record 4</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="84px" class="calibre82">
+                    <p class="tbl-text">Shari</p></td>
+                <td width="52px" class="calibre77">
+                    <p class="tbl-text">DEF</p></td>
+                <td width="55px" class="calibre78">
+                    <p class="tbl-text"> </p></td>
+                <td width="60px" class="calibre79">
+                    <p class="tbl-text"> </p></td>
+                <td width="96px" class="calibre80">
+                    <p class="tbl-text">111 Alpha St.</p></td>
+                <td width="204px" class="calibre83">
+                    <p class="tbl-text">PROVE Record 5</p></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <p class="doc-level"><a name="Provider_Member_Enrollment_Utility_-_PROVE_Record_Layout_HDT_MID"></a>Provider/Member
+            Enrollment Utility – PROVE Record Layout</p>
+
+        <p class="body-text">As shown in the following example, the input values
+            ensure that each member satisfies the generic enrollment rule.</p>
+
+        <!--(Table)=========================================================-->
+        <table cellspacing="0" width="522" x-use-null-cells="" class="calibre84">
+
+            <tbody class="calibre11">
+            <tr valign="top" class="calibre12">
+                <td width="164px" class="calibre85">
+                    <p class="tbl-header">Column Name</p></td>
+                <td width="357px" class="calibre86">
+                    <p class="tbl-header">Input Values</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="164px" class="calibre87">
+                    <p class="tbl-text">seq_enrollment_rule</p></td>
+                <td width="357px" class="calibre88">
+                    <p class="tbl-text">Program generated. The Member
+                        module will store the seq_enrollment_rule associated with the member record.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="164px" class="calibre87">
+                    <p class="tbl-text">seq_prov_id</p></td>
+                <td width="357px" class="calibre88">
+                    <p class="tbl-text">The seq_prov_id for this
+                        provider.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="164px" class="calibre87">
+                    <p class="tbl-text">line_of_business</p></td>
+                <td width="357px" class="calibre88">
+                    <p class="tbl-text">The line_of_business in prov_contract
+                        for this provider.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="164px" class="calibre87">
+                    <p class="tbl-text">panel_id (optional)</p></td>
+                <td width="357px" class="calibre88">
+                    <p class="tbl-text">The panel_id (if it exists)
+                        in prov_contract for this provider.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="164px" class="calibre87">
+                    <p class="tbl-text">ipa_id (optional)</p></td>
+                <td width="357px" class="calibre88">
+                    <p class="tbl-text">The ipa_id (if it exists)
+                        in prov_contract for this provider.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="164px" class="calibre87">
+                    <p class="tbl-text">seq_prov_address</p></td>
+                <td width="357px" class="calibre88">
+                    <p class="tbl-text">There must be at least one
+                        primary address (primary_ address = ‘Y’ in prov_address) for this provider.
+                        The utility will not create an enrollment rule record if the provider
+                        does not have a primary address.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="164px" class="calibre87">
+                    <p class="tbl-text">effective_date</p></td>
+                <td width="357px" class="calibre88">
+                    <p class="tbl-text">The earliest effective date
+                        for this line of business. If there are several contract records for the
+                        same line of business, this date is the earliest date contained on the
+                        records.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="164px" class="calibre87">
+                    <p class="tbl-text">term_date</p></td>
+                <td width="357px" class="calibre88">
+                    <p class="tbl-text">Left blank</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="164px" class="calibre87">
+                    <p class="tbl-text">accept_new_patient</p></td>
+                <td width="357px" class="calibre88">
+                    <p class="tbl-text">‘Y’es</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="164px" class="calibre87">
+                    <p class="tbl-text">accept_existing_patient</p></td>
+                <td width="357px" class="calibre88">
+                    <p class="tbl-text">‘Y’es</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="164px" class="calibre87">
+                    <p class="tbl-text">accepted_gender</p></td>
+                <td width="357px" class="calibre88">
+                    <p class="tbl-text">‘B’oth</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="164px" class="calibre87">
+                    <p class="tbl-text">accepted_age_from</p></td>
+                <td width="357px" class="calibre88">
+                    <p class="tbl-text">‘000’</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="164px" class="calibre87">
+                    <p class="tbl-text">accepted_age_to</p></td>
+                <td width="357px" class="calibre88">
+                    <p class="tbl-text">‘999’</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="164px" class="calibre87">
+                    <p class="tbl-text">enrollment_limit_cnt</p></td>
+                <td width="357px" class="calibre88">
+                    <p class="tbl-text">99999</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="164px" class="calibre87">
+                    <p class="tbl-text">current_enrollment</p></td>
+                <td width="357px" class="calibre88">
+                    <p class="tbl-text">Updated as the Provider Enrollment
+                        Utility (proveutil.sh) is run.<span class="calibre8"> </span>See
+                        DIAMOND Release 5.1 Software Installation Guide.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="164px" class="calibre87">
+                    <p class="tbl-text">override_gender_flg</p></td>
+                <td width="357px" class="calibre88">
+                    <p class="tbl-text">‘Y’ warning/soft edit</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="164px" class="calibre87">
+                    <p class="tbl-text">override_age_flg</p></td>
+                <td width="357px" class="calibre88">
+                    <p class="tbl-text">‘Y’ warning/soft edit</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="164px" class="calibre87">
+                    <p class="tbl-text">override_accpt_new_pat_flg</p></td>
+                <td width="357px" class="calibre88">
+                    <p class="tbl-text">‘Y’ warning/soft edit</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre12">
+                <td width="164px" class="calibre87">
+                    <p class="tbl-text">override_enrol_limit_flg</p></td>
+                <td width="357px" class="calibre88">
+                    <p class="tbl-text">‘Y’ warning/soft edit</p></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <p class="body-text">Each record’s ‘update’ timestamp columns are updated
+            using the date/time on the ‘insert’ timestamp.</p>
+
+
+    </div>
+
+    <div class="calibreEbNav">
+
+        <a href="Building_Provider_Enrollment_Rules_TSK.htm" class="calibreAPrev">previous page
+        </a>
+
+
+        <a href="../bai44-9x3eu.html" class="calibreAHome">start
+        </a>
+
+
+        <a href="Provider_Contracts_How_DIAMOND_Thinks.htm" class="calibreANext">next page
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+</html>

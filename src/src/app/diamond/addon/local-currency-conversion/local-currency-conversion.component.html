@@ -1,0 +1,126 @@
+<!-- Copyright (c) 2021 . All Rights Reserved. -->
+<div class="container-fluid">
+    <div class="card-block">
+
+        <form [formGroup]="localCurrencyConversionForm" novalidate>
+            <h2 class="form-title card-label-admin">Local Currency Conversion</h2>
+            <button (click)="modalClose()" *ngIf="showIcon" aria-label="Close" class="modal-close close"
+                    type="button">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+            <app-pop-up-message #popUpMesssage (buttonclickEvent)="popUpButtonHandler($event)"
+                                [(popupMessage)]="popUpMessage"></app-pop-up-message>
+            <div class="container">
+                <div class="row text-white bg-dark">
+                    <div class="col text-center">
+                        <div class="text-center">
+                            <div class="text-center">{{member}}</div>
+                        </div>
+                        <div class="text-center">{{seqGroupId}}</div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col text-right"><label class="col-form-label text-justify" style="color: rgb(0,0,0);">*Currency</label>
+                    </div>
+                    <div class="col text-center">
+                        <select (change)="changeRelatedDropdown($event)" [fieldLevelSec]="'Currency Code Desc'"
+                                class="form-control"
+                                disabled formControlName="currencyCodeDesc" id="currencyCodeDesc"
+                                name="currencyCodeDesc">
+                            <option *ngFor="let currencyCode of currencyCodeList" [ngValue]="currencyCode.currencyCode"
+                            >{{currencyCode.currencyCodeDesc}}</option>
+                        </select>
+                    </div>
+                    <div class="col text-center">
+                        <select (change)="changeRelatedDropdown($event)" [fieldLevelSec]="'Currency Code'"
+                                class="form-control"
+                                disabled formControlName="currencyCode" id="currencyCode" name="currencyCode">
+                            <option *ngFor="let currencyCode of currencyCodeList" [ngValue]="currencyCode.currencyCode"
+                            >{{currencyCode.currencyCode}}</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+
+                <div class="mt-3">
+                    <fieldset class="currency-table-fieldset mt-3 mb-3">
+                        <table class="table table-striped currency-table">
+                            <thead class="text-center">
+                            <tr>
+                                <th scope="col">Select</th>
+                                <th scope="col">Invoice No.</th>
+                                <th scope="col">Invoice Amount</th>
+                            </tr>
+                            </thead>
+                            <tbody class="text-center">
+                            <ng-container [formGroup]="invoiceForm">
+                                <ng-container formArrayName="invoices">
+                                    <tr *ngFor="let invoice of invoicesarr.controls ; let i = index " [formGroupName]="i">
+
+                                        <td><input formControlName="select"  name="" type="checkbox"></td>
+                                        <th scope="row">{{i + 1}}.</th>
+                                        <td><input (checked)="selectInvoice($event)" formControlName="amount" id=""
+                                                   name="" type="number"></td>
+                                    </tr>
+                                </ng-container>
+                            </ng-container>
+                            <tr>
+                                <td></td>
+                                <td><b>Total Invoice Amt:</b></td>
+                                <td>{{invoiceTotal?invoiceTotal:0}}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <div class="currency-table">
+                            <div class="form-group row">
+                                <div class="col-md-8 form-control-static mb-0 text-center">
+                                    <b>Skip the invoice amount validation?</b>
+                                </div>
+
+                                <!-- RadioButtonGroup with label of Immediate -->
+                                <div class="col-md-2">
+                                    <input formControlName="validation" id="yes" name="validation" type="radio" value="y"/>
+                                    <label class="ml-1 col-form-label" for="yes" i18n>Yes</label>
+                                </div>
+
+                                <!-- RadioButton with label of  Deferred -->
+                                <div class="col-md-2">
+                                    <input formControlName="validation" id="no" name="validation" type="radio" value="n" [defaultChecked]="true"/>
+                                    <label class="ml-1 col-form-label" for="no" i18n>No</label>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                    <div class="row justify-content-md-center">
+                        <button (click)="deleteInvoice()" class="btn btn-primary m-2">Delete Selected</button>
+                        <button (click)="addInovice()" class="btn btn-primary m-2">Add New</button>
+                        <button (click)="saveInvoiceForm()" class="btn btn-primary m-2">Save Changes</button>
+                    </div>
+                </div>
+
+
+
+            <ag-grid-angular #agGrid (cellEditingStopped)="onCellEditingStopped($event)"
+                             (rowClicked)="authOnRowClicked($event.data)"
+                             (rowDataChanged)="authOnReady()"
+                             (rowSelected)="onRowSelectedGrid001($event)"
+                             [gridOptions]="dataGrid001GridOptions"
+                             [showToolPanel]="true"
+                             class="ag-theme-fresh"
+                             rowSelection="multiple"
+                             style="width: 100%; height: 300px;">
+            </ag-grid-angular>
+            <div class="row justify-content-md-center">
+                <button (click)="editCurrency()" class="btn btn-primary m-2">Edit Currency</button>
+                <button (click)="deleteClaimDetail()" class="btn btn-primary m-2">Delete Selected</button>
+                <button (click)="addClaimDetail()" class="btn btn-primary m-2">Add New</button>
+                <button (click)="saveClaimDetail()" class="btn btn-primary m-2">Save Changes</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+            

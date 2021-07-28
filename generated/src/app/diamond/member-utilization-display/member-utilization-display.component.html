@@ -1,0 +1,93 @@
+<!-- Copyright (c) 2021 . All Rights Reserved. -->
+<div class="container-fluid">
+    <div class="card-block">
+        <form [formGroup]="memberUtilizationDisplayForm" novalidate>
+            <h2 class="form-title card-label-admin">Member Utilization Display</h2>
+            <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+            <app-pop-up-message #popUpMesssage (buttonclickEvent)="popUpButtonHandler($event)"  [(popupMessage)] = "popUpMessage"></app-pop-up-message>
+                        
+            <div class="form-group row">
+                <!-- DynamicText with label of Member Name -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('memberName') }">
+                     <label class="col-form-label" for="memberName" i18n>Member Name</label>
+                     <input type="text"  [fieldLevelSec]="''" params]=""  readonly id="memberName" formControlName="memberName" class="form-control"/>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- DynamicText with label of Diamond ID -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('diamondId') }">
+                     <label class="col-form-label" for="diamondId" i18n>Diamond ID</label>
+                     <input type="text"  [fieldLevelSec]="''" params]=""  readonly id="diamondId" formControlName="diamondId" class="form-control"/>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of Subscriber ID -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('subscriberId') }">
+                     <label class="col-form-label" for="subscriberId" i18n>Subscriber ID</label>
+                     <input type="text" id="subscriberId"  [fieldLevelSec]="''" params]=""   class="form-control" formControlName="subscriberId"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('subscriberId')">
+                      {{ formValidation.errorMessage('subscriberId') }}
+                     </small>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of Person Number -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('personNumber') }">
+                     <label class="col-form-label" for="personNumber" i18n>Person Number</label>
+                     <input type="text" id="personNumber"  [fieldLevelSec]="''" params]=""   class="form-control" formControlName="personNumber"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('personNumber')">
+                      {{ formValidation.errorMessage('personNumber') }}
+                     </small>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of Claim Type -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('claimType') }">
+                     <label class="col-form-label" for="claimType" i18n>Claim Type</label>
+                     <input type="text" id="claimType"  [fieldLevelSec]="''" params]=""   class="form-control" formControlName="claimType"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('claimType')">
+                      {{ formValidation.errorMessage('claimType') }}
+                     </small>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- Textbox with label of From Date Of Svc -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('fromDateOfSvc') }">
+                     <label class="col-form-label" for="fromDateOfSvc" i18n>From Date Of Svc</label>
+                     <input type="text" id="fromDateOfSvc"  [fieldLevelSec]="''" params]=""   class="form-control" formControlName="fromDateOfSvc"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('fromDateOfSvc')">
+                      {{ formValidation.errorMessage('fromDateOfSvc') }}
+                     </small>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+                <div class="col-md-2 form-control-static mb-0" i18n>
+                    ^BTOK
+                </div>
+            
+                <div class="col-md-2 form-control-static mb-0" i18n>
+                    ^BTCancel
+                </div>
+            
+            </div>
+            
+            <div class="form-group row">
+            </div>
+        </form>
+    </div>
+</div>

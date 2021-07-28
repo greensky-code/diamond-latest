@@ -1,0 +1,79 @@
+<!-- Copyright (c) 2020 . All Rights Reserved. -->
+<div class="container-fluid">
+    <div class="card-block">
+            <h2 class="form-title card-label-admin">Medical Definitions Lookup</h2>
+            <button type="button" *ngIf="showIcon" class="modal-close close" aria-label="Close" (click)="modalClose()">
+                <span aria-hidden="true">&times;</span>
+            </button>
+
+            <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+            <app-pop-up-message #popUpMesssage (buttonclickEvent)="popUpButtonHandler($event)"
+                                [(popupMessage)]="popUpMessage"></app-pop-up-message>
+
+            <ng-template #loaderTemplate let-loaderValue = "value"  >
+                <div class="row justify-content-center mt-4" *ngIf="loaderValue">
+                    <div class="spinner-border text-success" role="status">
+                        <span class="sr-only">Loading...</span>
+                    </div>
+                </div>
+            </ng-template>
+
+      <ng-container *ngTemplateOutlet="loaderTemplate;context:{value: secProgress }"></ng-container>
+
+
+            <ng-container *appWinSelect="{secWin: secWin, userTemplateId: userTemplateId, secModuleId: moduleId}">
+                <!-- DataGrid with Name of DataGrid -->
+                <!--<button (click)="dataGridGridOptionsExportCsv()">Export</button>-->
+
+                <div class="row mt-3">
+                    <menu-bar [menus]="menu" (onMenuClick)="onMenuItemClick($event)"></menu-bar>
+                </div>
+
+                <form [formGroup]="medicalDefinitionsLookupForm" novalidate *ngIf="!secProgress">
+                <ag-grid-angular #agGrid class="ag-theme-fresh" [gridOptions]="dataGridGridOptions"
+                                 style="width: 100%; height: 300px;"
+                                 [enableSorting]="true"
+                                 [enableFilter]="false"
+                                 [floatingFilter]="false"
+                                 [pagination]="true"
+                                 [showToolPanel]="true"
+                                 (selectionChanged)="onSelectionChanged($event)">
+                </ag-grid-angular>
+
+                <div class="form-group row">
+                    <!-- Textbox with label of Med Def Code -->
+                    <div class="col-md-4"
+                         [ngClass]="{'has-danger': formValidation.isValidField('medDefCode') }">
+                        <label class="col-form-label clr-blue" for="medDefCode" i18n>Med Def
+                            Code</label>
+                        <input type="text" id="medDefCode" class="form-control"
+                               [fieldLevelSec]="'MED_DEF_CODE'" [params]="{secColDetails: secColDetails, isEditState: editMedDef}"
+                               formControlName="medDefCode"/>
+                        <small class="text-danger"
+                               *ngIf="formValidation.isValidField('medDefCode')">
+                            {{ formValidation.errorMessage('medDefCode') }}
+                        </small>
+                    </div>
+
+                </div>
+
+                <div class="form-group row">
+                    <!-- Textbox with label of Description -->
+                    <div class="col-md-8"
+                         [ngClass]="{'has-danger': formValidation.isValidField('description') }">
+                        <label class="col-form-label" for="description" i18n>Description</label>
+                        <input type="text" (keyup)="onDescKeyup($event)" id="description"
+                               [fieldLevelSec]="'DESCRIPTION'" [params]="{secColDetails: secColDetails, isEditState: editMedDef}"
+                               class="form-control" formControlName="description"/>
+                        <small class="text-danger"
+                               *ngIf="formValidation.isValidField('description')">
+                            {{ formValidation.errorMessage('description') }}
+                        </small>
+                    </div>
+                </div>
+                </form>
+            </ng-container>
+    </div>
+</div>
+<ng-keyboard-shortcuts [shortcuts]="shortcuts"></ng-keyboard-shortcuts>
+<ng-keyboard-shortcuts-help [key]="'f2'" [closeKey]="'escape'" [title]="'Hotkeys Help'"></ng-keyboard-shortcuts-help>

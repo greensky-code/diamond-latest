@@ -1,0 +1,131 @@
+<!-- Copyright (c) 2021 . All Rights Reserved. -->
+<div class="container-fluid">
+    <div class="card-block">
+        <form [formGroup]="argusDetailsForm" novalidate>
+            <h2 class="form-title card-label-admin">Argus Details</h2>
+            <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+            <app-pop-up-message #popUpMesssage (buttonclickEvent)="popUpButtonHandler($event)"  [(popupMessage)] = "popUpMessage"></app-pop-up-message>
+                        
+            <div class="form-group row">
+                <!-- RadioButton with label of Argus -->
+                <div class="col-md-2" [ngClass]="{'has-error': displayMessage.argus }">
+                    <label class="col-form-label" for="argus" i18n>Argus</label>
+                    <input type="radio"  formControlName="argus"  [fieldLevelSec]="''" params]=""  value="Argus"/>
+                </div>
+            
+                <!-- RadioButtonGroup with Name of RadioButtonGroup 2220 -->
+                <div class="form-inline">
+                    <!--  with label of Payer -->
+                <div class="" [ngClass]="{'has-error': displayMessage.payer001 }">
+                    <label class="col-form-label" for="payer001" i18n>Payer</label>
+                    <input type="radio" value="Payer"  [fieldLevelSec]="" params]=""  formControlName="radiobuttongroup2220" />
+                </div>
+                </div>
+            
+                <!-- RadioButtonGroup with Name of RadioButtonGroup 3060 -->
+                <div class="form-inline">
+                    <!--  with label of ES -->
+                <div class="" [ngClass]="{'has-error': displayMessage.es001 }">
+                    <label class="col-form-label" for="es001" i18n>ES</label>
+                    <input type="radio" value="ES"  [fieldLevelSec]="" params]=""  formControlName="radiobuttongroup3060" />
+                </div>
+                </div>
+            
+            </div>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+                <div class="col-md-2 form-control-static mb-0" i18n>
+                    Group NumberGroup Name
+                </div>
+            
+                <div class="col-md-2 form-control-static mb-0" i18n>
+                    RxPrimeClientID
+                </div>
+            
+            </div>
+            
+            <div class="form-group row">
+                <!-- DynamicText with Name of DynamicText001 -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('dynamicText001') }">
+                     <label class="col-form-label" for="dynamicText001" i18n>&nbsp;</label>
+                     <input type="text"  [fieldLevelSec]="''" params]=""  readonly id="dynamicText001" formControlName="dynamicText001" class="form-control"/>
+                 </div>
+            
+                <!-- DynamicText with Name of DynamicText002 -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('dynamicText002') }">
+                     <label class="col-form-label" for="dynamicText002" i18n>&nbsp;</label>
+                     <input type="text"  [fieldLevelSec]="''" params]=""  readonly id="dynamicText002" formControlName="dynamicText002" class="form-control"/>
+                 </div>
+            
+                <!-- DynamicText with Name of DynamicText003 -->
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('dynamicText003') }">
+                     <label class="col-form-label" for="dynamicText003" i18n>&nbsp;</label>
+                     <input type="text"  [fieldLevelSec]="''" params]=""  readonly id="dynamicText003" formControlName="dynamicText003" class="form-control"/>
+                 </div>
+            
+            </div>
+            
+            <div class="form-group row">
+            </div>
+            
+                        <!-- DataGrid with Name of DataGrid -->
+                    <button (click)="dataGridGridOptionsExportCsv()">Export</button>
+                    <ag-grid-angular #agGrid class="ag-theme-fresh" [gridOptions]="dataGridGridOptions"
+                    style="width: 100%; height: 300px;"
+                    [enableSorting]="true"
+                    [enableFilter]="true"
+                    [floatingFilter]="true"
+                    [pagination]="true"
+                    [showToolPanel]="true">
+                    </ag-grid-angular>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+                <!-- Button with label of Save Changes -->
+                <div class="col-md-2">
+                    <button type="button" id="saveChanges" name="saveChanges" class="btn btn-small btn-primary">Save Changes</button>
+                
+                
+                </div>
+            
+                <!-- Button with label of Reset All -->
+                <div class="col-md-2">
+                    <button type="button" id="resetAll" name="resetAll" class="btn btn-small btn-primary">Reset All</button>
+                
+                
+                </div>
+            
+            </div>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+            </div>
+            
+            <div class="form-group row">
+                <!-- Button with label of Close -->
+                <div class="col-md-2">
+                    <button type="button" id="close" name="close" class="btn btn-small btn-primary">Close</button>
+                
+                
+                </div>
+            
+            </div>
+        </form>
+    </div>
+</div>

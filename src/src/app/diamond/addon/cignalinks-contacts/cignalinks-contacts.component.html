@@ -1,0 +1,67 @@
+<!-- Copyright (c) 2021 . All Rights Reserved. -->
+<div class="container-fluid">
+    <div class="card-block">
+        <h2 class="form-title card-label-admin">CignaLink Contacts</h2>
+        <button type="button" class="close" aria-label="Close"
+                (click)="ngbActiveModal.dismiss()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+
+        <div class="form-group row bg-dark text-white text-center">
+            <div class="col-md-4 form-control-static mb-0 font-weight-bold " i18n>
+                GRP
+            </div>
+            <div class="col-md-4  form-control-static mb-0 font-weight-bold" i18n>
+                ARE
+                <br>
+                <span class=" pt-1 required-field-label "> {{groupName}}</span>
+            </div>
+
+            <div class="col-md-4 form-control-static mb-0 font-weight-bold" i18n>
+                General Motors
+                <br>
+                <span class="col-md pt-1 required-field-label "> {{groupNumber}}</span>
+            </div>
+        </div>
+
+
+        <nav ngbNav #nav="ngbNav" class="nav-tabs" [(activeId)]="activeTab">
+            <ng-container [ngbNavItem]="1">
+                <a ngbNavLink>Address</a>
+                <ng-template ngbNavContent>
+                    <cigna-links-group-address [seqAddressId]="seqAddressId" [entityType]="entityType"
+                                               [seqEntityId]="seqEntityId" [groupName]="groupName" [seqGroupId]="seqGroupId"
+                                               [groupNumber]="groupNumber"></cigna-links-group-address>
+                </ng-template>
+            </ng-container>
+
+            <ng-container [ngbNavItem]="2">
+                <a ngbNavLink>Contacts</a>
+                <ng-template ngbNavContent>
+
+                    <adon-contact  [seqEntityId]="seqEntityId"  [groupName]="groupName" [groupNumber]="groupNumber"></adon-contact>
+
+
+                </ng-template>
+            </ng-container>
+            <ng-container [ngbNavItem]="3">
+                <a ngbNavLink>Plan Details</a>
+                <ng-template ngbNavContent>
+                    <contact-plan-details [seqAddressId]="seqAddressId" [entityType]="entityType"
+                                          [groupName]="groupName" [seqGroupId]="seqGroupId"
+                                          [groupNumber]="groupNumber"></contact-plan-details>
+                </ng-template>
+            </ng-container>
+
+
+        </nav>
+
+        <div [ngbNavOutlet]="nav" class="mt-2"></div>
+
+
+    </div>
+</div>
+
+
+
+

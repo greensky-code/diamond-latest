@@ -1,0 +1,270 @@
+<!-- Copyright (c) 2020 . All Rights Reserved. -->
+<div class="container-fluid">
+    <div class="card-block">
+            <div class="row form-title">
+                <h2 class="col-md-6  card-label-admin">Member Conditions</h2>
+                <div class="col-md-2"><b class="readonly-label">View Only</b></div>
+              </div>
+            <button type="button" *ngIf="showIcon" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+            <app-pop-up-message #popUpMesssage (buttonclickEvent)="popUpButtonHandler($event)"  [(popupMessage)] = "popUpMessage"></app-pop-up-message>
+            <div class="row">
+                <menu-bar [menus]="menu" (onMenuClick)="onMenuItemClick($event)"></menu-bar>
+            </div>
+
+        <ng-template #loaderTemplate let-loaderValue="value">
+            <div class="row justify-content-center mt-4" *ngIf="loaderValue">
+                <div class="spinner-border text-success" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>
+            </div>
+        </ng-template>
+
+        <ng-container *ngTemplateOutlet="loaderTemplate;context:{value: secProgress }"></ng-container>
+
+        <ng-container
+            *appWinSelect="{secWin: secWin, userTemplateId: userTemplateId, secModuleId: memberModuleId}">
+
+
+        <form [formGroup]="memberConditionsForm" novalidate *ngIf="!secProgress">
+            <div class="form-group row">
+                <!-- Textbox with label of DIAMOND ID -->
+                 <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('diamondId') }">
+                     <label class="col-form-label" for="diamondId" i18n>DIAMOND ID</label>
+                     <input type="text" id="diamondId"  class="form-control" formControlName="diamondId"
+                            [fieldLevelSec]="'DIAMOND_ID'" [params]="{secColDetails: secColDetails, isEditState: false}"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('diamondId')">
+                      {{ formValidation.errorMessage('diamondId') }}
+                     </small>
+                 </div>
+            
+                <!-- Textbox with label of Subscriber ID -->
+                 <div class="col-md-6" [ngClass]="{'has-danger': formValidation.isValidField('subscriberId') }">
+                     <label class="col-form-label" for="subscriberId" i18n>Subscriber ID</label>
+                     <input type="text" id="subscriberId"  class="form-control" formControlName="subscriberId"
+                            (keydown)="onLookupFieldChange($event)"
+                            [fieldLevelSec]="'SUBSCRIBER_ID'" [params]="{secColDetails: secColDetails, isEditState: false}"/>
+                      <small class="text-danger" *ngIf="formValidation.isValidField('subscriberId')">
+                      {{ formValidation.errorMessage('subscriberId') }}
+                     </small>
+                 </div>
+            
+            </div>
+           
+                        <!-- DataGrid with Name of DataGrid -->
+                    <ag-grid-angular #agGrid class="ag-theme-fresh" [gridOptions]="dataGridGridOptions"
+                    style="width: 100%; height: 300px;"
+                    [enableSorting]="true"
+                    [enableFilter]="false"
+                    [floatingFilter]="false"
+                    [pagination]="true"
+                    [showToolPanel]="true"
+                    (rowSelected)="grid1SelectionChange()"
+                    >
+                    </ag-grid-angular>
+           
+            <br>
+            <ag-grid-angular #agGrid class="ag-theme-fresh" [gridOptions]="dataGrid002GridOptions"
+            style="width: 100%; height: 300px;"
+            [enableSorting]="true"
+            [enableFilter]="false"
+            [floatingFilter]="false"
+            [pagination]="true"
+            [showToolPanel]="true">
+            </ag-grid-angular>
+            <!-- <div class="form-group row mt-2">
+                <div class="col-md-2 form-control-static mb-0" i18n>
+                    Eff Date
+                </div>
+            
+                <div class="col-md-2 form-control-static mb-0" i18n>
+                    Term Date
+                </div>
+            
+                <div class="col-md-2 form-control-static mb-0" i18n>
+                    Diag Type
+                </div>
+            
+                <div class="col-md-2 form-control-static mb-0" i18n>
+                    From Value
+                </div>
+            
+                <div class="col-md-2 form-control-static mb-0" i18n>
+                    Thru Value
+                </div>
+            
+                <div class="col-md-2 form-control-static mb-0" i18n>
+                    Condition Type
+                </div>
+            
+                <div class="col-md-2 form-control-static mb-0" i18n>
+                    Action
+                </div>
+            
+                <div class="col-md-2 form-control-static mb-0" i18n>
+                    Reason
+                </div>
+            
+            </div> -->
+            
+           
+            
+            <!--<div class="form-group row">
+                &lt;!&ndash; DynamicText with Name of DynamicText001 &ndash;&gt;
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('dynamicText001') }">
+                     <label class="col-form-label" for="dynamicText001" i18n>&nbsp;</label>
+                     <input type="text" readonly id="dynamicText001" formControlName="dynamicText001" class="form-control"/>
+                 </div>
+            
+                &lt;!&ndash; DynamicText with Name of DynamicText002 &ndash;&gt;
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('dynamicText002') }">
+                     <label class="col-form-label" for="dynamicText002" i18n>&nbsp;</label>
+                     <input type="text" readonly id="dynamicText002" formControlName="dynamicText002" class="form-control"/>
+                 </div>
+            
+                &lt;!&ndash; DynamicText with Name of DynamicText003 &ndash;&gt;
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('dynamicText003') }">
+                     <label class="col-form-label" for="dynamicText003" i18n>&nbsp;</label>
+                     <input type="text" readonly id="dynamicText003" formControlName="dynamicText003" class="form-control"/>
+                 </div>
+            
+                &lt;!&ndash; DynamicText with Name of DynamicText004 &ndash;&gt;
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('dynamicText004') }">
+                     <label class="col-form-label" for="dynamicText004" i18n>&nbsp;</label>
+                     <input type="text" readonly id="dynamicText004" formControlName="dynamicText004" class="form-control"/>
+                 </div>
+            
+                &lt;!&ndash; DynamicText with Name of DynamicText005 &ndash;&gt;
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('dynamicText005') }">
+                     <label class="col-form-label" for="dynamicText005" i18n>&nbsp;</label>
+                     <input type="text" readonly id="dynamicText005" formControlName="dynamicText005" class="form-control"/>
+                 </div>
+            
+                &lt;!&ndash; DynamicText with Name of DynamicText006 &ndash;&gt;
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('dynamicText006') }">
+                     <label class="col-form-label" for="dynamicText006" i18n>&nbsp;</label>
+                     <input type="text" readonly id="dynamicText006" formControlName="dynamicText006" class="form-control"/>
+                 </div>
+            
+                &lt;!&ndash; DynamicText with Name of DynamicText007 &ndash;&gt;
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('dynamicText007') }">
+                     <label class="col-form-label" for="dynamicText007" i18n>&nbsp;</label>
+                     <input type="text" readonly id="dynamicText007" formControlName="dynamicText007" class="form-control"/>
+                 </div>
+            
+                &lt;!&ndash; DynamicText with Name of DynamicText008 &ndash;&gt;
+                 <div class="col-md-2" [ngClass]="{'has-danger': formValidation.isValidField('dynamicText008') }">
+                     <label class="col-form-label" for="dynamicText008" i18n>&nbsp;</label>
+                     <input type="text" readonly id="dynamicText008" formControlName="dynamicText008" class="form-control"/>
+                 </div>
+            </div>-->
+            <h5 class="clr-blue">Specifications</h5>
+            <div class="form-group row">
+                <!-- Textbox with label of Short Desc -->
+                <div class="col-md-4">
+                    <label class="col-form-label clr-blue" for="effectiveDate" i18n>Effective Date</label>
+                    <input type="text" id="effectiveDate" class="form-control"
+                           [fieldLevelSec]="'EFFECTIVE_DATE'" [params]="{secColDetails: secColDetails, isEditState: false}"/>
+                </div>
+                <div class="col-md-4">
+                    <label class="col-form-label clr-blue" for="diagnosisType" i18n>Diagnosis Type</label>
+                    <input type="text" id="diagnosisType" class="form-control"
+                           [fieldLevelSec]="'DIAGNOSIS_TYPE'" [params]="{secColDetails: secColDetails, isEditState: false}"/>
+                </div>
+                <div class="col-md-4">
+                    <label class="col-form-label" for="conditionType" i18n>Condition Type</label>
+                    <input type="text" id="conditionType" class="form-control"
+                           [fieldLevelSec]="'CONDITION_TYPE'" [params]="{secColDetails: secColDetails, isEditState: false}"/>
+                </div>
+            </div>
+            <div class="form-group row">
+                <!-- Textbox with label of Short Desc -->
+                <div class="col-md-4">
+                    <label class="col-form-label clr-blue" for="termDate" i18n>Term Date</label>
+                    <input type="text" id="termDate" class="form-control"
+                           [fieldLevelSec]="'TERM_DATE'" [params]="{secColDetails: secColDetails, isEditState: false}"/>
+                </div>
+                <div class="col-md-4">
+                    <label class="col-form-label clr-blue" for="fromValue" i18n>From Value</label>
+                    <input type="text" id="fromValue" class="form-control"
+                           [fieldLevelSec]="'FROM_VALUE'" [params]="{secColDetails: secColDetails, isEditState: false}"/>
+                </div>
+                <div class="col-md-4">
+                    <label class="col-form-label" for="claimAction" i18n>Claim Action</label>
+                    <input type="text" id="claimAction" class="form-control"
+                           [fieldLevelSec]="'CLAIM_ACTION'" [params]="{secColDetails: secColDetails, isEditState: false}"/>
+                </div>
+            </div>
+            <div class="form-group row">
+                <!-- Textbox with label of Short Desc -->
+                <div class="col-md-4">
+                    <label class="col-form-label" for="termReason" i18n>Term Reason</label>
+                    <input type="text" id="termReason" class="form-control"
+                           [fieldLevelSec]="'TERM_REASON'" [params]="{secColDetails: secColDetails, isEditState: false}"/>
+                </div>
+                <div class="col-md-4">
+                    <label class="col-form-label" for="thruValue" i18n>Thru Value</label>
+                    <input type="text" id="thruValue" class="form-control"
+                           [fieldLevelSec]="'THRU_VALUE'" [params]="{secColDetails: secColDetails, isEditState: false}"/>
+                </div>
+                <div class="col-md-4">
+                    <label class="col-form-label" for="reason" i18n>Reason</label>
+                    <input type="text" id="reason" class="form-control"
+                           [fieldLevelSec]="'REASON'" [params]="{secColDetails: secColDetails, isEditState: false}"/>
+                </div>
+            </div>
+            <h5>User Defined Fields</h5>
+            <div class="form-group row">
+                <div class="col-md-6">
+                    <label class="col-form-label" for="userDefined1" i18n>User Defined 1</label>
+                    <input type="text" id="userDefined1" class="form-control"
+                           [fieldLevelSec]="'USER_DEFINED_1'" [params]="{secColDetails: secColDetails, isEditState: false}"/>
+                </div>
+                <div class="col-md-6">
+                    <label class="col-form-label" for="userDate1" i18n>User Date 1</label>
+                    <input type="text" id="userDate1" class="form-control"
+                           [fieldLevelSec]="'USER_DATE_1'" [params]="{secColDetails: secColDetails, isEditState: false}"/>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-6">
+                    <label class="col-form-label" for="userDefined2" i18n>User Defined 2</label>
+                    <input type="text" id="userDefined2" class="form-control"
+                           [fieldLevelSec]="'USER_DEFINED_2'" [params]="{secColDetails: secColDetails, isEditState: false}"/>
+                </div>
+                <div class="col-md-6">
+                    <label class="col-form-label" for="userDate2" i18n>User Date 2</label>
+                    <input type="text" id="userDate2" class="form-control"
+                           [fieldLevelSec]="'USER_DATE_2'" [params]="{secColDetails: secColDetails, isEditState: false}"/>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-6">
+                    <label class="col-form-label" for="userDefined3" i18n>User Defined 3</label>
+                    <input type="text" id="userDefined3" class="form-control"
+                           [fieldLevelSec]="'USER_DEFINED_3'" [params]="{secColDetails: secColDetails, isEditState: false}"/>
+                </div>
+                <div class="col-md-6">
+                    <label class="col-form-label" for="userDate3" i18n>User Date 3</label>
+                    <input type="text" id="userDate3" class="form-control"
+                           [fieldLevelSec]="'USER_DATE_3'" [params]="{secColDetails: secColDetails, isEditState: false}"/>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-6">
+                    <label class="col-form-label" for="userDefined4" i18n>User Defined 4</label>
+                    <input type="text" id="userDefined4" class="form-control"
+                           [fieldLevelSec]="'USER_DEFINED_4'" [params]="{secColDetails: secColDetails, isEditState: false}"/>
+                </div>
+                <div class="col-md-6">
+                    <label class="col-form-label" for="userDate4" i18n>User Date 4</label>
+                    <input type="text" id="userDate4" class="form-control"
+                           [fieldLevelSec]="'USER_DATE_4'" [params]="{secColDetails: secColDetails, isEditState: false}"/>
+                </div>
+            </div>
+        </form>
+        </ng-container>
+    </div>
+</div>

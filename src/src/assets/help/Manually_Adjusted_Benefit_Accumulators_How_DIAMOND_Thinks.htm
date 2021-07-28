@@ -1,0 +1,387 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+    <title>Manually Adjusted Benefit Accumulators, How DIAMOND Thinks</title>
+    <!--(Meta)==========================================================-->
+    <meta name="copyright"
+          value="© Copyright 2002 Health Systems Design Corp., a wholly owned subsidiary of Perot Systems Corporation. All rights reserved"/>
+    <meta content="RoboHELP by eHelp Corporation - www.ehelp.com" name="generator"/>
+    <meta content="0.1" name="generator-major-version"/>
+    <meta content="1" name="generator-minor-version"/>
+    <meta content="kadov" name="filetype"/>
+    <meta content="1" name="filetype-version"/>
+    <meta content="1" name="page-count"/>
+    <meta content="1298" name="layout-height"/>
+    <meta content="956" name="layout-width"/>
+    <!--(Links)=========================================================-->
+    <!--(Scripts)=======================================================-->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+</head>
+<body>
+
+<div class="calibreMeta">
+    <div class="calibreMetaTitle">
+
+
+        <h1>
+            <a href="../ib0gc-jzzjl.html">DIAMOND 950 Help
+            </a>
+        </h1>
+
+
+    </div>
+    <div class="calibreMetaAuthor">
+        Unknown
+
+    </div>
+</div>
+
+<div class="calibreMain">
+
+    <div class="calibreEbookContent">
+
+        <div class="calibreEbNavTop">
+
+            <a href="Display_Member_Benefits_How_DIAMOND_Thinks.htm" class="calibreAPrev">previous page
+            </a>
+
+
+            <a href="Coordination_of_Benefits_Overview.htm" class="calibreANext">next page
+            </a>
+
+        </div>
+
+
+        <h4 class="calibre1">Manually Adjusted Benefit Accumulators, How DIAMOND Thinks</h4>
+
+        <!--(Table)=========================================================-->
+        <table cellspacing="0" width="652" x-use-null-cells="" class="calibre172">
+
+            <tbody class="">
+            <tr valign="top" class="">
+                <td width="54.141%" class="">
+                    <p class="map-links"><a
+                            href="Manually_Adjusted_Benefit_Accumulators_How_DIAMOND_Thinks.htm#Manually_Adjusted_Benefit_Accumulators_When_Is_ACCUM_Necessary_MID"><img
+                            alt="image\assets/help/MidTopic_shg.gif" border="0" height="10" src="assets/help/MidTopic_shg.gif" width="18"
+                            class=""/></a> When Is ACCUM Necessary?</p></td>
+                <td width="45.859%" class="calibre28">
+                    <p class="map-links"><a
+                            href="Manually_Adjusted_Benefit_Accumulators_How_DIAMOND_Thinks.htm#Manually_Adjusted_Benefit_Accumulators_Days_Benefit_Limits_MID"><img
+                            alt="image\assets/help/MidTopic_shg.gif" border="0" height="10" src="assets/help/MidTopic_shg.gif" width="18"
+                            class=""/></a> "Days" Benefit Limits</p></td>
+            </tr>
+
+            <tr valign="top" class="">
+                <td width="54.141%" class="">
+                    <p class="map-links"><a
+                            href="Manually_Adjusted_Benefit_Accumulators_How_DIAMOND_Thinks.htm#Manually_Adjusted_Benefit_Accumulators_Timing_of_Using_ACCUM_and_Subsequent_Claims_Processing_MID"><img
+                            alt="image\assets/help/MidTopic_shg.gif" border="0" height="10" src="assets/help/MidTopic_shg.gif" width="18"
+                            class=""/></a> Timing of Using ACCUM and Subsequent Claims Processing</p></td>
+                <td width="45.859%" class="">
+                    <p class="map-links"><a
+                            href="#Manually Adjusted Benefit Accumulators, How DIAMOND Thinks, Compare or Ignore Dates MID"><img
+                            alt="image\assets/help/MidTopic_shg.gif" border="0" height="10" src="assets/help/MidTopic_shg.gif" width="18"
+                            class=""/></a> Compare or Ignore Dates</p></td>
+            </tr>
+
+            <tr valign="top" class="">
+                <td colspan="1" rowspan="1" width="54.141%" class="">
+                    <p class="map-links"><a
+                            href="Manually_Adjusted_Benefit_Accumulators_How_DIAMOND_Thinks.htm#Manually_Adjusted_Benefit_Accumulators_ACCUM_and_ADJUD_Processing_Codes_MID"><img
+                            alt="image\assets/help/MidTopic_shg.gif" border="0" height="10" src="assets/help/MidTopic_shg.gif" width="18"
+                            class=""/></a>ACCUM and ADJUD Processing Codes</p></td>
+                <td colspan="1" rowspan="1" width="45.859%" class="calibre28">
+                    <p class="map-links"> </p></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <p class="body-text">Benefits are calculated automatically. However, there
+            are occasions when to-date benefit accumulators must be entered so that
+            going forward, automatic adjudication is accurate. </p>
+
+        <p class="body-text">Use keyword ACCUM (Benefit Accumulator Base Values)
+            to manually enter one-time credits toward a member’s benefit limit in
+            cases where those credits are not carried forward automatically either
+            because of how the benefit packages are defined or because those credits
+            were incurred outside the system.</p>
+
+        <p class="doc-level"><a name="Manually_Adjusted_Benefit_Accumulators_When_Is_ACCUM_Necessary_MID"></a>When
+            Is ACCUM Necessary?</p>
+
+        <p class="body-text">For a current member, expended benefit amounts will
+            carryover from one benefit package to another only if the following two
+            conditions apply:</p>
+
+        <ul class="calibre15">
+
+            <li class="kadov-p-cbullet-text-block"><p class="bullet-text-block">The
+                same benefit rule ID (BRULE) is used in both the old and the new benefit
+                package</p></li>
+
+            <li class="kadov-p-cbullet-text-block"><p class="bullet-text-block">The
+                benefit rule has been flagged to apply to all groups (BRULE — All Groups?)</p></li>
+        </ul>
+
+        <p class="body-text">For example, a member changes from benefit package OK10P
+            to OK15P, and both of these benefit packages contain the lifetime maximum
+            benefit rule ID — LIFETIME (flagged to apply to all groups). All accumulated
+            claims history (including expended benefit amounts) will be carried over
+            from the old package to the new package. However, if the member’s old
+            benefit package has a $250 deductible (benefit rule ID — DED250) and the
+            member’s new benefit package has a $500 deductible (benefit rule ID —
+            DED500), accumulated deductible amounts paid by the member will not be
+            carried over to the new benefit package.</p>
+
+        <p class="body-text">When you key a member’s base values (expended benefit
+            amounts) directly into the accumulator file there are no associated claim
+            detail lines.</p>
+
+        <p class="doc-level"><a
+                name="Manually_Adjusted_Benefit_Accumulators_Timing_of_Using_ACCUM_and_Subsequent_Claims_Processing_MID"></a>Timing
+            of Using ACCUM and Subsequent Claims Processing</p>
+
+        <p class="body-text">You can use keyword ACCUM to create an independent,
+            one-time carry over toward a member’s new benefit package. The ACCUM records
+            are not affected by claims entries. For example:</p>
+
+        <ol class="calibre29">
+
+            <li class="kadov-p-cbody-text"><p class="body-text2">A member changes benefit
+                packages effective 4/1/96.</p></li>
+
+            <li class="kadov-p-cbody-text"><p class="body-text2">On 4/15/96, the member
+                is credited for a previously expended deductible under their old benefit
+                package using keyword ACCUM.</p></li>
+
+            <li class="kadov-p-cbody-text"><p class="body-text2">On 5/1/96, claims with
+                dates of service prior to 4/1/96 are processed.</p></li>
+
+            <li class="kadov-p-cbody-text"><p class="body-text2">DIAMOND continues to
+                take a deductible for the claims entered on 5/1/96 (up to the deductible
+                limit) based on the old benefit package (effective prior to 4/1/96).</p></li>
+
+            <li class="kadov-p-cbody-text"><p class="body-text2"><span class="calibre30">DIAMOND</span>
+                does not adjust the accumulator file credits entered on 4/15/96 for the
+                amounts deducted as a result of processing the claims based on the old
+                benefit package.</p></li>
+        </ol>
+
+        <p class="doc-level"><a name="Manually_Adjusted_Benefit_Accumulators_ACCUM_and_ADJUD_Processing_Codes_MID"></a>ACCUM
+            and ADJUD Processing Codes</p>
+
+        <p class="body-text">When you add records in keyword ACCUM, DIAMOND assigns
+            a processing code ACCUM to each. You can only change accumulator file
+            records with processing code ACCUM. You cannot change accumulator file
+            records that resulted from the claims adjudication process, which have
+            a DIAMOND assigned processing codes of ADJUD (adjudicated).</p>
+
+        <p class="doc-level"><a name="Manually_Adjusted_Benefit_Accumulators_Days_Benefit_Limits_MID"></a>"Days"
+            Benefit Limits</p>
+
+        <p class="body-text">For benefit rules accumulating dollars or quantities
+            towards limits, usually only one benefits accumulator file record (with
+            the appropriate Base Amt or Base Qty) is required per member, per benefit
+            package, per benefit rule. An exception occurs when creating a benefits
+            accumulator file record (using keyword ACCUM) for a Limits benefit rule
+            of Limit Type Days.</p>
+
+        <p class="body-text">Here, with the limit expressed in "days,"
+            multiple records are necessary when reflecting an expended benefit of
+            two or more days. This is because when adjudicating this type of limit
+            DIAMOND does not use the Base Qty field on the corresponding benefit accumulator
+            records. Instead, DIAMOND counts each unique occurrence of a claim detail
+            date of service on the corresponding benefits accumulator records as one
+            day. Thus you may need to create multiple benefits accumulator records
+            when reflecting an expended benefit of two or more days (that is, two
+            or more unique dates of service).</p>
+
+        <p class="body-text">For example, the following claim benefit accumulator
+            file records might be created during claims adjudication (one for each
+            claim detail line):</p>
+
+        <!--(Table)=========================================================-->
+        <table cellspacing="0" width="480" x-use-null-cells="" class="calibre172">
+
+            <tbody class="">
+            <tr valign="top" class="">
+                <td width="134px" class="">
+                    <p class="tbl-header">Rule ID</p></td>
+                <td width="81px" class="">
+                    <p class="tbl-header">Limit</p></td>
+                <td width="90px" class="">
+                    <p class="tbl-header">Date</p></td>
+                <td width="84px" class="">
+                    <p class="tbl-header">Base Amt</p></td>
+                <td width="90px" class="">
+                    <p class="tbl-header">Base Qty</p></td>
+            </tr>
+
+            <tr valign="top" class="">
+                <td width="134px" class="">
+                    <p class="tbl-r-label">PHYSTHER</p></td>
+                <td width="81px" class="">
+                    <p class="tbl-text">20</p></td>
+                <td width="90px" class="">
+                    <p class="tbl-text">2/1/96</p></td>
+                <td width="84px" class="">
+                    <p class="tbl-text"> </p></td>
+                <td width="90px" class="">
+                    <p class="tbl-text"> </p></td>
+            </tr>
+
+            <tr valign="top" class="">
+                <td width="134px" class="">
+                    <p class="tbl-r-label">PHYSTHER</p></td>
+                <td width="81px" class="">
+                    <p class="tbl-text">20</p></td>
+                <td width="90px" class="">
+                    <p class="tbl-text">2/2/96</p></td>
+                <td width="84px" class="">
+                    <p class="tbl-text"> </p></td>
+                <td width="90px" class="">
+                    <p class="tbl-text"> </p></td>
+            </tr>
+
+            <tr valign="top" class="">
+                <td width="134px" class="">
+                    <p class="tbl-r-label">PHYSTHER</p></td>
+                <td width="81px" class="">
+                    <p class="tbl-text">20</p></td>
+                <td width="90px" class="">
+                    <p class="tbl-text">2/2/96</p></td>
+                <td width="84px" class="">
+                    <p class="tbl-text"> </p></td>
+                <td width="90px" class="">
+                    <p class="tbl-text"> </p></td>
+            </tr>
+
+            <tr valign="top" class="">
+                <td width="134px" class="">
+                    <p class="tbl-r-label">PHYSTHER</p></td>
+                <td width="81px" class="">
+                    <p class="tbl-text">20</p></td>
+                <td width="90px" class="">
+                    <p class="tbl-text">2/3/96</p></td>
+                <td width="84px" class="">
+                    <p class="tbl-text"> </p></td>
+                <td width="90px" class="">
+                    <p class="tbl-text"> </p></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <p class="body-text">DIAMOND adjudication counts the above example as three
+            days, the number of unique dates of service. (Note that although there
+            are four detail lines, the second and third lines share the same date
+            of service. Thus there are only three unique dates of service for the
+            four lines.)</p>
+
+        <p class="body-text">To enter the above example as an expended benefit using
+            ACCUM, three separate entries are necessary—one for each unique<span class="calibre20">
+ </span>date of service:</p>
+
+        <!--(Table)=========================================================-->
+        <table cellspacing="0" width="500" x-use-null-cells="" class="calibre172">
+
+            <tbody class="">
+            <tr valign="top" class="">
+                <td width="138px" class="">
+                    <p class="tbl-header">Rule ID</p></td>
+                <td width="78px" class="">
+                    <p class="tbl-header">Date</p></td>
+                <td width="90px" class="">
+                    <p class="tbl-header">Base Qty</p></td>
+            </tr>
+
+            <tr valign="top" class="">
+                <td width="138px" class="">
+                    <p class="tbl-r-label">PHYSTHER</p></td>
+                <td width="78px" class="">
+                    <p class="tbl-text">2/1/96</p></td>
+                <td width="90px" class="">
+                    <p class="tbl-text"> </p></td>
+            </tr>
+
+            <tr valign="top" class="">
+                <td width="138px" class="">
+                    <p class="tbl-r-label">PHYSTHER</p></td>
+                <td width="78px" class="">
+                    <p class="tbl-text">2/2/96</p></td>
+                <td width="90px" class="">
+                    <p class="tbl-text"> </p></td>
+            </tr>
+
+            <tr valign="top" class="">
+                <td width="138px" class="">
+                    <p class="tbl-r-label">PHYSTHER</p></td>
+                <td width="78px" class="">
+                    <p class="tbl-text">2/3/96</p></td>
+                <td width="90px" class="">
+                    <p class="tbl-text"> </p></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <p class="body-text">When you use keyword ACCUM to create an entry for a
+            Limits benefit rule of Limit Type Days, you must leave Base Qty blank.</p>
+
+        <p class="doc-level"><a
+                name="Manually Adjusted Benefit Accumulators, How DIAMOND Thinks, Compare or Ignore Dates MID"></a>Compare
+            or Ignore Dates</p>
+
+        <p class="body-text">In ACCUM you cannot enter dates that are prior to the
+            member's eligibility date, therefore, you may run into a situation where
+            the date on an ACCUM record is the same as the date of service for a claim
+            record. When the Rule Type=Limit and the Limit Type=Days, or when the
+            Rule Type=Full Coverage and the Full Coverage Type=Days you will need
+            to select a value for the Compare Dates field on the ACCUM screen. This
+            field determines if the DIAMOND system compares the dates of the ACCUM
+            record against dates on claims or if the DIAMOND system ignores the dates
+            on the ACCUM records and counts each as 1 day regardless of whether or
+            not the date may be the same as a claim date. </p>
+
+        <p class="doc-level1">Compare Dates</p>
+
+        <p class="body-text">When you select the Compare Dates option on an ACCUM
+            record, the date entered in ACCUM is compared to the date for each claim.
+            If the dates are the same, only 1 day will be accumulated. </p>
+
+        <p class="doc-level1">Ignore Dates</p>
+
+        <p class="body-text">When you select the Ignore Dates option on an ACCUM
+            record, the record counts as one day even if a claim is submitted for
+            the same date. In this case where you have an ACCUM record and a Claim
+            that have the same date, 2 days will be counted. </p>
+
+        <p class="doc-level1">DSPBN</p>
+
+        <p class="body-text">DSPBN indicates if an ACCUM record was marked as Compare
+            Dates or Ignore Dates.</p>
+
+
+    </div>
+
+
+
+
+    <div class="calibreEbNav">
+
+        <a href="Display_Member_Benefits_How_DIAMOND_Thinks.htm" class="calibreAPrev">previous page
+        </a>
+
+
+        <a href="../ib0gc-jzzjl.html" class="calibreAHome">start
+        </a>
+
+
+        <a href="Coordination_of_Benefits_Overview.htm" class="calibreANext">next page
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+</html>

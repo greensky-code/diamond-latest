@@ -1,0 +1,16 @@
+/* Copyright (c) 2020 . All Rights Reserved. */
+
+export class SystemCodeToken {
+  systemCode: string;
+  systemCodeType: string;
+  languageId: number;
+  systemCodeDesc1: string;
+  systemCodeDesc2: string;
+  securityCode: string;
+  insertDatetime: Date;
+  insertUser: string;
+  insertProcess: string;
+  updateDatetime: Date;
+  updateUser: string;
+  updateProcess: string;
+}

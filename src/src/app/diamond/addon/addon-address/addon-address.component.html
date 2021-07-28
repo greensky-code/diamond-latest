@@ -1,0 +1,382 @@
+<!-- Copyright (c) 2021 . All Rights Reserved. -->
+<div class="container-fluid">
+    <div class="card-block">
+        <div class="card-block">
+            <form [formGroup]="cignalinksGroupAddressForm" novalidate>
+
+                <app-alert-message [alertMessage]="alertMessage"></app-alert-message>
+                <app-pop-up-message #popUpMesssage (buttonclickEvent)="popUpButtonHandler($event)"
+                                    [popupMessage]="popUpMessage"></app-pop-up-message>
+                 
+                <div class="form-group row d-none">
+                    <!-- todo need to check the partner name fetch details    so made d-none for now-->
+                    <div class="col-md-4 form-control-static mb-0" i18n>
+                        Cigna Links Country:
+                    </div>
+
+                    <!-- DynamicText with Name of DynamicText -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': this.isFormSubmitted || formValidation.isValidField('dynamicText') }">
+                        <label class="col-form-label" for="dynamicText" i18n>&nbsp;</label>
+                        <input type="text" [fieldLevelSec]="''" [params]="" id="dynamicText"
+                               formControlName="dynamicText" class="form-control"/>
+                    </div>
+                    <!-- DynamicText with label of Partner Name -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': this.isFormSubmitted || formValidation.isValidField('partnerName') }">
+                        <label class="col-form-label" for="partnerName" i18n>Partner Name</label>
+                        <input type="text" [fieldLevelSec]="''" [params]="" id="partnerName"
+                               formControlName="partnerName" class="form-control"/>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <!-- DynamicText with label of Entity Type -->
+
+                    <div class="col-md-4">
+                        <label for="entityType" class="required-field-label" i18n> Entity Type </label>
+                        <div class="selectContainer "
+                             [ngClass]="{'required-field':formValidation.isValidField('entityType') }">
+
+                            <div class="input-group" #myDrop="ngbDropdown" ngbDropdown>
+                                <input ngbDropdownToggle type="text" class="form-control" id="entityType" readonly
+                                       [value]="cignalinksGroupAddressForm.value.entityType"
+                                       formControlName="entityType">
+                                <div class="input-group-append" role="group">
+                                    <button ngbDropdownToggle class="btn border"></button>
+                                </div>
+                                <div ngbDropdownMenu aria-labelledby="dropdown" class="max-dropdown-height">
+                                    <button ngbDropdownItem value="{{value.entityDesc}}" disabled
+                                            (click)="setFieldValue('entityType', value.entityDesc)"
+                                            *ngFor="let value of ciebEntityCodes; let i = index">
+
+                                        {{value.entityDesc}}
+
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <small class="text-danger" *ngIf=" formValidation.isValidField('entityType')">
+                            {{ formValidation.errorMessage('entityType') }}
+                        </small>
+                    </div>
+
+
+                    <!-- DynamicText with label of Effective Date -->
+                    <div class="col-md-4">
+                        <app-datepicker [isRequired]="true" [formGroup]="cignalinksGroupAddressForm"
+                                        [labelText]="'Effective Date'"
+                                        [formValidation]="formValidation" [field]="'effectiveDate'"
+                                        [fieldLevelSec]="'EFF_DATE'" id="effectiveDate"
+                                        [params]="{secColDetails: secColDetails, isEditState: isEditFormState}"></app-datepicker>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <!-- Textbox with label of Term Date -->
+                    <div class="offset-4 col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('termDate') }">
+                        <app-datepicker [isRequired]="false" [formGroup]="cignalinksGroupAddressForm"
+                                        [labelText]="'Term Date'"
+                                        (onDateChanged)="setChangeReason($event)"
+                                        [formValidation]="formValidation" [field]="'termDate'"
+                                        [fieldLevelSec]="''" id="dob"></app-datepicker>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <!-- DynamicText with label of Care of -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('careOf') }">
+                        <label class="col-form-label" for="careOf" i18n>Care of</label>
+                        <input type="text" [fieldLevelSec]="''" [params]="" id="careOf" formControlName="careOf"
+                               class="form-control"/>
+                               <small class="text-danger" *ngIf=" this.isFormSubmitted && cignalinksGroupAddressForm.controls.careOf.errors && cignalinksGroupAddressForm.controls.careOf.errors.incorrect">
+                                {{ ADDRESS_FIELDS_Validations.ISOTEMPLATECAREOFREQUIRED }}
+                            </small>
+                            <small class="text-danger" *ngIf=" this.isFormSubmitted &&  cignalinksGroupAddressForm.controls.careOf.errors && cignalinksGroupAddressForm.controls.careOf.errors.notrequired">
+                                {{ ADDRESS_FIELDS_Validations.ISOTEMPLATECAREOFNOTALLOWED }}
+                            </small>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <!-- DynamicText with label of Address Line 1 -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('addressLine1') }">
+                        <label class="col-form-label required-field-label" for="addressLine1" i18n>Address Line
+                            1</label>
+                        <input type="text" [fieldLevelSec]="''" [params]="" id="addressLine1"
+                               formControlName="addressLine1" class="form-control"/>
+                        <small class="text-danger" *ngIf=" this.isFormSubmitted && cignalinksGroupAddressForm.controls.addressLine1.errors && cignalinksGroupAddressForm.controls.addressLine1.errors.notValid">
+                            {{ ADDRESS_FIELDS_Validations.ISOTEMPLATEADDRESSLINE1VALIDATAION }}
+                        </small>
+                        <small class="text-danger" *ngIf=" this.isFormSubmitted && cignalinksGroupAddressForm.controls.addressLine1.errors && cignalinksGroupAddressForm.controls.addressLine1.errors.incorrect">
+                            {{ ADDRESS_FIELDS_Validations.ISOTEMPLATEADDRESSLINE1REQUIRED }}
+                        </small>
+                        <small class="text-danger" *ngIf=" this.isFormSubmitted && cignalinksGroupAddressForm.controls.addressLine1.errors && cignalinksGroupAddressForm.controls.addressLine1.errors.notrequired">
+                            {{ ADDRESS_FIELDS_Validations.ISOTEMPLATEADDRESSLINE1NOTALLOWED }}
+                        </small>
+                    </div>
+                    <!-- DynamicText with label of Change Reason -->
+
+                    <div class="col-md-4">
+                        <label for="changeReason" i18n> Change Reason </label>
+                        <div class="selectContainer "
+                             [ngClass]="{'required-field':  formValidation.isValidField('changeReason') }">
+
+                            <div class="input-group" #myDrop="ngbDropdown" ngbDropdown>
+                                <input ngbDropdownToggle type="text" class="form-control" id="changeReason"
+                                [readonly]="isChangeReasonReadonly"
+                                       [value]="cignalinksGroupAddressForm.value.changeReason"
+                                       formControlName="changeReason">
+                                <div class="input-group-append" role="group">
+                                    <button ngbDropdownToggle class="btn border" [disabled]="isChangeReasonReadonly"></button>
+                                </div>
+                                <div ngbDropdownMenu aria-labelledby="dropdown" class="max-dropdown-height">
+                                    <button ngbDropdownItem value="{{value.changeReasonDesc}}"
+                                            (click)="setFieldValue('changeReason', value.changeReasonDesc)"
+                                            *ngFor="let value of ciebChangeReasonCodes; let i = index">
+                                        {{value.changeReasonDesc}}
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <small class="text-danger" *ngIf="formValidation.isValidField('changeReason')">
+                            {{ formValidation.errorMessage('changeReason') }}
+                        </small>
+                    </div>
+
+
+                </div>
+
+                <div class="form-group row">
+                    <!-- DynamicText with label of Address Line 2 -->
+                    <div class="col-md-4" [ngClass]="{'has-danger':  formValidation.isValidField('addressLine2') }">
+                        <label class="col-form-label" for="addressLine2" i18n>Address Line 2</label>
+                        <input type="text" [fieldLevelSec]="''" [params]="" id="addressLine2"
+                               formControlName="addressLine2" class="form-control"/>
+                               <small class="text-danger" *ngIf=" this.isFormSubmitted && cignalinksGroupAddressForm.controls.addressLine2.errors && cignalinksGroupAddressForm.controls.addressLine2.errors.notValid">
+                                {{ ADDRESS_FIELDS_Validations.ISOTEMPLATEADDRESSLINE2VALIDATAION }}
+                            </small>
+                            <small class="text-danger" *ngIf=" this.isFormSubmitted && cignalinksGroupAddressForm.controls.addressLine2.errors && cignalinksGroupAddressForm.controls.addressLine2.errors.incorrect">
+                                {{ ADDRESS_FIELDS_Validations.ISOTEMPLATEADDRESSLINE2REQUIRED }}
+                            </small>
+                            <small class="text-danger" *ngIf=" this.isFormSubmitted && cignalinksGroupAddressForm.controls.addressLine2.errors && cignalinksGroupAddressForm.controls.addressLine2.errors.notrequired">
+                                {{ ADDRESS_FIELDS_Validations.ISOTEMPLATEADDRESSLINE2NOTALLOWED }}
+                            </small>
+                    </div>
+
+                    <!-- DynamicText with label of Restricted Reason -->
+                    <div class="col-md-4">
+                        <label for="restrictedReason" i18n>Restricted Reason </label>
+                        <div class="selectContainer "  
+                             [ngClass]="{'required-field': formValidation.isValidField('restrictedReason') }">
+
+                            <div class="input-group" #myDrop="ngbDropdown" ngbDropdown>
+                                <input ngbDropdownToggle type="text" class="form-control" id="restrictedReason"
+                                       [value]="restrictedReasonVal"
+                                       formControlName="restrictedReason">
+                                <div class="input-group-append" role="group">
+                                    <button ngbDropdownToggle class="btn border"></button>
+                                </div>
+                                <div ngbDropdownMenu aria-labelledby="dropdown" class="max-dropdown-height">
+                                    <button ngbDropdownItem value="{{value.restrictedReasonDesc}}"
+                                            (click)="setFieldValue('restrictedReason', value.restrictedReasonDesc);
+restrictedReasonVal = value.restrictedReasonDesc"
+                                            *ngFor="let value of ciebRestrictedReasonCodes; let i = index">
+                                        {{ value.restrictedReasonDesc}}
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <small class="text-danger" *ngIf="formValidation.isValidField('restrictedReason')">
+                            {{ formValidation.errorMessage('restrictedReason') }}
+                        </small>
+                    </div>
+
+                </div>
+
+                <div class="form-group row">
+                    <!-- DynamicText with label of Address Line 3 -->
+                    <div class="col-md-4" [ngClass]="{'has-danger':  formValidation.isValidField('addressLine3') }">
+                        <label class="col-form-label" for="addressLine3" i18n>Address Line 3</label>
+                        <input type="text" [fieldLevelSec]="''" [params]="" id="addressLine3"
+                               formControlName="addressLine3" class="form-control"/>
+                               <small class="text-danger" *ngIf=" this.isFormSubmitted && cignalinksGroupAddressForm.controls.addressLine3.errors && cignalinksGroupAddressForm.controls.addressLine3.errors.notValid">
+                                {{ ADDRESS_FIELDS_Validations.ISOTEMPLATEADDRESSLINE3VALIDATAION }}
+                            </small>
+                            <small class="text-danger" *ngIf=" this.isFormSubmitted && cignalinksGroupAddressForm.controls.addressLine3.errors && cignalinksGroupAddressForm.controls.addressLine3.errors.incorrect">
+                                {{ ADDRESS_FIELDS_Validations.ISOTEMPLATEADDRESSLINE3REQUIRED }}
+                            </small>
+                            <small class="text-danger" *ngIf=" this.isFormSubmitted && cignalinksGroupAddressForm.controls.addressLine3.errors && cignalinksGroupAddressForm.controls.addressLine3.errors.notrequired">
+                                {{ ADDRESS_FIELDS_Validations.ISOTEMPLATEADDRESSLINE3NOTALLOWED }}
+                            </small>
+                    </div>
+
+                    <!-- DynamicText with label of Country -->
+                    <div class="col-md-4">
+                        <label for="country" class=" clr-blue" i18n>Country</label>
+                        <div class="selectContainer "
+                             [ngClass]="{'required-field':  formValidation.isValidField('country') }" >
+                             <select type="text" id="country" #country class="form-control"  formControlName="country" 
+                             (change)="setFieldValue('country', $event.target.value); addValidations($event.target.value)" >
+                                <option [value]="value.countryCode" *ngFor="let value of countryDropdownValues; let i = index"  [selected]="value== countryVal" >{{value.countryDesc}} </option>
+                          </select>
+
+                            <!-- <div class="input-group" #myDrop="ngbDropdown" ngbDropdown>
+                                <input ngbDropdownToggle type="text" class="form-control" id="country"
+                                       [value]="countryVal" (input)="onSearchChange($event.target.value)"
+                                       formControlName="country">
+                                <div class="input-group-append" role="group">
+                                    <button ngbDropdownToggle class="btn border"></button>
+                                </div>
+                                <div ngbDropdownMenu aria-labelledby="dropdown" class="max-dropdown-height">
+                                    <button ngbDropdownItem value="{{value.countryCode}}"
+                                            (click)="setFieldValue('country', value.countryDesc); addValidations(value)"
+                                            *ngFor="let value of countryDropdownValues; let i = index">
+                                        {{value.countryDesc}}
+                                    </button>
+                                </div>
+                            </div> -->
+                        </div>
+                        <!-- <small class="text-danger" *ngIf=" this.isFormSubmitted && cignalinksGroupAddressForm.controls.country.errors.notValid">
+                            {{ ADDRESS_FIELDS_Validations.ISOTEMPLATECITYREQUIRED }}
+                        </small>
+                        <small class="text-danger" *ngIf=" this.isFormSubmitted && cignalinksGroupAddressForm.controls.country.errors.incorrect">
+                            {{ ADDRESS_FIELDS_Validations.ISOTEMPLATEADDRESSLINE2REQUIRED }}
+                        </small>
+                        <small class="text-danger" *ngIf=" this.isFormSubmitted && cignalinksGroupAddressForm.controls.country.errors.notrequired">
+                            {{ ADDRESS_FIELDS_Validations.ISOTEMPLATECITYNOTALLOWED }}
+                        </small> -->
+                    </div>
+
+
+                </div>
+
+
+                <div class="form-group row">
+                    <!-- Textbox with label of Postal Code -->
+                    <div class="col-md-4 " [ngClass]="{'has-danger':  formValidation.isValidField('postalCode') }">
+                        <label class="col-form-label" for="postalCode" i18n>Postal Code</label>
+                        <input type="text" id="postalCode" [fieldLevelSec]="''" [params]="" class="form-control"
+                               formControlName="postalCode"/>
+                              
+                               <!-- <small class="text-danger" *ngIf=" this.isFormSubmitted && cignalinksGroupAddressForm.controls.country.errors.notValid">
+                                {{ ADDRESS_FIELDS_Validations.ISOTEMPLATECITYREQUIRED }}
+                            </small> -->
+                            <small class="text-danger" *ngIf=" this.isFormSubmitted && cignalinksGroupAddressForm.controls.postalCode.errors &&  cignalinksGroupAddressForm.controls.postalCode.errors.incorrect">
+                                {{ ADDRESS_FIELDS_Validations.ISOTEMPLATEPOSTALCODEREQUIRED }}
+                            </small>
+                            <small class="text-danger" *ngIf=" this.isFormSubmitted && cignalinksGroupAddressForm.controls.postalCode.errors && cignalinksGroupAddressForm.controls.postalCode.errors.notrequired">
+                                {{ ADDRESS_FIELDS_Validations.ISOTEMPLATEPOSTALCODENOTALLOWED }}
+                            </small>
+                    </div>
+                    <div class="col-md-1">
+                        <button class="btn btn-primary" style="margin-top: 30px; border-radius: 50%;" i18n (click)="findDetailByZipCode()">
+                                Go
+                            </button>
+                   </div>
+                </div>
+                <div class="form-group row">
+                    <!-- DynamicText with label of City -->
+                    <div class="col-md-4" [ngClass]="{'has-danger':  formValidation.isValidField('city') }">
+                        <label class="col-form-label" for="city" i18n>City</label>
+                        <input type="text" [fieldLevelSec]="''" [params]="" id="city" formControlName="city"
+                               class="form-control"/>
+                               <small class="text-danger" *ngIf=" this.isFormSubmitted && cignalinksGroupAddressForm.controls.city.errors &&  cignalinksGroupAddressForm.controls.city.errors.incorrect">
+                                {{ ADDRESS_FIELDS_Validations.ISOTEMPLATECITYREQUIRED }}
+                            </small>
+                            <small class="text-danger" *ngIf=" this.isFormSubmitted && cignalinksGroupAddressForm.controls.city.errors && cignalinksGroupAddressForm.controls.city.errors.notrequired">
+                                {{ ADDRESS_FIELDS_Validations.ISOTEMPLATECITYNOTALLOWED }}
+                            </small>
+                    </div>
+
+
+                    <!-- DynamicText with label of state -->
+                    <div class="col-md-4" *ngIf="isDisplayStateField">
+                        <label for="country" i18n>State</label>
+                        <div class="selectContainer "
+                             [ngClass]="{'required-field':  formValidation.isValidField('state') }">
+
+                            <div class="input-group" #myDrop="ngbDropdown" ngbDropdown>
+                                <input ngbDropdownToggle type="text" class="form-control" id="state"
+                                       [value]="cignalinksGroupAddressForm.value.state"
+                                       formControlName="state">
+                                <div class="input-group-append" role="group">
+                                    <button ngbDropdownToggle class="btn border"></button>
+                                </div>
+                                <div ngbDropdownMenu aria-labelledby="dropdown" class="max-dropdown-height">
+                                    <button ngbDropdownItem value="{{value.stateDesc}}"
+                                            (click)="setFieldValue('state', value.stateDesc);"
+                                            *ngFor="let value of ciebStateCodes; let i = index">
+                                        {{value.stateDesc}}
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <small class="text-danger" *ngIf=" this.isFormSubmitted && cignalinksGroupAddressForm.controls.state.errors && cignalinksGroupAddressForm.controls.state.errors.incorrect">
+                            {{ ADDRESS_FIELDS_Validations.ISOTEMPLATESTATEREQUIRED }}
+                        </small>
+                        <small class="text-danger" *ngIf=" this.isFormSubmitted && cignalinksGroupAddressForm.controls.state.errors && cignalinksGroupAddressForm.controls.state.errors.notrequired">
+                            {{ ADDRESS_FIELDS_Validations.ISOTEMPLATESTATENOTALLOWED }}
+                        </small>
+                    </div>
+
+
+                </div>
+
+                <div class="form-group row">
+
+                    <!-- DynamicText with label of District -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('district') }">
+                        <label class="col-form-label" for="district" i18n>District</label>
+                        <input type="text" [fieldLevelSec]="''" [params]="" id="district"
+                               formControlName="district"
+                               class="form-control"/>
+                               <small class="text-danger" *ngIf=" this.isFormSubmitted && cignalinksGroupAddressForm.controls.district.errors && cignalinksGroupAddressForm.controls.district.errors.incorrect">
+                                {{ ADDRESS_FIELDS_Validations.ISOTEMPLATEDISTRICTREQUIRED }}
+                            </small>
+                            <small class="text-danger" *ngIf=" this.isFormSubmitted && cignalinksGroupAddressForm.controls.district.errors && cignalinksGroupAddressForm.controls.district.errors.notrequired">
+                                {{ ADDRESS_FIELDS_Validations.ISOTEMPLATEDISTRICTNOTALLOWED }}
+                            </small>
+                    </div>
+                    <!-- DynamicText with label of Province -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('province') }">
+                        <label class="col-form-label" for="province" i18n>Province</label>
+                        <input type="text" [fieldLevelSec]="''" [params]="" id="province"
+                               formControlName="province"
+                               class="form-control"/>
+                               <small class="text-danger" *ngIf=" this.isFormSubmitted && cignalinksGroupAddressForm.controls.province.errors && cignalinksGroupAddressForm.controls.province.errors.incorrect">
+                                {{ ADDRESS_FIELDS_Validations.ISOTEMPLATEPROVINCEREQUIRED }}
+                            </small>
+                            <small class="text-danger" *ngIf=" this.isFormSubmitted && cignalinksGroupAddressForm.controls.province.errors && cignalinksGroupAddressForm.controls.province.errors.notrequired">
+                                {{ ADDRESS_FIELDS_Validations.ISOTEMPLATEPROVINCENOTALLOWED }}
+                            </small>
+                    </div>
+
+                    <!-- DynamicText with label of Province -->
+                    <div class="col-md-4" [ngClass]="{'has-danger': formValidation.isValidField('visitingProvince') }">
+                        <label class="col-form-label" for="visitingProvince" i18n>Visiting Province</label>
+                        <input type="text" [fieldLevelSec]="''" [params]="" id="visitingProvince"
+                               formControlName="visitingProvince"
+                               class="form-control"/>
+                        <small class="text-danger" *ngIf="this.isFormSubmitted || formValidation.isValidField('visitingProvince')">
+                            {{ formValidation.errorMessage('visitingProvince') }}
+                        </small>
+                    </div>
+
+
+                </div>
+
+
+                <div class="form-group row">
+                    <button class=" offset-4 button form-control-static mb-0" i18n (click)="resetForm()">
+                        Reset All
+                    </button>
+
+                    <button class="col-md-2 pl-2 button form-control-static mb-0" i18n (click)="saveCiebAddress()">
+                        Save Changes
+                    </button>
+
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>

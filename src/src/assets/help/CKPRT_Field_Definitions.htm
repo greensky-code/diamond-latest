@@ -1,0 +1,641 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+    <title>CKPRT Field Definitions</title>
+    <!--(Meta)==========================================================-->
+    <meta name="copyright"
+          value="© Copyright 2002 Health Systems Design Corp., a wholly owned subsidiary of Perot Systems Corporation. All rights reserved"/>
+    <meta content="Field Definitions.htt" name="template"/>
+    <meta content="RoboHELP by eHelp Corporation - www.ehelp.com" name="generator"/>
+    <meta content="0.1" name="generator-major-version"/>
+    <meta content="1" name="generator-minor-version"/>
+    <meta content="kadov" name="filetype"/>
+    <meta content="1" name="filetype-version"/>
+    <meta content="1" name="page-count"/>
+    <meta content="4224" name="layout-height"/>
+    <meta content="678" name="layout-width"/>
+    <!--(Links)=========================================================-->
+    <!--(Scripts)=======================================================-->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+</head>
+<body>
+
+<div class="calibreMeta">
+    <div class="calibreMetaTitle">
+
+
+        <h1>
+            <a href="../4xeqt-va1vo.html">DIAMOND 950 Help
+            </a>
+        </h1>
+
+
+    </div>
+    <div class="calibreMetaAuthor">
+        Unknown
+
+    </div>
+</div>
+
+<div class="calibreMain">
+
+    <div class="calibreEbookContent">
+
+        <div class="calibreEbNavTop">
+
+            <a href="CKPRT_Field_Map.htm" class="calibreAPrev">previous page
+            </a>
+
+
+            <a href="CKPRT_Functions_on_Menu_Bar.htm" class="calibreANext">next page
+            </a>
+
+        </div>
+
+
+        <!--(Table)=========================================================-->
+        <table cellspacing="0" width="500" x-use-null-cells="" class="calibre109">
+            <colgroup class="calibre19">
+                <col class="calibre110"/>
+                <col class="calibre111"/>
+
+            </colgroup>
+            <tbody class="calibre10">
+            <tr valign="top" class="calibre11">
+                <td width="70%" class="calibre112">
+                    <h4 class="calibre62">CKPRT Field Definitions</h4></td>
+                <td width="30%" class="calibre113">
+                    <p class="body-text1"><img border="0" height="53" src="assets/help/Field_definitions_Req_legend.gif" width="97"
+                                               x-maintain-ratio="TRUE" class="calibre114"/></p></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <!--(Table)=========================================================-->
+        <table cellspacing="0" width="500" x-use-null-cells="" class="calibre115">
+            <colgroup class="calibre19">
+                <col class="calibre116"/>
+                <col class="calibre117"/>
+                <col class="calibre118"/>
+                <col class="calibre119"/>
+                <col class="calibre118"/>
+
+            </colgroup>
+            <tbody class="calibre10">
+            <tr valign="top" class="calibre11">
+                <td width="110px" class="calibre120">
+                    <p class="tableheading">Field Name</p></td>
+                <td width="15px" class="calibre121">
+                    <p class="tableheading1">Req</p></td>
+                <td width="140px" class="calibre122">
+                    <p class="tableheading">Description</p></td>
+                <td width="95px" class="calibre123">
+                    <p class="tableheading">Source</p></td>
+                <td width="140px" class="calibre122">
+                    <p class="tableheading">Comments</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre11">
+                <td width="110px" class="calibre124">
+                    <p class="tableboldtext"><a name="CKPRT_Action_FIELD"></a>Action</p></td>
+                <td width="15px" class="calibre125">
+                    <p class="tabletext">R</p></td>
+                <td width="140px" class="calibre126">
+                    <p class="tabletext1">Action taken for this check print job.</p></td>
+                <td width="95px" class="calibre127">
+                    <p class="tabletext1">Selected from predefined list</p></td>
+                <td width="140px" class="calibre126">
+                    <p class="tabletext1">Hard coded values are:</p>
+                    <ul class="calibre6">
+
+                        <li class="kadov-p-cstepbullet"><p class="tablebullet"><span class="calibre9">Calc</span>:
+                            Calculates transactions; one amount for each vendor within vendor address
+                            within back account within company code.</p></li>
+
+                        <li class="kadov-p-cstepbullet"><p class="tablebullet"><span class="calibre9">Print</span>:
+                            Prints checks, one for each vendor/vendor address combination.</p></li>
+
+                        <li class="kadov-p-cstepbullet"><p class="tablebullet"><span class="calibre9">Cancel</span>:
+                            Cancels the job.</p></li>
+                    </ul>
+                </td>
+            </tr>
+
+            <tr valign="top" class="calibre11">
+                <td width="110px" class="calibre124">
+                    <p class="tableboldtext"><a name="CKPRT_Bank_Acct_FIELD"></a>Bank Acct</p></td>
+                <td width="15px" class="calibre125">
+                    <p class="tabletext">D</p></td>
+                <td width="140px" class="calibre126">
+                    <p class="tabletext1">Bank account associated with the Company Code entered.</p></td>
+                <td width="95px" class="calibre127">
+                    <p class="tabletext1">Displayed</p></td>
+                <td width="140px" class="calibre126">
+                    <p class="tabletext1">Bank Accounts are maintained in keyword BANKA (Bank
+                        Account).</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre11">
+                <td width="110px" class="calibre124">
+                    <p class="tableboldtext"><a name="CKPRT_Field_Definitions_Calc_Admin_Fee_FIELD"></a>Calc
+                        Admin Fee</p></td>
+                <td width="15px" class="calibre125">
+                    <p class="tabletext">R</p></td>
+                <td width="140px" class="calibre126">
+                    <p class="tabletext1">Indicates whether administrative fees are included in
+                        the check print job.</p></td>
+                <td width="95px" class="calibre127">
+                    <p class="tabletext1">Selected from predefined list</p></td>
+                <td width="140px" class="calibre126">
+                    <p class="tabletext1">You can select one of the following values:</p>
+                    <ul class="calibre6">
+
+                        <li class="kadov-p-cstepbullet"><p class="tablebullet"><span class="calibre9">E
+ – Exclude Admin Fee</span></p></li>
+                    </ul>
+                    <p class="tablebulletcont">Exclude administrative fees when running a check
+                        print job.</p>
+                    <ul class="calibre6">
+
+                        <li class="kadov-p-cstepbullet"><p class="tablebullet"><span class="calibre9">I
+ – Include Admin Fee</span></p></li>
+                    </ul>
+                    <p class="tablebulletcont">Include administrative fees when running a check
+                        print job.</p>
+                    <ul class="calibre6">
+
+                        <li class="kadov-p-cstepbullet"><p class="tablebullet"><span class="calibre9">O
+ – Only Admin Fee</span></p></li>
+                    </ul>
+                    <p class="tablebulletcont">Only process administrative fees when running
+                        a check print job. Other payables are ignored.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre11">
+                <td width="110px" class="calibre124">
+                    <p class="tableboldtext"><a name="CKPRT_Check_Notes_FIELD"></a>Check Notes</p></td>
+                <td width="15px" class="calibre125">
+                    <p class="tabletext">O</p></td>
+                <td width="140px" class="calibre126">
+                    <p class="tabletext1">Text that will be printed on the check.</p></td>
+                <td width="95px" class="calibre127">
+                    <p class="tabletext1">Manually entered</p></td>
+                <td width="140px" class="calibre126">
+                    <p class="tabletext1"> </p></td>
+            </tr>
+
+            <tr valign="top" class="calibre11">
+                <td colspan="1" rowspan="1" width="110px" class="calibre124">
+                    <p class="tableboldtext"><a name="CKPRT_Check_EFT_Amt_FIELD"></a>Check/EFT
+                        Amt</p></td>
+                <td colspan="1" rowspan="1" width="15px" class="calibre125">
+                    <p class="tabletext">D</p></td>
+                <td colspan="1" rowspan="1" width="140px" class="calibre126">
+                    <p class="tabletext1">The amount to be printed on the check.</p></td>
+                <td colspan="1" rowspan="1" width="95px" class="calibre127">
+                    <p class="tabletext1">Displayed</p></td>
+                <td colspan="1" rowspan="1" width="140px" class="calibre126">
+                    <p class="tabletext1">DIAMOND may <a
+                            href="DMDHelp.chm::/About_number_formats_for_currency_Display_MID.htm">truncate
+                        the display</a> of the currency amount.</p>
+                    <p class="tbl-text-noline">Protected field. No entry available.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre11">
+                <td colspan="1" rowspan="1" width="110px" class="calibre124">
+                    <p class="tableboldtext"><a name="CKPRT_Check_EFT_Date_FIELD"></a>Check/EFT
+                        Date</p></td>
+                <td colspan="1" rowspan="1" width="15px" class="calibre125">
+                    <p class="tabletext">R</p></td>
+                <td colspan="1" rowspan="1" width="140px" class="calibre126">
+                    <p class="tabletext1">Issue date for checks or transaction date for EFT.</p></td>
+                <td colspan="1" rowspan="1" width="95px" class="calibre127">
+                    <p class="tabletext1">System generated</p></td>
+                <td colspan="1" rowspan="1" width="140px" class="calibre126">
+                    <p class="tabletext1">This field may be overwritten</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre11">
+                <td colspan="1" rowspan="1" width="110px" class="calibre124">
+                    <p class="tableboldtext"><a name="CKPRT_Field_Definitions_Check_EFT_Mode_FIELD"></a>Check/EFT
+                        Mode</p></td>
+                <td colspan="1" rowspan="1" width="15px" class="calibre125">
+                    <p class="tabletext">R</p></td>
+                <td colspan="1" rowspan="1" width="140px" class="calibre126">
+                    <p class="tabletext1">Mode in which the check will be printed.</p></td>
+                <td colspan="1" rowspan="1" width="95px" class="calibre127">
+                    <p class="tabletext1">Selected from predefined list</p></td>
+                <td colspan="1" rowspan="1" width="140px" class="calibre126">
+                    <p class="tabletext1">Only one value, Auto, is available for this field.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre11">
+                <td colspan="1" rowspan="1" width="110px" class="calibre124">
+                    <p class="tableboldtext"><a name="CKPRT_Comments_FIELD"></a>Comments</p></td>
+                <td colspan="1" rowspan="1" width="15px" class="calibre125">
+                    <p class="tabletext">O</p></td>
+                <td colspan="1" rowspan="1" width="140px" class="calibre126">
+                    <p class="tabletext1">Text comments about the check print job.</p></td>
+                <td colspan="1" rowspan="1" width="95px" class="calibre127">
+                    <p class="tabletext1">Manually entered</p></td>
+                <td colspan="1" rowspan="1" width="140px" class="calibre126">
+                    <p class="tabletext1"> </p></td>
+            </tr>
+
+            <tr valign="top" class="calibre11">
+                <td colspan="1" rowspan="1" width="110px" class="calibre124">
+                    <p class="tableboldtext"><a name="CKPRT_Company_Code_FIELD"></a>Company Code</p></td>
+                <td colspan="1" rowspan="1" width="15px" class="calibre125">
+                    <p class="tabletext">R</p></td>
+                <td colspan="1" rowspan="1" width="140px" class="calibre126">
+                    <p class="tabletext1">G/L company associated with this check print job.</p></td>
+                <td colspan="1" rowspan="1" width="95px" class="calibre127">
+                    <p class="tabletext1">Selected from predefined list</p></td>
+                <td colspan="1" rowspan="1" width="140px" class="calibre126">
+                    <p class="tabletext1">Companies are maintained in keyword COMPF (Company).</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre11">
+                <td colspan="1" rowspan="1" width="110px" class="calibre124">
+                    <p class="tableboldtext"><a name="CKPRT_Date_FIELD"></a>Date</p></td>
+                <td colspan="1" rowspan="1" width="15px" class="calibre125">
+                    <p class="tabletext">D</p></td>
+                <td colspan="1" rowspan="1" width="140px" class="calibre126">
+                    <p class="tabletext1">System date.</p></td>
+                <td colspan="1" rowspan="1" width="95px" class="calibre127">
+                    <p class="tabletext1">Displayed</p></td>
+                <td colspan="1" rowspan="1" width="140px" class="calibre126">
+                    <p class="tabletext1"> </p></td>
+            </tr>
+
+            <tr valign="top" class="calibre11">
+                <td colspan="1" rowspan="1" width="110px" class="calibre124">
+                    <p class="tableboldtext"><a name="CKPRT_From_Due_Date_FIELD"></a>From Due Date</p></td>
+                <td colspan="1" rowspan="1" width="15px" class="calibre125">
+                    <p class="tabletext">O</p></td>
+                <td colspan="1" rowspan="1" width="140px" class="calibre126">
+                    <p class="tabletext1">Starting date in the range of due dates for payables
+                        calculations.</p></td>
+                <td colspan="1" rowspan="1" width="95px" class="calibre127">
+                    <p class="tabletext1">Manually entered</p></td>
+                <td colspan="1" rowspan="1" width="140px" class="calibre126">
+                    <p class="tabletext1">If the Vendor has a value in Payment Delay Days on the
+                        Vendor Master Record, the due date is calculated by adding that number
+                        of days to the Claim Received date.</p>
+                    <p class="tabletext1">If no value is in the Vendor Master, the system parameter
+                        CLAIMDUEDATE is read and the due date is calculated by adding that number
+                        of days to the Claim Received date.</p>
+                    <p class="tabletext1">If no value is in the parameter, the due date is the
+                        date of the APUPD run.</p>
+                    <p class="tabletext1">Enter in MMDDYY format. Leave this field blank to update
+                        all qualifying payables regardless of the due date.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre11">
+                <td colspan="1" rowspan="1" width="110px" class="calibre124">
+                    <p class="tableboldtext"><a name="CKPRT_From_Post_Date_FIELD"></a>From Post
+                        Date</p></td>
+                <td colspan="1" rowspan="1" width="15px" class="calibre125">
+                    <p class="tabletext">O</p></td>
+                <td colspan="1" rowspan="1" width="140px" class="calibre126">
+                    <p class="tabletext1">Beginning date in the range of eligible posted payables
+                        for the calculation of the EFT/Check print transaction records.</p></td>
+                <td colspan="1" rowspan="1" width="95px" class="calibre127">
+                    <p class="tabletext1">Manually entered</p></td>
+                <td colspan="1" rowspan="1" width="140px" class="calibre126">
+                    <p class="tabletext1"> </p></td>
+            </tr>
+
+            <tr valign="top" class="calibre11">
+                <td colspan="1" rowspan="1" width="110px" class="calibre124">
+                    <p class="tableboldtext"><a name="CKPRT_Job_ID_FIELD"></a>Job ID</p></td>
+                <td colspan="1" rowspan="1" width="15px" class="calibre125">
+                    <p class="tabletext">R</p></td>
+                <td colspan="1" rowspan="1" width="140px" class="calibre126">
+                    <p class="tabletext1">Unique identifier of the check print job.</p></td>
+                <td colspan="1" rowspan="1" width="95px" class="calibre127">
+                    <p class="tabletext1">System generated</p></td>
+                <td colspan="1" rowspan="1" width="140px" class="calibre126">
+                    <p class="tabletext1">This field may be overwritten.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre11">
+                <td colspan="1" rowspan="1" width="110px" class="calibre124">
+                    <p class="tableboldtext"><a name="CKPRT_Member_ID_FIELD"></a>Member ID</p></td>
+                <td colspan="1" rowspan="1" width="15px" class="calibre125">
+                    <p class="tabletext"> </p></td>
+                <td colspan="1" rowspan="1" width="140px" class="calibre126">
+                    <p class="tabletext1">Future functionality.</p></td>
+                <td colspan="1" rowspan="1" width="95px" class="calibre127">
+                    <p class="tabletext1"> </p></td>
+                <td colspan="1" rowspan="1" width="140px" class="calibre126">
+                    <p class="tabletext1">This field is unavailable for use.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre11">
+                <td colspan="1" rowspan="1" width="110px" class="calibre124">
+                    <p class="tableboldtext"><a name="CKPRT_Minimum_Override_FIELD"></a>Minimum
+                        Override</p></td>
+                <td colspan="1" rowspan="1" width="15px" class="calibre125">
+                    <p class="tabletext">O</p></td>
+                <td colspan="1" rowspan="1" width="140px" class="calibre126">
+                    <p class="tabletext1">Allows a manual override to Subscriber and Vendor minimums.</p></td>
+                <td colspan="1" rowspan="1" width="95px" class="calibre127">
+                    <p class="tabletext1">Selected from check box</p></td>
+                <td colspan="1" rowspan="1" width="140px" class="calibre126">
+                    <p class="tabletext1">If selected, Subscriber and Vendor Minimum from keyword
+                        COMPF are ignored and checks will be written regardless of amount.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre11">
+                <td colspan="1" rowspan="1" width="110px" class="calibre124">
+                    <p class="tableboldtext"><a name="CKPRT_Payable_Type_FIELD"></a>Payable Type</p></td>
+                <td colspan="1" rowspan="1" width="15px" class="calibre125">
+                    <p class="tabletext">R</p></td>
+                <td colspan="1" rowspan="1" width="140px" class="calibre126">
+                    <p class="tabletext1">Category of payable.</p></td>
+                <td colspan="1" rowspan="1" width="95px" class="calibre127">
+                    <p class="tabletext1">Selected from predefined list</p></td>
+                <td colspan="1" rowspan="1" width="140px" class="calibre126">
+                    <p class="tabletext1">Hard coded values are:</p>
+                    <ul class="calibre6">
+
+                        <li class="kadov-p-cstepbullet"><p class="tablebullet">A Agent commission
+                            (future)</p></li>
+
+                        <li class="kadov-p-cstepbullet"><p class="tablebullet">C Capitation</p></li>
+
+                        <li class="kadov-p-cstepbullet"><p class="tablebullet">M Medical</p></li>
+                    </ul>
+                </td>
+            </tr>
+
+            <tr valign="top" class="calibre11">
+                <td colspan="1" rowspan="1" width="110px" class="calibre124">
+                    <p class="tableboldtext"><a name="CKPRT_Post_Month_FIELD"></a>Post Month</p></td>
+                <td colspan="1" rowspan="1" width="15px" class="calibre125">
+                    <p class="tabletext"> </p></td>
+                <td colspan="1" rowspan="1" width="140px" class="calibre126">
+                    <p class="tabletext1">Future functionality.</p></td>
+                <td colspan="1" rowspan="1" width="95px" class="calibre127">
+                    <p class="tabletext1"> </p></td>
+                <td colspan="1" rowspan="1" width="140px" class="calibre126">
+                    <p class="tabletext1">This field is unavailable for use.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre11">
+                <td colspan="1" rowspan="1" width="110px" class="calibre124">
+                    <p class="tableboldtext"><a name="CKPRT_Provider_ID_FIELD"></a>Provider ID</p></td>
+                <td colspan="1" rowspan="1" width="15px" class="calibre125">
+                    <p class="tabletext">O</p></td>
+                <td colspan="1" rowspan="1" width="140px" class="calibre126">
+                    <p class="tabletext1">If applicable, the single provider for whom payables
+                        will be calculated.</p></td>
+                <td colspan="1" rowspan="1" width="95px" class="calibre127">
+                    <p class="tabletext1">Selected from predefined list</p></td>
+                <td colspan="1" rowspan="1" width="140px" class="calibre126">
+                    <p class="tabletext1">Providers are maintained in keyword PROVF (Provider
+                        Master).</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre11">
+                <td colspan="1" rowspan="1" width="110px" class="calibre124">
+                    <p class="tableboldtext"><a name="CKPRT_Reprint_Request_FIELD"></a>Reprint
+                        Request</p></td>
+                <td colspan="1" rowspan="1" width="15px" class="calibre125">
+                    <p class="tabletext">O</p></td>
+                <td colspan="1" rowspan="1" width="140px" class="calibre126">
+                    <p class="tabletext1">Used to re-submit a job Action Print that either ended
+                        in Error or had other external problem, which prevented it from completing
+                        normally.</p></td>
+                <td colspan="1" rowspan="1" width="95px" class="calibre127">
+                    <p class="tabletext1">Selected from check box</p></td>
+                <td colspan="1" rowspan="1" width="140px" class="calibre126">
+                    <p class="tabletext1">Original check numbers must be used for a reprint.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre11">
+                <td colspan="1" rowspan="1" width="110px" class="calibre124">
+                    <p class="tableboldtext"><a name="CKPRT_Req_User_FIELD"></a>Req User</p></td>
+                <td colspan="1" rowspan="1" width="15px" class="calibre125">
+                    <p class="tabletext">D</p></td>
+                <td colspan="1" rowspan="1" width="140px" class="calibre126">
+                    <p class="tabletext1">User requesting the job.</p></td>
+                <td colspan="1" rowspan="1" width="95px" class="calibre127">
+                    <p class="tabletext1">System generated</p></td>
+                <td colspan="1" rowspan="1" width="140px" class="calibre126">
+                    <p class="tabletext1"> </p></td>
+            </tr>
+
+            <tr valign="top" class="calibre11">
+                <td colspan="1" rowspan="1" width="110px" class="calibre124">
+                    <p class="tableboldtext"><a name="CKPRT_Request_Type_FIELD"></a>Request Type</p></td>
+                <td colspan="1" rowspan="1" width="15px" class="calibre125">
+                    <p class="tabletext">R</p></td>
+                <td colspan="1" rowspan="1" width="140px" class="calibre126">
+                    <p class="tabletext1">Indicator of when job should be run.</p></td>
+                <td colspan="1" rowspan="1" width="95px" class="calibre127">
+                    <p class="tabletext1">Selected from predefined list</p></td>
+                <td colspan="1" rowspan="1" width="140px" class="calibre126">
+                    <p class="tabletext1">Only value is Immediate. Deferred value is reserved
+                        for future use.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre11">
+                <td colspan="1" rowspan="1" width="110px" class="calibre124">
+                    <p class="tableboldtext"><a name="CKPRT_Start_Check_No._FIELD"></a>Start Check
+                        No.</p></td>
+                <td colspan="1" rowspan="1" width="15px" class="calibre125">
+                    <p class="tabletext">R</p></td>
+                <td colspan="1" rowspan="1" width="140px" class="calibre126">
+                    <p class="tabletext1">Next available check number in the sequence when checks
+                        are printed. The first valid check will be numbered with the sum of the
+                        Start Check No. + the number of alignment checks.</p></td>
+                <td colspan="1" rowspan="1" width="95px" class="calibre127">
+                    <p class="tabletext1">Displayed</p></td>
+                <td colspan="1" rowspan="1" width="140px" class="calibre126">
+                    <p class="tabletext1">DIAMOND will display the next available check for the
+                        Bank Account; may be overridden.</p>
+                    <p class="tabletext1">The number of alignment checks is determined manually
+                        during Action, Print.</p>
+                    <p class="tabletext1">This field is required for printed checks and EFT runs.</p>
+                    <p class="tabletext1">Manually entered number must be higher than the last
+                        check in the check register, CHECK. </p></td>
+            </tr>
+
+            <tr valign="top" class="calibre11">
+                <td colspan="1" rowspan="1" width="110px" class="calibre124">
+                    <p class="tableboldtext"><a name="CKPRT_Status_FIELD"></a>Status</p></td>
+                <td colspan="1" rowspan="1" width="15px" class="calibre125">
+                    <p class="tabletext">D</p></td>
+                <td colspan="1" rowspan="1" width="140px" class="calibre126">
+                    <p class="tabletext1">Current status of the check print job.</p></td>
+                <td colspan="1" rowspan="1" width="95px" class="calibre127">
+                    <p class="tabletext1">Displayed</p></td>
+                <td colspan="1" rowspan="1" width="140px" class="calibre126">
+                    <p class="tabletext1">Hard coded values are:</p>
+                    <ul class="calibre6">
+
+                        <li class="kadov-p-cstepbullet"><p class="tablebullet"><span class="calibre9">New</span>:
+                            New job has been saved, but no check print/EFT records have been calculated.</p></li>
+
+                        <li class="kadov-p-cstepbullet"><p class="tablebullet"><span class="calibre9">Calculated</span>:
+                            Check print/EFT records have been calculated for the batch job but haven’t
+                            been printed.</p></li>
+
+                        <li class="kadov-p-cstepbullet"><p class="tablebullet"><span class="calibre9">Printed</span>:
+                            Checks have been printed for the batch job but have not been posted.</p></li>
+
+                        <li class="kadov-p-cstepbullet"><p class="tablebullet"><span class="calibre9">Posted</span>:
+                            Check/EFT transactions for the batch job have been posted; accounts payable,
+                            claim detail, and check register is updated.</p></li>
+
+                        <li class="kadov-p-cstepbullet"><p class="tablebullet"><span class="calibre9">Error</span>:
+                            An error occurred during check print/EFT transaction record calculation
+                            or during check printing. Job must be canceled and a new job submitted
+                            for the same action.</p></li>
+
+                        <li class="kadov-p-cstepbullet"><p class="tablebullet"><span class="calibre9">Canceled</span>:
+                            This check print job was canceled and must be re-run.</p></li>
+                    </ul>
+                    <p class="tabletext1"><span class="calibre9">Important</span> -
+                        You can change the data entered in the Item Selection Criteria section
+                        box only if the batch job status is New.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre11">
+                <td colspan="1" rowspan="1" width="110px" class="calibre124">
+                    <p class="tableboldtext"><a name="CKPRT_Sub_Dep_Minimum_FIELD"></a>Sub/Dep
+                        Minimum</p></td>
+                <td colspan="1" rowspan="1" width="15px" class="calibre125">
+                    <p class="tabletext">D</p></td>
+                <td colspan="1" rowspan="1" width="140px" class="calibre126">
+                    <p class="tabletext1">Minimum amount for which a check will be written to
+                        a subscriber or dependent.</p></td>
+                <td colspan="1" rowspan="1" width="95px" class="calibre127">
+                    <p class="tabletext1">Displayed </p></td>
+                <td colspan="1" rowspan="1" width="140px" class="calibre126">
+                    <p class="tabletext1">Selecting the <span class="calibre9">Minimum
+ Override</span> check box will allow you to type over the value in this
+                        field. You can type up to 16 digits before the decimal and 2 digits after
+                        the decimal.</p>
+                    <p class="tabletext1">Sub/Dep Minimum is entered in keyword COMPF. Subscriber
+                        or dependent payments that are less than the Sub/Dep Minimum will be held
+                        until the next CKPRT run to which they apply. </p></td>
+            </tr>
+
+            <tr valign="top" class="calibre11">
+                <td colspan="1" rowspan="1" width="110px" class="calibre124">
+                    <p class="tableboldtext"><a name="CKPRT_Thru_Due_Date_FIELD"></a>Thru Due Date</p></td>
+                <td colspan="1" rowspan="1" width="15px" class="calibre125">
+                    <p class="tabletext">O</p></td>
+                <td colspan="1" rowspan="1" width="140px" class="calibre126">
+                    <p class="tabletext1">If entered, limits the calculation of payables to a
+                        range of due dates, ending with this date.</p></td>
+                <td colspan="1" rowspan="1" width="95px" class="calibre127">
+                    <p class="tabletext1">Manually entered</p></td>
+                <td colspan="1" rowspan="1" width="140px" class="calibre126">
+                    <p class="tabletext1">If the Vendor has a value in Payment Delay Days on the
+                        Vendor Master Record, the due date is calculated by adding that number
+                        of days to the Claim Received date.</p>
+                    <p class="tabletext1">If no value is in the Vendor Master, the system parameter
+                        CLAIMDUEDATE is read and the due date is calculated by adding that number
+                        of days to the Claim Received date.</p>
+                    <p class="tabletext1">If no value is in the parameter, the due date is the
+                        date of the APUPD run.</p>
+                    <p class="tabletext1">Enter in MMDDYY format. Leave this field blank to update
+                        all qualifying payables regardless of the due date.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre11">
+                <td colspan="1" rowspan="1" width="110px" class="calibre124">
+                    <p class="tableboldtext"><a name="CKPRT_Thru_Post_Date_FIELD"></a>Thru Post
+                        Date</p></td>
+                <td colspan="1" rowspan="1" width="15px" class="calibre125">
+                    <p class="tabletext">O</p></td>
+                <td colspan="1" rowspan="1" width="140px" class="calibre126">
+                    <p class="tabletext1">If entered, limits the calculation of payables to a
+                        range of post dates, ending with this date.</p></td>
+                <td colspan="1" rowspan="1" width="95px" class="calibre127">
+                    <p class="tabletext1">Manually entered</p></td>
+                <td colspan="1" rowspan="1" width="140px" class="calibre126">
+                    <p class="tabletext1"> </p></td>
+            </tr>
+
+            <tr valign="top" class="calibre11">
+                <td colspan="1" rowspan="1" width="110px" class="calibre124">
+                    <p class="tableboldtext"><a name="CKPRT_Vendor_Addr_FIELD"></a>Vendor Addr</p></td>
+                <td colspan="1" rowspan="1" width="15px" class="calibre125">
+                    <p class="tabletext">O</p></td>
+                <td colspan="1" rowspan="1" width="140px" class="calibre126">
+                    <p class="tabletext1">Vendor address for which payables will be calculated.</p></td>
+                <td colspan="1" rowspan="1" width="95px" class="calibre127">
+                    <p class="tabletext1">Selected from predefined list</p></td>
+                <td colspan="1" rowspan="1" width="140px" class="calibre126">
+                    <p class="tabletext1">Vendor addresses are maintained in keyword VENDA (Vendor
+                        Address).</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre11">
+                <td colspan="1" rowspan="1" width="110px" class="calibre124">
+                    <p class="tableboldtext"><a name="CKPRT_Vendor_ID_FIELD"></a>Vendor ID</p></td>
+                <td colspan="1" rowspan="1" width="15px" class="calibre125">
+                    <p class="tabletext">O</p></td>
+                <td colspan="1" rowspan="1" width="140px" class="calibre126">
+                    <p class="tabletext1">If applicable, the single vendor for whom payables will
+                        be calculated.</p></td>
+                <td colspan="1" rowspan="1" width="95px" class="calibre127">
+                    <p class="tabletext1">Selected from predefined list</p></td>
+                <td colspan="1" rowspan="1" width="140px" class="calibre126">
+                    <p class="tabletext1">Vendors are maintained in keyword VENDR.</p></td>
+            </tr>
+
+            <tr valign="top" class="calibre11">
+                <td colspan="1" rowspan="1" width="110px" class="calibre124">
+                    <p class="tableboldtext"><a name="CKPRT_Vendor_Minimum_FIELD"></a>Vendor Minimum</p></td>
+                <td colspan="1" rowspan="1" width="15px" class="calibre125">
+                    <p class="tabletext">D</p></td>
+                <td colspan="1" rowspan="1" width="140px" class="calibre126">
+                    <p class="tabletext1">Minimum amount for which a check will be written to
+                        a vendor.</p></td>
+                <td colspan="1" rowspan="1" width="95px" class="calibre127">
+                    <p class="tabletext1">Displayed</p></td>
+                <td colspan="1" rowspan="1" width="140px" class="calibre126">
+                    <p class="tabletext1">Selecting the <span class="calibre9">Minimum
+ Override</span> check box will allow you to type over the value in this
+                        field. You can type up to 16 digits before the decimal and 2 digits after
+                        the decimal.</p>
+                    <p class="tabletext1">Vendor Minimum is entered in keyword COMPF. Vendor payments
+                        that are less than the Vendor Minimum will be held until the next CKPRT
+                        run to which they apply. </p></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <p class="body-text"> </p>
+
+
+    </div>
+
+
+    <div class="calibreEbNav">
+
+        <a href="CKPRT_Field_Map.htm" class="calibreAPrev">previous page
+        </a>
+
+
+        <a href="../4xeqt-va1vo.html" class="calibreAHome">start
+        </a>
+
+
+        <a href="CKPRT_Functions_on_Menu_Bar.htm" class="calibreANext">next page
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+</html>
